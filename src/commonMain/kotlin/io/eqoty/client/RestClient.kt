@@ -1,7 +1,5 @@
 package io.eqoty.client
 
-import com.ionspin.kotlin.crypto.util.LibsodiumUtil.fromBase64
-import com.ionspin.kotlin.crypto.util.hexStringToUByteArray
 import io.eqoty.BroadcastMode
 import io.eqoty.response.ContractHashResponse
 import io.eqoty.response.SmartQueryResponse
@@ -19,7 +17,7 @@ import io.ktor.util.*
 import io.ktor.utils.io.core.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
-import okio.ByteString.Companion.decodeBase64
+import kotlinx.serialization.json.jsonObject
 import okio.ByteString.Companion.encodeUtf8
 
 /**
@@ -112,12 +110,14 @@ class RestClient(
         }
 
         val encrypted = this.enigmautils.encrypt(contractCodeHash, query)
-        val nonce = encrypted.slice(IntRange(0, 32)).toUByteArray()
+
+        val nonce = encrypted.sliceArray(IntRange(0, 31)).toUByteArray()
 
         val encoded = encrypted.toByteArray().encodeBase64().encodeUtf8().hex()
 
-        // @ts-ignore
-        val paramString = ""//URLSearchParams(addedParams).toString();
+        val paramString = if (addedParams != null) {
+            TODO() //URLSearchParams(addedParams).toString();
+        } else ""
 
         val path = "/wasm/contract/${contractAddress}/query/${encoded}?encoding=hex&${paramString}"
 
@@ -144,10 +144,10 @@ class RestClient(
             throw err;
         }
         val decryptedResponse =  enigmautils.decrypt(responseData.result.smart.decodeBase64Bytes().toUByteArray(), nonce)
-        println("decryptedResponse: ${decryptedResponse.map { it.toUInt() }}")
 
-        println(decryptedResponse.toByteArray().decodeToString().decodeBase64String().toByteArray().decodeToString())
-        TODO()
+        val decodedResponse = decryptedResponse.toByteArray().decodeToString().decodeBase64String().toByteArray().decodeToString()
+
+        return json.parseToJsonElement(decodedResponse).jsonObject
     }
 
 }
