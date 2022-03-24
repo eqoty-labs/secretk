@@ -34,6 +34,7 @@ kotlin {
     sourceSets {
         all {
             languageSettings.optIn("kotlin.ExperimentalUnsignedTypes")
+            languageSettings.optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
         }
         val commonMain by getting {
             dependencies {
@@ -54,6 +55,7 @@ kotlin {
         }
         val jvmMain by getting {
             dependencies {
+                implementation("org.slf4j:slf4j-simple:1.8.0-beta4")
                 implementation("io.ktor:ktor-client-okhttp:_")
                 implementation("org.cryptomator:siv-mode:_")
             }
