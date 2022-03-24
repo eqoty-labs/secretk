@@ -1,10 +1,11 @@
 package io.eqoty.client
 
-import com.ionspin.kotlin.crypto.util.Base64Variants
-import com.ionspin.kotlin.crypto.util.LibsodiumUtil.toBase64
+import com.ionspin.kotlin.crypto.util.LibsodiumUtil.fromBase64
+import com.ionspin.kotlin.crypto.util.hexStringToUByteArray
 import io.eqoty.BroadcastMode
 import io.eqoty.response.ContractHashResponse
 import io.eqoty.response.SmartQueryResponse
+import io.eqoty.response.WasmResponse
 import io.eqoty.utils.EnigmaUtils
 import io.eqoty.utils.SecretUtils
 import io.ktor.client.*
@@ -15,8 +16,11 @@ import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.util.*
+import io.ktor.utils.io.core.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
+import okio.ByteString.Companion.decodeBase64
+import okio.ByteString.Companion.encodeUtf8
 
 /**
  * Creates a new client to interact with a Cosmos SDK light client daemon.
@@ -107,19 +111,17 @@ class RestClient(
             _contractCodeHash
         }
 
-        val encrypted = this.enigmautils.encrypt(contractCodeHash, query);
-        val nonce = encrypted.slice(IntRange(0, 32))
+        val encrypted = this.enigmautils.encrypt(contractCodeHash, query)
+        val nonce = encrypted.slice(IntRange(0, 32)).toUByteArray()
 
-        val encoded = encrypted.toByteArray().encodeBase64().replace("""/\+/g""", "-").replace("""/\//g""", "_");
+        val encoded = encrypted.toByteArray().encodeBase64().encodeUtf8().hex()
 
         // @ts-ignore
         val paramString = ""//URLSearchParams(addedParams).toString();
 
-        val encodedContractAddress = "e4afc6843b43dccc8d8f22306e2f291680f5e057".encodeBase64()//Bech32.decode(contractAddress).data);
+        val path = "/wasm/contract/${contractAddress}/query/${encoded}?encoding=hex&${paramString}"
 
-        val path = "/compute/v1beta1/contract/${encodedContractAddress}/smart?query_data=${encoded}&${paramString}"
-
-        val responseData : SmartQueryResponse = try {
+        val responseData : WasmResponse<SmartQueryResponse> = try {
             get(path)
         } catch (err: Throwable) {
 //            const errorMessageRgx = /encrypted: (.+?): (?:instantiate|execute|query) contract failed/g;
@@ -141,7 +143,10 @@ class RestClient(
 
             throw err;
         }
-        println(responseData)
+        val decryptedResponse =  enigmautils.decrypt(responseData.result.smart.decodeBase64Bytes().toUByteArray(), nonce)
+        println("decryptedResponse: ${decryptedResponse.map { it.toUInt() }}")
+
+        println(decryptedResponse.toByteArray().decodeToString().decodeBase64String().toByteArray().decodeToString())
         TODO()
     }
 

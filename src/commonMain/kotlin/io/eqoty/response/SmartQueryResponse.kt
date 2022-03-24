@@ -1,4 +1,11 @@
 package io.eqoty.response
 
-@kotlinx.serialization.Serializable
-class SmartQueryResponse(val data: String)
+import kotlinx.serialization.Serializable
+
+@Serializable
+class WasmResponse<T>(
+    val height: String,
+    val result: T)
+
+@Serializable
+class SmartQueryResponse(val smart: String)
