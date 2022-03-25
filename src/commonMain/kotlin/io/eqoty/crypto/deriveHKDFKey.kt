@@ -7,7 +7,7 @@ import kotlin.math.roundToInt
 sealed class HKDFError(override val message: String): Error()
 class HKDFInvalidSaltError: HKDFError("Salt length must match exactly the key length of the HMAC function.")
 class HKDFInvalidLenError: HKDFError("Length of len must not be larger than 255 times the length of the hash output.")
-class HMACCalculationFailedError: HKDFError("HMAC calculation failed.")
+class HMACCalculationFailedError(message: String): HKDFError("HMAC calculation failed: $message")
 
 
 /**
@@ -30,7 +30,7 @@ fun deriveHKDFKey(ikm: UByteArray, _salt: UByteArray? = null, info: String = "",
     val prk = try {
         Auth.authHmacSha256(ikm, salt)
     } catch (t: Throwable){
-        throw HMACCalculationFailedError()
+        throw HMACCalculationFailedError(t.message!!)
     }
 
     // Step 2: Expand
@@ -47,7 +47,7 @@ fun deriveHKDFKey(ikm: UByteArray, _salt: UByteArray? = null, info: String = "",
         val currentTi = try {
             Auth.authHmacSha256(message.toUByteArray(), prk)
         } catch (t: Throwable){
-            throw HMACCalculationFailedError()
+            throw HMACCalculationFailedError(t.message!!)
         }
         T.addAll(currentTi)
         lastTi = currentTi

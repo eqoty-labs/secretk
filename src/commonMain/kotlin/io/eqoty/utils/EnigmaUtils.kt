@@ -2,7 +2,7 @@ package io.eqoty.utils
 
 import com.ionspin.kotlin.crypto.util.encodeToUByteArray
 import deriveHKDFKey
-import io.eqoty.crypto.SIV
+import io.eqoty.crypto.AesSIV
 import io.eqoty.utils.AxlSign.generateKeyPair
 import io.eqoty.utils.AxlSign.sharedKey
 import io.ktor.client.*
@@ -66,7 +66,7 @@ class EnigmaUtils(val apiUrl: String, seed: UByteArray?) : SecretUtils {
         )
 
 
-    private val siv = SIV()
+    private val siv = AesSIV()
     private val seed: UByteArray
     private val privKey: UByteArray
     val pubKey: UByteArray

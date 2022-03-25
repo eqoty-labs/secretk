@@ -7,6 +7,7 @@ group = "io.eqoty"
 version = "1.0-SNAPSHOT"
 
 repositories {
+    mavenLocal()
     mavenCentral()
     maven("https://oss.sonatype.org/content/repositories/snapshots")
 }
@@ -24,6 +25,7 @@ kotlin {
                 cssSupport.enabled = true
             }
         }
+        binaries.executable()
     }
     macosX64()
     macosArm64()
@@ -64,6 +66,13 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-js:_")
+                implementation(npm("path-browserify", "1.0.1"))
+                implementation(npm("crypto-browserify", "3.12.0"))
+                implementation(npm("buffer", "6.0.3"))
+                implementation(npm("stream-browserify", "3.0.0"))
+                implementation(npm("os-browserify", "0.3.0"))
+                implementation(npm("miscreant", "0.3.2"))
+                implementation(npm("libsodium-wrappers-sumo", "0.7.10"))
             }
         }
         val jsTest by getting

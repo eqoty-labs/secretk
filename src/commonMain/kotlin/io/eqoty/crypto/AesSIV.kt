@@ -1,20 +1,15 @@
 package io.eqoty.crypto
 
-
-actual class SIV {
-    actual fun encrypt(
+expect class AesSIV() {
+    suspend fun encrypt(
         txEncryptionKey: UByteArray,
         plaintext: UByteArray,
         associatedData: UByteArray
-    ): UByteArray {
-        TODO("Not yet implemented")
-    }
+    ): UByteArray
 
-    actual fun decrypt(
+    suspend fun decrypt(
         txEncryptionKey: UByteArray,
         ciphertext: UByteArray,
         associatedData: UByteArray
-    ): UByteArray {
-        TODO("Not yet implemented")
-    }
+    ): UByteArray
 }
