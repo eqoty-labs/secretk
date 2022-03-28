@@ -146,7 +146,7 @@ class EnigmaUtils(val apiUrl: String, seed: UByteArray?) : SecretUtils {
 
         val txEncryptionKey = getTxEncryptionKey(nonce)
 
-        val plaintext = contractCodeHash + message.toString()
+        val plaintext = contractCodeHash + message
 
         val ciphertext = siv.encrypt(txEncryptionKey, plaintext.encodeToUByteArray(), ubyteArrayOf())
 

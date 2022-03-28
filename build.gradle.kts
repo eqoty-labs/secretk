@@ -92,13 +92,13 @@ kotlin {
             }
         }
         val macosX64Main by getting {
-            dependsOn(nativeMain)
+            dependsOn(desktopMain)
         }
         val macosArm64Main by getting {
-            dependsOn(nativeMain)
+            dependsOn(desktopMain)
         }
         val linuxX64Main by getting {
-            dependsOn(nativeMain)
+            dependsOn(desktopMain)
         }
         val iosArm64Main by getting {
             dependsOn(iosMain)
