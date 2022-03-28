@@ -18,7 +18,8 @@ import io.ktor.utils.io.core.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonObject
-import okio.ByteString.Companion.encodeUtf8
+import okio.ByteString.Companion.decodeHex
+import okio.ByteString.Companion.toByteString
 
 /**
  * Creates a new client to interact with a Cosmos SDK light client daemon.
@@ -113,13 +114,17 @@ class RestClient(
 
         val nonce = encrypted.sliceArray(IntRange(0, 31)).toUByteArray()
 
-        val encoded = encrypted.toByteArray().encodeBase64().encodeUtf8().hex()
+        val encoded = encrypted.toByteArray().toByteString().base64Url()
 
         val paramString = if (addedParams != null) {
             TODO() //URLSearchParams(addedParams).toString();
         } else ""
 
-        val path = "/wasm/contract/${contractAddress}/query/${encoded}?encoding=hex&${paramString}"
+
+        val encodedContractAddress = "e4afc6843b43dccc8d8f22306e2f291680f5e057".decodeHex().base64Url()//Bech32.decode(contractAddress).data);
+
+        val path = "/compute/v1beta1/contract/${encodedContractAddress}/smart/${encoded}"//&${paramString}"
+//        val path = "/wasm/contract/${contractAddress}/query/${encoded}?encoding=hex"//&${paramString}"
 
         val responseData : WasmResponse<SmartQueryResponse> = try {
             get(path)
