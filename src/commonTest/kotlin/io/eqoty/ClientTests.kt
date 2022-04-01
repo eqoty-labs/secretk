@@ -9,6 +9,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 import kotlin.test.BeforeTest
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class ClientTests {
     val json: Json = Json
@@ -23,7 +24,7 @@ class ClientTests {
         val txEncryptionSeed = EnigmaUtils.GenerateNewSeed();
         val accAddress = "secret16cdfll4e73p2jh47za80mn6rxtjc6234r6pdj0"
         val contractAddress = "secret18vd8fpwxzck93qlwghaj6arh4p7c5n8978vsyg"
-        val httpUrl = "http://api.localhost:1337"
+        val httpUrl = "http://eqoty.duckdns.org:1337"
 
         val client = SigningCosmWasmClient(
             httpUrl,
@@ -32,9 +33,10 @@ class ClientTests {
             txEncryptionSeed
         )
         val contractInfoQuery = json.parseToJsonElement("""{"contract_info": {}}""").jsonObject
-        val contractInfo = client.queryContractSmart(contractAddress, contractInfoQuery);
-
+        val contractInfo = client.queryContractSmart(contractAddress, contractInfoQuery)
         println("My nft contract info: $contractInfo")
+
+        assertEquals("""{"contract_info":{"name":"lucasfirstsnip721","symbol":"luca721"}}""", contractInfo.toString())
     }
 
 
