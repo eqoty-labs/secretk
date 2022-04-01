@@ -3,6 +3,7 @@ package io.eqoty.client
 import io.eqoty.BroadcastMode
 import io.eqoty.response.ContractHashResponse
 import io.eqoty.response.SmartQueryResponse
+import io.eqoty.utils.Bech32
 import io.eqoty.utils.EnigmaUtils
 import io.eqoty.utils.SecretUtils
 import io.ktor.client.*
@@ -17,7 +18,6 @@ import io.ktor.utils.io.core.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonObject
-import okio.ByteString.Companion.decodeHex
 import okio.ByteString.Companion.toByteString
 
 /**
@@ -119,12 +119,9 @@ class RestClient(
             TODO() //URLSearchParams(addedParams).toString();
         } else ""
 
-
-        val encodedContractAddress = "3b1a7485c6162c5883ee45fb2d7477a87d8a4ce5".decodeHex().base64Url()//Bech32.decode(contractAddress).data);
+        val encodedContractAddress = Bech32.decode(contractAddress).data.toByteString().base64Url()
 
         val path = "/compute/v1beta1/contract/${encodedContractAddress}/smart?query_data=${encoded}"//&${paramString}"
-//        val path = "/wasm/contract/${contractAddress}/query/${encoded}?encoding=hex"//&${paramString}"
-        println(path)
 
         val responseData : SmartQueryResponse = try {
             get(path)
