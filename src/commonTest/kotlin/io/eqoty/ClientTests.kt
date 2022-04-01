@@ -22,8 +22,8 @@ class ClientTests {
         LibsodiumInitializer.initialize()
         val txEncryptionSeed = EnigmaUtils.GenerateNewSeed();
         val accAddress = "secret16cdfll4e73p2jh47za80mn6rxtjc6234r6pdj0"
-        val contractAddress = "secret1ujhudppmg0wverv0ygcxutefz6q0tczhes0av6"
-        val httpUrl = "https://api.pulsar.griptapejs.com"
+        val contractAddress = "secret18vd8fpwxzck93qlwghaj6arh4p7c5n8978vsyg"
+        val httpUrl = "http://api.localhost:1337"
 
         val client = SigningCosmWasmClient(
             httpUrl,

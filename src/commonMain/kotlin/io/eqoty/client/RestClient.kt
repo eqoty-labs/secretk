@@ -3,7 +3,6 @@ package io.eqoty.client
 import io.eqoty.BroadcastMode
 import io.eqoty.response.ContractHashResponse
 import io.eqoty.response.SmartQueryResponse
-import io.eqoty.response.WasmResponse
 import io.eqoty.utils.EnigmaUtils
 import io.eqoty.utils.SecretUtils
 import io.ktor.client.*
@@ -121,12 +120,13 @@ class RestClient(
         } else ""
 
 
-        val encodedContractAddress = "e4afc6843b43dccc8d8f22306e2f291680f5e057".decodeHex().base64Url()//Bech32.decode(contractAddress).data);
+        val encodedContractAddress = "3b1a7485c6162c5883ee45fb2d7477a87d8a4ce5".decodeHex().base64Url()//Bech32.decode(contractAddress).data);
 
-        val path = "/compute/v1beta1/contract/${encodedContractAddress}/smart/${encoded}"//&${paramString}"
+        val path = "/compute/v1beta1/contract/${encodedContractAddress}/smart?query_data=${encoded}"//&${paramString}"
 //        val path = "/wasm/contract/${contractAddress}/query/${encoded}?encoding=hex"//&${paramString}"
+        println(path)
 
-        val responseData : WasmResponse<SmartQueryResponse> = try {
+        val responseData : SmartQueryResponse = try {
             get(path)
         } catch (err: Throwable) {
 //            const errorMessageRgx = /encrypted: (.+?): (?:instantiate|execute|query) contract failed/g;
@@ -148,7 +148,7 @@ class RestClient(
 
             throw err;
         }
-        val decryptedResponse =  enigmautils.decrypt(responseData.result.smart.decodeBase64Bytes().toUByteArray(), nonce)
+        val decryptedResponse =  enigmautils.decrypt(responseData.data.decodeBase64Bytes().toUByteArray(), nonce)
 
         val decodedResponse = decryptedResponse.toByteArray().decodeToString().decodeBase64String().toByteArray().decodeToString()
 
