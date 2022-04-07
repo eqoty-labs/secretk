@@ -1,12 +1,13 @@
 plugins {
-    kotlin("multiplatform") version "1.6.20-M1"
-    kotlin("plugin.serialization") version "1.6.20-M1"
+    kotlin("multiplatform") version "1.6.20"
+    kotlin("plugin.serialization") version "1.6.20"
 }
 
 group = "io.eqoty"
 version = "1.0-SNAPSHOT"
 
 repositories {
+    mavenLocal()
     mavenCentral()
     maven("https://oss.sonatype.org/content/repositories/snapshots")
 }
@@ -30,7 +31,7 @@ kotlin {
     macosArm64()
     iosX64()
     iosArm64()
-    linuxX64()
+//    linuxX64()
 
     sourceSets {
         all {
@@ -46,6 +47,9 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
                 implementation("com.squareup.okio:okio:_")
                 implementation("com.ionspin.kotlin:multiplatform-crypto-libsodium-bindings:_")
+                implementation("com.ionspin.kotlin:bignum:0.3.4")
+                implementation("com.ionspin.kotlin:bignum-serialization-kotlinx:0.3.2")
+                implementation("cash.z.ecc.android:kotlin-bip39:1.0.2-SNAPSHOT")
             }
         }
         val commonTest by getting {
@@ -97,9 +101,9 @@ kotlin {
         val macosArm64Main by getting {
             dependsOn(desktopMain)
         }
-        val linuxX64Main by getting {
-            dependsOn(desktopMain)
-        }
+//        val linuxX64Main by getting {
+//            dependsOn(desktopMain)
+//        }
         val iosArm64Main by getting {
             dependsOn(iosMain)
         }

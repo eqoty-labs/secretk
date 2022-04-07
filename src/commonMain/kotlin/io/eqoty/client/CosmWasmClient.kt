@@ -1,6 +1,11 @@
 package io.eqoty.client
 
 import io.eqoty.BroadcastMode
+import io.eqoty.result.GetNonceResult
+import io.eqoty.types.Account
+import io.eqoty.types.MsgValue
+import io.eqoty.types.PostTxResult
+import io.eqoty.types.StdTx
 import kotlinx.coroutines.Deferred
 import kotlinx.serialization.json.JsonObject
 
@@ -10,6 +15,72 @@ open class CosmWasmClient(
     broadcastMode: BroadcastMode = BroadcastMode.Block
 ) {
     val restClient = RestClient(apiUrl, broadcastMode, seed)
+
+    /** Any address the chain considers valid (valid bech32 with proper prefix) */
+    protected var anyValidAddress: String? = null
+    private var chainId: String? = null
+
+    suspend fun getChainId(): String {
+        if (chainId == null) {
+            val response = restClient.nodeInfo();
+            val chainId = response.node_info.network;
+            if (chainId == "") throw Error("Chain ID must not be empty");
+            this.chainId = chainId;
+        }
+
+        return chainId!!
+    }
+
+    suspend fun getNonce(address: String): GetNonceResult {
+        val account = this.getAccount(address);
+        if (account?.address == null) {
+            throw Error(
+                "Account does not exist on chain. Send some tokens there before trying to query nonces.",
+            )
+        }
+        return GetNonceResult(
+            accountNumber = account.accountNumber,
+            sequence = account.sequence,
+        )
+    }
+
+    suspend fun getAccount(address: String): Account? {
+        val account = this.restClient.authAccounts(address)
+        val value = account.result.value;
+        if (value.address == null || value.address === "") {
+            return null
+        } else {
+            this.anyValidAddress = value.address;
+            return Account(
+                address = value.address,
+                balance = value.coins,
+                pubkey = value.public_key,
+                accountNumber = value.account_number,
+                sequence = value.sequence,
+            )
+        }
+    }
+
+    suspend fun <T: MsgValue> postTx(tx: StdTx<T>): PostTxResult {
+        val result = restClient.postTx(tx)
+        println(result)
+//        if (!result.txhash.match(/^([0-9A-F][0-9A-F])+$/)) {
+//            throw new Error("Received ill-formatted txhash. Must be non-empty upper-case hex");
+//        }
+//
+//        if (result.code) {
+//            throw new Error(
+//                    `Error when posting tx ${result.txhash}. Code: ${result.code}; Raw log: ${result.raw_log}`,
+//            );
+//        }
+//
+        return PostTxResult(
+            logs = result.logs ?: throw Error("need to implement: parseLogs(result.logs) : []"),
+            rawLog = result.raw_log ?: "",
+            transactionHash = result.txhash,
+            data = result.data ?: "",
+        )
+    }
 
 
     /**

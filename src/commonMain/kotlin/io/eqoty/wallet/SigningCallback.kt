@@ -1,8 +1,8 @@
-package io.eqoty;
+package io.eqoty.wallet
 
-interface SigningCallback {
-//  (signBytes: Uint8Array): Promise<StdSignature>;
-}
+import io.eqoty.types.StdSignature
+
+typealias SigningCallback = (UByteArray) -> StdSignature
 
 interface OfflineSigner {
 //  /**

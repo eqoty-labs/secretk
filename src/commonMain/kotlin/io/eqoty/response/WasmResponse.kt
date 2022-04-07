@@ -3,7 +3,7 @@ package io.eqoty.response;
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ContractHashResponse(
+data class WasmResponse<R>(
         val height: String,
-        val result: String
+        val result: R
 )

@@ -1,8 +1,11 @@
 package io.eqoty.client
 
+import com.ionspin.kotlin.bignum.integer.BigInteger
 import io.eqoty.BroadcastMode
-import io.eqoty.response.ContractHashResponse
-import io.eqoty.response.SmartQueryResponse
+import io.eqoty.response.*
+import io.eqoty.types.Coin
+import io.eqoty.types.MsgValue
+import io.eqoty.types.StdTx
 import io.eqoty.utils.Bech32
 import io.eqoty.utils.EnigmaUtils
 import io.eqoty.utils.SecretUtils
@@ -63,6 +66,17 @@ class RestClient(
         return response.body()
     }
 
+    suspend inline fun <reified T> post(path: String, params: JsonObject): T {
+        val response = try {
+            this.client.post(this.apiUrl + path){
+                setBody(params)
+            }
+        } catch (e: ResponseException) {
+            throw parseError(e)
+        }
+        return response.body()
+    }
+
     /**
      * We want to get message data from 500 errors
      * https://stackoverflow.com/questions/56577124/how-to-handle-500-error-message-with-axios
@@ -78,6 +92,28 @@ class RestClient(
         }
     }
 
+    /**
+     * Broadcasts a signed transaction to into the transaction pool.
+     * Depending on the RestClient's broadcast mode, this might or might
+     * wait for checkTx or deliverTx to be executed before returning.
+     *
+     * @param tx a signed transaction as StdTx (i.e. not wrapped in type/value container)
+     */
+    suspend fun <T: MsgValue> postTx(tx: StdTx<T>): PostTxsResponse {
+        val params =
+            json.parseToJsonElement("""{
+                tx: tx,
+                mode: this.broadcastMode,
+            }""").jsonObject
+
+        val responseData : PostTxsResponse = post("/txs", params);
+        if (responseData.txhash.isBlank()) {
+            throw Error("Unexpected response data format");
+        }
+        return responseData
+    }
+
+
     suspend fun getCodeHashByContractAddr(addr: String): String {
         val codeHashFromCache = codeHashCache[addr]
         if (codeHashFromCache != null) {
@@ -85,7 +121,7 @@ class RestClient(
         }
 
         val path = "/wasm/contract/${addr}/code-hash"
-        val responseData: ContractHashResponse = get(path)
+        val responseData: WasmResponse<String> = get(path)
 
         codeHashCache[addr] = responseData.result
         return responseData.result
@@ -150,6 +186,29 @@ class RestClient(
         val decodedResponse = decryptedResponse.toByteArray().decodeToString().decodeBase64String().toByteArray().decodeToString()
 
         return json.parseToJsonElement(decodedResponse).jsonObject
+    }
+
+    suspend fun authAccounts(address: String): WasmResponse<AuthAccountsResult> {
+        val authResp : WasmResponse<TypeValue<AuthResponseResult>> = get("/auth/accounts/${address}")
+        val bankResp : WasmResponse<List<Coin>> = get("/bank/balances/${address}")
+
+        return WasmResponse<AuthAccountsResult>(
+            height = bankResp.height,
+            result = AuthAccountsResult(
+                value = CosmosSdkAccount(
+                    address= authResp.result.value.address,
+                    coins = bankResp.result,
+                    public_key = authResp.result.value.public_key,
+                    account_number= authResp.result.value.account_number ?: BigInteger.ZERO,
+                    sequence= authResp.result.value.sequence ?: BigInteger.ZERO,
+                )
+            )
+        )
+    }
+
+    // The /node_info endpoint
+    suspend fun nodeInfo(): NodeInfoResponse {
+        return get("/node_info");
     }
 
 }
