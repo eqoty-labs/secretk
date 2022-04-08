@@ -247,7 +247,7 @@ class ShortCurve(val presetCurve: PresetCurve): Curve(presetCurve) {
                 else if (z!! > 0)
                     p = wnd[j]!![(z - 1) shr 1];
                 else if (z < 0)
-                p = wnd[j]!![(-z - 1) shr 1].neg(null)
+                p = wnd[j]!![(-z - 1) shr 1].neg()
 
                 if (p!!.type == "affine")
                     acc = acc.mixedAdd(p as ShortCurvePoint)
@@ -267,5 +267,41 @@ class ShortCurve(val presetCurve: PresetCurve): Curve(presetCurve) {
     }
 
     fun jpoint(x: BN?, y: BN?, z: BN?): JPoint = JPoint(this, x, y, z)
+
+    fun fixedNafMul(p: ShortCurvePoint, k: BN): BasePoint<ShortCurve> {
+        require(p.precomputed != null)
+        var doubles = p.getDoubles()
+
+        var naf = getNAF(k, 1, this.bitLength.toInt())
+        var I = (1 shl (doubles.step + 1)) - (if (doubles.step % 2 == 0) 2 else 1)
+        I /= 3;
+
+        // Translate into more windowed form
+        var repr = mutableListOf<Int>()
+        var j = 0
+        var nafW: Int?
+        while (j < naf.size) {
+            nafW = 0;
+            for (l in j + doubles.step - 1 downTo  j) {
+                nafW = naf.getOrNull(l)?.plus (nafW?.shl(1) ?: 0)
+            }
+            repr.add(nafW!!)
+            j += doubles.step
+        }
+
+        var a = this.jpoint(null, null, null);
+        var b = this.jpoint(null, null, null);
+        for (i in I downTo  1) {
+            for (l in 0 until repr.size) {
+                nafW = repr[l];
+                if (nafW == i)
+                    b = b.mixedAdd(doubles.points[l] as ShortCurvePoint);
+                else if (nafW == -i)
+                    b = b.mixedAdd((doubles.points[l] as ShortCurvePoint).neg());
+            }
+            a = a.add(b);
+        }
+        return a.toP();
+    };
 
 }

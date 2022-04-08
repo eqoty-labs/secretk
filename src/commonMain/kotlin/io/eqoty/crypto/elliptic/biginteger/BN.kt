@@ -336,9 +336,11 @@ class MPrime (val name: String, val p: BN) {
         val numBytesShifted = n/8
         val inputByteArray = input.number.toByteArray()
         val inputByteSize = inputByteArray.size
-        val bByteSize = inputByteSize - (inputByteSize - numBytesShifted)
-        val bByteArray = ByteArray(bByteSize)
-        inputByteArray.copyInto(bByteArray,0,inputByteSize - numBytesShifted, inputByteSize)
+        val startCopyIndex = max(inputByteSize - numBytesShifted, 0)
+        val endCopyIndex = inputByteSize
+        val bByteSize = inputByteSize - startCopyIndex
+        val bByteArray = ByteArray(bByteSize) {0}
+        inputByteArray.copyInto(bByteArray,0,startCopyIndex, endCopyIndex)
         val b = BN(BigInteger.fromByteArray(bByteArray,Sign.POSITIVE), input.red)
         return Pair(a,b)
     }

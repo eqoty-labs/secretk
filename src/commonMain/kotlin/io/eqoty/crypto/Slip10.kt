@@ -44,7 +44,7 @@ object Slip10 {
             i.copyInto(this,0,0, i.size/2)
         }
         val ir = UByteArray(32).apply {
-            i.copyInto(this,0,i.size/2, this.size)
+            i.copyInto(this,0,i.size/2, i.size)
         }
 
         if (curve !== Slip10Curve.Ed25519 && (isZero(il) || isGteN(curve, il))) {
@@ -65,8 +65,8 @@ object Slip10 {
     ): Slip10Result {
         val i: UByteArray
         if (rawIndex.isHardened()) {
-            val rawIndexBigEndian = Buffer().writeIntLe(rawIndex.toInt()).readByte()
-            val payload = (byteArrayOf(0) + parentPrivkey.toByteArray() + rawIndexBigEndian).toByteString()
+            val rawIndexBigEndian = Buffer().writeInt(rawIndex.toInt()).readByteArray().toUByteArray()
+            val payload = (ubyteArrayOf(0.toUByte()) + parentPrivkey + rawIndexBigEndian).toByteString()
             i = payload.hmacSha512(parentChainCode.toByteString()).toByteArray().toUByteArray()
         } else {
             if (curve == Slip10Curve.Ed25519) {
@@ -75,10 +75,9 @@ object Slip10 {
                 // Step 1 of https://github.com/satoshilabs/slips/blob/master/slip-0010.md#private-parent-key--private-child-key
                 // Calculate I = HMAC-SHA512(Key = c_par, Data = ser_P(point(k_par)) || ser_32(i)).
                 // where the functions point() and ser_p() are defined in BIP-0032
-                val rawIndexBigEndian = Buffer().writeIntLe(rawIndex.toInt()).readByte()
-                val data = Slip10.serializedPoint(curve, BigInteger.fromUByteArray(parentPrivkey, Sign.POSITIVE)) + rawIndexBigEndian
-                TODO()
-                //i = Hmac(Sha512, parentChainCode).update(data).digest();
+                val rawIndexBigEndian = Buffer().writeInt(rawIndex.toInt()).readByteArray().toUByteArray()
+                val data = (Slip10.serializedPoint(curve, BigInteger.fromUByteArray(parentPrivkey, Sign.POSITIVE)) + rawIndexBigEndian).toByteString()
+                i = data.hmacSha512(parentChainCode.toByteString()).toByteArray().toUByteArray()
             }
         }
 
@@ -112,7 +111,7 @@ object Slip10 {
             i.copyInto(this,0,0, i.size/2)
         }
         val ir = UByteArray(32).apply {
-            i.copyInto(this,0,i.size/2, this.size)
+            i.copyInto(this,0,i.size/2, i.size)
         }
 
         // step 3
@@ -131,13 +130,11 @@ object Slip10 {
         val ilBi = BigInteger.fromUByteArray(il, Sign.POSITIVE)
         val parentPrivkeyBi = BigInteger.fromUByteArray(parentPrivkey, Sign.POSITIVE)
         val returnChildKeyAsNumber = ilBi.add(parentPrivkeyBi).mod(n)
-        val returnChildKey = Buffer().apply {
-            returnChildKeyAsNumber.toArray("be", 32).forEach { writeLong(it.toLong()) }
-        }.readByteArray().toUByteArray()
+        val returnChildKey = returnChildKeyAsNumber.toUByteArray()
 
         // step 6
         if (isGteN(curve, il) || isZero(returnChildKey)) {
-            val payload = (byteArrayOf(0x01) + ir.toByteArray() + Buffer().writeIntLe(rawIndex.toInt()).readByte()).toByteString()
+            val payload = (byteArrayOf(0x01) + ir.toByteArray() + Buffer().writeInt(rawIndex.toInt()).readByteArray()).toByteString()
             val newI = payload.hmacSha512(parentChainCode.toByteString()).toByteArray().toUByteArray()
             return this.childImpl(curve, parentPrivkey, parentChainCode, rawIndex, newI)
         }

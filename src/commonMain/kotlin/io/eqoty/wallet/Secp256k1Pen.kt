@@ -32,8 +32,10 @@ class Secp256k1Pen private constructor(private val privkey: UByteArray, val pubk
     ): Secp256k1Pen {
       val seed = Mnemonics.MnemonicCode(mnemonic).toSeed().toUByteArray()
       println(seed.toUByteArray().map { it.toInt() })
-      val privkey = Slip10.derivePath(Slip10Curve.Secp256k1, seed, hdPath)
-//      println(privkey.map { it.toInt() })
+      val result = Slip10.derivePath(Slip10Curve.Secp256k1, seed, hdPath)
+      val privkey = result.privkey
+      println(privkey.map { it.toUInt() })
+
 
 //      val uncompressed =(await Secp256k1 . makeKeypair (privkey)).pubkey;
 //      return Secp256k1Pen(privkey, Secp256k1.compressPubkey(uncompressed));

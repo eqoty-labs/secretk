@@ -102,13 +102,32 @@ class ShortCurvePoint: BasePoint<ShortCurve>{
         if (this.isInfinity())
             return this;
         else if (this.hasDoubles(k))
-            TODO()
-            //return this.curve._fixedNafMul(this, k);
+            return this.curve.fixedNafMul(this, k);
         else if (this.curve.endo != null)
             return this.curve.endoWnafMulAdd(listOf(this), listOf(k));
         else
             return TODO()
 //            //return this.curve._wnafMul(this, k);
+    }
+
+
+    fun getDoubles(step: Int? = null, power: Int? = null): PreComputedDoubles<ShortCurve>{
+        if (precomputed?.doubles != null)
+            return precomputed!!.doubles!!
+
+//        var doubles = listOf(this)
+//        var acc = this;
+//        for ( i in 0 until  power!! step step!!) {
+//            for (j in 0 until step) {
+//                acc = acc.dbl();
+//            }
+//            doubles.push(acc);
+//        }
+//        return {
+//                step: step,
+//                points: doubles,
+//        }
+        return TODO()
     }
 
     fun getBeta(): ShortCurvePoint? {
@@ -143,7 +162,7 @@ class ShortCurvePoint: BasePoint<ShortCurve>{
         return beta
     }
 
-    fun neg(precompute: Boolean?): ShortCurvePoint {
+    fun neg(precompute: Boolean? = null): ShortCurvePoint {
         if (this.inf)
             return this;
 
@@ -152,7 +171,7 @@ class ShortCurvePoint: BasePoint<ShortCurve>{
             val pre = this.precomputed!!
 
             val negate : (ShortCurvePoint) -> ShortCurvePoint = { p->
-                p.neg(null)
+                p.neg()
             }
 
             res.precomputed = PreComputed(
@@ -196,9 +215,9 @@ class ShortCurvePoint: BasePoint<ShortCurve>{
 class JPoint(curve: ShortCurve, x: BN?, y: BN?, z: BN?): BasePoint<ShortCurve>(curve, "jacobian") {
 
     private var zOne: Boolean
-    private var x: BN?
-    private var y: BN?
-    private var z: BN?
+    var x: BN?
+    var y: BN?
+    var z: BN?
     override val inf: Boolean
         get() = isInfinity()
 
