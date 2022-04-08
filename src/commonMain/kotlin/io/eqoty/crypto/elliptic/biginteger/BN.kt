@@ -207,6 +207,9 @@ class BN {
         val one = BN(1)
         return this.and(one).number.abs() == one.number
     }
+    fun isEven(): Boolean {
+        return !isOdd()
+    }
 
 
     fun redAdd(num: BN): BN {

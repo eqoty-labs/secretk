@@ -50,6 +50,12 @@ sealed class BasePoint <C: Curve> (val curve: C, val type: String) {
 //        };
     }
 
+    fun encodeCompressed(): UByteArray = encode( true)
+
+    abstract fun encode(compact: Boolean): UByteArray
+
+
+
     companion object
 
 }
@@ -170,6 +176,17 @@ class ShortCurvePoint: BasePoint<ShortCurve>{
 
         val res = this.curve.jpoint(this.x, this.y, this.curve.one);
         return res;
+    }
+
+    override fun encode(compact: Boolean): UByteArray {
+        val x = x!!.number.toUByteArray()
+
+        if (compact) {
+            val prepend = ubyteArrayOf(if (y!!.isEven()) 0x02u else 0x03u)
+            return prepend + x
+        }
+
+        return ubyteArrayOf(0x04u) + x + y!!.number.toUByteArray()
     }
 
 
@@ -431,6 +448,10 @@ class JPoint(curve: ShortCurve, x: BN?, y: BN?, z: BN?): BasePoint<ShortCurve>(c
         val ay = this.y!!.redMul(zinv2).redMul(zinv);
 
         return this.curve.point(ax, ay, null)
+    }
+
+    override fun encode(compact: Boolean): UByteArray {
+        TODO("Not yet implemented")
     }
 
 

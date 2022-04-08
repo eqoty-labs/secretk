@@ -93,14 +93,7 @@ object Slip10 {
     private fun serializedPoint(curve: Slip10Curve, p: BigInteger): UByteArray {
         when (curve) {
             Slip10Curve.Secp256k1 -> {
-                println()
-                println()
-                println(p)
-                println()
-                println()
-                val a =secp256k1.g!!.mul(BN(p))
-                println(a)
-                return TODO()// fromHex(secp256k1.g.mul(p).encodeCompressed("hex"))
+                return secp256k1.g!!.mul(BN(p)).encodeCompressed()
             }
             else -> throw Error("curve not supported");
         }
