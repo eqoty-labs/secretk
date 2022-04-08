@@ -47,7 +47,18 @@ class BN {
     val negative : Boolean
     get() = number.isNegative
 
+    val zero : Boolean
+        get() = number.isZero()
+
+    /**
+     * The least significant 26 bits == Word[0] in https://github.com/indutny/bn.js/
+     */
+    val word0 : BN
+    get() = this.and(BN(0x3ffffff))
+
+
     fun shl(n: Int): BN = BN(number.shl(n), red)
+    fun shr(n: Int): BN = BN(number.shr(n), red)
 
     fun subtract(n: BN): BN = BN(number.subtract(n.number), red)
 
@@ -58,6 +69,8 @@ class BN {
     fun negate(): BN = BN(number.negate(), red)
 
     fun add(n: BN): BN = BN(number.add(n.number), red)
+
+    fun and(n: BN): BN = BN(number.and(n.number), red)
 
     fun divRound(divisor: BN): BN {
         val resultAndRem = number.divideAndRemainder(divisor.number)
@@ -79,6 +92,87 @@ class BN {
         }
     }
 
+
+
+    // This is reduced incarnation of the binary EEA
+    // above, designated to invert members of the
+    // _prime_ fields F(p) at a maximal speed
+    fun _invmp(p: BN): BN {
+        require(!p.negative)
+        require(!p.zero)
+
+        var a = this
+        var b = p
+
+        if (a.negative) {
+            a = a.mod(p)
+        }
+
+        var x1 = BN(1)
+        var x2 =  BN(0)
+
+        var delta = b
+
+
+        while (a > 1 && b > 1) {
+            var i = 0
+            var im = 1
+            while ( (a.word0.number.intValue() and im) == 0 && i < 26) {
+                i++
+                im = im shl 1
+            }
+            if (i > 0) {
+                a = a.shr(i)
+                while (i-- > 0) {
+                    if (x1.isOdd()) {
+                        x1 = x1.add(delta)
+                    }
+
+                    x1 = x1.shr(1)
+                }
+            }
+
+            var j = 0
+            var jm = 1
+            while ((b.word0.number.intValue() and jm) == 0 && j < 26) {
+                j++
+                jm = jm shl 1
+            }
+            if (j > 0) {
+                b = b.shr(j)
+                while (j-- > 0) {
+                    if (x2.isOdd()) {
+                        x2 = x2.add(delta)
+                    }
+
+                    x2 = x2.shr(1)
+                }
+            }
+
+
+            if (a >= b) {
+                a = a.subtract(b)
+                x1 = x1.subtract(x2)
+            } else {
+                b = b.subtract(a)
+                x2 = x2.subtract(x1)
+            }
+        }
+
+        val res: BN
+        if (a.compareTo(1) == 0) {
+            res = x1;
+        } else {
+            res = x2;
+        }
+
+        if (res < 0) {
+            res.add(p);
+        }
+
+        return res;
+    }
+
     fun redMul (num: BN): BN {
         require(this.red != null) {"redMul works only with red numbers"}
         this.red.verify2(this, num);
@@ -90,10 +184,54 @@ class BN {
 
     override fun equals(other: Any?): Boolean {
         if (other is BN){
+            if (number == other.number && red != other.red) {
+                println("Warning: Comparing two BN numbers with same number, but different red values. Returning false. This may not be the desired behavior")
+            }
             return number == other.number && red == other.red
         }
         return super.equals(other)
     }
+
+    fun redNeg(): BN {
+        require(this.red != null) {"redMul works only with red numbers"}
+        this.red.verify1(this);
+        return this.red.neg(this);
+    }
+
+    fun andln(num: Int): Int {
+        val leastSignificant26Bits = word0.number.intValue()
+        return leastSignificant26Bits.and(num)
+    }
+
+    fun isOdd(): Boolean {
+        val one = BN(1)
+        return this.and(one).number.abs() == one.number
+    }
+
+
+    fun redAdd(num: BN): BN {
+        require(this.red != null) {"redMul works only with red numbers"}
+        return this.red.add(this, num);
+    }
+
+    fun redInvm(): BN {
+        require(this.red != null) {"redMul works only with red numbers"}
+        this.red.verify1(this);
+        return this.red.invm(this);
+    }
+
+    fun redSqr(): BN {
+        require(this.red != null) {"redMul works only with red numbers"}
+        this.red.verify1(this);
+        return this.red.sqr(this);
+    }
+
+    fun redSub(num: BN): BN {
+        require(this.red != null) {"redMul works only with red numbers"}
+        return this.red.sub(this, num);
+    }
+
+
 
 
     companion object {
@@ -177,7 +315,6 @@ class MPrime (val name: String, val p: BN) {
             r = this.mulK(r)
             r = r.add(tmp)
             rlen = r.bitLength()
-            println("1")
         } while (rlen.toInt() > this.n);
         val cmp = if(rlen < n.toULong()) -1 else r.compareTo(this.p);
         if (cmp == 0) {
@@ -248,6 +385,51 @@ open class Red {
             return this.prime!!.ireduce(a).forceRed(this)
         }
         else return a.mod(this.m).forceRed(this);
+    }
+
+    fun verify1(a: BN) {
+        require(!a.negative) {"red works only with positives"}
+        require(a.red != null) {"red works only with red numbers"}
+    }
+
+    fun neg(num: BN): BN {
+        if (num.number.isZero()){
+            return num
+        }
+        return m.subtract(num).forceRed(this)
+    }
+
+    fun invm(num: BN): BN {
+        var inv = num._invmp(this.m)
+        if (inv.negative) {
+            return this.imod(inv).redNeg();
+        } else {
+            return this.imod(inv);
+        }
+    }
+
+    fun sqr(num: BN): BN {
+        return this.mul(num, num)
+    }
+
+    fun add(a: BN, b: BN): BN {
+        this.verify2(a, b)
+
+        var res = a.add(b);
+        if (res >= this.m) {
+            res = res.subtract(this.m)
+        }
+        return res.forceRed(this)
+    }
+
+    fun sub(a: BN, b: BN): BN {
+        this.verify2(a, b)
+
+        var res = a.subtract(b)
+        if (res < 0) {
+            res = res.add(this.m)
+        }
+        return res.forceRed(this)
     }
 }
 

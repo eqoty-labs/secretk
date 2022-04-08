@@ -99,6 +99,7 @@ object Slip10 {
                 println()
                 println()
                 val a =secp256k1.g!!.mul(BN(p))
+                println(a)
                 return TODO()// fromHex(secp256k1.g.mul(p).encodeCompressed("hex"))
             }
             else -> throw Error("curve not supported");
