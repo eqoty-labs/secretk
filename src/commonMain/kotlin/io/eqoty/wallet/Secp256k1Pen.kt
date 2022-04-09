@@ -5,6 +5,7 @@ import cash.z.ecc.android.bip39.toSeed
 import io.eqoty.crypto.Slip10
 import io.eqoty.crypto.Slip10Curve
 import io.eqoty.crypto.Slip10RawIndex
+import io.eqoty.types.StdSignature
 
 
 /**
@@ -42,14 +43,15 @@ class Secp256k1Pen private constructor(private val privkey: UByteArray, val pubk
     }
   }
 
-//
-//  /**
-//   * Creates and returns a signature
-//   */
-//  public async sign(signBytes: Uint8Array, prehashType: PrehashType = "sha256"): Promise<StdSignature> {
-//    const message = prehash(signBytes, prehashType);
-//    const signature = await Secp256k1.createSignature(message, this.privkey);
-//    const fixedLengthSignature = new Uint8Array([...signature.r(32), ...signature.s(32)]);
+
+  /**
+   * Creates and returns a signature
+   */
+  fun sign(signBytes: UByteArray, prehashType: Any = Unit /*PrehashType = "sha256"*/): StdSignature {
+    TODO()
+//    val message = prehash(signBytes, prehashType);
+//    val signature = await Secp256k1.createSignature(message, this.privkey);
+//    val fixedLengthSignature = new Uint8Array([...signature.r(32), ...signature.s(32)]);
 //    return encodeSecp256k1Signature(this.pubkey, fixedLengthSignature);
-//  }
+  }
 }

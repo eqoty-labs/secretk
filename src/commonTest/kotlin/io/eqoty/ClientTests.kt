@@ -32,18 +32,18 @@ class ClientTests {
         // This wraps a single keypair and allows for signing.
         val signingPen = Secp256k1Pen.fromMnemonic(mnemonic)
 
-//        val client = SigningCosmWasmClient(
-//            httpUrl,
-//            accAddress,
-//            { StdSignature() },
-//            txEncryptionSeed,
-//            null
-//        )
-//        val contractInfoQuery = json.parseToJsonElement("""{"contract_info": {}}""").jsonObject
-//        val contractInfo = client.queryContractSmart(contractAddress, contractInfoQuery)
-//        println("My nft contract info: $contractInfo")
-//
-//        assertEquals("""{"contract_info":{"name":"lucasfirstsnip721","symbol":"luca721"}}""", contractInfo.toString())
+        val client = SigningCosmWasmClient(
+            httpUrl,
+            accAddress,
+            { signingBytes -> signingPen.sign(signingBytes) },
+            txEncryptionSeed,
+            null
+        )
+        val contractInfoQuery = json.parseToJsonElement("""{"contract_info": {}}""").jsonObject
+        val contractInfo = client.queryContractSmart(contractAddress, contractInfoQuery)
+        println("My nft contract info: $contractInfo")
+
+        assertEquals("""{"contract_info":{"name":"lucasfirstsnip721","symbol":"luca721"}}""", contractInfo.toString())
     }
 
 
