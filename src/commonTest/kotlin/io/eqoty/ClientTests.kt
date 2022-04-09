@@ -31,9 +31,7 @@ class ClientTests {
         // A pen is the most basic tool you can think of for signing.
         // This wraps a single keypair and allows for signing.
         val signingPen = Secp256k1Pen.fromMnemonic(mnemonic)
-/*
-60,-48,-29,-10,-70,-106,-11,-12,-33,-97,-45,21,-91,21,100,-99,-41,95,-17,112,58,-93,-24,-64,-66,-37,52,-17,0,-112,66,-59,-103,-8,-10,4,68,-24,63,32,73,-111,-99,61,6,70,95,-25,74,47,-58,52,121,86,25,58,-18,-115,-106,6,-105,-104,-89,-119
- */
+
 //        val client = SigningCosmWasmClient(
 //            httpUrl,
 //            accAddress,

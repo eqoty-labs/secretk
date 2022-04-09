@@ -35,16 +35,9 @@ class Secp256k1Pen private constructor(private val privkey: UByteArray, val pubk
       hdPath:  Array<Slip10RawIndex> = makeSecretNetworkPath(0.toUInt()),
     ): Secp256k1Pen {
       val seed = Mnemonics.MnemonicCode(mnemonic).toSeed().toUByteArray()
-      println(seed.toUByteArray().map { it.toInt() })
       val result = Slip10.derivePath(Slip10Curve.Secp256k1, seed, hdPath)
       val privkey = result.privkey
-      println(privkey.map { it.toUInt() })
-
-
       val uncompressed = Secp256k1.pubkeyCreate(privkey)
-      println("public key:")
-      println(uncompressed.map { it.toUInt() })
-      println(Secp256k1.pubKeyCompress(uncompressed))
       return Secp256k1Pen(privkey, Secp256k1.pubKeyCompress(uncompressed));
     }
   }
