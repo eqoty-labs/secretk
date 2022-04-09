@@ -22,7 +22,8 @@ fun makeSecretNetworkPath(a: UInt): Array<Slip10RawIndex> = arrayOf(
 )
 
 expect object Secp256k1 {
-  fun makeKeypair(privkey: UByteArray): UByteArray
+  fun pubkeyCreate(privkey: UByteArray): UByteArray
+  fun pubKeyCompress(pubkey: UByteArray): UByteArray
 }
 
 class Secp256k1Pen private constructor(private val privkey: UByteArray, val pubkey: UByteArray) {
@@ -40,12 +41,11 @@ class Secp256k1Pen private constructor(private val privkey: UByteArray, val pubk
       println(privkey.map { it.toUInt() })
 
 
-      val uncompressed =Secp256k1.makeKeypair(privkey)
+      val uncompressed = Secp256k1.pubkeyCreate(privkey)
       println("public key:")
       println(uncompressed.map { it.toUInt() })
-
-//      return Secp256k1Pen(privkey, Secp256k1.compressPubkey(uncompressed));
-      return TODO()
+      println(Secp256k1.pubKeyCompress(uncompressed))
+      return Secp256k1Pen(privkey, Secp256k1.pubKeyCompress(uncompressed));
     }
   }
 
