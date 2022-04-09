@@ -28,7 +28,7 @@ kotlin {
         binaries.executable()
     }
     macosX64()
-    macosArm64()
+//    macosArm64()
     iosX64()
     iosArm64()
 //    linuxX64()
@@ -63,6 +63,8 @@ kotlin {
                 implementation("org.slf4j:slf4j-simple:1.8.0-beta4")
                 implementation("io.ktor:ktor-client-okhttp:_")
                 implementation("org.cryptomator:siv-mode:_")
+                implementation("fr.acinq.secp256k1:secp256k1-kmp-jvm:0.6.3")
+                implementation("fr.acinq.secp256k1:secp256k1-kmp-jni-jvm:0.6.3")
             }
         }
         val jvmTest by getting
@@ -98,9 +100,9 @@ kotlin {
         val macosX64Main by getting {
             dependsOn(desktopMain)
         }
-        val macosArm64Main by getting {
-            dependsOn(desktopMain)
-        }
+//        val macosArm64Main by getting {
+//            dependsOn(desktopMain)
+//        }
 //        val linuxX64Main by getting {
 //            dependsOn(desktopMain)
 //        }
