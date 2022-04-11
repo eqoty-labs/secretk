@@ -6,6 +6,8 @@ import io.eqoty.crypto.elliptic.BasePoint
 import io.eqoty.crypto.elliptic.biginteger.BN
 
 data class KeyPairValidateResult(val result: Boolean, val reason: String?)
+data class KeyPairSignOptions(val canonical: Boolean? = null, val k: BN?)
+data class Signature(val r: BN, val s: BN, val recoveryParam: Int?)
 
 class KeyPair(val ec: EC, options: KeyPairOptions) {
     var priv : BN? = null
@@ -70,6 +72,9 @@ class KeyPair(val ec: EC, options: KeyPairOptions) {
         val pub = getPublic()
         return pub.encode(compact)
     }
+
+    fun sign(msg: UByteArray, enc:  String? = null, options: KeyPairSignOptions? = null): Signature =
+        ec.sign(msg, this, enc, options)
 
     companion object {
         fun fromPrivate(ec: EC, priv: UByteArray, enc: String? = null) : KeyPair =

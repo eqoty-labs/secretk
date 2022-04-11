@@ -24,7 +24,7 @@ class ClientTests {
     fun testProxy() =  runTest {
         LibsodiumInitializer.initialize()
         val txEncryptionSeed = EnigmaUtils.GenerateNewSeed();
-        val accAddress = "secret16cdfll4e73p2jh47za80mn6rxtjc6234r6pdj0"
+        val accAddress = "secret1fdkdmflnrysrvg3nc4ym7zdsn2rm5atszn9q2y"
         val contractAddress = "secret18vd8fpwxzck93qlwghaj6arh4p7c5n8978vsyg"
         val httpUrl = "http://eqoty.duckdns.org:1337"
         val mnemonic = "sand check forward humble between movie language siege where social crumble mouse"
@@ -44,6 +44,12 @@ class ClientTests {
         println("My nft contract info: $contractInfo")
 
         assertEquals("""{"contract_info":{"name":"lucasfirstsnip721","symbol":"luca721"}}""", contractInfo.toString())
+        // Entropy: Secure implementation is left to the client, but it is recommended to use base-64 encoded random bytes and not predictable inputs.
+        val entropy = "Another really random thing??"
+        val handleMsg = json.parseToJsonElement("""{ "create_viewing_key": {"entropy": "$entropy"} }""").jsonObject
+        println("Creating viewing key");
+        val response = client.execute(contractAddress, handleMsg)
+        println("response: $response")
     }
 
 

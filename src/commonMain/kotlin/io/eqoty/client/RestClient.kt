@@ -1,10 +1,11 @@
 package io.eqoty.client
 
 import com.ionspin.kotlin.bignum.integer.BigInteger
+import com.ionspin.kotlin.bignum.serialization.kotlinx.biginteger.bigIntegerhumanReadableSerializerModule
 import io.eqoty.BroadcastMode
 import io.eqoty.response.*
 import io.eqoty.types.Coin
-import io.eqoty.types.MsgValue
+import io.eqoty.response.MsgValue
 import io.eqoty.types.StdTx
 import io.eqoty.utils.Bech32
 import io.eqoty.utils.EnigmaUtils
@@ -18,9 +19,14 @@ import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.util.*
 import io.ktor.utils.io.core.*
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.modules.SerializersModule
+import kotlinx.serialization.modules.plus
+import kotlinx.serialization.modules.polymorphic
+import okio.ByteString.Companion.encodeUtf8
 import okio.ByteString.Companion.toByteString
 
 /**
@@ -43,8 +49,13 @@ class RestClient(
     var enigmautils: SecretUtils = EnigmaUtils(apiUrl, seed)
     val codeHashCache: MutableMap<Any, String> = mutableMapOf()
 
-    private val json: Json = Json {
+    val json: Json = Json {
         ignoreUnknownKeys = true
+        serializersModule = bigIntegerhumanReadableSerializerModule + SerializersModule {
+            polymorphic(TypeValue::class) {
+                subclass(AuthAccountsResult::class, AuthAccountsResult.serializer())
+            }
+        }
     }
 
     val client: HttpClient = HttpClient {
@@ -59,6 +70,7 @@ class RestClient(
 
     suspend inline fun <reified T> get(path: String): T {
         val response = try {
+            println(this.apiUrl + path)
             this.client.get(this.apiUrl + path)
         } catch (e: ResponseException) {
             throw parseError(e)
@@ -99,18 +111,19 @@ class RestClient(
      *
      * @param tx a signed transaction as StdTx (i.e. not wrapped in type/value container)
      */
-    suspend fun <T: MsgValue> postTx(tx: StdTx<T>): PostTxsResponse {
+    suspend inline fun <reified T: MsgValue> postTx(tx: StdTx<T>): TxsResponseData {
+        val txString = json.encodeToString(tx).encodeUtf8().base64()
         val params =
             json.parseToJsonElement("""{
-                tx: tx,
-                mode: this.broadcastMode,
+                "tx_bytes": $txString,
+                "mode": "${this.broadcastMode.mode}"
             }""").jsonObject
 
-        val responseData : PostTxsResponse = post("/txs", params);
-        if (responseData.txhash.isBlank()) {
+        val responseData : TxsResponse = post("/cosmos/tx/v1beta1/txs", params);
+        if (responseData.tx_response.txhash.isBlank()) {
             throw Error("Unexpected response data format");
         }
-        return responseData
+        return responseData.tx_response
     }
 
 
@@ -189,18 +202,18 @@ class RestClient(
     }
 
     suspend fun authAccounts(address: String): WasmResponse<AuthAccountsResult> {
-        val authResp : WasmResponse<TypeValue<AuthResponseResult>> = get("/auth/accounts/${address}")
+        val authResp : WasmResponse<TypeValue<CosmosSdkAccount?>> = get("/auth/accounts/${address}")
         val bankResp : WasmResponse<List<Coin>> = get("/bank/balances/${address}")
 
         return WasmResponse<AuthAccountsResult>(
             height = bankResp.height,
             result = AuthAccountsResult(
                 value = CosmosSdkAccount(
-                    address= authResp.result.value.address,
+                    address= authResp.result.value?.address,
                     coins = bankResp.result,
-                    public_key = authResp.result.value.public_key,
-                    account_number= authResp.result.value.account_number ?: BigInteger.ZERO,
-                    sequence= authResp.result.value.sequence ?: BigInteger.ZERO,
+                    public_key = authResp.result.value?.public_key,
+                    account_number= authResp.result.value?.account_number ?: BigInteger.ZERO,
+                    sequence= authResp.result.value?.sequence ?: BigInteger.ZERO,
                 )
             )
         )

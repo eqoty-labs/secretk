@@ -1,5 +1,3 @@
 package io.eqoty.crypto
 
-class ExtendedSecp256k1Signature {
-
-}
+data class ExtendedSecp256k1Signature(val r: UByteArray, val s: UByteArray, val recoveryParam: Int)

@@ -73,7 +73,102 @@ class BN {
 
     fun add(n: BN): BN = BN(number.add(n.number), red)
 
-    fun and(n: BN): BN = BN(number.and(n.number), red)
+    infix fun and(n: BN): BN = BN(number.and(n.number), red)
+
+    fun gcd(n: BN): BN = BN(number.gcd(n.number), red)
+
+    fun egcd(p: BN): EGCDResult {
+        require(!p.negative);
+        require(!p.isZero());
+
+        var x = this
+        var y = p
+
+        if (x.negative) {
+            x = x.mod(p);
+        }
+
+        // A * x + B * y = x
+        var A = BN(1)
+        var B = BN(0)
+
+        // C * x + D * y = y
+        var C = BN(0)
+        var D = BN(1)
+
+        var g = 0;
+
+        while (x.isEven() && y.isEven()) {
+            x = x.shr(1)
+            y = y.shr(1)
+            ++g
+        }
+
+        var yp = y
+        var xp = x
+
+        while (!x.isZero()) {
+            var i = 0
+            var im = 1
+            while ((x.word0 and BN(im)) == ZERO && i < 26) {
+                ++i
+                im = im shl 1
+            }
+            if (i > 0) {
+                x = x.shr(i)
+                while (i-- > 0) {
+                    if (A.isOdd() || B.isOdd()) {
+                        A = A.add(yp)
+                        B = B.subtract(xp)
+                    }
+
+                    A = A.shr(1)
+                    B = B.shr(1)
+                }
+            }
+
+
+
+            var j = 0
+            var jm = 1
+            while ((y.word0 and BN(jm)) == ZERO && j < 26){
+                ++j
+                jm = jm shl 1
+            }
+            if (j > 0) {
+                y = y.shr(j)
+                while (j-- > 0) {
+                    if (C.isOdd() || D.isOdd()) {
+                        C = C.add(yp)
+                        D = D.subtract(xp)
+                    }
+
+                    C = C.shr(1)
+                    D = D.shr(1)
+                }
+            }
+
+
+            if (x >= y) {
+                x= x.subtract(y)
+                A = A.subtract(C)
+                B = B.subtract(D)
+            } else {
+                y = y.subtract(x)
+                C = C.subtract(A)
+                D = D.subtract(B)
+            }
+        }
+
+        return EGCDResult(
+            a = C,
+            b = D,
+            gcd = y.shl(g)
+        )
+    }
+
+    private fun isZero(): Boolean = number.isZero()
+
 
     fun divRound(divisor: BN): BN {
         val resultAndRem = number.divideAndRemainder(divisor.number)
@@ -206,6 +301,11 @@ class BN {
         return leastSignificant26Bits.and(num)
     }
 
+    fun invm(num: BN): BN {
+        return egcd(num).a.mod(num)
+    }
+
+
     fun isOdd(): Boolean {
         val one = BN(1)
         return this.and(one).number.abs() == one.number
@@ -238,6 +338,7 @@ class BN {
     }
 
     fun byteLength(): Int = number.byteLength().toInt()
+
 
 
     companion object {
@@ -511,7 +612,7 @@ fun BigInteger.bitLength(): ULong {
 }
 
 fun BigInteger.byteLength() : ULong {
-    return ceil((this.bitLength() / 8u).toDouble()).toULong()
+    return ceil(this.bitLength().toDouble() / 8.0).toULong()
 }
 
 fun BigInteger.toArray(endian: String, length: Int?): ULongArray {
@@ -556,3 +657,5 @@ fun BigInteger.toArray(endian: String, length: Int?): ULongArray {
 
     return res
 }
+
+data class EGCDResult(val a: BN, val b: BN, val gcd: BN)

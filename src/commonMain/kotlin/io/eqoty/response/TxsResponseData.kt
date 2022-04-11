@@ -3,7 +3,12 @@ package io.eqoty.response
 import io.eqoty.logs.Log
 
 @kotlinx.serialization.Serializable
-data class PostTxsResponse(
+data class TxsResponse(
+  val tx_response: TxsResponseData,
+)
+
+@kotlinx.serialization.Serializable
+data class TxsResponseData(
   val height: String,
   val txhash: String,
   val code: Int?,

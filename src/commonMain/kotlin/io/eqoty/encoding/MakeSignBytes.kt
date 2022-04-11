@@ -2,14 +2,14 @@ package io.eqoty.encoding
 
 import com.ionspin.kotlin.bignum.integer.BigInteger
 import com.ionspin.kotlin.crypto.util.encodeToUByteArray
-import io.eqoty.types.Msg
-import io.eqoty.types.MsgValue
+import io.eqoty.response.MsgValue
+import io.eqoty.response.TypeValue
 import io.eqoty.types.StdFee
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-fun <T: MsgValue> makeSignBytes(
-    msgs: List<Msg<T>>,
+inline fun <reified T: MsgValue> makeSignBytes(
+    msgs: List<TypeValue<T>>,
     fee: StdFee,
     chainId: String,
     memo: String,
@@ -27,5 +27,6 @@ fun <T: MsgValue> makeSignBytes(
         sequence = sequence.toString(),
     )
     //val signMsg = sortJson(signJson);
-    return Json.encodeToString(signJson).encodeToUByteArray()
+    val test = Json.encodeToString(signJson)
+    return test.encodeToUByteArray()
 }

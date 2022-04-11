@@ -13,3 +13,12 @@ fun IntArray.toUByteArray() : UByteArray =
 
 fun UByteArray.toByteString() : ByteString =
     toByteArray().toByteString()
+
+fun UByteArray.getPadded(length: Int): UByteArray {
+    val paddingLength = length - this.size
+    if (paddingLength < 0) {
+        throw Error("Length too small to hold parameter r");
+    }
+    val padding = UByteArray(paddingLength) {0u}
+    return padding + this
+}

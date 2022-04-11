@@ -3,17 +3,19 @@ package io.eqoty.response
 import com.ionspin.kotlin.bignum.integer.BigInteger
 import io.eqoty.types.Coin
 import kotlinx.serialization.Contextual
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
+@SerialName("cosmos-sdk/BaseAccount")
 data class CosmosSdkAccount (
-  /** Bech32 account address */
+    /** Bech32 account address */
   val address: String?,
-  val coins: List<Coin>,
-  /** Bech32 encoded pubkey */
-  val public_key: PubKey?,
-  @Contextual val account_number: BigInteger,
-  @Contextual val sequence: BigInteger,
+    val coins: List<Coin>? = null,
+    /** Bech32 encoded pubkey */
+  val public_key: PubKeySecp256k1?,
+    @Contextual val account_number: BigInteger?,
+    @Contextual val sequence: BigInteger?,
 )
 
 @Serializable
@@ -45,7 +47,6 @@ data class NodeInfo (
 data class ApplicationVersion(
   val name: String,
   val server_name: String,
-  val client_name: String,
   val version: String,
   val commit: String,
   val build_tags: String,

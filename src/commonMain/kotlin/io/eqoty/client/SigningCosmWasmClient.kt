@@ -3,6 +3,10 @@ package io.eqoty.client
 import com.ionspin.kotlin.bignum.integer.BigInteger
 import io.eqoty.BroadcastMode
 import io.eqoty.encoding.makeSignBytes
+import io.eqoty.response.MsgExecuteContract
+import io.eqoty.response.MsgExecuteContractValue
+import io.eqoty.response.MsgValue
+import io.eqoty.response.TypeValue
 import io.eqoty.result.ExecuteResult
 import io.eqoty.types.*
 import io.eqoty.utils.SecretUtils
@@ -49,8 +53,8 @@ class SigningCosmWasmClient : CosmWasmClient {
         this.fees = FeeTable.Default.overwrite(customFees)
     }
 
-    suspend fun <T: MsgValue>signAdapter(
-        msgs: List<Msg<T>>,
+    inline fun <reified T: MsgValue> signAdapter(
+        msgs: List<TypeValue<T>>,
         fee: StdFee,
         chainId: String,
         memo: String,
@@ -77,10 +81,10 @@ class SigningCosmWasmClient : CosmWasmClient {
 //        } else {
 
         // legacy interface
-        val signBytes = makeSignBytes(msgs, fee, chainId, memo, accountNumber, sequence);
-        val signature = signer(signBytes);
+        val signBytes = makeSignBytes(msgs, fee, chainId, memo, accountNumber, sequence)
+        val signature = signer(signBytes)
         return StdTx(
-            msg = msgs,
+            msg = msgs.toList(),
             fee = fee,
             memo = memo,
             signatures = listOf(signature),
@@ -91,9 +95,9 @@ class SigningCosmWasmClient : CosmWasmClient {
         contractAddress: String,
         handleMsg: JsonObject,
         memo : String = "",
-        transferAmount: List<Coin>?,
+        transferAmount: List<Coin>? = null,
         fee: StdFee = fees.exec!!,
-        _contractCodeHash: String?,
+        _contractCodeHash: String? = null,
     ): ExecuteResult {
         val contractCodeHash = if (_contractCodeHash == null) {
             this.restClient.getCodeHashByContractAddr(contractAddress)
@@ -117,7 +121,7 @@ class SigningCosmWasmClient : CosmWasmClient {
         val accountNumber = nonceResult.accountNumber
         val sequence = nonceResult.sequence
 
-        val chainId = getChainId();
+        val chainId = getChainId()
         val signedTx = signAdapter(listOf(executeMsg), fee, chainId, memo, accountNumber, sequence);
 
         val encryptionNonce = executeMsg.value.msg.decodeBase64()!!.toByteArray().sliceArray(IntRange(0, 31)).toUByteArray()

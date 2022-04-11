@@ -58,7 +58,8 @@ sealed class BasePoint <C: Curve> (val curve: C, val type: String) {
         curve.validate(this)
 
     abstract fun neg(precompute: Boolean? = null): BasePoint<C>
-
+    abstract var x: BN?
+    abstract var y: BN?
 
     companion object
 
@@ -66,8 +67,8 @@ sealed class BasePoint <C: Curve> (val curve: C, val type: String) {
 
 class ShortCurvePoint: BasePoint<ShortCurve>{
 
-    var x: BN?
-    var y: BN?
+    override var x: BN?
+    override var y: BN?
     override val inf: Boolean
 
     constructor(curve: ShortCurve, type: String, x: String?, y: String?, isRed: Boolean?) :
@@ -245,15 +246,14 @@ class ShortCurvePoint: BasePoint<ShortCurve>{
         return this.curve.point(nx, ny)
     }
 
-
 }
 
 
 class JPoint(curve: ShortCurve, x: BN?, y: BN?, z: BN?): BasePoint<ShortCurve>(curve, "jacobian") {
 
     private var zOne: Boolean
-    var x: BN?
-    var y: BN?
+    override var x: BN? = null
+    override var y: BN? = null
     var z: BN?
     override val inf: Boolean
         get() = isInfinity()
@@ -517,7 +517,6 @@ class JPoint(curve: ShortCurve, x: BN?, y: BN?, z: BN?): BasePoint<ShortCurve>(c
     override fun neg(precompute: Boolean?): JPoint {
         return TODO()
     }
-
 
 }
 

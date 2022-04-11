@@ -2,9 +2,9 @@ package io.eqoty
 
 enum class BroadcastMode(val mode: String) {
   /** Return after tx commit */
-  Block("block"),
+  Block("BROADCAST_MODE_BLOCK"),
   /** Return afrer CheckTx */
-  Sync("sync"),
+  Sync("BROADCAST_MODE_SYNC"),
   /** Return right away */
-  Async("async"),
+  Async("BROADCAST_MODE_ASYNC"),
 }

@@ -3,10 +3,9 @@ package io.eqoty.client
 import io.eqoty.BroadcastMode
 import io.eqoty.result.GetNonceResult
 import io.eqoty.types.Account
-import io.eqoty.types.MsgValue
+import io.eqoty.response.MsgValue
 import io.eqoty.types.PostTxResult
 import io.eqoty.types.StdTx
-import kotlinx.coroutines.Deferred
 import kotlinx.serialization.json.JsonObject
 
 open class CosmWasmClient(
@@ -53,15 +52,15 @@ open class CosmWasmClient(
             this.anyValidAddress = value.address;
             return Account(
                 address = value.address,
-                balance = value.coins,
+                balance = value.coins!!,
                 pubkey = value.public_key,
-                accountNumber = value.account_number,
-                sequence = value.sequence,
+                accountNumber = value.account_number!!,
+                sequence = value.sequence!!,
             )
         }
     }
 
-    suspend fun <T: MsgValue> postTx(tx: StdTx<T>): PostTxResult {
+    suspend inline fun <reified T: MsgValue> postTx(tx: StdTx<T>): PostTxResult {
         val result = restClient.postTx(tx)
         println(result)
 //        if (!result.txhash.match(/^([0-9A-F][0-9A-F])+$/)) {
