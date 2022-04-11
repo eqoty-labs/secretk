@@ -4,4 +4,6 @@ package io.eqoty.types;
 data class Coin(
   val denom: String,
   val amount: String
-)
+) {
+  constructor(denom: String, amount: Int) : this(denom, amount.toString())
+}

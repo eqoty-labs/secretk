@@ -115,7 +115,7 @@ class RestClient(
         val txString = json.encodeToString(tx).encodeUtf8().base64()
         val params =
             json.parseToJsonElement("""{
-                "tx_bytes": $txString,
+                "tx_bytes": "$txString",
                 "mode": "${this.broadcastMode.mode}"
             }""").jsonObject
 

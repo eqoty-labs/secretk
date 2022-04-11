@@ -27,20 +27,20 @@ data class FeeTable (
   companion object{
     val Default get() = FeeTable(
       upload = StdFee(
-        listOf(Coin("uscrt", "250_000")),
-      "1_000_000"
+        listOf(Coin("uscrt", 250_000)),
+      1_000_000
       ),
       init = StdFee(
-        listOf(Coin("uscrt", "125_000")),
-        "500_000"
+        listOf(Coin("uscrt", 125_000)),
+        500_000
       ),
       exec = StdFee(
-        listOf(Coin("uscrt", "50_000")),
-        "200_000"
+        listOf(Coin("uscrt", 50_000)),
+        200_000
       ),
       send = StdFee(
-        listOf(Coin("uscrt", "20_000")),
-        "80_000"
+        listOf(Coin("uscrt", 20_000)),
+        80_000
       )
     )
   }
