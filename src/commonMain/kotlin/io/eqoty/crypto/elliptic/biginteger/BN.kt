@@ -17,7 +17,7 @@ class BN {
         this.number = number
         this.red = red
     }
-    constructor(string: String, base: Int, red: Red? = null){
+    constructor(string: String, base: Int = 16, red: Red? = null){
         this.number = BigInteger.parseString(string.replace(" ", ""), base)
         this.red = red
     }
@@ -25,7 +25,10 @@ class BN {
         this.number = BigInteger.fromInt(num)
         this.red = red
     }
-
+    constructor(number: UByteArray, red: Red? = null){
+        this.number = BigInteger.fromUByteArray(number, Sign.POSITIVE)
+        this.red = red
+    }
     fun bitLength() = number.bitLength()
 
 
@@ -234,7 +237,7 @@ class BN {
         return this.red.sub(this, num);
     }
 
-
+    fun byteLength(): Int = number.byteLength().toInt()
 
 
     companion object {
@@ -502,6 +505,7 @@ fun BigInteger.countBits(w: ULong): ULong {
 
 fun BigInteger.bitLength(): ULong {
     val byteArray = toByteArray()
+    if (byteArray.isEmpty()) return 0u
     val leadingZeros = byteArray[0].countLeadingZeroBits().toULong()
     return byteArray.size.toULong() * 8u - leadingZeros
 }

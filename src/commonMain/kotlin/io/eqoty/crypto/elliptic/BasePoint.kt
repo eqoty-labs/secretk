@@ -2,8 +2,6 @@ package io.eqoty.crypto.elliptic;
 
 import io.eqoty.crypto.elliptic.biginteger.BN
 import io.eqoty.crypto.elliptic.biginteger.bitLength
-import io.eqoty.crypto.elliptic.json.Doubles
-import io.eqoty.crypto.elliptic.json.Naf
 import io.eqoty.crypto.elliptic.json.PrecomputedScep256k1
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
@@ -13,11 +11,11 @@ import kotlin.math.ceil
 
 data class PreComputed <C: Curve>(
     var beta: BasePoint<C>?,
-    val doubles: PreComputedDoubles<C>?,
-    val naf: PreComputedNaf<C>
+    val doubles: ComputedDoubles<C>?,
+    val naf: ComputedNaf<C>
 )
-data class PreComputedDoubles<C: Curve>(val step: Int, val points: List<BasePoint<C>>)
-data class PreComputedNaf<C: Curve>(val wnd: Int, val points: List<BasePoint<C>>)
+data class ComputedDoubles<C: Curve>(val step: Int, val points: List<BasePoint<C>>)
+data class ComputedNaf<C: Curve>(val wnd: Int, val points: List<BasePoint<C>>)
 
 
 sealed class BasePoint <C: Curve> (val curve: C, val type: String) {
@@ -27,7 +25,7 @@ sealed class BasePoint <C: Curve> (val curve: C, val type: String) {
     abstract val inf: Boolean
 
 
-
+    abstract fun mul(k: BN): BasePoint<C>
 
     fun hasDoubles(k: BN): Boolean {
         val doubles = precomputed?.doubles ?: return false
@@ -35,25 +33,31 @@ sealed class BasePoint <C: Curve> (val curve: C, val type: String) {
         return doubles.points.size >= ceil(((k.number.bitLength() + 1u) / doubles.step.toUInt()).toDouble());
     }
 
-    fun getNAFPoints(wnd: Int): PreComputedNaf<C> {
+    fun getNAFPoints(wnd: Int): ComputedNaf<C> {
         if (precomputed?.naf != null)
             return precomputed!!.naf;
-        return TODO()
-//        var res = listOf(this)
-//        var max = (1 shl wnd) - 1;
-//        var dbl = if(max == 1) null else this.dbl();
-//        for (var i = 1; i < max; i++)
-//        res[i] = res[i - 1].add(dbl);
-//        return {
-//                wnd: wnd,
-//                points: res,
-//        };
+        val res = mutableListOf(this)
+        val max = (1 shl wnd) - 1;
+        val dbl = if(max == 1) null else this.dbl()
+        for (i in 1 until max) {
+            TODO()// res[i] = res[i - 1].add(dbl)
+        }
+        return ComputedNaf(
+                wnd= wnd,
+                points= res,
+        )
     }
 
     fun encodeCompressed(): UByteArray = encode( true)
 
     abstract fun encode(compact: Boolean): UByteArray
 
+    protected abstract fun dbl() : BasePoint<C>
+
+    fun validate(): Boolean =
+        curve.validate(this)
+
+    abstract fun neg(precompute: Boolean? = null): BasePoint<C>
 
 
     companion object
@@ -98,7 +102,7 @@ class ShortCurvePoint: BasePoint<ShortCurve>{
     override fun isInfinity(): Boolean = inf
 
 
-    fun mul(k: BN): BasePoint<ShortCurve> {
+    override fun mul(k: BN): BasePoint<ShortCurve> {
         if (this.isInfinity())
             return this;
         else if (this.hasDoubles(k))
@@ -111,7 +115,7 @@ class ShortCurvePoint: BasePoint<ShortCurve>{
     }
 
 
-    fun getDoubles(step: Int? = null, power: Int? = null): PreComputedDoubles<ShortCurve>{
+    fun getDoubles(step: Int? = null, power: Int? = null): ComputedDoubles<ShortCurve>{
         if (precomputed?.doubles != null)
             return precomputed!!.doubles!!
 
@@ -149,11 +153,11 @@ class ShortCurvePoint: BasePoint<ShortCurve>{
             pre.beta = beta
             beta.precomputed = PreComputed(
                 beta = null,
-                naf = PreComputedNaf(
+                naf = ComputedNaf(
                     wnd = pre.naf.wnd,
                     points = pre.naf.points.map{endoMul(it as ShortCurvePoint)}
                 ),
-                doubles = PreComputedDoubles(
+                doubles = ComputedDoubles(
                     step = pre.doubles!!.step,
                     points = pre.doubles!!.points.map{endoMul(it as ShortCurvePoint)}
                 )
@@ -162,7 +166,7 @@ class ShortCurvePoint: BasePoint<ShortCurve>{
         return beta
     }
 
-    fun neg(precompute: Boolean? = null): ShortCurvePoint {
+    override fun neg(precompute: Boolean?): ShortCurvePoint {
         if (this.inf)
             return this;
 
@@ -176,11 +180,11 @@ class ShortCurvePoint: BasePoint<ShortCurve>{
 
             res.precomputed = PreComputed(
                 beta = null,
-                naf = PreComputedNaf(
+                naf = ComputedNaf(
                     wnd = pre.naf.wnd,
                     points = pre.naf.points.map{negate(it as ShortCurvePoint)}
                 ),
-                doubles = PreComputedDoubles(
+                doubles = ComputedDoubles(
                     step = pre.doubles!!.step,
                     points = pre.doubles.points.map{negate(it as ShortCurvePoint)}
                 )
@@ -206,6 +210,39 @@ class ShortCurvePoint: BasePoint<ShortCurve>{
         }
 
         return ubyteArrayOf(0x04u) + x + y!!.number.toUByteArray()
+    }
+
+    override fun  dbl(): BasePoint<ShortCurve> {
+        TODO("Not yet implemented")
+    }
+
+    fun add(p: ShortCurvePoint): ShortCurvePoint {
+        // O + P = P
+        if (this.inf)
+            return p
+
+        // P + O = P
+        if (p.inf)
+            return this
+
+        // P + P = 2P
+        if (this == p)
+            return dbl() as ShortCurvePoint
+
+        // P + (-P) = O
+        if (neg() == p)
+            return this.curve.point(null, null)
+
+        // P + Q = O
+        if (this.x!!.compareTo(p.x!!) == 0)
+            return this.curve.point(null, null)
+
+        var c = this.y!!.redSub(p.y!!)
+        if (c.compareTo(0) != 0)
+            c = c.redMul(this.x!!.redSub(p.x!!).redInvm())
+        val nx = c.redSqr().redSub(this.x!!).redSub(p.x!!)
+        val ny = c.redMul(this.x!!.redSub(nx)).redSub(this.y!!)
+        return this.curve.point(nx, ny)
     }
 
 
@@ -315,9 +352,9 @@ class JPoint(curve: ShortCurve, x: BN?, y: BN?, z: BN?): BasePoint<ShortCurve>(c
         return JPoint(curve, nx, ny, nz)
     }
 
-    private fun dbl(): JPoint {
+    override fun dbl(): JPoint {
         if (this.isInfinity())
-            return this;
+            return this
 
         if (this.curve.zeroA) {
             return this.zeroDbl()
@@ -325,8 +362,7 @@ class JPoint(curve: ShortCurve, x: BN?, y: BN?, z: BN?): BasePoint<ShortCurve>(c
             return TODO()
 //            return this._threeDbl();
         } else {
-            return TODO()
-//            return this._dbl();
+            return dbl()
         }
     }
 
@@ -336,13 +372,13 @@ class JPoint(curve: ShortCurve, x: BN?, y: BN?, z: BN?): BasePoint<ShortCurve>(c
         if (this.isInfinity())
             return this;
         if (pow == null)
-            return this.dbl();
+            return this.dbl() as JPoint
 
         var i : Int = 0
         if (this.curve.zeroA || this.curve.threeA) {
             var r = this;
             while (i < pow){
-                r = r.dbl();
+                r = r.dbl() as JPoint
                 i++
             }
             return r;
@@ -406,7 +442,7 @@ class JPoint(curve: ShortCurve, x: BN?, y: BN?, z: BN?): BasePoint<ShortCurve>(c
             return if (r.compareTo(0) != 0)
                 this.curve.jpoint(null, null, null)
             else
-                this.dbl()
+                this.dbl() as JPoint
         }
 
         val h2 = h.redSqr()
@@ -443,7 +479,7 @@ class JPoint(curve: ShortCurve, x: BN?, y: BN?, z: BN?): BasePoint<ShortCurve>(c
             return if (r.compareTo(0) != 0)
                 this.curve.jpoint(null, null, null);
             else
-                this.dbl();
+                this.dbl() as JPoint
         }
 
         val h2 = h.redSqr();
@@ -473,6 +509,15 @@ class JPoint(curve: ShortCurve, x: BN?, y: BN?, z: BN?): BasePoint<ShortCurve>(c
         TODO("Not yet implemented")
     }
 
+    override fun mul(k: BN): JPoint{
+        return TODO()
+        //return this.curve.wnafMul(this, k);
+    }
+
+    override fun neg(precompute: Boolean?): JPoint {
+        return TODO()
+    }
+
 
 }
 
@@ -494,11 +539,11 @@ fun BasePoint.Companion.fromJSON(curve: ShortCurve, obj: JsonArray, red: Boolean
 
     res.precomputed = PreComputed(
         beta = null,
-        doubles = PreComputedDoubles(
+        doubles = ComputedDoubles(
             step = pre.doubles.step,
             points =  listOf(res)  + pre.doubles.points.map(obj2point)
         ),
-        naf = PreComputedNaf(
+        naf = ComputedNaf(
             wnd = pre.naf.wnd,
             points =  listOf(res)  + pre.naf.points.map(obj2point)
         )

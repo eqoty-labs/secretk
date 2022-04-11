@@ -5,6 +5,7 @@ import com.ionspin.kotlin.bignum.integer.Sign
 import io.eqoty.crypto.elliptic.Curve
 import io.eqoty.crypto.elliptic.biginteger.BN
 import io.eqoty.crypto.elliptic.biginteger.toArray
+import io.eqoty.crypto.elliptic.ec.EC
 import io.eqoty.utils.toByteString
 import okio.Buffer
 import okio.ByteString.Companion.toByteString
@@ -27,7 +28,7 @@ data class Slip10Result(
 //https://github.com/bluesky66-dev/X-Wallet-iOS/blob/master/Modules/walletkit/WalletKitCore/src/hedera/BRHederaCrypto.c
 object Slip10 {
 
-    val secp256k1 = Curve.scep256k1
+    val secp256k1 = EC.scep256k1
 
     fun derivePath(curve: Slip10Curve, seed: UByteArray, path: Array<Slip10RawIndex>): Slip10Result {
         var result = this.master(curve, seed);
@@ -166,67 +167,4 @@ object Slip10 {
         privkey.all { it == 0.toUByte() }
 
 
-    /**
-     * Derives only the private key for ED25519 in the manor defined in
-     * [SLIP-0010](https://github.com/satoshilabs/slips/blob/master/slip-0010.md).
-     *
-     * @param seed    Seed, the BIP0039 output.
-     * @param indexes an array of indexes that define the path. E.g. for m/1'/2'/3', pass 1, 2, 3.
-     * As with Ed25519 non-hardened child indexes are not supported, this function treats all indexes
-     * as hardened.
-     * @return Private key.
-     */
-    fun derivePrivateKey(curve: Slip10Curve, _seed: ByteArray, indexes: Array<Slip10RawIndex>): UByteArray {
-        val seed = _seed.toByteString()
-        val I = ByteArray(64) {0}
-        val chainCode = ByteArray(32)
-
-        // I = HMAC-SHA512(Key = bytes("ed25519 seed"), Data = seed)
-        val firstKey = curve.key.encodeToByteArray().toByteString()
-        seed.hmacSha512(firstKey)
-            .copyInto(0, I, 0, I.size)
-
-        for (i in indexes) {
-            println(i.isHardened())
-            I.copyInto(chainCode,0,I.size/2, chainCode.size)
-            // I = HMAC-SHA512(Key = c_par, Data = 0x00 || ser256(k_par) || ser32(i'))
-            // which is simply:
-            // I = HMAC-SHA512(Key = Ir, Data = 0x00 || Il || ser32(i'))
-            // Key = Ir
-            val data = Buffer()
-            // Data = 0x00
-            data.writeByte(0x00)
-            // Data += Il : This is the "secret"
-            data.write(I, 0, 32)
-            // Data += ser32(i')
-//            println(i)
-//            println((i and 0xFF000000) shr 24) // and 0xFF000000
-//            println((i and 0x00FF0000) shr 16)
-//            println((i and 0x0000FF00) shr 8)
-//            println(i and 0x00000000FF)
-//            println()
-//            println(i shr 24 or 128u)
-//            println(i shr 16)
-//            println(i shr 8)
-//            println()
-//            println()
-//            data.writeByte(((i and 0xFF000000) shr 24).toInt())
-//            data.writeByte(((i and 0x00FF0000) shr 16).toInt())
-//            data.writeByte(((i and 0x0000FF00) shr 8).toInt())
-//            data.writeByte((i and 0x00000000FF).toInt())
-
-            data.writeByte((i shr 24 or 128u).toInt())
-            data.writeByte((i shr 16).toInt())
-            data.writeByte((i shr 8).toInt())
-            data.writeByte(i.toInt())
-            // compute HMAC-SHA512 and Write to I
-            // For the remaining hashing the key is the chaincode from the previous hash
-            data.hmacSha512(chainCode.toByteString())
-                .copyInto(0, I, 0, I.size)
-        }
-        val Il = ByteArray(32)
-        // copy head 32 bytes of I into Il
-        I.copyInto(Il, 0, 0,32)
-        return Il.toUByteArray()
-    }
 }
