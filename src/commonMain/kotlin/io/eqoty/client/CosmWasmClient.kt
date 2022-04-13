@@ -45,17 +45,16 @@ open class CosmWasmClient(
 
     suspend fun getAccount(address: String): Account? {
         val account = this.restClient.authAccounts(address)
-        val value = account.result.value;
-        if (value.address == null || value.address === "") {
+        if (account.address == null || account.address === "") {
             return null
         } else {
-            this.anyValidAddress = value.address;
+            this.anyValidAddress = account.address;
             return Account(
-                address = value.address,
-                balance = value.coins!!,
-                pubkey = value.public_key,
-                accountNumber = value.account_number!!,
-                sequence = value.sequence!!,
+                address = account.address,
+                balance = account.coins!!,
+                pubkey = account.public_key,
+                accountNumber = account.account_number!!,
+                sequence = account.sequence!!,
             )
         }
     }

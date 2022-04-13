@@ -132,7 +132,11 @@ class RestClient(
         if (codeHashFromCache != null) {
             return codeHashFromCache
         }
-
+        // Works... for now...
+        // But we may need to switch to getting hash by grpc gateway endpoints:
+        // getting codeId from /compute/v1beta1/contract/{address}
+        // then using codeId to get hash with:
+        // /compute/v1beta1/code/{code_id} endpoint
         val path = "/wasm/contract/${addr}/code-hash"
         val responseData: WasmResponse<String> = get(path)
 
@@ -201,21 +205,16 @@ class RestClient(
         return json.parseToJsonElement(decodedResponse).jsonObject
     }
 
-    suspend fun authAccounts(address: String): WasmResponse<AuthAccountsResult> {
-        val authResp : WasmResponse<TypeValue<CosmosSdkAccount?>> = get("/auth/accounts/${address}")
-        val bankResp : WasmResponse<List<Coin>> = get("/bank/balances/${address}")
+    suspend fun authAccounts(address: String): CosmosSdkAccount {
+        val authResp : AccountResponse = get("/cosmos/auth/v1beta1/accounts/${address}")
+        val bankResp : BalanceResponse = get("/cosmos/bank/v1beta1/balances/${address}")
 
-        return WasmResponse<AuthAccountsResult>(
-            height = bankResp.height,
-            result = AuthAccountsResult(
-                value = CosmosSdkAccount(
-                    address= authResp.result.value?.address,
-                    coins = bankResp.result,
-                    public_key = authResp.result.value?.public_key,
-                    account_number= authResp.result.value?.account_number ?: BigInteger.ZERO,
-                    sequence= authResp.result.value?.sequence ?: BigInteger.ZERO,
-                )
-            )
+        return CosmosSdkAccount(
+            address= authResp.account.address,
+            coins = bankResp.balances,
+            public_key = PubKeySecp256k1(authResp.account.pub_key.key),
+            account_number= authResp.account.account_number ?: BigInteger.ZERO,
+            sequence= authResp.account.sequence ?: BigInteger.ZERO,
         )
     }
 
