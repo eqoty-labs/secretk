@@ -181,7 +181,7 @@ class SigningCosmWasmClient : CosmWasmClient {
             txBodyBytes,
             authInfoBytes,
             chainId,
-            accountNumber.toString(),
+            accountNumber.intValue(),
         )
 
         val signature = this.pen.signDirect(

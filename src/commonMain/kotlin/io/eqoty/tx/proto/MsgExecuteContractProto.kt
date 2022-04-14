@@ -1,6 +1,5 @@
 package io.eqoty.tx.proto
 
-import io.eqoty.types.Coin
 import kotlinx.serialization.protobuf.ProtoNumber
 
 @kotlinx.serialization.Serializable
