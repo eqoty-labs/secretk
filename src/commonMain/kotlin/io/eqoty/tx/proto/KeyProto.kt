@@ -4,5 +4,5 @@ import kotlinx.serialization.protobuf.ProtoNumber
 
 @kotlinx.serialization.Serializable
 class KeyProto(
-    @ProtoNumber(1) val key: ByteArray,
+    @ProtoNumber(1) val key: ByteArray? = null,
 ) : MsgProto()

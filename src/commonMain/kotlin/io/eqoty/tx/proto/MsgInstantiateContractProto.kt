@@ -5,7 +5,7 @@ import kotlinx.serialization.protobuf.ProtoNumber
 
 @kotlinx.serialization.Serializable
 class MsgInstantiateContractProto(
-    @ProtoNumber(1) val sender: ByteArray,
+    @ProtoNumber(1) val sender: ByteArray = byteArrayOf(),
     @ProtoNumber(2) val callbackCodeHash: String = "",
     @ProtoNumber(3) val codeId: String = "",
     @ProtoNumber(4) val label: String = "",
