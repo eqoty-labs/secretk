@@ -33,20 +33,23 @@ class MsgExecuteContract(
 ): Msg<MsgExecuteContractProto> {
     private var msgEncrypted: UByteArray? = null
 
-    var codeHash: String
-    private val warnCodeHash: Boolean
-
-init {
-        if (codeHash != null) {
-            this.codeHash = codeHash.replace("0x", "").lowercase()
-            this.warnCodeHash = false
-        } else {
-            // codeHash will be set in SecretNetworkClient before invoking toProto() & toAimno()
-            this.codeHash = ""
-            this.warnCodeHash = true
-            Logger.w { getMissingCodeHashWarning("MsgExecuteContract") }
+    var codeHash: String? = codeHash
+        set(value) {
+            if (value!=null && !value.isNullOrBlank()) {
+                warnCodeHash = false
+            } else {
+                Logger.w{ getMissingCodeHashWarning("MsgExecuteContract") }
+            }
+            field = value?.replace("0x", "")?.lowercase()
         }
+
+    private var warnCodeHash: Boolean = true
+
+    init {
+        // set isn't triggered otherwise
+        this.codeHash = codeHash
     }
+
 
     override suspend fun toProto(utils: EncryptionUtils): ProtoMsg<MsgExecuteContractProto> {
         if (warnCodeHash) {
@@ -57,7 +60,7 @@ init {
             // The encryption uses a random nonce
             // toProto() & toAmino() are called multiple times during signing
             // so to keep the msg consistant across calls we encrypt the msg only once
-            msgEncrypted = utils.encrypt(codeHash, msg)
+            msgEncrypted = utils.encrypt(codeHash!!, msg)
         }
         
         val msgContent = MsgExecuteContractProto(
