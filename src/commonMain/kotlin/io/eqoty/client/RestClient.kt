@@ -4,12 +4,10 @@ import com.ionspin.kotlin.bignum.integer.BigInteger
 import com.ionspin.kotlin.bignum.serialization.kotlinx.biginteger.bigIntegerhumanReadableSerializerModule
 import io.eqoty.BroadcastMode
 import io.eqoty.response.*
-import io.eqoty.types.Coin
-import io.eqoty.response.MsgValue
-import io.eqoty.types.StdTx
 import io.eqoty.utils.Bech32
+import io.eqoty.utils.EncryptionUtils
 import io.eqoty.utils.EnigmaUtils
-import io.eqoty.utils.SecretUtils
+import io.eqoty.utils.toByteString
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
@@ -19,14 +17,12 @@ import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.util.*
 import io.ktor.utils.io.core.*
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.plus
 import kotlinx.serialization.modules.polymorphic
-import okio.ByteString.Companion.encodeUtf8
 import okio.ByteString.Companion.toByteString
 
 /**
@@ -46,7 +42,7 @@ class RestClient(
     val broadcastMode: BroadcastMode = BroadcastMode.Block,
     seed: UByteArray? = null
 ) {
-    var enigmautils: SecretUtils = EnigmaUtils(apiUrl, seed)
+    var enigmautils: EncryptionUtils = EnigmaUtils(apiUrl, seed)
     val codeHashCache: MutableMap<Any, String> = mutableMapOf()
 
     val json: Json = Json {
@@ -111,8 +107,8 @@ class RestClient(
      *
      * @param tx a signed transaction as StdTx (i.e. not wrapped in type/value container)
      */
-    suspend inline fun <reified T: MsgValue> postTx(tx: StdTx<T>): TxsResponseData {
-        val txString = json.encodeToString(tx).encodeUtf8().base64()
+    suspend inline fun postTx(tx: UByteArray): TxsResponseData {
+        val txString = tx.toByteString().base64()
         val params =
             json.parseToJsonElement("""{
                 "tx_bytes": "$txString",

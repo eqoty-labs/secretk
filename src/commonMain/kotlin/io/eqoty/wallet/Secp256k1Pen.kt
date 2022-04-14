@@ -6,9 +6,13 @@ import io.eqoty.crypto.Secp256k1
 import io.eqoty.crypto.Slip10
 import io.eqoty.crypto.Slip10Curve
 import io.eqoty.crypto.Slip10RawIndex
+import io.eqoty.tx.proto.SignDocProto
 import io.eqoty.types.StdSignature
 import io.eqoty.utils.getPadded
 import io.eqoty.utils.toByteString
+import kotlinx.serialization.encodeToByteArray
+import kotlinx.serialization.protobuf.ProtoBuf
+import okio.ByteString.Companion.toByteString
 
 
 /**
@@ -59,12 +63,15 @@ class Secp256k1Pen private constructor(private val privkey: UByteArray, val pubk
    * Creates and returns a signature
    */
   fun sign(signBytes: UByteArray, prehashType: PrehashType = PrehashType.SHA256): StdSignature {
-    println(signBytes.map { it.toUInt() })
     val message = prehash(signBytes, prehashType)
-    println(message.map { it.toUInt() })
     val signature = Secp256k1.createSignature(message, this.privkey)
     val fixedLengthSignature =  signature.r.getPadded(32) + signature.s.getPadded(32)
     return encodeSecp256k1Signature(this.pubkey, fixedLengthSignature);
+  }
+
+  fun signDirect(senderAddress: String, signDoc: SignDocProto): StdSignature {
+    val messageHash = ProtoBuf.encodeToByteArray(signDoc).toUByteArray()
+    return sign(messageHash)
   }
 
 

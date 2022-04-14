@@ -28,7 +28,7 @@ data class TxKeyResponse(val height: Int, val result: Result)
 
 data class KeyPair(val privKey: UByteArray, val pubKey: UByteArray)
 
-class EnigmaUtils(val apiUrl: String, seed: UByteArray?) : SecretUtils {
+class EnigmaUtils(val apiUrl: String, seed: UByteArray?) : EncryptionUtils {
 
     val hkdfSalt = ubyteArrayOf(
         0x00.toUByte(),

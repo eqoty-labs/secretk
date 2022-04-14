@@ -3,7 +3,7 @@ package io.eqoty.utils
 import kotlinx.coroutines.Deferred
 import kotlinx.serialization.json.JsonObject
 
-interface SecretUtils {
+interface EncryptionUtils {
   suspend fun getPubkey() : Deferred<UByteArray>
   suspend fun decrypt(ciphertext: UByteArray, nonce: UByteArray): UByteArray
   suspend fun encrypt(contractCodeHash: String, message: JsonObject): UByteArray

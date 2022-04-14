@@ -2,6 +2,8 @@ package io.eqoty
 
 import com.ionspin.kotlin.crypto.LibsodiumInitializer
 import io.eqoty.client.SigningCosmWasmClient
+import io.eqoty.tx.MsgExecuteContract
+import io.eqoty.tx.MsgInstantiateContract
 import io.eqoty.types.StdSignature
 import io.eqoty.utils.EnigmaUtils
 import io.eqoty.wallet.Secp256k1Pen
@@ -31,11 +33,12 @@ class ClientTests {
         // A pen is the most basic tool you can think of for signing.
         // This wraps a single keypair and allows for signing.
         val signingPen = Secp256k1Pen.fromMnemonic(mnemonic)
+
         println(signingPen.pubkey.map { it.toUInt() })
         val client = SigningCosmWasmClient(
             httpUrl,
             accAddress,
-            { signingBytes -> signingPen.sign(signingBytes) },
+            signingPen,
             txEncryptionSeed,
             null
         )
@@ -48,7 +51,14 @@ class ClientTests {
         val entropy = "Another really random thing??"
         val handleMsg = json.parseToJsonElement("""{ "create_viewing_key": {"entropy": "$entropy"} }""").jsonObject
         println("Creating viewing key");
-        val response = client.execute(contractAddress, handleMsg)
+        val response = client.execute(
+            contractAddress,
+            MsgExecuteContract(
+                sender = accAddress,
+                contractAddress = contractAddress,
+                msg = handleMsg
+            )
+        )
         println("response: $response")
     }
 

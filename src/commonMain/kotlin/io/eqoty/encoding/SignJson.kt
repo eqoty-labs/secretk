@@ -1,11 +1,10 @@
 package io.eqoty.encoding
 
-import io.eqoty.response.MsgValue
 import io.eqoty.response.TypeValue
 import io.eqoty.types.StdFee
 
 @kotlinx.serialization.Serializable
-data class SignJson <T: MsgValue> (
+data class SignJson <T> (
         val account_number: String,
         val chain_id: String,
         val fee: StdFee,

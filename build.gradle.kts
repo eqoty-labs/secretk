@@ -37,11 +37,14 @@ kotlin {
         all {
             languageSettings.optIn("kotlin.ExperimentalUnsignedTypes")
             languageSettings.optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
+            languageSettings.optIn("kotlinx.serialization.ExperimentalSerializationApi")
         }
         val commonMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-core:_")
                 implementation("io.ktor:ktor-client-json:_")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:_")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:_")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:_")
                 implementation("io.ktor:ktor-client-content-negotiation:_")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
@@ -50,6 +53,7 @@ kotlin {
                 implementation("com.ionspin.kotlin:bignum:0.3.4")
                 implementation("com.ionspin.kotlin:bignum-serialization-kotlinx:0.3.2")
                 implementation("cash.z.ecc.android:kotlin-bip39:1.0.2-SNAPSHOT")
+                implementation("co.touchlab:kermit:_")
             }
         }
         val commonTest by getting {

@@ -3,9 +3,7 @@ package io.eqoty.client
 import io.eqoty.BroadcastMode
 import io.eqoty.result.GetNonceResult
 import io.eqoty.types.Account
-import io.eqoty.response.MsgValue
 import io.eqoty.types.PostTxResult
-import io.eqoty.types.StdTx
 import kotlinx.serialization.json.JsonObject
 
 open class CosmWasmClient(
@@ -59,7 +57,7 @@ open class CosmWasmClient(
         }
     }
 
-    suspend inline fun <reified T: MsgValue> postTx(tx: StdTx<T>): PostTxResult {
+    suspend inline fun postTx(tx: UByteArray): PostTxResult {
         val result = restClient.postTx(tx)
         println(result)
 //        if (!result.txhash.match(/^([0-9A-F][0-9A-F])+$/)) {
