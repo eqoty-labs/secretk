@@ -50,8 +50,8 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
                 implementation("com.squareup.okio:okio:_")
                 implementation("com.ionspin.kotlin:multiplatform-crypto-libsodium-bindings:_")
-                implementation("com.ionspin.kotlin:bignum:0.3.4")
-                implementation("com.ionspin.kotlin:bignum-serialization-kotlinx:0.3.2")
+                implementation("com.ionspin.kotlin:bignum:_")
+                implementation("com.ionspin.kotlin:bignum-serialization-kotlinx:_")
                 implementation("cash.z.ecc.android:kotlin-bip39:1.0.2-SNAPSHOT")
                 implementation("co.touchlab:kermit:_")
             }
@@ -64,7 +64,7 @@ kotlin {
         }
         val jvmMain by getting {
             dependencies {
-                implementation("org.slf4j:slf4j-simple:1.8.0-beta4")
+                implementation("org.slf4j:slf4j-simple:_")
                 implementation("io.ktor:ktor-client-okhttp:_")
                 implementation("org.cryptomator:siv-mode:_")
             }

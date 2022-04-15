@@ -1,6 +1,5 @@
 package io.eqoty.client
 
-import co.touchlab.kermit.Logger
 import com.ionspin.kotlin.bignum.integer.BigInteger
 import com.ionspin.kotlin.bignum.serialization.kotlinx.biginteger.bigIntegerhumanReadableSerializerModule
 import io.eqoty.BroadcastMode
@@ -10,6 +9,7 @@ import io.eqoty.utils.*
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
+import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
@@ -23,7 +23,6 @@ import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.plus
 import kotlinx.serialization.modules.polymorphic
 import okio.ByteString.Companion.decodeBase64
-import okio.ByteString.Companion.decodeHex
 import okio.ByteString.Companion.toByteString
 
 /**
