@@ -11,9 +11,12 @@ import io.eqoty.types.*
 import io.eqoty.utils.EncryptionUtils
 import io.eqoty.wallet.Secp256k1Pen
 import io.eqoty.wallet.encodeSecp256k1Pubkey
+import kotlinx.serialization.decodeFromByteArray
 import kotlinx.serialization.encodeToByteArray
 import kotlinx.serialization.protobuf.ProtoBuf
 import okio.ByteString.Companion.decodeBase64
+import okio.ByteString.Companion.decodeHex
+import okio.ByteString.Companion.toByteString
 
 class SigningCosmWasmClient : CosmWasmClient {
 
@@ -224,34 +227,26 @@ class SigningCosmWasmClient : CosmWasmClient {
 
             throw err
         }
-//        let data = Uint8Array.from([]);
-//        if (this.restClient.broadcastMode == BroadcastMode.Block) {
-//            const dataFields: MsgData[] = decodeTxData(Encoding.fromHex(result.data));
-//
-//            if (dataFields[0].data) {
-//                // decryptedData =
-//                // dataFields[0].data = JSON.parse(decryptedData.toString());
-//                // @ts-ignore
-//                data = await this.restClient.decryptDataField(
-//                    Encoding.toHex(Encoding.fromBase64(dataFields[0].data)),
-//                    [encryptionNonce],
-//                );
-//            }
-//        }
-//
-//        const logs =
-//        this.restClient.broadcastMode == BroadcastMode.Block
-//        ? await this.restClient.decryptLogs(result.logs, [encryptionNonce])
-//        : [];
-//
-//        return {
-//                logs,
-//                transactionHash: result.transactionHash,
-//                // @ts-ignore
-//                data,
-//        };
-        return TODO()
+        var data : UByteArray = ubyteArrayOf()
+        if (this.restClient.broadcastMode == BroadcastMode.Block) {
+            val txMsgData: TxMsgDataProto = ProtoBuf.decodeFromByteArray(result.data.decodeHex().toByteArray());
+            val dataFields = txMsgData.data
+            if (dataFields[0].data.isNotEmpty()) {
+                data = this.restClient.decryptDataField(dataFields[0].data.toUByteArray(), encryptionNonces)
+            }
+        }
+
+        if (this.restClient.broadcastMode == BroadcastMode.Block) this.restClient.decryptLogs(result.logs, encryptionNonces)
+
+
+        return ExecuteResult(
+            logs = result.logs,
+            transactionHash = result.transactionHash,
+            data = data
+        )
     }
+
+
 
     /**
      * Creates and serializes an AuthInfo document.

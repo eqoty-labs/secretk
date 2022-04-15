@@ -59,17 +59,15 @@ open class CosmWasmClient(
 
     suspend inline fun postTx(tx: UByteArray): PostTxResult {
         val result = restClient.postTx(tx)
-        println(result)
-//        if (!result.txhash.match(/^([0-9A-F][0-9A-F])+$/)) {
-//            throw new Error("Received ill-formatted txhash. Must be non-empty upper-case hex");
-//        }
-//
-//        if (result.code) {
-//            throw new Error(
-//                    `Error when posting tx ${result.txhash}. Code: ${result.code}; Raw log: ${result.raw_log}`,
-//            );
-//        }
-//
+
+        if (result.txhash.contains("""^([0-9A-F][0-9A-F])+$""")) {
+            throw Error("Received ill-formatted txhash. Must be non-empty upper-case hex");
+        }
+
+        if (result.code == null) {
+            throw Error("Error when posting tx ${result.txhash}. Code: ${result.code}; Raw log: ${result.raw_log}")
+        }
+
         return PostTxResult(
             logs = result.logs ?: throw Error("need to implement: parseLogs(result.logs) : []"),
             rawLog = result.raw_log ?: "",

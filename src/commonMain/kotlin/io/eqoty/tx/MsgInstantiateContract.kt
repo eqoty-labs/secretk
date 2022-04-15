@@ -26,7 +26,7 @@ class MsgInstantiateContract(
 ): Msg<MsgExecuteContractProto> {
     private var msgEncrypted: UByteArray? = null
 
-    var codeHash: String
+    var codeHash: String? = null
     private val warnCodeHash: Boolean
 
 init {
@@ -35,7 +35,7 @@ init {
             this.warnCodeHash = false
         } else {
             // codeHash will be set in SecretNetworkClient before invoking toProto() & toAimno()
-            this.codeHash = ""
+            this.codeHash = null
             this.warnCodeHash = true
             Logger.w { getMissingCodeHashWarning("MsgExecuteContract") }
         }

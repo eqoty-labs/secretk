@@ -23,7 +23,6 @@ object Secp256k1 {
         }
 
         val keypair = secp256k1.keyFromPrivate(privkey)
-        println(keypair.priv)
         if (!keypair.validate().result) {
             throw Error("input data is not a valid secp256k1 private key");
         }

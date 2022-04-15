@@ -1,13 +1,12 @@
 package io.eqoty.client
 
+import co.touchlab.kermit.Logger
 import com.ionspin.kotlin.bignum.integer.BigInteger
 import com.ionspin.kotlin.bignum.serialization.kotlinx.biginteger.bigIntegerhumanReadableSerializerModule
 import io.eqoty.BroadcastMode
+import io.eqoty.logs.Log
 import io.eqoty.response.*
-import io.eqoty.utils.Bech32
-import io.eqoty.utils.EncryptionUtils
-import io.eqoty.utils.EnigmaUtils
-import io.eqoty.utils.toByteString
+import io.eqoty.utils.*
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
@@ -23,6 +22,8 @@ import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.plus
 import kotlinx.serialization.modules.polymorphic
+import okio.ByteString.Companion.decodeBase64
+import okio.ByteString.Companion.decodeHex
 import okio.ByteString.Companion.toByteString
 
 /**
@@ -66,7 +67,6 @@ class RestClient(
 
     suspend inline fun <reified T> get(path: String): T {
         val response = try {
-            println(this.apiUrl + path)
             this.client.get(this.apiUrl + path)
         } catch (e: ResponseException) {
             throw parseError(e)
@@ -201,6 +201,27 @@ class RestClient(
         return json.parseToJsonElement(decodedResponse).jsonObject
     }
 
+    suspend fun decryptDataField(dataField : UByteArray, nonces: List<UByteArray>): UByteArray {
+        val wasmOutputDataCipherBz = dataField
+
+        var error: Throwable? = null
+        for (nonce in nonces) {
+            try {
+                val data = enigmautils
+                    .decrypt(wasmOutputDataCipherBz, nonce)
+                    .decodeToString()
+                    .decodeBase64()!!
+                    .toUByteArray()
+
+                return data
+            } catch (t: Throwable) {
+                error = t
+            }
+        }
+
+        throw error!!
+    }
+
     suspend fun authAccounts(address: String): CosmosSdkAccount {
         val authResp : AccountResponse = get("/cosmos/auth/v1beta1/accounts/${address}")
         val bankResp : BalanceResponse = get("/cosmos/bank/v1beta1/balances/${address}")
@@ -217,6 +238,33 @@ class RestClient(
     // The /node_info endpoint
     suspend fun nodeInfo(): NodeInfoResponse {
         return get("/node_info");
+    }
+
+    suspend fun decryptLogs(logs: List<Log>, nonces: MutableList<UByteArray>): List<Log> {
+        for (l in logs) {
+            for (e in l.events) {
+                if (e.type == "wasm") {
+                    for (nonce in nonces) {
+                        var nonceOk = false
+                        for (a in e.attributes) {
+                            try {
+                                a.key = this.enigmautils.decrypt(a.key.decodeBase64()!!.toUByteArray(), nonce).decodeToString()
+                                nonceOk = true
+                            } catch (_: Throwable) {}
+                            try {
+                                a.value = this.enigmautils.decrypt(a.value.decodeBase64()!!.toUByteArray(), nonce).decodeToString()
+                                nonceOk = true;
+                            } catch (_: Throwable) {}
+                        }
+                        if (nonceOk) {
+                            continue
+                        }
+                    }
+                }
+            }
+        }
+
+        return logs
     }
 
 }

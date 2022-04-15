@@ -1,11 +1,13 @@
 package io.eqoty
 
 import com.ionspin.kotlin.crypto.LibsodiumInitializer
+import com.ionspin.kotlin.crypto.util.decodeFromUByteArray
 import io.eqoty.client.SigningCosmWasmClient
 import io.eqoty.tx.MsgExecuteContract
 import io.eqoty.tx.MsgInstantiateContract
 import io.eqoty.types.StdSignature
 import io.eqoty.utils.EnigmaUtils
+import io.eqoty.utils.decodeToString
 import io.eqoty.wallet.Secp256k1Pen
 import io.ktor.util.*
 import kotlinx.coroutines.test.runTest
@@ -34,7 +36,6 @@ class ClientTests {
         // This wraps a single keypair and allows for signing.
         val signingPen = Secp256k1Pen.fromMnemonic(mnemonic)
 
-        println(signingPen.pubkey.map { it.toUInt() })
         val client = SigningCosmWasmClient(
             httpUrl,
             accAddress,
@@ -56,10 +57,12 @@ class ClientTests {
             MsgExecuteContract(
                 sender = accAddress,
                 contractAddress = contractAddress,
-                msg = handleMsg
-            )
+                msg = handleMsg,
+                //codeHash = "f7711ac771565a1cb0db516a63a63742e11651516b8dfcf19ecd08aaec1e0193"
+            ),
+            //_contractCodeHash = "f7711ac771565a1cb0db516a63a63742e11651516b8dfcf19ecd08aaec1e0193"
         )
-        println("response: $response")
+        println("response: ${response.data.decodeToString()}")
     }
 
 

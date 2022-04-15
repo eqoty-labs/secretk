@@ -69,8 +69,8 @@ class MsgExecuteContract(
             msg = msgEncrypted!!.toByteArray() ,
             sentFunds = sentFunds.map { it.toProto() },
             // callbackSig & callbackCodeHash are internal stuff that doesn't matter here
-            callbackSig = byteArrayOf(),
-            callbackCodeHash = "",
+//            callbackSig = byteArrayOf(),
+            callbackCodeHash = null,
         )
 
         return ProtoMsg(
