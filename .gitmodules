@@ -1,0 +1,3 @@
+[submodule "nativelibs/libaes_siv"]
+	path = nativelibs/libaes_siv
+	url = https://github.com/dfoxfranke/libaes_siv.git

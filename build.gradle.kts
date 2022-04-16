@@ -28,7 +28,19 @@ kotlin {
         binaries.executable()
     }
     macosX64()
-    macosArm64()
+    macosArm64().apply{
+        compilations.getByName("main") {    // NL
+            cinterops {
+                val libaes_siv by creating {
+                    defFile(project.file("src/nativeInterop/cinterop/libaes_siv.def"))
+                    includeDirs.allHeaders(project.file("${project.rootDir}/nativelibs/libaes_siv/"))
+                }
+            }
+            kotlinOptions.freeCompilerArgs = listOf(
+                "-include-binary", "${project.rootDir}/nativelibs/libaes_siv/libaes_siv.a"
+            )
+        }
+    }
     iosX64()
     iosArm64()
 //    linuxX64()
@@ -87,24 +99,26 @@ kotlin {
             dependsOn(commonMain)
         }
         val nativeTest by creating
-        val desktopMain by creating {
+
+
+        val darwinMain by creating {
             dependsOn(nativeMain)
             dependencies {
-                implementation("io.ktor:ktor-client-curl:_")
+                implementation("io.ktor:ktor-client-darwin:_")
             }
         }
+
         val iosMain by creating {
-            dependsOn(nativeMain)
+            dependsOn(darwinMain)
             dependencies {
-                implementation("io.ktor:ktor-client-ios:_")
             }
         }
         val macosX64Main by getting {
-            dependsOn(desktopMain)
+            dependsOn(darwinMain)
         }
-//        val macosArm64Main by getting {
-//            dependsOn(desktopMain)
-//        }
+        val macosArm64Main by getting {
+            dependsOn(darwinMain)
+        }
 //        val linuxX64Main by getting {
 //            dependsOn(desktopMain)
 //        }

@@ -14,8 +14,6 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
-import io.ktor.util.*
-import io.ktor.utils.io.core.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonObject
@@ -193,9 +191,9 @@ class RestClient(
 
             throw err;
         }
-        val decryptedResponse =  enigmautils.decrypt(responseData.data.decodeBase64Bytes().toUByteArray(), nonce)
+        val decryptedResponse =  enigmautils.decrypt(responseData.data.decodeBase64()!!.toUByteArray(), nonce)
 
-        val decodedResponse = decryptedResponse.toByteArray().decodeToString().decodeBase64String().toByteArray().decodeToString()
+        val decodedResponse = decryptedResponse.decodeToString().decodeBase64()!!.utf8()
 
         return json.parseToJsonElement(decodedResponse).jsonObject
     }
