@@ -13,6 +13,7 @@ import io.ktor.util.*
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -43,9 +44,10 @@ class ClientTests {
             txEncryptionSeed,
             null
         )
+        println("Querying nft contract info")
         val contractInfoQuery = json.parseToJsonElement("""{"contract_info": {}}""").jsonObject
         val contractInfo = client.queryContractSmart(contractAddress, contractInfoQuery)
-        println("My nft contract info: $contractInfo")
+        println("nft contract info response: $contractInfo")
 
         assertEquals("""{"contract_info":{"name":"lucasfirstsnip721","symbol":"luca721"}}""", contractInfo.toString())
         // Entropy: Secure implementation is left to the client, but it is recommended to use base-64 encoded random bytes and not predictable inputs.
@@ -62,7 +64,25 @@ class ClientTests {
             ),
             //_contractCodeHash = "f7711ac771565a1cb0db516a63a63742e11651516b8dfcf19ecd08aaec1e0193"
         )
-        println("response: ${response.data.decodeToString()}")
+        println("viewing key response: ${response.data.decodeToString()}")
+        val viewingKey = json.parseToJsonElement(response.data.decodeToString())
+            .jsonObject["viewing_key"]!!
+            .jsonObject["key"]!!.jsonPrimitive.content
+        println("Querying Num Tokens")
+        val numTokensQuery = json.parseToJsonElement(
+            """
+            {
+                "num_tokens": {
+                    "viewer": {
+                        "address": "$accAddress",
+                        "viewing_key": "$viewingKey"
+                    }
+                }
+            }
+            """).jsonObject
+
+        val numTokens = client.queryContractSmart(contractAddress, numTokensQuery);
+        println("Num Tokens Response: $numTokens")
     }
 
 
