@@ -1,6 +1,6 @@
 plugins {
-    kotlin("multiplatform") version "1.6.20"
-    kotlin("plugin.serialization") version "1.6.20"
+    kotlin("multiplatform") version "1.6.21"
+    kotlin("plugin.serialization") version "1.6.21"
 }
 
 group = "io.eqoty"
@@ -128,5 +128,15 @@ kotlin {
         val iosX64Main by getting {
             dependsOn(iosMain)
         }
+    }
+}
+
+
+project.afterEvaluate {
+    if (tasks.findByName("externalNativeBuildDebug")) {
+        compileDebugKotlin.dependsOn externalNativeBuildDebug
+    }
+    if (tasks.findByName("externalNativeBuildRelease")) {
+        compileReleaseKotlin.dependsOn externalNativeBuildRelease
     }
 }
