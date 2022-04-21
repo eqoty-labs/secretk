@@ -36,8 +36,11 @@ kotlin {
                     includeDirs.allHeaders(project.file("${project.rootDir}/nativelibs/libaes_siv/"))
                 }
             }
+            val buildFolderName = Target.MacosArm64.buildFolderName
+            val releaseFolderName = Target.MacosArm64.releaseFolderName
             kotlinOptions.freeCompilerArgs = listOf(
-                "-include-binary", "${project.rootDir}/nativelibs/libaes_siv/libaes_siv.a"
+                "-include-binary", "${project.rootDir}/nativelibs/libaes_siv_build/$buildFolderName/$releaseFolderName/libaes_siv.a",
+                "-include-binary", "$projectDir/nativelibs/darwinopenssl/macosx/lib/libcrypto.a"
             )
         }
     }
@@ -131,12 +134,34 @@ kotlin {
     }
 }
 
+enum class Target(
+    val taskSuffix: String,
+    val buildFolderName: String,
+    val releaseFolderName: String
+) {
+    MacosArm64("MacosArm64", "MAC_ARM64", "Release"),
+    MacosX64("MacosX64", "MAC", "Release"),
+    IosArm64("IosArm64", "OS64", "Release-iphoneos")
+}
 
-project.afterEvaluate {
-    if (tasks.findByName("externalNativeBuildDebug")) {
-        compileDebugKotlin.dependsOn externalNativeBuildDebug
+fun makeLibAesSiv(target: Target): Task =
+    target.run {
+        task<Exec>("makeLibAesSiv$taskSuffix") {
+            workingDir = File("./nativelibs")
+            commandLine("./make-libaes_siv.sh", buildFolderName)
+        }.apply {
+            onlyIf {
+                !file("./nativelibs/libaes_siv_build/$buildFolderName/$releaseFolderName/libaes_siv.a").exists()
+            }
+        }
     }
-    if (tasks.findByName("externalNativeBuildRelease")) {
-        compileReleaseKotlin.dependsOn externalNativeBuildRelease
+
+
+tasks.findByName("cinteropLibaes_sivMacosArm64")!!.dependsOn(makeLibAesSiv(Target.MacosArm64))
+
+tasks.clean {
+    doFirst {
+        val libAesSivBuild = File("./nativelibs/libaes_siv_build")
+        libAesSivBuild.deleteRecursively()
     }
 }

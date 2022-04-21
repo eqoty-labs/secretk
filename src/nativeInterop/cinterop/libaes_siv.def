@@ -1,3 +1,1 @@
 headers = aes_siv.h
-
-linkerOpts.osx = -L/opt/homebrew/lib -lcrypto
