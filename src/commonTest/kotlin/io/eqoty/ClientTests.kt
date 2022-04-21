@@ -24,7 +24,10 @@ class ClientTests {
     @BeforeTest
     fun beforeEach(){
     }
-
+    /**
+     * run test not working on darwin engine:
+     * https://youtrack.jetbrains.com/issue/KTOR-3900/A-native-application-with-the-Darwin-engine-doesn't-make-a-reque
+     */
     @Test
     fun testProxy() =  runTest {
         LibsodiumInitializer.initialize()
