@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+
 plugins {
     kotlin("multiplatform") version "1.6.21"
     kotlin("plugin.serialization") version "1.6.21"
@@ -27,25 +29,18 @@ kotlin {
         }
         binaries.executable()
     }
-    macosX64()
-    macosArm64().apply{
-        compilations.getByName("main") {    // NL
-            cinterops {
-                val libaes_siv by creating {
-                    defFile(project.file("src/nativeInterop/cinterop/libaes_siv.def"))
-                    includeDirs.allHeaders(project.file("${project.rootDir}/nativelibs/libaes_siv/"))
-                }
-            }
-            val buildFolderName = Target.MacosArm64.buildFolderName
-            val releaseFolderName = Target.MacosArm64.releaseFolderName
-            kotlinOptions.freeCompilerArgs = listOf(
-                "-include-binary", "${project.rootDir}/nativelibs/libaes_siv_build/$buildFolderName/$releaseFolderName/libaes_siv.a",
-                "-include-binary", "$projectDir/nativelibs/darwinopenssl/macosx/lib/libcrypto.a"
-            )
-        }
+    macosX64().apply {
+        setupCinterop(Target.MacosX64)
     }
-    iosX64()
-    iosArm64()
+    macosArm64().apply {
+        setupCinterop(Target.MacosArm64)
+    }
+    iosX64().apply {
+        setupCinterop(Target.IosX64)
+    }
+    iosArm64().apply {
+        setupCinterop(Target.IosArm64)
+    }
 //    linuxX64()
 
     sourceSets {
@@ -134,30 +129,54 @@ kotlin {
     }
 }
 
+fun KotlinNativeTarget.setupCinterop(target: Target) =
+    apply{
+        compilations.getByName("main") {
+            cinterops {
+                val libAesSiv by creating {
+                    defFile(project.file("src/nativeInterop/cinterop/libaes_siv.def"))
+                    includeDirs.allHeaders(project.file("${project.rootDir}/nativelibs/libaes_siv/"))
+                }
+            }
+            val buildFolderName = target.buildName
+            val releaseFolderName = target.releaseFolderName
+            val opensslTargetName = target.opensslTargetName
+            kotlinOptions.freeCompilerArgs = listOf(
+                "-include-binary", "${project.rootDir}/nativelibs/libaes_siv_build/$buildFolderName/$releaseFolderName/libaes_siv.a",
+                "-include-binary", "$projectDir/nativelibs/darwinopenssl/$opensslTargetName/lib/libcrypto.a"
+            )
+        }
+    }
+
 enum class Target(
     val taskSuffix: String,
-    val buildFolderName: String,
-    val releaseFolderName: String
+    val buildName: String,
+    val releaseFolderName: String,
+    val opensslTargetName: String
 ) {
-    MacosArm64("MacosArm64", "MAC_ARM64", "Release"),
-    MacosX64("MacosX64", "MAC", "Release"),
-    IosArm64("IosArm64", "OS64", "Release-iphoneos")
+    MacosArm64("MacosArm64", "MAC_ARM64", "Release", "macosx"),
+    MacosX64("MacosX64", "MAC", "Release", "macosx"),
+    IosArm64("IosArm64", "OS64", "Release-iphoneos", "iphoneos"),
+    IosX64("IosX64", "SIMULATOR64", "Release-iphonesimulator", "iphonesimulator")
 }
 
 fun makeLibAesSiv(target: Target): Task =
     target.run {
         task<Exec>("makeLibAesSiv$taskSuffix") {
             workingDir = File("./nativelibs")
-            commandLine("./make-libaes_siv.sh", buildFolderName)
+            commandLine("./make-libaes_siv.sh", buildName)
         }.apply {
             onlyIf {
-                !file("./nativelibs/libaes_siv_build/$buildFolderName/$releaseFolderName/libaes_siv.a").exists()
+                !file("./nativelibs/libaes_siv_build/$buildName/$releaseFolderName/libaes_siv.a").exists()
             }
         }
     }
 
 
-tasks.findByName("cinteropLibaes_sivMacosArm64")!!.dependsOn(makeLibAesSiv(Target.MacosArm64))
+tasks.findByName("cinteropLibAesSivMacosArm64")!!.dependsOn(makeLibAesSiv(Target.MacosArm64))
+tasks.findByName("cinteropLibAesSivMacosX64")!!.dependsOn(makeLibAesSiv(Target.MacosX64))
+tasks.findByName("cinteropLibAesSivIosArm64")!!.dependsOn(makeLibAesSiv(Target.IosArm64))
+tasks.findByName("cinteropLibAesSivMacosX64")!!.dependsOn(makeLibAesSiv(Target.IosX64))
 
 tasks.clean {
     doFirst {
