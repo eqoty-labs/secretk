@@ -41,11 +41,13 @@ do
         OPENSSL_CRYPTO_LIBRARY=../../darwinopenssl/macosx_catalyst/lib/libcrypto.a
         ;&
       "OS64"|"OS64COMBINED"|"SIMULATOR64"|"SIMULATORARM64"|"MAC"|"MAC_ARM64"|"MAC_CATALYST"|"MAC_CATALYST_ARM64")
+        DEPLOYMENT_TARGET=13.0
         cmake -S../../libaes_siv \
           -DOPENSSL_ROOT_DIR=$OPENSSL_ROOT_DIR \
           -DOPENSSL_CRYPTO_LIBRARY=$OPENSSL_CRYPTO_LIBRARY \
           -DOPENSSL_INCLUDE_DIR=$OPENSSL_INCLUDE_DIR \
-          -G Xcode -DCMAKE_TOOLCHAIN_FILE=../../ios-cmake/ios.toolchain.cmake -DPLATFORM="$target"
+          -G Xcode -DCMAKE_TOOLCHAIN_FILE=../../ios-cmake/ios.toolchain.cmake \
+          -DPLATFORM="$target" -DDEPLOYMENT_TARGET=DEPLOYMENT_TARGET
         cmake --build . --target aes_siv_static --config Release \
           -- -DOPENSSL_ROOT_DIR=$OPENSSL_ROOT_DIR \
           -DOPENSSL_CRYPTO_LIBRARY=$OPENSSL_CRYPTO_LIBRARY \

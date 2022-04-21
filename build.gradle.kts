@@ -36,11 +36,15 @@ kotlin {
         setupCinterop(Target.MacosArm64)
     }
     iosX64().apply {
-        setupCinterop(Target.IosX64)
+        setupCinterop(Target.IosSimulatorX64)
     }
     iosArm64().apply {
-        setupCinterop(Target.IosArm64)
+        setupCinterop(Target.IosSimulatorX64)
     }
+    iosSimulatorArm64().apply {
+        setupCinterop(Target.IosSimulatorArm64)
+    }
+
 //    linuxX64()
 
     sourceSets {
@@ -126,6 +130,9 @@ kotlin {
         val iosX64Main by getting {
             dependsOn(iosMain)
         }
+        val iosSimulatorArm64Main by getting {
+            dependsOn(iosMain)
+        }
     }
 }
 
@@ -157,10 +164,11 @@ enum class Target(
     MacosArm64("MacosArm64", "MAC_ARM64", "Release", "macosx"),
     MacosX64("MacosX64", "MAC", "Release", "macosx"),
     IosArm64("IosArm64", "OS64", "Release-iphoneos", "iphoneos"),
-    IosX64("IosX64", "SIMULATOR64", "Release-iphonesimulator", "iphonesimulator")
+    IosSimulatorX64("IosX64", "SIMULATOR64", "Release-iphonesimulator", "iphonesimulator"),
+    IosSimulatorArm64("IosSimulatorArm64", "SIMULATORARM64", "Release-iphonesimulator", "iphonesimulator")
 }
 
-fun makeLibAesSiv(target: Target): Task =
+fun makeLibAesSivTask(target: Target): Task =
     target.run {
         task<Exec>("makeLibAesSiv$taskSuffix") {
             workingDir = File("./nativelibs")
@@ -173,10 +181,11 @@ fun makeLibAesSiv(target: Target): Task =
     }
 
 
-tasks.findByName("cinteropLibAesSivMacosArm64")!!.dependsOn(makeLibAesSiv(Target.MacosArm64))
-tasks.findByName("cinteropLibAesSivMacosX64")!!.dependsOn(makeLibAesSiv(Target.MacosX64))
-tasks.findByName("cinteropLibAesSivIosArm64")!!.dependsOn(makeLibAesSiv(Target.IosArm64))
-tasks.findByName("cinteropLibAesSivMacosX64")!!.dependsOn(makeLibAesSiv(Target.IosX64))
+tasks.findByName("cinteropLibAesSivMacosArm64")!!.dependsOn(makeLibAesSivTask(Target.MacosArm64))
+tasks.findByName("cinteropLibAesSivMacosX64")!!.dependsOn(makeLibAesSivTask(Target.MacosX64))
+tasks.findByName("cinteropLibAesSivIosArm64")!!.dependsOn(makeLibAesSivTask(Target.IosArm64))
+tasks.findByName("cinteropLibAesSivIosX64")!!.dependsOn(makeLibAesSivTask(Target.IosSimulatorX64))
+tasks.findByName("cinteropLibAesSivIosSimulatorArm64")!!.dependsOn(makeLibAesSivTask(Target.IosSimulatorArm64))
 
 tasks.clean {
     doFirst {
