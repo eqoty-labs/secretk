@@ -106,7 +106,7 @@ object Bech32 {
         val checksum = createChecksum(encoding, hrp, values)
         val combined = ByteArray(values.size + checksum.size)
         values.copyInto(combined, 0, 0, values.size)
-        checksum.copyInto(combined, values.size, 0, values.size)
+        checksum.copyInto(combined, values.size, 0, checksum.size)
         val sb = StringBuilder(hrp.length + 1 + combined.size)
         sb.append(hrp)
         sb.append('1')

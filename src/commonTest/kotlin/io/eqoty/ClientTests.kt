@@ -6,9 +6,11 @@ import io.eqoty.client.SigningCosmWasmClient
 import io.eqoty.tx.MsgExecuteContract
 import io.eqoty.tx.MsgInstantiateContract
 import io.eqoty.types.StdSignature
+import io.eqoty.utils.Address.pubkeyToAddress
 import io.eqoty.utils.EnigmaUtils
 import io.eqoty.utils.decodeToString
 import io.eqoty.wallet.Secp256k1Pen
+import io.eqoty.wallet.encodeSecp256k1Pubkey
 import io.ktor.util.*
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
@@ -24,6 +26,16 @@ class ClientTests {
     @BeforeTest
     fun beforeEach(){
     }
+
+    @Test
+    fun testPubKeyToAddress() = runTest {
+        val mnemonic = "sand check forward humble between movie language siege where social crumble mouse"
+        val accAddress = "secret1fdkdmflnrysrvg3nc4ym7zdsn2rm5atszn9q2y"
+        val signingPen = Secp256k1Pen.fromMnemonic(mnemonic)
+        val pubkey = encodeSecp256k1Pubkey(signingPen.pubkey)
+        val accAddressFromMnemonic = pubkeyToAddress(pubkey, "secret")
+        assertEquals(accAddress, accAddressFromMnemonic)
+    }
     /**
      * run test not working on darwin engine:
      * https://youtrack.jetbrains.com/issue/KTOR-3900/A-native-application-with-the-Darwin-engine-doesn't-make-a-reque
@@ -32,13 +44,14 @@ class ClientTests {
     fun testProxy() =  runTest {
         LibsodiumInitializer.initialize()
         val txEncryptionSeed = EnigmaUtils.GenerateNewSeed();
-        val accAddress = "secret1fdkdmflnrysrvg3nc4ym7zdsn2rm5atszn9q2y"
         val contractAddress = "secret18vd8fpwxzck93qlwghaj6arh4p7c5n8978vsyg"
         val httpUrl = "http://eqoty.duckdns.org:1337"
         val mnemonic = "sand check forward humble between movie language siege where social crumble mouse"
         // A pen is the most basic tool you can think of for signing.
         // This wraps a single keypair and allows for signing.
         val signingPen = Secp256k1Pen.fromMnemonic(mnemonic)
+        val pubkey = encodeSecp256k1Pubkey(signingPen.pubkey)
+        val accAddress = pubkeyToAddress(pubkey, "secret");
 
         val client = SigningCosmWasmClient(
             httpUrl,

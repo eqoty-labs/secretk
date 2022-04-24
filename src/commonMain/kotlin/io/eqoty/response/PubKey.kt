@@ -20,3 +20,21 @@ class PubKeyMultisigThreshold (
     // Note: if type is Secp256k1, this must contain a COMPRESSED pubkey - to encode from bcp/keycontrol land, you must compress it first
     override val value: String
 ) : PubKey()
+
+
+@kotlinx.serialization.Serializable
+@SerialName("tendermint/PubKeyEd25519")
+class PubKeyEd25519 (
+    // Value field is base64-encoded in all cases
+    // Note: if type is Secp256k1, this must contain a COMPRESSED pubkey - to encode from bcp/keycontrol land, you must compress it first
+    override val value: String
+) : PubKey()
+
+@kotlinx.serialization.Serializable
+@SerialName("tendermint/PubKeySr25519")
+class PubKeySr25519 (
+    // Value field is base64-encoded in all cases
+    // Note: if type is Secp256k1, this must contain a COMPRESSED pubkey - to encode from bcp/keycontrol land, you must compress it first
+    override val value: String
+) : PubKey()
+

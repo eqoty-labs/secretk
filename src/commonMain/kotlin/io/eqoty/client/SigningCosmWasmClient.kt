@@ -122,6 +122,7 @@ class SigningCosmWasmClient : CosmWasmClient {
     //                value: Uint8Array.from(LegacyAminoPubKey.encode(pubkeyProto).finish()),
     //            })
             }
+            else -> TODO()
         }
     }
 

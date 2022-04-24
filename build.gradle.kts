@@ -55,6 +55,7 @@ kotlin {
         }
         val commonMain by getting {
             dependencies {
+                implementation("co.touchlab:kermit:_")
                 implementation("io.ktor:ktor-client-core:_")
                 implementation("io.ktor:ktor-client-json:_")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:_")
@@ -67,7 +68,8 @@ kotlin {
                 implementation("com.ionspin.kotlin:bignum:_")
                 implementation("com.ionspin.kotlin:bignum-serialization-kotlinx:_")
                 implementation("cash.z.ecc.android:kotlin-bip39:1.0.2-SNAPSHOT")
-                implementation("co.touchlab:kermit:_")
+                implementation("KHash:ripemd160:unspecified")
+
             }
         }
         val commonTest by getting {
