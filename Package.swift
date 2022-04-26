@@ -5,7 +5,7 @@ let package = Package(
     name: "secretk",
     platforms: [
         .iOS(.v13),
-.macOS(.v13)
+.macOS(.v12)
     ],
     products: [
         .library(
