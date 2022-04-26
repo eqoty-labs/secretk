@@ -2088,7 +2088,7 @@ __attribute__((swift_name("CosmWasmClient")))
  @note This method converts instances of CancellationException to errors.
  Other uncaught Kotlin exceptions are fatal.
 */
-- (void)queryContractSmartContractAddress:(NSString *)contractAddress queryMsg:(NSDictionary<NSString *, SecretkKotlinx_serialization_jsonJsonElement *> *)queryMsg addedParams:(NSDictionary<NSString *, SecretkKotlinx_serialization_jsonJsonElement *> * _Nullable)addedParams contractCodeHash:(NSString * _Nullable)contractCodeHash completionHandler:(void (^)(NSDictionary<NSString *, SecretkKotlinx_serialization_jsonJsonElement *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("queryContractSmart(contractAddress:queryMsg:addedParams:contractCodeHash:completionHandler:)")));
+- (void)queryContractSmartContractAddress:(NSString *)contractAddress queryMsg:(NSString *)queryMsg addedParams:(NSDictionary<NSString *, SecretkKotlinx_serialization_jsonJsonElement *> * _Nullable)addedParams contractCodeHash:(NSString * _Nullable)contractCodeHash completionHandler:(void (^)(NSDictionary<NSString *, SecretkKotlinx_serialization_jsonJsonElement *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("queryContractSmart(contractAddress:queryMsg:addedParams:contractCodeHash:completionHandler:)")));
 @property NSString * _Nullable anyValidAddress __attribute__((swift_name("anyValidAddress")));
 @end;
 
@@ -2144,7 +2144,7 @@ __attribute__((swift_name("Msg")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgExecuteContract")))
 @interface SecretkMsgExecuteContract : SecretkBase <SecretkMsg>
-- (instancetype)initWithSender:(NSString *)sender contractAddress:(NSString *)contractAddress msg:(NSDictionary<NSString *, SecretkKotlinx_serialization_jsonJsonElement *> *)msg sentFunds:(NSArray<SecretkCoin *> *)sentFunds codeHash:(NSString * _Nullable)codeHash __attribute__((swift_name("init(sender:contractAddress:msg:sentFunds:codeHash:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithSender:(NSString *)sender contractAddress:(NSString *)contractAddress msg:(NSString *)msg sentFunds:(NSArray<SecretkCoin *> *)sentFunds codeHash:(NSString * _Nullable)codeHash __attribute__((swift_name("init(sender:contractAddress:msg:sentFunds:codeHash:)"))) __attribute__((objc_designated_initializer));
 
 /**
  @note This method converts instances of CancellationException to errors.
@@ -2153,7 +2153,7 @@ __attribute__((swift_name("MsgExecuteContract")))
 - (void)toProtoUtils:(id<SecretkEncryptionUtils>)utils completionHandler:(void (^)(SecretkProtoMsg<SecretkMsgExecuteContractProto *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("toProto(utils:completionHandler:)")));
 @property NSString * _Nullable codeHash __attribute__((swift_name("codeHash")));
 @property (readonly) NSString *contractAddress __attribute__((swift_name("contractAddress")));
-@property (readonly) NSDictionary<NSString *, SecretkKotlinx_serialization_jsonJsonElement *> *msg __attribute__((swift_name("msg")));
+@property (readonly) NSString *msg __attribute__((swift_name("msg")));
 @property (readonly) NSString *sender __attribute__((swift_name("sender")));
 @property (readonly) NSArray<SecretkCoin *> *sentFunds __attribute__((swift_name("sentFunds")));
 @end;

@@ -6,7 +6,9 @@ import io.eqoty.types.Coin
 import io.eqoty.utils.EncryptionUtils
 import io.eqoty.utils.addressToBytes
 import io.eqoty.utils.getMissingCodeHashWarning
+import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.protobuf.ProtoNumber
 
 class MsgExecuteContract(
@@ -14,7 +16,7 @@ class MsgExecuteContract(
     /** The contract's address */
     val contractAddress: String,
     /** The input message */
-    val msg: JsonObject,
+    val msg: String,
     /** Funds to send to the contract */
     val sentFunds: List<Coin> = emptyList(),
     /** The SHA256 hash value of the contract's WASM bytecode, represented as case-insensitive 64
@@ -60,7 +62,7 @@ class MsgExecuteContract(
             // The encryption uses a random nonce
             // toProto() & toAmino() are called multiple times during signing
             // so to keep the msg consistant across calls we encrypt the msg only once
-            msgEncrypted = utils.encrypt(codeHash!!, msg)
+            msgEncrypted = utils.encrypt(codeHash!!, Json.parseToJsonElement(msg).jsonObject)
         }
         
         val msgContent = MsgExecuteContractProto(

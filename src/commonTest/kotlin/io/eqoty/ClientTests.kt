@@ -51,14 +51,14 @@ class ClientTests {
             signingPen
         )
         println("Querying nft contract info")
-        val contractInfoQuery = json.parseToJsonElement("""{"contract_info": {}}""").jsonObject
+        val contractInfoQuery = """{"contract_info": {}}"""
         val contractInfo = client.queryContractSmart(contractAddress, contractInfoQuery)
         println("nft contract info response: $contractInfo")
 
         assertEquals("""{"contract_info":{"name":"lucasfirstsnip721","symbol":"luca721"}}""", contractInfo.toString())
         // Entropy: Secure implementation is left to the client, but it is recommended to use base-64 encoded random bytes and not predictable inputs.
         val entropy = "Another really random thing??"
-        val handleMsg = json.parseToJsonElement("""{ "create_viewing_key": {"entropy": "$entropy"} }""").jsonObject
+        val handleMsg = """{ "create_viewing_key": {"entropy": "$entropy"} }"""
         println("Creating viewing key");
         val response = client.execute(
             contractAddress,
@@ -75,7 +75,7 @@ class ClientTests {
             .jsonObject["viewing_key"]!!
             .jsonObject["key"]!!.jsonPrimitive.content
         println("Querying Num Tokens")
-        val numTokensQuery = json.parseToJsonElement(
+        val numTokensQuery =
             """
             {
                 "num_tokens": {
@@ -85,7 +85,7 @@ class ClientTests {
                     }
                 }
             }
-            """).jsonObject
+            """
 
         val numTokens = client.queryContractSmart(contractAddress, numTokensQuery);
         println("Num Tokens Response: $numTokens")

@@ -5,7 +5,9 @@ import io.eqoty.result.GetNonceResult
 import io.eqoty.types.Account
 import io.eqoty.types.PostTxResult
 import io.eqoty.utils.EncryptionUtils
+import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.jsonObject
 
 open class CosmWasmClient protected constructor(
     apiUrl: String,
@@ -89,14 +91,14 @@ open class CosmWasmClient protected constructor(
      */
     suspend fun queryContractSmart(
     contractAddress: String,
-    queryMsg: JsonObject,
+    queryMsg: String,
     addedParams: JsonObject? = null,
     contractCodeHash: String? = null,
     ): JsonObject {
         try {
             return this.restClient.queryContractSmart(
                 contractAddress,
-                queryMsg,
+                Json.parseToJsonElement(queryMsg).jsonObject,
                 addedParams,
                 contractCodeHash,
             )

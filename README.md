@@ -3,11 +3,12 @@ CosmWasm SDK + Encryption for the Secret Network
 
 A Kotlin multiplatform port of https://github.com/scrtlabs/SecretNetwork/tree/f01dda32b12e02c6cc2326ea58f8b13bf6e3ff8f/cosmwasm-js/packages/sdk
 
-###Build Requirements
+##Build Requirements
 * Xcode 13.2.1: https://github.com/leetal/ios-cmake/issues/141
 
 
-###Examples
+
+## Useage
 * Create SigningCosmWasmClient
 ```
 val grpcGatewayEndpoint = "http://secretnetworkendpoint.com:1337"
@@ -25,7 +26,7 @@ val client = SigningCosmWasmClient.init(
 * Query Contract
 ```
 val contractAddress = "secret18vd8fpwxzck93qlwghaj6arh4p7c5n8978vsyg"
-val contractInfoQuery = json.parseToJsonElement("""{"contract_info": {}}""").jsonObject
+val contractInfoQuery = """{"contract_info": {}}"""
 val contractInfo = client.queryContractSmart(contractAddress, contractInfoQuery)
 println("nft contract info response: $contractInfo")
 ```
@@ -33,7 +34,7 @@ println("nft contract info response: $contractInfo")
 ```
 // Entropy: Secure implementation is left to the client, but it is recommended to use base-64 encoded random bytes and not predictable inputs.
 val entropy = "Another really random thing??"
-val handleMsg = json.parseToJsonElement("""{ "create_viewing_key": {"entropy": "$entropy"} }""").jsonObject
+val handleMsg = """{ "create_viewing_key": {"entropy": "$entropy"} }"""
 println("Creating viewing key");
 val response = client.execute(
     contractAddress,
@@ -50,7 +51,7 @@ val viewingKey = json.parseToJsonElement(response.data.decodeToString())
     .jsonObject["viewing_key"]!!
     .jsonObject["key"]!!.jsonPrimitive.content
 println("Querying Num Tokens")
-val numTokensQuery = json.parseToJsonElement(
+val numTokensQuery =
     """
     {
         "num_tokens": {
@@ -60,7 +61,7 @@ val numTokensQuery = json.parseToJsonElement(
             }
         }
     }
-    """).jsonObject
+    """
 
 val numTokens = client.queryContractSmart(contractAddress, numTokensQuery);
 println("Num Tokens Response: $numTokens")
