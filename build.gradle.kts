@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     kotlin("multiplatform") version "1.6.21"
     kotlin("plugin.serialization") version "1.6.21"
+    id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
 
 group = "io.eqoty"
@@ -29,19 +30,24 @@ kotlin {
         }
         binaries.executable()
     }
-    macosX64().apply {
+    macosX64{
+        binaries.framework()
         setupCinterop(Target.MacosX64)
     }
-    macosArm64().apply {
+    macosArm64{
+        binaries.framework()
         setupCinterop(Target.MacosArm64)
     }
-    iosX64().apply {
+    iosX64{
+        binaries.framework()
         setupCinterop(Target.IosSimulatorX64)
     }
-    iosArm64().apply {
-        setupCinterop(Target.IosSimulatorX64)
+    iosArm64{
+        binaries.framework()
+        setupCinterop(Target.IosArm64)
     }
-    iosSimulatorArm64().apply {
+    iosSimulatorArm64{
+        binaries.framework()
         setupCinterop(Target.IosSimulatorArm64)
     }
 
@@ -103,29 +109,21 @@ kotlin {
             dependsOn(commonMain)
         }
         val nativeTest by creating
-
-
         val darwinMain by creating {
             dependsOn(nativeMain)
             dependencies {
                 implementation("io.ktor:ktor-client-darwin:_")
             }
         }
-
-        val iosMain by creating {
-            dependsOn(darwinMain)
-            dependencies {
-            }
-        }
         val macosX64Main by getting {
+            dependsOn(darwinMain)
+        }
+        val iosMain by creating {
             dependsOn(darwinMain)
         }
         val macosArm64Main by getting {
             dependsOn(darwinMain)
         }
-//        val linuxX64Main by getting {
-//            dependsOn(desktopMain)
-//        }
         val iosArm64Main by getting {
             dependsOn(iosMain)
         }
@@ -135,6 +133,14 @@ kotlin {
         val iosSimulatorArm64Main by getting {
             dependsOn(iosMain)
         }
+    }
+}
+
+multiplatformSwiftPackage {
+    swiftToolsVersion("5.3")
+    targetPlatforms {
+        iOS { v("13") }
+        macOS { v("13") }
     }
 }
 
