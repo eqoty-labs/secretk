@@ -89,13 +89,13 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-js:_")
-                implementation(npm("path-browserify", "1.0.1"))
-                implementation(npm("crypto-browserify", "3.12.0"))
-                implementation(npm("buffer", "6.0.3"))
-                implementation(npm("stream-browserify", "3.0.0"))
-                implementation(npm("os-browserify", "0.3.0"))
-                implementation(npm("miscreant", "0.3.2"))
-                implementation(npm("libsodium-wrappers-sumo", "0.7.10"))
+                implementation(npm("path-browserify", "^1.0.1"))
+                implementation(npm("crypto-browserify", "^3.12.0"))
+                implementation(npm("buffer", "^6.0.3"))
+                implementation(npm("stream-browserify", "^3.0.0"))
+                implementation(npm("os-browserify", "^0.3.0"))
+                implementation(npm("miscreant", "^0.3.2"))
+                implementation(npm("libsodium-wrappers-sumo", "^0.7.10"))
             }
         }
         val jsTest by getting
