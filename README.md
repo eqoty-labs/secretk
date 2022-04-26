@@ -29,7 +29,7 @@ val contractInfoQuery = json.parseToJsonElement("""{"contract_info": {}}""").jso
 val contractInfo = client.queryContractSmart(contractAddress, contractInfoQuery)
 println("nft contract info response: $contractInfo")
 ```
-* Execute Contract
+* Execute Contract (Secret Network >= v1.2.6)
 ```
 // Entropy: Secure implementation is left to the client, but it is recommended to use base-64 encoded random bytes and not predictable inputs.
 val entropy = "Another really random thing??"
