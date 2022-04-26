@@ -1,11 +1,13 @@
 package io.eqoty.client
 
+import com.ionspin.kotlin.crypto.LibsodiumInitializer
 import io.eqoty.BroadcastMode
 import io.eqoty.response.PubKey
 import io.eqoty.response.PubKeyMultisigThreshold
 import io.eqoty.response.PubKeySecp256k1
 import io.eqoty.result.ExecuteResult
-import io.eqoty.tx.*
+import io.eqoty.tx.MsgExecuteContract
+import io.eqoty.tx.ProtoMsg
 import io.eqoty.tx.proto.*
 import io.eqoty.types.*
 import io.eqoty.utils.EncryptionUtils
@@ -16,16 +18,15 @@ import kotlinx.serialization.encodeToByteArray
 import kotlinx.serialization.protobuf.ProtoBuf
 import okio.ByteString.Companion.decodeBase64
 import okio.ByteString.Companion.decodeHex
-import okio.ByteString.Companion.toByteString
 
-class SigningCosmWasmClient : CosmWasmClient {
+internal class SigningCosmWasmClient : CosmWasmClient {
 
     val apiUrl: String
     val senderAddress: String
     val pen: Secp256k1Pen
     val fees: FeeTable
 
-    constructor(
+    private constructor(
         apiUrl: String,
         senderAddress: String,
         signer: Secp256k1Pen, //| OfflineSigner
@@ -40,7 +41,7 @@ class SigningCosmWasmClient : CosmWasmClient {
         this.fees = FeeTable.Default.overwrite(customFees)
     }
 
-    constructor(
+    private constructor(
         apiUrl: String,
         senderAddress: String,
         pen:  Secp256k1Pen, // | OfflineSigner
@@ -94,7 +95,7 @@ class SigningCosmWasmClient : CosmWasmClient {
 //        )
 //    }
 
-    fun encodePubkey(
+    private fun encodePubkey(
     pubkey: PubKey,
     ): AnyProto {
         when (pubkey) {
@@ -127,7 +128,7 @@ class SigningCosmWasmClient : CosmWasmClient {
     }
 
 
-    fun <M: MsgProto>extractNonce(msg: ProtoMsg<M>): UByteArray {
+    private fun <M: MsgProto>extractNonce(msg: ProtoMsg<M>): UByteArray {
         if (msg.typeUrl === "/secret.compute.v1beta1.MsgInstantiateContract") {
             return (msg.value as MsgInstantiateContractProto).initMsg.toUByteArray().copyOfRange(0, 32)
         }
@@ -145,6 +146,8 @@ class SigningCosmWasmClient : CosmWasmClient {
         fee: StdFee = fees.exec!!,
         _contractCodeHash: String? = null,
     ): ExecuteResult {
+
+
         val contractCodeHash = if (_contractCodeHash == null) {
             this.restClient.getCodeHashByContractAddr(contractAddress)
         } else {
@@ -298,6 +301,47 @@ class SigningCosmWasmClient : CosmWasmClient {
             memo = txBody.value.memo
         )
         return ProtoBuf.encodeToByteArray(txBodyEncoded)
+    }
+
+
+    companion object {
+        suspend fun init(
+            apiUrl: String,
+            senderAddress: String,
+            signer: Secp256k1Pen, //| OfflineSigner
+            seed: UByteArray,
+            customFees: FeeTable?,
+            broadcastMode: BroadcastMode = BroadcastMode.Block
+        ): SigningCosmWasmClient {
+            if (!LibsodiumInitializer.isInitialized()) LibsodiumInitializer.initialize()
+            return SigningCosmWasmClient(
+                apiUrl,
+                senderAddress,
+                signer,
+                seed,
+                customFees,
+                broadcastMode
+            )
+        }
+
+        suspend fun init(
+            apiUrl: String,
+            senderAddress: String,
+            pen:  Secp256k1Pen, // | OfflineSigner
+            enigmaUtils: EncryptionUtils,
+            customFees: FeeTable,
+            broadcastMode: BroadcastMode = BroadcastMode.Block
+        ): SigningCosmWasmClient {
+            if (!LibsodiumInitializer.isInitialized()) LibsodiumInitializer.initialize()
+            return SigningCosmWasmClient(
+                apiUrl,
+                senderAddress,
+                pen,
+                enigmaUtils,
+                customFees,
+                broadcastMode
+            )
+        }
     }
 
 

@@ -36,7 +36,7 @@ import okio.ByteString.Companion.toByteString
  * @param broadcastMode Defines at which point of the transaction processing the postTx method (i.e. transaction broadcasting) returns
  * @param seed - The seed used to generate sender TX encryption key. If empty will generate random new one
  */
-class RestClient(
+internal class RestClient(
     val apiUrl: String,
     val broadcastMode: BroadcastMode = BroadcastMode.Block,
     seed: UByteArray? = null
@@ -105,7 +105,7 @@ class RestClient(
      *
      * @param tx a signed transaction as StdTx (i.e. not wrapped in type/value container)
      */
-    suspend inline fun postTx(tx: UByteArray): TxsResponseData {
+    suspend fun postTx(tx: UByteArray): TxsResponseData {
         val txString = tx.toByteString().base64()
         val params =
             json.parseToJsonElement("""{

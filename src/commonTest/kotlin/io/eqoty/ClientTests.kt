@@ -42,8 +42,7 @@ class ClientTests {
      */
     @Test
     fun testProxy() =  runTest {
-        LibsodiumInitializer.initialize()
-        val txEncryptionSeed = EnigmaUtils.GenerateNewSeed();
+        val txEncryptionSeed = EnigmaUtils.GenerateNewSeed()
         val contractAddress = "secret18vd8fpwxzck93qlwghaj6arh4p7c5n8978vsyg"
         val httpUrl = "http://eqoty.duckdns.org:1337"
         val mnemonic = "sand check forward humble between movie language siege where social crumble mouse"
@@ -51,9 +50,9 @@ class ClientTests {
         // This wraps a single keypair and allows for signing.
         val signingPen = Secp256k1Pen.fromMnemonic(mnemonic)
         val pubkey = encodeSecp256k1Pubkey(signingPen.pubkey)
-        val accAddress = pubkeyToAddress(pubkey, "secret");
+        val accAddress = pubkeyToAddress(pubkey, "secret")
 
-        val client = SigningCosmWasmClient(
+        val client = SigningCosmWasmClient.init(
             httpUrl,
             accAddress,
             signingPen,

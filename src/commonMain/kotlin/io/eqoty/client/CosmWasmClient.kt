@@ -6,12 +6,12 @@ import io.eqoty.types.Account
 import io.eqoty.types.PostTxResult
 import kotlinx.serialization.json.JsonObject
 
-open class CosmWasmClient(
+internal open class CosmWasmClient constructor(
     apiUrl: String,
     seed: UByteArray? = null,
     broadcastMode: BroadcastMode = BroadcastMode.Block
 ) {
-    val restClient = RestClient(apiUrl, broadcastMode, seed)
+    internal val restClient = RestClient(apiUrl, broadcastMode, seed)
 
     /** Any address the chain considers valid (valid bech32 with proper prefix) */
     protected var anyValidAddress: String? = null
@@ -57,7 +57,7 @@ open class CosmWasmClient(
         }
     }
 
-    suspend inline fun postTx(tx: UByteArray): PostTxResult {
+    suspend fun postTx(tx: UByteArray): PostTxResult {
         val result = restClient.postTx(tx)
 
         if (result.txhash.contains("""^([0-9A-F][0-9A-F])+$""")) {
