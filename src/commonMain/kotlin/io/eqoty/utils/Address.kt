@@ -4,6 +4,7 @@ import io.eqoty.response.PubKey
 import io.eqoty.response.PubKeyEd25519
 import io.eqoty.response.PubKeySecp256k1
 import io.eqoty.response.PubKeySr25519
+import io.eqoty.utils.bech32.Bech32
 import okio.ByteString.Companion.decodeBase64
 import org.komputing.khash.ripemd160.extensions.digestRipemd160
 

@@ -1,5 +1,7 @@
 package io.eqoty.utils
 
+import io.eqoty.utils.bech32.Bech32
+
 fun getMissingCodeHashWarning(method: String): String {
     return "${method} was used without the \"codeHash\" parameter. This is discouraged and will result in much slower execution times for your app."
 }
