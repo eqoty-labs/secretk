@@ -137,6 +137,7 @@ kotlin {
 }
 
 multiplatformSwiftPackage {
+    outputDirectory(projectDir)
     swiftToolsVersion("5.3")
     targetPlatforms {
         iOS { v("13") }

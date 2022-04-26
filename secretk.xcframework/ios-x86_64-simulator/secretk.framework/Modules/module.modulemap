@@ -1,0 +1,6 @@
+framework module secretk {
+    umbrella header "secretk.h"
+
+    export *
+    module * { export * }
+}
