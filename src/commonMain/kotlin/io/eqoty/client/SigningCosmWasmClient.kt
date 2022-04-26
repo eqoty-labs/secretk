@@ -292,8 +292,8 @@ private constructor(
             apiUrl: String,
             senderAddress: String,
             signer: Secp256k1Pen, //| OfflineSigner
-            seed: UByteArray?,
-            customFees: FeeTable?,
+            seed: UByteArray? = null,
+            customFees: FeeTable? = null,
             broadcastMode: BroadcastMode = BroadcastMode.Block
         ): SigningCosmWasmClient {
             ensureLibsodiumInitialized()
@@ -312,7 +312,7 @@ private constructor(
             senderAddress: String,
             pen:  Secp256k1Pen, // | OfflineSigner
             enigmaUtils: EncryptionUtils,
-            customFees: FeeTable,
+            customFees: FeeTable? = null,
             broadcastMode: BroadcastMode = BroadcastMode.Block
         ): SigningCosmWasmClient {
             ensureLibsodiumInitialized()

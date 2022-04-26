@@ -37,7 +37,6 @@ class ClientTests {
      */
     @Test
     fun testProxy() =  runTest {
-        val txEncryptionSeed = EnigmaUtils.GenerateNewSeed()
         val contractAddress = "secret18vd8fpwxzck93qlwghaj6arh4p7c5n8978vsyg"
         val httpUrl = "http://eqoty.duckdns.org:1337"
         val mnemonic = "sand check forward humble between movie language siege where social crumble mouse"
@@ -50,9 +49,7 @@ class ClientTests {
         val client = SigningCosmWasmClient.init(
             httpUrl,
             accAddress,
-            signingPen,
-            txEncryptionSeed,
-            null
+            signingPen
         )
         println("Querying nft contract info")
         val contractInfoQuery = json.parseToJsonElement("""{"contract_info": {}}""").jsonObject
