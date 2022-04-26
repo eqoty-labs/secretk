@@ -11,6 +11,8 @@ import io.eqoty.tx.ProtoMsg
 import io.eqoty.tx.proto.*
 import io.eqoty.types.*
 import io.eqoty.utils.EncryptionUtils
+import io.eqoty.utils.EnigmaUtils
+import io.eqoty.utils.ensureLibsodiumInitialized
 import io.eqoty.wallet.Secp256k1Pen
 import io.eqoty.wallet.encodeSecp256k1Pubkey
 import kotlinx.serialization.decodeFromByteArray
@@ -19,43 +21,24 @@ import kotlinx.serialization.protobuf.ProtoBuf
 import okio.ByteString.Companion.decodeBase64
 import okio.ByteString.Companion.decodeHex
 
-internal class SigningCosmWasmClient : CosmWasmClient {
+class SigningCosmWasmClient//| OfflineSigner
+private constructor(
+    val apiUrl: String,
+    val senderAddress: String,
+    signer: Secp256k1Pen,
+    encryptionUtils: EncryptionUtils,
+    customFees: FeeTable?,
+    broadcastMode: BroadcastMode = BroadcastMode.Block
+) : CosmWasmClient(apiUrl, encryptionUtils, broadcastMode) {
 
-    val apiUrl: String
-    val senderAddress: String
-    val pen: Secp256k1Pen
+    val pen: Secp256k1Pen = signer
     val fees: FeeTable
 
-    private constructor(
-        apiUrl: String,
-        senderAddress: String,
-        signer: Secp256k1Pen, //| OfflineSigner
-        seed: UByteArray,
-        customFees: FeeTable?,
-        broadcastMode: BroadcastMode = BroadcastMode.Block
-    ) : super(apiUrl, seed, broadcastMode) {
-        this.apiUrl = apiUrl
-        this.senderAddress = senderAddress
-        this.anyValidAddress = senderAddress
-        this.pen = signer
+    init {
         this.fees = FeeTable.Default.overwrite(customFees)
     }
 
-    private constructor(
-        apiUrl: String,
-        senderAddress: String,
-        pen:  Secp256k1Pen, // | OfflineSigner
-        enigmaUtils: EncryptionUtils,
-        customFees: FeeTable,
-        broadcastMode: BroadcastMode = BroadcastMode.Block
-    ) : super(apiUrl, null, broadcastMode) {
-        this.apiUrl = apiUrl
-        this.senderAddress = senderAddress
-        this.anyValidAddress = senderAddress
-        this.pen = pen
-        this.restClient.enigmautils = enigmaUtils;
-        this.fees = FeeTable.Default.overwrite(customFees)
-    }
+
 
 //    inline fun <reified T: MsgValue> signAdapter(
 //        msgs: List<TypeValue<T>>,
@@ -309,16 +292,16 @@ internal class SigningCosmWasmClient : CosmWasmClient {
             apiUrl: String,
             senderAddress: String,
             signer: Secp256k1Pen, //| OfflineSigner
-            seed: UByteArray,
+            seed: UByteArray?,
             customFees: FeeTable?,
             broadcastMode: BroadcastMode = BroadcastMode.Block
         ): SigningCosmWasmClient {
-            if (!LibsodiumInitializer.isInitialized()) LibsodiumInitializer.initialize()
+            ensureLibsodiumInitialized()
             return SigningCosmWasmClient(
                 apiUrl,
                 senderAddress,
                 signer,
-                seed,
+                EnigmaUtils(apiUrl, seed ?: EnigmaUtils.GenerateNewSeed()),
                 customFees,
                 broadcastMode
             )
@@ -332,7 +315,7 @@ internal class SigningCosmWasmClient : CosmWasmClient {
             customFees: FeeTable,
             broadcastMode: BroadcastMode = BroadcastMode.Block
         ): SigningCosmWasmClient {
-            if (!LibsodiumInitializer.isInitialized()) LibsodiumInitializer.initialize()
+            ensureLibsodiumInitialized()
             return SigningCosmWasmClient(
                 apiUrl,
                 senderAddress,

@@ -1,5 +1,6 @@
 package io.eqoty.utils
 
+import com.ionspin.kotlin.crypto.LibsodiumInitializer
 import com.ionspin.kotlin.crypto.util.LibsodiumRandom
 import com.ionspin.kotlin.crypto.util.encodeToUByteArray
 import deriveHKDFKey
@@ -28,7 +29,7 @@ data class TxKeyResponse(val height: Int, val result: Result)
 
 data class KeyPair(val privKey: UByteArray, val pubKey: UByteArray)
 
-class EnigmaUtils(val apiUrl: String, seed: UByteArray?) : EncryptionUtils {
+class EnigmaUtils internal constructor(val apiUrl: String, val seed: UByteArray) : EncryptionUtils {
 
     val hkdfSalt = ubyteArrayOf(
         0x00.toUByte(),
@@ -67,27 +68,27 @@ class EnigmaUtils(val apiUrl: String, seed: UByteArray?) : EncryptionUtils {
 
 
     private val siv = AesSIV()
-    private val seed: UByteArray
     private val privKey: UByteArray
     val pubKey: UByteArray
 
     init {
-        if (seed == null) {
-            this.seed = EnigmaUtils.GenerateNewSeed();
-        } else {
-            this.seed = seed;
-        }
         val keyPair = GenerateNewKeyPairFromSeed(this.seed)
-        this.privKey = keyPair.privKey;
-        this.pubKey = keyPair.pubKey;
+        this.privKey = keyPair.privKey
+        this.pubKey = keyPair.pubKey
     }
 
     companion object {
-        fun GenerateNewKeyPair(): KeyPair {
-            return EnigmaUtils.GenerateNewKeyPairFromSeed(EnigmaUtils.GenerateNewSeed());
+        suspend fun init(apiUrl: String, seed: UByteArray?): EnigmaUtils{
+            ensureLibsodiumInitialized()
+            return EnigmaUtils(apiUrl, seed ?: GenerateNewSeed())
         }
 
-        fun GenerateNewSeed(): UByteArray {
+        suspend fun GenerateNewKeyPair(): KeyPair {
+            return GenerateNewKeyPairFromSeed(GenerateNewSeed());
+        }
+
+        suspend fun GenerateNewSeed(): UByteArray {
+            ensureLibsodiumInitialized()
             return LibsodiumRandom.buf(32)
         }
 
@@ -157,6 +158,5 @@ class EnigmaUtils(val apiUrl: String, seed: UByteArray?) : EncryptionUtils {
         val txEncryptionIkm = sharedKey(this.privKey.toIntArray(), consensusIoPubKey.toIntArray()).toUByteArray()
         return deriveHKDFKey(txEncryptionIkm + nonce, hkdfSalt, len = 32)
     }
-
 
 }

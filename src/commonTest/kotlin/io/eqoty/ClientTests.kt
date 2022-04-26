@@ -1,17 +1,12 @@
 package io.eqoty
 
-import com.ionspin.kotlin.crypto.LibsodiumInitializer
-import com.ionspin.kotlin.crypto.util.decodeFromUByteArray
 import io.eqoty.client.SigningCosmWasmClient
 import io.eqoty.tx.MsgExecuteContract
-import io.eqoty.tx.MsgInstantiateContract
-import io.eqoty.types.StdSignature
 import io.eqoty.utils.Address.pubkeyToAddress
 import io.eqoty.utils.EnigmaUtils
 import io.eqoty.utils.decodeToString
 import io.eqoty.wallet.Secp256k1Pen
 import io.eqoty.wallet.encodeSecp256k1Pubkey
-import io.ktor.util.*
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject

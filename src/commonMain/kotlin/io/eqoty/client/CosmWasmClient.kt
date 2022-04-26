@@ -4,14 +4,15 @@ import io.eqoty.BroadcastMode
 import io.eqoty.result.GetNonceResult
 import io.eqoty.types.Account
 import io.eqoty.types.PostTxResult
+import io.eqoty.utils.EncryptionUtils
 import kotlinx.serialization.json.JsonObject
 
-internal open class CosmWasmClient constructor(
+open class CosmWasmClient protected constructor(
     apiUrl: String,
-    seed: UByteArray? = null,
+    encryptionUtils: EncryptionUtils,
     broadcastMode: BroadcastMode = BroadcastMode.Block
 ) {
-    internal val restClient = RestClient(apiUrl, broadcastMode, seed)
+    internal val restClient = RestClient(apiUrl, broadcastMode, encryptionUtils)
 
     /** Any address the chain considers valid (valid bech32 with proper prefix) */
     protected var anyValidAddress: String? = null

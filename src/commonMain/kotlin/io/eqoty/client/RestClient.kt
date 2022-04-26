@@ -39,9 +39,8 @@ import okio.ByteString.Companion.toByteString
 internal class RestClient(
     val apiUrl: String,
     val broadcastMode: BroadcastMode = BroadcastMode.Block,
-    seed: UByteArray? = null
+    val enigmautils: EncryptionUtils
 ) {
-    var enigmautils: EncryptionUtils = EnigmaUtils(apiUrl, seed)
     val codeHashCache: MutableMap<Any, String> = mutableMapOf()
 
     val json: Json = Json {
