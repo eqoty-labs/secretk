@@ -3,7 +3,6 @@ package io.eqoty
 import io.eqoty.client.SigningCosmWasmClient
 import io.eqoty.tx.MsgExecuteContract
 import io.eqoty.utils.Address.pubkeyToAddress
-import io.eqoty.utils.EnigmaUtils
 import io.eqoty.utils.decodeToString
 import io.eqoty.wallet.Secp256k1Pen
 import io.eqoty.wallet.encodeSecp256k1Pubkey
@@ -38,7 +37,7 @@ class ClientTests {
     @Test
     fun testProxy() =  runTest {
         val contractAddress = "secret18vd8fpwxzck93qlwghaj6arh4p7c5n8978vsyg"
-        val httpUrl = "http://eqoty.duckdns.org:1337"
+        val grpcGatewayEndpoint = "http://eqoty.duckdns.org:1337"
         val mnemonic = "sand check forward humble between movie language siege where social crumble mouse"
         // A pen is the most basic tool you can think of for signing.
         // This wraps a single keypair and allows for signing.
@@ -47,7 +46,7 @@ class ClientTests {
         val accAddress = pubkeyToAddress(pubkey, "secret")
 
         val client = SigningCosmWasmClient.init(
-            httpUrl,
+            grpcGatewayEndpoint,
             accAddress,
             signingPen
         )
