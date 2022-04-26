@@ -1,5 +1,6 @@
 package io.eqoty.utils
 
+import com.ionspin.kotlin.crypto.util.LibsodiumRandom
 import com.ionspin.kotlin.crypto.util.encodeToUByteArray
 import deriveHKDFKey
 import io.eqoty.crypto.AesSIV
@@ -17,8 +18,6 @@ import kotlinx.coroutines.Deferred
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
-import kotlin.random.Random
-import kotlin.random.nextUBytes
 
 
 @Serializable
@@ -89,7 +88,7 @@ class EnigmaUtils(val apiUrl: String, seed: UByteArray?) : EncryptionUtils {
         }
 
         fun GenerateNewSeed(): UByteArray {
-            return Random.nextUBytes(32)
+            return LibsodiumRandom.buf(32)
         }
 
         fun GenerateNewKeyPairFromSeed(seed: UByteArray): KeyPair {
@@ -142,8 +141,7 @@ class EnigmaUtils(val apiUrl: String, seed: UByteArray?) : EncryptionUtils {
     }
 
     override suspend fun encrypt(contractCodeHash: String, message: JsonObject): UByteArray {
-        // TODO: Use a secureRandom library?
-        val nonce = Random.nextUBytes(32)
+        val nonce =  LibsodiumRandom.buf(32)
 
         val txEncryptionKey = getTxEncryptionKey(nonce)
 

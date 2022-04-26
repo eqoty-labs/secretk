@@ -1,11 +1,10 @@
 package io.eqoty.crypto.elliptic.ec
 
+import com.ionspin.kotlin.crypto.util.LibsodiumRandom
 import io.eqoty.crypto.elliptic.Curve
 import io.eqoty.crypto.elliptic.ShortCurve
 import io.eqoty.crypto.elliptic.biginteger.BN
 import io.eqoty.crypto.elliptic.curves.Scep256k1Preset
-import kotlin.random.Random
-import kotlin.random.nextUBytes
 
 class EC(val curve: Curve) {
 
@@ -50,7 +49,7 @@ class EC(val curve: Curve) {
             var k : BN = if (options.k!= null) {
                 TODO() /* options.k(iter) */
             } else {
-                BN(Random.nextUBytes(this.n.byteLength()))
+                BN(LibsodiumRandom.buf(this.n.byteLength()))
             }
             k = this.truncateToN(k, true)
             if (k <= 1 || k >= ns1)

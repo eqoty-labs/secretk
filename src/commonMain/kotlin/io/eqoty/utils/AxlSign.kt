@@ -11,10 +11,8 @@
 
 package io.eqoty.utils;
 
-import kotlin.experimental.and
-import kotlin.experimental.or
+import com.ionspin.kotlin.crypto.util.LibsodiumRandom
 import kotlin.math.floor
-import kotlin.random.Random
 
 
 // *** R val _0 = IntArray(16)
@@ -1226,7 +1224,7 @@ object AxlSign {
 		val Low: Int = 0
 		val seed = IntArray(size)
 		for(i in 0..seed.size-1) {
-			seed[i] = Random.nextInt(High-Low) + Low
+			seed[i] = LibsodiumRandom.uniform((High - Low).toUInt()).toInt() + Low
 		}
 		return seed
 	}
