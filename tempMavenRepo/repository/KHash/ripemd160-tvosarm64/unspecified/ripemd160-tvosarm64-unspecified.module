@@ -1,0 +1,79 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../ripemd160/unspecified/ripemd160-unspecified.module",
+    "group": "KHash",
+    "module": "ripemd160",
+    "version": "unspecified",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "tvosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "tvos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ripemd160.klib",
+          "url": "ripemd160-tvosarm64-unspecified.klib",
+          "size": 38260,
+          "sha512": "714a2f07bb06130e2ccdf4d2ba2d2124f64bb19da03cab23ab035e33a4ea1b74abb3572102f610e9e943198a78548708096ddbc444ead208f5f24e7faa56ecc5",
+          "sha256": "965646dd0f68856173dbdb4d16d40595b857099a855ef4c9732d5c34f04cceb6",
+          "sha1": "149eb68d8b58e18548c293739361353f50ada936",
+          "md5": "82f71dfc71ffdbc7d72ce2cb40847abf"
+        }
+      ]
+    },
+    {
+      "name": "tvosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "tvos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ripemd160-tvosarm64-metadata.jar",
+          "url": "ripemd160-tvosarm64-unspecified-metadata.jar",
+          "size": 261,
+          "sha512": "f7384db1400a7f610d96d99a7dafde081f3ab4fe45b92bb6847c66b267a167a6b79052b83feddfdb1353f4dc37578a11aa054d7448de127232933d5f8ba49e9d",
+          "sha256": "99a96a6bb1be481352b379c42cdb6541d3f1adab7a016f195fb0edb2950b2125",
+          "sha1": "891b737ec2c2fa2054110755d125c37b71d3155d",
+          "md5": "b786c55926432e48a1325936f048808e"
+        }
+      ]
+    }
+  ]
+}

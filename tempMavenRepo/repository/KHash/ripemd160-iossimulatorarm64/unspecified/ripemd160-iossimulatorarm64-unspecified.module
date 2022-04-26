@@ -1,0 +1,79 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../ripemd160/unspecified/ripemd160-unspecified.module",
+    "group": "KHash",
+    "module": "ripemd160",
+    "version": "unspecified",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ripemd160.klib",
+          "url": "ripemd160-iossimulatorarm64-unspecified.klib",
+          "size": 38337,
+          "sha512": "ad609df26ad8d394d5d728bd444c37509b6d6a7387251d3966f6f068bff04021d918ea3edacf2c54f6d602efbb1654581e0e9c412f1ee5b280c772e07cb79cfc",
+          "sha256": "a61bca98390911cc29c2af87f6b40c4abf17fb96109ae966b8714e7058259c74",
+          "sha1": "d8f878bb5e7e86b7bfb210ad562598f4c1e7ad67",
+          "md5": "1940e58d39a9141956761da990b4ad73"
+        }
+      ]
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ripemd160-iossimulatorarm64-metadata.jar",
+          "url": "ripemd160-iossimulatorarm64-unspecified-metadata.jar",
+          "size": 261,
+          "sha512": "f7384db1400a7f610d96d99a7dafde081f3ab4fe45b92bb6847c66b267a167a6b79052b83feddfdb1353f4dc37578a11aa054d7448de127232933d5f8ba49e9d",
+          "sha256": "99a96a6bb1be481352b379c42cdb6541d3f1adab7a016f195fb0edb2950b2125",
+          "sha1": "891b737ec2c2fa2054110755d125c37b71d3155d",
+          "md5": "b786c55926432e48a1325936f048808e"
+        }
+      ]
+    }
+  ]
+}

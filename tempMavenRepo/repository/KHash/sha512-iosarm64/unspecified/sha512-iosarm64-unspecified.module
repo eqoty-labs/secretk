@@ -1,0 +1,79 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../sha512/unspecified/sha512-unspecified.module",
+    "group": "KHash",
+    "module": "sha512",
+    "version": "unspecified",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sha512.klib",
+          "url": "sha512-iosarm64-unspecified.klib",
+          "size": 19511,
+          "sha512": "87e6f864ce323c3cebc8a6ff29cceb135d883bc3f1b926dad80e81033cd846c2b2b4fab525ecbc12a3b7804abda610ea568682728852959a272d918b5bd55257",
+          "sha256": "4bc0c1f75592e5e63c13399ca8e7008680dc84dd0ece4e39ad02807c280844cf",
+          "sha1": "dc7b67cbd7b7512082219bf2dc3c6fa37f287f22",
+          "md5": "88590c29c0e73b20f0ef804dfde02033"
+        }
+      ]
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sha512-iosarm64-metadata.jar",
+          "url": "sha512-iosarm64-unspecified-metadata.jar",
+          "size": 261,
+          "sha512": "9bb70273146dc9c9cf088fcd7bce9677e66a4356b61381efcb3d9bef6b2818d509772060a3b3f69cf49dac68a801d086f953d50019f8e803d9b7a720a5d8bdc7",
+          "sha256": "4023299732f29f75d61845166190fda276bdbbc38c985a693bba35d9888cddb7",
+          "sha1": "9df58aa1d633f5dc078352a12920a3f07abf3468",
+          "md5": "e2b0c7c49df16119f833b0982ed991fb"
+        }
+      ]
+    }
+  ]
+}

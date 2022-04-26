@@ -1,0 +1,79 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../sha256/unspecified/sha256-unspecified.module",
+    "group": "KHash",
+    "module": "sha256",
+    "version": "unspecified",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "watchosArm32ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sha256.klib",
+          "url": "sha256-watchosarm32-unspecified.klib",
+          "size": 19415,
+          "sha512": "c8336c41c46ee5bdb4af52f0fd037c0bed897e39ae0727fdfa6fe1b2f8c4126a28f5b74ebae42e531051cd901f38412172f05d218cb59718ff7d391cbc557701",
+          "sha256": "0593df075f2881bcd1868099a5b26046774c53007e5d4d165ca90a420da19f3f",
+          "sha1": "0a7c039af0a341041d802ebcc68bf739cb4e49f5",
+          "md5": "83103d244c5dde949398d279fa577eda"
+        }
+      ]
+    },
+    {
+      "name": "watchosArm32MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sha256-watchosarm32-metadata.jar",
+          "url": "sha256-watchosarm32-unspecified-metadata.jar",
+          "size": 261,
+          "sha512": "9bb70273146dc9c9cf088fcd7bce9677e66a4356b61381efcb3d9bef6b2818d509772060a3b3f69cf49dac68a801d086f953d50019f8e803d9b7a720a5d8bdc7",
+          "sha256": "4023299732f29f75d61845166190fda276bdbbc38c985a693bba35d9888cddb7",
+          "sha1": "9df58aa1d633f5dc078352a12920a3f07abf3468",
+          "md5": "e2b0c7c49df16119f833b0982ed991fb"
+        }
+      ]
+    }
+  ]
+}

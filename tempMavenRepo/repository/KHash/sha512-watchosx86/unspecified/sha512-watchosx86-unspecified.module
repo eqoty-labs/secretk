@@ -1,0 +1,79 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../sha512/unspecified/sha512-unspecified.module",
+    "group": "KHash",
+    "module": "sha512",
+    "version": "unspecified",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "watchosX86ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_x86",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sha512.klib",
+          "url": "sha512-watchosx86-unspecified.klib",
+          "size": 19530,
+          "sha512": "d3fd6c82c07c39eb629bf88e528ce13bf26cf0dc26b0b8c96a158e381abc91d14926feb0a90ad06132b3d93cd828f87939d5358c7a593ec1daddbf91fb9426c9",
+          "sha256": "19f0cde61807887d0b6fb65545313faa7ada5973b198de29f516bf4611c7346c",
+          "sha1": "4c254876e3f7c42396f57927321fcdb68822dba8",
+          "md5": "612c4eec1210fec74fa05ae9ca68a5ac"
+        }
+      ]
+    },
+    {
+      "name": "watchosX86MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_x86",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sha512-watchosx86-metadata.jar",
+          "url": "sha512-watchosx86-unspecified-metadata.jar",
+          "size": 261,
+          "sha512": "9bb70273146dc9c9cf088fcd7bce9677e66a4356b61381efcb3d9bef6b2818d509772060a3b3f69cf49dac68a801d086f953d50019f8e803d9b7a720a5d8bdc7",
+          "sha256": "4023299732f29f75d61845166190fda276bdbbc38c985a693bba35d9888cddb7",
+          "sha1": "9df58aa1d633f5dc078352a12920a3f07abf3468",
+          "md5": "e2b0c7c49df16119f833b0982ed991fb"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,600 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "KHash",
+    "module": "sha256",
+    "version": "unspecified",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sha256-metadata.jar",
+          "url": "sha256-unspecified.jar",
+          "size": 4955,
+          "sha512": "f7f9460f706f913d0e675dadb07e2d69aea9ba9cf0426e76a931bb7c707bd81db0f82e87a2a61d5b132d1ac23061c22083c27fb4ecf09179f3a83ee8519be78a",
+          "sha256": "c5a51bc1b612a8dd8b0dd5b85ce829178f07feee189c8682a14cc88d6468bbc7",
+          "sha1": "48d981173e87daf64aebb491438cfcb1b79f9c5a",
+          "md5": "0a636eb955a65f7b0ec2451b9cf584e4"
+        }
+      ]
+    },
+    {
+      "name": "iosArm32ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-iosarm32/unspecified/sha256-iosarm32-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-iosarm32",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "iosArm32MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-iosarm32/unspecified/sha256-iosarm32-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-iosarm32",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-iosarm64/unspecified/sha256-iosarm64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-iosarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-iosarm64/unspecified/sha256-iosarm64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-iosarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-iossimulatorarm64/unspecified/sha256-iossimulatorarm64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-iossimulatorarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-iossimulatorarm64/unspecified/sha256-iossimulatorarm64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-iossimulatorarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "iosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-iosx64/unspecified/sha256-iosx64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-iosx64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "iosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-iosx64/unspecified/sha256-iosx64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-iosx64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "jsLegacyApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.js.compiler": "legacy",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "available-at": {
+        "url": "../../sha256-js/unspecified/sha256-js-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-js",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "jsLegacyRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.js.compiler": "legacy",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "available-at": {
+        "url": "../../sha256-js/unspecified/sha256-js-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-js",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "jsIrApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "available-at": {
+        "url": "../../sha256-js/unspecified/sha256-js-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-js",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "jsIrRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "available-at": {
+        "url": "../../sha256-js/unspecified/sha256-js-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-js",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../sha256-jvm/unspecified/sha256-jvm-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-jvm",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../sha256-jvm/unspecified/sha256-jvm-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-jvm",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "linuxX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "linux_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-linuxx64/unspecified/sha256-linuxx64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-linuxx64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "macosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-macosarm64/unspecified/sha256-macosarm64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-macosarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "macosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-macosarm64/unspecified/sha256-macosarm64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-macosarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "macosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "macos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-macosx64/unspecified/sha256-macosx64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-macosx64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "macosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "macos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-macosx64/unspecified/sha256-macosx64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-macosx64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "tvosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "tvos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-tvosarm64/unspecified/sha256-tvosarm64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-tvosarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "tvosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "tvos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-tvosarm64/unspecified/sha256-tvosarm64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-tvosarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "tvosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "tvos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-tvossimulatorarm64/unspecified/sha256-tvossimulatorarm64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-tvossimulatorarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "tvosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "tvos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-tvossimulatorarm64/unspecified/sha256-tvossimulatorarm64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-tvossimulatorarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "tvosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "tvos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-tvosx64/unspecified/sha256-tvosx64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-tvosx64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "tvosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "tvos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-tvosx64/unspecified/sha256-tvosx64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-tvosx64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "watchosArm32ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-watchosarm32/unspecified/sha256-watchosarm32-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-watchosarm32",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "watchosArm32MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-watchosarm32/unspecified/sha256-watchosarm32-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-watchosarm32",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "watchosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-watchosarm64/unspecified/sha256-watchosarm64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-watchosarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "watchosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-watchosarm64/unspecified/sha256-watchosarm64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-watchosarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "watchosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-watchossimulatorarm64/unspecified/sha256-watchossimulatorarm64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-watchossimulatorarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "watchosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-watchossimulatorarm64/unspecified/sha256-watchossimulatorarm64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-watchossimulatorarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "watchosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-watchosx64/unspecified/sha256-watchosx64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-watchosx64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "watchosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-watchosx64/unspecified/sha256-watchosx64-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-watchosx64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "watchosX86ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_x86",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-watchosx86/unspecified/sha256-watchosx86-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-watchosx86",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "watchosX86MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_x86",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sha256-watchosx86/unspecified/sha256-watchosx86-unspecified.module",
+        "group": "KHash",
+        "module": "sha256-watchosx86",
+        "version": "unspecified"
+      }
+    }
+  ]
+}

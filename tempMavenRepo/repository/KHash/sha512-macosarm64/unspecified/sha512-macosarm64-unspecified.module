@@ -1,0 +1,79 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../sha512/unspecified/sha512-unspecified.module",
+    "group": "KHash",
+    "module": "sha512",
+    "version": "unspecified",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "macosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sha512.klib",
+          "url": "sha512-macosarm64-unspecified.klib",
+          "size": 19529,
+          "sha512": "03ec60d95101879a569fb6bb72214f762967e490812023dc0a67b5174b6cc6138b366915a65039785e388ebbbf097b4d8ba02394b58c15d232257cd2b0c93e2c",
+          "sha256": "1e3feca46efcb7109231e6c40fd45f1b7b14816503d03d2143fe4ac5498ff448",
+          "sha1": "412d48b139273e3aa0307626efd23428fdb8cae7",
+          "md5": "01a83f241f6bce3f9c023ec9c80a24be"
+        }
+      ]
+    },
+    {
+      "name": "macosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sha512-macosarm64-metadata.jar",
+          "url": "sha512-macosarm64-unspecified-metadata.jar",
+          "size": 261,
+          "sha512": "9bb70273146dc9c9cf088fcd7bce9677e66a4356b61381efcb3d9bef6b2818d509772060a3b3f69cf49dac68a801d086f953d50019f8e803d9b7a720a5d8bdc7",
+          "sha256": "4023299732f29f75d61845166190fda276bdbbc38c985a693bba35d9888cddb7",
+          "sha1": "9df58aa1d633f5dc078352a12920a3f07abf3468",
+          "md5": "e2b0c7c49df16119f833b0982ed991fb"
+        }
+      ]
+    }
+  ]
+}

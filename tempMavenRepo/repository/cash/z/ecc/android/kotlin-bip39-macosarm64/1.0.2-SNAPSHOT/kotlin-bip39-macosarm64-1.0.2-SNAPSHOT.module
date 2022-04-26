@@ -1,0 +1,93 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../kotlin-bip39/1.0.2-SNAPSHOT/kotlin-bip39-1.0.2-SNAPSHOT.module",
+    "group": "cash.z.ecc.android",
+    "module": "kotlin-bip39",
+    "version": "1.0.2-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "macosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "lib.klib",
+          "url": "kotlin-bip39-macosarm64-1.0.2-SNAPSHOT.klib",
+          "size": 53566,
+          "sha512": "8e9ffdcc1231177386d5aa750e81741541da286f250e80226e42280a2abb50f9ece4384648642405618006e66cb4e3b0bb905c2cc6ca2299068ab6b69c4f9796",
+          "sha256": "f9f5c8ac09748d409352a65d7eeb27f91b1827926523cd31bb61fc5271518531",
+          "sha1": "1d87970179e556c1c216e5df91cbfcb4f7e45988",
+          "md5": "7ee3f1ab64d6d3343cc12bd2b5694d58"
+        }
+      ]
+    },
+    {
+      "name": "macosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "lib-macosarm64-1.0.2-SNAPSHOT-metadata.jar",
+          "url": "kotlin-bip39-macosarm64-1.0.2-SNAPSHOT-metadata.jar",
+          "size": 261,
+          "sha512": "c05676a3bdb7eb832a1137b2b26d4637c229c0d83a297d393ef6cce795b5dd06d9c2a8f30911275d10d146f10aec0da9616f7a693e6664a56db6f6e1ccd15695",
+          "sha256": "07bebc3b7a570c263e7523912f2fb6bd3fe119e8bcccb81e8f16d5765eea52c7",
+          "sha1": "897e1b7162068975bfd3777e10506378c9db4328",
+          "md5": "59a24947a047d5216c4ec01d9fbd6319"
+        }
+      ]
+    }
+  ]
+}

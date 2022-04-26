@@ -1,0 +1,600 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "KHash",
+    "module": "ripemd160",
+    "version": "unspecified",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ripemd160-metadata.jar",
+          "url": "ripemd160-unspecified.jar",
+          "size": 4969,
+          "sha512": "9fef7926a0325a298e4eaa0da35cee78f8c1b3f34f6f805c12779694ff0745b9e7c333a5b338d743ffc3f75a1285be8ee829fef837272b4dbc6ba85af1641622",
+          "sha256": "7767f133dd43a1ddaa8d3322d1aed51cfadc0e4571d2c50e50cd68b881d59aa0",
+          "sha1": "bb6af74dca5c7b95edb5472942d0d9608dbca4a1",
+          "md5": "ffb1db46a3a74522a23a1bfe26609507"
+        }
+      ]
+    },
+    {
+      "name": "iosArm32ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-iosarm32/unspecified/ripemd160-iosarm32-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-iosarm32",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "iosArm32MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-iosarm32/unspecified/ripemd160-iosarm32-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-iosarm32",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-iosarm64/unspecified/ripemd160-iosarm64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-iosarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-iosarm64/unspecified/ripemd160-iosarm64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-iosarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-iossimulatorarm64/unspecified/ripemd160-iossimulatorarm64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-iossimulatorarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-iossimulatorarm64/unspecified/ripemd160-iossimulatorarm64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-iossimulatorarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "iosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-iosx64/unspecified/ripemd160-iosx64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-iosx64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "iosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-iosx64/unspecified/ripemd160-iosx64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-iosx64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "jsLegacyApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.js.compiler": "legacy",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "available-at": {
+        "url": "../../ripemd160-js/unspecified/ripemd160-js-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-js",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "jsLegacyRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.js.compiler": "legacy",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "available-at": {
+        "url": "../../ripemd160-js/unspecified/ripemd160-js-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-js",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "jsIrApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "available-at": {
+        "url": "../../ripemd160-js/unspecified/ripemd160-js-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-js",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "jsIrRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "available-at": {
+        "url": "../../ripemd160-js/unspecified/ripemd160-js-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-js",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../ripemd160-jvm/unspecified/ripemd160-jvm-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-jvm",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../ripemd160-jvm/unspecified/ripemd160-jvm-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-jvm",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "linuxX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "linux_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-linuxx64/unspecified/ripemd160-linuxx64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-linuxx64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "macosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-macosarm64/unspecified/ripemd160-macosarm64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-macosarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "macosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-macosarm64/unspecified/ripemd160-macosarm64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-macosarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "macosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "macos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-macosx64/unspecified/ripemd160-macosx64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-macosx64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "macosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "macos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-macosx64/unspecified/ripemd160-macosx64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-macosx64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "tvosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "tvos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-tvosarm64/unspecified/ripemd160-tvosarm64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-tvosarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "tvosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "tvos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-tvosarm64/unspecified/ripemd160-tvosarm64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-tvosarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "tvosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "tvos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-tvossimulatorarm64/unspecified/ripemd160-tvossimulatorarm64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-tvossimulatorarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "tvosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "tvos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-tvossimulatorarm64/unspecified/ripemd160-tvossimulatorarm64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-tvossimulatorarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "tvosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "tvos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-tvosx64/unspecified/ripemd160-tvosx64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-tvosx64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "tvosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "tvos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-tvosx64/unspecified/ripemd160-tvosx64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-tvosx64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "watchosArm32ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-watchosarm32/unspecified/ripemd160-watchosarm32-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-watchosarm32",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "watchosArm32MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-watchosarm32/unspecified/ripemd160-watchosarm32-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-watchosarm32",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "watchosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-watchosarm64/unspecified/ripemd160-watchosarm64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-watchosarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "watchosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-watchosarm64/unspecified/ripemd160-watchosarm64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-watchosarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "watchosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-watchossimulatorarm64/unspecified/ripemd160-watchossimulatorarm64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-watchossimulatorarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "watchosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-watchossimulatorarm64/unspecified/ripemd160-watchossimulatorarm64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-watchossimulatorarm64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "watchosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-watchosx64/unspecified/ripemd160-watchosx64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-watchosx64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "watchosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-watchosx64/unspecified/ripemd160-watchosx64-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-watchosx64",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "watchosX86ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_x86",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-watchosx86/unspecified/ripemd160-watchosx86-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-watchosx86",
+        "version": "unspecified"
+      }
+    },
+    {
+      "name": "watchosX86MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_x86",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ripemd160-watchosx86/unspecified/ripemd160-watchosx86-unspecified.module",
+        "group": "KHash",
+        "module": "ripemd160-watchosx86",
+        "version": "unspecified"
+      }
+    }
+  ]
+}

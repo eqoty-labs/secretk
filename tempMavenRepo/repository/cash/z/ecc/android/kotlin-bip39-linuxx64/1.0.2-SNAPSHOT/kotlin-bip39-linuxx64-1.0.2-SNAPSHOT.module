@@ -1,0 +1,56 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../kotlin-bip39/1.0.2-SNAPSHOT/kotlin-bip39-1.0.2-SNAPSHOT.module",
+    "group": "cash.z.ecc.android",
+    "module": "kotlin-bip39",
+    "version": "1.0.2-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "linuxX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "linux_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "lib.klib",
+          "url": "kotlin-bip39-linuxx64-1.0.2-SNAPSHOT.klib",
+          "size": 53471,
+          "sha512": "9556add284072fc91a63bb6cb151ca37014d8ef93adc7115f543e927ce64a4c8b29d1d2c42399cbff91cfc29d4dae0d303dd920eb3e8255cffe2fcc891069b59",
+          "sha256": "5a19af82d0acaf7d83cecf647121b9faeef3be39a52cd854f7c52317659a4c9f",
+          "sha1": "99864a455984fb4626b1c527aa5c402786079e8a",
+          "md5": "ca3ed5ed89b5ce3225fdf897f8a0b0f2"
+        }
+      ]
+    }
+  ]
+}

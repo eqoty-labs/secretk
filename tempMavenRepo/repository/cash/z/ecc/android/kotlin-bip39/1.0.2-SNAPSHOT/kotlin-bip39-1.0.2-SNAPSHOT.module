@@ -1,0 +1,561 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "cash.z.ecc.android",
+    "module": "kotlin-bip39",
+    "version": "1.0.2-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "lib-metadata-1.0.2-SNAPSHOT.jar",
+          "url": "kotlin-bip39-1.0.2-SNAPSHOT.jar",
+          "size": 17575,
+          "sha512": "0bbfd707e046b64540a83e81e780e8670178f1b8888751fbe0d284533890e16f500a2d0528a6e855cda56577b27d662425e5b2665a492f0e21b10285d56ac6df",
+          "sha256": "ee45642427e349660491f37f428860dc0ae16586761e95ef4dbfc4742e77d856",
+          "sha1": "3f61ce76531e441e6ef00f69108503f2cc546e93",
+          "md5": "e2befc75e1f925ec2e26948fbb0dccaf"
+        }
+      ]
+    },
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-iosarm64/1.0.2-SNAPSHOT/kotlin-bip39-iosarm64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-iosarm64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-iosarm64/1.0.2-SNAPSHOT/kotlin-bip39-iosarm64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-iosarm64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-iossimulatorarm64/1.0.2-SNAPSHOT/kotlin-bip39-iossimulatorarm64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-iossimulatorarm64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-iossimulatorarm64/1.0.2-SNAPSHOT/kotlin-bip39-iossimulatorarm64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-iossimulatorarm64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "iosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-iosx64/1.0.2-SNAPSHOT/kotlin-bip39-iosx64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-iosx64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "iosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-iosx64/1.0.2-SNAPSHOT/kotlin-bip39-iosx64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-iosx64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "jsApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-js/1.0.2-SNAPSHOT/kotlin-bip39-js-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-js",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "jsRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-js/1.0.2-SNAPSHOT/kotlin-bip39-js-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-js",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-jvm/1.0.2-SNAPSHOT/kotlin-bip39-jvm-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-jvm",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-jvm/1.0.2-SNAPSHOT/kotlin-bip39-jvm-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-jvm",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "linuxX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "linux_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-linuxx64/1.0.2-SNAPSHOT/kotlin-bip39-linuxx64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-linuxx64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "macosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-macosarm64/1.0.2-SNAPSHOT/kotlin-bip39-macosarm64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-macosarm64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "macosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-macosarm64/1.0.2-SNAPSHOT/kotlin-bip39-macosarm64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-macosarm64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "macosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "macos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-macosx64/1.0.2-SNAPSHOT/kotlin-bip39-macosx64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-macosx64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "macosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "macos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-macosx64/1.0.2-SNAPSHOT/kotlin-bip39-macosx64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-macosx64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "mingwX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "mingw_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-mingwx64/1.0.2-SNAPSHOT/kotlin-bip39-mingwx64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-mingwx64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "tvosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "tvos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-tvosarm64/1.0.2-SNAPSHOT/kotlin-bip39-tvosarm64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-tvosarm64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "tvosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "tvos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-tvosarm64/1.0.2-SNAPSHOT/kotlin-bip39-tvosarm64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-tvosarm64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "tvosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "tvos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-tvossimulatorarm64/1.0.2-SNAPSHOT/kotlin-bip39-tvossimulatorarm64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-tvossimulatorarm64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "tvosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "tvos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-tvossimulatorarm64/1.0.2-SNAPSHOT/kotlin-bip39-tvossimulatorarm64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-tvossimulatorarm64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "tvosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "tvos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-tvosx64/1.0.2-SNAPSHOT/kotlin-bip39-tvosx64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-tvosx64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "tvosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "tvos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-tvosx64/1.0.2-SNAPSHOT/kotlin-bip39-tvosx64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-tvosx64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "watchosArm32ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-watchosarm32/1.0.2-SNAPSHOT/kotlin-bip39-watchosarm32-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-watchosarm32",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "watchosArm32MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-watchosarm32/1.0.2-SNAPSHOT/kotlin-bip39-watchosarm32-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-watchosarm32",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "watchosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-watchosarm64/1.0.2-SNAPSHOT/kotlin-bip39-watchosarm64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-watchosarm64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "watchosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-watchosarm64/1.0.2-SNAPSHOT/kotlin-bip39-watchosarm64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-watchosarm64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "watchosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-watchossimulatorarm64/1.0.2-SNAPSHOT/kotlin-bip39-watchossimulatorarm64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-watchossimulatorarm64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "watchosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-watchossimulatorarm64/1.0.2-SNAPSHOT/kotlin-bip39-watchossimulatorarm64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-watchossimulatorarm64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "watchosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-watchosx64/1.0.2-SNAPSHOT/kotlin-bip39-watchosx64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-watchosx64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "watchosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-watchosx64/1.0.2-SNAPSHOT/kotlin-bip39-watchosx64-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-watchosx64",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "watchosX86ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_x86",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-watchosx86/1.0.2-SNAPSHOT/kotlin-bip39-watchosx86-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-watchosx86",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    },
+    {
+      "name": "watchosX86MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_x86",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../kotlin-bip39-watchosx86/1.0.2-SNAPSHOT/kotlin-bip39-watchosx86-1.0.2-SNAPSHOT.module",
+        "group": "cash.z.ecc.android",
+        "module": "kotlin-bip39-watchosx86",
+        "version": "1.0.2-SNAPSHOT"
+      }
+    }
+  ]
+}

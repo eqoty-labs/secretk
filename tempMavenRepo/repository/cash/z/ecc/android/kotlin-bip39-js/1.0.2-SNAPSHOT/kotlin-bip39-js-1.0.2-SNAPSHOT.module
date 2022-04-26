@@ -1,0 +1,105 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../kotlin-bip39/1.0.2-SNAPSHOT/kotlin-bip39-1.0.2-SNAPSHOT.module",
+    "group": "cash.z.ecc.android",
+    "module": "kotlin-bip39",
+    "version": "1.0.2-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "jsApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-js",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "lib-js-1.0.2-SNAPSHOT.klib",
+          "url": "kotlin-bip39-js-1.0.2-SNAPSHOT.klib",
+          "size": 53366,
+          "sha512": "c2528b801e6cd83804674907011fbe3c6c1bcf2670b1e282db9861e6adebe163aed4143c94e07559054ae6a39eb28eaae905c75447d1affe06a3fe1679a4dd25",
+          "sha256": "b5f09ba0aa5ee9caf1b125ce2b8f5a5983e8b63c8450364a86f5514ece1f17f8",
+          "sha1": "b8675aeec1c1ef91b21500e15ca1bcc54c326054",
+          "md5": "0936794eb41c6a6dc110ba4e6d4e34a5"
+        }
+      ]
+    },
+    {
+      "name": "jsRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-js",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "lib-js-1.0.2-SNAPSHOT.klib",
+          "url": "kotlin-bip39-js-1.0.2-SNAPSHOT.klib",
+          "size": 53366,
+          "sha512": "c2528b801e6cd83804674907011fbe3c6c1bcf2670b1e282db9861e6adebe163aed4143c94e07559054ae6a39eb28eaae905c75447d1affe06a3fe1679a4dd25",
+          "sha256": "b5f09ba0aa5ee9caf1b125ce2b8f5a5983e8b63c8450364a86f5514ece1f17f8",
+          "sha1": "b8675aeec1c1ef91b21500e15ca1bcc54c326054",
+          "md5": "0936794eb41c6a6dc110ba4e6d4e34a5"
+        }
+      ]
+    }
+  ]
+}

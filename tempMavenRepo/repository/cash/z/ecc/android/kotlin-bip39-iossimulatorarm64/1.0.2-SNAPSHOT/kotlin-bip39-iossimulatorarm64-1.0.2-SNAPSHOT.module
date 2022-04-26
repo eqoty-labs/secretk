@@ -1,0 +1,93 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../kotlin-bip39/1.0.2-SNAPSHOT/kotlin-bip39-1.0.2-SNAPSHOT.module",
+    "group": "cash.z.ecc.android",
+    "module": "kotlin-bip39",
+    "version": "1.0.2-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "lib.klib",
+          "url": "kotlin-bip39-iossimulatorarm64-1.0.2-SNAPSHOT.klib",
+          "size": 53589,
+          "sha512": "9acf4e9f6978438bac36207e28a5b4a715691c8c6a4993a75dcdcd316cd810a8ee0e427fafaa097b35402904522ec2c5ed449eeecaa6f88b475121f12610ded6",
+          "sha256": "74f74b8ab9cdb91bb9f97efb6fe2559cc43b0fe860190de1c789a751967aaa3b",
+          "sha1": "92603ed226050421c46eddbac3f4fb314df98e7c",
+          "md5": "e9d608829fef4a097b2363ce1e963f6d"
+        }
+      ]
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "lib-iossimulatorarm64-1.0.2-SNAPSHOT-metadata.jar",
+          "url": "kotlin-bip39-iossimulatorarm64-1.0.2-SNAPSHOT-metadata.jar",
+          "size": 261,
+          "sha512": "5b57ca4cff1399d67bc76a3b89b3aff3c5e32fcb72299cb511548b185b4761dd62b558ae062566256b10aac80a930c491544f3243e6f249204705eec04f1bef7",
+          "sha256": "4855882e4b2a4163d80f1138505921ae411faa133b70a75ea1c0d8d558e6785d",
+          "sha1": "19c0812f0c54348f1f5ac384c11755a28c606849",
+          "md5": "5244351a9ded08095cf0632ab6ce39e3"
+        }
+      ]
+    }
+  ]
+}

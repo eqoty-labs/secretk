@@ -1,0 +1,91 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../ripemd160/unspecified/ripemd160-unspecified.module",
+    "group": "KHash",
+    "module": "ripemd160",
+    "version": "unspecified",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ripemd160-jvm.jar",
+          "url": "ripemd160-jvm-unspecified.jar",
+          "size": 8271,
+          "sha512": "b80f7e3b95c7965fca0f6ac2b6c947e80c4e63fe42f975b1781dcb5d8a566019402541dec3f68dbfb78f2d2b11346926a3c8a15c86f3e0d892aee604e6dfd9fb",
+          "sha256": "ceec28ce592436ef9a98d643e1b16f1b39cba602c9135b5f712ad06fda4c5153",
+          "sha1": "3e90bb57b515dce1cdf05744b4baa280184d2d5d",
+          "md5": "d7f59e031cc68d5f24a9d67be9d59224"
+        }
+      ]
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ripemd160-jvm.jar",
+          "url": "ripemd160-jvm-unspecified.jar",
+          "size": 8271,
+          "sha512": "b80f7e3b95c7965fca0f6ac2b6c947e80c4e63fe42f975b1781dcb5d8a566019402541dec3f68dbfb78f2d2b11346926a3c8a15c86f3e0d892aee604e6dfd9fb",
+          "sha256": "ceec28ce592436ef9a98d643e1b16f1b39cba602c9135b5f712ad06fda4c5153",
+          "sha1": "3e90bb57b515dce1cdf05744b4baa280184d2d5d",
+          "md5": "d7f59e031cc68d5f24a9d67be9d59224"
+        }
+      ]
+    }
+  ]
+}

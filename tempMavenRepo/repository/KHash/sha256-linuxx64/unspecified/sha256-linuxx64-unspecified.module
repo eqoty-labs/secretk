@@ -1,0 +1,49 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../sha256/unspecified/sha256-unspecified.module",
+    "group": "KHash",
+    "module": "sha256",
+    "version": "unspecified",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "linuxX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "linux_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sha256.klib",
+          "url": "sha256-linuxx64-unspecified.klib",
+          "size": 19381,
+          "sha512": "b94fa277d8ad160ec9f33096a0dc0301243252d95e5533e6fce37b7490a3d9d4f8cf3b073281ca3a584593dd0690330af9fcf5bf6f5562348869c10692b602bc",
+          "sha256": "07035bd3413c524fa034c590a35a2216726e59f2786544cb51e02fd07eaaa827",
+          "sha1": "3af38e61fc59e4a52b86af4b97cf30e33340f3b7",
+          "md5": "605d4dea582e918e01184d327e08e370"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../sha256/unspecified/sha256-unspecified.module",
+    "group": "KHash",
+    "module": "sha256",
+    "version": "unspecified",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "tvosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "tvos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sha256.klib",
+          "url": "sha256-tvossimulatorarm64-unspecified.klib",
+          "size": 19475,
+          "sha512": "ed1110ed78bf016d19b65926b69fd9a77e874bc531614236c17060e13de89bee4b2fae77b9f409cc229fda62f63841ee9a74e0361f45d385dfa6e2a8a864559f",
+          "sha256": "e93b9cd3d5b196e07906c67d3ba659f6bda76988031b8da32de45637595ed94b",
+          "sha1": "032b15b84964bf4b89d2da92a3e730c75c26175b",
+          "md5": "75700fab4b6a9bc57722f0a711998275"
+        }
+      ]
+    },
+    {
+      "name": "tvosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "tvos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sha256-tvossimulatorarm64-metadata.jar",
+          "url": "sha256-tvossimulatorarm64-unspecified-metadata.jar",
+          "size": 261,
+          "sha512": "9bb70273146dc9c9cf088fcd7bce9677e66a4356b61381efcb3d9bef6b2818d509772060a3b3f69cf49dac68a801d086f953d50019f8e803d9b7a720a5d8bdc7",
+          "sha256": "4023299732f29f75d61845166190fda276bdbbc38c985a693bba35d9888cddb7",
+          "sha1": "9df58aa1d633f5dc078352a12920a3f07abf3468",
+          "md5": "e2b0c7c49df16119f833b0982ed991fb"
+        }
+      ]
+    }
+  ]
+}

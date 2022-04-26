@@ -1,0 +1,91 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../kotlin-bip39/1.0.2-SNAPSHOT/kotlin-bip39-1.0.2-SNAPSHOT.module",
+    "group": "cash.z.ecc.android",
+    "module": "kotlin-bip39",
+    "version": "1.0.2-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "lib-jvm-1.0.2-SNAPSHOT.jar",
+          "url": "kotlin-bip39-jvm-1.0.2-SNAPSHOT.jar",
+          "size": 45417,
+          "sha512": "18ee75631bfe19ccc0cd14e7b57ecbba23c134dfcb1f228ab3379585857103b6b651223ce9409d65b8881e9dc9e67659bea02ccb267a78e0ad06c2dafcea4554",
+          "sha256": "c53f9ae32b5c69cd60904f41ac56fcdaea0ac41e82de9b0f515044de90be5add",
+          "sha1": "2991ac04113b21f71295918e1ad79e6023e81047",
+          "md5": "e507cf8e20aa07362bea61f1c44f0e61"
+        }
+      ]
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "lib-jvm-1.0.2-SNAPSHOT.jar",
+          "url": "kotlin-bip39-jvm-1.0.2-SNAPSHOT.jar",
+          "size": 45417,
+          "sha512": "18ee75631bfe19ccc0cd14e7b57ecbba23c134dfcb1f228ab3379585857103b6b651223ce9409d65b8881e9dc9e67659bea02ccb267a78e0ad06c2dafcea4554",
+          "sha256": "c53f9ae32b5c69cd60904f41ac56fcdaea0ac41e82de9b0f515044de90be5add",
+          "sha1": "2991ac04113b21f71295918e1ad79e6023e81047",
+          "md5": "e507cf8e20aa07362bea61f1c44f0e61"
+        }
+      ]
+    }
+  ]
+}

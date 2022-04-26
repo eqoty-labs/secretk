@@ -1,0 +1,79 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../ripemd160/unspecified/ripemd160-unspecified.module",
+    "group": "KHash",
+    "module": "ripemd160",
+    "version": "unspecified",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosArm32ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ripemd160.klib",
+          "url": "ripemd160-iosarm32-unspecified.klib",
+          "size": 38251,
+          "sha512": "fb533ae26fb3d328f90ca24969ec6032ab457c81002c48043066a10c0bcf12001fc4ba00673bd98a82b257010ab17d1866d99cb53b5a845e3a432a9ab5131e88",
+          "sha256": "57b28fdc64c3885c97eb61bec807672c0f7bbb0be430953b75bcfbdaa2185555",
+          "sha1": "b6bdaab3423022c4594caa360f2fbbd633e4ae23",
+          "md5": "7c183e1c9bb770c8417d809c6ea77647"
+        }
+      ]
+    },
+    {
+      "name": "iosArm32MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ripemd160-iosarm32-metadata.jar",
+          "url": "ripemd160-iosarm32-unspecified-metadata.jar",
+          "size": 261,
+          "sha512": "f7384db1400a7f610d96d99a7dafde081f3ab4fe45b92bb6847c66b267a167a6b79052b83feddfdb1353f4dc37578a11aa054d7448de127232933d5f8ba49e9d",
+          "sha256": "99a96a6bb1be481352b379c42cdb6541d3f1adab7a016f195fb0edb2950b2125",
+          "sha1": "891b737ec2c2fa2054110755d125c37b71d3155d",
+          "md5": "b786c55926432e48a1325936f048808e"
+        }
+      ]
+    }
+  ]
+}

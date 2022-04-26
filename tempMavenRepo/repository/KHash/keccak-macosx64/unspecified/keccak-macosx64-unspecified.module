@@ -1,0 +1,93 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../keccak/unspecified/keccak-unspecified.module",
+    "group": "KHash",
+    "module": "keccak",
+    "version": "unspecified",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "macosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "macos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "com.ionspin.kotlin",
+          "module": "bignum",
+          "version": {
+            "requires": "0.3.4"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "keccak.klib",
+          "url": "keccak-macosx64-unspecified.klib",
+          "size": 22094,
+          "sha512": "edab8ca4b588293aae68954c0577646e5395947c4b99ad37345d681e6e8f19c9fb4aa4507747ae575a837181b0c382030934c4d131d79da231bb6010681dd679",
+          "sha256": "1b8989100edd6fea6078b7945138689a478dcc6aadc415623cf05791d4d5af2c",
+          "sha1": "e19f1210ab5356d68190545a26294c9b6d0a1952",
+          "md5": "e173837c35e63d66672299135faa02e7"
+        }
+      ]
+    },
+    {
+      "name": "macosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "macos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "com.ionspin.kotlin",
+          "module": "bignum",
+          "version": {
+            "requires": "0.3.4"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "keccak-macosx64-metadata.jar",
+          "url": "keccak-macosx64-unspecified-metadata.jar",
+          "size": 261,
+          "sha512": "de7c12646a4023afd5d454beac09ec0cb3aca5b48b4c6d6c9e8e2f1572a1dc83894d05f93ca6424c276805e0655cfcff50f4f836851f0cd04b2be8be3eb63409",
+          "sha256": "e8d373a823ffdd56180e41c6a9304edba958e6f4afec913e8cdf5587791db496",
+          "sha1": "42c5f7e72ae5084c0db87a8d37e460b28bae8271",
+          "md5": "e3d1a6767a85f1abcef97975f64c1e65"
+        }
+      ]
+    }
+  ]
+}

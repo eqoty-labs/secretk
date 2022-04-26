@@ -9,7 +9,7 @@ group = "io.eqoty"
 version = "1.0-SNAPSHOT"
 
 repositories {
-    mavenLocal()
+    maven("./tempMavenRepo/repository")
     mavenCentral()
     maven("https://oss.sonatype.org/content/repositories/snapshots")
 }

@@ -1,0 +1,93 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../keccak/unspecified/keccak-unspecified.module",
+    "group": "KHash",
+    "module": "keccak",
+    "version": "unspecified",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "tvosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "tvos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "com.ionspin.kotlin",
+          "module": "bignum",
+          "version": {
+            "requires": "0.3.4"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "keccak.klib",
+          "url": "keccak-tvosarm64-unspecified.klib",
+          "size": 22102,
+          "sha512": "aa18a05d7dee17967d1d62e84aaf07542731334067c69e7648b74d186fdb310032aaca69aaea25a68f463fb5c0eefdf4da5a9b0f14cf5475b92ba6b08ad81293",
+          "sha256": "30cb66788f8c362bf8c21f23ca379e8f5e37f79ccf97167b1cc946de0c28fda0",
+          "sha1": "ef69fe9b78763fd0a35e7b008406d3ceae3fce8a",
+          "md5": "587badcc7cc28a8d13aa6ac6bcb076cf"
+        }
+      ]
+    },
+    {
+      "name": "tvosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "tvos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "com.ionspin.kotlin",
+          "module": "bignum",
+          "version": {
+            "requires": "0.3.4"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "keccak-tvosarm64-metadata.jar",
+          "url": "keccak-tvosarm64-unspecified-metadata.jar",
+          "size": 261,
+          "sha512": "de7c12646a4023afd5d454beac09ec0cb3aca5b48b4c6d6c9e8e2f1572a1dc83894d05f93ca6424c276805e0655cfcff50f4f836851f0cd04b2be8be3eb63409",
+          "sha256": "e8d373a823ffdd56180e41c6a9304edba958e6f4afec913e8cdf5587791db496",
+          "sha1": "42c5f7e72ae5084c0db87a8d37e460b28bae8271",
+          "md5": "e3d1a6767a85f1abcef97975f64c1e65"
+        }
+      ]
+    }
+  ]
+}

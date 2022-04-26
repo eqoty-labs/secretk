@@ -1,0 +1,163 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../sha512/unspecified/sha512-unspecified.module",
+    "group": "KHash",
+    "module": "sha512",
+    "version": "unspecified",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "jsLegacyApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.js.compiler": "legacy",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-js",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sha512-jslegacy.jar",
+          "url": "sha512-js-unspecified.jar",
+          "size": 68658,
+          "sha512": "5986afdca3835bcd605162e44efcb821f3a36e6d17fc2a6900df2d7018fb65c12107e97b192b5ca08372c282440f90c0afeeb3d00d504fab1ed953cc9476ab81",
+          "sha256": "5079f629a37074155ad2015a41fad79eee0c08a434484dc31ead97f992fdb9f2",
+          "sha1": "55ffcd586a98423cf02c53f16ea4a7015ca4bef8",
+          "md5": "6b741510063ab3de1053148f9ec5be51"
+        }
+      ]
+    },
+    {
+      "name": "jsLegacyRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.js.compiler": "legacy",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-js",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sha512-jslegacy.jar",
+          "url": "sha512-js-unspecified.jar",
+          "size": 68658,
+          "sha512": "5986afdca3835bcd605162e44efcb821f3a36e6d17fc2a6900df2d7018fb65c12107e97b192b5ca08372c282440f90c0afeeb3d00d504fab1ed953cc9476ab81",
+          "sha256": "5079f629a37074155ad2015a41fad79eee0c08a434484dc31ead97f992fdb9f2",
+          "sha1": "55ffcd586a98423cf02c53f16ea4a7015ca4bef8",
+          "md5": "6b741510063ab3de1053148f9ec5be51"
+        }
+      ]
+    },
+    {
+      "name": "jsIrApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-js",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sha512-jsir.klib",
+          "url": "sha512-js-unspecified.klib",
+          "size": 17860,
+          "sha512": "83d37498dc59df2a17cb046cd08adfe61428fd4915a9a75d5329f41c31d80d2b33a75e0ed51276c67dad110035da429c270eb27f9f0c728db4ad0c72b7985050",
+          "sha256": "e5f706dfec9a072250687c7254d109790bb3093ae3711e53c78cb0c3bdc0d2ba",
+          "sha1": "1a4ffe1fe1491a6e97d277f5bc66c42b1cb7c6e3",
+          "md5": "b39e7bb559bbea4913d82d10372cf439"
+        }
+      ]
+    },
+    {
+      "name": "jsIrRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-js",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sha512-jsir.klib",
+          "url": "sha512-js-unspecified.klib",
+          "size": 17860,
+          "sha512": "83d37498dc59df2a17cb046cd08adfe61428fd4915a9a75d5329f41c31d80d2b33a75e0ed51276c67dad110035da429c270eb27f9f0c728db4ad0c72b7985050",
+          "sha256": "e5f706dfec9a072250687c7254d109790bb3093ae3711e53c78cb0c3bdc0d2ba",
+          "sha1": "1a4ffe1fe1491a6e97d277f5bc66c42b1cb7c6e3",
+          "md5": "b39e7bb559bbea4913d82d10372cf439"
+        }
+      ]
+    }
+  ]
+}

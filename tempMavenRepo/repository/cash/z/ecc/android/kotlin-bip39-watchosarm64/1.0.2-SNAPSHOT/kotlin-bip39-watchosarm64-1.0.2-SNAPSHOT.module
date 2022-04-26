@@ -1,0 +1,93 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../kotlin-bip39/1.0.2-SNAPSHOT/kotlin-bip39-1.0.2-SNAPSHOT.module",
+    "group": "cash.z.ecc.android",
+    "module": "kotlin-bip39",
+    "version": "1.0.2-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "watchosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "lib.klib",
+          "url": "kotlin-bip39-watchosarm64-1.0.2-SNAPSHOT.klib",
+          "size": 53483,
+          "sha512": "7898fa26eefeaf488f0bcc911decca5653202abac8d73d4ca853d755a149c70019fab39dfa3f9708e9b6fc00047fe1640889cb1fc0d5d5d26c2f6cedccf5326e",
+          "sha256": "a3f2a9a98eba5195f25ab5548342b6bb5052c95b10374e4b15f673e1038d0212",
+          "sha1": "deb187dccf47ae18b1ca9ee2ce21a22534efdc99",
+          "md5": "350b3e9698bdbc7cc5bb319d63987336"
+        }
+      ]
+    },
+    {
+      "name": "watchosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "lib-watchosarm64-1.0.2-SNAPSHOT-metadata.jar",
+          "url": "kotlin-bip39-watchosarm64-1.0.2-SNAPSHOT-metadata.jar",
+          "size": 261,
+          "sha512": "c05676a3bdb7eb832a1137b2b26d4637c229c0d83a297d393ef6cce795b5dd06d9c2a8f30911275d10d146f10aec0da9616f7a693e6664a56db6f6e1ccd15695",
+          "sha256": "07bebc3b7a570c263e7523912f2fb6bd3fe119e8bcccb81e8f16d5765eea52c7",
+          "sha1": "897e1b7162068975bfd3777e10506378c9db4328",
+          "md5": "59a24947a047d5216c4ec01d9fbd6319"
+        }
+      ]
+    }
+  ]
+}

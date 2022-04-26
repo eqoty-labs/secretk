@@ -1,0 +1,79 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../ripemd160/unspecified/ripemd160-unspecified.module",
+    "group": "KHash",
+    "module": "ripemd160",
+    "version": "unspecified",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "watchosArm32ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ripemd160.klib",
+          "url": "ripemd160-watchosarm32-unspecified.klib",
+          "size": 38287,
+          "sha512": "c18c261b2a73451ca884b8110e21856daf9462f989d3c09e4969a9ddc707183edc108f798f410111f8adf2ec2d3ee444f3a51a6066faf03a74c415f44b965e4a",
+          "sha256": "096480bb39b891a7795e2164a655e7ebfa99e4bc907b455729daad4790aa792d",
+          "sha1": "983ede72fa88f0dfc66ccf94ec5514351bf90613",
+          "md5": "951f3a86443cc9e2bb1b079a0204ec6e"
+        }
+      ]
+    },
+    {
+      "name": "watchosArm32MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ripemd160-watchosarm32-metadata.jar",
+          "url": "ripemd160-watchosarm32-unspecified-metadata.jar",
+          "size": 261,
+          "sha512": "f7384db1400a7f610d96d99a7dafde081f3ab4fe45b92bb6847c66b267a167a6b79052b83feddfdb1353f4dc37578a11aa054d7448de127232933d5f8ba49e9d",
+          "sha256": "99a96a6bb1be481352b379c42cdb6541d3f1adab7a016f195fb0edb2950b2125",
+          "sha1": "891b737ec2c2fa2054110755d125c37b71d3155d",
+          "md5": "b786c55926432e48a1325936f048808e"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../keccak/unspecified/keccak-unspecified.module",
+    "group": "KHash",
+    "module": "keccak",
+    "version": "unspecified",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "watchosX86ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_x86",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "com.ionspin.kotlin",
+          "module": "bignum",
+          "version": {
+            "requires": "0.3.4"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "keccak.klib",
+          "url": "keccak-watchosx86-unspecified.klib",
+          "size": 22112,
+          "sha512": "fb344826722bc75740b3f50af558570d712b9e6d8059c97d6e09c4825bccaaafafebbfe5ee684c70069731f0e5b9647000537d3c6316640f7b50cf7b5a4107a4",
+          "sha256": "3796064521749be354b123610bae5d57f98474783ab410c68e803589f7d3cfb7",
+          "sha1": "3740c9892c6461f196e6be9283d3f23878207dab",
+          "md5": "7ed4bc3b5ca14c07270cc45c0ae204f6"
+        }
+      ]
+    },
+    {
+      "name": "watchosX86MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_x86",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "com.ionspin.kotlin",
+          "module": "bignum",
+          "version": {
+            "requires": "0.3.4"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "keccak-watchosx86-metadata.jar",
+          "url": "keccak-watchosx86-unspecified-metadata.jar",
+          "size": 261,
+          "sha512": "de7c12646a4023afd5d454beac09ec0cb3aca5b48b4c6d6c9e8e2f1572a1dc83894d05f93ca6424c276805e0655cfcff50f4f836851f0cd04b2be8be3eb63409",
+          "sha256": "e8d373a823ffdd56180e41c6a9304edba958e6f4afec913e8cdf5587791db496",
+          "sha1": "42c5f7e72ae5084c0db87a8d37e460b28bae8271",
+          "md5": "e3d1a6767a85f1abcef97975f64c1e65"
+        }
+      ]
+    }
+  ]
+}
