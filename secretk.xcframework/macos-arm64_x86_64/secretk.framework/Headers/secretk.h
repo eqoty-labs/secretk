@@ -2836,7 +2836,8 @@ __attribute__((swift_name("TxRawProto.Companion")))
 @end;
 
 @interface SecretkJsonElement (Extensions)
-- (NSString *)toString __attribute__((swift_name("toString()")));
+- (NSString *)toArrayString __attribute__((swift_name("toArrayString()")));
+- (NSString *)toObjectString __attribute__((swift_name("toObjectString()")));
 @property (readonly) NSArray<SecretkJsonElement *> *jsonArray __attribute__((swift_name("jsonArray")));
 @property (readonly) SecretkJsonNull *jsonNull __attribute__((swift_name("jsonNull")));
 @property (readonly) NSDictionary<NSString *, SecretkJsonElement *> *jsonObject __attribute__((swift_name("jsonObject")));
