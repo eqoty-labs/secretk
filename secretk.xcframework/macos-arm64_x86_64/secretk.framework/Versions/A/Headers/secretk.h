@@ -2379,7 +2379,7 @@ __attribute__((swift_name("SigningCosmWasmClient")))
  @note This method converts instances of CancellationException to errors.
  Other uncaught Kotlin exceptions are fatal.
 */
-- (void)executeContractAddress:(NSString *)contractAddress msg:(SecretkMsgExecuteContract *)msg memo:(NSString *)memo transferAmount:(NSArray<SecretkCoin *> * _Nullable)transferAmount fee:(SecretkStdFee *)fee _contractCodeHash:(NSString * _Nullable)_contractCodeHash completionHandler:(void (^)(SecretkExecuteResult * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("execute(contractAddress:msg:memo:transferAmount:fee:_contractCodeHash:completionHandler:)")));
+- (void)executeContractAddress:(NSString *)contractAddress msg:(SecretkMsgExecuteContract *)msg memo:(NSString *)memo transferAmount:(NSArray<SecretkCoin *> * _Nullable)transferAmount fee:(SecretkStdFee * _Nullable)fee contractCodeHash:(NSString * _Nullable)contractCodeHash completionHandler:(void (^)(SecretkExecuteResult * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("execute(contractAddress:msg:memo:transferAmount:fee:contractCodeHash:completionHandler:)")));
 @property (readonly) NSString *apiUrl __attribute__((swift_name("apiUrl")));
 @property (readonly) SecretkFeeTable *fees __attribute__((swift_name("fees")));
 @property (readonly) SecretkSecp256k1Pen *pen __attribute__((swift_name("pen")));
@@ -2836,6 +2836,7 @@ __attribute__((swift_name("TxRawProto.Companion")))
 @end;
 
 @interface SecretkJsonElement (Extensions)
+- (NSString *)toString __attribute__((swift_name("toString()")));
 @property (readonly) NSArray<SecretkJsonElement *> *jsonArray __attribute__((swift_name("jsonArray")));
 @property (readonly) SecretkJsonNull *jsonNull __attribute__((swift_name("jsonNull")));
 @property (readonly) NSDictionary<NSString *, SecretkJsonElement *> *jsonObject __attribute__((swift_name("jsonObject")));

@@ -87,7 +87,7 @@ class ClientTests {
             }
             """
 
-        val numTokens = client.queryContractSmart(contractAddress, numTokensQuery);
+        val numTokens = client.queryContractSmart(contractAddress, numTokensQuery)
         println("Num Tokens Response: $numTokens")
     }
 
