@@ -54,7 +54,8 @@ kotlin {
     darwinTargets.forEach{
         it.apply {
             binaries.framework {
-               // export("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
+                // include json classes in framework
+                export("org.jetbrains.kotlinx:kotlinx-serialization-json:_")
             }
         }
     }
@@ -71,7 +72,8 @@ kotlin {
                 implementation("co.touchlab:kermit:_")
                 implementation("io.ktor:ktor-client-core:_")
                 implementation("io.ktor:ktor-client-json:_")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:_")
+                // api notation needed to make json classes usable by native libs
+                api("org.jetbrains.kotlinx:kotlinx-serialization-json:_")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:_")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:_")
                 implementation("io.ktor:ktor-client-content-negotiation:_")
@@ -120,8 +122,6 @@ kotlin {
             dependsOn(nativeMain)
             dependencies {
                 implementation("io.ktor:ktor-client-darwin:_")
-                // make json library available for use by swift package
-                api("org.jetbrains.kotlinx:kotlinx-serialization-json:_")
             }
         }
         val macosX64Main by getting {
