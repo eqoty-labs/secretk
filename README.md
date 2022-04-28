@@ -46,8 +46,8 @@ val response = client.execute(
     ),
     _contractCodeHash = "" // optional but faster if you include
 )
-println("viewing key response: ${response.data.decodeToString()}")
-val viewingKey = json.parseToJsonElement(response.data.decodeToString())
+println("viewing key response: ${response.data}")
+val viewingKey = response.data
     .jsonObject["viewing_key"]!!
     .jsonObject["key"]!!.jsonPrimitive.content
 println("Querying Num Tokens")
