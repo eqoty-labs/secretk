@@ -30,25 +30,33 @@ kotlin {
         }
         binaries.executable()
     }
+    val darwinTargets = mutableListOf<KotlinNativeTarget>()
     macosX64{
-        binaries.framework()
+        darwinTargets.add(this)
         setupCinterop(Target.MacosX64)
     }
     macosArm64{
-        binaries.framework()
+        darwinTargets.add(this)
         setupCinterop(Target.MacosArm64)
     }
     iosX64{
-        binaries.framework()
+        darwinTargets.add(this)
         setupCinterop(Target.IosSimulatorX64)
     }
     iosArm64{
-        binaries.framework()
+        darwinTargets.add(this)
         setupCinterop(Target.IosArm64)
     }
     iosSimulatorArm64{
-        binaries.framework()
+        darwinTargets.add(this)
         setupCinterop(Target.IosSimulatorArm64)
+    }
+    darwinTargets.forEach{
+        it.apply {
+            binaries.framework {
+               // export("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
+            }
+        }
     }
 //    linuxX64()
 
@@ -112,6 +120,8 @@ kotlin {
             dependsOn(nativeMain)
             dependencies {
                 implementation("io.ktor:ktor-client-darwin:_")
+                // make json library available for use by swift package
+                api("org.jetbrains.kotlinx:kotlinx-serialization-json:_")
             }
         }
         val macosX64Main by getting {
