@@ -1649,15 +1649,15 @@ __attribute__((swift_name("SignJsonCompanion")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ExecuteResult")))
 @interface SecretkExecuteResult : SecretkBase
-- (instancetype)initWithLogs:(NSArray<SecretkLog *> *)logs transactionHash:(NSString *)transactionHash data:(id)data __attribute__((swift_name("init(logs:transactionHash:data:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithLogs:(NSArray<SecretkLog *> *)logs transactionHash:(NSString *)transactionHash data:(SecretkJsonElement *)data __attribute__((swift_name("init(logs:transactionHash:data:)"))) __attribute__((objc_designated_initializer));
 - (NSArray<SecretkLog *> *)component1 __attribute__((swift_name("component1()")));
 - (NSString *)component2 __attribute__((swift_name("component2()")));
-- (id)component3 __attribute__((swift_name("component3()")));
-- (SecretkExecuteResult *)doCopyLogs:(NSArray<SecretkLog *> *)logs transactionHash:(NSString *)transactionHash data:(id)data __attribute__((swift_name("doCopy(logs:transactionHash:data:)")));
+- (SecretkJsonElement *)component3 __attribute__((swift_name("component3()")));
+- (SecretkExecuteResult *)doCopyLogs:(NSArray<SecretkLog *> *)logs transactionHash:(NSString *)transactionHash data:(SecretkJsonElement *)data __attribute__((swift_name("doCopy(logs:transactionHash:data:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) id data __attribute__((swift_name("data")));
+@property (readonly) SecretkJsonElement *data __attribute__((swift_name("data")));
 @property (readonly) NSArray<SecretkLog *> *logs __attribute__((swift_name("logs")));
 @property (readonly) NSString *transactionHash __attribute__((swift_name("transactionHash")));
 @end;
@@ -2365,7 +2365,7 @@ __attribute__((swift_name("CosmWasmClient")))
  @note This method converts instances of CancellationException to errors.
  Other uncaught Kotlin exceptions are fatal.
 */
-- (void)queryContractSmartContractAddress:(NSString *)contractAddress queryMsg:(NSString *)queryMsg contractCodeHash:(NSString * _Nullable)contractCodeHash completionHandler:(void (^)(NSDictionary<NSString *, SecretkJsonElement *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("queryContractSmart(contractAddress:queryMsg:contractCodeHash:completionHandler:)")));
+- (void)queryContractSmartContractAddress:(NSString *)contractAddress queryMsg:(NSString *)queryMsg contractCodeHash:(NSString * _Nullable)contractCodeHash completionHandler:(void (^)(SecretkJsonElement * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("queryContractSmart(contractAddress:queryMsg:contractCodeHash:completionHandler:)")));
 @property NSString * _Nullable anyValidAddress __attribute__((swift_name("anyValidAddress")));
 @end;
 
