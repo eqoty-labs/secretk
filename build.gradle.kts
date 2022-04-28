@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     kotlin("multiplatform") version "1.6.21"
     kotlin("plugin.serialization") version "1.6.21"
-    id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
+    id("io.github.luca992.multiplatform-swiftpackage") version "2.0.4-arm64"
 }
 
 group = "io.eqoty"
@@ -50,7 +50,6 @@ kotlin {
         binaries.framework()
         setupCinterop(Target.IosSimulatorArm64)
     }
-
 //    linuxX64()
 
     sourceSets {
@@ -138,6 +137,7 @@ kotlin {
 
 multiplatformSwiftPackage {
     outputDirectory(projectDir)
+    packageName(rootProject.name)
     swiftToolsVersion("5.3")
     targetPlatforms {
         iOS { v("13") }
