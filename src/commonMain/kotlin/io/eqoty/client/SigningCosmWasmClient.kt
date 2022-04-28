@@ -128,16 +128,17 @@ private constructor(
         msg: MsgExecuteContract,
         memo : String = "",
         transferAmount: List<Coin>? = null,
-        fee: StdFee = fees.exec!!,
-        _contractCodeHash: String? = null,
+        fee: StdFee? = null,
+        contractCodeHash: String? = null,
     ): ExecuteResult {
-
-
-        val contractCodeHash = if (_contractCodeHash == null) {
+        @Suppress("NAME_SHADOWING")
+        val fee = fee ?: fees.exec!!
+        @Suppress("NAME_SHADOWING")
+        val contractCodeHash = if (contractCodeHash == null) {
             this.restClient.getCodeHashByContractAddr(contractAddress)
         } else {
-            this.restClient.codeHashCache[contractAddress] = _contractCodeHash
-            _contractCodeHash
+            this.restClient.codeHashCache[contractAddress] = contractCodeHash
+            contractCodeHash
         }
 
         val encryptionNonces= mutableListOf<UByteArray>()
