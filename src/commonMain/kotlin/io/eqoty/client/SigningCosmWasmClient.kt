@@ -232,7 +232,7 @@ private constructor(
         return ExecuteResult(
             logs = result.logs,
             transactionHash = result.transactionHash,
-            data = Json.parseToJsonElement(data.decodeToString())
+            data = data.decodeToString()
         )
     }
 

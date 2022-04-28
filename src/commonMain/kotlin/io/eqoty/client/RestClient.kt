@@ -16,7 +16,6 @@ import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.modules.SerializersModule
@@ -147,7 +146,7 @@ internal class RestClient(
         contractAddress: String,
         query: JsonObject,
         _contractCodeHash: String? = null,
-    ): JsonElement {
+    ): String {
         val contractCodeHash = if (_contractCodeHash == null) {
             this.getCodeHashByContractAddr(contractAddress)
         } else {
@@ -165,7 +164,7 @@ internal class RestClient(
 
         val path = "/compute/v1beta1/contract/${encodedContractAddress}/smart?query_data=${encoded}"//&${paramString}"
 
-        val responseData : SmartQueryResponse = try {
+        val responseData: SmartQueryResponse = try {
             get(path)
         } catch (err: Throwable) {
 //            const errorMessageRgx = /encrypted: (.+?): (?:instantiate|execute|query) contract failed/g;
@@ -187,11 +186,9 @@ internal class RestClient(
 
             throw err;
         }
-        val decryptedResponse =  enigmautils.decrypt(responseData.data.decodeBase64()!!.toUByteArray(), nonce)
+        val decryptedResponse = enigmautils.decrypt(responseData.data.decodeBase64()!!.toUByteArray(), nonce)
 
-        val decodedResponse = decryptedResponse.decodeToString().decodeBase64()!!.utf8()
-
-        return json.parseToJsonElement(decodedResponse)
+        return decryptedResponse.decodeToString().decodeBase64()!!.utf8()
     }
 
     suspend fun decryptDataField(dataField : UByteArray, nonces: List<UByteArray>): UByteArray {

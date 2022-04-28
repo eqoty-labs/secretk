@@ -94,7 +94,7 @@ open class CosmWasmClient protected constructor(
     contractAddress: String,
     queryMsg: String,
     contractCodeHash: String? = null,
-    ): JsonElement {
+    ): String {
         try {
             return this.restClient.queryContractSmart(
                 contractAddress,
@@ -113,5 +113,4 @@ open class CosmWasmClient protected constructor(
             }
         }
     }
-
 }
