@@ -55,7 +55,7 @@ kotlin {
         it.apply {
             binaries.framework {
                 // include json classes in framework
-                export("org.jetbrains.kotlinx:kotlinx-serialization-json:_")
+//                export("org.jetbrains.kotlinx:kotlinx-serialization-json:_")
             }
         }
     }
@@ -73,7 +73,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-core:_")
                 implementation("io.ktor:ktor-client-json:_")
                 // api notation needed to make json classes usable by native libs
-                api("org.jetbrains.kotlinx:kotlinx-serialization-json:_")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:_")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:_")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:_")
                 implementation("io.ktor:ktor-client-content-negotiation:_")
