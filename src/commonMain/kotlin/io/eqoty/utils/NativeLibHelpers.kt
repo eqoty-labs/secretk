@@ -6,3 +6,5 @@ import kotlinx.serialization.json.jsonObject
 
 fun JsonElement.toObjectString() = jsonObject.toString()
 fun JsonElement.toArrayString() = jsonArray.toString()
+
+fun toString(json: JsonElement) = json.toString()

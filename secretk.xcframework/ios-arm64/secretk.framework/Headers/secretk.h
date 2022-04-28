@@ -2803,6 +2803,12 @@ __attribute__((swift_name("HelpersKt")))
 @end;
 
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("NativeLibHelpersKt")))
+@interface SecretkNativeLibHelpersKt : SecretkBase
++ (NSString *)toStringJson:(SecretkKotlinx_serialization_jsonJsonElement *)json __attribute__((swift_name("toString(json:)")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("UByteArrayUtilsKt")))
 @interface SecretkUByteArrayUtilsKt : SecretkBase
 + (NSString *)decodeToString:(id)receiver __attribute__((swift_name("decodeToString(_:)")));
