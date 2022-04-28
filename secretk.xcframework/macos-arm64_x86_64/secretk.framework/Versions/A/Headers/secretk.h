@@ -2552,6 +2552,7 @@ __attribute__((swift_name("Kotlinx_serialization_jsonJsonElement")))
 @interface SecretkKotlinx_serialization_jsonJsonElement (Extensions)
 - (NSString *)toArrayString __attribute__((swift_name("toArrayString()")));
 - (NSString *)toObjectString __attribute__((swift_name("toObjectString()")));
+- (NSString *)toString __attribute__((swift_name("toString()")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
