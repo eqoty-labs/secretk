@@ -16,6 +16,7 @@ import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.modules.SerializersModule
@@ -146,7 +147,7 @@ internal class RestClient(
         contractAddress: String,
         query: JsonObject,
         _contractCodeHash: String? = null,
-    ): JsonObject {
+    ): JsonElement {
         val contractCodeHash = if (_contractCodeHash == null) {
             this.getCodeHashByContractAddr(contractAddress)
         } else {
@@ -190,7 +191,7 @@ internal class RestClient(
 
         val decodedResponse = decryptedResponse.decodeToString().decodeBase64()!!.utf8()
 
-        return json.parseToJsonElement(decodedResponse).jsonObject
+        return json.parseToJsonElement(decodedResponse)
     }
 
     suspend fun decryptDataField(dataField : UByteArray, nonces: List<UByteArray>): UByteArray {

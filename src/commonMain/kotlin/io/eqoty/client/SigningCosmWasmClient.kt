@@ -12,11 +12,13 @@ import io.eqoty.tx.proto.*
 import io.eqoty.types.*
 import io.eqoty.utils.EncryptionUtils
 import io.eqoty.utils.EnigmaUtils
+import io.eqoty.utils.decodeToString
 import io.eqoty.utils.ensureLibsodiumInitialized
 import io.eqoty.wallet.Secp256k1Pen
 import io.eqoty.wallet.encodeSecp256k1Pubkey
 import kotlinx.serialization.decodeFromByteArray
 import kotlinx.serialization.encodeToByteArray
+import kotlinx.serialization.json.Json
 import kotlinx.serialization.protobuf.ProtoBuf
 import okio.ByteString.Companion.decodeBase64
 import okio.ByteString.Companion.decodeHex
@@ -229,7 +231,7 @@ private constructor(
         return ExecuteResult(
             logs = result.logs,
             transactionHash = result.transactionHash,
-            data = data
+            data = Json.parseToJsonElement(data.decodeToString())
         )
     }
 
