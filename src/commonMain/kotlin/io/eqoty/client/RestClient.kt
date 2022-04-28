@@ -145,7 +145,6 @@ internal class RestClient(
     suspend fun queryContractSmart(
         contractAddress: String,
         query: JsonObject,
-        addedParams: JsonObject? = null,
         _contractCodeHash: String? = null,
     ): JsonObject {
         val contractCodeHash = if (_contractCodeHash == null) {
@@ -160,10 +159,6 @@ internal class RestClient(
         val nonce = encrypted.sliceArray(IntRange(0, 31)).toUByteArray()
 
         val encoded = encrypted.toByteArray().toByteString().base64Url()
-
-        val paramString = if (addedParams != null) {
-            TODO() //URLSearchParams(addedParams).toString();
-        } else ""
 
         val encodedContractAddress = Bech32.decode(contractAddress).data.toByteString().base64Url()
 

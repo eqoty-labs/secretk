@@ -2088,7 +2088,7 @@ __attribute__((swift_name("CosmWasmClient")))
  @note This method converts instances of CancellationException to errors.
  Other uncaught Kotlin exceptions are fatal.
 */
-- (void)queryContractSmartContractAddress:(NSString *)contractAddress queryMsg:(NSString *)queryMsg addedParams:(NSDictionary<NSString *, SecretkKotlinx_serialization_jsonJsonElement *> * _Nullable)addedParams contractCodeHash:(NSString * _Nullable)contractCodeHash completionHandler:(void (^)(NSDictionary<NSString *, SecretkKotlinx_serialization_jsonJsonElement *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("queryContractSmart(contractAddress:queryMsg:addedParams:contractCodeHash:completionHandler:)")));
+- (void)queryContractSmartContractAddress:(NSString *)contractAddress queryMsg:(NSString *)queryMsg contractCodeHash:(NSString * _Nullable)contractCodeHash completionHandler:(void (^)(NSDictionary<NSString *, SecretkKotlinx_serialization_jsonJsonElement *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("queryContractSmart(contractAddress:queryMsg:contractCodeHash:completionHandler:)")));
 @property NSString * _Nullable anyValidAddress __attribute__((swift_name("anyValidAddress")));
 @end;
 

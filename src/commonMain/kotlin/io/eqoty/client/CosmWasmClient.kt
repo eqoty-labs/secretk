@@ -92,14 +92,12 @@ open class CosmWasmClient protected constructor(
     suspend fun queryContractSmart(
     contractAddress: String,
     queryMsg: String,
-    addedParams: JsonObject? = null,
     contractCodeHash: String? = null,
     ): JsonObject {
         try {
             return this.restClient.queryContractSmart(
                 contractAddress,
                 Json.parseToJsonElement(queryMsg).jsonObject,
-                addedParams,
                 contractCodeHash,
             )
         } catch (t: Throwable) {
