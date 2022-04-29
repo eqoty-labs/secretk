@@ -1,9 +1,12 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+import com.vanniktech.maven.publish.MavenPublishBaseExtension
+import com.vanniktech.maven.publish.SonatypeHost
 
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization")
     id("io.github.luca992.multiplatform-swiftpackage")
+    id("com.vanniktech.maven.publish")
 }
 
 group = project.property("GROUP") as String
@@ -206,5 +209,36 @@ tasks.clean {
     doFirst {
         val libAesSivBuild = File("./nativelibs/libaes_siv_build")
         libAesSivBuild.deleteRecursively()
+    }
+}
+
+
+plugins.withId("com.vanniktech.maven.publish.base") {
+    configure<MavenPublishBaseExtension> {
+        publishToMavenCentral(SonatypeHost.S01)
+        signAllPublications()
+        pom {
+            description.set("A Kotlin multiplatform REST client utilizing secret network's gRPC gateway endpoints.")
+            name.set(project.name)
+            url.set("https://github.com/eqoty-labs/secretk/")
+            licenses {
+                license {
+                    name.set("MIT License")
+                    url.set("http://www.opensource.org/licenses/mit-license.php")
+                    distribution.set("repo")
+                }
+            }
+            scm {
+                url.set("https://github.com/eqoty-labs/secretk/")
+                connection.set("scm:git:git://github.com/eqoty-labs/secretk.git")
+                developerConnection.set("scm:git:ssh://git@github.com:eqoty-labs/secretk.git")
+            }
+            developers {
+                developer {
+                    id.set("eqoty")
+                    name.set("eqoty labs")
+                }
+            }
+        }
     }
 }
