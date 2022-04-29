@@ -21,12 +21,11 @@ https://github.com/scrtlabs/SecretNetwork/tree/f01dda32b12e02c6cc2326ea58f8b13bf
 * macOS
 * TODO: linux
 
-##Build Requirements
-* Xcode 13.2.1: https://github.com/leetal/ios-cmake/issues/141 
+### Build Requirements
+* Xcode 13.2.1
   * Note: Xcode 13.3 [build issue](https://github.com/leetal/ios-cmake/issues/141)
 
 ## Setup
-___
 
 ### Gradle
 
@@ -49,7 +48,6 @@ you need to declare your dependency in your `Package.swift`:
 
 
 ## Useage 
-___
 
 ### Kotlin
 
