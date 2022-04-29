@@ -12,11 +12,6 @@ plugins {
 group = project.property("GROUP") as String
 version = project.property("VERSION_NAME") as String
 
-repositories {
-    maven("./tempMavenRepo/repository")
-    mavenCentral()
-    maven("https://oss.sonatype.org/content/repositories/snapshots")
-}
 
 kotlin {
     jvm {
@@ -81,8 +76,8 @@ kotlin {
                 implementation("com.ionspin.kotlin:multiplatform-crypto-libsodium-bindings:_")
                 implementation("com.ionspin.kotlin:bignum:_")
                 implementation("com.ionspin.kotlin:bignum-serialization-kotlinx:_")
-                implementation("cash.z.ecc.android:kotlin-bip39:1.0.2-SNAPSHOT")
-                implementation("KHash:ripemd160:unspecified")
+                implementation("io.github.luca992.cash.z.ecc.android:kotlin-bip39:_")
+                implementation("com.github.luca992.khash:ripemd160:_")
 
             }
         }

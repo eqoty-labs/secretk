@@ -206,6 +206,3 @@ lint/tmp/
 
 .DS_Store
 /nativelibs/libaes_siv_build/
-
-# Do not ignore any files in tempMavenRepo
-!tempMavenRepo/**
