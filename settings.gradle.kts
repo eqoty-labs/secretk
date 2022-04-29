@@ -6,12 +6,22 @@ pluginManagement {
         gradlePluginPortal()
         mavenCentral()
     }
+    val kotlinVersion : String by settings
+    val refreshVersionsVersion: String by settings
+    val multiplatformSwiftPackageVersion: String by settings
+    plugins {
+        // See https://jmfayard.github.io/refreshVersions
+        id("de.fayard.refreshVersions") version refreshVersionsVersion
+        kotlin("multiplatform") version kotlinVersion
+        kotlin("plugin.serialization") version kotlinVersion
+        id("io.github.luca992.multiplatform-swiftpackage") version multiplatformSwiftPackageVersion
+    }
 }
 
 plugins {
-    // See https://jmfayard.github.io/refreshVersions
-    id("de.fayard.refreshVersions") version "0.40.1"
+    id("de.fayard.refreshVersions")
 }
+
 
 refreshVersions { // Optional: configure the plugin
     // ...

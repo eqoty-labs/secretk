@@ -1,13 +1,13 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
-    kotlin("multiplatform") version "1.6.21"
-    kotlin("plugin.serialization") version "1.6.21"
-    id("io.github.luca992.multiplatform-swiftpackage") version "2.0.4-arm64"
+    kotlin("multiplatform")
+    kotlin("plugin.serialization")
+    id("io.github.luca992.multiplatform-swiftpackage")
 }
 
-group = "io.eqoty"
-version = "1.0-SNAPSHOT"
+group = project.property("GROUP") as String
+version = project.property("VERSION_NAME") as String
 
 repositories {
     maven("./tempMavenRepo/repository")
