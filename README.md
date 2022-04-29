@@ -14,7 +14,7 @@ https://github.com/scrtlabs/SecretNetwork/tree/f01dda32b12e02c6cc2326ea58f8b13bf
 * TODO: Contract Execution Gas Estimation
 * TODO: Contract Uploading
 
-### Supported Multiplatform Targets:
+### Supported Targets:
 * JVM
 * js
 * iOS
