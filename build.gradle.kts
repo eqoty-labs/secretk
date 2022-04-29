@@ -212,28 +212,6 @@ plugins.withId("com.vanniktech.maven.publish.base") {
     configure<MavenPublishBaseExtension> {
         publishToMavenCentral(SonatypeHost.S01)
         signAllPublications()
-        pom {
-            description.set("A Kotlin multiplatform REST client utilizing secret network's gRPC gateway endpoints.")
-            name.set(project.name)
-            url.set("https://github.com/eqoty-labs/secretk/")
-            licenses {
-                license {
-                    name.set("MIT License")
-                    url.set("http://www.opensource.org/licenses/mit-license.php")
-                    distribution.set("repo")
-                }
-            }
-            scm {
-                url.set("https://github.com/eqoty-labs/secretk/")
-                connection.set("scm:git:git://github.com/eqoty-labs/secretk.git")
-                developerConnection.set("scm:git:ssh://git@github.com:eqoty-labs/secretk.git")
-            }
-            developers {
-                developer {
-                    id.set("eqoty")
-                    name.set("eqoty labs")
-                }
-            }
-        }
+        pomFromGradleProperties()
     }
 }
