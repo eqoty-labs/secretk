@@ -35,7 +35,7 @@ repositories {
 }
 
 dependencies {
-    implementation("io.eqoty:secretk:0.1.1")
+    implementation("io.eqoty.secretk:client:0.1.1")
 }
 ```
 
