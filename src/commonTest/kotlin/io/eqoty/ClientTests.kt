@@ -1,5 +1,6 @@
 package io.eqoty
 
+import com.ionspin.kotlin.bignum.integer.BigInteger
 import io.eqoty.client.SigningCosmWasmClient
 import io.eqoty.tx.MsgExecuteContract
 import io.eqoty.utils.Address.pubkeyToAddress
@@ -37,8 +38,8 @@ class ClientTests {
      */
     @Test
     fun testProxy() =  runTest {
-        val contractAddress = "secret18vd8fpwxzck93qlwghaj6arh4p7c5n8978vsyg"
-        val grpcGatewayEndpoint = "http://eqoty.duckdns.org:1337"
+        val contractAddress = "secret1trwxlyyayx0wfg6jkkz9d59384h2ypqye59rmc"
+        val grpcGatewayEndpoint = "https://api.pulsar.griptapejs.com"
         val mnemonic = "sand check forward humble between movie language siege where social crumble mouse"
         // A pen is the most basic tool you can think of for signing.
         // This wraps a single keypair and allows for signing.
@@ -56,7 +57,7 @@ class ClientTests {
         val contractInfo = client.queryContractSmart(contractAddress, contractInfoQuery)
         println("nft contract info response: $contractInfo")
 
-        assertEquals("""{"contract_info":{"name":"lucasfirstsnip721","symbol":"luca721"}}""", contractInfo.toString())
+        assertEquals("""{"contract_info":{"name":"lucasfirstsnip721","symbol":"luca721"}}""", contractInfo)
         // Entropy: Secure implementation is left to the client, but it is recommended to use base-64 encoded random bytes and not predictable inputs.
         val entropy = "Another really random thing??"
         val handleMsg = """{ "create_viewing_key": {"entropy": "$entropy"} }"""
@@ -67,9 +68,9 @@ class ClientTests {
                 sender = accAddress,
                 contractAddress = contractAddress,
                 msg = handleMsg,
-                //codeHash = "f7711ac771565a1cb0db516a63a63742e11651516b8dfcf19ecd08aaec1e0193"
+//                codeHash = "b3b9ecf43f21f5d41f55b1da1f50ccd68eee86cf951d6cb4490998005af28269"
             ),
-            //_contractCodeHash = "f7711ac771565a1cb0db516a63a63742e11651516b8dfcf19ecd08aaec1e0193"
+//            contractCodeHash = "b3b9ecf43f21f5d41f55b1da1f50ccd68eee86cf951d6cb4490998005af28269"
         )
         println("viewing key response: ${response.data}")
         val viewingKey = json.parseToJsonElement(response.data)
