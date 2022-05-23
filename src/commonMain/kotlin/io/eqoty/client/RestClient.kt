@@ -187,8 +187,7 @@ internal class RestClient(
             throw err;
         }
         val decryptedResponse = enigmautils.decrypt(responseData.data.decodeBase64()!!.toUByteArray(), nonce)
-
-        return decryptedResponse.decodeToString().decodeBase64()!!.utf8()
+        return decryptedResponse.decodeToString().decodeBase64()!!.utf8().trimEnd()
     }
 
     suspend fun decryptDataField(dataField : UByteArray, nonces: List<UByteArray>): UByteArray {
