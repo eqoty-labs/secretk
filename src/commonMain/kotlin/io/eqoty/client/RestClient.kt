@@ -219,7 +219,7 @@ internal class RestClient(
         return CosmosSdkAccount(
             address= authResp.account.address,
             coins = bankResp.balances,
-            public_key = PubKeySecp256k1(authResp.account.pub_key.key),
+            public_key = authResp.account.pub_key?.let { PubKeySecp256k1(it.key)},
             account_number= authResp.account.account_number ?: BigInteger.ZERO,
             sequence= authResp.account.sequence ?: BigInteger.ZERO,
         )

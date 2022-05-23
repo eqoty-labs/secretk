@@ -18,7 +18,7 @@ sealed class V1BetaType
 @SerialName("/cosmos.auth.v1beta1.BaseAccount")
 data class Account(
     val address: String,
-    val pub_key: Secp256k1PubKey,
+    val pub_key: Secp256k1PubKey?,
     @Contextual val account_number: BigInteger?,
     @Contextual val sequence: BigInteger?
 ): V1BetaType()
