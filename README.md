@@ -29,7 +29,7 @@ https://github.com/scrtlabs/SecretNetwork/tree/f01dda32b12e02c6cc2326ea58f8b13bf
 
 ### Gradle
 
-```
+```gradle
 repositories {
     mavenCentral()
     // And the following repositories to workaround this issue: 
@@ -54,7 +54,7 @@ dependencies {
 ### Swift Package Manager
 you need to declare your dependency in your `Package.swift`:
 
-```
+```swift
 .package(url: "https://github.com/eqoty-labs/secretk.git", from: "0.1.2"),
 ```
 
@@ -63,8 +63,9 @@ you need to declare your dependency in your `Package.swift`:
 
 ### Kotlin
 
-* Create SigningCosmWasmClient
-```
+#### Create SigningCosmWasmClient
+
+```kotlin
 val grpcGatewayEndpoint = "http://secretnetworkendpoint.com:1337"
 val mnemonic = ""
 val signingPen = Secp256k1Pen.fromMnemonic(mnemonic)
@@ -77,15 +78,19 @@ val client = SigningCosmWasmClient.init(
     signingPen
 )
 ```
-* Query Contract
-```
+
+#### Query Contract
+
+```kotlin
 val contractAddress = "secret18vd8fpwxzck93qlwghaj6arh4p7c5n8978vsyg"
 val contractInfoQuery = """{"contract_info": {}}"""
 val contractInfo = client.queryContractSmart(contractAddress, contractInfoQuery)
 println("nft contract info response: $contractInfo")
 ```
-* Execute Contract + Query (Generate and use viewing key for query)
-```
+
+#### Execute Contract + Query (Generate and use viewing key for query)
+
+```kotlin
 // Entropy: Secure implementation is left to the client, but it is recommended to use base-64 encoded random bytes and not predictable inputs.
 val entropy = "Another really random thing??"
 val handleMsg = """{ "create_viewing_key": {"entropy": "$entropy"} }"""
@@ -121,13 +126,11 @@ val numTokens = client.queryContractSmart(contractAddress, numTokensQuery);
 println("Num Tokens Response: $numTokens")
 ```
 
-
-
-
 ### Swift
 
-* Create SigningCosmWasmClient
-```
+#### Create SigningCosmWasmClient
+
+```swift
 let Secp256k1PenCompanion = Secp256k1Pen.Companion()
 let signingPen = try await Secp256k1Pen.Companion.fromMnemonic(Secp256k1PenCompanion)(
     mnemonic: mnemonic, hdPath: Secp256k1PenKt.makeSecretNetworkPath(a: 0)
@@ -145,8 +148,10 @@ let client = try await SigningCosmWasmClient.Companion.doInit(SigningCosmWasmCli
     broadcastMode: BroadcastMode.block
 )
 ```
-* Query Contract
-```
+
+#### Query Contract
+
+```swift
 val contractAddress = "secret18vd8fpwxzck93qlwghaj6arh4p7c5n8978vsyg"
 let contractInfoQuery = #"{"contract_info": {}}"#
 let contractInfo = try await client.queryContractSmart(
@@ -155,8 +160,10 @@ let contractInfo = try await client.queryContractSmart(
     contractCodeHash: nil)
 print("nft contract info response: \(contractInfo)")
 ```
-* Execute Contract + Query (Generate and use viewing key for query)
-```
+
+#### Execute Contract + Query (Generate and use viewing key for query)
+
+```swift
 // Entropy: Secure implementation is left to the client, but it is recommended to use base-64 encoded random bytes and not predictable inputs.
 let entropy = "Another really random thing??"
 let handleMsg = #"{ "create_viewing_key": {"entropy": "\#(entropy)"} }"#
