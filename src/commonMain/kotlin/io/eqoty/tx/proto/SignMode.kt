@@ -1,5 +1,9 @@
 package io.eqoty.tx.proto
 
+/***
+ * Reference:
+ * https://github.com/scrtlabs/secret.js/blob/master/src/protobuf_stuff/cosmos/tx/signing/v1beta1/signing.ts
+ */
 enum class SignMode(val value: Int) {
     // SIGN_MODE_UNSPECIFIED specifies an unknown signing mode and will be
     // rejected
@@ -17,5 +21,7 @@ enum class SignMode(val value: Int) {
     // SIGN_MODE_LEGACY_AMINO_JSON is a backwards compatibility mode which uses
     // Amino JSON and will be removed in the future
     SIGN_MODE_LEGACY_AMINO_JSON(127),
+
+    SIGN_MODE_EIP_191(191),
     UNRECOGNIZED(-1)
 }

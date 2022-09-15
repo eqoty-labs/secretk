@@ -2,6 +2,10 @@ package io.eqoty.tx.proto
 
 import kotlinx.serialization.protobuf.ProtoNumber
 
+/***
+ * Reference:
+ * https://github.com/scrtlabs/secret.js/blob/master/src/protobuf_stuff/cosmos/tx/v1beta1/tx.ts
+ */
 @kotlinx.serialization.Serializable
 class FeeProto(
     @ProtoNumber(1) val amount: List<CoinProto> = emptyList(),

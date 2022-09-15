@@ -3,6 +3,10 @@ package io.eqoty.tx.proto
 import kotlinx.serialization.protobuf.ProtoNumber
 import kotlinx.serialization.Serializable
 
+/***
+ * Reference:
+ * https://github.com/scrtlabs/secret.js/blob/master/src/protobuf_stuff/cosmos/tx/v1beta1/tx.ts
+ */
 @Serializable
 class ModeInfoProto(
     @ProtoNumber(1) val single: ModeInfoProtoSingle? = null,
