@@ -38,8 +38,8 @@ class ClientTests {
      */
     @Test
     fun testProxy() =  runTest {
-        val contractAddress = "secret1trwxlyyayx0wfg6jkkz9d59384h2ypqye59rmc"
-        val grpcGatewayEndpoint = "https://api.pulsar.griptapejs.com"
+        val contractAddress = "secret1lz4m46vpdn8f2aj8yhtnexus40663udv7hhprm"
+        val grpcGatewayEndpoint = "https://api.pulsar.scrttestnet.com"
         val mnemonic = "sand check forward humble between movie language siege where social crumble mouse"
         // A pen is the most basic tool you can think of for signing.
         // This wraps a single keypair and allows for signing.

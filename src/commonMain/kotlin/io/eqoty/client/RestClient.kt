@@ -160,9 +160,7 @@ internal class RestClient(
 
         val encoded = encrypted.toByteArray().toByteString().base64Url()
 
-        val encodedContractAddress = Bech32.decode(contractAddress).data.toByteString().base64Url()
-
-        val path = "/compute/v1beta1/contract/${encodedContractAddress}/smart?query_data=${encoded}"//&${paramString}"
+        val path = "/compute/v1beta1/query/${contractAddress}?query=${encoded}"
 
         val responseData: SmartQueryResponse = try {
             get(path)
