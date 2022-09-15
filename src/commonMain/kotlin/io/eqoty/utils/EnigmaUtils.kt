@@ -72,6 +72,9 @@ class EnigmaUtils internal constructor(val apiUrl: String, val seed: UByteArray)
     val pubKey: UByteArray
 
     init {
+        if (seed.size != 32) {
+            throw Error("encryptionSeed must be a UByteArray of length 32")
+        }
         val keyPair = GenerateNewKeyPairFromSeed(this.seed)
         this.privKey = keyPair.privKey
         this.pubKey = keyPair.pubKey
