@@ -123,9 +123,8 @@ private constructor(
 
     suspend fun execute(
         contractAddress: String,
-        msg: MsgExecuteContract,
+        vararg msg: MsgExecuteContract,
         memo : String = "",
-        transferAmount: List<Coin>? = null,
         fee: StdFee? = null,
         contractCodeHash: String? = null,
     ): ExecuteResult {
@@ -142,7 +141,7 @@ private constructor(
         val encryptionNonces= mutableListOf<UByteArray>()
         val txBody = TxBody(
             value = TxBodyValue(
-                messages = listOf(msg)
+                messages = msg
                     .map{
                         it.codeHash = contractCodeHash
                         val asProto = it.toProto(this.restClient.enigmautils)
@@ -215,14 +214,15 @@ private constructor(
 
             throw err
         }
-        var data : UByteArray = ubyteArrayOf()
-        if (this.restClient.broadcastMode == BroadcastMode.Block) {
+        val data : List<UByteArray> = if (this.restClient.broadcastMode == BroadcastMode.Block) {
             val txMsgData: TxMsgDataProto = ProtoBuf.decodeFromByteArray(result.data.decodeHex().toByteArray())
             val dataFields = txMsgData.data
-            if (dataFields[0].data.isNotEmpty()) {
-                val msgExecuteContractResponse : MsgExecuteContractResponseProto = ProtoBuf.decodeFromByteArray(dataFields[0].data)
-                data = this.restClient.decryptDataField(msgExecuteContractResponse.data.toUByteArray(), encryptionNonces)
+            dataFields.filter { it.data.isNotEmpty() }.map { msgDataProto ->
+                val msgExecuteContractResponse : MsgExecuteContractResponseProto = ProtoBuf.decodeFromByteArray(msgDataProto.data)
+                this.restClient.decryptDataField(msgExecuteContractResponse.data.toUByteArray(), encryptionNonces)
             }
+        } else {
+            emptyList()
         }
 
         if (this.restClient.broadcastMode == BroadcastMode.Block) this.restClient.decryptLogs(result.logs, encryptionNonces)
@@ -231,11 +231,9 @@ private constructor(
         return ExecuteResult(
             logs = result.logs,
             transactionHash = result.transactionHash,
-            data = data.decodeToString()
+            data = data.map { it.decodeToString() }
         )
     }
-
-
 
     /**
      * Creates and serializes an AuthInfo document.

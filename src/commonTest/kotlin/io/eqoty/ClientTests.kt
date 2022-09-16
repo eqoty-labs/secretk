@@ -73,7 +73,7 @@ class ClientTests {
 //            contractCodeHash = "b3b9ecf43f21f5d41f55b1da1f50ccd68eee86cf951d6cb4490998005af28269"
         )
         println("viewing key response: ${response.data}")
-        val viewingKey = json.parseToJsonElement(response.data)
+        val viewingKey = json.parseToJsonElement(response.data[0])
             .jsonObject["viewing_key"]!!
             .jsonObject["key"]!!.jsonPrimitive.content
         println("Querying Num Tokens")
