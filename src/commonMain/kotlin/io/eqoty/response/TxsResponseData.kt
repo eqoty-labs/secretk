@@ -10,6 +10,7 @@ data class TxsResponse(
 @kotlinx.serialization.Serializable
 data class TxsResponseData(
   val height: String,
+  val timestamp: String,
   val txhash: String,
   val code: Int?,
   val raw_log: String?,
