@@ -10,54 +10,58 @@ import kotlin.math.max
 
 class BN {
     val number: BigInteger
-    // Reduction context
-    val red : Red?
 
-    constructor(number: BigInteger, red: Red? = null){
+    // Reduction context
+    val red: Red?
+
+    constructor(number: BigInteger, red: Red? = null) {
         this.number = number
         this.red = red
     }
-    constructor(string: String, base: Int = 16, red: Red? = null){
+
+    constructor(string: String, base: Int = 16, red: Red? = null) {
         this.number = BigInteger.parseString(string.replace(" ", ""), base)
         this.red = red
     }
-    constructor(num: Int, red: Red? = null){
+
+    constructor(num: Int, red: Red? = null) {
         this.number = BigInteger.fromInt(num)
         this.red = red
     }
-    constructor(number: UByteArray, red: Red? = null){
+
+    constructor(number: UByteArray, red: Red? = null) {
         this.number = BigInteger.fromUByteArray(number, Sign.POSITIVE)
         this.red = red
     }
+
     fun bitLength() = number.bitLength()
 
 
     fun toRed(ctx: Red): BN {
-        require(red == null) {"Already a number in reduction context"}
-        require(!number.isNegative) {"red works only with positives"}
-        return ctx.convertTo(this).forceRed(ctx);
+        require(red == null) { "Already a number in reduction context" }
+        require(!number.isNegative) { "red works only with positives" }
+        return ctx.convertTo(this).forceRed(ctx)
     }
 
     internal fun forceRed(ctx: Red): BN = BN(this.number, ctx)
 
-    fun fromRed (): BN {
-        require(this.red!=null) {"fromRed works only with numbers in reduction context" }
+    fun fromRed(): BN {
+        require(this.red != null) { "fromRed works only with numbers in reduction context" }
         return this.red.convertFrom(this)
     }
 
 
+    val negative: Boolean
+        get() = number.isNegative
 
-    val negative : Boolean
-    get() = number.isNegative
-
-    val zero : Boolean
+    val zero: Boolean
         get() = number.isZero()
 
     /**
      * The least significant 26 bits == Word[0] in https://github.com/indutny/bn.js/
      */
-    val word0 : BN
-    get() = this.and(BN(0x3ffffff))
+    val word0: BN
+        get() = this.and(BN(0x3ffffff))
 
 
     fun shl(n: Int): BN = BN(number.shl(n), red)
@@ -78,14 +82,14 @@ class BN {
     fun gcd(n: BN): BN = BN(number.gcd(n.number), red)
 
     fun egcd(p: BN): EGCDResult {
-        require(!p.negative);
-        require(!p.isZero());
+        require(!p.negative)
+        require(!p.isZero())
 
         var x = this
         var y = p
 
         if (x.negative) {
-            x = x.mod(p);
+            x = x.mod(p)
         }
 
         // A * x + B * y = x
@@ -96,7 +100,7 @@ class BN {
         var C = BN(0)
         var D = BN(1)
 
-        var g = 0;
+        var g = 0
 
         while (x.isEven() && y.isEven()) {
             x = x.shr(1)
@@ -128,10 +132,9 @@ class BN {
             }
 
 
-
             var j = 0
             var jm = 1
-            while ((y.word0 and BN(jm)) == ZERO && j < 26){
+            while ((y.word0 and BN(jm)) == ZERO && j < 26) {
                 ++j
                 jm = jm shl 1
             }
@@ -150,7 +153,7 @@ class BN {
 
 
             if (x >= y) {
-                x= x.subtract(y)
+                x = x.subtract(y)
                 A = A.subtract(C)
                 B = B.subtract(D)
             } else {
@@ -179,8 +182,9 @@ class BN {
             val remainderDec = BigDecimal.fromBigInteger(remainder)
             val divisorDec = BigDecimal.fromBigInteger(divisor.number)
             val oneHalf = BigDecimal.fromDouble(0.5)
-            val remainderOverDivisor = remainderDec.divide(divisorDec, DecimalMode(decimalPrecision= 2, roundingMode = RoundingMode.FLOOR))
-            if (remainderOverDivisor >=  oneHalf) {
+            val remainderOverDivisor =
+                remainderDec.divide(divisorDec, DecimalMode(decimalPrecision = 2, roundingMode = RoundingMode.FLOOR))
+            if (remainderOverDivisor >= oneHalf) {
                 // round by adding one if remainder over divisor is >= 0.5
                 result += 1
             }
@@ -189,7 +193,6 @@ class BN {
             return TODO("Handle negative round")
         }
     }
-
 
 
     // This is reduced incarnation of the binary EEA
@@ -207,7 +210,7 @@ class BN {
         }
 
         var x1 = BN(1)
-        var x2 =  BN(0)
+        var x2 = BN(0)
 
         var delta = b
 
@@ -215,7 +218,7 @@ class BN {
         while (a > 1 && b > 1) {
             var i = 0
             var im = 1
-            while ( (a.word0.number.intValue() and im) == 0 && i < 26) {
+            while ((a.word0.number.intValue() and im) == 0 && i < 26) {
                 i++
                 im = im shl 1
             }
@@ -259,29 +262,29 @@ class BN {
 
         val res: BN
         if (a.compareTo(1) == 0) {
-            res = x1;
+            res = x1
         } else {
-            res = x2;
+            res = x2
         }
 
         if (res < 0) {
-            res.add(p);
+            res.add(p)
         }
 
-        return res;
+        return res
     }
 
-    fun redMul (num: BN): BN {
-        require(this.red != null) {"redMul works only with red numbers"}
-        this.red.verify2(this, num);
-        return this.red.mul(this, num);
-    };
+    fun redMul(num: BN): BN {
+        require(this.red != null) { "redMul works only with red numbers" }
+        this.red.verify2(this, num)
+        return this.red.mul(this, num)
+    }
 
     operator fun compareTo(i: Int): Int = number.compareTo(i)
     operator fun compareTo(i: BN): Int = number.compareTo(i.number)
 
     override fun equals(other: Any?): Boolean {
-        if (other is BN){
+        if (other is BN) {
             if (number == other.number && red != other.red) {
                 println("Warning: Comparing two BN numbers with same number, but different red values. Returning false. This may not be the desired behavior")
             }
@@ -291,9 +294,9 @@ class BN {
     }
 
     fun redNeg(): BN {
-        require(this.red != null) {"redMul works only with red numbers"}
-        this.red.verify1(this);
-        return this.red.neg(this);
+        require(this.red != null) { "redMul works only with red numbers" }
+        this.red.verify1(this)
+        return this.red.neg(this)
     }
 
     fun andln(num: Int): Int {
@@ -310,35 +313,35 @@ class BN {
         val one = BN(1)
         return this.and(one).number.abs() == one.number
     }
+
     fun isEven(): Boolean {
         return !isOdd()
     }
 
 
     fun redAdd(num: BN): BN {
-        require(this.red != null) {"redMul works only with red numbers"}
-        return this.red.add(this, num);
+        require(this.red != null) { "redMul works only with red numbers" }
+        return this.red.add(this, num)
     }
 
     fun redInvm(): BN {
-        require(this.red != null) {"redMul works only with red numbers"}
-        this.red.verify1(this);
-        return this.red.invm(this);
+        require(this.red != null) { "redMul works only with red numbers" }
+        this.red.verify1(this)
+        return this.red.invm(this)
     }
 
     fun redSqr(): BN {
-        require(this.red != null) {"redMul works only with red numbers"}
-        this.red.verify1(this);
-        return this.red.sqr(this);
+        require(this.red != null) { "redMul works only with red numbers" }
+        this.red.verify1(this)
+        return this.red.sqr(this)
     }
 
     fun redSub(num: BN): BN {
-        require(this.red != null) {"redMul works only with red numbers"}
-        return this.red.sub(this, num);
+        require(this.red != null) { "redMul works only with red numbers" }
+        return this.red.sub(this, num)
     }
 
     fun byteLength(): Int = number.byteLength().toInt()
-
 
 
     companion object {
@@ -347,10 +350,6 @@ class BN {
     }
 
 }
-
-
-
-
 
 
 fun BN.Companion.red(m: String) = Red(m)
@@ -379,13 +378,12 @@ fun BN.Companion.prime(name: String): MPrime {
             TODO()
             //P25519()
         } else {
-            throw Error("Unknown prime $name");
+            throw Error("Unknown prime $name")
         }
     primes[name] = prime
 
-    return prime;
+    return prime
 }
-
 
 
 private val primes = mutableMapOf<String, MPrime?>(
@@ -397,7 +395,7 @@ private val primes = mutableMapOf<String, MPrime?>(
 )
 
 // Pseudo-Mersenne prime
-class MPrime (val name: String, val p: BN) {
+class MPrime(val name: String, val p: BN) {
     // P = 2 ^ N - K
     val n = p.bitLength().toInt()
     val k = BN.ONE.shl(this.n).subtract(this.p)
@@ -413,7 +411,7 @@ class MPrime (val name: String, val p: BN) {
         // Assumes that `num` is less than `P^2`
         // num = HI * (2 ^ N - K) + HI * K + LO = HI * K + LO (mod P)
         var r = num
-        var rlen : ULong = 0u
+        var rlen: ULong = 0u
 
         do {
             val split = this.split(r)
@@ -422,49 +420,50 @@ class MPrime (val name: String, val p: BN) {
             r = this.mulK(r)
             r = r.add(tmp)
             rlen = r.bitLength()
-        } while (rlen.toInt() > this.n);
-        val cmp = if(rlen < n.toULong()) -1 else r.compareTo(this.p);
+        } while (rlen.toInt() > this.n)
+        val cmp = if (rlen < n.toULong()) -1 else r.compareTo(this.p)
         if (cmp == 0) {
             TODO()
 //            r.words[0] = 0;
 //            r.length = 1;
         } else if (cmp > 0) {
-            r = r.subtract(this.p);
+            r = r.subtract(this.p)
         }
 
-        return r;
+        return r
     }
 
-    private fun split(input: BN): Pair<BN,BN> {
+    private fun split(input: BN): Pair<BN, BN> {
         val a = BN(input.number.shr(n), input.red)
-        val numBytesShifted = n/8
+        val numBytesShifted = n / 8
         val inputByteArray = input.number.toByteArray()
         val inputByteSize = inputByteArray.size
         val startCopyIndex = max(inputByteSize - numBytesShifted, 0)
         val endCopyIndex = inputByteSize
         val bByteSize = inputByteSize - startCopyIndex
-        val bByteArray = ByteArray(bByteSize) {0}
-        inputByteArray.copyInto(bByteArray,0,startCopyIndex, endCopyIndex)
-        val b = BN(BigInteger.fromByteArray(bByteArray,Sign.POSITIVE), input.red)
-        return Pair(a,b)
+        val bByteArray = ByteArray(bByteSize) { 0 }
+        inputByteArray.copyInto(bByteArray, 0, startCopyIndex, endCopyIndex)
+        val b = BN(BigInteger.fromByteArray(bByteArray, Sign.POSITIVE), input.red)
+        return Pair(a, b)
     }
 
-    private fun mulK (num: BN): BN {
+    private fun mulK(num: BN): BN {
         return num.multiply(this.k)
     }
 
 }
 
 open class Red {
-    val m : BN
-    var prime : MPrime?
+    val m: BN
+    var prime: MPrime?
 
     constructor(m: String) {
-        val prime = BN.prime(m);
+        val prime = BN.prime(m)
         this.m = prime.p
         this.prime = prime
     }
-    constructor(m: BN){
+
+    constructor(m: BN) {
         require(m > 1) { "modulus must be greater than 1" }
         this.m = m
         this.prime = null
@@ -475,34 +474,33 @@ open class Red {
         return r
     }
 
-    open fun convertFrom (num: BN): BN {
+    open fun convertFrom(num: BN): BN {
         return BN(num.number)
     }
 
     internal fun verify2(a: BN, b: BN) {
-        require(!a.negative && !b.negative) {"red works only with positives"}
-        require(a.red != null && a.red == b.red) {"red works only with red numbers"}
+        require(!a.negative && !b.negative) { "red works only with positives" }
+        require(a.red != null && a.red == b.red) { "red works only with red numbers" }
     }
 
-    fun mul(a: BN, b: BN) : BN {
+    fun mul(a: BN, b: BN): BN {
         this.verify2(a, b)
-        return this.imod(a.multiply(b));
+        return this.imod(a.multiply(b))
     }
 
-    fun imod (a: BN) : BN {
+    fun imod(a: BN): BN {
         if (this.prime != null) {
             return this.prime!!.ireduce(a).forceRed(this)
-        }
-        else return a.mod(this.m).forceRed(this);
+        } else return a.mod(this.m).forceRed(this)
     }
 
     fun verify1(a: BN) {
-        require(!a.negative) {"red works only with positives"}
-        require(a.red != null) {"red works only with red numbers"}
+        require(!a.negative) { "red works only with positives" }
+        require(a.red != null) { "red works only with red numbers" }
     }
 
     fun neg(num: BN): BN {
-        if (num.number.isZero()){
+        if (num.number.isZero()) {
             return num
         }
         return m.subtract(num).forceRed(this)
@@ -511,9 +509,9 @@ open class Red {
     fun invm(num: BN): BN {
         var inv = num._invmp(this.m)
         if (inv.negative) {
-            return this.imod(inv).redNeg();
+            return this.imod(inv).redNeg()
         } else {
-            return this.imod(inv);
+            return this.imod(inv)
         }
     }
 
@@ -524,7 +522,7 @@ open class Red {
     fun add(a: BN, b: BN): BN {
         this.verify2(a, b)
 
-        var res = a.add(b);
+        var res = a.add(b)
         if (res >= this.m) {
             res = res.subtract(this.m)
         }
@@ -542,13 +540,14 @@ open class Red {
     }
 }
 
-class Mont(m: BN): Red(m) {
+class Mont(m: BN) : Red(m) {
 
 
     init {
         TODO()
     }
-    val shift : ULong
+
+    val shift: ULong
         get() {
             var tmpShift = this.m.number.bitLength()
             if (tmpShift % 26u != 0.toULong()) {
@@ -581,7 +580,6 @@ fun BigInteger.andln(num: ULong): ULong {
 }
 
 
-
 fun BigInteger.countBits(w: ULong): ULong {
     var t = w
     var r = 0u
@@ -595,11 +593,11 @@ fun BigInteger.countBits(w: ULong): ULong {
     }
     if (t >= 8u) {
         r += 4u
-        t = t shr 4;
+        t = t shr 4
     }
     if (t >= 2u) {
         r += 2u
-        t = t shr 2;
+        t = t shr 2
     }
     return r + t
 }
@@ -611,20 +609,20 @@ fun BigInteger.bitLength(): ULong {
     return byteArray.size.toULong() * 8u - leadingZeros
 }
 
-fun BigInteger.byteLength() : ULong {
+fun BigInteger.byteLength(): ULong {
     return ceil(this.bitLength().toDouble() / 8.0).toULong()
 }
 
 fun BigInteger.toArray(endian: String, length: Int?): ULongArray {
     var byteLength = this.byteLength().toInt()
     var reqLength = length ?: max(1, byteLength)
-    require(byteLength <= reqLength){ "byte array longer than desired length"}
-    require(reqLength > 0) {"Requested array length <= 0"}
+    require(byteLength <= reqLength) { "byte array longer than desired length" }
+    require(reqLength > 0) { "Requested array length <= 0" }
 
     var littleEndian = endian == "le"
-    var res = ULongArray(reqLength) {0u}
+    var res = ULongArray(reqLength) { 0u }
 
-    var b : ULong
+    var b: ULong
     var q = BigInteger.fromBigInteger(this)
     if (!littleEndian) {
         // Assume big-endian
@@ -632,8 +630,8 @@ fun BigInteger.toArray(endian: String, length: Int?): ULongArray {
             res[i] = 0u
         }
         var i = 0
-        while(!q.isZero()) {
-            b = q.andln(255u/*0xff*/);
+        while (!q.isZero()) {
+            b = q.andln(255u/*0xff*/)
             q = q shr 8
 
             res[reqLength - i - 1] = b
@@ -641,8 +639,8 @@ fun BigInteger.toArray(endian: String, length: Int?): ULongArray {
         }
     } else {
         var i = 0
-        while(!q.isZero()) {
-            b = q.andln(255u/*0xff*/);
+        while (!q.isZero()) {
+            b = q.andln(255u/*0xff*/)
             q = q shr 8
 
             res[i] = b

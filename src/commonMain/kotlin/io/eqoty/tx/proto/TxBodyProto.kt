@@ -13,4 +13,4 @@ class TxBodyProto(
     @ProtoNumber(3) val timeoutHeight: String = "0",
     @ProtoNumber(1023) val extensionOptions: List<AnyProto> = emptyList(),
     @ProtoNumber(2047) val nonCriticalExtensionOptions: List<AnyProto> = emptyList(),
-    ) : MsgProto()
+) : MsgProto()

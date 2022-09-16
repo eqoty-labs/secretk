@@ -12,4 +12,4 @@ class SignDocProto(
     @ProtoNumber(2) val authInfoBytes: ByteArray = byteArrayOf(),
     @ProtoNumber(3) val chainId: String = "",
     @ProtoNumber(4) val accountNumber: Int? = null,
-    ) : MsgProto()
+) : MsgProto()

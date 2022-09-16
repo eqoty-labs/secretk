@@ -2,10 +2,8 @@ package io.eqoty.tx
 
 import co.touchlab.kermit.Logger
 import io.eqoty.tx.proto.MsgExecuteContractProto
-import io.eqoty.types.Coin
 import io.eqoty.utils.EncryptionUtils
 import io.eqoty.utils.getMissingCodeHashWarning
-import kotlinx.serialization.protobuf.ProtoNumber
 
 class MsgInstantiateContract(
     val sender: String,
@@ -23,13 +21,13 @@ class MsgInstantiateContract(
      * - "0xAF74387E276BE8874F07BEC3A87023EE49B0E7EBE08178C49D0A49C3C98ED60E"
      */
     codeHash: String?
-): Msg<MsgExecuteContractProto> {
+) : Msg<MsgExecuteContractProto> {
     private var msgEncrypted: UByteArray? = null
 
     var codeHash: String? = null
     private val warnCodeHash: Boolean
 
-init {
+    init {
         if (codeHash != null) {
             this.codeHash = codeHash.replace("0x", "").lowercase()
             this.warnCodeHash = false

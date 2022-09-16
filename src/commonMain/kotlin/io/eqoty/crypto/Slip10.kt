@@ -2,9 +2,7 @@ package io.eqoty.crypto
 
 import com.ionspin.kotlin.bignum.integer.BigInteger
 import com.ionspin.kotlin.bignum.integer.Sign
-import io.eqoty.crypto.elliptic.Curve
 import io.eqoty.crypto.elliptic.biginteger.BN
-import io.eqoty.crypto.elliptic.biginteger.toArray
 import io.eqoty.crypto.elliptic.ec.EC
 import io.eqoty.utils.toByteString
 import okio.Buffer
@@ -31,30 +29,30 @@ object Slip10 {
     val secp256k1 = EC.scep256k1
 
     fun derivePath(curve: Slip10Curve, seed: UByteArray, path: Array<Slip10RawIndex>): Slip10Result {
-        var result = this.master(curve, seed);
+        var result = this.master(curve, seed)
         for (rawIndex in path) {
-            result = this.child(curve, result.privkey, result.chainCode, rawIndex);
+            result = this.child(curve, result.privkey, result.chainCode, rawIndex)
         }
-        return result;
+        return result
     }
 
     private fun master(curve: Slip10Curve, seed: UByteArray): Slip10Result {
         val firstKey = curve.key.encodeToByteArray().toByteString()
         val i = seed.toByteString().hmacSha512(firstKey).toByteArray().toUByteArray()
         val il = UByteArray(32).apply {
-            i.copyInto(this,0,0, i.size/2)
+            i.copyInto(this, 0, 0, i.size / 2)
         }
         val ir = UByteArray(32).apply {
-            i.copyInto(this,0,i.size/2, i.size)
+            i.copyInto(this, 0, i.size / 2, i.size)
         }
 
         if (curve !== Slip10Curve.Ed25519 && (isZero(il) || isGteN(curve, il))) {
-            return this.master(curve, i);
+            return this.master(curve, i)
         }
 
         return Slip10Result(
-                chainCode = ir,
-                privkey = il
+            chainCode = ir,
+            privkey = il
         )
     }
 
@@ -71,18 +69,21 @@ object Slip10 {
             i = payload.hmacSha512(parentChainCode.toByteString()).toByteArray().toUByteArray()
         } else {
             if (curve == Slip10Curve.Ed25519) {
-                throw Error("Normal keys are not allowed with ed25519");
+                throw Error("Normal keys are not allowed with ed25519")
             } else {
                 // Step 1 of https://github.com/satoshilabs/slips/blob/master/slip-0010.md#private-parent-key--private-child-key
                 // Calculate I = HMAC-SHA512(Key = c_par, Data = ser_P(point(k_par)) || ser_32(i)).
                 // where the functions point() and ser_p() are defined in BIP-0032
                 val rawIndexBigEndian = Buffer().writeInt(rawIndex.toInt()).readByteArray().toUByteArray()
-                val data = (Slip10.serializedPoint(curve, BigInteger.fromUByteArray(parentPrivkey, Sign.POSITIVE)) + rawIndexBigEndian).toByteString()
+                val data = (serializedPoint(
+                    curve,
+                    BigInteger.fromUByteArray(parentPrivkey, Sign.POSITIVE)
+                ) + rawIndexBigEndian).toByteString()
                 i = data.hmacSha512(parentChainCode.toByteString()).toByteArray().toUByteArray()
             }
         }
 
-        return this.childImpl(curve, parentPrivkey, parentChainCode, rawIndex, i);
+        return this.childImpl(curve, parentPrivkey, parentChainCode, rawIndex, i)
     }
 
     /**
@@ -95,24 +96,25 @@ object Slip10 {
             Slip10Curve.Secp256k1 -> {
                 return secp256k1.g!!.mul(BN(p)).encodeCompressed()
             }
-            else -> throw Error("curve not supported");
+
+            else -> throw Error("curve not supported")
         }
     }
 
     private fun childImpl(
-    curve: Slip10Curve,
-    parentPrivkey: UByteArray,
-    parentChainCode: UByteArray,
-    rawIndex: Slip10RawIndex,
-    i: UByteArray,
+        curve: Slip10Curve,
+        parentPrivkey: UByteArray,
+        parentChainCode: UByteArray,
+        rawIndex: Slip10RawIndex,
+        i: UByteArray,
     ): Slip10Result {
         // step 2 (of the Private parent key → private child key algorithm)
 
         val il = UByteArray(32).apply {
-            i.copyInto(this,0,0, i.size/2)
+            i.copyInto(this, 0, 0, i.size / 2)
         }
         val ir = UByteArray(32).apply {
-            i.copyInto(this,0,i.size/2, i.size)
+            i.copyInto(this, 0, i.size / 2, i.size)
         }
 
         // step 3
@@ -121,8 +123,8 @@ object Slip10 {
         // step 4
         if (curve === Slip10Curve.Ed25519) {
             return Slip10Result(
-                    chainCode = returnChainCode,
-                    privkey = il
+                chainCode = returnChainCode,
+                privkey = il
             )
         }
 
@@ -135,7 +137,8 @@ object Slip10 {
 
         // step 6
         if (isGteN(curve, il) || isZero(returnChildKey)) {
-            val payload = (byteArrayOf(0x01) + ir.toByteArray() + Buffer().writeInt(rawIndex.toInt()).readByteArray()).toByteString()
+            val payload = (byteArrayOf(0x01) + ir.toByteArray() + Buffer().writeInt(rawIndex.toInt())
+                .readByteArray()).toByteString()
             val newI = payload.hmacSha512(parentChainCode.toByteString()).toByteArray().toUByteArray()
             return this.childImpl(curve, parentPrivkey, parentChainCode, rawIndex, newI)
         }
@@ -148,7 +151,6 @@ object Slip10 {
     }
 
 
-
     private fun isGteN(curve: Slip10Curve, privkey: UByteArray): Boolean {
         val keyAsNumber = BigInteger.fromUByteArray(privkey, Sign.POSITIVE)
         return keyAsNumber >= n(curve)
@@ -158,7 +160,8 @@ object Slip10 {
         when (curve) {
             Slip10Curve.Secp256k1 ->
                 return BigInteger.parseString("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141", 16)
-            else -> throw Error("curve not supported");
+
+            else -> throw Error("curve not supported")
         }
     }
 

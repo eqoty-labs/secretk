@@ -1,14 +1,11 @@
 package io.eqoty
 
-import com.ionspin.kotlin.bignum.integer.BigInteger
 import io.eqoty.client.SigningCosmWasmClient
 import io.eqoty.tx.MsgExecuteContract
 import io.eqoty.utils.Address.pubkeyToAddress
-import io.eqoty.utils.decodeToString
 import io.eqoty.wallet.Secp256k1Pen
 import io.eqoty.wallet.encodeSecp256k1Pubkey
 import kotlinx.coroutines.test.runTest
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
@@ -20,7 +17,7 @@ class ClientTests {
     val json: Json = Json
 
     @BeforeTest
-    fun beforeEach(){
+    fun beforeEach() {
     }
 
     @Test
@@ -32,12 +29,13 @@ class ClientTests {
         val accAddressFromMnemonic = pubkeyToAddress(pubkey, "secret")
         assertEquals(accAddress, accAddressFromMnemonic)
     }
+
     /**
      * run test not working on darwin engine:
      * https://youtrack.jetbrains.com/issue/KTOR-3900/A-native-application-with-the-Darwin-engine-doesn't-make-a-reque
      */
     @Test
-    fun testProxy() =  runTest {
+    fun testProxy() = runTest {
         val contractAddress = "secret1lz4m46vpdn8f2aj8yhtnexus40663udv7hhprm"
         val grpcGatewayEndpoint = "https://api.pulsar.scrttestnet.com"
         val mnemonic = "sand check forward humble between movie language siege where social crumble mouse"
@@ -61,7 +59,7 @@ class ClientTests {
         // Entropy: Secure implementation is left to the client, but it is recommended to use base-64 encoded random bytes and not predictable inputs.
         val entropy = "Another really random thing??"
         val handleMsg = """{ "create_viewing_key": {"entropy": "$entropy"} }"""
-        println("Creating viewing key");
+        println("Creating viewing key")
         val response = client.execute(
             contractAddress,
             MsgExecuteContract(

@@ -12,8 +12,6 @@ import kotlinx.serialization.json.JsonClassDiscriminator
 sealed class V1BetaType
 
 
-
-
 @Serializable
 @SerialName("/cosmos.auth.v1beta1.BaseAccount")
 data class Account(
@@ -21,9 +19,9 @@ data class Account(
     val pub_key: Secp256k1PubKey?,
     @Contextual val account_number: BigInteger?,
     @Contextual val sequence: BigInteger?
-): V1BetaType()
+) : V1BetaType()
 
 
 @Serializable
 @SerialName("/cosmos.crypto.secp256k1.PubKey")
-data class Secp256k1PubKey(val key: String): V1BetaType()
+data class Secp256k1PubKey(val key: String) : V1BetaType()

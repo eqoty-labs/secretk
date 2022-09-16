@@ -10,14 +10,14 @@ data class KeyPairSignOptions(val canonical: Boolean? = null, val k: BN?)
 data class Signature(val r: BN, val s: BN, val recoveryParam: Int?)
 
 class KeyPair(val ec: EC, options: KeyPairOptions) {
-    var priv : BN? = null
-    var pub : BasePoint<*>? = null
+    var priv: BN? = null
+    var pub: BasePoint<*>? = null
 
     init {
         if (options.priv != null)
-            this.importPrivate(options.priv, options.privEnc);
+            this.importPrivate(options.priv, options.privEnc)
         if (options.pub != null)
-            this.importPublic(options.pub, options.pubEnc);
+            this.importPublic(options.pub, options.pubEnc)
 
     }
 
@@ -58,7 +58,7 @@ class KeyPair(val ec: EC, options: KeyPairOptions) {
         if (!pub.mul(ec.curve.n!!).isInfinity())
             return KeyPairValidateResult(result = false, reason = "Public key * N != O")
 
-        return  KeyPairValidateResult(result = true, reason = null)
+        return KeyPairValidateResult(result = true, reason = null)
     }
 
     private fun getPublic(): BasePoint<*> {
@@ -73,16 +73,16 @@ class KeyPair(val ec: EC, options: KeyPairOptions) {
         return pub.encode(compact)
     }
 
-    fun sign(msg: UByteArray, enc:  String? = null, options: KeyPairSignOptions? = null): Signature =
+    fun sign(msg: UByteArray, enc: String? = null, options: KeyPairSignOptions? = null): Signature =
         ec.sign(msg, this, enc, options)
 
     companion object {
-        fun fromPrivate(ec: EC, priv: UByteArray, enc: String? = null) : KeyPair =
-            KeyPair(ec, KeyPairOptions(priv = priv, privEnc = enc ))
+        fun fromPrivate(ec: EC, priv: UByteArray, enc: String? = null): KeyPair =
+            KeyPair(ec, KeyPairOptions(priv = priv, privEnc = enc))
 
 
         fun fromPublic(ec: EC, pubkey: UByteArray, enc: String? = null): KeyPair =
-            KeyPair(ec, KeyPairOptions(pub = pubkey, privEnc = enc ))
+            KeyPair(ec, KeyPairOptions(pub = pubkey, privEnc = enc))
 
     }
 }

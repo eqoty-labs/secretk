@@ -6,9 +6,9 @@ import kotlin.math.max
 
 fun getNAF(num: BN, w: Int, bits: Int): Array<Int> {
     var naf = Array(max(num.bitLength().toInt(), bits) + 1) { 0 }
-    naf.fill(0);
+    naf.fill(0)
 
-    var ws = 1 shl (w + 1);
+    var ws = 1 shl (w + 1)
     var k = num
 
     for (i in naf.indices) {
@@ -22,14 +22,14 @@ fun getNAF(num: BN, w: Int, bits: Int): Array<Int> {
             }
             k = k.subtract(BN(z))
         } else {
-            z = 0;
+            z = 0
         }
 
-        naf[i] = z;
+        naf[i] = z
         k = k.shr(1)
     }
 
-    return naf;
+    return naf
 }
 
 fun getJSF(_k1: BN, _k2: BN): List<MutableList<Int>> {
@@ -40,8 +40,8 @@ fun getJSF(_k1: BN, _k2: BN): List<MutableList<Int>> {
 
     var k1 = _k1
     var k2 = _k2
-    var d1 = 0;
-    var d2 = 0;
+    var d1 = 0
+    var d2 = 0
     var m8: Int
     while (k1 > -d1 || k2 > -d2) {
         // First phase
@@ -69,9 +69,9 @@ fun getJSF(_k1: BN, _k2: BN): List<MutableList<Int>> {
         } else {
             m8 = (k2.andln(7) + d2) and 7
             if ((m8 == 3 || m8 == 5) && m14 == 2)
-                u2 = -m24;
+                u2 = -m24
             else
-                u2 = m24;
+                u2 = m24
         }
         jsf[1].add(u2)
 

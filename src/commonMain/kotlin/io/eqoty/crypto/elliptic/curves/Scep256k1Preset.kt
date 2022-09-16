@@ -1,32 +1,35 @@
 package io.eqoty.crypto.elliptic.curves
 
-import com.ionspin.kotlin.bignum.integer.BigInteger
 import io.eqoty.crypto.elliptic.biginteger.BN
 
 
-object Scep256k1Preset: PresetCurve {
+object Scep256k1Preset : PresetCurve {
 
     override val gRed = false
     override val type = "short"
     override val prime = "k256"
     override val p = BN(
         "ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff fffffffe fffffc2f",
-        16)
+        16
+    )
     override val a = BN("0", 16)
     override val b = BN("7", 16)
-    override val n =  BN(
+    override val n = BN(
         "ffffffff ffffffff ffffffff fffffffe baaedce6 af48a03b bfd25e8c d0364141".replace(" ", ""),
-        16)
+        16
+    )
     override val h = "1"
     override val hash = "hash.sha256"
 
     // Precomputed endomorphism
-    override val beta =  BN(
+    override val beta = BN(
         "7ae96a2b657c07106e64479eac3434e99cf0497512f58995c1396c28719501ee",
-        16)
-    override val lambda= BN(
+        16
+    )
+    override val lambda = BN(
         "5363ad4cc05c30e0a5261c028812645a122e22ea20816678df02967c1b23bd72",
-    16)
+        16
+    )
 
     override val basis = listOf(
         Basis(

@@ -1,7 +1,7 @@
-package io.eqoty.types;
+package io.eqoty.types
 
 @kotlinx.serialization.Serializable
 data class StdFee(
-  val amount: List<Coin>,
-  val gas: Int
+    val amount: List<Coin>,
+    val gas: Int
 )

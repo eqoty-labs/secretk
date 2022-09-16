@@ -19,7 +19,7 @@ sealed interface PresetCurve {
     val basis: List<Basis>
 }
 
-data class Basis(val a: BN, val  b: BN)
+data class Basis(val a: BN, val b: BN)
 
 data class Endomorphism(
     val beta: BN,

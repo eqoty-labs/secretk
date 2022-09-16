@@ -10,4 +10,4 @@ import kotlinx.serialization.protobuf.ProtoNumber
 class AuthInfoProto(
     @ProtoNumber(1) val signerInfos: List<SignerInfoProto> = emptyList(),
     @ProtoNumber(2) val fee: FeeProto? = null,
-    ) : MsgProto()
+) : MsgProto()

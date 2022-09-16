@@ -21,17 +21,17 @@ open class CosmWasmClient protected constructor(
 
     suspend fun getChainId(): String {
         if (chainId == null) {
-            val response = restClient.nodeInfo();
-            val chainId = response.node_info.network;
-            if (chainId == "") throw Error("Chain ID must not be empty");
-            this.chainId = chainId;
+            val response = restClient.nodeInfo()
+            val chainId = response.node_info.network
+            if (chainId == "") throw Error("Chain ID must not be empty")
+            this.chainId = chainId
         }
 
         return chainId!!
     }
 
     suspend fun getNonce(address: String): GetNonceResult {
-        val account = this.getAccount(address);
+        val account = this.getAccount(address)
         if (account?.address == null) {
             throw Error(
                 "Account does not exist on chain. Send some tokens there before trying to query nonces.",
@@ -48,7 +48,7 @@ open class CosmWasmClient protected constructor(
         if (account.address == null || account.address === "") {
             return null
         } else {
-            this.anyValidAddress = account.address;
+            this.anyValidAddress = account.address
             return Account(
                 address = account.address,
                 balance = account.coins!!,
@@ -63,7 +63,7 @@ open class CosmWasmClient protected constructor(
         val result = restClient.postTx(tx)
 
         if (result.txhash.contains("""^([0-9A-F][0-9A-F])+$""")) {
-            throw Error("Received ill-formatted txhash. Must be non-empty upper-case hex");
+            throw Error("Received ill-formatted txhash. Must be non-empty upper-case hex")
         }
 
         if (result.code == null) {
@@ -74,7 +74,7 @@ open class CosmWasmClient protected constructor(
             logs = result.logs ?: throw Error("need to implement: parseLogs(result.logs) : []"),
             rawLog = result.raw_log ?: "",
             transactionHash = result.txhash,
-            data = result.data ?: "",
+            data = result.data,
         )
     }
 
@@ -89,9 +89,9 @@ open class CosmWasmClient protected constructor(
      * Note: addedParams allows for query string additions such as "&height=1234567"
      */
     suspend fun queryContractSmart(
-    contractAddress: String,
-    queryMsg: String,
-    contractCodeHash: String? = null,
+        contractAddress: String,
+        queryMsg: String,
+        contractCodeHash: String? = null,
     ): String {
         try {
             return this.restClient.queryContractSmart(

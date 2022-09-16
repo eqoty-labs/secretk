@@ -1,6 +1,11 @@
 @file:JsModule("miscreant")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS")
+@file:Suppress(
+    "INTERFACE_WITH_SUPERCLASS",
+    "OVERRIDING_FINAL_MEMBER",
+    "RETURN_TYPE_MISMATCH_ON_OVERRIDE",
+    "CONFLICTING_OVERLOADS"
+)
 
 import org.khronos.webgl.Uint8Array
 
@@ -9,10 +14,10 @@ open external class Block {
     open var data: Uint8Array
 
     open fun clear()
-    open fun clone(): Block  = definedExternally
+    open fun clone(): Block = definedExternally
 
     companion object {
-        var SIZE : Number = definedExternally
-        var R  : Number = definedExternally
+        var SIZE: Number = definedExternally
+        var R: Number = definedExternally
     }
 }

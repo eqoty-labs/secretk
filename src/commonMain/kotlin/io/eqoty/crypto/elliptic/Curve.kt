@@ -1,16 +1,10 @@
 package io.eqoty.crypto.elliptic
 
-import com.ionspin.kotlin.bignum.decimal.BigDecimal
-import com.ionspin.kotlin.bignum.decimal.DecimalMode
-import com.ionspin.kotlin.bignum.decimal.RoundingMode
-import com.ionspin.kotlin.bignum.integer.BigInteger
 import io.eqoty.crypto.elliptic.biginteger.BN
 import io.eqoty.crypto.elliptic.biginteger.mont
 import io.eqoty.crypto.elliptic.biginteger.red
 import io.eqoty.crypto.elliptic.curves.Endomorphism
 import io.eqoty.crypto.elliptic.curves.PresetCurve
-import io.eqoty.crypto.elliptic.curves.Scep256k1Preset
-import io.eqoty.crypto.elliptic.ec.KeyPair
 import io.eqoty.crypto.elliptic.utils.getJSF
 import io.eqoty.crypto.elliptic.utils.getNAF
 import kotlinx.serialization.json.Json
@@ -28,7 +22,7 @@ sealed class Curve(val presetCurve: PresetCurve) {
     val two = BN(2).toRed(this.red)
 
     val n = presetCurve.n
-    val g : BasePoint<*>? = presetCurve.g?.let { g->
+    val g: BasePoint<*>? = presetCurve.g?.let { g ->
         pointFromJSON(g, presetCurve.gRed)
     }
 
@@ -41,14 +35,14 @@ sealed class Curve(val presetCurve: PresetCurve) {
 
 
     // Temporary arrays
-    protected val _wnafT1 = Array<Int?>(4) {null}
-    protected val _wnafT3 = Array<Array<Int>?>(4) {null}
-    protected val _wnafT4 = Array<Int?>(4) {null}
+    protected val _wnafT1 = Array<Int?>(4) { null }
+    protected val _wnafT3 = Array<Array<Int>?>(4) { null }
+    protected val _wnafT4 = Array<Int?>(4) { null }
 
     protected val bitLength = if (this.n != null) this.n.bitLength() else 0u
 }
 
-class ShortCurve(presetCurve: PresetCurve): Curve(presetCurve) {
+class ShortCurve(presetCurve: PresetCurve) : Curve(presetCurve) {
 
 
     val a = presetCurve.a.toRed(red)
@@ -62,6 +56,7 @@ class ShortCurve(presetCurve: PresetCurve): Curve(presetCurve) {
 
     fun point(x: String, y: String, isRed: Boolean? = null): ShortCurvePoint =
         ShortCurvePoint(this, "affine", x, y, isRed)
+
     fun point(x: BN?, y: BN?, isRed: Boolean? = null): ShortCurvePoint =
         ShortCurvePoint(this, "affine", x, y, isRed)
 
@@ -82,9 +77,9 @@ class ShortCurve(presetCurve: PresetCurve): Curve(presetCurve) {
         val basis = presetCurve.basis
 
         return Endomorphism(
-                beta = beta,
-                lambda = lambda,
-                basis = basis,
+            beta = beta,
+            lambda = lambda,
+            basis = basis,
         )
     }
 
@@ -96,26 +91,30 @@ class ShortCurve(presetCurve: PresetCurve): Curve(presetCurve) {
         val v2 = basis[1]
 
         val c1 = v2.b.multiply(k).divRound(n!!)
-        var c2 = v1.b.negate().multiply(k).divRound(n!!)
+        var c2 = v1.b.negate().multiply(k).divRound(n)
 
 
-        val p1 = c1.multiply(v1.a);
-        val p2 = c2.multiply(v2.a);
-        val q1 = c1.multiply(v1.b);
-        val q2 = c2.multiply(v2.b);
+        val p1 = c1.multiply(v1.a)
+        val p2 = c2.multiply(v2.a)
+        val q1 = c1.multiply(v1.b)
+        val q2 = c2.multiply(v2.b)
 
         // Calculate answer
-        var k1 = k.subtract(p1).subtract(p2);
-        var k2 = q1.add(q2).negate();
-        return EndoSplit( k1 = k1, k2 = k2 )
-    };
+        var k1 = k.subtract(p1).subtract(p2)
+        var k2 = q1.add(q2).negate()
+        return EndoSplit(k1 = k1, k2 = k2)
+    }
 
-    fun endoWnafMulAdd(points: List<ShortCurvePoint>, coeffs: List<BN>, jacobianResult: Any? = null) : BasePoint<ShortCurve> {
-        val npoints = MutableList<ShortCurvePoint?>(4){null}
-        val ncoeffs = MutableList<BN?>(4){null}
+    fun endoWnafMulAdd(
+        points: List<ShortCurvePoint>,
+        coeffs: List<BN>,
+        jacobianResult: Any? = null
+    ): BasePoint<ShortCurve> {
+        val npoints = MutableList<ShortCurvePoint?>(4) { null }
+        val ncoeffs = MutableList<BN?>(4) { null }
         for (i in points.indices) {
             val split = this.endoSplit(coeffs[i])
-            var p = points[i];
+            var p = points[i]
             var beta = p.getBeta()!!
             if (split.k1.negative) {
                 split.k1 = split.k1.negate()
@@ -128,30 +127,32 @@ class ShortCurve(presetCurve: PresetCurve): Curve(presetCurve) {
 
             npoints[i * 2] = p
             npoints[i * 2 + 1] = beta
-            ncoeffs[i * 2] = split.k1;
-            ncoeffs[i * 2 + 1] = split.k2;
+            ncoeffs[i * 2] = split.k1
+            ncoeffs[i * 2 + 1] = split.k2
         }
         val res = this.wnafMulAdd(1, npoints, ncoeffs.toList(), points.size * 2, jacobianResult)
 
         // Clean-up references to points and coefficients
-        for (j in 0 until  npoints.size) {
-            npoints[j] = null;
-            ncoeffs[j] = null;
+        for (j in 0 until npoints.size) {
+            npoints[j] = null
+            ncoeffs[j] = null
         }
         return res
     }
 
-    fun wnafMulAdd(defW: Int,
-                   points: MutableList<ShortCurvePoint?>,
-                   coeffs: List<BN?>,
-                   len: Int,
-                   jacobianResult: Any? = null): BasePoint<ShortCurve> {
-        var wndWidth = this._wnafT1;
-        val wnd = Array<List<BasePoint<ShortCurve>?>?>(4) {null}
-        var naf = this._wnafT3;
+    fun wnafMulAdd(
+        defW: Int,
+        points: MutableList<ShortCurvePoint?>,
+        coeffs: List<BN?>,
+        len: Int,
+        jacobianResult: Any? = null
+    ): BasePoint<ShortCurve> {
+        var wndWidth = this._wnafT1
+        val wnd = Array<List<BasePoint<ShortCurve>?>?>(4) { null }
+        var naf = this._wnafT3
 
         // Fill all arrays
-        var max = 0;
+        var max = 0
 //        var i;
 //        var j;
 
@@ -161,19 +162,19 @@ class ShortCurve(presetCurve: PresetCurve): Curve(presetCurve) {
             wndWidth[i] = nafPoints.wnd
             wnd[i] = nafPoints.points as List<ShortCurvePoint>
         }
-        var p = points[len-1] as BasePoint<ShortCurve>?
+        var p = points[len - 1] as BasePoint<ShortCurve>?
         // Comb small window NAFs
-        for (i in len - 1 downTo  1 step 2) {
-            var a = i - 1;
-            var b = i;
+        for (i in len - 1 downTo 1 step 2) {
+            var a = i - 1
+            var b = i
             if (wndWidth[a] != 1 || wndWidth[b] != 1) {
                 naf[a] = getNAF(coeffs[a]!!, wndWidth[a]!!, this.bitLength.toInt())
                 naf[b] = getNAF(coeffs[b]!!, wndWidth[b]!!, this.bitLength.toInt())
-                max = max(naf[a]!!.size, max);
-                max = max(naf[b]!!.size, max);
+                max = max(naf[a]!!.size, max)
+                max = max(naf[b]!!.size, max)
                 continue
             }
-            val comb : MutableList<BasePoint<ShortCurve>?> = mutableListOf(
+            val comb: MutableList<BasePoint<ShortCurve>?> = mutableListOf(
                 points[a] as ShortCurvePoint, /* 1 */
                 null, /* 3 */
                 null, /* 5 */
@@ -206,50 +207,50 @@ class ShortCurve(presetCurve: PresetCurve): Curve(presetCurve) {
 
             val jsf = getJSF(coeffs[a]!!, coeffs[b]!!)
             max = max(jsf[0].size, max)
-            naf[a] = Array(max) {0}
-            naf[b] = Array(max) {0}
+            naf[a] = Array(max) { 0 }
+            naf[b] = Array(max) { 0 }
             for (j in 0 until max) {
                 val ja = jsf[0][j] or 0
                 val jb = jsf[1][j] or 0
 
-                naf[a]!![j] = index[(ja + 1) * 3 + (jb + 1)];
-                naf[b]!![j] = 0;
+                naf[a]!![j] = index[(ja + 1) * 3 + (jb + 1)]
+                naf[b]!![j] = 0
                 wnd[a] = comb.toList()
             }
         }
 
-        var acc = JPoint(this,null, null, null)
-        var tmp = this._wnafT4;
+        var acc = JPoint(this, null, null, null)
+        var tmp = this._wnafT4
         var i = max
         while (i >= 0) {
-            var k = 0;
+            var k = 0
 
             while (i >= 0) {
-                var zero = true;
+                var zero = true
                 for (j in 0 until len) {
                     tmp[j] = naf[j]!!.getOrElse(i) { 0 }
                     if (tmp[j] != 0)
-                        zero = false;
+                        zero = false
                 }
                 if (!zero)
-                    break;
+                    break
                 k++
                 i--
             }
             if (i >= 0)
                 k++
-            acc = acc.dblp(k);
+            acc = acc.dblp(k)
             if (i < 0)
                 break
             for (j in 0 until len) {
-                val z = tmp[j];
+                val z = tmp[j]
 
                 if (z == 0)
                     continue
                 else if (z!! > 0)
-                    p = wnd[j]!![(z - 1) shr 1];
+                    p = wnd[j]!![(z - 1) shr 1]
                 else if (z < 0)
-                p = wnd[j]!![(-z - 1) shr 1]!!.neg()
+                    p = wnd[j]!![(-z - 1) shr 1]!!.neg()
 
                 if (p!!.type == "affine")
                     acc = acc.mixedAdd(p as ShortCurvePoint)
@@ -262,7 +263,7 @@ class ShortCurve(presetCurve: PresetCurve): Curve(presetCurve) {
         for (i in 0 until len) {
             wnd[i] = null
         }
-        if (jacobianResult!= null)
+        if (jacobianResult != null)
             return acc
         else
             return acc.toP()
@@ -276,34 +277,34 @@ class ShortCurve(presetCurve: PresetCurve): Curve(presetCurve) {
 
         var naf = getNAF(k, 1, this.bitLength.toInt())
         var I = (1 shl (doubles.step + 1)) - (if (doubles.step % 2 == 0) 2 else 1)
-        I /= 3;
+        I /= 3
 
         // Translate into more windowed form
         var repr = mutableListOf<Int>()
         var j = 0
         var nafW: Int?
         while (j < naf.size) {
-            nafW = 0;
-            for (l in j + doubles.step - 1 downTo  j) {
-                nafW = naf.getOrNull(l)?.plus (nafW?.shl(1) ?: 0)
+            nafW = 0
+            for (l in j + doubles.step - 1 downTo j) {
+                nafW = naf.getOrNull(l)?.plus(nafW?.shl(1) ?: 0)
             }
             repr.add(nafW!!)
             j += doubles.step
         }
 
-        var a = this.jpoint(null, null, null);
-        var b = this.jpoint(null, null, null);
-        for (i in I downTo  1) {
+        var a = this.jpoint(null, null, null)
+        var b = this.jpoint(null, null, null)
+        for (i in I downTo 1) {
             for (l in 0 until repr.size) {
-                nafW = repr[l];
+                nafW = repr[l]
                 if (nafW == i)
-                    b = b.mixedAdd(doubles.points[l] as ShortCurvePoint);
+                    b = b.mixedAdd(doubles.points[l] as ShortCurvePoint)
                 else if (nafW == -i)
-                    b = b.mixedAdd((doubles.points[l] as ShortCurvePoint).neg());
+                    b = b.mixedAdd((doubles.points[l] as ShortCurvePoint).neg())
             }
-            a = a.add(b);
+            a = a.add(b)
         }
-        return a.toP();
+        return a.toP()
     }
 
     override fun pointFromJSON(g: String, gRed: Boolean): BasePoint<*> =
@@ -323,15 +324,16 @@ class ShortCurve(presetCurve: PresetCurve): Curve(presetCurve) {
     }
 
     override fun decodePoint(bytes: UByteArray, enc: String?): ShortCurvePoint {
-        var len = this.p.byteLength();
+        var len = this.p.byteLength()
 
         // uncompressed, hybrid-odd, hybrid-even
         if ((bytes[0].toInt() == 0x04 || bytes[0].toInt() == 0x06 || bytes[0].toInt() == 0x07) &&
-            bytes.size - 1 == 2 * len) {
+            bytes.size - 1 == 2 * len
+        ) {
             if (bytes[0].toInt() == 0x06)
                 require(bytes[bytes.size - 1].toInt() % 2 == 0)
             else if (bytes[0].toInt() == 0x07)
-                require(bytes[bytes.size - 1].toInt() % 2 == 1);
+                require(bytes[bytes.size - 1].toInt() % 2 == 1)
 
             val res = this.point(
                 BN(bytes.slice(IntRange(1, len)).toUByteArray()),
@@ -340,7 +342,8 @@ class ShortCurve(presetCurve: PresetCurve): Curve(presetCurve) {
 
             return res
         } else if ((bytes[0].toInt() == 0x02 || bytes[0].toInt() == 0x03) &&
-            bytes.size - 1 == len) {
+            bytes.size - 1 == len
+        ) {
             return this.pointFromX(
                 bytes.slice(IntRange(1, len)).toUByteArray(),
                 bytes[0].toInt() == 0x03

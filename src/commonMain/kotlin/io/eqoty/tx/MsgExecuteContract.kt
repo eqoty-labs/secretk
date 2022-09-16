@@ -7,9 +7,7 @@ import io.eqoty.utils.EncryptionUtils
 import io.eqoty.utils.addressToBytes
 import io.eqoty.utils.getMissingCodeHashWarning
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.protobuf.ProtoNumber
 
 class MsgExecuteContract(
     val sender: String,
@@ -32,15 +30,15 @@ class MsgExecuteContract(
      * - "0xAF74387E276BE8874F07BEC3A87023EE49B0E7EBE08178C49D0A49C3C98ED60E"
      */
     codeHash: String? = null
-): Msg<MsgExecuteContractProto> {
+) : Msg<MsgExecuteContractProto> {
     private var msgEncrypted: UByteArray? = null
 
     var codeHash: String? = codeHash
         set(value) {
-            if (value!=null && !value.isNullOrBlank()) {
+            if (value != null && !value.isNullOrBlank()) {
                 warnCodeHash = false
             } else {
-                Logger.w{ getMissingCodeHashWarning("MsgExecuteContract") }
+                Logger.w { getMissingCodeHashWarning("MsgExecuteContract") }
             }
             field = value?.replace("0x", "")?.lowercase()
         }
@@ -55,7 +53,7 @@ class MsgExecuteContract(
 
     override suspend fun toProto(utils: EncryptionUtils): ProtoMsg<MsgExecuteContractProto> {
         if (warnCodeHash) {
-            Logger.w{ getMissingCodeHashWarning("MsgExecuteContract") }
+            Logger.w { getMissingCodeHashWarning("MsgExecuteContract") }
         }
 
         if (msgEncrypted == null) {
@@ -64,11 +62,11 @@ class MsgExecuteContract(
             // so to keep the msg consistant across calls we encrypt the msg only once
             msgEncrypted = utils.encrypt(codeHash!!, Json.parseToJsonElement(msg).jsonObject)
         }
-        
+
         val msgContent = MsgExecuteContractProto(
             sender = addressToBytes(sender),
             contract = addressToBytes(contractAddress),
-            msg = msgEncrypted!!.toByteArray() ,
+            msg = msgEncrypted!!.toByteArray(),
             sentFunds = sentFunds.map { it.toProto() },
             // callbackSig & callbackCodeHash are internal stuff that doesn't matter here
 //            callbackSig = byteArrayOf(),

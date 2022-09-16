@@ -46,18 +46,18 @@ class EC(val curve: Curve) {
         var iter = -1
         while (true) {
             iter++
-            var k : BN = if (options.k!= null) {
+            var k: BN = if (options.k != null) {
                 TODO() /* options.k(iter) */
             } else {
                 BN(LibsodiumRandom.buf(this.n.byteLength()))
             }
             k = this.truncateToN(k, true)
             if (k <= 1 || k >= ns1)
-                continue;
+                continue
 
-            val kp = this.g!!.mul(k);
+            val kp = this.g!!.mul(k)
             if (kp.isInfinity())
-                continue;
+                continue
 
             val kpX = kp.x!!
             val r = kpX.mod(this.n)
@@ -69,12 +69,12 @@ class EC(val curve: Curve) {
             if (s.compareTo(0) == 0)
                 continue
 
-            var recoveryParam = (if (kp.y!!.isOdd())  1 else 0) or (if (kpX.compareTo(r) != 0) 2 else 0)
+            var recoveryParam = (if (kp.y!!.isOdd()) 1 else 0) or (if (kpX.compareTo(r) != 0) 2 else 0)
 
             // Use complement of `s`, if it is > `n / 2`
             if (options.canonical == true && s > this.nh) {
                 s = this.n.subtract(s)
-                recoveryParam =  recoveryParam xor 1
+                recoveryParam = recoveryParam xor 1
             }
 
             return Signature(r = r, s = s, recoveryParam = recoveryParam)

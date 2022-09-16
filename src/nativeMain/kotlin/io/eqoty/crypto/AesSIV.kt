@@ -1,4 +1,5 @@
 package io.eqoty.crypto
+
 import kotlinx.cinterop.*
 import libaes_siv.AES_SIV_CTX_free
 import libaes_siv.AES_SIV_CTX_new
@@ -11,8 +12,8 @@ actual class AesSIV actual constructor() {
         plaintext: UByteArray,
         associatedData: UByteArray
     ): UByteArray = memScoped {
-        val ctx  = AES_SIV_CTX_new()
-        val outputLength = txEncryptionKey.size/2 + plaintext.size
+        val ctx = AES_SIV_CTX_new()
+        val outputLength = txEncryptionKey.size / 2 + plaintext.size
         val ciphertext = UByteArray(outputLength)
         val ciphertextPtr = ciphertext.refTo(0)
         val outputLengthPtr = cValue<ULongVar>().ptr
@@ -41,8 +42,8 @@ actual class AesSIV actual constructor() {
         ciphertext: UByteArray,
         associatedData: UByteArray
     ): UByteArray = memScoped {
-        val ctx  = AES_SIV_CTX_new()
-        val outputLength = ciphertext.size - txEncryptionKey.size/2
+        val ctx = AES_SIV_CTX_new()
+        val outputLength = ciphertext.size - txEncryptionKey.size / 2
         val plaintext = UByteArray(outputLength)
         val plaintextPtr = plaintext.refTo(0)
         val outputLengthPtr = cValue<ULongVar>().ptr

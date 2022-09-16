@@ -72,7 +72,7 @@ internal class RestClient(
 
     suspend inline fun <reified T> post(path: String, params: JsonObject): T {
         val response = try {
-            this.client.post(this.apiUrl + path){
+            this.client.post(this.apiUrl + path) {
                 setBody(params)
             }
         } catch (e: ResponseException) {
@@ -90,9 +90,9 @@ internal class RestClient(
         // use the error message sent from server, not default 500 msg
         val body = err.response.bodyAsText()
         if (body != "") {
-            throw Error("$body (HTTP ${err.response.status})");
+            throw Error("$body (HTTP ${err.response.status})")
         } else {
-            throw err;
+            throw err
         }
     }
 
@@ -106,14 +106,16 @@ internal class RestClient(
     suspend fun postTx(tx: UByteArray): TxsResponseData {
         val txString = tx.toByteString().base64()
         val params =
-            json.parseToJsonElement("""{
+            json.parseToJsonElement(
+                """{
                 "tx_bytes": "$txString",
                 "mode": "${this.broadcastMode.mode}"
-            }""").jsonObject
+            }"""
+            ).jsonObject
 
-        val responseData : TxsResponse = post("/cosmos/tx/v1beta1/txs", params);
+        val responseData: TxsResponse = post("/cosmos/tx/v1beta1/txs", params)
         if (responseData.tx_response.txhash.isBlank()) {
-            throw Error("Unexpected response data format");
+            throw Error("Unexpected response data format")
         }
         return responseData.tx_response
     }
@@ -181,13 +183,13 @@ internal class RestClient(
 //                throw new Error(`Failed to decrypt the following error message: ${err.message}.`);
 //            }
 
-            throw err;
+            throw err
         }
         val decryptedResponse = enigmautils.decrypt(responseData.data.decodeBase64()!!.toUByteArray(), nonce)
         return decryptedResponse.decodeToString().decodeBase64()!!.utf8().trimEnd()
     }
 
-    suspend fun decryptDataField(dataField : UByteArray, nonces: List<UByteArray>): UByteArray {
+    suspend fun decryptDataField(dataField: UByteArray, nonces: List<UByteArray>): UByteArray {
         val wasmOutputDataCipherBz = dataField
 
         var error: Throwable? = null
@@ -209,21 +211,21 @@ internal class RestClient(
     }
 
     suspend fun authAccounts(address: String): CosmosSdkAccount {
-        val authResp : AccountResponse = get("/cosmos/auth/v1beta1/accounts/${address}")
-        val bankResp : BalanceResponse = get("/cosmos/bank/v1beta1/balances/${address}")
+        val authResp: AccountResponse = get("/cosmos/auth/v1beta1/accounts/${address}")
+        val bankResp: BalanceResponse = get("/cosmos/bank/v1beta1/balances/${address}")
 
         return CosmosSdkAccount(
-            address= authResp.account.address,
+            address = authResp.account.address,
             coins = bankResp.balances,
-            public_key = authResp.account.pub_key?.let { PubKeySecp256k1(it.key)},
-            account_number= authResp.account.account_number ?: BigInteger.ZERO,
-            sequence= authResp.account.sequence ?: BigInteger.ZERO,
+            public_key = authResp.account.pub_key?.let { PubKeySecp256k1(it.key) },
+            account_number = authResp.account.account_number ?: BigInteger.ZERO,
+            sequence = authResp.account.sequence ?: BigInteger.ZERO,
         )
     }
 
     // The /node_info endpoint
     suspend fun nodeInfo(): NodeInfoResponse {
-        return get("/node_info");
+        return get("/node_info")
     }
 
     suspend fun decryptLogs(logs: List<Log>, nonces: MutableList<UByteArray>): List<Log> {
@@ -234,13 +236,17 @@ internal class RestClient(
                         var nonceOk = false
                         for (a in e.attributes) {
                             try {
-                                a.key = this.enigmautils.decrypt(a.key.decodeBase64()!!.toUByteArray(), nonce).decodeToString()
+                                a.key = this.enigmautils.decrypt(a.key.decodeBase64()!!.toUByteArray(), nonce)
+                                    .decodeToString()
                                 nonceOk = true
-                            } catch (_: Throwable) {}
+                            } catch (_: Throwable) {
+                            }
                             try {
-                                a.value = this.enigmautils.decrypt(a.value.decodeBase64()!!.toUByteArray(), nonce).decodeToString()
-                                nonceOk = true;
-                            } catch (_: Throwable) {}
+                                a.value = this.enigmautils.decrypt(a.value.decodeBase64()!!.toUByteArray(), nonce)
+                                    .decodeToString()
+                                nonceOk = true
+                            } catch (_: Throwable) {
+                            }
                         }
                         if (nonceOk) {
                             continue

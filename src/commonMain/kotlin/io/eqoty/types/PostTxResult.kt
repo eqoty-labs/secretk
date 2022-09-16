@@ -2,7 +2,7 @@ package io.eqoty.types
 
 import io.eqoty.logs.Log
 
-data class PostTxResult (
+data class PostTxResult(
     val logs: List<Log>,
     val rawLog: String,
     val data: String,

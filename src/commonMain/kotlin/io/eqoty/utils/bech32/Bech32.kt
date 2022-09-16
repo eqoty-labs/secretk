@@ -4,12 +4,12 @@ import io.eqoty.utils.bech32.BitConverter.from5BitArray
 import io.eqoty.utils.bech32.BitConverter.to5BitArray
 import kotlin.experimental.and
 
-sealed class Bech32Error(override val message: String): Error()
-class InvalidDataLength(message: String): Bech32Error(message)
-class InvalidCharacter(character: Char, index: Int): Bech32Error("Invalid char:$character, at index: $index")
-class InvalidPrefix(message: String): Bech32Error(message)
-class InvalidChecksum(): Bech32Error("InvalidChecksum")
-class RangeError(message: String): Bech32Error(message)
+sealed class Bech32Error(override val message: String) : Error()
+class InvalidDataLength(message: String) : Bech32Error(message)
+class InvalidCharacter(character: Char, index: Int) : Bech32Error("Invalid char:$character, at index: $index")
+class InvalidPrefix(message: String) : Bech32Error(message)
+class InvalidChecksum : Bech32Error("InvalidChecksum")
+class RangeError(message: String) : Bech32Error(message)
 
 // Based on:
 //https://github.com/bitcoinj/bitcoinj/tree/master/core/src/main/java/org/bitcoinj/core
@@ -45,8 +45,10 @@ object Bech32 {
 
     // Minimum char code that could be present in the encoded message
     private val MIN_CHAR_CODE = 33
+
     // Maximum char code that could be present in the encoded message
     private val MAX_CHAR_CODE = 126
+
     // Maximum encoded message length
     private val MAX_ENC_LENGTH = 90
 
@@ -54,7 +56,6 @@ object Bech32 {
     fun encode(bech32: Bech32Data): String {
         return encode(bech32.encoding, bech32.hrp, bech32.data)
     }
-
 
 
     /**
@@ -92,7 +93,7 @@ object Bech32 {
         var result = prefix + "1"
         for (i in data.indices) {
             val x = data[i].toInt()
-            if (x shr 5 != 0) throw Error("Non 5-bit word");
+            if (x shr 5 != 0) throw Error("Non 5-bit word")
 
             chk = polymodStep(chk) xor x
             result += CHARSET[x]
@@ -209,7 +210,7 @@ object Bech32 {
     }
 
     /** Verify a checksum.  */
-    fun verifyChecksum(hrp: String, values: ByteArray): Bech32.Encoding? {
+    fun verifyChecksum(hrp: String, values: ByteArray): Encoding? {
         val hrpExpanded = expandHrp(hrp)
         val combined = ByteArray(hrpExpanded.size + values.size)
         hrpExpanded.copyInto(combined, 0, 0, hrpExpanded.size)

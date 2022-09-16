@@ -1,6 +1,5 @@
 package io.eqoty.utils
 
-import com.ionspin.kotlin.crypto.LibsodiumInitializer
 import com.ionspin.kotlin.crypto.util.LibsodiumRandom
 import com.ionspin.kotlin.crypto.util.encodeToUByteArray
 import deriveHKDFKey
@@ -64,7 +63,7 @@ class EnigmaUtils internal constructor(val apiUrl: String, val seed: UByteArray)
         0xd7.toUByte(),
         0xe9.toUByte(),
         0x6d.toUByte(),
-        )
+    )
 
 
     private val siv = AesSIV()
@@ -81,13 +80,13 @@ class EnigmaUtils internal constructor(val apiUrl: String, val seed: UByteArray)
     }
 
     companion object {
-        suspend fun init(apiUrl: String, seed: UByteArray?): EnigmaUtils{
+        suspend fun init(apiUrl: String, seed: UByteArray?): EnigmaUtils {
             ensureLibsodiumInitialized()
             return EnigmaUtils(apiUrl, seed ?: GenerateNewSeed())
         }
 
         suspend fun GenerateNewKeyPair(): KeyPair {
-            return GenerateNewKeyPairFromSeed(GenerateNewSeed());
+            return GenerateNewKeyPairFromSeed(GenerateNewSeed())
         }
 
         suspend fun GenerateNewSeed(): UByteArray {
@@ -141,11 +140,11 @@ class EnigmaUtils internal constructor(val apiUrl: String, val seed: UByteArray)
         //console.log(`decrypt tx encryption key: ${Encoding.toHex(txEncryptionKey)}`);
 
         val plaintext = siv.decrypt(txEncryptionKey, ciphertext, ubyteArrayOf())
-        return plaintext;
+        return plaintext
     }
 
     override suspend fun encrypt(contractCodeHash: String, message: JsonObject): UByteArray {
-        val nonce =  LibsodiumRandom.buf(32)
+        val nonce = LibsodiumRandom.buf(32)
 
         val txEncryptionKey = getTxEncryptionKey(nonce)
 
@@ -157,7 +156,7 @@ class EnigmaUtils internal constructor(val apiUrl: String, val seed: UByteArray)
     }
 
     override suspend fun getTxEncryptionKey(nonce: UByteArray): UByteArray {
-        val consensusIoPubKey = getConsensusIoPubKey();
+        val consensusIoPubKey = getConsensusIoPubKey()
         val txEncryptionIkm = sharedKey(this.privKey.toIntArray(), consensusIoPubKey.toIntArray()).toUByteArray()
         return deriveHKDFKey(txEncryptionIkm + nonce, hkdfSalt, len = 32)
     }

@@ -21,14 +21,14 @@ internal object BitConverter {
      */
     fun to5BitArray(src: ByteArray, dst: ByteArray? = null): ByteArray {
         val len = ceil((src.size.toDouble() * 8.0) / 5.0).toInt()
-        val realDst = dst ?: ByteArray(len){ 0 }
+        val realDst = dst ?: ByteArray(len) { 0 }
 
         return toBits(src, 5, realDst)
     }
 
     fun from5BitArray(src: ByteArray, dst: ByteArray? = null): ByteArray {
         val len = floor((src.size.toDouble() * 5.0) / 8.0).toInt()
-        val realDst = dst ?: ByteArray(len){ 0 }
+        val realDst = dst ?: ByteArray(len) { 0 }
 
         return fromBits(src, 5, realDst)
     }
@@ -78,11 +78,11 @@ internal object BitConverter {
         dstBits: Int,
         pad: Boolean,
     ) {
-        val mask : Int = (1 shl dstBits) - 1
+        val mask: Int = (1 shl dstBits) - 1
         var acc = 0
         var bits = 0
         var pos = 0
-        src.forEach{ b ->
+        src.forEach { b ->
             // Pull next bits from the input buffer into accumulator.
             // when converting b to int only take first byte (matters for negatives)
             acc = (acc shl srcBits) or (b.toInt() and 0xff)
