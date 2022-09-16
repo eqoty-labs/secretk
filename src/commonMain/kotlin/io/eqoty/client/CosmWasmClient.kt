@@ -6,8 +6,6 @@ import io.eqoty.types.Account
 import io.eqoty.types.PostTxResult
 import io.eqoty.utils.EncryptionUtils
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonObject
 
 open class CosmWasmClient protected constructor(

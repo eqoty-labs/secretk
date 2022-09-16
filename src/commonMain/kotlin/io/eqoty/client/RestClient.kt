@@ -6,7 +6,6 @@ import io.eqoty.BroadcastMode
 import io.eqoty.logs.Log
 import io.eqoty.response.*
 import io.eqoty.utils.*
-import io.eqoty.utils.bech32.Bech32
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
