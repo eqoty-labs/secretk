@@ -1,6 +1,5 @@
 package io.eqoty.client
 
-import com.ionspin.kotlin.crypto.LibsodiumInitializer
 import io.eqoty.BroadcastMode
 import io.eqoty.response.PubKey
 import io.eqoty.response.PubKeyMultisigThreshold
@@ -18,7 +17,6 @@ import io.eqoty.wallet.Secp256k1Pen
 import io.eqoty.wallet.encodeSecp256k1Pubkey
 import kotlinx.serialization.decodeFromByteArray
 import kotlinx.serialization.encodeToByteArray
-import kotlinx.serialization.json.Json
 import kotlinx.serialization.protobuf.ProtoBuf
 import okio.ByteString.Companion.decodeBase64
 import okio.ByteString.Companion.decodeHex
@@ -219,10 +217,11 @@ private constructor(
         }
         var data : UByteArray = ubyteArrayOf()
         if (this.restClient.broadcastMode == BroadcastMode.Block) {
-            val txMsgData: TxMsgDataProto = ProtoBuf.decodeFromByteArray(result.data.decodeHex().toByteArray());
+            val txMsgData: TxMsgDataProto = ProtoBuf.decodeFromByteArray(result.data.decodeHex().toByteArray())
             val dataFields = txMsgData.data
             if (dataFields[0].data.isNotEmpty()) {
-                data = this.restClient.decryptDataField(dataFields[0].data.toUByteArray(), encryptionNonces)
+                val msgExecuteContractResponse : MsgExecuteContractResponseProto = ProtoBuf.decodeFromByteArray(dataFields[0].data)
+                data = this.restClient.decryptDataField(msgExecuteContractResponse.data.toUByteArray(), encryptionNonces)
             }
         }
 
