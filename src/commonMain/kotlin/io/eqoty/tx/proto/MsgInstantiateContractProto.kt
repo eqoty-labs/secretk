@@ -14,5 +14,5 @@ class MsgInstantiateContractProto(
     @ProtoNumber(4) val label: String = "",
     @ProtoNumber(5) val initMsg: ByteArray = byteArrayOf(),
     @ProtoNumber(6) val sentFunds: List<CoinProto> = emptyList(),
-    @ProtoNumber(7) val callbackSig: ByteArray = byteArrayOf(),
+    @ProtoNumber(7) val callbackSig: ByteArray? = null,
 ) : MsgProto()
