@@ -189,25 +189,23 @@ internal class RestClient(
         return decryptedResponse.decodeToString().decodeBase64()!!.utf8().trimEnd()
     }
 
-    suspend fun decryptDataField(dataField: UByteArray, nonces: List<UByteArray>): UByteArray {
+    suspend fun decryptDataField(dataField: UByteArray, nonce: UByteArray): UByteArray {
         val wasmOutputDataCipherBz = dataField
 
-        var error: Throwable? = null
-        for (nonce in nonces) {
-            try {
-                val data = enigmautils
-                    .decrypt(wasmOutputDataCipherBz, nonce)
-                    .decodeToString()
-                    .decodeBase64()!!
-                    .toUByteArray()
+        val error: Throwable
+        try {
+            val data = enigmautils
+                .decrypt(wasmOutputDataCipherBz, nonce)
+                .decodeToString()
+                .decodeBase64()!!
+                .toUByteArray()
 
-                return data
-            } catch (t: Throwable) {
-                error = t
-            }
+            return data
+        } catch (t: Throwable) {
+            error = t
         }
 
-        throw error!!
+        throw error
     }
 
     suspend fun authAccounts(address: String): CosmosSdkAccount {
@@ -228,7 +226,7 @@ internal class RestClient(
         return get("/node_info")
     }
 
-    suspend fun decryptLogs(logs: List<Log>, nonces: MutableList<UByteArray>): List<Log> {
+    suspend fun decryptLogs(logs: List<Log>, nonces: List<UByteArray>): List<Log> {
         for (l in logs) {
             for (e in l.events) {
                 if (e.type == "wasm") {

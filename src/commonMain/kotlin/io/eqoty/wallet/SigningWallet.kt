@@ -7,11 +7,11 @@ import io.eqoty.crypto.Slip10
 import io.eqoty.crypto.Slip10Curve
 import io.eqoty.crypto.Slip10RawIndex
 import io.eqoty.tx.proto.SignDocProto
+import io.eqoty.tx.proto.SignMode
 import io.eqoty.types.StdSignature
+import io.eqoty.utils.Address.pubkeyToAddress
 import io.eqoty.utils.getPadded
 import io.eqoty.utils.toByteString
-import kotlinx.serialization.encodeToByteArray
-import kotlinx.serialization.protobuf.ProtoBuf
 
 
 /**
@@ -33,7 +33,41 @@ enum class PrehashType(val type: String) {
     SHA512("sha512")
 }
 
-class Secp256k1Pen private constructor(private val privkey: UByteArray, val pubkey: UByteArray) {
+
+sealed class SigningWallet(
+    mnemonic: String,
+    hdPath: Array<Slip10RawIndex> = makeSecretNetworkPath(0.toUInt()),
+    bech32Prefix: String = "secret"
+) {
+
+    private val privkey: UByteArray
+    private val pubkey: UByteArray
+    protected var address: String
+
+    init {
+        val seed = Mnemonics.MnemonicCode(mnemonic).toSeed().toUByteArray()
+        val result = Slip10.derivePath(Slip10Curve.Secp256k1, seed, hdPath)
+        privkey = result.privkey
+        val uncompressed = Secp256k1.makeKeypair(privkey).pubkey
+        pubkey = Secp256k1.compressPubkey(uncompressed)
+        address = pubkeyToAddress(encodeSecp256k1Pubkey(pubkey), bech32Prefix)
+    }
+
+    /**
+     * Get SignMode for signing a tx.
+     */
+    abstract suspend fun getSignMode(): SignMode?
+
+    /**
+     * Get AccountData array from wallet. Rejects if not enabled.
+     */
+    fun getAccounts(): List<AccountData> = listOf(
+        AccountData(
+            address,
+            Algo.secp256k1,
+            pubkey
+        )
+    )
 
     private fun prehash(bytes: UByteArray, type: PrehashType?): UByteArray {
         return when (type) {
@@ -44,34 +78,24 @@ class Secp256k1Pen private constructor(private val privkey: UByteArray, val pubk
     }
 
 
-    companion object {
-        suspend fun fromMnemonic(
-            mnemonic: String,
-            hdPath: Array<Slip10RawIndex> = makeSecretNetworkPath(0.toUInt()),
-        ): Secp256k1Pen {
-            val seed = Mnemonics.MnemonicCode(mnemonic).toSeed().toUByteArray()
-            val result = Slip10.derivePath(Slip10Curve.Secp256k1, seed, hdPath)
-            val privkey = result.privkey
-            val uncompressed = Secp256k1.makeKeypair(privkey).pubkey
-            return Secp256k1Pen(privkey, Secp256k1.compressPubkey(uncompressed))
-        }
-    }
-
-
     /**
      * Creates and returns a signature
      */
     fun sign(signBytes: UByteArray, prehashType: PrehashType = PrehashType.SHA256): StdSignature {
-        val message = prehash(signBytes, prehashType)
-        val signature = Secp256k1.createSignature(message, this.privkey)
+        val messageHash = prehash(signBytes, prehashType)
+        val signature = Secp256k1.createSignature(messageHash, this.privkey)
         val fixedLengthSignature = signature.r.getPadded(32) + signature.s.getPadded(32)
         return encodeSecp256k1Signature(this.pubkey, fixedLengthSignature)
     }
 
-    fun signDirect(senderAddress: String, signDoc: SignDocProto): StdSignature {
-        val messageHash = ProtoBuf.encodeToByteArray(signDoc).toUByteArray()
-        return sign(messageHash)
-    }
-
-
 }
+
+
+data class SignResponse(
+    /**
+     * The sign doc that was signed.
+     * This may be different from the input signDoc when the signer modifies it as part of the signing process.
+     */
+    val signed: SignDocProto,
+    val signature: StdSignature
+)

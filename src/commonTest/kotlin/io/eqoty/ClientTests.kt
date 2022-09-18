@@ -2,9 +2,7 @@ package io.eqoty
 
 import io.eqoty.client.SigningCosmWasmClient
 import io.eqoty.tx.MsgExecuteContract
-import io.eqoty.utils.Address.pubkeyToAddress
-import io.eqoty.wallet.Secp256k1Pen
-import io.eqoty.wallet.encodeSecp256k1Pubkey
+import io.eqoty.wallet.Wallet
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
@@ -24,10 +22,8 @@ class ClientTests {
     fun testPubKeyToAddress() = runTest {
         val mnemonic = "sand check forward humble between movie language siege where social crumble mouse"
         val accAddress = "secret1fdkdmflnrysrvg3nc4ym7zdsn2rm5atszn9q2y"
-        val signingPen = Secp256k1Pen.fromMnemonic(mnemonic)
-        val pubkey = encodeSecp256k1Pubkey(signingPen.pubkey)
-        val accAddressFromMnemonic = pubkeyToAddress(pubkey, "secret")
-        assertEquals(accAddress, accAddressFromMnemonic)
+        val signingPen = Wallet(mnemonic)
+        assertEquals(accAddress, signingPen.getAccounts()[0].address)
     }
 
     /**
@@ -41,14 +37,12 @@ class ClientTests {
         val mnemonic = "sand check forward humble between movie language siege where social crumble mouse"
         // A pen is the most basic tool you can think of for signing.
         // This wraps a single keypair and allows for signing.
-        val signingPen = Secp256k1Pen.fromMnemonic(mnemonic)
-        val pubkey = encodeSecp256k1Pubkey(signingPen.pubkey)
-        val accAddress = pubkeyToAddress(pubkey, "secret")
-
+        val wallet = Wallet(mnemonic)
+        val accAddress = wallet.getAccounts()[0].address
         val client = SigningCosmWasmClient.init(
             grpcGatewayEndpoint,
             accAddress,
-            signingPen
+            wallet
         )
         println("Querying nft contract info")
         val contractInfoQuery = """{"contract_info": {}}"""
@@ -61,13 +55,14 @@ class ClientTests {
         val handleMsg = """{ "create_viewing_key": {"entropy": "$entropy"} }"""
         println("Creating viewing key")
         val response = client.execute(
-            contractAddress,
-            MsgExecuteContract(
-                sender = accAddress,
-                contractAddress = contractAddress,
-                msg = handleMsg,
+            arrayOf(
+                MsgExecuteContract(
+                    sender = accAddress,
+                    contractAddress = contractAddress,
+                    msg = handleMsg,
 //                codeHash = "b3b9ecf43f21f5d41f55b1da1f50ccd68eee86cf951d6cb4490998005af28269"
-            ),
+                )
+            )
 //            contractCodeHash = "b3b9ecf43f21f5d41f55b1da1f50ccd68eee86cf951d6cb4490998005af28269"
         )
         println("viewing key response: ${response.data}")

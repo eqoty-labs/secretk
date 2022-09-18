@@ -4,17 +4,18 @@ import io.eqoty.BroadcastMode
 import io.eqoty.response.PubKey
 import io.eqoty.response.PubKeyMultisigThreshold
 import io.eqoty.response.PubKeySecp256k1
+import io.eqoty.response.TxsResponseData
 import io.eqoty.result.ExecuteResult
+import io.eqoty.tx.Msg
 import io.eqoty.tx.MsgExecuteContract
-import io.eqoty.tx.ProtoMsg
+import io.eqoty.tx.MsgInstantiateContract
 import io.eqoty.tx.proto.*
 import io.eqoty.types.*
 import io.eqoty.utils.EncryptionUtils
 import io.eqoty.utils.EnigmaUtils
 import io.eqoty.utils.decodeToString
 import io.eqoty.utils.ensureLibsodiumInitialized
-import io.eqoty.wallet.Secp256k1Pen
-import io.eqoty.wallet.encodeSecp256k1Pubkey
+import io.eqoty.wallet.*
 import kotlinx.serialization.decodeFromByteArray
 import kotlinx.serialization.encodeToByteArray
 import kotlinx.serialization.protobuf.ProtoBuf
@@ -25,13 +26,12 @@ class SigningCosmWasmClient//| OfflineSigner
 private constructor(
     val apiUrl: String,
     val senderAddress: String,
-    signer: Secp256k1Pen,
+    val wallet: SigningWallet,
     encryptionUtils: EncryptionUtils,
     customFees: FeeTable?,
     broadcastMode: BroadcastMode = BroadcastMode.Block
 ) : CosmWasmClient(apiUrl, encryptionUtils, broadcastMode) {
 
-    val pen: Secp256k1Pen = signer
     val fees: FeeTable
 
     init {
@@ -111,20 +111,23 @@ private constructor(
         }
     }
 
+    private fun extractMessageNonce(msg: MsgProto): UByteArray {
+        return when (msg) {
+            is MsgInstantiateContractProto -> {
+                msg.initMsg.toUByteArray().copyOfRange(0, 32)
+            }
 
-    private fun <M : MsgProto> extractNonce(msg: ProtoMsg<M>): UByteArray {
-        if (msg.typeUrl === "/secret.compute.v1beta1.MsgInstantiateContract") {
-            return (msg.value as MsgInstantiateContractProto).initMsg.toUByteArray().copyOfRange(0, 32)
+            is MsgExecuteContractProto -> {
+                msg.msg.toUByteArray().copyOfRange(0, 32)
+            }
+
+            else -> throw UnsupportedOperationException("Extracting nonce from a:${msg::class} is not supported")
         }
-        if (msg.typeUrl === "/secret.compute.v1beta1.MsgExecuteContract") {
-            return (msg.value as MsgExecuteContractProto).msg.toUByteArray().copyOfRange(0, 32)
-        }
-        return ubyteArrayOf()
     }
 
+
     suspend fun execute(
-        contractAddress: String,
-        vararg msg: MsgExecuteContract,
+        msgs: Array<Msg<*>>,
         memo: String = "",
         fee: StdFee? = null,
         contractCodeHash: String? = null,
@@ -132,62 +135,10 @@ private constructor(
         @Suppress("NAME_SHADOWING")
         val fee = fee ?: fees.exec!!
 
-        @Suppress("NAME_SHADOWING")
-        val contractCodeHash = if (contractCodeHash == null) {
-            this.restClient.getCodeHashByContractAddr(contractAddress)
-        } else {
-            this.restClient.codeHashCache[contractAddress] = contractCodeHash
-            contractCodeHash
-        }
+        val txRawProto = sign(fee, memo, msgs)
 
-        val encryptionNonces = mutableListOf<UByteArray>()
-        val txBody = TxBody(
-            value = TxBodyValue(
-                messages = msg
-                    .map {
-                        it.codeHash = contractCodeHash
-                        val asProto = it.toProto(this.restClient.enigmautils)
-                        encryptionNonces.add(extractNonce(asProto))
-                        asProto
-                    },
-                memo = memo
-            )
-        )
-
-        val txBodyBytes = encodeTx(txBody)
-        val pubkey = encodePubkey(encodeSecp256k1Pubkey(this.pen.pubkey))
-        val gasLimit = fee.gas
-        val nonceResult = this.getNonce(senderAddress)
-        val sequence = nonceResult.sequence
-        val accountNumber = nonceResult.accountNumber
-        val chainId = getChainId()
-
-        val authInfoBytes = makeAuthInfoBytes(
-            listOf(Signer(pubkey, sequence)),
-            fee.amount,
-            gasLimit,
-            SignMode.SIGN_MODE_DIRECT
-        )
-
-        val signDoc = SignDocProto(
-            txBodyBytes,
-            authInfoBytes,
-            chainId,
-            accountNumber.intValue(),
-        )
-
-        val signature = this.pen.signDirect(
-            this.senderAddress,
-            signDoc,
-        )
-        val txRawProto = TxRawProto(
-            bodyBytes = signDoc.bodyBytes,
-            authInfoBytes = signDoc.authInfoBytes,
-            signatures = listOf(signature.signature.decodeBase64()!!.toByteArray()),
-        )
         val txRawBytes = ProtoBuf.encodeToByteArray(txRawProto).toUByteArray()
-
-        val result = try {
+        val txResponse = try {
             postTx(txRawBytes)
         } catch (err: Throwable) {
 //            try {
@@ -216,29 +167,114 @@ private constructor(
 
             throw err
         }
-        val data: List<UByteArray> = if (this.restClient.broadcastMode == BroadcastMode.Block) {
-            val txMsgData: TxMsgDataProto = ProtoBuf.decodeFromByteArray(result.data.decodeHex().toByteArray())
-            val dataFields = txMsgData.data
-            dataFields.filter { it.data.isNotEmpty() }.map { msgDataProto ->
-                val msgExecuteContractResponse: MsgExecuteContractResponseProto =
-                    ProtoBuf.decodeFromByteArray(msgDataProto.data)
-                this.restClient.decryptDataField(msgExecuteContractResponse.data.toUByteArray(), encryptionNonces)
-            }
+        val data: List<String> = if (this.restClient.broadcastMode == BroadcastMode.Block) {
+            // inject tx here to standardize decoding tx responses. Since txsQuery responses (not implemented yet)
+            // will actually have a tx value populated.
+            txResponse.tx = AnyProto(value = txRawBytes.toByteArray())
+            decodeTxResponses(txResponse)
         } else {
             emptyList()
         }
 
-        if (this.restClient.broadcastMode == BroadcastMode.Block) this.restClient.decryptLogs(
-            result.logs,
-            encryptionNonces
-        )
-
 
         return ExecuteResult(
-            logs = result.logs,
-            transactionHash = result.transactionHash,
-            data = data.map { it.decodeToString() }
+            logs = txResponse.logs,
+            transactionHash = txResponse.txhash,
+            data = data
         )
+    }
+
+    private suspend fun sign(
+        fee: StdFee,
+        memo: String,
+        messages: Array<Msg<*>>,
+    ): TxRawProto {
+        val accountFromSigner = wallet.getAccounts().find { account ->
+            account.address === this.senderAddress
+        } ?: throw Error("Failed to retrieve account from signer")
+
+        val nonceResult = this.getNonce(senderAddress)
+        val signerData = SignerData(
+            nonceResult.accountNumber,
+            nonceResult.sequence,
+            getChainId()
+        )
+
+        return when (wallet) {
+            is Wallet -> {
+                signDirect(accountFromSigner, messages, fee, memo, signerData)
+            }
+
+            is AminoWallet -> {
+                TODO()
+            }
+        }
+
+    }
+
+
+    private suspend fun signDirect(
+        account: AccountData,
+        msgs: Array<Msg<*>>,
+        fee: StdFee,
+        memo: String,
+        signerData: SignerData,
+    ): TxRawProto {
+        val wallet: Wallet = wallet as Wallet
+        val txBody = TxBody(
+            value = TxBodyValue(
+                messages = msgs
+                    .map { msg ->
+                        msg.populateCodeHash()
+                        val asProto = msg.toProto(this.restClient.enigmautils)
+                        asProto
+                    },
+                memo = memo
+            )
+        )
+
+        val txBodyBytes = encodeTx(txBody)
+        val pubkey = encodePubkey(encodeSecp256k1Pubkey(account.pubkey))
+        val gasLimit = fee.gas
+
+
+        val authInfoBytes = makeAuthInfoBytes(
+            listOf(Signer(pubkey, signerData.sequence)),
+            fee.amount,
+            gasLimit,
+            SignMode.SIGN_MODE_DIRECT
+        )
+
+        val signDoc = SignDocProto(
+            txBodyBytes,
+            authInfoBytes,
+            signerData.chainId,
+            signerData.accountNumber.intValue(),
+        )
+
+        val signResponse = wallet.signDirect(
+            this.senderAddress,
+            signDoc,
+        )
+        val signature = signResponse.signature
+        return TxRawProto(
+            bodyBytes = signDoc.bodyBytes,
+            authInfoBytes = signDoc.authInfoBytes,
+            signatures = listOf(signature.signature.decodeBase64()!!.toByteArray()),
+        )
+    }
+
+    private suspend fun Msg<*>.populateCodeHash() {
+        if (this is MsgExecuteContract) {
+            if (codeHash == null) {
+                codeHash = restClient.getCodeHashByContractAddr(contractAddress)
+            }
+        } else if (this is MsgInstantiateContract) {
+            if (codeHash == null) {
+                TODO()
+//                msg.codeHash = await this.query.compute.codeHash(Number(msg.codeId));
+            }
+        }
     }
 
     /**
@@ -281,14 +317,24 @@ private constructor(
     }
 
 
-    private fun encodeTx(txBody: TxBody<MsgExecuteContractProto>): ByteArray {
+    private fun encodeTx(txBody: TxBody<out MsgProto>): ByteArray {
         val wrappedMessages = txBody.value.messages
             .map { message ->
+                val anyValue = when (message.value) {
+                    is MsgInstantiateContractProto -> {
+                        ProtoBuf.encodeToByteArray(message.value)
+                    }
+
+                    is MsgExecuteContractProto -> {
+                        ProtoBuf.encodeToByteArray(message.value)
+                    }
+
+                    else -> TODO()
+                }
                 AnyProto(
                     typeUrl = message.typeUrl,
-                    value = ProtoBuf.encodeToByteArray(message.value),
+                    value = anyValue
                 )
-
             }
         val txBodyEncoded = TxBodyProto(
             messages = wrappedMessages,
@@ -297,12 +343,38 @@ private constructor(
         return ProtoBuf.encodeToByteArray(txBodyEncoded)
     }
 
+    private suspend fun decodeTxResponses(postTxResult: TxsResponseData): List<String> {
+        val nonces = mutableMapOf<Int, UByteArray>()
+        val txRaw: TxRawProto = ProtoBuf.decodeFromByteArray(postTxResult.tx!!.value)
+        val txBody: TxBodyProto = ProtoBuf.decodeFromByteArray(txRaw.bodyBytes)
+
+        val msgs: List<MsgProto> = txBody.messages.map { it.toMsg() }
+        msgs.forEachIndexed { i, anyProto ->
+            nonces[i] = extractMessageNonce(anyProto)
+        }
+
+        val txMsgData: TxMsgDataProto = ProtoBuf.decodeFromByteArray(postTxResult.data.decodeHex().toByteArray())
+        val dataFields = txMsgData.data
+        val data = dataFields.mapIndexed { i, msgDataProto ->
+            val msgExecuteContractResponse: MsgExecuteContractResponseProto =
+                ProtoBuf.decodeFromByteArray(msgDataProto.data)
+            restClient.decryptDataField(msgExecuteContractResponse.data.toUByteArray(), nonces[i]!!)
+        }
+
+        this.restClient.decryptLogs(
+            postTxResult.logs,
+            nonces.values.toList()
+        )
+
+        return data.map { it.decodeToString() }
+    }
+
 
     companion object {
         suspend fun init(
             apiUrl: String,
             senderAddress: String,
-            signer: Secp256k1Pen, //| OfflineSigner
+            signer: SigningWallet, //| OfflineSigner
             seed: UByteArray? = null,
             customFees: FeeTable? = null,
             broadcastMode: BroadcastMode = BroadcastMode.Block
@@ -321,7 +393,7 @@ private constructor(
         suspend fun init(
             apiUrl: String,
             senderAddress: String,
-            pen: Secp256k1Pen, // | OfflineSigner
+            pen: SigningWallet, // | OfflineSigner
             enigmaUtils: EncryptionUtils,
             customFees: FeeTable? = null,
             broadcastMode: BroadcastMode = BroadcastMode.Block
