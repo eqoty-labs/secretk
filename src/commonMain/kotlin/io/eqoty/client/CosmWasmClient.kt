@@ -1,9 +1,9 @@
 package io.eqoty.client
 
 import io.eqoty.BroadcastMode
+import io.eqoty.response.TxsResponseData
 import io.eqoty.result.GetNonceResult
 import io.eqoty.types.Account
-import io.eqoty.types.PostTxResult
 import io.eqoty.utils.EncryptionUtils
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
@@ -59,7 +59,7 @@ open class CosmWasmClient protected constructor(
         }
     }
 
-    suspend fun postTx(tx: UByteArray): PostTxResult {
+    suspend fun postTx(tx: UByteArray): TxsResponseData {
         val result = restClient.postTx(tx)
 
         if (result.txhash.contains("""^([0-9A-F][0-9A-F])+$""")) {
@@ -67,15 +67,10 @@ open class CosmWasmClient protected constructor(
         }
 
         if (result.code == null) {
-            throw Error("Error when posting tx ${result.txhash}. Code: ${result.code}; Raw log: ${result.raw_log}")
+            throw Error("Error when posting tx ${result.txhash}. Code: ${result.code}; Raw log: ${result.rawLog}")
         }
 
-        return PostTxResult(
-            logs = result.logs ?: throw Error("need to implement: parseLogs(result.logs) : []"),
-            rawLog = result.raw_log ?: "",
-            transactionHash = result.txhash,
-            data = result.data,
-        )
+        return result
     }
 
 
