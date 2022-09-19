@@ -1,11 +1,13 @@
 package io.eqoty.tx
 
 import co.touchlab.kermit.Logger
+import io.eqoty.types.MsgAmino
 import io.eqoty.tx.proto.MsgExecuteContractProto
 import io.eqoty.types.Coin
 import io.eqoty.utils.EncryptionUtils
 import io.eqoty.utils.addressToBytes
 import io.eqoty.utils.getMissingCodeHashWarning
+import io.ktor.util.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 
@@ -50,7 +52,6 @@ class MsgExecuteContract(
         this.codeHash = codeHash
     }
 
-
     override suspend fun toProto(utils: EncryptionUtils): ProtoMsg<MsgExecuteContractProto> {
         if (warnCodeHash) {
             Logger.w { getMissingCodeHashWarning("MsgExecuteContract") }
@@ -75,6 +76,31 @@ class MsgExecuteContract(
 
         return ProtoMsg(
             typeUrl = "/secret.compute.v1beta1.MsgExecuteContract",
+            value = msgContent
+        )
+    }
+
+    override suspend fun toAmino(utils: EncryptionUtils): MsgAmino {
+        if (warnCodeHash) {
+            Logger.w { getMissingCodeHashWarning("MsgExecuteContract") }
+        }
+
+        if (msgEncrypted == null) {
+            // The encryption uses a random nonce
+            // toProto() & toAmino() are called multiple times during signing
+            // so to keep the msg consistant across calls we encrypt the msg only once
+            msgEncrypted = utils.encrypt(codeHash!!, Json.parseToJsonElement(msg).jsonObject)
+        }
+
+        val msgContent = MsgAmino.MsgExecuteContractAmino(
+            sender = sender,
+            contract = contractAddress,
+            msg = msgEncrypted!!.toByteArray().encodeBase64(),
+            sentFunds = sentFunds.map { it.toProto() },
+        )
+
+        return MsgAmino(
+            type = "wasm/MsgExecuteContract",
             value = msgContent
         )
     }

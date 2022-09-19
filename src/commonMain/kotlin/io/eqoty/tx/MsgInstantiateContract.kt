@@ -1,6 +1,7 @@
 package io.eqoty.tx
 
 import co.touchlab.kermit.Logger
+import io.eqoty.types.MsgAmino
 import io.eqoty.tx.proto.MsgExecuteContractProto
 import io.eqoty.utils.EncryptionUtils
 import io.eqoty.utils.getMissingCodeHashWarning
@@ -40,7 +41,11 @@ class MsgInstantiateContract(
     }
 
     override suspend fun toProto(utils: EncryptionUtils): ProtoMsg<MsgExecuteContractProto> {
-        TODO()
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun toAmino(utils: EncryptionUtils): MsgAmino {
+        TODO("Not yet implemented")
     }
 }
 

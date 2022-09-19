@@ -1,5 +1,6 @@
 package io.eqoty.client
 
+import com.ionspin.kotlin.bignum.integer.toBigInteger
 import io.eqoty.BroadcastMode
 import io.eqoty.response.PubKey
 import io.eqoty.response.PubKeyMultisigThreshold
@@ -206,7 +207,7 @@ private constructor(
             }
 
             is AminoWallet -> {
-                TODO()
+                signAmino(accountFromSigner, messages, fee, memo, signerData)
             }
         }
 
@@ -226,8 +227,7 @@ private constructor(
                 messages = msgs
                     .map { msg ->
                         msg.populateCodeHash()
-                        val asProto = msg.toProto(this.restClient.enigmautils)
-                        asProto
+                        msg.toProto(this.restClient.enigmautils)
                     },
                 memo = memo
             )
@@ -260,6 +260,64 @@ private constructor(
         return TxRawProto(
             bodyBytes = signDoc.bodyBytes,
             authInfoBytes = signDoc.authInfoBytes,
+            signatures = listOf(signature.signature.decodeBase64()!!.toByteArray()),
+        )
+    }
+
+    private suspend fun signAmino(
+        account: AccountData,
+        messages: Array<Msg<*>>,
+        fee: StdFee,
+        memo: String,
+        signerData: SignerData,
+    ): TxRawProto {
+        val wallet: AminoWallet = wallet as AminoWallet
+        val signMode = wallet.getSignMode() ?: SignMode.SIGN_MODE_LEGACY_AMINO_JSON
+        val msgs = messages.map { msg ->
+            msg.populateCodeHash()
+            msg.toAmino(this.restClient.enigmautils)
+        }
+
+        val signDoc = StdSignDoc(
+            msgs = msgs,
+            fee = fee,
+            chainId = signerData.chainId,
+            memo = memo,
+            accountNumber = signerData.accountNumber.toString(10),
+            sequence = signerData.sequence.toString(10),
+        )
+
+        val signResponse = wallet.signAmino(
+            account.address,
+            signDoc,
+        )
+
+        val txBody = TxBody(
+            value = TxBodyValue(
+                messages = messages
+                    .map { msg ->
+                        msg.populateCodeHash()
+                        msg.toProto(this.restClient.enigmautils)
+                    },
+                memo = memo
+            )
+        )
+
+        val txBodyBytes = encodeTx(txBody)
+        val signedFeeAmount = signResponse.signed.fee.amount
+        val signedGasLimit = signResponse.signed.fee.gas
+        val signedSequence = signResponse.signed.sequence.toBigInteger(10)
+        val pubkey = encodePubkey(encodeSecp256k1Pubkey(account.pubkey))
+        val signedAuthInfoBytes = makeAuthInfoBytes(
+            listOf(Signer(pubkey, signedSequence)),
+            signedFeeAmount,
+            signedGasLimit,
+            signMode
+        )
+        val signature = signResponse.signature
+        return TxRawProto(
+            bodyBytes = txBodyBytes,
+            authInfoBytes = signedAuthInfoBytes,
             signatures = listOf(signature.signature.decodeBase64()!!.toByteArray()),
         )
     }
