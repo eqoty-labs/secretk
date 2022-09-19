@@ -7,7 +7,7 @@ pluginManagement {
         mavenCentral()
     }
     val versions = java.util.Properties().apply {
-        load(File("versions.properties").reader())
+        load(File("${rootProject.projectDir}/versions.properties").reader())
     }
     plugins {
         // See https://jmfayard.github.io/refreshVersions
@@ -44,3 +44,5 @@ plugins {
 refreshVersions { // Optional: configure the plugin
     // ...
 }
+
+include(":secretk")

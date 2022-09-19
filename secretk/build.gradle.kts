@@ -145,7 +145,7 @@ kotlin {
 }
 
 multiplatformSwiftPackage {
-    outputDirectory(projectDir)
+    outputDirectory(projectDir.parentFile)
     packageName(rootProject.name)
     swiftToolsVersion("5.3")
     targetPlatforms {
@@ -160,7 +160,7 @@ fun KotlinNativeTarget.setupCinterop(target: Target) =
             cinterops {
                 val libAesSiv by creating {
                     defFile(project.file("src/nativeInterop/cinterop/libaes_siv.def"))
-                    includeDirs.allHeaders(project.file("${project.rootDir}/nativelibs/libaes_siv/"))
+                    includeDirs.allHeaders(project.file("$projectDir/nativelibs/libaes_siv/"))
                 }
             }
             val buildFolderName = target.buildName
@@ -168,7 +168,7 @@ fun KotlinNativeTarget.setupCinterop(target: Target) =
             val opensslTargetName = target.opensslTargetName
             kotlinOptions.freeCompilerArgs = listOf(
                 "-include-binary",
-                "${project.rootDir}/nativelibs/libaes_siv_build/$buildFolderName/$releaseFolderName/libaes_siv.a",
+                "$projectDir/nativelibs/libaes_siv_build/$buildFolderName/$releaseFolderName/libaes_siv.a",
                 "-include-binary",
                 "$projectDir/nativelibs/darwinopenssl/$opensslTargetName/lib/libcrypto.a"
             )
@@ -209,7 +209,7 @@ tasks.findByName("cinteropLibAesSivIosSimulatorArm64")!!.dependsOn(makeLibAesSiv
 
 tasks.clean {
     doFirst {
-        val libAesSivBuild = File("./nativelibs/libaes_siv_build")
+        val libAesSivBuild = File("$projectDir/nativelibs/libaes_siv_build")
         libAesSivBuild.deleteRecursively()
     }
 }

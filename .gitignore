@@ -205,4 +205,4 @@ lint/tmp/
 *.hprof
 
 .DS_Store
-/nativelibs/libaes_siv_build/
+secretk/nativelibs/libaes_siv_build/
