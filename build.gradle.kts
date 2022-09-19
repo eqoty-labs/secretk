@@ -1,6 +1,6 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import com.vanniktech.maven.publish.SonatypeHost
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     kotlin("multiplatform")
@@ -34,27 +34,27 @@ kotlin {
         binaries.executable()
     }
     val darwinTargets = mutableListOf<KotlinNativeTarget>()
-    macosX64{
+    macosX64 {
         darwinTargets.add(this)
         setupCinterop(Target.MacosX64)
     }
-    macosArm64{
+    macosArm64 {
         darwinTargets.add(this)
         setupCinterop(Target.MacosArm64)
     }
-    iosX64{
+    iosX64 {
         darwinTargets.add(this)
         setupCinterop(Target.IosSimulatorX64)
     }
-    iosArm64{
+    iosArm64 {
         darwinTargets.add(this)
         setupCinterop(Target.IosArm64)
     }
-    iosSimulatorArm64{
+    iosSimulatorArm64 {
         darwinTargets.add(this)
         setupCinterop(Target.IosSimulatorArm64)
     }
-    darwinTargets.forEach{
+    darwinTargets.forEach {
         it.apply {
             binaries.framework()
         }
@@ -155,7 +155,7 @@ multiplatformSwiftPackage {
 }
 
 fun KotlinNativeTarget.setupCinterop(target: Target) =
-    apply{
+    apply {
         compilations.getByName("main") {
             cinterops {
                 val libAesSiv by creating {
@@ -167,8 +167,10 @@ fun KotlinNativeTarget.setupCinterop(target: Target) =
             val releaseFolderName = target.releaseFolderName
             val opensslTargetName = target.opensslTargetName
             kotlinOptions.freeCompilerArgs = listOf(
-                "-include-binary", "${project.rootDir}/nativelibs/libaes_siv_build/$buildFolderName/$releaseFolderName/libaes_siv.a",
-                "-include-binary", "$projectDir/nativelibs/darwinopenssl/$opensslTargetName/lib/libcrypto.a"
+                "-include-binary",
+                "${project.rootDir}/nativelibs/libaes_siv_build/$buildFolderName/$releaseFolderName/libaes_siv.a",
+                "-include-binary",
+                "$projectDir/nativelibs/darwinopenssl/$opensslTargetName/lib/libcrypto.a"
             )
         }
     }
