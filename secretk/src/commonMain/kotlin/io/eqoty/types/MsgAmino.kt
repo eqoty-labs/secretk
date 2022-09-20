@@ -13,6 +13,6 @@ class MsgAmino(
         val sender: String,
         val contract: String,
         val msg: String,
-        @SerialName("sent_funds") val sentFunds: List<CoinProto>,
+        @SerialName("sent_funds") val sentFunds: List<Coin>,
     )
 }

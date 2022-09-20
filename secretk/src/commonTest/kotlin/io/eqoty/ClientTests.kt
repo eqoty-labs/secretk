@@ -2,7 +2,7 @@ package io.eqoty
 
 import io.eqoty.client.SigningCosmWasmClient
 import io.eqoty.tx.MsgExecuteContract
-import io.eqoty.wallet.Wallet
+import io.eqoty.wallet.DirectSigningWallet
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
@@ -22,7 +22,7 @@ class ClientTests {
     fun testPubKeyToAddress() = runTest {
         val mnemonic = "sand check forward humble between movie language siege where social crumble mouse"
         val accAddress = "secret1fdkdmflnrysrvg3nc4ym7zdsn2rm5atszn9q2y"
-        val signingPen = Wallet(mnemonic)
+        val signingPen = DirectSigningWallet(mnemonic)
         assertEquals(accAddress, signingPen.getAccounts()[0].address)
     }
 
@@ -35,9 +35,7 @@ class ClientTests {
         val contractAddress = "secret1lz4m46vpdn8f2aj8yhtnexus40663udv7hhprm"
         val grpcGatewayEndpoint = "https://api.pulsar.scrttestnet.com"
         val mnemonic = "sand check forward humble between movie language siege where social crumble mouse"
-        // A pen is the most basic tool you can think of for signing.
-        // This wraps a single keypair and allows for signing.
-        val wallet = Wallet(mnemonic)
+        val wallet = DirectSigningWallet(mnemonic)
         val accAddress = wallet.getAccounts()[0].address
         val client = SigningCosmWasmClient.init(
             grpcGatewayEndpoint,

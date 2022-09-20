@@ -96,7 +96,7 @@ class MsgExecuteContract(
             sender = sender,
             contract = contractAddress,
             msg = msgEncrypted!!.toByteArray().encodeBase64(),
-            sentFunds = sentFunds.map { it.toProto() },
+            sentFunds = sentFunds,
         )
 
         return MsgAmino(

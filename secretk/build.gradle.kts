@@ -31,7 +31,6 @@ kotlin {
                 }
             }
         }
-        binaries.executable()
     }
     val darwinTargets = mutableListOf<KotlinNativeTarget>()
     macosX64 {
@@ -110,6 +109,8 @@ kotlin {
                 implementation(npm("os-browserify", "^0.3.0"))
                 implementation(npm("miscreant", "^0.3.2"))
                 implementation(npm("libsodium-wrappers-sumo", "^0.7.10"))
+                implementation(npm("secretjs", "^1.4.0-alpha.5"))
+                implementation(npm("google-protobuf", "^3.21.0"))
             }
         }
         val jsTest by getting

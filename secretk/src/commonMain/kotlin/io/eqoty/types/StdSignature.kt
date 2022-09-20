@@ -1,9 +1,11 @@
 package io.eqoty.types
 
-import io.eqoty.response.PubKeySecp256k1
+import io.eqoty.response.PubKey
+import kotlinx.serialization.SerialName
 
 @kotlinx.serialization.Serializable
 data class StdSignature(
-    val pub_key: PubKeySecp256k1,
+    @SerialName("pub_key")
+    val pubKey: PubKey,
     val signature: String
 )

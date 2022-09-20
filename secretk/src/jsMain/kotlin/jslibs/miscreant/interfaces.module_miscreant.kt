@@ -7,6 +7,8 @@
 @file:JsModule("miscreant")
 @file:JsNonModule
 
+package jslibs.miscreant
+
 import org.khronos.webgl.Uint8Array
 import kotlin.js.Promise
 

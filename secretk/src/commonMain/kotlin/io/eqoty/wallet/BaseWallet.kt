@@ -8,10 +8,13 @@ import io.eqoty.crypto.Slip10Curve
 import io.eqoty.crypto.Slip10RawIndex
 import io.eqoty.tx.proto.SignDocProto
 import io.eqoty.tx.proto.SignMode
+import io.eqoty.types.StdSignDoc
 import io.eqoty.types.StdSignature
 import io.eqoty.utils.Address.pubkeyToAddress
 import io.eqoty.utils.getPadded
 import io.eqoty.utils.toByteString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 
 /**
@@ -33,12 +36,17 @@ enum class PrehashType(val type: String) {
     SHA512("sha512")
 }
 
+interface Wallet {
+    fun getSignMode(): SignMode?
+    suspend fun getAccounts(): List<AccountData>
+    suspend fun signAmino(signerAddress: String, signDoc: StdSignDoc): AminoSignResponse
+}
 
-sealed class SigningWallet(
+sealed class BaseWallet(
     mnemonic: String,
     hdPath: Array<Slip10RawIndex> = makeSecretNetworkPath(0.toUInt()),
     bech32Prefix: String = "secret"
-) {
+): Wallet {
 
     private val privkey: UByteArray
     private val pubkey: UByteArray
@@ -54,14 +62,17 @@ sealed class SigningWallet(
     }
 
     /**
-     * Get SignMode for signing a tx.
-     */
-    abstract suspend fun getSignMode(): SignMode?
-
-    /**
      * Get AccountData array from wallet. Rejects if not enabled.
      */
-    fun getAccounts(): List<AccountData> = listOf(
+    override suspend fun getAccounts(): List<AccountData> = listOf(
+        AccountData(
+            address,
+            Algo.secp256k1,
+            pubkey
+        )
+    )
+
+    val accounts: List<AccountData> = listOf(
         AccountData(
             address,
             Algo.secp256k1,
@@ -88,6 +99,17 @@ sealed class SigningWallet(
         return encodeSecp256k1Signature(this.pubkey, fixedLengthSignature)
     }
 
+    override suspend fun signAmino(signerAddress: String, signDoc: StdSignDoc): AminoSignResponse {
+        if (signerAddress != this.address) {
+            throw Error("Address $signerAddress not found in wallet")
+        }
+
+        val signBytes = Json.encodeToString(signDoc).encodeToByteArray().toUByteArray()
+        return AminoSignResponse(
+            signed = signDoc,
+            signature = sign(signBytes)
+        )
+    }
 }
 
 

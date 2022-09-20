@@ -13,7 +13,7 @@ fun encodeSecp256k1Signature(pubkey: UByteArray, signature: UByteArray): StdSign
 
     return StdSignature(
         // eslint-disable-next-line @typescript-eslint/camelcase
-        pub_key = encodeSecp256k1Pubkey(pubkey),
+        pubKey = encodeSecp256k1Pubkey(pubkey),
         signature = signature.toByteString().base64()
     )
 }

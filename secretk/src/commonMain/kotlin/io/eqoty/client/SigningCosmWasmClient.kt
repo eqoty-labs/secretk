@@ -27,7 +27,7 @@ class SigningCosmWasmClient//| OfflineSigner
 private constructor(
     val apiUrl: String,
     val senderAddress: String,
-    val wallet: SigningWallet,
+    val wallet: Wallet,
     encryptionUtils: EncryptionUtils,
     customFees: FeeTable?,
     broadcastMode: BroadcastMode = BroadcastMode.Block
@@ -137,7 +137,6 @@ private constructor(
         val fee = fee ?: fees.exec!!
 
         val txRawProto = sign(fee, memo, msgs)
-
         val txRawBytes = ProtoBuf.encodeToByteArray(txRawProto).toUByteArray()
         val txResponse = try {
             postTx(txRawBytes)
@@ -200,13 +199,14 @@ private constructor(
             nonceResult.sequence,
             getChainId()
         )
+        println(signerData)
 
         return when (wallet) {
-            is Wallet -> {
+            is DirectSigningWallet -> {
                 signDirect(accountFromSigner, messages, fee, memo, signerData)
             }
 
-            is AminoWallet -> {
+            else -> {
                 signAmino(accountFromSigner, messages, fee, memo, signerData)
             }
         }
@@ -221,7 +221,7 @@ private constructor(
         memo: String,
         signerData: SignerData,
     ): TxRawProto {
-        val wallet: Wallet = wallet as Wallet
+        val wallet: DirectSigningWallet = wallet as DirectSigningWallet
         val txBody = TxBody(
             value = TxBodyValue(
                 messages = msgs
@@ -271,7 +271,6 @@ private constructor(
         memo: String,
         signerData: SignerData,
     ): TxRawProto {
-        val wallet: AminoWallet = wallet as AminoWallet
         val signMode = wallet.getSignMode() ?: SignMode.SIGN_MODE_LEGACY_AMINO_JSON
         val msgs = messages.map { msg ->
             msg.populateCodeHash()
@@ -286,7 +285,6 @@ private constructor(
             accountNumber = signerData.accountNumber.toString(10),
             sequence = signerData.sequence.toString(10),
         )
-
         val signResponse = wallet.signAmino(
             account.address,
             signDoc,
@@ -432,7 +430,7 @@ private constructor(
         suspend fun init(
             apiUrl: String,
             senderAddress: String,
-            signer: SigningWallet, //| OfflineSigner
+            signer: Wallet, //| OfflineSigner
             seed: UByteArray? = null,
             customFees: FeeTable? = null,
             broadcastMode: BroadcastMode = BroadcastMode.Block
@@ -451,7 +449,7 @@ private constructor(
         suspend fun init(
             apiUrl: String,
             senderAddress: String,
-            pen: SigningWallet, // | OfflineSigner
+            pen: BaseWallet, // | OfflineSigner
             enigmaUtils: EncryptionUtils,
             customFees: FeeTable? = null,
             broadcastMode: BroadcastMode = BroadcastMode.Block

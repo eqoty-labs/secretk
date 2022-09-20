@@ -1,8 +1,8 @@
 package io.eqoty.crypto
 
-import SIV
 import ext.libsodium.com.ionspin.kotlin.crypto.toUByteArray
 import ext.libsodium.com.ionspin.kotlin.crypto.toUInt8Array
+import jslibs.miscreant.SIV
 import kotlinx.coroutines.await
 
 

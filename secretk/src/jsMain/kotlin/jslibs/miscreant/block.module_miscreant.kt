@@ -7,6 +7,8 @@
     "CONFLICTING_OVERLOADS"
 )
 
+package jslibs.miscreant
+
 import org.khronos.webgl.Uint8Array
 
 @JsName("default")

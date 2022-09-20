@@ -3,9 +3,9 @@ package io.eqoty.wallet
 import io.eqoty.tx.proto.SignMode
 import io.eqoty.types.StdSignDoc
 import io.eqoty.types.StdSignature
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class AminoSignResponse(
     /**
      * The sign doc that was signed.
@@ -17,19 +17,7 @@ data class AminoSignResponse(
 
 class AminoWallet(
     mnemonic: String,
-) : SigningWallet(mnemonic) {
-    override suspend fun getSignMode(): SignMode? = null
-
-    fun signAmino(address: String, signDoc: StdSignDoc): AminoSignResponse {
-        if (address != this.address) {
-            throw Error("Address $address not found in wallet")
-        }
-
-        val signBytes = Json.encodeToString(signDoc).encodeToByteArray().toUByteArray()
-        return AminoSignResponse(
-            signed = signDoc,
-            signature = sign(signBytes)
-        )
-    }
+) : BaseWallet(mnemonic) {
+    override fun getSignMode(): SignMode? = null
 
 }

@@ -6,10 +6,10 @@ import kotlinx.serialization.encodeToByteArray
 import kotlinx.serialization.protobuf.ProtoBuf
 
 
-class Wallet(
+class DirectSigningWallet(
     mnemonic: String,
-) : SigningWallet(mnemonic) {
-    override suspend fun getSignMode(): SignMode? = null
+) : BaseWallet(mnemonic) {
+    override fun getSignMode(): SignMode? = null
 
     fun signDirect(address: String, signDoc: SignDocProto): SignResponse {
         if (address != this.address) {
