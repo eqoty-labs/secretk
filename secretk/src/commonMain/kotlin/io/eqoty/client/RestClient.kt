@@ -163,30 +163,37 @@ internal class RestClient(
 
         val path = "/compute/v1beta1/query/${contractAddress}?query=${encoded}"
 
-        val responseData: SmartQueryResponse = try {
-            get(path)
-        } catch (err: Throwable) {
-//            const errorMessageRgx = /encrypted: (.+?): (?:instantiate|execute|query) contract failed/g;
-//            const rgxMatches = errorMessageRgx.exec(err.message);
-//            if (rgxMatches == null || rgxMatches?.length != 2) {
-//                throw err;
-//            }
-//
-//            try {
-//                const errorCipherB64 = rgxMatches[1];
-//                const errorCipherBz = Encoding.fromBase64(errorCipherB64);
-//
-//                const errorPlainBz = await this.enigmautils.decrypt(errorCipherBz, nonce);
-//
-//                err.message = err.message.replace(errorCipherB64, Encoding.fromUtf8(errorPlainBz));
-//            } catch (decryptionError) {
-//                throw new Error(`Failed to decrypt the following error message: ${err.message}.`);
-//            }
+        val response: String = try {
+            val responseData: SmartQueryResponse = get(path)
+            when (responseData.data != null) {
+                true -> {
+                    val decryptedResponse =
+                        enigmautils.decrypt(responseData.data.decodeBase64()!!.toUByteArray(), nonce)
+                    decryptedResponse.decodeToString().decodeBase64()!!.utf8().trimEnd()
+                }
 
-            throw err
+                false -> {
+                    throw Error(responseData.message)
+                }
+            }
+        } catch (err: Throwable) {
+            val message = err.message ?: throw err
+            val errorMessageRgx = Regex("""encrypted: (.+?): (?:instantiate|execute|query) contract failed""")
+            val matches = errorMessageRgx.findAll(message).toList()
+            if (matches.isEmpty() || matches.first().groupValues.size < 2) {
+                throw err
+            }
+            val decodedError: Error = try {
+                val errorCipherB64 = matches.first().groupValues[1]
+                val errorCipherBz = errorCipherB64.decodeBase64()!!.toUByteArray()
+                val errorPlainBz = enigmautils.decrypt(errorCipherBz, nonce).decodeToString()
+                Error(errorPlainBz)
+            } catch (decryptionError: Throwable) {
+                Error("Failed to decrypt the following error message: ${err.message}. Due to decryptionError: $decryptionError")
+            }
+            throw decodedError
         }
-        val decryptedResponse = enigmautils.decrypt(responseData.data.decodeBase64()!!.toUByteArray(), nonce)
-        return decryptedResponse.decodeToString().decodeBase64()!!.utf8().trimEnd()
+        return response
     }
 
     suspend fun decryptDataField(dataField: UByteArray, nonce: UByteArray): UByteArray {
