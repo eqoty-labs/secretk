@@ -178,7 +178,7 @@ internal class RestClient(
             }
         } catch (err: Throwable) {
             val message = err.message ?: throw err
-            val errorMessageRgx = Regex("""encrypted: (.+?): (?:instantiate|execute|query) contract failed""")
+            val errorMessageRgx = Regex("""encrypted: (.+?): (?:instantiate|execute|query|reply to) contract failed""")
             val matches = errorMessageRgx.findAll(message).toList()
             if (matches.isEmpty() || matches.first().groupValues.size < 2) {
                 throw err
