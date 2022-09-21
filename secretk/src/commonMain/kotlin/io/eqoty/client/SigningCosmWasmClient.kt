@@ -233,7 +233,7 @@ private constructor(
 
         val txBodyBytes = encodeTx(txBody)
         val pubkey = encodePubkey(encodeSecp256k1Pubkey(account.pubkey))
-        val gasLimit = fee.gas
+        val gasLimit = fee.gas.toInt()
 
 
         val authInfoBytes = makeAuthInfoBytes(
@@ -301,7 +301,7 @@ private constructor(
 
         val txBodyBytes = encodeTx(txBody)
         val signedFeeAmount = signResponse.signed.fee.amount
-        val signedGasLimit = signResponse.signed.fee.gas
+        val signedGasLimit = signResponse.signed.fee.gas.toInt()
         val signedSequence = signResponse.signed.sequence.toBigInteger(10)
         val pubkey = encodePubkey(encodeSecp256k1Pubkey(account.pubkey))
         val signedAuthInfoBytes = makeAuthInfoBytes(
