@@ -37,7 +37,7 @@ enum class PrehashType(val type: String) {
 }
 
 interface Wallet {
-    fun getSignMode(): SignMode?
+    suspend fun getSignMode(): SignMode?
     suspend fun getAccounts(): List<AccountData>
     suspend fun signAmino(signerAddress: String, signDoc: StdSignDoc): AminoSignResponse
 }
@@ -46,7 +46,7 @@ sealed class BaseWallet(
     mnemonic: String,
     hdPath: Array<Slip10RawIndex> = makeSecretNetworkPath(0.toUInt()),
     bech32Prefix: String = "secret"
-): Wallet {
+) : Wallet {
 
     private val privkey: UByteArray
     private val pubkey: UByteArray

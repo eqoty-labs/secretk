@@ -18,6 +18,6 @@ data class AminoSignResponse(
 class AminoWallet(
     mnemonic: String,
 ) : BaseWallet(mnemonic) {
-    override fun getSignMode(): SignMode? = null
+    override suspend fun getSignMode(): SignMode? = null
 
 }

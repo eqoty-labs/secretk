@@ -23,5 +23,10 @@ enum class SignMode(val value: Int) {
     SIGN_MODE_LEGACY_AMINO_JSON(127),
 
     SIGN_MODE_EIP_191(191),
-    UNRECOGNIZED(-1)
+    UNRECOGNIZED(-1);
+
+    companion object {
+        private val map = SignMode.values().associateBy(SignMode::value)
+        fun getByValue(value: Int?): SignMode? = map[value]
+    }
 }

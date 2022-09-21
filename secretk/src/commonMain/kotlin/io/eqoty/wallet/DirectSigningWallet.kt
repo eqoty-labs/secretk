@@ -9,7 +9,7 @@ import kotlinx.serialization.protobuf.ProtoBuf
 class DirectSigningWallet(
     mnemonic: String,
 ) : BaseWallet(mnemonic) {
-    override fun getSignMode(): SignMode? = null
+    override suspend fun getSignMode(): SignMode? = null
 
     fun signDirect(address: String, signDoc: SignDocProto): SignResponse {
         if (address != this.address) {
