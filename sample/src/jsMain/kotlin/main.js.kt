@@ -4,20 +4,24 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Window
 import io.eqoty.client.SigningCosmWasmClient
+import io.eqoty.wallet.MetaMaskWalletWrapper
 import io.eqoty.wallet.OfflineSignerOnlyAminoWalletWrapper
 import jslibs.secretjs.AminoWallet
+import jslibs.secretjs.MetaMaskWallet
 import kotlinx.browser.window
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.await
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.jetbrains.skiko.wasm.onWasmReady
+import org.w3c.dom.get
+import web3.Web3
 import kotlin.js.Promise
 
 fun main() {
     application {
-        val keplrOfflineSigner: AminoWallet = setupKeplerAndGetWallet()
-        val wallet = OfflineSignerOnlyAminoWalletWrapper(keplrOfflineSigner)
+        val wallet = setupMetamaskAndGetWallet()
+//        val wallet = setupKeplerAndGetWallet()
         val grpcGatewayEndpoint = "https://api.pulsar.scrttestnet.com"
         // A pen is the most basic tool you can think of for signing.
         // This wraps a single keypair and allows for signing.
@@ -44,7 +48,7 @@ fun application(block: suspend () -> Unit) {
     }
 }
 
-suspend fun setupKeplerAndGetWallet(): AminoWallet {
+suspend fun setupKeplerAndGetWallet(): OfflineSignerOnlyAminoWalletWrapper {
     while (
         window.asDynamic().keplr == null ||
         window.asDynamic().getOfflineSignerOnlyAmino == null ||
@@ -103,5 +107,15 @@ suspend fun setupKeplerAndGetWallet(): AminoWallet {
     val promise: Promise<dynamic> = window.asDynamic().keplr.experimentalSuggestChain(suggestion) as Promise<dynamic>
     val enablePromise: Promise<dynamic> = window.asDynamic().keplr.enable(CHAIN_ID) as Promise<dynamic>
     val wallet: AminoWallet = window.asDynamic().getOfflineSignerOnlyAmino(CHAIN_ID)
-    return wallet
+    return OfflineSignerOnlyAminoWalletWrapper(wallet)
+}
+
+
+suspend fun setupMetamaskAndGetWallet(): MetaMaskWalletWrapper {
+    val provider = window["ethereum"]
+    val web3 = Web3(provider).apply {
+        eth.handleRevert = true
+    }
+    val account = web3.eth.requestAccounts().await().firstOrNull()!!
+    return MetaMaskWalletWrapper(MetaMaskWallet.create(provider, account).await())
 }
