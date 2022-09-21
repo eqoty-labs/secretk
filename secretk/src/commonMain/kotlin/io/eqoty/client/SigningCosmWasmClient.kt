@@ -190,16 +190,14 @@ private constructor(
         messages: Array<Msg<*>>,
     ): TxRawProto {
         val accountFromSigner = wallet.getAccounts().find { account ->
-            account.address === this.senderAddress
+            account.address == this.senderAddress
         } ?: throw Error("Failed to retrieve account from signer")
-
         val nonceResult = this.getNonce(senderAddress)
         val signerData = SignerData(
             nonceResult.accountNumber,
             nonceResult.sequence,
             getChainId()
         )
-        println(signerData)
 
         return when (wallet) {
             is DirectSigningWallet -> {
