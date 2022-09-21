@@ -104,6 +104,11 @@ kotlin {
             dependsOn(commonMain)
             dependencies {
                 implementation(compose.web.core)
+                implementation(npm("@metamask/detect-provider", "^1.2.0"))
+                implementation(npm("web3", "^1.7.0"))
+                implementation(npm("@walletconnect/web3-provider", "^1.8.0"))
+                implementation(npm("@babel/core", "^7.18.13"))
+                implementation(npm("events", "^3.3.0"))
             }
         }
 

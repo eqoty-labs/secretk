@@ -207,3 +207,4 @@ lint/tmp/
 .DS_Store
 secretk/nativelibs/libaes_siv_build/
 secretk/externals/
+sample/externals/
