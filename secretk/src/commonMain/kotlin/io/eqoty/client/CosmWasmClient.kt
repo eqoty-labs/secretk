@@ -34,7 +34,7 @@ open class CosmWasmClient protected constructor(
         val account = this.getAccount(address)
         if (account?.address == null) {
             throw Error(
-                "Account does not exist on chain. Send some tokens there before trying to query nonces.",
+                "Account $address does not exist on chain. Send some tokens there before trying to query nonces.",
             )
         }
         return GetNonceResult(

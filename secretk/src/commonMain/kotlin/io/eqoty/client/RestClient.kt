@@ -216,15 +216,24 @@ internal class RestClient(
     }
 
     suspend fun authAccounts(address: String): CosmosSdkAccount {
-        val authResp: AccountResponse = get("/cosmos/auth/v1beta1/accounts/${address}")
-        val bankResp: BalanceResponse = get("/cosmos/bank/v1beta1/balances/${address}")
-
+        val authResp: AccountResponse? = try {
+            get("/cosmos/auth/v1beta1/accounts/${address}")
+        } catch (t: Throwable){
+            t.printStackTrace()
+            null
+        }
+        val bankResp: BalanceResponse? = try {
+            get("/cosmos/bank/v1beta1/balances/${address}")
+        } catch (t: Throwable){
+            t.printStackTrace()
+            null
+        }
         return CosmosSdkAccount(
-            address = authResp.account.address,
-            coins = bankResp.balances,
-            public_key = authResp.account.pub_key?.let { PubKeySecp256k1(it.key) },
-            account_number = authResp.account.account_number ?: BigInteger.ZERO,
-            sequence = authResp.account.sequence ?: BigInteger.ZERO,
+            address = authResp?.account?.address,
+            coins = bankResp?.balances,
+            public_key = authResp?.account?.pub_key?.let { PubKeySecp256k1(it.key) },
+            account_number = authResp?.account?.account_number ?: BigInteger.ZERO,
+            sequence = authResp?.account?.sequence ?: BigInteger.ZERO,
         )
     }
 
