@@ -55,13 +55,15 @@ dependencies {
 you need to declare your dependency in your `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/eqoty-labs/secretk.git", from: "0.1.2"),
+.package(url: "https://github.com/eqoty-labs/secretk.git", from: "0.2.1"),
 ```
 
 
 ## Useage 
 
 ### Kotlin
+
+- Compose UI [sample project](/sample)
 
 #### Create SigningCosmWasmClient
 
@@ -127,22 +129,18 @@ println("Num Tokens Response: $numTokens")
 ```
 
 ### Swift
+- Swift [sample project](/sampleSwift)
 
 #### Create SigningCosmWasmClient
 
 ```swift
-let Secp256k1PenCompanion = Secp256k1Pen.Companion()
-let signingPen = try await Secp256k1Pen.Companion.fromMnemonic(Secp256k1PenCompanion)(
-    mnemonic: mnemonic, hdPath: Secp256k1PenKt.makeSecretNetworkPath(a: 0)
-)
-
-let pubkey = PubkeyKt.encodeSecp256k1Pubkey(pubkey: signingPen.pubkey)
-let accAddress = Address().pubkeyToAddress(pubkey: pubkey, prefix: "secret")
+let wallet = DirectSigningWallet(mnemonic: mnemonic)
+let accAddress = (try! await wallet.getAccounts())[0].address
 let SigningCosmWasmClientCompanion = SigningCosmWasmClient.Companion()
-let client = try await SigningCosmWasmClient.Companion.doInit(SigningCosmWasmClientCompanion)(
+let client = try! await SigningCosmWasmClient.Companion.doInit(SigningCosmWasmClientCompanion)(
     apiUrl: grpcGatewayEndpoint,
     senderAddress: accAddress,
-    signer: signingPen,
+    signer: wallet,
     seed: nil,
     customFees: nil,
     broadcastMode: BroadcastMode.block
@@ -152,9 +150,9 @@ let client = try await SigningCosmWasmClient.Companion.doInit(SigningCosmWasmCli
 #### Query Contract
 
 ```swift
-val contractAddress = "secret18vd8fpwxzck93qlwghaj6arh4p7c5n8978vsyg"
+let contractAddress = "secret1lz4m46vpdn8f2aj8yhtnexus40663udv7hhprm"
 let contractInfoQuery = #"{"contract_info": {}}"#
-let contractInfo = try await client.queryContractSmart(
+let contractInfo = try! await client.queryContractSmart(
     contractAddress: contractAddress,
     queryMsg: contractInfoQuery,
     contractCodeHash: nil)
@@ -168,38 +166,43 @@ print("nft contract info response: \(contractInfo)")
 let entropy = "Another really random thing??"
 let handleMsg = #"{ "create_viewing_key": {"entropy": "\#(entropy)"} }"#
 print("Creating viewing key");
-let response = try await client.execute(
-    contractAddress: contractAddress,
-    msg: MsgExecuteContract(
-        sender: accAddress,
-        contractAddress: contractAddress,
-        msg: handleMsg,
-        sentFunds: [],
-        codeHash: nil
-        /*codeHash = "f7711ac771565a1cb0db516a63a63742e11651516b8dfcf19ecd08aaec1e0193"*/),
+let response = try! await client.execute(
+    msgs: [
+        MsgExecuteContract(
+            sender: accAddress,
+            contractAddress: contractAddress,
+            msg: handleMsg,
+            sentFunds: [],
+            codeHash: nil
+        )
+    ] ,
     memo: "",
-    transferAmount: nil,
     fee: client.fees.exec!,
     contractCodeHash: nil
 )
 print("viewing key response: \(response.data)")
-let viewingKeyObject = response.data.convertToDictionary()?["viewing_key"] as? [String : Any]
-let viewingKey = viewingKeyObject?["key"] as! String
 
-print(viewingKeyObject)
-print(viewingKey)
+let decoder = JSONDecoder()
+struct ViewingKey: Codable {
+    var viewing_key: ViewingKeyValue
+    struct ViewingKeyValue: Codable{
+        var key: String
+    }
+}
+let viewingKey = try! decoder.decode(ViewingKey.self, from: response.data[0].data(using: .utf8)!)
+
 print("Querying Num Tokens")
 let numTokensQuery = #"""
     {
         "num_tokens": {
             "viewer": {
                 "address": "\#(accAddress)",
-                "viewing_key": "\#(viewingKey)"
+                "viewing_key": "\#(viewingKey.viewing_key.key)"
             }
         }
     }
     """#
-let numTokens = try await client.queryContractSmart(
+let numTokens = try! await client.queryContractSmart(
     contractAddress: contractAddress,
     queryMsg: numTokensQuery,
     contractCodeHash: nil)
