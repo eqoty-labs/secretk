@@ -1,20 +1,21 @@
 # secretk
+
 CosmWasm SDK + Encryption for the Secret Network
 
-A Kotlin multiplatform REST client utilizing secret network's gRPC gateway endpoints.  
+A Kotlin multiplatform REST client utilizing secret network's gRPC gateway endpoints.
 
-Based on: 
+Based on:
 https://github.com/scrtlabs/SecretNetwork/tree/f01dda32b12e02c6cc2326ea58f8b13bf6e3ff8f/cosmwasm-js/packages/sdk
 
-
-
 ### Supported Features:
+
 * Contract Queries
 * Contract Execution (Secret Network >= v1.2.6)
 * TODO: Contract Execution Gas Estimation
 * TODO: Contract Uploading
 
 ### Supported Targets:
+
 * JVM
 * js
 * iOS
@@ -22,8 +23,9 @@ https://github.com/scrtlabs/SecretNetwork/tree/f01dda32b12e02c6cc2326ea58f8b13bf
 * TODO: linux
 
 ### Build Requirements
+
 * Xcode 13.2.1
-  * Note: Xcode 13.3 [build issue](https://github.com/leetal/ios-cmake/issues/141)
+    * Note: Xcode 13.3 [build issue](https://github.com/leetal/ios-cmake/issues/141)
 
 ## Setup
 
@@ -52,14 +54,14 @@ dependencies {
 ```
 
 ### Swift Package Manager
+
 you need to declare your dependency in your `Package.swift`:
 
 ```swift
 .package(url: "https://github.com/eqoty-labs/secretk.git", from: "0.2.1"),
 ```
 
-
-## Useage 
+## Useage
 
 ### Kotlin
 
@@ -70,21 +72,19 @@ you need to declare your dependency in your `Package.swift`:
 ```kotlin
 val grpcGatewayEndpoint = "http://secretnetworkendpoint.com:1337"
 val mnemonic = ""
-val signingPen = Secp256k1Pen.fromMnemonic(mnemonic)
-val pubkey = encodeSecp256k1Pubkey(signingPen.pubkey)
-val accAddress = pubkeyToAddress(pubkey, "secret")
-
+val wallet = DirectSigningWallet(mnemonic)
+val accAddress = wallet.getAccounts()[0].address
 val client = SigningCosmWasmClient.init(
     grpcGatewayEndpoint,
     accAddress,
-    signingPen
+    wallet
 )
 ```
 
 #### Query Contract
 
 ```kotlin
-val contractAddress = "secret18vd8fpwxzck93qlwghaj6arh4p7c5n8978vsyg"
+val contractAddress = "secret1lz4m46vpdn8f2aj8yhtnexus40663udv7hhprm"
 val contractInfoQuery = """{"contract_info": {}}"""
 val contractInfo = client.queryContractSmart(contractAddress, contractInfoQuery)
 println("nft contract info response: $contractInfo")
@@ -96,19 +96,20 @@ println("nft contract info response: $contractInfo")
 // Entropy: Secure implementation is left to the client, but it is recommended to use base-64 encoded random bytes and not predictable inputs.
 val entropy = "Another really random thing??"
 val handleMsg = """{ "create_viewing_key": {"entropy": "$entropy"} }"""
-println("Creating viewing key");
+println("Creating viewing key")
 val response = client.execute(
-    contractAddress,
-    MsgExecuteContract(
-        sender = accAddress,
-        contractAddress = contractAddress,
-        msg = handleMsg,
-        codeHash = "" // optional but faster if you include
+    listOf(
+        MsgExecuteContract(
+            sender = accAddress,
+            contractAddress = contractAddress,
+            msg = handleMsg,
+            codeHash = "" // optional but faster if you include
+        )
     ),
-    _contractCodeHash = "" // optional but faster if you include
+    contractCodeHash = "" // optional but faster if you include
 )
 println("viewing key response: ${response.data}")
-val viewingKey = json.parseToJsonElement(response.data)
+val viewingKey = json.parseToJsonElement(response.data[0])
     .jsonObject["viewing_key"]!!
     .jsonObject["key"]!!.jsonPrimitive.content
 println("Querying Num Tokens")
@@ -124,11 +125,12 @@ val numTokensQuery =
     }
     """
 
-val numTokens = client.queryContractSmart(contractAddress, numTokensQuery);
+val numTokens = client.queryContractSmart(contractAddress, numTokensQuery)
 println("Num Tokens Response: $numTokens")
 ```
 
 ### Swift
+
 - Swift [sample project](/sampleSwift)
 
 #### Create SigningCosmWasmClient
