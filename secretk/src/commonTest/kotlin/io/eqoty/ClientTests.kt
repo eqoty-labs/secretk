@@ -53,7 +53,7 @@ class ClientTests {
         val handleMsg = """{ "create_viewing_key": {"entropy": "$entropy"} }"""
         println("Creating viewing key")
         val response = client.execute(
-            arrayOf(
+            listOf(
                 MsgExecuteContract(
                     sender = accAddress,
                     contractAddress = contractAddress,

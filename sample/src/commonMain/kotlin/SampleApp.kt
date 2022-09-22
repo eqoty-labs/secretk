@@ -58,7 +58,7 @@ fun SampleApp(client: SigningCosmWasmClient) {
                                 val handleMsg = """{ "create_viewing_key": {"entropy": "$entropy"} }"""
                                 viewingKeyTxResponse = try {
                                     val response = client.execute(
-                                        arrayOf(
+                                        listOf(
                                             MsgExecuteContract(
                                                 sender = client.senderAddress,
                                                 contractAddress = contractAddress,

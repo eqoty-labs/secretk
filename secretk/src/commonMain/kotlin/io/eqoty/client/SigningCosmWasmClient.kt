@@ -128,13 +128,15 @@ private constructor(
 
 
     suspend fun execute(
-        msgs: Array<Msg<*>>,
+        msgs: List<Msg<*>>,
         memo: String = "",
         fee: StdFee? = null,
         contractCodeHash: String? = null,
     ): ExecuteResult {
         @Suppress("NAME_SHADOWING")
         val fee = fee ?: fees.exec!!
+//        @Suppress("NAME_SHADOWING")
+//        val msgs = msgs.toTypedArray()
 
         val txRawProto = sign(fee, memo, msgs)
         val txRawBytes = ProtoBuf.encodeToByteArray(txRawProto).toUByteArray()
@@ -187,7 +189,7 @@ private constructor(
     private suspend fun sign(
         fee: StdFee,
         memo: String,
-        messages: Array<Msg<*>>,
+        messages: List<Msg<*>>,
     ): TxRawProto {
         val accountFromSigner = wallet.getAccounts().find { account ->
             account.address == this.senderAddress
@@ -214,7 +216,7 @@ private constructor(
 
     private suspend fun signDirect(
         account: AccountData,
-        msgs: Array<Msg<*>>,
+        msgs: List<Msg<*>>,
         fee: StdFee,
         memo: String,
         signerData: SignerData,
@@ -264,7 +266,7 @@ private constructor(
 
     private suspend fun signAmino(
         account: AccountData,
-        messages: Array<Msg<*>>,
+        messages: List<Msg<*>>,
         fee: StdFee,
         memo: String,
         signerData: SignerData,
