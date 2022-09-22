@@ -1,11 +1,12 @@
 # secretk
 
-CosmWasm SDK + Encryption for the Secret Network
+A Kotlin multiplatform Encryption and REST client for Secret Network utilizing gRPC gateway endpoints.
 
-A Kotlin multiplatform REST client utilizing secret network's gRPC gateway endpoints.
+Based on the work of:
 
-Based on:
-https://github.com/scrtlabs/SecretNetwork/tree/f01dda32b12e02c6cc2326ea58f8b13bf6e3ff8f/cosmwasm-js/packages/sdk
+[secret.js](https://github.com/scrtlabs/SecretNetwork/tree/f01dda32b12e02c6cc2326ea58f8b13bf6e3ff8f/cosmwasm-js/packages/sdk) (old)
+
+[secret.js](https://github.com/scrtlabs/secret.js)
 
 ### Supported Features:
 
