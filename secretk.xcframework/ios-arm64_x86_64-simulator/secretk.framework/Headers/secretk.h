@@ -2296,7 +2296,7 @@ __attribute__((swift_name("SigningCosmWasmClient")))
  @note This method converts instances of CancellationException to errors.
  Other uncaught Kotlin exceptions are fatal.
 */
-- (void)executeMsgs:(SecretkKotlinArray<id<SecretkMsg>> *)msgs memo:(NSString *)memo fee:(SecretkStdFee * _Nullable)fee contractCodeHash:(NSString * _Nullable)contractCodeHash completionHandler:(void (^)(SecretkExecuteResult * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("execute(msgs:memo:fee:contractCodeHash:completionHandler:)")));
+- (void)executeMsgs:(NSArray<id<SecretkMsg>> *)msgs memo:(NSString *)memo fee:(SecretkStdFee * _Nullable)fee contractCodeHash:(NSString * _Nullable)contractCodeHash completionHandler:(void (^)(SecretkExecuteResult * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("execute(msgs:memo:fee:contractCodeHash:completionHandler:)")));
 @property (readonly) NSString *apiUrl __attribute__((swift_name("apiUrl")));
 @property (readonly) SecretkFeeTable *fees __attribute__((swift_name("fees")));
 @property (readonly) NSString *senderAddress __attribute__((swift_name("senderAddress")));
