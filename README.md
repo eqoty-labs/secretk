@@ -49,7 +49,7 @@ repositories {
 }
 
 dependencies {
-    implementation("io.eqoty.secretk:client:0.1.2")
+    implementation("io.eqoty.secretk:client:0.2.1")
 }
 ```
 
