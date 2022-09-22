@@ -33,9 +33,8 @@ Based on the work of:
 ```gradle
 repositories {
     mavenCentral()
-    // And the following repositories to workaround this issue: 
+    // And the following repository to workaround this issue: 
     // https://youtrack.jetbrains.com/issue/KT-52240/Dependencies-of-a-dependency-are-not-resolved
-    maven("https://oss.sonatype.org/content/repositories/snapshots")
     maven {
         name = "luca992/KHash GitHub Packages"
         url = uri("https://maven.pkg.github.com/luca992/KHash")
