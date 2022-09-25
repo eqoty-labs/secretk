@@ -68,40 +68,40 @@ kotlin {
         }
         val commonMain by getting {
             dependencies {
-                implementation("co.touchlab:kermit:_")
-                implementation("io.ktor:ktor-client-core:_")
-                implementation("io.ktor:ktor-client-json:_")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:_")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:_")
-                implementation("io.ktor:ktor-serialization-kotlinx-json:_")
-                implementation("io.ktor:ktor-client-content-negotiation:_")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
-                implementation("com.squareup.okio:okio:_")
-                implementation("com.ionspin.kotlin:multiplatform-crypto-libsodium-bindings:_")
-                implementation("com.ionspin.kotlin:bignum:_")
-                implementation("com.ionspin.kotlin:bignum-serialization-kotlinx:_")
-                implementation("io.github.luca992.cash.z.ecc.android:kotlin-bip39:_")
-                implementation("com.github.luca992.khash:ripemd160:_")
+                implementation(libs.co.touchlab.kermit)
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.kotlinx.serialization.json)
+                implementation(libs.kotlinx.serialization.protobuf)
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.json)
+                implementation(libs.ktor.serialization.kotlinx.json)
+                implementation(libs.ktor.client.contentNegotiation)
+                implementation(libs.squareup.okio)
+                implementation(libs.bignum)
+                implementation(libs.bignum.serialization.kotlinx)
+                implementation(libs.com.ionspin.kotlin.multiplatformCryptoLibsodiumBindings)
+                implementation(libs.io.github.luca992.cash.z.ecc.android.kotlinBip39)
+                implementation(libs.com.github.luca992.khash.ripemd160)
 
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:_")
+                implementation(libs.kotlinx.coroutines.test)
             }
         }
         val jvmMain by getting {
             dependencies {
-                implementation("org.slf4j:slf4j-simple:_")
-                implementation("io.ktor:ktor-client-okhttp:_")
-                implementation("org.cryptomator:siv-mode:_")
+                implementation(libs.org.slf4j.slf4jSimple)
+                implementation(libs.ktor.client.okhttp)
+                implementation(libs.org.cryptomator.sivMode)
             }
         }
         val jvmTest by getting
         val jsMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-js:_")
+                implementation(libs.ktor.client.js)
                 implementation(npm("path-browserify", "^1.0.1"))
                 implementation(npm("crypto-browserify", "^3.12.0"))
                 implementation(npm("buffer", "^6.0.3"))
@@ -121,7 +121,7 @@ kotlin {
         val darwinMain by creating {
             dependsOn(nativeMain)
             dependencies {
-                implementation("io.ktor:ktor-client-darwin:_")
+                implementation(libs.ktor.client.darwin)
             }
         }
         val macosX64Main by getting {

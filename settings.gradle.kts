@@ -8,22 +8,10 @@ pluginManagement {
         maven ("https://s01.oss.sonatype.org/content/repositories/releases/")
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
-    val versions = java.util.Properties().apply {
-        load(File("${rootProject.projectDir}/versions.properties").reader())
-    }
     plugins {
         // See https://jmfayard.github.io/refreshVersions
-        id("de.fayard.refreshVersions") version versions["version.refreshVersions"] as String
-
-        kotlin("multiplatform") version versions["version.kotlin"] as String apply false
-        kotlin("android") version versions["version.kotlin"] as String apply false
-        kotlin("plugin.serialization") version versions["version.kotlin"] as String apply false
-        id("io.github.luca992.multiplatform-swiftpackage") version versions["version.multiplatformSwiftPackage"] as String apply false
-        id("com.vanniktech.maven.publish") version versions["version.gradleMavenPublishPlugin"] as String apply false
-        id("org.jetbrains.compose") version "1.2.0-beta02-dev795" apply false
-        id("com.android.application").version("7.2.2") apply false
-
-
+        id("de.fayard.refreshVersions") version "0.50.1"
+////                                # available:"0.50.2"
     }
 }
 
@@ -48,10 +36,6 @@ dependencyResolutionManagement {
 
 plugins {
     id("de.fayard.refreshVersions")
-    kotlin("android") apply false
-    id("com.android.application") apply false
-    id("org.jetbrains.compose") apply false
-
 }
 
 
