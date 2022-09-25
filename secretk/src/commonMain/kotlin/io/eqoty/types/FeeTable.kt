@@ -1,24 +1,24 @@
 package io.eqoty.types
 
 data class FeeTable(
-    var upload: StdFee?,
-    var init: StdFee?,
-    var exec: StdFee?,
-    var send: StdFee?,
+    var upload: StdFee,
+    var init: StdFee,
+    var exec: StdFee,
+    var send: StdFee,
 ) {
 
     fun overwrite(newTable: FeeTable?): FeeTable {
         newTable ?: return this
-        newTable.upload?.let {
+        newTable.upload.let {
             upload = it
         }
-        newTable.init?.let {
+        newTable.init.let {
             init = it
         }
-        newTable.exec?.let {
+        newTable.exec.let {
             exec = it
         }
-        newTable.send?.let {
+        newTable.send.let {
             send = it
         }
         return this
