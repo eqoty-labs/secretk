@@ -1,8 +1,7 @@
 package io.eqoty.wallet
 
-import ext.libsodium.com.ionspin.kotlin.crypto.toUByteArray
-import io.eqoty.tx.proto.SignMode
 import io.eqoty.types.StdSignDoc
+import io.eqoty.types.proto.SignMode
 import jslibs.secretjs.AminoWallet
 import kotlinx.coroutines.await
 import kotlinx.serialization.decodeFromString

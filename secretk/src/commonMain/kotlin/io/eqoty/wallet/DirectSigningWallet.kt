@@ -1,7 +1,7 @@
 package io.eqoty.wallet
 
-import io.eqoty.tx.proto.SignDocProto
-import io.eqoty.tx.proto.SignMode
+import io.eqoty.types.proto.SignDocProto
+import io.eqoty.types.proto.SignMode
 import kotlinx.serialization.encodeToByteArray
 import kotlinx.serialization.protobuf.ProtoBuf
 

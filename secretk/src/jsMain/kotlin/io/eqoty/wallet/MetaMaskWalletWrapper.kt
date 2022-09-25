@@ -1,7 +1,7 @@
 package io.eqoty.wallet
 
-import io.eqoty.tx.proto.SignMode
 import io.eqoty.types.StdSignDoc
+import io.eqoty.types.proto.SignMode
 import jslibs.secretjs.MetaMaskWallet
 import kotlinx.coroutines.await
 import kotlinx.serialization.decodeFromString

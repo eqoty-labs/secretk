@@ -27,7 +27,7 @@ external interface MsgInstantiateContractParams : MsgParams {
 
 external fun getMissingCodeHashWarning(method: String): String
 
-external open class MsgInstantiateContract(__0: MsgInstantiateContractParams) : Msg {
+open external class MsgInstantiateContract(__0: MsgInstantiateContractParams) : Msg {
     open var sender: String
     open var codeId: String
     open var label: String
@@ -83,8 +83,7 @@ external open class MsgStoreCode(__0: MsgStoreCodeParams) : Msg {
 }
 */
 
-external interface MsgParams {
-}
+external interface MsgParams
 
 external interface Msg {
     fun toProto(utils: EncryptionUtils): Promise<ProtoMsg>
@@ -94,7 +93,7 @@ external interface Msg {
 external interface ProtoMsg {
     var typeUrl: String
     var value: Any
-    fun encode(): Promise<Uint8Array>;
+    fun encode(): Promise<Uint8Array>
 }
 
 external interface AminoMsg {

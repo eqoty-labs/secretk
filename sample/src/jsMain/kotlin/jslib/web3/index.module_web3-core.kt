@@ -4,7 +4,7 @@ package web3
 
 import events.global.NodeJS.EventEmitter
 import web3.eth.Method
-import kotlin.js.*
+import kotlin.js.Promise
 
 
 external interface SignedTransaction {
@@ -147,10 +147,14 @@ external interface RLPEncodedTransaction {
 }
 
 external interface `T$13` {
-    @nativeGetter
-    operator fun get(eventName: String): EventLog?
-    @nativeSetter
-    operator fun set(eventName: String, value: EventLog)
+}
+
+@Suppress("NOTHING_TO_INLINE")
+inline operator fun `T$13`.get(eventName: String): EventLog? = asDynamic()[eventName]
+
+@Suppress("NOTHING_TO_INLINE")
+inline operator fun `T$13`.set(eventName: String, value: EventLog) {
+    asDynamic()[eventName] = value
 }
 
 external interface TransactionReceipt {
@@ -204,7 +208,7 @@ external interface Log {
     var blockNumber: Number
 }
 
-external open class NetworkBase {
+open external class NetworkBase {
     constructor()
     constructor(provider: HttpProvider?)
 //    constructor(provider: IpcProvider?)
@@ -232,7 +236,7 @@ external open class NetworkBase {
     }
 }
 
-external open class AccountsBase {
+open external class AccountsBase {
     constructor()
     constructor(provider: HttpProvider?)
 //    constructor(provider: IpcProvider?)
@@ -263,13 +267,9 @@ external open class AccountsBase {
     open var wallet: WalletBase
 }
 
-external open class WalletBase(accounts: AccountsBase) {
+open external class WalletBase(accounts: AccountsBase) {
     open var length: Number
     open var defaultKeyName: String
-    @nativeGetter
-    open operator fun get(key: Number): Account?
-    @nativeSetter
-    open operator fun set(key: Number, value: Account)
     open fun create(numberOfAccounts: Number, entropy: String = definedExternally): WalletBase
     open fun add(account: String): AddedAccount
     open fun add(account: AddAccount): AddedAccount
@@ -280,6 +280,14 @@ external open class WalletBase(accounts: AccountsBase) {
     open fun decrypt(keystoreArray: Array<EncryptedKeystoreV3Json>, password: String): WalletBase
     open fun save(password: String, keyName: String = definedExternally): Boolean
     open fun load(password: String, keyName: String = definedExternally): WalletBase
+}
+
+@Suppress("NOTHING_TO_INLINE")
+inline operator fun WalletBase.get(key: Number): Account? = asDynamic()[key]
+
+@Suppress("NOTHING_TO_INLINE")
+inline operator fun WalletBase.set(key: Number, value: Account) {
+    asDynamic()[key] = value
 }
 
 external interface AddAccount {
@@ -339,16 +347,16 @@ external interface SignatureObject {
     var v: String
 }
 
-external open class BatchRequest {
+open external class BatchRequest {
     open fun add(method: Method)
     open fun execute()
 }
 
-external open class HttpProvider(host: String, options: HttpProviderOptions = definedExternally) : HttpProviderBase
+open external class HttpProvider(host: String, options: HttpProviderOptions = definedExternally) : HttpProviderBase
 
 //external open class IpcProvider(path: String, net: Server) : IpcProviderBase
 
-external open class WebsocketProvider(host: String, options: WebsocketProviderOptions = definedExternally) : WebsocketProviderBase
+open external class WebsocketProvider(host: String, options: WebsocketProviderOptions = definedExternally) : WebsocketProviderBase
 
 external interface PastLogsOptions : LogsOptions {
     var toBlock: dynamic /* String? | Number? | BN? | BigNumber? | "latest" | "pending" | "earliest" | "genesis" */
@@ -373,10 +381,14 @@ external interface RequestArguments {
     var params: Any?
         get() = definedExternally
         set(value) = definedExternally
-    @nativeGetter
-    operator fun get(key: String): Any?
-    @nativeSetter
-    operator fun set(key: String, value: Any)
+}
+
+@Suppress("NOTHING_TO_INLINE")
+inline operator fun RequestArguments.get(key: String): Any? = asDynamic()[key]
+
+@Suppress("NOTHING_TO_INLINE")
+inline operator fun RequestArguments.set(key: String, value: Any) {
+    asDynamic()[key] = value
 }
 
 external interface AbstractProvider : EventEmitter {

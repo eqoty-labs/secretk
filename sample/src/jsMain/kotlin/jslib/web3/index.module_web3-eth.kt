@@ -5,7 +5,7 @@ package web3
 import web3.eth.AbiItem
 import web3.eth.Contract
 import web3.eth.ContractOptions
-import kotlin.js.*
+import kotlin.js.Promise
 
 typealias BN = Any
 typealias BigNumber = Any

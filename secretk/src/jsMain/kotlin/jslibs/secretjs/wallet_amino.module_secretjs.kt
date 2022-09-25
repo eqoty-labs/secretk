@@ -24,7 +24,7 @@ external interface WalletOptions {
         set(value) = definedExternally
 }
 
-external open class AminoWallet(mnemonic: String = definedExternally, options: WalletOptions = definedExternally) {
+open external class AminoWallet(mnemonic: String = definedExternally, options: WalletOptions = definedExternally) {
     open var mnemonic: String
     open var hdAccountIndex: Number
     open var coinType: Number

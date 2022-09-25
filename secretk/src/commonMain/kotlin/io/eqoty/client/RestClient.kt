@@ -3,10 +3,10 @@ package io.eqoty.client
 import com.ionspin.kotlin.bignum.integer.BigInteger
 import com.ionspin.kotlin.bignum.serialization.kotlinx.biginteger.bigIntegerhumanReadableSerializerModule
 import io.eqoty.BroadcastMode
-import io.eqoty.logs.Log
-import io.eqoty.response.*
-import io.eqoty.tx.proto.MsgExecuteContractResponseProto
-import io.eqoty.tx.proto.MsgProto
+import io.eqoty.types.proto.MsgExecuteContractResponseProto
+import io.eqoty.types.proto.MsgProto
+import io.eqoty.types.response.*
+import io.eqoty.types.response.logs.Log
 import io.eqoty.utils.*
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -16,14 +16,12 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
-import kotlinx.serialization.decodeFromByteArray
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.plus
 import kotlinx.serialization.modules.polymorphic
-import kotlinx.serialization.protobuf.ProtoBuf
 import okio.ByteString.Companion.decodeBase64
 import okio.ByteString.Companion.toByteString
 

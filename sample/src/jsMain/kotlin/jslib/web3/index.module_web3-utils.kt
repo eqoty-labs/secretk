@@ -2,8 +2,7 @@
 
 package web3
 
-import kotlin.js.*
-import org.khronos.webgl.*
+import org.khronos.webgl.Uint8Array
 import web3.eth.AbiItem
 
 external interface `T$24` {

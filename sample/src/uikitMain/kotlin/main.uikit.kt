@@ -1,7 +1,10 @@
 import androidx.compose.ui.window.Application
-import kotlinx.cinterop.*
+import kotlinx.cinterop.autoreleasepool
+import kotlinx.cinterop.cstr
+import kotlinx.cinterop.memScoped
+import kotlinx.cinterop.toCValues
+import platform.Foundation.NSStringFromClass
 import platform.UIKit.*
-import platform.Foundation.*
 
 fun main() {
     val args = emptyArray<String>()
@@ -17,7 +20,7 @@ fun main() {
 class SkikoAppDelegate : UIResponder, UIApplicationDelegateProtocol {
     companion object : UIResponderMeta(), UIApplicationDelegateProtocolMeta
 
-    @ObjCObjectBase.OverrideInit
+    @OverrideInit
     constructor() : super()
 
     private var _window: UIWindow? = null

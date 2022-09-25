@@ -1,7 +1,7 @@
 package io.eqoty.types
 
 import com.ionspin.kotlin.bignum.integer.BigInteger
-import io.eqoty.response.PubKeySecp256k1
+import io.eqoty.types.response.PubKeySecp256k1
 
 data class Account(
     /** Bech32 account address */

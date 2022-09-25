@@ -1,7 +1,7 @@
 package io.eqoty.encoding
 
-import io.eqoty.response.TypeValue
 import io.eqoty.types.StdFee
+import io.eqoty.types.response.TypeValue
 
 @kotlinx.serialization.Serializable
 data class SignJson<T>(

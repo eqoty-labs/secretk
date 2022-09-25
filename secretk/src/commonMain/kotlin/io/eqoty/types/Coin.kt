@@ -1,6 +1,6 @@
 package io.eqoty.types
 
-import io.eqoty.tx.proto.CoinProto
+import io.eqoty.types.proto.CoinProto
 
 @kotlinx.serialization.Serializable
 data class Coin(

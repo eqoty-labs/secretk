@@ -1,6 +1,6 @@
 package io.eqoty.types
 
-import io.eqoty.response.PubKey
+import io.eqoty.types.response.PubKey
 import kotlinx.serialization.SerialName
 
 @kotlinx.serialization.Serializable

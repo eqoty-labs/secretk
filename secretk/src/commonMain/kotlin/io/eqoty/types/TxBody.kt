@@ -1,7 +1,7 @@
 package io.eqoty.types
 
-import io.eqoty.tx.ProtoMsg
-import io.eqoty.tx.proto.MsgProto
+import io.eqoty.types.proto.MsgProto
+import io.eqoty.types.proto.ProtoMsg
 
 @kotlinx.serialization.Serializable
 data class TxBody<M : MsgProto>(

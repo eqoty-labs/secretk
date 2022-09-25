@@ -1,12 +1,7 @@
 package web3.eth
 
 
-import kotlinx.coroutines.await
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.coroutineScope
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.encodeToString
 import web3.*
 import kotlin.js.Json
 import kotlin.js.Promise
@@ -34,15 +29,15 @@ open external class Contract<M : Method>(
     open fun once(event: String, callback: (error: Error?, event: EventData) -> Unit)
     open fun once(event: String, options: EventOptions, callback: (error: Error?, event: EventData) -> Unit)
     open var events: Any
-    open fun getPastEvents(event: String): kotlin.js.Promise<Array<EventData>>
+    open fun getPastEvents(event: String): Promise<Array<EventData>>
     open fun getPastEvents(
         event: String, options: PastEventOptions, callback: (error: Error?, event: EventData) -> Unit
-    ): kotlin.js.Promise<Array<EventData>>
+    ): Promise<Array<EventData>>
 
-    open fun getPastEvents(event: String, options: PastEventOptions): kotlin.js.Promise<Array<EventData>>
+    open fun getPastEvents(event: String, options: PastEventOptions): Promise<Array<EventData>>
     open fun getPastEvents(
         event: String, callback: (error: Error?, event: EventData) -> Unit
-    ): kotlin.js.Promise<Array<EventData>>
+    ): Promise<Array<EventData>>
 
     companion object {
         fun setProvider(provider: HttpProvider?, accounts: Accounts = definedExternally)
@@ -129,20 +124,31 @@ external interface EventOptions : LogsOptions {
 }
 
 external interface Filter {
-    @nativeGetter
-    operator fun get(key: String): dynamic /* Number? | String? | Array<String>? | Array<Number>? */
 
-    @nativeSetter
-    operator fun set(key: String, value: Number)
+}
 
-    @nativeSetter
-    operator fun set(key: String, value: String)
+@Suppress("NOTHING_TO_INLINE")
+inline operator fun Filter.get(key: String): dynamic /* Number? | String? | Array<String>? | Array<Number>? */ =
+    asDynamic()[key]
 
-    @nativeSetter
-    operator fun set(key: String, value: Array<String>)
+@Suppress("NOTHING_TO_INLINE")
+inline operator fun Filter.set(key: String, value: Number) {
+    asDynamic()[key] = value
+}
 
-    @nativeSetter
-    operator fun set(key: String, value: Array<Number>)
+@Suppress("NOTHING_TO_INLINE")
+inline operator fun Filter.set(key: String, value: String) {
+    asDynamic()[key] = value
+}
+
+@Suppress("NOTHING_TO_INLINE")
+inline operator fun Filter.set(key: String, value: Array<String>) {
+    asDynamic()[key] = value
+}
+
+@Suppress("NOTHING_TO_INLINE")
+inline operator fun Filter.set(key: String, value: Array<Number>) {
+    asDynamic()[key] = value
 }
 
 external interface `T$27` {

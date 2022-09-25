@@ -1,7 +1,7 @@
 package io.eqoty.types
 
-import io.eqoty.response.TypeValue
-import io.eqoty.tx.proto.MsgProto
+import io.eqoty.types.proto.MsgProto
+import io.eqoty.types.response.TypeValue
 
 /** An Amino/Cosmos SDK StdTx */
 @kotlinx.serialization.Serializable

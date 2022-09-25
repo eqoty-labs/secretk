@@ -1,9 +1,9 @@
 package io.eqoty.client
 
 import io.eqoty.BroadcastMode
-import io.eqoty.response.TxsResponseData
-import io.eqoty.result.GetNonceResult
 import io.eqoty.types.Account
+import io.eqoty.types.response.TxsResponseData
+import io.eqoty.types.result.GetNonceResult
 import io.eqoty.utils.EncryptionUtils
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject

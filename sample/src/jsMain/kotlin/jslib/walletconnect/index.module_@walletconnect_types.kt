@@ -2,19 +2,7 @@
 
 package jslib.walletconnect
 
-import kotlin.js.*
-import org.khronos.webgl.*
-import org.w3c.dom.*
-import org.w3c.dom.events.*
-import org.w3c.dom.parsing.*
-import org.w3c.dom.svg.*
-import org.w3c.dom.url.*
-import org.w3c.fetch.*
-import org.w3c.files.*
-import org.w3c.notifications.*
-import org.w3c.performance.*
-import org.w3c.workers.*
-import org.w3c.xhr.*
+import kotlin.js.Promise
 
 external interface IConnector {
     var bridge: String
@@ -202,10 +190,14 @@ external interface IUpdateChainParams {
 }
 
 external interface IRPCMap {
-    @nativeGetter
-    operator fun get(chainId: Number): String?
-    @nativeSetter
-    operator fun set(chainId: Number, value: String)
+}
+
+@Suppress("NOTHING_TO_INLINE")
+inline operator fun IRPCMap.get(chainId: Number): String? = asDynamic()[chainId]
+
+@Suppress("NOTHING_TO_INLINE")
+inline operator fun IRPCMap.set(chainId: Number, value: String) {
+    asDynamic()[chainId] = value
 }
 
 external interface IWCRpcConnectionOptions {

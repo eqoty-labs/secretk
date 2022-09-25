@@ -2,8 +2,8 @@ package io.eqoty.encoding
 
 import com.ionspin.kotlin.bignum.integer.BigInteger
 import com.ionspin.kotlin.crypto.util.encodeToUByteArray
-import io.eqoty.response.TypeValue
 import io.eqoty.types.StdFee
+import io.eqoty.types.response.TypeValue
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 

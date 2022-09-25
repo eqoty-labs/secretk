@@ -24,7 +24,7 @@ external interface `T$2` {
     var pubkey: Uint8Array
 }
 
-external open class EncryptionUtilsImpl(
+open external class EncryptionUtilsImpl(
     registrationQuerier: Any,
     seed: Uint8Array = definedExternally,
     chainId: String = definedExternally

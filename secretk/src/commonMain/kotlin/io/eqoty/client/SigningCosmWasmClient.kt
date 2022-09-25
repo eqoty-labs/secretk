@@ -2,16 +2,13 @@ package io.eqoty.client
 
 import com.ionspin.kotlin.bignum.integer.toBigInteger
 import io.eqoty.BroadcastMode
-import io.eqoty.response.PubKey
-import io.eqoty.response.PubKeyMultisigThreshold
-import io.eqoty.response.PubKeySecp256k1
-import io.eqoty.response.TxsResponseData
-import io.eqoty.result.ExecuteResult
-import io.eqoty.tx.Msg
-import io.eqoty.tx.MsgExecuteContract
-import io.eqoty.tx.MsgInstantiateContract
-import io.eqoty.tx.proto.*
 import io.eqoty.types.*
+import io.eqoty.types.proto.*
+import io.eqoty.types.response.PubKey
+import io.eqoty.types.response.PubKeyMultisigThreshold
+import io.eqoty.types.response.PubKeySecp256k1
+import io.eqoty.types.response.TxsResponseData
+import io.eqoty.types.result.ExecuteResult
 import io.eqoty.utils.EncryptionUtils
 import io.eqoty.utils.EnigmaUtils
 import io.eqoty.utils.decodeToString

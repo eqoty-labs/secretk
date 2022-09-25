@@ -6,10 +6,10 @@ import io.eqoty.crypto.Secp256k1
 import io.eqoty.crypto.Slip10
 import io.eqoty.crypto.Slip10Curve
 import io.eqoty.crypto.Slip10RawIndex
-import io.eqoty.tx.proto.SignDocProto
-import io.eqoty.tx.proto.SignMode
 import io.eqoty.types.StdSignDoc
 import io.eqoty.types.StdSignature
+import io.eqoty.types.proto.SignDocProto
+import io.eqoty.types.proto.SignMode
 import io.eqoty.utils.Address.pubkeyToAddress
 import io.eqoty.utils.getPadded
 import io.eqoty.utils.toByteString

@@ -1,9 +1,6 @@
 
 package web3
 
-import kotlin.js.*
-
-
 
 @JsModule("web3")
 @JsNonModule

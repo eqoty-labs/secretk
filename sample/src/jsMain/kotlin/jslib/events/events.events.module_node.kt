@@ -1,7 +1,7 @@
 @file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS")
 package jslib.events
 
-import kotlin.js.*
+import kotlin.js.Promise
 
 external interface EventEmitterOptions {
     var captureRejections: Boolean?
@@ -29,7 +29,7 @@ external interface StaticEventEmitterOptions {
 }
 
 @JsModule("events")
-external open class EventEmitter(options: EventEmitterOptions = definedExternally) : events.global.NodeJS.EventEmitter {
+open external class EventEmitter(options: EventEmitterOptions = definedExternally) : events.global.NodeJS.EventEmitter {
     override fun addListener(eventName: String, listener: (args: Any) -> Unit): dynamic /* EventEmitter */
     override fun addListener(eventName: Any, listener: (args: Any) -> Unit): dynamic /* EventEmitter */
     override fun on(eventName: String, listener: (args: Any) -> Unit): dynamic /* EventEmitter */

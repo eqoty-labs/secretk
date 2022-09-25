@@ -1,7 +1,7 @@
 package io.eqoty
 
 import io.eqoty.client.SigningCosmWasmClient
-import io.eqoty.tx.MsgExecuteContract
+import io.eqoty.types.MsgExecuteContract
 import io.eqoty.wallet.DirectSigningWallet
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json

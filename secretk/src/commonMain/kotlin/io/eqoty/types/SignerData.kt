@@ -1,4 +1,4 @@
-package io.eqoty.types;
+package io.eqoty.types
 
 import com.ionspin.kotlin.bignum.integer.BigInteger
 

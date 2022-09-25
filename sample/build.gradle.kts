@@ -41,7 +41,7 @@ kotlin {
     }
     iosX64("uikitX64") {
         binaries {
-            executable() {
+            executable {
                 entryPoint = "main"
                 freeCompilerArgs += listOf(
                     "-linker-option", "-framework", "-linker-option", "Metal",
@@ -53,7 +53,7 @@ kotlin {
     }
     iosArm64("uikitArm64") {
         binaries {
-            executable() {
+            executable {
                 entryPoint = "main"
                 freeCompilerArgs += listOf(
                     "-linker-option", "-framework", "-linker-option", "Metal",

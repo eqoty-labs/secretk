@@ -2,22 +2,8 @@
 
 package web3
 
-import kotlin.js.*
-import org.khronos.webgl.*
-import org.w3c.dom.*
-import org.w3c.dom.events.*
-import org.w3c.dom.parsing.*
-import org.w3c.dom.svg.*
-import org.w3c.dom.url.*
-import org.w3c.fetch.*
-import org.w3c.files.*
-import org.w3c.notifications.*
-import org.w3c.performance.*
-import org.w3c.workers.*
-import org.w3c.xhr.*
 
-
-external open class WebsocketProviderBase(host: String, options: WebsocketProviderOptions = definedExternally) {
+open external class WebsocketProviderBase(host: String, options: WebsocketProviderOptions = definedExternally) {
     open fun isConnecting(): Boolean
     open var requestQueue: Map<String, RequestItem>
     open var responseQueue: Map<String, RequestItem>
@@ -51,7 +37,7 @@ external open class WebsocketProviderBase(host: String, options: WebsocketProvid
 //    open fun reconnect()
 //}
 
-external open class HttpProviderBase(host: String, options: HttpProviderOptions = definedExternally) {
+open external class HttpProviderBase(host: String, options: HttpProviderOptions = definedExternally) {
     open var host: String
     open var connected: Boolean
     open fun supportsSubscriptions(): Boolean
