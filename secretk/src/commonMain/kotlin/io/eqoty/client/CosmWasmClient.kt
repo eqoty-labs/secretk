@@ -66,8 +66,8 @@ open class CosmWasmClient protected constructor(
             throw Error("Received ill-formatted txhash. Must be non-empty upper-case hex")
         }
 
-        if (result.code == null) {
-            throw Error("Error when posting tx ${result.txhash}. Code: ${result.code}; Raw log: ${result.rawLog}")
+        if (result.code != 0) {
+            throw Error("Broadcasting transaction failed with code ${result.code} (codespace: ${result.codespace}). Log: ${result.rawLog}")
         }
 
         return result
