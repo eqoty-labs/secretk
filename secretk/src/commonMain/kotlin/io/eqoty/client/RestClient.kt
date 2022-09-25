@@ -5,6 +5,8 @@ import com.ionspin.kotlin.bignum.serialization.kotlinx.biginteger.bigIntegerhuma
 import io.eqoty.BroadcastMode
 import io.eqoty.logs.Log
 import io.eqoty.response.*
+import io.eqoty.tx.proto.MsgExecuteContractResponseProto
+import io.eqoty.tx.proto.MsgProto
 import io.eqoty.utils.*
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -14,12 +16,14 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
+import kotlinx.serialization.decodeFromByteArray
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.plus
 import kotlinx.serialization.modules.polymorphic
+import kotlinx.serialization.protobuf.ProtoBuf
 import okio.ByteString.Companion.decodeBase64
 import okio.ByteString.Companion.toByteString
 
@@ -78,6 +82,7 @@ internal class RestClient(
         } catch (e: ResponseException) {
             throw parseError(e)
         }
+        println(response.bodyAsText())
         return response.body()
     }
 
@@ -196,7 +201,18 @@ internal class RestClient(
         return response
     }
 
-    suspend fun decryptDataField(dataField: UByteArray, nonce: UByteArray): UByteArray {
+    suspend fun decryptDataField(msg: MsgProto, nonce: UByteArray?): UByteArray {
+        val dataField = when (msg) {
+            is MsgExecuteContractResponseProto -> {
+                (ProtoBuf.decodeFromByteArray(msg.data) as MsgExecuteContractResponseProto).data.toUByteArray()
+            }
+
+            else -> UByteArray(0) { 0u }
+        }
+        if (nonce == null) {
+            // nonce was not extracted from message. Nothing to decrypt
+            return dataField
+        }
         val wasmOutputDataCipherBz = dataField
 
         val error: Throwable
@@ -218,13 +234,13 @@ internal class RestClient(
     suspend fun authAccounts(address: String): CosmosSdkAccount {
         val authResp: AccountResponse? = try {
             get("/cosmos/auth/v1beta1/accounts/${address}")
-        } catch (t: Throwable){
+        } catch (t: Throwable) {
             t.printStackTrace()
             null
         }
         val bankResp: BalanceResponse? = try {
             get("/cosmos/bank/v1beta1/balances/${address}")
-        } catch (t: Throwable){
+        } catch (t: Throwable) {
             t.printStackTrace()
             null
         }
@@ -242,11 +258,12 @@ internal class RestClient(
         return get("/node_info")
     }
 
-    suspend fun decryptLogs(logs: List<Log>, nonces: List<UByteArray>): List<Log> {
+    suspend fun decryptLogs(logs: List<Log>, nonces: List<UByteArray?>): List<Log> {
         for (l in logs) {
             for (e in l.events) {
                 if (e.type == "wasm") {
-                    for (nonce in nonces) {
+                    for (nonce in nonces.filterNotNull()) {
+
                         var nonceOk = false
                         for (a in e.attributes) {
                             try {

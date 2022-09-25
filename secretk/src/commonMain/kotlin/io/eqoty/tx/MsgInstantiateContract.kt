@@ -1,8 +1,8 @@
 package io.eqoty.tx
 
 import co.touchlab.kermit.Logger
-import io.eqoty.types.MsgAmino
 import io.eqoty.tx.proto.MsgExecuteContractProto
+import io.eqoty.types.MsgAmino
 import io.eqoty.utils.EncryptionUtils
 import io.eqoty.utils.getMissingCodeHashWarning
 
@@ -22,7 +22,7 @@ class MsgInstantiateContract(
      * - "0xAF74387E276BE8874F07BEC3A87023EE49B0E7EBE08178C49D0A49C3C98ED60E"
      */
     codeHash: String?
-) : Msg<MsgExecuteContractProto> {
+) : EncryptedMsg<MsgExecuteContractProto> {
     private var msgEncrypted: UByteArray? = null
 
     var codeHash: String? = null

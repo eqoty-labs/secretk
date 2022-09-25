@@ -16,13 +16,15 @@ class AnyProto(
     fun toMsg(): MsgProto {
         return when (typeUrl) {
             "/secret.compute.v1beta1.MsgInstantiateContract" -> {
-                val msgInstantiateContract: MsgInstantiateContractProto = ProtoBuf.decodeFromByteArray(value)
-                msgInstantiateContract
+                ProtoBuf.decodeFromByteArray(value) as MsgInstantiateContractProto
             }
 
             "/secret.compute.v1beta1.MsgExecuteContract" -> {
-                val msgExecuteContract: MsgExecuteContractProto = ProtoBuf.decodeFromByteArray(value)
-                msgExecuteContract
+                ProtoBuf.decodeFromByteArray(value) as MsgExecuteContractProto
+            }
+
+            "/secret.compute.v1beta1.MsgStoreCode" -> {
+                ProtoBuf.decodeFromByteArray(value) as MsgStoreCodeProto
             }
 
             else -> throw UnsupportedOperationException("calling toMsg() on an Any proto with typeUrl:${typeUrl} is not supported")

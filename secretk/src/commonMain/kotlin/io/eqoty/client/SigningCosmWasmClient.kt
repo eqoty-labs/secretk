@@ -112,7 +112,7 @@ private constructor(
         }
     }
 
-    private fun extractMessageNonce(msg: MsgProto): UByteArray {
+    private fun extractMessageNonceIfNeeded(msg: MsgProto): UByteArray? {
         return when (msg) {
             is MsgInstantiateContractProto -> {
                 msg.initMsg.toUByteArray().copyOfRange(0, 32)
@@ -122,7 +122,7 @@ private constructor(
                 msg.msg.toUByteArray().copyOfRange(0, 32)
             }
 
-            else -> throw UnsupportedOperationException("Extracting nonce from a:${msg::class} is not supported")
+            else -> null
         }
     }
 
@@ -134,7 +134,7 @@ private constructor(
         contractCodeHash: String? = null,
     ): ExecuteResult {
         @Suppress("NAME_SHADOWING")
-        val fee = fee ?: fees.exec!!
+        val fee = fee ?: fees.exec
 //        @Suppress("NAME_SHADOWING")
 //        val msgs = msgs.toTypedArray()
 
@@ -385,6 +385,10 @@ private constructor(
                         ProtoBuf.encodeToByteArray(message.value)
                     }
 
+                    is MsgStoreCodeProto -> {
+                        ProtoBuf.encodeToByteArray(message.value)
+                    }
+
                     else -> TODO()
                 }
                 AnyProto(
@@ -400,21 +404,20 @@ private constructor(
     }
 
     private suspend fun decodeTxResponses(postTxResult: TxsResponseData): List<String> {
-        val nonces = mutableMapOf<Int, UByteArray>()
+        val nonces = mutableMapOf<Int, UByteArray?>()
         val txRaw: TxRawProto = ProtoBuf.decodeFromByteArray(postTxResult.tx!!.value)
         val txBody: TxBodyProto = ProtoBuf.decodeFromByteArray(txRaw.bodyBytes)
 
         val msgs: List<MsgProto> = txBody.messages.map { it.toMsg() }
         msgs.forEachIndexed { i, anyProto ->
-            nonces[i] = extractMessageNonce(anyProto)
+            nonces[i] = extractMessageNonceIfNeeded(anyProto)
         }
 
         val txMsgData: TxMsgDataProto = ProtoBuf.decodeFromByteArray(postTxResult.data.decodeHex().toByteArray())
         val dataFields = txMsgData.data
         val data = dataFields.mapIndexed { i, msgDataProto ->
-            val msgExecuteContractResponse: MsgExecuteContractResponseProto =
-                ProtoBuf.decodeFromByteArray(msgDataProto.data)
-            restClient.decryptDataField(msgExecuteContractResponse.data.toUByteArray(), nonces[i]!!)
+            val msgTyped: MsgProto = msgDataProto.toMsgResponseType()
+            restClient.decryptDataField(msgTyped, nonces[i])
         }
 
         this.restClient.decryptLogs(
