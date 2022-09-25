@@ -26,12 +26,9 @@ class ClientTests {
         assertEquals(accAddress, signingPen.getAccounts()[0].address)
     }
 
-    /**
-     * run test not working on darwin engine:
-     * https://youtrack.jetbrains.com/issue/KTOR-3900/A-native-application-with-the-Darwin-engine-doesn't-make-a-reque
-     */
+
     @Test
-    fun testProxy() = runTest {
+    fun testCreateViewingKeyAndUseToQuery() = runTest {
         val contractAddress = "secret1lz4m46vpdn8f2aj8yhtnexus40663udv7hhprm"
         val grpcGatewayEndpoint = "https://api.pulsar.scrttestnet.com"
         val mnemonic = "sand check forward humble between movie language siege where social crumble mouse"
