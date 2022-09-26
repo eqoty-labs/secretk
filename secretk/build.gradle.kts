@@ -112,7 +112,6 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 implementation(libs.ktor.client.js)
-                implementation(libs.com.squareup.okio.nodefilesystem)
                 implementation(npm("file-system", "^2.2.2"))
                 implementation(npm("path-browserify", "^1.0.1"))
                 implementation(npm("crypto-browserify", "^3.12.0"))
@@ -127,7 +126,12 @@ kotlin {
                 implementation(npm("@happy-dom/global-registrator", "^6.0.4"))
             }
         }
-        val jsTest by getting
+        val jsTest by getting {
+            dependsOn(commonTest)
+            dependencies {
+                implementation(libs.com.squareup.okio.nodefilesystem)
+            }
+        }
         val nativeMain by creating {
             dependsOn(commonMain)
         }
