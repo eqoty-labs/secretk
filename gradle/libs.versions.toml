@@ -5,7 +5,6 @@
 org-jetbrains-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 org-jetbrains-kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-dev-icerock-mobile-multiplatform_resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
 org-jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "compose-jb" }
 com-android-application = { id = "com.android.application", version.ref = "agp" }
 com-android-library = { id = "com.android.library", version.ref = "agp" }
@@ -113,8 +112,6 @@ squareup-okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 okio-fakefilesystem = { module = "com.squareup.okio:okio-fakefilesystem", version.ref = "okio" }
 
 co-touchlab-kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
-moko-resources = { module = "dev.icerock.moko:resources", version.ref = "moko-resources" }
-moko-resources-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "moko-resources" }
 
 com-ionspin-kotlin-multiplatformCryptoLibsodiumBindings = { module = "com.ionspin.kotlin:multiplatform-crypto-libsodium-bindings", version.ref = "libsodium" }
 bignum = { module = "com.ionspin.kotlin:bignum", version.ref = "bignum" }
