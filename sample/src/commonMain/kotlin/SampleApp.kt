@@ -6,7 +6,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import io.eqoty.client.SigningCosmWasmClient
-import io.eqoty.tx.MsgExecuteContract
+import io.eqoty.types.MsgExecuteContract
 import io.eqoty.wallet.DirectSigningWallet
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
