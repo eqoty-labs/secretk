@@ -12,6 +12,20 @@ plugins {
 group = project.property("GROUP") as String
 version = project.property("VERSION_NAME") as String
 
+object Targets {
+
+    val iosTargets = arrayOf(
+        "iosArm64", "iosX64", "iosSimulatorArm64",
+    )
+    val macosTargets = arrayOf(
+        "macosX64", "macosArm64",
+    )
+    val darwinTargets = iosTargets + macosTargets
+    val linuxTargets = arrayOf<String>()
+    val mingwTargets = arrayOf<String>()
+    val nativeTargets = linuxTargets + darwinTargets + mingwTargets
+
+}
 
 kotlin {
     jvm {
@@ -98,7 +112,6 @@ kotlin {
                 implementation(libs.org.cryptomator.sivMode)
             }
         }
-        val jvmTest by getting
         val jsMain by getting {
             dependencies {
                 implementation(libs.ktor.client.js)
@@ -117,30 +130,39 @@ kotlin {
         val nativeMain by creating {
             dependsOn(commonMain)
         }
-        val nativeTest by creating
+        val nativeTest by creating {
+            dependsOn(commonTest)
+        }
         val darwinMain by creating {
             dependsOn(nativeMain)
             dependencies {
                 implementation(libs.ktor.client.darwin)
             }
         }
-        val macosX64Main by getting {
-            dependsOn(darwinMain)
+        val darwinTest by creating {
+            dependsOn(nativeTest)
+        }
+        Targets.macosTargets.forEach { target ->
+            getByName("${target}Main") {
+                dependsOn(darwinMain)
+            }
+            getByName("${target}Test") {
+                dependsOn(darwinTest)
+            }
         }
         val iosMain by creating {
             dependsOn(darwinMain)
         }
-        val macosArm64Main by getting {
-            dependsOn(darwinMain)
+        val iosTest by creating {
+            dependsOn(darwinTest)
         }
-        val iosArm64Main by getting {
-            dependsOn(iosMain)
-        }
-        val iosX64Main by getting {
-            dependsOn(iosMain)
-        }
-        val iosSimulatorArm64Main by getting {
-            dependsOn(iosMain)
+        Targets.iosTargets.forEach { target ->
+            getByName("${target}Main") {
+                dependsOn(iosMain)
+            }
+            getByName("${target}Test") {
+                dependsOn(iosTest)
+            }
         }
     }
 }
