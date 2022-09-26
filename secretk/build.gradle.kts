@@ -90,7 +90,7 @@ kotlin {
                 implementation(libs.ktor.client.json)
                 implementation(libs.ktor.serialization.kotlinx.json)
                 implementation(libs.ktor.client.contentNegotiation)
-                implementation(libs.squareup.okio)
+                implementation(libs.com.squareup.okio)
                 implementation(libs.bignum)
                 implementation(libs.bignum.serialization.kotlinx)
                 implementation(libs.com.ionspin.kotlin.multiplatformCryptoLibsodiumBindings)
