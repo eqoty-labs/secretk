@@ -124,6 +124,8 @@ kotlin {
                 implementation(npm("libsodium-wrappers-sumo", "^0.7.10"))
                 implementation(npm("secretjs", "^1.4.0-alpha.10"))
                 implementation(npm("google-protobuf", "^3.21.0"))
+                implementation(npm("@peculiar/webcrypto", "^1.4.0"))
+                implementation(npm("@happy-dom/global-registrator", "^6.0.4"))
             }
         }
         val jsTest by getting
