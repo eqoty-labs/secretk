@@ -36,12 +36,9 @@ kotlin {
     }
     js(IR) {
         browser {
-            commonWebpackConfig {
-                cssSupport.enabled = true
-            }
             testTask {
-                useKarma {
-                    useChromeHeadless()
+                useMocha {
+                    timeout = "20s"
                 }
             }
         }
@@ -115,6 +112,8 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 implementation(libs.ktor.client.js)
+                implementation(libs.com.squareup.okio.nodefilesystem)
+                implementation(npm("file-system", "^2.2.2"))
                 implementation(npm("path-browserify", "^1.0.1"))
                 implementation(npm("crypto-browserify", "^3.12.0"))
                 implementation(npm("buffer", "^6.0.3"))
