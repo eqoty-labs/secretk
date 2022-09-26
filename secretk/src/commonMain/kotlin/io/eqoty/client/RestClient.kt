@@ -4,6 +4,7 @@ import com.ionspin.kotlin.bignum.integer.BigInteger
 import com.ionspin.kotlin.bignum.serialization.kotlinx.biginteger.bigIntegerhumanReadableSerializerModule
 import io.eqoty.BroadcastMode
 import io.eqoty.types.proto.MsgExecuteContractResponseProto
+import io.eqoty.types.proto.MsgInstantiateContractResponseProto
 import io.eqoty.types.proto.MsgProto
 import io.eqoty.types.response.*
 import io.eqoty.types.response.logs.Log
@@ -80,7 +81,6 @@ internal class RestClient(
         } catch (e: ResponseException) {
             throw parseError(e)
         }
-        println(response.bodyAsText())
         return response.body()
     }
 
@@ -139,6 +139,12 @@ internal class RestClient(
 
         codeHashCache[addr] = responseData.result
         return responseData.result
+    }
+
+    suspend fun getCodeInfoByCodeId(codeId: String): CodeInfoResponse.CodeInfo {
+        val path = "/compute/v1beta1/code/$codeId"
+        val responseData: CodeInfoResponse = get(path)
+        return responseData.codeInfo
     }
 
 
@@ -203,6 +209,10 @@ internal class RestClient(
         val dataField = when (msg) {
             is MsgExecuteContractResponseProto -> {
                 msg.data.toUByteArray()
+            }
+
+            is MsgInstantiateContractResponseProto -> {
+                msg.data?.toUByteArray() ?: UByteArray(0) { 0u }
             }
 
             else -> UByteArray(0) { 0u }

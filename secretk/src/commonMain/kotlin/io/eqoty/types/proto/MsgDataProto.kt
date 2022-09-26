@@ -11,7 +11,7 @@ import kotlinx.serialization.protobuf.ProtoNumber
 @kotlinx.serialization.Serializable
 class MsgDataProto(
     @ProtoNumber(1) val msgType: String = "",
-    @ProtoNumber(2) val data: ByteArray = byteArrayOf(),
+    @ProtoNumber(2) val data: ByteArray,
 ) : MsgProto() {
     fun toMsgResponseType(): MsgProto = when (msgType) {
         "/secret.compute.v1beta1.MsgInstantiateContract" -> {

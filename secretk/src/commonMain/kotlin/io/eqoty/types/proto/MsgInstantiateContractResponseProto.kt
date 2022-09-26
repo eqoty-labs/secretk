@@ -4,10 +4,10 @@ import kotlinx.serialization.protobuf.ProtoNumber
 
 /***
  * Reference:
- * https://github.com/CosmWasm/wasmd/blob/main/proto/cosmwasm/wasm/v1/tx.proto
+ * https://github.com/scrtlabs/SecretNetwork/blob/master/proto/secret/compute/v1beta1/msg.proto
  */
 @kotlinx.serialization.Serializable
 class MsgInstantiateContractResponseProto(
     @ProtoNumber(1) val address: String,
-    @ProtoNumber(2) val data: ByteArray
+    @ProtoNumber(2) val data: ByteArray? = null
 ) : MsgProto()
