@@ -43,4 +43,7 @@ data class TxOptions(
      * to query for `accountNumber` & `accountSequence` from the chain. (smoother in UIs, less load on your node provider).
      */
     val explicitSignerData: SignerData? = null,
-)
+) {
+    // a helper constructor for swift
+    constructor(customGasLimit: Int) : this(gasLimit = customGasLimit)
+}
