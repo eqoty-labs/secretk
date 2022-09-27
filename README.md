@@ -90,23 +90,26 @@ val contractInfo = client.queryContractSmart(contractAddress, contractInfoQuery)
 println("nft contract info response: $contractInfo")
 ```
 
-#### Execute Contract + Query (Generate and use viewing key for query)
+#### Simulate Execute + Execute + Query Contract(Generate and use viewing key for query)
 
 ```kotlin
 // Entropy: Secure implementation is left to the client, but it is recommended to use base-64 encoded random bytes and not predictable inputs.
 val entropy = "Another really random thing??"
 val handleMsg = """{ "create_viewing_key": {"entropy": "$entropy"} }"""
 println("Creating viewing key")
+val msgs = listOf(
+  MsgExecuteContract(
+    sender = accAddress,
+    contractAddress = contractAddress,
+    msg = handleMsg,
+    codeHash = "" // optional but faster if you include
+  )
+)
+val simulate = client.simulate(msgs)
+val gasLimit = (simulate.gasUsed.toDouble() * 1.1).toInt()
 val response = client.execute(
-    listOf(
-        MsgExecuteContract(
-            sender = accAddress,
-            contractAddress = contractAddress,
-            msg = handleMsg,
-            codeHash = "" // optional but faster if you include
-        )
-    ),
-    contractCodeHash = "" // optional but faster if you include
+  msgs,
+  txOptions = TxOptions(gasLimit = gasLimit)
 )
 println("viewing key response: ${response.data}")
 val viewingKey = json.parseToJsonElement(response.data[0])
@@ -144,7 +147,6 @@ let client = try! await SigningCosmWasmClient.Companion.doInit(SigningCosmWasmCl
     senderAddress: accAddress,
     signer: wallet,
     seed: nil,
-    customFees: nil,
     broadcastMode: BroadcastMode.block
 )
 ```
@@ -161,26 +163,24 @@ let contractInfo = try! await client.queryContractSmart(
 print("nft contract info response: \(contractInfo)")
 ```
 
-#### Execute Contract + Query (Generate and use viewing key for query)
+#### Simulate Execute + Execute + Query Contract(Generate and use viewing key for query)
 
 ```swift
 // Entropy: Secure implementation is left to the client, but it is recommended to use base-64 encoded random bytes and not predictable inputs.
-let entropy = "Another really random thing??"
-let handleMsg = #"{ "create_viewing_key": {"entropy": "\#(entropy)"} }"#
-print("Creating viewing key");
+let msgs = [
+    MsgExecuteContract(
+        sender: accAddress,
+        contractAddress: contractAddress,
+        msg: handleMsg,
+        sentFunds: [],
+        codeHash: nil  // optional but faster if you include
+    )
+]
+let simulate = try! await client.simulate(msgs: msgs, txOptions: TxOptions())
+let gasLimit = Int32(Double(simulate.gasUsed)! * 1.1)
 let response = try! await client.execute(
-    msgs: [
-        MsgExecuteContract(
-            sender: accAddress,
-            contractAddress: contractAddress,
-            msg: handleMsg,
-            sentFunds: [],
-            codeHash: nil
-        )
-    ] ,
-    memo: "",
-    fee: client.fees.exec!,
-    contractCodeHash: nil
+    msgs: msgs,
+    txOptions: TxOptions(customGasLimit: gasLimit)
 )
 print("viewing key response: \(response.data)")
 
