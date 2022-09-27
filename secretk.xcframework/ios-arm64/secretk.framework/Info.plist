@@ -5,7 +5,7 @@
     <key>CFBundleExecutable</key>
     <string>secretk</string>
     <key>CFBundleIdentifier</key>
-    <string>secretk</string>
+    <string>io.eqoty.secretk.secretk</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
