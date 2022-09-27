@@ -35,45 +35,7 @@ private constructor(
     init {
         this.fees = FeeTable.Default.overwrite(customFees)
     }
-
-
-//    inline fun <reified T: MsgValue> signAdapter(
-//        msgs: List<TypeValue<T>>,
-//        fee: StdFee,
-//        chainId: String,
-//        memo: String,
-//        accountNumber: BigInteger,
-//        sequence: BigInteger,
-//    ): StdTx<T> {
-////        // offline signer interface
-////        if ("sign" in this.signer) {
-////            val signResponse = this.signer.sign(this.senderAddress, {
-////                chain_id: chainId,
-////                account_number: String(accountNumber),
-////                sequence: String(sequence),
-////                fee: fee,
-////                msgs: msgs,
-////                memo: memo,
-////            });
-////
-////            return {
-////                msg: msgs,
-////                fee: signResponse.signed.fee,
-////                memo: signResponse.signed.memo,
-////                signatures: [signResponse.signature],
-////            };
-////        } else {
-//
-//        // legacy interface
-//        val signBytes = makeSignBytes(msgs, fee, chainId, memo, accountNumber, sequence)
-//        val signature = signer(signBytes)
-//        return StdTx(
-//            msg = msgs.toList(),
-//            fee = fee,
-//            memo = memo,
-//            signatures = listOf(signature),
-//        )
-//    }
+    
 
     private fun encodePubkey(
         pubkey: PubKey,
