@@ -2,7 +2,10 @@ package io.eqoty
 
 import co.touchlab.kermit.Logger
 import io.eqoty.client.SigningCosmWasmClient
-import io.eqoty.types.*
+import io.eqoty.types.MsgExecuteContract
+import io.eqoty.types.MsgInstantiateContract
+import io.eqoty.types.MsgStoreCode
+import io.eqoty.types.TxOptions
 import io.eqoty.wallet.DirectSigningWallet
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
@@ -10,7 +13,6 @@ import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import okio.FileSystem
 import okio.Path
-import okio.Path.Companion.toPath
 import kotlin.math.ceil
 import kotlin.random.Random
 import kotlin.test.BeforeTest

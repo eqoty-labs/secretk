@@ -27,16 +27,8 @@ private constructor(
     val senderAddress: String,
     val wallet: Wallet,
     encryptionUtils: EncryptionUtils,
-    customFees: FeeTable?,
     broadcastMode: BroadcastMode = BroadcastMode.Block
 ) : CosmWasmClient(apiUrl, encryptionUtils, broadcastMode) {
-
-    val fees: FeeTable
-
-    init {
-        this.fees = FeeTable.Default.overwrite(customFees)
-    }
-
 
     private fun encodePubkey(
         pubkey: PubKey,
@@ -396,7 +388,6 @@ private constructor(
             senderAddress: String,
             signer: Wallet, //| OfflineSigner
             seed: UByteArray? = null,
-            customFees: FeeTable? = null,
             broadcastMode: BroadcastMode = BroadcastMode.Block
         ): SigningCosmWasmClient {
             ensureLibsodiumInitialized()
@@ -405,7 +396,6 @@ private constructor(
                 senderAddress,
                 signer,
                 EnigmaUtils(apiUrl, seed ?: EnigmaUtils.GenerateNewSeed()),
-                customFees,
                 broadcastMode
             )
         }
@@ -415,7 +405,6 @@ private constructor(
             senderAddress: String,
             pen: BaseWallet, // | OfflineSigner
             enigmaUtils: EncryptionUtils,
-            customFees: FeeTable? = null,
             broadcastMode: BroadcastMode = BroadcastMode.Block
         ): SigningCosmWasmClient {
             ensureLibsodiumInitialized()
@@ -424,7 +413,6 @@ private constructor(
                 senderAddress,
                 pen,
                 enigmaUtils,
-                customFees,
                 broadcastMode
             )
         }
