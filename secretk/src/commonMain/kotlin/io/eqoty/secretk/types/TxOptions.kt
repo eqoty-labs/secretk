@@ -2,9 +2,11 @@ package io.eqoty.secretk.types
 
 import io.eqoty.secretk.BroadcastMode
 
+private const val defaultGasLimit = 25_000
+
 data class TxOptions(
     /** Defaults to `25_000`. */
-    val gasLimit: Int = 25_000,
+    val gasLimit: Int = defaultGasLimit,
     /** E.g. gasPriceInFeeDenom=0.1 & feeDenom="uscrt" => Total fee for tx is `0.1 * gasLimit`uscrt. Defaults to `0.1`. */
     val gasPriceInFeeDenom: Double = 0.1,
     val feeDenom: String = "uscrt",
@@ -44,6 +46,7 @@ data class TxOptions(
      */
     val explicitSignerData: SignerData? = null,
 ) {
-    // a helper constructor for swift
+    // helper constructors for swift
+    constructor() : this(gasLimit = defaultGasLimit)
     constructor(customGasLimit: Int) : this(gasLimit = customGasLimit)
 }
