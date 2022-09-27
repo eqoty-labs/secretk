@@ -4,10 +4,7 @@ import com.ionspin.kotlin.bignum.integer.toBigInteger
 import io.eqoty.BroadcastMode
 import io.eqoty.types.*
 import io.eqoty.types.proto.*
-import io.eqoty.types.response.PubKey
-import io.eqoty.types.response.PubKeyMultisigThreshold
-import io.eqoty.types.response.PubKeySecp256k1
-import io.eqoty.types.response.TxsResponseData
+import io.eqoty.types.response.*
 import io.eqoty.types.result.ExecuteResult
 import io.eqoty.utils.EncryptionUtils
 import io.eqoty.utils.EnigmaUtils
@@ -78,6 +75,19 @@ private constructor(
         }
     }
 
+    suspend fun simulate(
+        msgs: List<Msg<*>>,
+        txOptions: TxOptions = TxOptions(),
+    ): GasInfo {
+        val txRawProto = prepareAndSign(msgs, txOptions)
+        val txRawBytes = ProtoBuf.encodeToByteArray(txRawProto).toUByteArray()
+        val simulateTxResponse = try {
+            postSimulateTx(txRawBytes)
+        } catch (t: Throwable) {
+            throw t
+        }
+        return simulateTxResponse.gasInfo
+    }
 
     suspend fun execute(
         msgs: List<Msg<*>>,

@@ -2,6 +2,8 @@ package io.eqoty.client
 
 import io.eqoty.BroadcastMode
 import io.eqoty.types.Account
+import io.eqoty.types.response.SimulateTxsResponse
+import io.eqoty.types.response.TxsResponse
 import io.eqoty.types.response.TxsResponseData
 import io.eqoty.types.result.GetNonceResult
 import io.eqoty.utils.EncryptionUtils
@@ -60,17 +62,25 @@ open class CosmWasmClient protected constructor(
     }
 
     suspend fun postTx(tx: UByteArray): TxsResponseData {
-        val result = restClient.postTx(tx)
-
-        if (result.txhash.contains("""^([0-9A-F][0-9A-F])+$""")) {
+        val response: TxsResponse = restClient.postTx(tx, false)
+        val txResponse = response.tx_response
+        if (txResponse.txhash.isBlank()) {
+            throw Error("Unexpected response data format")
+        }
+        if (txResponse.txhash.contains("""^([0-9A-F][0-9A-F])+$""")) {
             throw Error("Received ill-formatted txhash. Must be non-empty upper-case hex")
         }
 
-        if (result.code != 0) {
-            throw Error("Broadcasting transaction failed with code ${result.code} (codespace: ${result.codespace}). Log: ${result.rawLog}")
+        if (txResponse.code != 0) {
+            throw Error("Broadcasting transaction failed with code ${txResponse.code} (codespace: ${txResponse.codespace}). Log: ${txResponse.rawLog}")
         }
 
-        return result
+        return txResponse
+    }
+
+    suspend fun postSimulateTx(tx: UByteArray): SimulateTxsResponse {
+        val response: SimulateTxsResponse = restClient.postTx(tx, true)
+        return response
     }
 
 

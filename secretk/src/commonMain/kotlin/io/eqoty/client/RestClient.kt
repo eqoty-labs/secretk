@@ -106,7 +106,7 @@ internal class RestClient(
      *
      * @param tx a signed transaction as StdTx (i.e. not wrapped in type/value container)
      */
-    suspend fun postTx(tx: UByteArray): TxsResponseData {
+    suspend inline fun <reified T : Any> postTx(tx: UByteArray, simulate: Boolean): T {
         val txString = tx.toByteString().base64()
         val params =
             json.parseToJsonElement(
@@ -115,12 +115,9 @@ internal class RestClient(
                 "mode": "${this.broadcastMode.mode}"
             }"""
             ).jsonObject
-
-        val responseData: TxsResponse = post("/cosmos/tx/v1beta1/txs", params)
-        if (responseData.tx_response.txhash.isBlank()) {
-            throw Error("Unexpected response data format")
-        }
-        return responseData.tx_response
+        // https://v1.cosmos.network/rpc/v0.45.1
+        val path = if (simulate) "/cosmos/tx/v1beta1/simulate" else "/cosmos/tx/v1beta1/txs"
+        return post(path, params)
     }
 
 

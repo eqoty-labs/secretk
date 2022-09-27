@@ -59,16 +59,18 @@ class ClientTests {
         val entropy = "Another really random thing??"
         val handleMsg = """{ "create_viewing_key": {"entropy": "$entropy"} }"""
         println("Creating viewing key")
-        val response = client.execute(
-            listOf(
-                MsgExecuteContract(
-                    sender = accAddress,
-                    contractAddress = contractAddress,
-                    msg = handleMsg,
-//                codeHash = "b3b9ecf43f21f5d41f55b1da1f50ccd68eee86cf951d6cb4490998005af28269"
-                )
+        val msgs = listOf(
+            MsgExecuteContract(
+                sender = accAddress,
+                contractAddress = contractAddress,
+                msg = handleMsg,
             )
-//            contractCodeHash = "b3b9ecf43f21f5d41f55b1da1f50ccd68eee86cf951d6cb4490998005af28269"
+        )
+        val simulate = client.simulate(msgs)
+        val gasLimit = (simulate.gasUsed.toDouble() * 1.1).toInt()
+        val response = client.execute(
+            msgs,
+            txOptions = TxOptions(gasLimit = gasLimit)
         )
         println("viewing key response: ${response.data}")
         val viewingKey = json.parseToJsonElement(response.data[0])
@@ -103,14 +105,17 @@ class ClientTests {
             fileSystem.read(snip721ReferenceImplWasmGz) {
                 readByteArray()
             }
+        val msgs = listOf(
+            MsgStoreCode(
+                sender = accAddress,
+                wasmByteCode = wasmBytes.toUByteArray(),
+            )
+        )
+        val simulate = client.simulate(msgs)
+        val gasLimit = (simulate.gasUsed.toDouble() * 1.1).toInt()
         val response = client.execute(
-            listOf(
-                MsgStoreCode(
-                    sender = accAddress,
-                    wasmByteCode = wasmBytes.toUByteArray(),
-                )
-            ),
-            txOptions = TxOptions(gasLimit = 5_000_000)
+            msgs,
+            txOptions = TxOptions(gasLimit = gasLimit)
         )
 
         val codeId = response.logs[0].events
@@ -149,18 +154,20 @@ class ClientTests {
                 }
             }
             """
-
+        val msgs = listOf(
+            MsgInstantiateContract(
+                codeId = codeId,
+                sender = accAddress,
+                codeHash = codeHash,
+                initMsg = initMsg,
+                label = "My Snip721" + ceil(Random.nextDouble() * 10000),
+            )
+        )
+        val simulate = client.simulate(msgs)
+        val gasLimit = (simulate.gasUsed.toDouble() * 1.1).toInt()
         val instantiateResponse = client.execute(
-            listOf(
-                MsgInstantiateContract(
-                    codeId = codeId,
-                    sender = accAddress,
-                    codeHash = codeHash,
-                    initMsg = initMsg,
-                    label = "My Snip721" + ceil(Random.nextDouble() * 10000),
-                )
-            ),
-            txOptions = TxOptions(gasLimit = 500_000)
+            msgs,
+            txOptions = TxOptions(gasLimit = gasLimit)
         )
         val contractAddress = instantiateResponse.logs[0].events
             .find { it.type == "message" }
