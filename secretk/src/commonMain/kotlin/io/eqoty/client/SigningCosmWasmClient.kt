@@ -94,8 +94,6 @@ private constructor(
     ): ExecuteResult {
         @Suppress("NAME_SHADOWING")
         val fee = fee ?: fees.exec
-//        @Suppress("NAME_SHADOWING")
-//        val msgs = msgs.toTypedArray()
 
         val txRawProto = prepareAndSign(fee, memo, msgs)
         val txRawBytes = ProtoBuf.encodeToByteArray(txRawProto).toUByteArray()
