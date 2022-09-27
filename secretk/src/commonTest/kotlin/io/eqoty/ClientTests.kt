@@ -2,10 +2,7 @@ package io.eqoty
 
 import co.touchlab.kermit.Logger
 import io.eqoty.client.SigningCosmWasmClient
-import io.eqoty.types.FeeTable
-import io.eqoty.types.MsgExecuteContract
-import io.eqoty.types.MsgInstantiateContract
-import io.eqoty.types.MsgStoreCode
+import io.eqoty.types.*
 import io.eqoty.wallet.DirectSigningWallet
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
@@ -32,7 +29,6 @@ class ClientTests {
 
     @BeforeTest
     fun beforeEach() {
-        println(fileSystem.list(".".toPath()))
     }
 
     @Test
@@ -112,7 +108,7 @@ class ClientTests {
                     wasmByteCode = wasmBytes.toUByteArray(),
                 )
             ),
-            fee = FeeTable.Default.upload.copy(gas = "10000000")
+            txOptions = TxOptions(gasLimit = 5_000_000)
         )
 
         val codeId = response.logs[0].events
@@ -162,7 +158,7 @@ class ClientTests {
                     label = "My Snip721" + ceil(Random.nextDouble() * 10000),
                 )
             ),
-            fee = FeeTable.Default.init
+            txOptions = TxOptions(gasLimit = 500_000)
         )
         val contractAddress = instantiateResponse.logs[0].events
             .find { it.type == "message" }

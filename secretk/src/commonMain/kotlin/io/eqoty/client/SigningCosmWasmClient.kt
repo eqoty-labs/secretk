@@ -19,6 +19,7 @@ import kotlinx.serialization.encodeToByteArray
 import kotlinx.serialization.protobuf.ProtoBuf
 import okio.ByteString.Companion.decodeBase64
 import okio.ByteString.Companion.decodeHex
+import kotlin.math.ceil
 
 class SigningCosmWasmClient//| OfflineSigner
 private constructor(
@@ -88,14 +89,9 @@ private constructor(
 
     suspend fun execute(
         msgs: List<Msg<*>>,
-        memo: String = "",
-        fee: StdFee? = null,
-        contractCodeHash: String? = null,
+        txOptions: TxOptions = TxOptions(),
     ): ExecuteResult {
-        @Suppress("NAME_SHADOWING")
-        val fee = fee ?: fees.exec
-
-        val txRawProto = prepareAndSign(fee, memo, msgs)
+        val txRawProto = prepareAndSign(msgs, txOptions)
         val txRawBytes = ProtoBuf.encodeToByteArray(txRawProto).toUByteArray()
         val txResponse = try {
             postTx(txRawBytes)
@@ -144,32 +140,37 @@ private constructor(
     }
 
     private suspend fun prepareAndSign(
-        fee: StdFee,
-        memo: String,
         messages: List<Msg<*>>,
+        txOptions: TxOptions
     ): TxRawProto {
         val accountFromSigner = wallet.getAccounts().find { account ->
             account.address == this.senderAddress
         } ?: throw Error("Failed to retrieve account from signer")
         val nonceResult = this.getNonce(senderAddress)
-        val signerData = SignerData(
-            nonceResult.accountNumber,
-            nonceResult.sequence,
-            getChainId()
+        val signerData = txOptions.explicitSignerData
+            ?: SignerData(nonceResult.accountNumber, nonceResult.sequence, getChainId())
+        val fee = StdFee(
+            gas = txOptions.gasLimit,
+            amount = listOf(
+                Coin(
+                    txOptions.feeDenom,
+                    gasToFee(txOptions.gasLimit, txOptions.gasPriceInFeeDenom)
+                )
+            ),
+            granter = txOptions.feeGranter
         )
 
         return when (wallet) {
             is DirectSigningWallet -> {
-                signDirect(accountFromSigner, messages, fee, memo, signerData)
+                signDirect(accountFromSigner, messages, fee, txOptions.memo, signerData)
             }
 
             else -> {
-                signAmino(accountFromSigner, messages, fee, memo, signerData)
+                signAmino(accountFromSigner, messages, fee, txOptions.memo, signerData)
             }
         }
 
     }
-
 
     private suspend fun signDirect(
         account: AccountData,
@@ -385,6 +386,9 @@ private constructor(
         return data.map { it.decodeToString() }
     }
 
+    fun gasToFee(gasLimit: Int, gasPrice: Double): Int {
+        return ceil(gasLimit.toDouble() * gasPrice).toInt()
+    }
 
     companion object {
         suspend fun init(
