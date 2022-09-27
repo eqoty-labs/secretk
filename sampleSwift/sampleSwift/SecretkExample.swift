@@ -23,7 +23,6 @@ struct SecretkExample {
             senderAddress: accAddress,
             signer: wallet,
             seed: nil,
-            customFees: nil,
             broadcastMode: BroadcastMode.block
         )
 
@@ -39,19 +38,20 @@ struct SecretkExample {
         let entropy = "Another really random thing??"
         let handleMsg = #"{ "create_viewing_key": {"entropy": "\#(entropy)"} }"#
         print("Creating viewing key");
+        let msgs = [
+            MsgExecuteContract(
+                sender: accAddress,
+                contractAddress: contractAddress,
+                msg: handleMsg,
+                sentFunds: [],
+                codeHash: nil
+            )
+        ]
+        let simulate = try! await client.simulate(msgs: msgs, txOptions: TxOptions())
+        let gasLimit = Int32(Double(simulate.gasUsed)! * 1.1)
         let response = try! await client.execute(
-            msgs: [
-                MsgExecuteContract(
-                    sender: accAddress,
-                    contractAddress: contractAddress,
-                    msg: handleMsg,
-                    sentFunds: [],
-                    codeHash: nil
-                )
-            ] ,
-            memo: "",
-            fee: client.fees.exec!,
-            contractCodeHash: nil
+            msgs: msgs,
+            txOptions: TxOptions(customGasLimit: gasLimit)
         )
         print("viewing key response: \(response.data)")
         
