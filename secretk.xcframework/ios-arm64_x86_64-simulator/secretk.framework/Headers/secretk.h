@@ -654,6 +654,7 @@ __attribute__((swift_name("TxBodyValueCompanion")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("TxOptions")))
 @interface SecretkTxOptions : SecretkBase
+- (instancetype)initWithCustomGasLimit:(int32_t)customGasLimit __attribute__((swift_name("init(customGasLimit:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithGasLimit:(int32_t)gasLimit gasPriceInFeeDenom:(double)gasPriceInFeeDenom feeDenom:(NSString *)feeDenom feeGranter:(NSString * _Nullable)feeGranter memo:(NSString *)memo waitForCommit:(BOOL)waitForCommit broadcastTimeoutMs:(SecretkInt * _Nullable)broadcastTimeoutMs broadcastCheckIntervalMs:(SecretkInt * _Nullable)broadcastCheckIntervalMs broadcastMode:(SecretkBroadcastMode *)broadcastMode explicitSignerData:(SecretkSignerData * _Nullable)explicitSignerData __attribute__((swift_name("init(gasLimit:gasPriceInFeeDenom:feeDenom:feeGranter:memo:waitForCommit:broadcastTimeoutMs:broadcastCheckIntervalMs:broadcastMode:explicitSignerData:)"))) __attribute__((objc_designated_initializer));
 - (int32_t)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
 - (SecretkSignerData * _Nullable)component10 __attribute__((swift_name("component10()"))) __attribute__((deprecated("use corresponding property instead")));
