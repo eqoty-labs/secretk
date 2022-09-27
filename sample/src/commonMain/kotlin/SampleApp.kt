@@ -7,6 +7,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import io.eqoty.secretk.client.SigningCosmWasmClient
 import io.eqoty.secretk.types.MsgExecuteContract
+import io.eqoty.secretk.types.TxOptions
 import io.eqoty.secretk.wallet.DirectSigningWallet
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
@@ -39,7 +40,7 @@ fun SampleApp(client: SigningCosmWasmClient) {
                                 val contractInfoQuery = """{"contract_info": {}}"""
                                 contractInfoQueryResponse = try {
                                     client.queryContractSmart(contractAddress, contractInfoQuery)
-                                } catch (t: Throwable){
+                                } catch (t: Throwable) {
                                     t.message
                                 }
                             }
@@ -56,17 +57,22 @@ fun SampleApp(client: SigningCosmWasmClient) {
                                 val entropy = "Another really random thing??"
                                 val handleMsg = """{ "create_viewing_key": {"entropy": "$entropy"} }"""
                                 viewingKeyTxResponse = try {
-                                    val response = client.execute(
-                                        listOf(
-                                            MsgExecuteContract(
-                                                sender = client.senderAddress,
-                                                contractAddress = contractAddress,
-                                                msg = handleMsg,
-                                            )
+                                    val msgs = listOf(
+                                        MsgExecuteContract(
+                                            sender = client.senderAddress,
+                                            contractAddress = contractAddress,
+                                            msg = handleMsg,
                                         )
                                     )
+                                    val simulate = client.simulate(msgs)
+                                    val gasLimit = (simulate.gasUsed.toDouble() * 1.1).toInt()
+
+                                    val response = client.execute(
+                                        msgs,
+                                        txOptions = TxOptions(gasLimit = gasLimit)
+                                    )
                                     response.data[0]
-                                } catch (t: Throwable){
+                                } catch (t: Throwable) {
                                     t.message
                                 }
                             }
@@ -77,7 +83,7 @@ fun SampleApp(client: SigningCosmWasmClient) {
                             Text("tx response: $viewingKeyTxResponse")
                         }
                     }
-                    viewingKeyTxResponse?.let { viewingKeyTxResponse->
+                    viewingKeyTxResponse?.let { viewingKeyTxResponse ->
                         Row {
                             Button({
                                 coroutineScope.launch {
@@ -97,7 +103,7 @@ fun SampleApp(client: SigningCosmWasmClient) {
                                         """
                                     numTokensQueryResponse = try {
                                         client.queryContractSmart(contractAddress, numTokensQuery)
-                                    } catch (t: Throwable){
+                                    } catch (t: Throwable) {
                                         t.message
                                     }
                                 }
@@ -116,10 +122,10 @@ fun SampleApp(client: SigningCosmWasmClient) {
 }
 
 @Composable
-fun setupAndStartApp(){
+fun setupAndStartApp() {
     val coroutineScope = rememberCoroutineScope()
-    var client : SigningCosmWasmClient? by remember { mutableStateOf(null) }
-    coroutineScope.launch{
+    var client: SigningCosmWasmClient? by remember { mutableStateOf(null) }
+    coroutineScope.launch {
         client = clientWithDirectSigningWallet()
     }
     client?.let {
