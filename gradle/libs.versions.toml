@@ -77,6 +77,7 @@ secretk = "0.1.2"
 compose-jb = "1.2.0-alpha01-dev786"
 ##      ⬆ = "1.2.0-beta01"
 ##      ⬆ = "1.2.0-beta02-dev795"
+##      ⬆ = "1.2.0-beta02-dev798"
 bootstrap-compose = "0.1.10"
 
 bignum = "0.3.7"
