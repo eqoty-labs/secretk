@@ -9,9 +9,11 @@ Based on the work of:
 ### Supported Features:
 
 * Contract Queries
-* Contract Execution (Secret Network >= v1.2.6)
-* TODO: Contract Execution Gas Estimation
-* TODO: Contract Uploading
+* Simulate Contract Execution To Estimate Gas
+* Contract Execution (MsgExecuteContract)
+* Contract Code Upload (MsgStoreCode)
+* Contract Instantiate (MsgInstantiateContract)
+* Web: Delegate signing transactions to Kepler or Metamask browser wallets
 
 ### Supported Targets:
 
@@ -47,7 +49,7 @@ repositories {
 }
 
 dependencies {
-    implementation("io.eqoty.secretk:client:0.2.1")
+    implementation("io.eqoty.secretk:client:0.3.0")
 }
 ```
 
@@ -56,7 +58,7 @@ dependencies {
 you need to declare your dependency in your `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/eqoty-labs/secretk.git", from: "0.2.1"),
+.package(url: "https://github.com/eqoty-labs/secretk.git", from: "0.3.0"),
 ```
 
 ## Useage
