@@ -5,9 +5,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import io.eqoty.client.SigningCosmWasmClient
-import io.eqoty.types.MsgExecuteContract
-import io.eqoty.wallet.DirectSigningWallet
+import io.eqoty.secretk.client.SigningCosmWasmClient
+import io.eqoty.secretk.types.MsgExecuteContract
+import io.eqoty.secretk.wallet.DirectSigningWallet
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject

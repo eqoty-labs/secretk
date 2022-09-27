@@ -1,12 +1,12 @@
 package io.eqoty
 
 import co.touchlab.kermit.Logger
-import io.eqoty.client.SigningCosmWasmClient
-import io.eqoty.types.MsgExecuteContract
-import io.eqoty.types.MsgInstantiateContract
-import io.eqoty.types.MsgStoreCode
-import io.eqoty.types.TxOptions
-import io.eqoty.wallet.DirectSigningWallet
+import io.eqoty.secretk.client.SigningCosmWasmClient
+import io.eqoty.secretk.types.MsgExecuteContract
+import io.eqoty.secretk.types.MsgInstantiateContract
+import io.eqoty.secretk.types.MsgStoreCode
+import io.eqoty.secretk.types.TxOptions
+import io.eqoty.secretk.wallet.DirectSigningWallet
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
