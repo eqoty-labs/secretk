@@ -2,6 +2,9 @@ package io.eqoty.wallet
 
 import io.eqoty.secretk.types.StdSignDoc
 import io.eqoty.secretk.types.proto.SignMode
+import io.eqoty.secretk.wallet.AccountData
+import io.eqoty.secretk.wallet.AminoSignResponse
+import io.eqoty.secretk.wallet.Wallet
 import jslibs.secretjs.AminoWallet
 import kotlinx.coroutines.await
 import kotlinx.serialization.decodeFromString
