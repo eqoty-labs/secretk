@@ -4,7 +4,7 @@ import org.jetbrains.compose.experimental.dsl.IOSDevices
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-//    id("com.android.application")
+    id("com.android.application")
     kotlin("multiplatform")
     id("org.jetbrains.compose")
     kotlin("plugin.serialization")
@@ -13,7 +13,7 @@ plugins {
 version = "1.0-SNAPSHOT"
 
 kotlin {
-//    android()
+    android()
     jvm("desktop")
     js(IR) {
         browser()
@@ -83,14 +83,14 @@ kotlin {
             }
         }
 
-//        val androidMain by getting {
-//            dependsOn(commonMain)
-//            kotlin.srcDirs("src/jvmMain/kotlin")
-//            dependencies {
-//                api("androidx.appcompat:appcompat:1.5.1")
-//                implementation("androidx.activity:activity-compose:1.5.1")
-//            }
-//        }
+        val androidMain by getting {
+            dependsOn(commonMain)
+            kotlin.srcDirs("src/jvmMain/kotlin")
+            dependencies {
+                implementation(libs.androidx.appcompat)
+                implementation(libs.androidx.activity.compose)
+            }
+        }
 
         val desktopMain by getting {
             dependencies {
@@ -184,26 +184,26 @@ project.tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile::class.ja
     )
 }
 
-//android {
-//    compileSdk = 33
-//
-//    defaultConfig {
-//        minSdk = 21
-//        targetSdk = 31
-//    }
-//
-//    compileOptions {
-//        sourceCompatibility = JavaVersion.VERSION_11
-//        targetCompatibility = JavaVersion.VERSION_11
-//    }
-//
-//    sourceSets {
-//        named("main") {
-//            manifest.srcFile("src/androidMain/AndroidManifest.xml")
-//            res.srcDirs("src/androidMain/res", "src/commonMain/resources")
-//        }
-//    }
-//}
+android {
+    compileSdk = 33
+
+    defaultConfig {
+        minSdk = 24
+        targetSdk = 33
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    sourceSets {
+        named("main") {
+            manifest.srcFile("src/androidMain/AndroidManifest.xml")
+            res.srcDirs("src/androidMain/res", "src/commonMain/resources")
+        }
+    }
+}
 
 tasks.findByName("jsProcessResources")!!.dependsOn("unpackSkikoWasmRuntimeJs")
 tasks.findByName("jsBrowserDevelopmentRun")!!.dependsOn("jsDevelopmentExecutableCompileSync")

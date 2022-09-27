@@ -2,7 +2,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Window
-import io.eqoty.client.SigningCosmWasmClient
+import io.eqoty.secretk.client.SigningCosmWasmClient
 import io.eqoty.wallet.MetaMaskWalletWrapper
 import io.eqoty.wallet.OfflineSignerOnlyAminoWalletWrapper
 import jslibs.secretjs.AminoWallet
@@ -62,7 +62,7 @@ suspend fun setupKeplerAndGetWallet(): OfflineSignerOnlyAminoWalletWrapper {
     val CHAIN_ID = "pulsar-2"
     val DENOM = "SCRT"
     val MINIMAL_DENOM = "uscrt"
-    val suggestion : dynamic = JSON.parse(
+    val suggestion: dynamic = JSON.parse(
         """{
             "chainId": "$CHAIN_ID",
             "chainName": "$CHAIN_NAME",

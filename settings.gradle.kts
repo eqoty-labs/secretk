@@ -19,6 +19,7 @@ dependencyResolutionManagement {
         maven("https://oss.sonatype.org/content/repositories/snapshots")
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
         mavenCentral()
+        google()
         maven {
             name = "luca992/KHash GitHub Packages"
             url = uri("https://maven.pkg.github.com/luca992/KHash")
