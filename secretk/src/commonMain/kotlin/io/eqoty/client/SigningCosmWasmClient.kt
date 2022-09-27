@@ -35,7 +35,7 @@ private constructor(
     init {
         this.fees = FeeTable.Default.overwrite(customFees)
     }
-    
+
 
     private fun encodePubkey(
         pubkey: PubKey,
@@ -97,7 +97,7 @@ private constructor(
 //        @Suppress("NAME_SHADOWING")
 //        val msgs = msgs.toTypedArray()
 
-        val txRawProto = sign(fee, memo, msgs)
+        val txRawProto = prepareAndSign(fee, memo, msgs)
         val txRawBytes = ProtoBuf.encodeToByteArray(txRawProto).toUByteArray()
         val txResponse = try {
             postTx(txRawBytes)
@@ -145,7 +145,7 @@ private constructor(
         )
     }
 
-    private suspend fun sign(
+    private suspend fun prepareAndSign(
         fee: StdFee,
         memo: String,
         messages: List<Msg<*>>,
