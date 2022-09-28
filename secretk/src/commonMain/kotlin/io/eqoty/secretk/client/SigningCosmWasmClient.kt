@@ -287,8 +287,7 @@ private constructor(
             }
         } else if (this is MsgInstantiateContract) {
             if (codeHash == null) {
-                TODO()
-//                msg.codeHash = await this.query.compute.codeHash(Number(msg.codeId));
+                codeHash = restClient.getCodeInfoByCodeId(codeId.toString()).codeHash
             }
         }
     }
