@@ -32,16 +32,17 @@ class MsgExecuteContract(
      */
     codeHash: String? = null
 ) : EncryptedMsg<MsgExecuteContractProto> {
-    private var msgEncrypted: UByteArray? = null
 
+    private var msgEncrypted: UByteArray? = null
     var codeHash: String? = codeHash
         set(value) {
-            if (value != null && !value.isNullOrBlank()) {
+            if (!value.isNullOrBlank()) {
                 warnCodeHash = false
+                field = value.replace("0x", "").lowercase()
             } else {
                 Logger.w { getMissingCodeHashWarning("MsgExecuteContract") }
+                field = null
             }
-            field = value?.replace("0x", "")?.lowercase()
         }
 
     private var warnCodeHash: Boolean = true

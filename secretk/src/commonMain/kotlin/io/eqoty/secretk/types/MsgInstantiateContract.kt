@@ -35,19 +35,22 @@ class MsgInstantiateContract(
     codeHash: String?
 ) : EncryptedMsg<MsgInstantiateContractProto> {
     private var initMsgEncrypted: UByteArray? = null
-    var codeHash: String? = null
-    private val warnCodeHash: Boolean
+    var codeHash: String? = codeHash
+        set(value) {
+            if (!value.isNullOrBlank()) {
+                warnCodeHash = false
+                field = value.replace("0x", "").lowercase()
+            } else {
+                Logger.w { getMissingCodeHashWarning("MsgInstantiateContract") }
+                field = null
+            }
+        }
+
+    private var warnCodeHash: Boolean = true
 
     init {
-        if (codeHash != null) {
-            this.codeHash = codeHash.replace("0x", "").lowercase()
-            this.warnCodeHash = false
-        } else {
-            // codeHash will be set in SecretNetworkClient before invoking toProto() & toAmino()
-            this.codeHash = null
-            this.warnCodeHash = true
-            Logger.w { getMissingCodeHashWarning("MsgInstantiateContract") }
-        }
+        // set isn't triggered otherwise
+        this.codeHash = codeHash
     }
 
     override suspend fun toProto(utils: EncryptionUtils): ProtoMsg<MsgInstantiateContractProto> {
