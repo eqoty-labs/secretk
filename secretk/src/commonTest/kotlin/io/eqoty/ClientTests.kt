@@ -132,10 +132,29 @@ class ClientTests {
         assertEquals("5b64d22c7774b11cbc3aac55168d11f624a51921679b005df7d59487d254c892", codeInfo.codeHash)
     }
 
+
     @Test
-    fun testInstantiateContract() = runTest {
+    fun testInstantiateContractWithCodeHash() = runTest {
+        testInstantiateContract("5b64d22c7774b11cbc3aac55168d11f624a51921679b005df7d59487d254c892")
+    }
+
+    @Test
+    fun testInstantiateContractWithNullCodeHash() = runTest {
+        testInstantiateContract(null)
+    }
+
+    @Test
+    fun testInstantiateContractWithEmptyStringCodeHash() = runTest {
+        testInstantiateContract("")
+    }
+
+    @Test
+    fun testInstantiateContractWithBlankStringCodeHash() = runTest {
+        testInstantiateContract("  ")
+    }
+
+    suspend fun testInstantiateContract(codeHash: String?) {
         val codeId = 13526
-        val codeHash = "5b64d22c7774b11cbc3aac55168d11f624a51921679b005df7d59487d254c892"
         val accAddress = wallet.getAccounts()[0].address
         val client = SigningCosmWasmClient.init(
             grpcGatewayEndpoint,
