@@ -5,7 +5,6 @@ import io.eqoty.secretk.BroadcastMode
 import io.eqoty.secretk.types.*
 import io.eqoty.secretk.types.proto.*
 import io.eqoty.secretk.types.response.*
-import io.eqoty.secretk.types.result.ExecuteResult
 import io.eqoty.secretk.utils.EncryptionUtils
 import io.eqoty.secretk.utils.EnigmaUtils
 import io.eqoty.secretk.utils.decodeToString
@@ -92,7 +91,7 @@ private constructor(
     suspend fun execute(
         msgs: List<Msg<*>>,
         txOptions: TxOptions = TxOptions(),
-    ): ExecuteResult {
+    ): TxResponseData {
         val txRawProto = prepareAndSign(msgs, txOptions)
         val txRawBytes = ProtoBuf.encodeToByteArray(txRawProto).toUByteArray()
         val txResponse = try {
@@ -124,7 +123,7 @@ private constructor(
 
             throw err
         }
-        val data: List<String> = if (this.restClient.broadcastMode == BroadcastMode.Block) {
+        txResponse.data = if (this.restClient.broadcastMode == BroadcastMode.Block) {
             // inject tx here to standardize decoding tx responses. Since txsQuery responses (not implemented yet)
             // will actually have a tx value populated.
             txResponse.tx = AnyProto(value = txRawBytes.toByteArray())
@@ -133,12 +132,7 @@ private constructor(
             emptyList()
         }
 
-
-        return ExecuteResult(
-            logs = txResponse.logs,
-            transactionHash = txResponse.txhash,
-            data = data
-        )
+        return txResponse
     }
 
     private suspend fun prepareAndSign(
@@ -362,7 +356,7 @@ private constructor(
         return ProtoBuf.encodeToByteArray(txBodyEncoded)
     }
 
-    private suspend fun decodeTxResponses(postTxResult: TxsResponseData): List<String> {
+    private suspend fun decodeTxResponses(postTxResult: TxResponseData): List<String> {
         val nonces = mutableMapOf<Int, UByteArray?>()
         val txRaw: TxRawProto = ProtoBuf.decodeFromByteArray(postTxResult.tx!!.value)
         val txBody: TxBodyProto = ProtoBuf.decodeFromByteArray(txRaw.bodyBytes)
@@ -371,8 +365,7 @@ private constructor(
         msgs.forEachIndexed { i, anyProto ->
             nonces[i] = extractMessageNonceIfNeeded(anyProto)
         }
-
-        val txMsgData: TxMsgDataProto = ProtoBuf.decodeFromByteArray(postTxResult.data.decodeHex().toByteArray())
+        val txMsgData: TxMsgDataProto = ProtoBuf.decodeFromByteArray(postTxResult.rawData.decodeHex().toByteArray())
         val dataFields = txMsgData.data
         val data = dataFields.mapIndexed { i, msgDataProto ->
             val msgTyped: MsgProto = msgDataProto.toMsgResponseType()

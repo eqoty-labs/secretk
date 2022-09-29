@@ -70,8 +70,8 @@ open class CosmWasmClient protected constructor(
         }
     }
 
-    suspend fun postTx(tx: UByteArray): TxsResponseData {
-        val response: TxsResponse = restClient.postTx(tx, false)
+    suspend fun postTx(tx: UByteArray): TxResponseData {
+        val response: TxResponse = restClient.postTx(tx, false)
         val txResponse = response.tx_response
         if (txResponse.txhash.isBlank()) {
             throw Error("Unexpected response data format")

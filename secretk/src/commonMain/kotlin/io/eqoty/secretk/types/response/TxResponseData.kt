@@ -6,12 +6,12 @@ import io.eqoty.secretk.types.response.logs.Log
 import kotlinx.serialization.SerialName
 
 @kotlinx.serialization.Serializable
-data class TxsResponse(
-    val tx_response: TxsResponseData,
+data class TxResponse(
+    val tx_response: TxResponseData,
 )
 
 @kotlinx.serialization.Serializable
-data class TxsResponseData(
+data class TxResponseData(
     /** The block height */
     val height: String,
     /** The transaction hash. */
