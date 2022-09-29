@@ -2,9 +2,7 @@ package io.eqoty.secretk.client
 
 import io.eqoty.secretk.BroadcastMode
 import io.eqoty.secretk.types.Account
-import io.eqoty.secretk.types.response.SimulateTxsResponse
-import io.eqoty.secretk.types.response.TxsResponse
-import io.eqoty.secretk.types.response.TxsResponseData
+import io.eqoty.secretk.types.response.*
 import io.eqoty.secretk.types.result.GetNonceResult
 import io.eqoty.secretk.utils.EncryptionUtils
 import kotlinx.serialization.json.Json
@@ -21,9 +19,20 @@ open class CosmWasmClient protected constructor(
     protected var anyValidAddress: String? = null
     private var chainId: String? = null
 
+    suspend fun getCodeInfoByCodeId(codeId: String): CodeInfoResponse.CodeInfo =
+        restClient.getCodeInfoByCodeId(codeId)
+
+    suspend fun getCodeHashByContractAddr(addr: String): String =
+        restClient.getCodeHashByContractAddr(addr)
+
+    // The /node_info endpoint
+    suspend fun nodeInfo(): NodeInfoResponse {
+        return restClient.get("/node_info")
+    }
+
     suspend fun getChainId(): String {
         if (chainId == null) {
-            val response = restClient.nodeInfo()
+            val response = nodeInfo()
             val chainId = response.node_info.network
             if (chainId == "") throw Error("Chain ID must not be empty")
             this.chainId = chainId

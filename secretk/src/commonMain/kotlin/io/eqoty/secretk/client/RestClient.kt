@@ -258,11 +258,6 @@ internal class RestClient(
         )
     }
 
-    // The /node_info endpoint
-    suspend fun nodeInfo(): NodeInfoResponse {
-        return get("/node_info")
-    }
-
     suspend fun decryptLogs(logs: List<Log>, nonces: List<UByteArray?>): List<Log> {
         for (l in logs) {
             for (e in l.events) {
