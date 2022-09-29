@@ -205,7 +205,7 @@ internal class RestClient(
     suspend fun decryptDataField(msg: MsgProto, nonce: UByteArray?): UByteArray {
         val dataField = when (msg) {
             is MsgExecuteContractResponseProto -> {
-                msg.data.toUByteArray()
+                msg.data?.toUByteArray() ?: UByteArray(0) { 0u }
             }
 
             is MsgInstantiateContractResponseProto -> {

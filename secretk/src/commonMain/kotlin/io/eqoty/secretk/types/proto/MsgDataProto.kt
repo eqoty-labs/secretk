@@ -11,19 +11,19 @@ import kotlinx.serialization.protobuf.ProtoNumber
 @kotlinx.serialization.Serializable
 class MsgDataProto(
     @ProtoNumber(1) val msgType: String = "",
-    @ProtoNumber(2) val data: ByteArray,
+    @ProtoNumber(2) val data: ByteArray? = null,
 ) : MsgProto() {
     fun toMsgResponseType(): MsgProto = when (msgType) {
         "/secret.compute.v1beta1.MsgInstantiateContract" -> {
-            ProtoBuf.decodeFromByteArray(data) as MsgInstantiateContractResponseProto
+            ProtoBuf.decodeFromByteArray(data ?: byteArrayOf()) as MsgInstantiateContractResponseProto
         }
 
         "/secret.compute.v1beta1.MsgExecuteContract" -> {
-            ProtoBuf.decodeFromByteArray(data) as MsgExecuteContractResponseProto
+            ProtoBuf.decodeFromByteArray(data ?: byteArrayOf()) as MsgExecuteContractResponseProto
         }
 
         "/secret.compute.v1beta1.MsgStoreCode" -> {
-            ProtoBuf.decodeFromByteArray(data) as MsgStoreCodeResponseProto
+            ProtoBuf.decodeFromByteArray(data ?: byteArrayOf()) as MsgStoreCodeResponseProto
         }
 
         else -> throw UnsupportedOperationException("calling toMsg() on an Any proto with typeUrl:${msgType} is not supported")

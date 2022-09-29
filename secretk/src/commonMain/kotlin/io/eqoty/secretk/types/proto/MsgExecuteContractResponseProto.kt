@@ -8,5 +8,5 @@ import kotlinx.serialization.protobuf.ProtoNumber
  */
 @kotlinx.serialization.Serializable
 class MsgExecuteContractResponseProto(
-    @ProtoNumber(1) val data: ByteArray
+    @ProtoNumber(1) val data: ByteArray? = null
 ) : MsgProto()
