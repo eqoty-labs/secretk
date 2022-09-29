@@ -126,7 +126,7 @@ class ClientTests {
 
 
         // contract hash, useful for contract composition
-        val codeInfo = client.restClient.getCodeInfoByCodeId(codeId)
+        val codeInfo = client.getCodeInfoByCodeId(codeId)
         Logger.i("code hash: ${codeInfo.codeHash}")
 
         assertEquals("5b64d22c7774b11cbc3aac55168d11f624a51921679b005df7d59487d254c892", codeInfo.codeHash)
