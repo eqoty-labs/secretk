@@ -49,7 +49,7 @@ repositories {
 }
 
 dependencies {
-    implementation("io.eqoty.secretk:client:0.3.2")
+    implementation("io.eqoty.secretk:client:0.3.3")
 }
 ```
 
@@ -58,7 +58,7 @@ dependencies {
 you need to declare your dependency in your `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/eqoty-labs/secretk.git", from: "0.3.2"),
+.package(url: "https://github.com/eqoty-labs/secretk.git", from: "0.3.3"),
 ```
 
 ## Useage
