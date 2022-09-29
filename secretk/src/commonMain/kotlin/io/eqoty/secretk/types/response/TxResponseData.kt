@@ -21,7 +21,10 @@ data class TxsResponseData(
     /** Response code. */
     val code: Int?,
     /** Result bytes, if any. */
-    val data: String,
+    @SerialName("data")
+    val rawData: String,
+    @SerialName("unused")
+    var data: List<String> = emptyList(),
     /**
      * The output of the application's logger (raw string). May be
      * non-deterministic.
