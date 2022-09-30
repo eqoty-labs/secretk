@@ -1,6 +1,7 @@
 import org.jetbrains.compose.compose
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.compose.experimental.dsl.IOSDevices
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -207,3 +208,18 @@ android {
 
 tasks.findByName("jsProcessResources")!!.dependsOn("unpackSkikoWasmRuntimeJs")
 tasks.findByName("jsBrowserDevelopmentRun")!!.dependsOn("jsDevelopmentExecutableCompileSync")
+
+// https://youtrack.jetbrains.com/issue/KT-48436
+afterEvaluate {
+    project.extensions.findByType<KotlinMultiplatformExtension>()?.let { ext ->
+        ext.sourceSets.removeAll { sourceSet ->
+            setOf(
+                "androidAndroidTestRelease",
+                "androidTestFixtures",
+                "androidTestFixturesDebug",
+                "androidTestFixturesRelease",
+            ).contains(sourceSet.name)
+        }
+    }
+}
+
