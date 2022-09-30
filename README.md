@@ -4,7 +4,8 @@ A Kotlin multiplatform Encryption and REST client for Secret Network utilizing g
 
 Based on the work of:
 
-[secret.js](https://github.com/scrtlabs/SecretNetwork/tree/f01dda32b12e02c6cc2326ea58f8b13bf6e3ff8f/cosmwasm-js/packages/sdk) (old) + [secret.js](https://github.com/scrtlabs/secret.js)
+[secret.js](https://github.com/scrtlabs/SecretNetwork/tree/f01dda32b12e02c6cc2326ea58f8b13bf6e3ff8f/cosmwasm-js/packages/sdk) (
+old) + [secret.js](https://github.com/scrtlabs/secret.js)
 
 ### Supported Features:
 
@@ -61,11 +62,15 @@ you need to declare your dependency in your `Package.swift`:
 .package(url: "https://github.com/eqoty-labs/secretk.git", from: "0.8.0"),
 ```
 
+## Samples
+
+- [Secret Contract Template](https://github.com/eqoty-labs/secret-template) using secretk for Integration Testing
+- Compose UI [sample project](/sample)
+- Swift [sample project](/sampleSwift)
+
 ## Useage
 
 ### Kotlin
-
-- Compose UI [sample project](/sample)
 
 #### Create SigningCosmWasmClient
 
@@ -98,18 +103,18 @@ val entropy = "Another really random thing??"
 val handleMsg = """{ "create_viewing_key": {"entropy": "$entropy"} }"""
 println("Creating viewing key")
 val msgs = listOf(
-  MsgExecuteContract(
-    sender = accAddress,
-    contractAddress = contractAddress,
-    msg = handleMsg,
-    codeHash = "" // optional but faster if you include
-  )
+    MsgExecuteContract(
+        sender = accAddress,
+        contractAddress = contractAddress,
+        msg = handleMsg,
+        codeHash = "" // optional but faster if you include
+    )
 )
 val simulate = client.simulate(msgs)
 val gasLimit = (simulate.gasUsed.toDouble() * 1.1).toInt()
 val response = client.execute(
-  msgs,
-  txOptions = TxOptions(gasLimit = gasLimit)
+    msgs,
+    txOptions = TxOptions(gasLimit = gasLimit)
 )
 println("viewing key response: ${response.data}")
 val viewingKey = json.parseToJsonElement(response.data[0])
@@ -133,8 +138,6 @@ println("Num Tokens Response: $numTokens")
 ```
 
 ### Swift
-
-- Swift [sample project](/sampleSwift)
 
 #### Create SigningCosmWasmClient
 
