@@ -1835,7 +1835,7 @@ __attribute__((swift_name("TxRawProto.Companion")))
 
 __attribute__((swift_name("CosmWasmClient")))
 @interface SecretkCosmWasmClient : SecretkBase
-- (instancetype)initWithApiUrl:(NSString *)apiUrl encryptionUtils:(id<SecretkEncryptionUtils>)encryptionUtils broadcastMode:(SecretkBroadcastMode *)broadcastMode __attribute__((swift_name("init(apiUrl:encryptionUtils:broadcastMode:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithApiUrl:(NSString *)apiUrl encryptionUtils:(id<SecretkEncryptionUtils>)encryptionUtils broadcastMode:(SecretkBroadcastMode *)broadcastMode chainId:(NSString * _Nullable)chainId __attribute__((swift_name("init(apiUrl:encryptionUtils:broadcastMode:chainId:)"))) __attribute__((objc_designated_initializer));
 
 /**
  @note This method converts instances of CancellationException to errors.
@@ -1902,7 +1902,7 @@ __attribute__((swift_name("CosmWasmClient")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SigningCosmWasmClient")))
 @interface SecretkSigningCosmWasmClient : SecretkCosmWasmClient
-- (instancetype)initWithApiUrl:(NSString *)apiUrl encryptionUtils:(id<SecretkEncryptionUtils>)encryptionUtils broadcastMode:(SecretkBroadcastMode *)broadcastMode __attribute__((swift_name("init(apiUrl:encryptionUtils:broadcastMode:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithApiUrl:(NSString *)apiUrl encryptionUtils:(id<SecretkEncryptionUtils>)encryptionUtils broadcastMode:(SecretkBroadcastMode *)broadcastMode chainId:(NSString * _Nullable)chainId __attribute__((swift_name("init(apiUrl:encryptionUtils:broadcastMode:chainId:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 @property (class, readonly, getter=companion) SecretkSigningCosmWasmClientCompanion *companion __attribute__((swift_name("companion")));
 
 /**
