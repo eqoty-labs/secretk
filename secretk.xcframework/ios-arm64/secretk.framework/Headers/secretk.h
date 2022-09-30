@@ -6,7 +6,7 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class SecretkKotlinEnumCompanion, SecretkKotlinEnum<E>, SecretkBroadcastMode, SecretkKotlinArray<T>, SecretkStdFee, SecretkTypeValue<V>, SecretkSignJsonCompanion, SecretkSignJson<T>, SecretkCoin, SecretkPubKeySecp256k1, SecretkBignumBigInteger, SecretkAccount, SecretkCoinCompanion, SecretkCoinProto, SecretkMsgAmino, SecretkMsgProto, SecretkProtoMsg<M>, SecretkMsgAminoCompanion, SecretkMsgAminoValueCompanion, SecretkMsgExecuteContractProto, SecretkMsgExecuteContractAminoCompanion, SecretkMsgInstantiateContractProto, SecretkMsgStoreCodeProto, SecretkMsgStoreCodeAminoCompanion, SecretkAnyProto, SecretkSigner, SecretkSignerData, SecretkStdFeeCompanion, SecretkStdSignDocCompanion, SecretkStdSignDoc, SecretkPubKey, SecretkStdSignatureCompanion, SecretkStdSignature, SecretkStdTxCompanion, SecretkStdTx<T>, SecretkTxBodyValue<M>, SecretkTxBodyCompanion, SecretkTxBody<M>, SecretkTxBodyValueCompanion, SecretkTxOptions, SecretkV1BetaTypeCompanion, SecretkV1BetaType, SecretkSecp256k1PubKey, SecretkAccount_Companion, SecretkAccount_, SecretkAccountResponseCompanion, SecretkAccountResponse, SecretkApplicationVersionCompanion, SecretkApplicationVersion, SecretkTypeValueCompanion, SecretkCosmosSdkAccount, SecretkAuthAccountsResultCompanion, SecretkAuthAccountsResult, SecretkBalanceResponseCompanion, SecretkBalanceResponse, SecretkCodeInfoResponseCodeInfo, SecretkCodeInfoResponseCompanion, SecretkCodeInfoResponseCodeInfoCompanion, SecretkCosmosSdkAccountCompanion, SecretkGasInfoCompanion, SecretkGasInfo, SecretkProtocolVersion, SecretkNodeInfoOther, SecretkNodeInfoCompanion, SecretkNodeInfo, SecretkNodeInfoOtherCompanion, SecretkNodeInfoResponseCompanion, SecretkProtocolVersionCompanion, SecretkPubKeyCompanion, SecretkPubKeyEd25519Companion, SecretkPubKeyMultisigThresholdCompanion, SecretkPubKeySecp256k1Companion, SecretkPubKeySr25519Companion, SecretkSecp256k1PubKeyCompanion, SecretkSimulateTxsResponseData, SecretkSimulateTxsResponseCompanion, SecretkSimulateTxsResponse, SecretkLog, SecretkEvent, SecretkSimulateTxsResponseDataCompanion, SecretkSmartQueryResponseCompanion, SecretkTxResponseData, SecretkTxResponseCompanion, SecretkTxResponse, SecretkTxResponseDataCompanion, SecretkWasmResponseCompanion, SecretkWasmResponse<R>, SecretkAttributeCompanion, SecretkAttribute, SecretkEventCompanion, SecretkLogCompanion, SecretkGetNonceResult, SecretkKotlinByteArray, SecretkAnyProtoCompanion, SecretkSignerInfoProto, SecretkFeeProto, SecretkAuthInfoProtoCompanion, SecretkCoinProtoCompanion, SecretkFeeProtoCompanion, SecretkKeyProtoCompanion, SecretkModeInfoProtoSingle, SecretkModeInfoProtoMulti, SecretkModeInfoProtoCompanion, SecretkModeInfoProtoMultiCompanion, SecretkModeInfoProtoSingleCompanion, SecretkMsgDataProtoCompanion, SecretkMsgExecuteContractProtoCompanion, SecretkMsgExecuteContractResponseProtoCompanion, SecretkMsgInstantiateContractProtoCompanion, SecretkMsgInstantiateContractResponseProtoCompanion, SecretkMsgStoreCodeProtoCompanion, SecretkMsgStoreCodeResponseProtoCompanion, SecretkProtoMsgCompanion, SecretkSignDocProtoCompanion, SecretkSignModeCompanion, SecretkSignMode, SecretkModeInfoProto, SecretkSignerInfoProtoCompanion, SecretkTxBodyProtoCompanion, SecretkMsgDataProto, SecretkTxMsgDataProtoCompanion, SecretkTxRawProtoCompanion, SecretkNodeInfoResponse, SecretkCosmWasmClient, SecretkSigningCosmWasmClientCompanion, SecretkBaseWallet, SecretkSigningCosmWasmClient, SecretkAddress, SecretkAxlSign, SecretkAxlSignKeys, SecretkKotlinIntArray, SecretkKotlinx_serialization_jsonJsonElement, SecretkEnigmaUtilsCompanion, SecretkKeyPair, SecretkEnigmaUtils, SecretkResultCompanion, SecretkResult, SecretkTxKeyResponseCompanion, SecretkTxKeyResponse, SecretkBech32, SecretkBech32Bech32Data, SecretkBech32Encoding, SecretkKotlinThrowable, SecretkKotlinError, SecretkBech32Error, SecretkAlgo, SecretkAccountData, SecretkAminoSignResponseCompanion, SecretkAminoSignResponse, SecretkPrehashType, SecretkSignResponse, SecretkSignDocProto, SecretkExtendedSecp256k1Signature, SecretkHKDFError, SecretkSecp256k1, SecretkSecp256k1Keypair, SecretkEC, SecretkSlip10, SecretkSlip10Result, SecretkSlip10Curve, SecretkBasePointCompanion, SecretkBasePoint<C>, SecretkComputedNaf<C>, SecretkBN, SecretkPreComputed<C>, SecretkComputedDoubles<C>, SecretkRed, SecretkShortCurve, SecretkJPoint, SecretkShortCurvePoint, SecretkCurve, SecretkEndomorphism, SecretkDoublesCompanion, SecretkDoubles, SecretkNafCompanion, SecretkNaf, SecretkPrecomputedScep256k1Companion, SecretkPrecomputedScep256k1, SecretkBasis, SecretkScep256k1Preset, SecretkECCompanion, SecretkKeyPair_, SecretkSignature, SecretkKeyPairSignOptions, SecretkKeyPairOptions, SecretkKeyPair_Companion, SecretkKeyPairValidateResult, SecretkBNCompanion, SecretkEGCDResult, SecretkMPrime, SecretkKotlinLongIterator, SecretkKotlinLongArray, SecretkKotlinIntIterator, SecretkOkioByteStringCompanion, SecretkOkioByteString, SecretkKotlinPair<__covariant A, __covariant B>, SecretkBignumBigIntegerCompanion, SecretkBignumBigIntegerQuotientAndRemainder, SecretkBignumSign, SecretkBignumBigIntegerBigIntegerRange, SecretkBignumBigIntegerSqareRootAndRemainder, SecretkBignumModularBigInteger, SecretkMont, SecretkKotlinException, SecretkKotlinRuntimeException, SecretkKotlinIllegalStateException, SecretkKotlinByteIterator, SecretkKotlinx_serialization_jsonJsonElementCompanion, SecretkKotlinCancellationException, SecretkBignumModularBigIntegerCompanion, SecretkBignumModularQuotientAndRemainder, SecretkKotlinx_serialization_coreSerializersModule, SecretkKotlinx_serialization_coreSerialKind, SecretkKotlinNothing, SecretkKotlinx_coroutines_coreAtomicDesc, SecretkKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp, SecretkKotlinx_coroutines_coreAtomicOp<__contravariant T>, SecretkKotlinx_coroutines_coreOpDescriptor, SecretkKotlinx_coroutines_coreLockFreeLinkedListNode, SecretkKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc, SecretkKotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc<T>, SecretkKotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc<T>;
+@class SecretkKotlinEnumCompanion, SecretkKotlinEnum<E>, SecretkBroadcastMode, SecretkKotlinArray<T>, SecretkStdFee, SecretkTypeValue<V>, SecretkSignJsonCompanion, SecretkSignJson<T>, SecretkCoin, SecretkPubKeySecp256k1, SecretkBignumBigInteger, SecretkAccount, SecretkCoinCompanion, SecretkCoinProto, SecretkMsgAmino, SecretkMsgProto, SecretkProtoMsg<M>, SecretkMsgAminoCompanion, SecretkMsgAminoValueCompanion, SecretkMsgExecuteContractProto, SecretkMsgExecuteContractAminoCompanion, SecretkMsgInstantiateContractProto, SecretkMsgStoreCodeProto, SecretkMsgStoreCodeAminoCompanion, SecretkAnyProto, SecretkSigner, SecretkSignerData, SecretkStdFeeCompanion, SecretkStdSignDocCompanion, SecretkStdSignDoc, SecretkPubKey, SecretkStdSignatureCompanion, SecretkStdSignature, SecretkStdTxCompanion, SecretkStdTx<T>, SecretkTxBodyValue<M>, SecretkTxBodyCompanion, SecretkTxBody<M>, SecretkTxBodyValueCompanion, SecretkTxOptions, SecretkV1BetaTypeCompanion, SecretkV1BetaType, SecretkSecp256k1PubKey, SecretkAccount_Companion, SecretkAccount_, SecretkAccountResponseCompanion, SecretkAccountResponse, SecretkApplicationVersionCompanion, SecretkApplicationVersion, SecretkBalanceResponseCompanion, SecretkBalanceResponse, SecretkCodeInfoResponseCodeInfo, SecretkCodeInfoResponseCompanion, SecretkCodeInfoResponseCodeInfoCompanion, SecretkGasInfoCompanion, SecretkGasInfo, SecretkProtocolVersion, SecretkNodeInfoOther, SecretkNodeInfoCompanion, SecretkNodeInfo, SecretkNodeInfoOtherCompanion, SecretkNodeInfoResponseCompanion, SecretkProtocolVersionCompanion, SecretkTypeValueCompanion, SecretkPubKeyCompanion, SecretkPubKeyEd25519Companion, SecretkPubKeyMultisigThresholdCompanion, SecretkPubKeySecp256k1Companion, SecretkPubKeySr25519Companion, SecretkSecp256k1PubKeyCompanion, SecretkSimulateTxsResponseData, SecretkSimulateTxsResponseCompanion, SecretkSimulateTxsResponse, SecretkLog, SecretkEvent, SecretkSimulateTxsResponseDataCompanion, SecretkSmartQueryResponseCompanion, SecretkTxResponseData, SecretkTxResponseCompanion, SecretkTxResponse, SecretkTxResponseDataCompanion, SecretkWasmResponseCompanion, SecretkWasmResponse<R>, SecretkAttributeCompanion, SecretkAttribute, SecretkEventCompanion, SecretkLogCompanion, SecretkGetNonceResult, SecretkKotlinByteArray, SecretkAnyProtoCompanion, SecretkSignerInfoProto, SecretkFeeProto, SecretkAuthInfoProtoCompanion, SecretkCoinProtoCompanion, SecretkFeeProtoCompanion, SecretkKeyProtoCompanion, SecretkModeInfoProtoSingle, SecretkModeInfoProtoMulti, SecretkModeInfoProtoCompanion, SecretkModeInfoProtoMultiCompanion, SecretkModeInfoProtoSingleCompanion, SecretkMsgDataProtoCompanion, SecretkMsgExecuteContractProtoCompanion, SecretkMsgExecuteContractResponseProtoCompanion, SecretkMsgInstantiateContractProtoCompanion, SecretkMsgInstantiateContractResponseProtoCompanion, SecretkMsgStoreCodeProtoCompanion, SecretkMsgStoreCodeResponseProtoCompanion, SecretkProtoMsgCompanion, SecretkSignDocProtoCompanion, SecretkSignModeCompanion, SecretkSignMode, SecretkModeInfoProto, SecretkSignerInfoProtoCompanion, SecretkTxBodyProtoCompanion, SecretkMsgDataProto, SecretkTxMsgDataProtoCompanion, SecretkTxRawProtoCompanion, SecretkNodeInfoResponse, SecretkCosmWasmClient, SecretkSigningCosmWasmClientCompanion, SecretkSigningCosmWasmClient, SecretkAddress, SecretkAxlSign, SecretkAxlSignKeys, SecretkKotlinIntArray, SecretkKotlinx_serialization_jsonJsonElement, SecretkEnigmaUtilsCompanion, SecretkKeyPair, SecretkEnigmaUtils, SecretkResultCompanion, SecretkResult, SecretkTxKeyResponseCompanion, SecretkTxKeyResponse, SecretkBech32, SecretkBech32Bech32Data, SecretkBech32Encoding, SecretkKotlinThrowable, SecretkKotlinError, SecretkBech32Error, SecretkAlgo, SecretkAccountData, SecretkAminoSignResponseCompanion, SecretkAminoSignResponse, SecretkPrehashType, SecretkBaseWallet, SecretkSignResponse, SecretkSignDocProto, SecretkExtendedSecp256k1Signature, SecretkHKDFError, SecretkSecp256k1, SecretkSecp256k1Keypair, SecretkEC, SecretkSlip10, SecretkSlip10Result, SecretkSlip10Curve, SecretkBasePointCompanion, SecretkBasePoint<C>, SecretkComputedNaf<C>, SecretkBN, SecretkPreComputed<C>, SecretkComputedDoubles<C>, SecretkRed, SecretkShortCurve, SecretkJPoint, SecretkShortCurvePoint, SecretkCurve, SecretkEndomorphism, SecretkDoublesCompanion, SecretkDoubles, SecretkNafCompanion, SecretkNaf, SecretkPrecomputedScep256k1Companion, SecretkPrecomputedScep256k1, SecretkBasis, SecretkScep256k1Preset, SecretkECCompanion, SecretkKeyPair_, SecretkSignature, SecretkKeyPairSignOptions, SecretkKeyPairOptions, SecretkKeyPair_Companion, SecretkKeyPairValidateResult, SecretkBNCompanion, SecretkEGCDResult, SecretkMPrime, SecretkKotlinLongIterator, SecretkKotlinLongArray, SecretkKotlinIntIterator, SecretkOkioByteStringCompanion, SecretkOkioByteString, SecretkKotlinPair<__covariant A, __covariant B>, SecretkBignumBigIntegerCompanion, SecretkBignumBigIntegerQuotientAndRemainder, SecretkBignumSign, SecretkBignumBigIntegerBigIntegerRange, SecretkBignumBigIntegerSqareRootAndRemainder, SecretkBignumModularBigInteger, SecretkMont, SecretkKotlinException, SecretkKotlinRuntimeException, SecretkKotlinIllegalStateException, SecretkKotlinByteIterator, SecretkKotlinx_serialization_jsonJsonElementCompanion, SecretkKotlinCancellationException, SecretkBignumModularBigIntegerCompanion, SecretkBignumModularQuotientAndRemainder, SecretkKotlinx_serialization_coreSerializersModule, SecretkKotlinx_serialization_coreSerialKind, SecretkKotlinNothing, SecretkKotlinx_coroutines_coreAtomicDesc, SecretkKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp, SecretkKotlinx_coroutines_coreAtomicOp<__contravariant T>, SecretkKotlinx_coroutines_coreOpDescriptor, SecretkKotlinx_coroutines_coreLockFreeLinkedListNode, SecretkKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc, SecretkKotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc<T>, SecretkKotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc<T>;
 
 @protocol SecretkKotlinComparable, SecretkKotlinx_serialization_coreKSerializer, SecretkEncryptionUtils, SecretkMsg, SecretkMsgAminoValue, SecretkEncryptedMsg, SecretkUnencryptedMsg, SecretkWallet, SecretkKotlinx_coroutines_coreDeferred, SecretkPresetCurve, SecretkBignumBigNumber, SecretkBignumBigNumberCreator, SecretkBignumBitwiseCapable, SecretkBignumByteArraySerializable, SecretkKotlinIterator, SecretkKotlinx_serialization_coreEncoder, SecretkKotlinx_serialization_coreSerialDescriptor, SecretkKotlinx_serialization_coreSerializationStrategy, SecretkKotlinx_serialization_coreDecoder, SecretkKotlinx_serialization_coreDeserializationStrategy, SecretkKotlinx_coroutines_coreSelectClause1, SecretkKotlinx_coroutines_coreChildHandle, SecretkKotlinx_coroutines_coreChildJob, SecretkKotlinx_coroutines_coreDisposableHandle, SecretkKotlinx_coroutines_coreJob, SecretkKotlinSequence, SecretkKotlinx_coroutines_coreSelectClause0, SecretkKotlinCoroutineContextKey, SecretkKotlinCoroutineContextElement, SecretkKotlinCoroutineContext, SecretkBignumBigNumberUtil, SecretkBignumByteArrayDeserializable, SecretkKotlinClosedRange, SecretkKotlinIterable, SecretkKotlinx_serialization_coreCompositeEncoder, SecretkKotlinAnnotation, SecretkKotlinx_serialization_coreCompositeDecoder, SecretkKotlinx_coroutines_coreSelectInstance, SecretkKotlinSuspendFunction1, SecretkKotlinx_coroutines_coreParentJob, SecretkKotlinSuspendFunction0, SecretkKotlinx_serialization_coreSerializersModuleCollector, SecretkKotlinKClass, SecretkKotlinContinuation, SecretkKotlinFunction, SecretkKotlinKDeclarationContainer, SecretkKotlinKAnnotatedElement, SecretkKotlinKClassifier;
 
@@ -692,17 +692,17 @@ __attribute__((swift_name("V1BetaType")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Account_")))
 @interface SecretkAccount_ : SecretkV1BetaType
-- (instancetype)initWithAddress:(NSString *)address pub_key:(SecretkSecp256k1PubKey * _Nullable)pub_key account_number:(SecretkBignumBigInteger * _Nullable)account_number sequence:(SecretkBignumBigInteger * _Nullable)sequence __attribute__((swift_name("init(address:pub_key:account_number:sequence:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithAddress:(NSString *)address pub_key:(SecretkSecp256k1PubKey * _Nullable)pub_key accountNumber:(SecretkBignumBigInteger * _Nullable)accountNumber sequence:(SecretkBignumBigInteger * _Nullable)sequence __attribute__((swift_name("init(address:pub_key:accountNumber:sequence:)"))) __attribute__((objc_designated_initializer));
 @property (class, readonly, getter=companion) SecretkAccount_Companion *companion __attribute__((swift_name("companion")));
 - (NSString *)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
 - (SecretkSecp256k1PubKey * _Nullable)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
 - (SecretkBignumBigInteger * _Nullable)component3 __attribute__((swift_name("component3()"))) __attribute__((deprecated("use corresponding property instead")));
 - (SecretkBignumBigInteger * _Nullable)component4 __attribute__((swift_name("component4()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkAccount_ *)doCopyAddress:(NSString *)address pub_key:(SecretkSecp256k1PubKey * _Nullable)pub_key account_number:(SecretkBignumBigInteger * _Nullable)account_number sequence:(SecretkBignumBigInteger * _Nullable)sequence __attribute__((swift_name("doCopy(address:pub_key:account_number:sequence:)")));
+- (SecretkAccount_ *)doCopyAddress:(NSString *)address pub_key:(SecretkSecp256k1PubKey * _Nullable)pub_key accountNumber:(SecretkBignumBigInteger * _Nullable)accountNumber sequence:(SecretkBignumBigInteger * _Nullable)sequence __attribute__((swift_name("doCopy(address:pub_key:accountNumber:sequence:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SecretkBignumBigInteger * _Nullable account_number __attribute__((swift_name("account_number")));
+@property (readonly) SecretkBignumBigInteger * _Nullable accountNumber __attribute__((swift_name("accountNumber")));
 @property (readonly) NSString *address __attribute__((swift_name("address")));
 @property (readonly) SecretkSecp256k1PubKey * _Nullable pub_key __attribute__((swift_name("pub_key")));
 @property (readonly) SecretkBignumBigInteger * _Nullable sequence __attribute__((swift_name("sequence")));
@@ -774,35 +774,6 @@ __attribute__((swift_name("ApplicationVersion.Companion")))
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end;
 
-__attribute__((swift_name("TypeValue")))
-@interface SecretkTypeValue<V> : SecretkBase
-@property (class, readonly, getter=companion) SecretkTypeValueCompanion *companion __attribute__((swift_name("companion")));
-@property (readonly) V _Nullable value __attribute__((swift_name("value")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("AuthAccountsResult")))
-@interface SecretkAuthAccountsResult : SecretkTypeValue<SecretkCosmosSdkAccount *>
-- (instancetype)initWithValue:(SecretkCosmosSdkAccount *)value __attribute__((swift_name("init(value:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SecretkAuthAccountsResultCompanion *companion __attribute__((swift_name("companion")));
-- (SecretkCosmosSdkAccount *)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkAuthAccountsResult *)doCopyValue:(SecretkCosmosSdkAccount *)value __attribute__((swift_name("doCopy(value:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SecretkCosmosSdkAccount *value __attribute__((swift_name("value")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("AuthAccountsResult.Companion")))
-@interface SecretkAuthAccountsResultCompanion : SecretkBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SecretkAuthAccountsResultCompanion *shared __attribute__((swift_name("shared")));
-- (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
-
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("BalanceResponse")))
 @interface SecretkBalanceResponse : SecretkBase
@@ -863,37 +834,6 @@ __attribute__((swift_name("CodeInfoResponse.Companion")))
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkCodeInfoResponseCompanion *shared __attribute__((swift_name("shared")));
-- (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("CosmosSdkAccount")))
-@interface SecretkCosmosSdkAccount : SecretkBase
-- (instancetype)initWithAddress:(NSString * _Nullable)address coins:(NSArray<SecretkCoin *> * _Nullable)coins public_key:(SecretkPubKeySecp256k1 * _Nullable)public_key account_number:(SecretkBignumBigInteger * _Nullable)account_number sequence:(SecretkBignumBigInteger * _Nullable)sequence __attribute__((swift_name("init(address:coins:public_key:account_number:sequence:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SecretkCosmosSdkAccountCompanion *companion __attribute__((swift_name("companion")));
-- (NSString * _Nullable)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
-- (NSArray<SecretkCoin *> * _Nullable)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkPubKeySecp256k1 * _Nullable)component3 __attribute__((swift_name("component3()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkBignumBigInteger * _Nullable)component4 __attribute__((swift_name("component4()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkBignumBigInteger * _Nullable)component5 __attribute__((swift_name("component5()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkCosmosSdkAccount *)doCopyAddress:(NSString * _Nullable)address coins:(NSArray<SecretkCoin *> * _Nullable)coins public_key:(SecretkPubKeySecp256k1 * _Nullable)public_key account_number:(SecretkBignumBigInteger * _Nullable)account_number sequence:(SecretkBignumBigInteger * _Nullable)sequence __attribute__((swift_name("doCopy(address:coins:public_key:account_number:sequence:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SecretkBignumBigInteger * _Nullable account_number __attribute__((swift_name("account_number")));
-@property (readonly) NSString * _Nullable address __attribute__((swift_name("address")));
-@property (readonly) NSArray<SecretkCoin *> * _Nullable coins __attribute__((swift_name("coins")));
-@property (readonly) SecretkPubKeySecp256k1 * _Nullable public_key __attribute__((swift_name("public_key")));
-@property (readonly) SecretkBignumBigInteger * _Nullable sequence __attribute__((swift_name("sequence")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("CosmosSdkAccount.Companion")))
-@interface SecretkCosmosSdkAccountCompanion : SecretkBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SecretkCosmosSdkAccountCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end;
 
@@ -1028,6 +968,12 @@ __attribute__((swift_name("ProtocolVersion.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkProtocolVersionCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end;
+
+__attribute__((swift_name("TypeValue")))
+@interface SecretkTypeValue<V> : SecretkBase
+@property (class, readonly, getter=companion) SecretkTypeValueCompanion *companion __attribute__((swift_name("companion")));
+@property (readonly) V _Nullable value __attribute__((swift_name("value")));
 @end;
 
 __attribute__((swift_name("PubKey")))
@@ -1895,7 +1841,13 @@ __attribute__((swift_name("CosmWasmClient")))
  @note This method converts instances of CancellationException to errors.
  Other uncaught Kotlin exceptions are fatal.
 */
-- (void)getAccountAddress:(NSString *)address completionHandler:(void (^)(SecretkAccount * _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("getAccount(address:completionHandler:)")));
+- (void)getAccountAddress:(NSString *)address completionHandler:(void (^)(SecretkAccount_ * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getAccount(address:completionHandler:)")));
+
+/**
+ @note This method converts instances of CancellationException to errors.
+ Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getBalanceAddress:(NSString *)address completionHandler:(void (^)(SecretkBalanceResponse * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getBalance(address:completionHandler:)")));
 
 /**
  @note This method converts instances of CancellationException to errors.
@@ -1982,13 +1934,13 @@ __attribute__((swift_name("SigningCosmWasmClient.Companion")))
  @note This method converts instances of CancellationException to errors.
  Other uncaught Kotlin exceptions are fatal.
 */
-- (void)doInitApiUrl:(NSString *)apiUrl senderAddress:(NSString *)senderAddress pen:(SecretkBaseWallet *)pen enigmaUtils:(id<SecretkEncryptionUtils>)enigmaUtils broadcastMode:(SecretkBroadcastMode *)broadcastMode completionHandler:(void (^)(SecretkSigningCosmWasmClient * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doInit(apiUrl:senderAddress:pen:enigmaUtils:broadcastMode:completionHandler:)")));
+- (void)doInitApiUrl:(NSString *)apiUrl senderAddress:(NSString *)senderAddress wallet:(id<SecretkWallet>)wallet enigmaUtils:(id<SecretkEncryptionUtils>)enigmaUtils broadcastMode:(SecretkBroadcastMode *)broadcastMode completionHandler:(void (^)(SecretkSigningCosmWasmClient * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doInit(apiUrl:senderAddress:wallet:enigmaUtils:broadcastMode:completionHandler:)")));
 
 /**
  @note This method converts instances of CancellationException to errors.
  Other uncaught Kotlin exceptions are fatal.
 */
-- (void)doInitApiUrl:(NSString *)apiUrl senderAddress:(NSString *)senderAddress signer:(id<SecretkWallet>)signer seed:(id _Nullable)seed broadcastMode:(SecretkBroadcastMode *)broadcastMode completionHandler:(void (^)(SecretkSigningCosmWasmClient * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doInit(apiUrl:senderAddress:signer:seed:broadcastMode:completionHandler:)")));
+- (void)doInitApiUrl:(NSString *)apiUrl senderAddress:(NSString *)senderAddress wallet:(id<SecretkWallet>)wallet seed:(id _Nullable)seed broadcastMode:(SecretkBroadcastMode *)broadcastMode completionHandler:(void (^)(SecretkSigningCosmWasmClient * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doInit(apiUrl:senderAddress:wallet:seed:broadcastMode:completionHandler:)")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
