@@ -3,10 +3,12 @@ import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
-    kotlin("multiplatform")
-    kotlin("plugin.serialization")
-    id("io.github.luca992.multiplatform-swiftpackage")
-    id("com.vanniktech.maven.publish.base")
+    @Suppress("DSL_SCOPE_VIOLATION")
+    val libs = libs
+    alias(libs.plugins.org.jetbrains.kotlin.multiplatform)
+    alias(libs.plugins.org.jetbrains.kotlin.plugin.serialization)
+    alias(libs.plugins.io.github.luca992.multiplatform.swiftpackage)
+    alias(libs.plugins.com.vanniktech.maven.publish)
 }
 
 group = project.property("GROUP") as String
