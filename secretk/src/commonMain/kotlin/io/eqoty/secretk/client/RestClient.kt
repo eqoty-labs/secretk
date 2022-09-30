@@ -1,6 +1,5 @@
 package io.eqoty.secretk.client
 
-import com.ionspin.kotlin.bignum.integer.BigInteger
 import com.ionspin.kotlin.bignum.serialization.kotlinx.biginteger.bigIntegerhumanReadableSerializerModule
 import io.eqoty.secretk.BroadcastMode
 import io.eqoty.secretk.types.proto.MsgExecuteContractResponseProto
@@ -20,9 +19,6 @@ import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.modules.SerializersModule
-import kotlinx.serialization.modules.plus
-import kotlinx.serialization.modules.polymorphic
 import okio.ByteString.Companion.decodeBase64
 import okio.ByteString.Companion.toByteString
 
@@ -47,11 +43,7 @@ internal class RestClient(
 
     val json: Json = Json {
         ignoreUnknownKeys = true
-        serializersModule = bigIntegerhumanReadableSerializerModule + SerializersModule {
-            polymorphic(TypeValue::class) {
-                subclass(AuthAccountsResult::class, AuthAccountsResult.serializer())
-            }
-        }
+        serializersModule = bigIntegerhumanReadableSerializerModule
     }
 
     val client: HttpClient = HttpClient {
@@ -234,28 +226,6 @@ internal class RestClient(
         }
 
         throw error
-    }
-
-    suspend fun authAccounts(address: String): CosmosSdkAccount {
-        val authResp: AccountResponse? = try {
-            get("/cosmos/auth/v1beta1/accounts/${address}")
-        } catch (t: Throwable) {
-            t.printStackTrace()
-            null
-        }
-        val bankResp: BalanceResponse? = try {
-            get("/cosmos/bank/v1beta1/balances/${address}")
-        } catch (t: Throwable) {
-            t.printStackTrace()
-            null
-        }
-        return CosmosSdkAccount(
-            address = authResp?.account?.address,
-            coins = bankResp?.balances,
-            public_key = authResp?.account?.pub_key?.let { PubKeySecp256k1(it.key) },
-            account_number = authResp?.account?.account_number ?: BigInteger.ZERO,
-            sequence = authResp?.account?.sequence ?: BigInteger.ZERO,
-        )
     }
 
     suspend fun decryptLogs(logs: List<Log>, nonces: List<UByteArray?>): List<Log> {

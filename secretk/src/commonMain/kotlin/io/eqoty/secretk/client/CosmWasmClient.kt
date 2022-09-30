@@ -1,7 +1,6 @@
 package io.eqoty.secretk.client
 
 import io.eqoty.secretk.BroadcastMode
-import io.eqoty.secretk.types.Account
 import io.eqoty.secretk.types.response.*
 import io.eqoty.secretk.types.result.GetNonceResult
 import io.eqoty.secretk.utils.EncryptionUtils
@@ -42,30 +41,29 @@ open class CosmWasmClient protected constructor(
     }
 
     suspend fun getNonce(address: String): GetNonceResult {
-        val account = this.getAccount(address)
-        if (account?.address == null) {
+        val account = getAccount(address)
+        return GetNonceResult(
+            accountNumber = account.accountNumber!!,
+            sequence = account.sequence!!,
+        )
+    }
+
+    suspend fun getBalance(address: String): BalanceResponse {
+        return try {
+            restClient.get("/cosmos/bank/v1beta1/balances/${address}")
+        } catch (t: Throwable) {
             throw Error(
                 "Account $address does not exist on chain. Send some tokens there before trying to query nonces.",
             )
         }
-        return GetNonceResult(
-            accountNumber = account.accountNumber,
-            sequence = account.sequence,
-        )
     }
 
-    suspend fun getAccount(address: String): Account? {
-        val account = this.restClient.authAccounts(address)
-        if (account.address == null || account.address === "") {
-            return null
-        } else {
-            this.anyValidAddress = account.address
-            return Account(
-                address = account.address,
-                balance = account.coins!!,
-                pubkey = account.public_key,
-                accountNumber = account.account_number!!,
-                sequence = account.sequence!!,
+    suspend fun getAccount(address: String): io.eqoty.secretk.types.response.Account {
+        return try {
+            restClient.get<AccountResponse>("/cosmos/auth/v1beta1/accounts/${address}").account
+        } catch (t: Throwable) {
+            throw Error(
+                "Account $address does not exist on chain. Send some tokens there before trying to query nonces.",
             )
         }
     }

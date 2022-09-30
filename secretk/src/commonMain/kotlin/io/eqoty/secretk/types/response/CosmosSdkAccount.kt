@@ -1,22 +1,6 @@
 package io.eqoty.secretk.types.response
 
-import com.ionspin.kotlin.bignum.integer.BigInteger
-import io.eqoty.secretk.types.Coin
-import kotlinx.serialization.Contextual
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-
-@Serializable
-@SerialName("cosmos-sdk/BaseAccount")
-data class CosmosSdkAccount(
-    /** Bech32 account address */
-    val address: String?,
-    val coins: List<Coin>? = null,
-    /** Bech32 encoded pubkey */
-    val public_key: PubKeySecp256k1?,
-    @Contextual val account_number: BigInteger?,
-    @Contextual val sequence: BigInteger?,
-)
 
 @Serializable
 data class ProtocolVersion(

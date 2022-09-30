@@ -17,7 +17,8 @@ sealed class V1BetaType
 data class Account(
     val address: String,
     val pub_key: Secp256k1PubKey?,
-    @Contextual val account_number: BigInteger?,
+    @SerialName("account_number")
+    @Contextual val accountNumber: BigInteger?,
     @Contextual val sequence: BigInteger?
 ) : V1BetaType()
 

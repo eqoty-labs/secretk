@@ -142,7 +142,7 @@ private constructor(
         val accountFromSigner = wallet.getAccounts().find { account ->
             account.address == this.senderAddress
         } ?: throw Error("Failed to retrieve account from signer")
-        val nonceResult = this.getNonce(senderAddress)
+        val nonceResult = getNonce(senderAddress)
         val signerData = txOptions.explicitSignerData
             ?: SignerData(nonceResult.accountNumber, nonceResult.sequence, getChainId())
         val fee = StdFee(
