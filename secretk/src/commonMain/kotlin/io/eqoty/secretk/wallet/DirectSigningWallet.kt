@@ -7,8 +7,12 @@ import kotlinx.serialization.protobuf.ProtoBuf
 
 
 class DirectSigningWallet(
-    mnemonic: String,
+    mnemonic: String?,
 ) : BaseWallet(mnemonic) {
+
+    // helper constructor for swift
+    constructor() : this(null)
+
     override suspend fun getSignMode(): SignMode? = null
 
     fun signDirect(address: String, signDoc: SignDocProto): SignResponse {

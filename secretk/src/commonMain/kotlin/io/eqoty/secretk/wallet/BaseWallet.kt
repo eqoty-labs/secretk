@@ -43,7 +43,7 @@ interface Wallet {
 }
 
 sealed class BaseWallet(
-    mnemonic: String,
+    mnemonic: String?,
     hdPath: Array<Slip10RawIndex> = makeSecretNetworkPath(0.toUInt()),
     bech32Prefix: String = "secret"
 ) : Wallet {
@@ -53,7 +53,11 @@ sealed class BaseWallet(
     protected var address: String
 
     init {
-        val seed = Mnemonics.MnemonicCode(mnemonic).toSeed().toUByteArray()
+        val seed = if (mnemonic != null) {
+            Mnemonics.MnemonicCode(mnemonic).toSeed().toUByteArray()
+        } else {
+            Mnemonics.MnemonicCode(Mnemonics.WordCount.COUNT_12).toSeed().toUByteArray()
+        }
         val result = Slip10.derivePath(Slip10Curve.Secp256k1, seed, hdPath)
         privkey = result.privkey
         val uncompressed = Secp256k1.makeKeypair(privkey).pubkey
