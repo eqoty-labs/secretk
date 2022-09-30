@@ -404,7 +404,8 @@ private constructor(
             senderAddress: String,
             wallet: Wallet,
             seed: UByteArray? = null,
-            broadcastMode: BroadcastMode = BroadcastMode.Block
+            broadcastMode: BroadcastMode = BroadcastMode.Block,
+            chainId: String? = null
         ): SigningCosmWasmClient {
             ensureLibsodiumInitialized()
             return SigningCosmWasmClient(
@@ -412,7 +413,8 @@ private constructor(
                 senderAddress,
                 wallet,
                 EnigmaUtils(apiUrl, seed ?: EnigmaUtils.GenerateNewSeed()),
-                broadcastMode
+                broadcastMode,
+                chainId
             )
         }
 
@@ -421,7 +423,8 @@ private constructor(
             senderAddress: String,
             wallet: Wallet,
             enigmaUtils: EncryptionUtils,
-            broadcastMode: BroadcastMode = BroadcastMode.Block
+            broadcastMode: BroadcastMode = BroadcastMode.Block,
+            chainId: String? = null
         ): SigningCosmWasmClient {
             ensureLibsodiumInitialized()
             return SigningCosmWasmClient(
@@ -429,7 +432,8 @@ private constructor(
                 senderAddress,
                 wallet,
                 enigmaUtils,
-                broadcastMode
+                broadcastMode,
+                chainId
             )
         }
     }
