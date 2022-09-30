@@ -18,6 +18,11 @@ interface Msg<M : MsgProto> {
 }
 
 interface EncryptedMsg<M : MsgProto> : Msg<M> {
+
+    fun getMissingParameterWarning(method: String, parameter: String): String =
+        """${method} was used without the "codeHash" parameter. 
+            |This is discouraged and will result in much slower execution times for your app.""".trimMargin()
+
     @Suppress("INAPPLICABLE_JVM_NAME")
     @JvmName("toProtoNullable")
     override suspend fun toProto(utils: EncryptionUtils?): ProtoMsg<M> =

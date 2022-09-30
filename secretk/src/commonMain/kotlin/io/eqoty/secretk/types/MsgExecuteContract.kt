@@ -5,19 +5,18 @@ import io.eqoty.secretk.types.proto.MsgExecuteContractProto
 import io.eqoty.secretk.types.proto.ProtoMsg
 import io.eqoty.secretk.utils.EncryptionUtils
 import io.eqoty.secretk.utils.addressToBytes
-import io.eqoty.secretk.utils.getMissingCodeHashWarning
 import io.ktor.util.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 
 class MsgExecuteContract(
-    val sender: String,
+    var sender: String,
     /** The contract's address */
-    val contractAddress: String,
+    var contractAddress: String,
     /** The input message */
     val msg: String,
     /** Funds to send to the contract */
-    val sentFunds: List<Coin> = emptyList(),
+    var sentFunds: List<Coin> = emptyList(),
     /** The SHA256 hash value of the contract's WASM bytecode, represented as case-insensitive 64
      * character hex String.
      * This is used to make sure only the contract that's being invoked can decrypt the query data.
@@ -37,15 +36,12 @@ class MsgExecuteContract(
     var codeHash: String? = codeHash
         set(value) {
             if (!value.isNullOrBlank()) {
-                warnCodeHash = false
                 field = value.replace("0x", "").lowercase()
             } else {
-                Logger.w { getMissingCodeHashWarning("MsgExecuteContract") }
+                Logger.w { getMissingParameterWarning("MsgExecuteContract", "codeHash") }
                 field = null
             }
         }
-
-    private var warnCodeHash: Boolean = true
 
     init {
         // set isn't triggered otherwise
@@ -53,9 +49,10 @@ class MsgExecuteContract(
     }
 
     override suspend fun toProto(utils: EncryptionUtils): ProtoMsg<MsgExecuteContractProto> {
-        if (warnCodeHash) {
-            Logger.w { getMissingCodeHashWarning("MsgExecuteContract") }
+        if (codeHash.isNullOrBlank()) {
+            throw RuntimeException(getMissingParameterWarning("MsgExecuteContract", "codeHash"))
         }
+
 
         if (msgEncrypted == null) {
             // The encryption uses a random nonce
@@ -81,8 +78,8 @@ class MsgExecuteContract(
     }
 
     override suspend fun toAmino(utils: EncryptionUtils): MsgAmino {
-        if (warnCodeHash) {
-            Logger.w { getMissingCodeHashWarning("MsgExecuteContract") }
+        if (codeHash.isNullOrBlank()) {
+            throw RuntimeException(getMissingParameterWarning("MsgExecuteContract", "codeHash"))
         }
 
         if (msgEncrypted == null) {

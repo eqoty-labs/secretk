@@ -1,25 +1,23 @@
 package io.eqoty.secretk.types
 
 import co.touchlab.kermit.Logger
-import io.eqoty.secretk.types.proto.MsgExecuteContractProto
 import io.eqoty.secretk.types.proto.MsgInstantiateContractProto
 import io.eqoty.secretk.types.proto.ProtoMsg
 import io.eqoty.secretk.utils.EncryptionUtils
 import io.eqoty.secretk.utils.addressToBytes
-import io.eqoty.secretk.utils.getMissingCodeHashWarning
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 
 class MsgInstantiateContract(
-    val sender: String,
+    var sender: String,
     /** The id of the contract's WASM code */
-    val codeId: Int,
+    var codeId: Int?,
     /** A unique label across all contracts */
-    val label: String,
+    var label: String,
     /** The input message to the contract's constructor */
     val initMsg: String,
     /** Funds to send to the contract */
-    val initFunds: List<Coin> = emptyList(),
+    var initFunds: List<Coin> = emptyList(),
     /** The SHA256 hash value of the contract's WASM bytecode, represented as case-insensitive 64
      * character hex string.
      * This is used to make sure only the contract that's being invoked can decrypt the query data.
@@ -38,15 +36,11 @@ class MsgInstantiateContract(
     var codeHash: String? = codeHash
         set(value) {
             if (!value.isNullOrBlank()) {
-                warnCodeHash = false
                 field = value.replace("0x", "").lowercase()
             } else {
-                Logger.w { getMissingCodeHashWarning("MsgInstantiateContract") }
                 field = null
             }
         }
-
-    private var warnCodeHash: Boolean = true
 
     init {
         // set isn't triggered otherwise
@@ -54,8 +48,11 @@ class MsgInstantiateContract(
     }
 
     override suspend fun toProto(utils: EncryptionUtils): ProtoMsg<MsgInstantiateContractProto> {
-        if (warnCodeHash) {
-            Logger.w { getMissingCodeHashWarning("MsgInstantiateContract") }
+        if (codeHash.isNullOrBlank()) {
+            throw RuntimeException(getMissingParameterWarning("MsgInstantiateContract", "codeHash"))
+        }
+        if (codeId == null) {
+            throw RuntimeException(getMissingParameterWarning("MsgInstantiateContract", "codeId"))
         }
 
         if (initMsgEncrypted == null) {
@@ -67,7 +64,7 @@ class MsgInstantiateContract(
 
         val msgContent = MsgInstantiateContractProto(
             sender = addressToBytes(sender),
-            codeId = codeId,
+            codeId = codeId!!,
             label = label,
             initMsg = initMsgEncrypted!!.toByteArray(),
             initFunds = initFunds.map { it.toProto() },
