@@ -288,11 +288,11 @@ private constructor(
 
     private suspend fun Msg<*>.populateCodeHash() {
         if (this is MsgExecuteContract) {
-            if (codeHash == null) {
+            if (codeHash.isNullOrBlank()) {
                 codeHash = restClient.getCodeHashByContractAddr(contractAddress)
             }
         } else if (this is MsgInstantiateContract) {
-            if (codeHash == null) {
+            if (codeHash.isNullOrBlank()) {
                 codeHash = restClient.getCodeInfoByCodeId(codeId.toString()).codeHash
             }
         }
