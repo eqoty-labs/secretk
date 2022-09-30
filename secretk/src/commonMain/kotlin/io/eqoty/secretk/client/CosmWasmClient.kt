@@ -10,13 +10,13 @@ import kotlinx.serialization.json.jsonObject
 open class CosmWasmClient protected constructor(
     apiUrl: String,
     encryptionUtils: EncryptionUtils,
-    broadcastMode: BroadcastMode = BroadcastMode.Block
+    broadcastMode: BroadcastMode = BroadcastMode.Block,
+    private var chainId: String? = null
 ) {
     internal val restClient = RestClient(apiUrl, broadcastMode, encryptionUtils)
 
     /** Any address the chain considers valid (valid bech32 with proper prefix) */
     protected var anyValidAddress: String? = null
-    private var chainId: String? = null
 
     suspend fun getCodeInfoByCodeId(codeId: String): CodeInfoResponse.CodeInfo =
         restClient.getCodeInfoByCodeId(codeId)

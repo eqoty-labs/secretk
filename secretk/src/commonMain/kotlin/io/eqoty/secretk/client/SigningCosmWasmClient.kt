@@ -1,5 +1,6 @@
 package io.eqoty.secretk.client
 
+import co.touchlab.kermit.Logger
 import com.ionspin.kotlin.bignum.integer.toBigInteger
 import io.eqoty.secretk.BroadcastMode
 import io.eqoty.secretk.types.*
@@ -17,14 +18,24 @@ import okio.ByteString.Companion.decodeBase64
 import okio.ByteString.Companion.decodeHex
 import kotlin.math.ceil
 
-class SigningCosmWasmClient//| OfflineSigner
+class SigningCosmWasmClient
 private constructor(
     val apiUrl: String,
     val senderAddress: String,
     val wallet: Wallet,
     encryptionUtils: EncryptionUtils,
-    broadcastMode: BroadcastMode = BroadcastMode.Block
-) : CosmWasmClient(apiUrl, encryptionUtils, broadcastMode) {
+    broadcastMode: BroadcastMode = BroadcastMode.Block,
+    chainId: String? = null
+) : CosmWasmClient(apiUrl, encryptionUtils, broadcastMode, chainId) {
+
+    init {
+        if (chainId.isNullOrBlank()) {
+            Logger.w(
+                "SigningCosmWasmClient was created without the \"chainId\" parameter. This is discouraged " +
+                        "and will result in slower execution times for your app."
+            )
+        }
+    }
 
     private fun encodePubkey(
         pubkey: PubKey,
