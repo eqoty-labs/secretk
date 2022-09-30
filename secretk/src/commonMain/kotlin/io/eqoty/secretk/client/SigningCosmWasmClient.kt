@@ -385,6 +385,8 @@ private constructor(
     }
 
     companion object {
+
+        @OptIn(ExperimentalUnsignedTypes::class)
         suspend fun init(
             apiUrl: String,
             senderAddress: String,
@@ -405,7 +407,7 @@ private constructor(
         suspend fun init(
             apiUrl: String,
             senderAddress: String,
-            pen: BaseWallet, // | OfflineSigner
+            pen: Wallet, // | OfflineSigner
             enigmaUtils: EncryptionUtils,
             broadcastMode: BroadcastMode = BroadcastMode.Block
         ): SigningCosmWasmClient {
