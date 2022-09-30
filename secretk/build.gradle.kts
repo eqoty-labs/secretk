@@ -241,3 +241,12 @@ tasks.clean {
         libAesSivBuild.deleteRecursively()
     }
 }
+
+
+plugins.withId("com.vanniktech.maven.publish.base") {
+    configure<MavenPublishBaseExtension> {
+        publishToMavenCentral(SonatypeHost.S01)
+        signAllPublications()
+        pomFromGradleProperties()
+    }
+}
