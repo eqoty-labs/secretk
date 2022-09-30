@@ -6,7 +6,7 @@ plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization")
     id("io.github.luca992.multiplatform-swiftpackage")
-    id("com.vanniktech.maven.publish")
+    id("com.vanniktech.maven.publish.base")
 }
 
 group = project.property("GROUP") as String
