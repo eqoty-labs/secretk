@@ -246,7 +246,7 @@ tasks.clean {
 
 
 plugins.withId("com.vanniktech.maven.publish.base") {
-    configure<MavenPublishBaseExtension> {
+    mavenPublishing {
         publishToMavenCentral(SonatypeHost.S01)
         signAllPublications()
         pomFromGradleProperties()
