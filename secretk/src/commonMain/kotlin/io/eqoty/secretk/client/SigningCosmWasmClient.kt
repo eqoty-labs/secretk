@@ -29,6 +29,7 @@ private constructor(
 ) : CosmWasmClient(apiUrl, encryptionUtils, broadcastMode, chainId) {
 
     init {
+        Logger.setTag("secretk")
         if (chainId.isNullOrBlank()) {
             Logger.w(
                 "SigningCosmWasmClient was created without the \"chainId\" parameter. This is discouraged " +
