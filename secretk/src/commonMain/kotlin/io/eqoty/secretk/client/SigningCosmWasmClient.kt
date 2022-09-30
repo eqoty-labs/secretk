@@ -390,7 +390,7 @@ private constructor(
         suspend fun init(
             apiUrl: String,
             senderAddress: String,
-            signer: Wallet, //| OfflineSigner
+            wallet: Wallet,
             seed: UByteArray? = null,
             broadcastMode: BroadcastMode = BroadcastMode.Block
         ): SigningCosmWasmClient {
@@ -398,7 +398,7 @@ private constructor(
             return SigningCosmWasmClient(
                 apiUrl,
                 senderAddress,
-                signer,
+                wallet,
                 EnigmaUtils(apiUrl, seed ?: EnigmaUtils.GenerateNewSeed()),
                 broadcastMode
             )
@@ -407,7 +407,7 @@ private constructor(
         suspend fun init(
             apiUrl: String,
             senderAddress: String,
-            pen: Wallet, // | OfflineSigner
+            wallet: Wallet,
             enigmaUtils: EncryptionUtils,
             broadcastMode: BroadcastMode = BroadcastMode.Block
         ): SigningCosmWasmClient {
@@ -415,7 +415,7 @@ private constructor(
             return SigningCosmWasmClient(
                 apiUrl,
                 senderAddress,
-                pen,
+                wallet,
                 enigmaUtils,
                 broadcastMode
             )
