@@ -276,6 +276,7 @@ __attribute__((swift_name("Msg")))
 __attribute__((swift_name("EncryptedMsg")))
 @protocol SecretkEncryptedMsg <SecretkMsg>
 @required
+- (NSString *)getMissingParameterWarningMethod:(NSString *)method parameter:(NSString *)parameter __attribute__((swift_name("getMissingParameterWarning(method:parameter:)")));
 
 /**
  @note This method converts instances of CancellationException to errors.
@@ -342,10 +343,10 @@ __attribute__((swift_name("MsgExecuteContract")))
 */
 - (void)toProtoUtils:(id<SecretkEncryptionUtils>)utils completionHandler:(void (^)(SecretkProtoMsg<SecretkMsgExecuteContractProto *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("toProto(utils:completionHandler:)")));
 @property NSString * _Nullable codeHash __attribute__((swift_name("codeHash")));
-@property (readonly) NSString *contractAddress __attribute__((swift_name("contractAddress")));
+@property NSString *contractAddress __attribute__((swift_name("contractAddress")));
 @property (readonly) NSString *msg __attribute__((swift_name("msg")));
-@property (readonly) NSString *sender __attribute__((swift_name("sender")));
-@property (readonly) NSArray<SecretkCoin *> *sentFunds __attribute__((swift_name("sentFunds")));
+@property NSString *sender __attribute__((swift_name("sender")));
+@property NSArray<SecretkCoin *> *sentFunds __attribute__((swift_name("sentFunds")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -372,7 +373,7 @@ __attribute__((swift_name("MsgExecuteContractAmino.Companion")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgInstantiateContract")))
 @interface SecretkMsgInstantiateContract : SecretkBase <SecretkEncryptedMsg>
-- (instancetype)initWithSender:(NSString *)sender codeId:(int32_t)codeId label:(NSString *)label initMsg:(NSString *)initMsg initFunds:(NSArray<SecretkCoin *> *)initFunds codeHash:(NSString * _Nullable)codeHash __attribute__((swift_name("init(sender:codeId:label:initMsg:initFunds:codeHash:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithSender:(NSString *)sender codeId:(SecretkInt * _Nullable)codeId label:(NSString *)label initMsg:(NSString *)initMsg initFunds:(NSArray<SecretkCoin *> *)initFunds codeHash:(NSString * _Nullable)codeHash __attribute__((swift_name("init(sender:codeId:label:initMsg:initFunds:codeHash:)"))) __attribute__((objc_designated_initializer));
 
 /**
  @note This method converts instances of CancellationException to errors.
@@ -386,11 +387,11 @@ __attribute__((swift_name("MsgInstantiateContract")))
 */
 - (void)toProtoUtils:(id<SecretkEncryptionUtils>)utils completionHandler:(void (^)(SecretkProtoMsg<SecretkMsgInstantiateContractProto *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("toProto(utils:completionHandler:)")));
 @property NSString * _Nullable codeHash __attribute__((swift_name("codeHash")));
-@property (readonly) int32_t codeId __attribute__((swift_name("codeId")));
-@property (readonly, getter=doInitFunds) NSArray<SecretkCoin *> *initFunds __attribute__((swift_name("initFunds")));
+@property SecretkInt * _Nullable codeId __attribute__((swift_name("codeId")));
+@property (getter=doInitFunds) NSArray<SecretkCoin *> *initFunds __attribute__((swift_name("initFunds")));
 @property (readonly, getter=doInitMsg) NSString *initMsg __attribute__((swift_name("initMsg")));
-@property (readonly) NSString *label __attribute__((swift_name("label")));
-@property (readonly) NSString *sender __attribute__((swift_name("sender")));
+@property NSString *label __attribute__((swift_name("label")));
+@property NSString *sender __attribute__((swift_name("sender")));
 @end;
 
 __attribute__((swift_name("UnencryptedMsg")))
@@ -2347,7 +2348,9 @@ __attribute__((swift_name("AminoWallet")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("DirectSigningWallet")))
 @interface SecretkDirectSigningWallet : SecretkBaseWallet
-- (instancetype)initWithMnemonic:(NSString *)mnemonic __attribute__((swift_name("init(mnemonic:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (instancetype)initWithMnemonic:(NSString * _Nullable)mnemonic __attribute__((swift_name("init(mnemonic:)"))) __attribute__((objc_designated_initializer));
 
 /**
  @note This method converts instances of CancellationException to errors.
@@ -3280,7 +3283,6 @@ __attribute__((swift_name("HelpersKt")))
  Other uncaught Kotlin exceptions are fatal.
 */
 + (void)ensureLibsodiumInitializedWithCompletionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("ensureLibsodiumInitialized(completionHandler:)")));
-+ (NSString *)getMissingCodeHashWarningMethod:(NSString *)method __attribute__((swift_name("getMissingCodeHashWarning(method:)")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
