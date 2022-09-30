@@ -244,6 +244,11 @@ tasks.clean {
     }
 }
 
+// https://youtrack.jetbrains.com/issue/KT-46466
+val signingTasks = tasks.withType<Sign>()
+tasks.withType<AbstractPublishToMaven>().configureEach {
+    dependsOn(signingTasks)
+}
 
 plugins.withId("com.vanniktech.maven.publish.base") {
     mavenPublishing {
