@@ -1934,13 +1934,13 @@ __attribute__((swift_name("SigningCosmWasmClient.Companion")))
  @note This method converts instances of CancellationException to errors.
  Other uncaught Kotlin exceptions are fatal.
 */
-- (void)doInitApiUrl:(NSString *)apiUrl senderAddress:(NSString *)senderAddress wallet:(id<SecretkWallet>)wallet enigmaUtils:(id<SecretkEncryptionUtils>)enigmaUtils broadcastMode:(SecretkBroadcastMode *)broadcastMode completionHandler:(void (^)(SecretkSigningCosmWasmClient * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doInit(apiUrl:senderAddress:wallet:enigmaUtils:broadcastMode:completionHandler:)")));
+- (void)doInitApiUrl:(NSString *)apiUrl senderAddress:(NSString *)senderAddress wallet:(id<SecretkWallet>)wallet enigmaUtils:(id<SecretkEncryptionUtils>)enigmaUtils broadcastMode:(SecretkBroadcastMode *)broadcastMode chainId:(NSString * _Nullable)chainId completionHandler:(void (^)(SecretkSigningCosmWasmClient * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doInit(apiUrl:senderAddress:wallet:enigmaUtils:broadcastMode:chainId:completionHandler:)")));
 
 /**
  @note This method converts instances of CancellationException to errors.
  Other uncaught Kotlin exceptions are fatal.
 */
-- (void)doInitApiUrl:(NSString *)apiUrl senderAddress:(NSString *)senderAddress wallet:(id<SecretkWallet>)wallet seed:(id _Nullable)seed broadcastMode:(SecretkBroadcastMode *)broadcastMode completionHandler:(void (^)(SecretkSigningCosmWasmClient * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doInit(apiUrl:senderAddress:wallet:seed:broadcastMode:completionHandler:)")));
+- (void)doInitApiUrl:(NSString *)apiUrl senderAddress:(NSString *)senderAddress wallet:(id<SecretkWallet>)wallet seed:(id _Nullable)seed broadcastMode:(SecretkBroadcastMode *)broadcastMode chainId:(NSString * _Nullable)chainId completionHandler:(void (^)(SecretkSigningCosmWasmClient * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doInit(apiUrl:senderAddress:wallet:seed:broadcastMode:chainId:completionHandler:)")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
