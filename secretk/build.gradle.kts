@@ -1,4 +1,3 @@
-import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
@@ -245,9 +244,10 @@ tasks.clean {
 }
 
 // https://youtrack.jetbrains.com/issue/KT-46466
-val signingTasks = tasks.withType<Sign>()
+val dependsOnTasks = mutableListOf<String>()
 tasks.withType<AbstractPublishToMaven>().configureEach {
-    dependsOn(signingTasks)
+    dependsOnTasks.add(this.name.replace("publish", "sign").replaceAfter("Publication", ""))
+    dependsOn(dependsOnTasks)
 }
 
 plugins.withId("com.vanniktech.maven.publish.base") {
