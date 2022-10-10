@@ -5,7 +5,6 @@ import androidx.compose.ui.window.Window
 import io.eqoty.secretk.client.SigningCosmWasmClient
 import io.eqoty.wallet.MetaMaskWalletWrapper
 import io.eqoty.wallet.OfflineSignerOnlyAminoWalletWrapper
-import jslib.walletconnect.WalletConnectProvider
 import jslibs.secretjs.AminoWallet
 import jslibs.secretjs.MetaMaskWallet
 import kotlinx.browser.window
@@ -17,15 +16,18 @@ import org.jetbrains.skiko.wasm.onWasmReady
 import org.w3c.dom.get
 import web3.Web3
 import kotlin.js.Promise
+import jslib.walletconnect.IWalletConnectProviderOptionsInstance
+import jslib.walletconnect.WalletConnectProvider
 
 fun main() {
     application {
-        val wallet = setupWalletConnectAndGetWallet()
+        val wallet = setupMetamaskAndGetWallet()
 //        val wallet = setupKeplerAndGetWallet()
         val grpcGatewayEndpoint = "https://api.pulsar.scrttestnet.com"
         // A pen is the most basic tool you can think of for signing.
         // This wraps a single keypair and allows for signing.
         val accAddress = wallet.getAccounts()[0].address
+        println(accAddress)
         val client = SigningCosmWasmClient.init(
             grpcGatewayEndpoint,
             accAddress,
@@ -121,7 +123,11 @@ suspend fun setupMetamaskAndGetWallet(): MetaMaskWalletWrapper {
 }
 
 suspend fun setupWalletConnectAndGetWallet(): MetaMaskWalletWrapper {
-    val provider = window["ethereum"]
+    val provider = WalletConnectProvider(
+        IWalletConnectProviderOptionsInstance(
+            infuraId = "YOUR_ID",
+        )
+    )
     try {
         (provider as WalletConnectProvider).enable().await()
     } catch (t: Throwable) {
@@ -130,6 +136,6 @@ suspend fun setupWalletConnectAndGetWallet(): MetaMaskWalletWrapper {
     val web3 = Web3(provider).apply {
         eth.handleRevert = true
     }
-    val account = web3.eth.requestAccounts().await().firstOrNull()!!
+    val account = web3.eth.getAccounts().await().firstOrNull()!!
     return MetaMaskWalletWrapper(MetaMaskWallet.create(provider, account).await())
 }
