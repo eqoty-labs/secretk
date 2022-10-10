@@ -30,8 +30,10 @@ class ClientTests {
     var wallet = DirectSigningWallet(mnemonic)
 
     @BeforeTest
-    fun beforeEach() {
+    fun beforeEach() = runTest {
+        platformBeforeEach()
     }
+
 
     @Test
     fun testPubKeyToAddress() = runTest {

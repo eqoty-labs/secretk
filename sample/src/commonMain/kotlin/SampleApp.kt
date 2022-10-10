@@ -73,6 +73,7 @@ fun SampleApp(client: SigningCosmWasmClient) {
                                     )
                                     response.data[0]
                                 } catch (t: Throwable) {
+                                    t.printStackTrace()
                                     t.message
                                 }
                             }
