@@ -5493,10 +5493,10 @@ secp256k1@^4.0.1:
     node-addon-api "^2.0.0"
     node-gyp-build "^4.2.0"
 
-secretjs@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/secretjs/-/secretjs-1.4.1.tgz#a7ec80db3d941d3a92ea215ea48f336388ae5ee9"
-  integrity sha512-/+7GpnI7QczcpATx/REDvbvlhfIPAR06vQvclfawo7B1FSZZ6uz8qd+DhULZJJ1JMlIL419qsLtTuN222tU+ag==
+secretjs@^1.4.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/secretjs/-/secretjs-1.4.3.tgz#393fc381fa2924e9b339e52d1ba5ce9b3bc68241"
+  integrity sha512-IDhoPWg1Nra7ji3FU07ZHbxkp1S5uQnbLsDNj/t6Q9M9wysxv/BZafHnoEkAcB7FYYwOkxs5RxnSAZ2oiJORPw==
   dependencies:
     "@cosmjs/encoding" "0.27.1"
     "@cosmjs/math" "0.27.1"
