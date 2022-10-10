@@ -5,6 +5,7 @@ import androidx.compose.ui.window.Window
 import io.eqoty.secretk.client.SigningCosmWasmClient
 import io.eqoty.wallet.MetaMaskWalletWrapper
 import io.eqoty.wallet.OfflineSignerOnlyAminoWalletWrapper
+import jslib.walletconnect.WalletConnectProvider
 import jslibs.secretjs.AminoWallet
 import jslibs.secretjs.MetaMaskWallet
 import kotlinx.browser.window
@@ -19,7 +20,7 @@ import kotlin.js.Promise
 
 fun main() {
     application {
-        val wallet = setupMetamaskAndGetWallet()
+        val wallet = setupWalletConnectAndGetWallet()
 //        val wallet = setupKeplerAndGetWallet()
         val grpcGatewayEndpoint = "https://api.pulsar.scrttestnet.com"
         // A pen is the most basic tool you can think of for signing.
@@ -112,6 +113,20 @@ suspend fun setupKeplerAndGetWallet(): OfflineSignerOnlyAminoWalletWrapper {
 
 suspend fun setupMetamaskAndGetWallet(): MetaMaskWalletWrapper {
     val provider = window["ethereum"]
+    val web3 = Web3(provider).apply {
+        eth.handleRevert = true
+    }
+    val account = web3.eth.requestAccounts().await().firstOrNull()!!
+    return MetaMaskWalletWrapper(MetaMaskWallet.create(provider, account).await())
+}
+
+suspend fun setupWalletConnectAndGetWallet(): MetaMaskWalletWrapper {
+    val provider = window["ethereum"]
+    try {
+        (provider as WalletConnectProvider).enable().await()
+    } catch (t: Throwable) {
+        println("WalletConnectProvider.enable() returned error ${t.message}")
+    }
     val web3 = Web3(provider).apply {
         eth.handleRevert = true
     }
