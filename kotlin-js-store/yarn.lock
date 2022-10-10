@@ -444,12 +444,12 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@happy-dom/global-registrator@^7.5.1":
-  version "7.5.1"
-  resolved "https://registry.yarnpkg.com/@happy-dom/global-registrator/-/global-registrator-7.5.1.tgz#a453921d38e23d7af87e64b49328b5aaaf287e7c"
-  integrity sha512-YUlNpUzSqlnOeDc79iF9errV7wxDkqHkzmywPs7RUvglsYnc8xRQykb3RYchLyDzAqDOAONIilgBXwZ7Hde5EA==
+"@happy-dom/global-registrator@^7.5.2":
+  version "7.5.5"
+  resolved "https://registry.yarnpkg.com/@happy-dom/global-registrator/-/global-registrator-7.5.5.tgz#0a34b13c563944ea23fc71bdc3fe4b5a9c1b66e7"
+  integrity sha512-+kkR8wrL3HcU+1Z+M13dMo+a/L701n2DLHHGGlf99GRBcud0Eet4C+t16cZ91a4qbwtt7LAoL4e+3HfVQtU+HQ==
   dependencies:
-    happy-dom "^7.5.1"
+    happy-dom "^7.5.5"
 
 "@improbable-eng/grpc-web-node-http-transport@0.15.0":
   version "0.15.0"
@@ -3473,10 +3473,10 @@ handle-thing@^2.0.0:
   resolved "https://registry.yarnpkg.com/handle-thing/-/handle-thing-2.0.1.tgz#857f79ce359580c340d43081cc648970d0bb234e"
   integrity sha512-9Qn4yBxelxoh2Ow62nP+Ka/kMnOXRi8BXnRaUwezLNhqelnN49xKz4F/dPP8OYLxLxq6JDtZb2i9XznUQbNPTg==
 
-happy-dom@^7.5.1:
-  version "7.5.1"
-  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-7.5.1.tgz#0e1cd3c48bd4a1a876fb836cfe7457b46160d688"
-  integrity sha512-Y+wwUjRJY/9+uEMKiGwxomO7K4LeCxr/ZpD2PS2LCgRIO1MeyrcQxE5h3TmvESAHnvgpUSJ/1r75tX7Wv7FIyw==
+happy-dom@^7.5.5:
+  version "7.5.5"
+  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-7.5.5.tgz#ec0aa205610cc316190bc2d04b3d338149859289"
+  integrity sha512-VOIZRL7RmNUfz0xbY9XZIjKpmfnQ5evfZ/5YQ3O3KsyndLo2ighZgxqkW72vJU2qhtX1K3J3+2A36REPHW5amA==
   dependencies:
     css.escape "^1.5.1"
     he "^1.2.0"

@@ -130,7 +130,7 @@ kotlin {
             dependencies {
                 implementation(libs.com.squareup.okio.nodefilesystem)
                 implementation(devNpm("@peculiar/webcrypto", "^1.4.0"))
-                implementation(devNpm("@happy-dom/global-registrator", "^7.5.1"))
+                implementation(devNpm("@happy-dom/global-registrator", "^7.5.2"))
             }
         }
         val nativeMain by creating {

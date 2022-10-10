@@ -21,8 +21,11 @@ fun destroyFakeWindow() {
 }
 
 
+var isFirstRunAndNoWindow = !windowIsSetup.value
+
 actual suspend fun platformBeforeEach() {
-    if (!windowIsSetup.value) {
+    if (isFirstRunAndNoWindow) {
+        isFirstRunAndNoWindow = false
         MainScope().launch {
             createWindowBroadcaster.collect {
                 setupFakeWindow()

@@ -29,14 +29,12 @@ actual class AesSIV {
      */
     suspend fun awaitFakeWindow() {
         windowIsSetup.onSubscription {
-            println("onSubscription")
             createWindowBroadcaster.emit(Unit)
         }.filter { it }.take(1).first()
     }
 
     suspend fun awaitDestroyFakeWindow() {
         windowIsSetup.onSubscription {
-            println("onSubscription")
             destroyWindowBroadcaster.emit(Unit)
         }.filter { !it }.take(1).first()
     }
@@ -52,10 +50,9 @@ actual class AesSIV {
         val key = SIV.importKey(txEncryptionKey.toUInt8Array(), "AES-SIV").await()
         val ciphertext =
             key.seal(plaintext.toUInt8Array(), arrayOf(associatedData.toUInt8Array())).await().toUByteArray()
-//        TODO: unregister https://github.com/capricorn86/happy-dom/pull/604
-//        if (initiallyHadNoWindow) {
-//            awaitDestroyFakeWindow()
-//        }
+        if (initiallyHadNoWindow) {
+            awaitDestroyFakeWindow()
+        }
         return ciphertext
     }
 
@@ -70,10 +67,9 @@ actual class AesSIV {
         val key = SIV.importKey(txEncryptionKey.toUInt8Array(), "AES-SIV").await()
         val plaintext =
             key.open(ciphertext.toUInt8Array(), arrayOf(associatedData.toUInt8Array())).await().toUByteArray()
-//         TODO: unregister https://github.com/capricorn86/happy-dom/pull/604
-//        if (initiallyHadNoWindow) {
-//            awaitDestroyFakeWindow()
-//        }
+        if (initiallyHadNoWindow) {
+            awaitDestroyFakeWindow()
+        }
         return plaintext
     }
 }
