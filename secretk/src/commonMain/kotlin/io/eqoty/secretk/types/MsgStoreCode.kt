@@ -32,16 +32,14 @@ class MsgStoreCode(
 
     override suspend fun toAmino(): MsgAmino {
         // TODO: val wasmByteCode = gzipWasm()
-        val msgContent = MsgStoreCodeAmino(
-            sender = sender,
-            wasmByteCode = wasmByteCode.toByteArray().encodeBase64(),
-            source = source,
-            builder = builder
-        )
 
-        return MsgAmino(
-            type = "wasm/MsgStoreCode",
-            value = msgContent
+        return MsgStoreCodeAmino(
+            MsgStoreCodeAminoData(
+                sender = sender,
+                wasmByteCode = wasmByteCode.toByteArray().encodeBase64(),
+                source = source,
+                builder = builder
+            )
         )
     }
 }

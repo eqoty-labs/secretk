@@ -89,16 +89,13 @@ class MsgExecuteContract(
             msgEncrypted = utils.encrypt(codeHash!!, Json.parseToJsonElement(msg).jsonObject)
         }
 
-        val msgContent = MsgExecuteContractAmino(
-            sender = sender,
-            contract = contractAddress,
-            msg = msgEncrypted!!.toByteArray().encodeBase64(),
-            sentFunds = sentFunds,
-        )
-
-        return MsgAmino(
-            type = "wasm/MsgExecuteContract",
-            value = msgContent
+        return MsgExecuteContractAmino(
+            MsgExecuteContractAminoData(
+                sender = sender,
+                contract = contractAddress,
+                msg = msgEncrypted!!.toByteArray().encodeBase64(),
+                sentFunds = sentFunds,
+            )
         )
     }
 }
