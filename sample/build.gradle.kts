@@ -107,12 +107,19 @@ kotlin {
         val jsMain by getting {
             dependsOn(commonMain)
             dependencies {
-//                implementation(compose.web.core)
+                implementation(compose.web.core)
                 implementation(npm("@metamask/detect-provider", "^1.2.0"))
                 implementation(npm("web3", "^1.7.0"))
                 implementation(npm("@walletconnect/web3-provider", "^1.8.0"))
                 implementation(npm("@babel/core", "^7.18.13"))
                 implementation(npm("events", "^3.3.0"))
+
+                implementation(npm("assert", "^2.0.0"))
+                implementation(npm("stream-http", "^3.2.0"))
+                implementation(npm("https-browserify", "^1.0.0"))
+                implementation(npm("vm-browserify", "^1.1.2"))
+                implementation(npm("url", "^0.11.0"))
+
             }
         }
 
