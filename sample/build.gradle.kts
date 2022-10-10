@@ -5,10 +5,13 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("com.android.application")
-    kotlin("multiplatform")
-    id("org.jetbrains.compose")
-    kotlin("plugin.serialization")
+    @Suppress("DSL_SCOPE_VIOLATION")
+    val libs = libs
+    // https://youtrack.jetbrains.com/issue/KTIJ-19369
+    alias(libs.plugins.org.jetbrains.kotlin.multiplatform)
+    alias(libs.plugins.org.jetbrains.compose)
+    alias(libs.plugins.org.jetbrains.kotlin.plugin.serialization)
+    alias(libs.plugins.com.android.application)
 }
 
 version = "1.0-SNAPSHOT"
@@ -73,6 +76,7 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.material)
                 implementation(compose.runtime)
+                implementation(compose.animation)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.kotlinx.serialization.json)
             }
@@ -103,7 +107,7 @@ kotlin {
         val jsMain by getting {
             dependsOn(commonMain)
             dependencies {
-                implementation(compose.web.core)
+//                implementation(compose.web.core)
                 implementation(npm("@metamask/detect-provider", "^1.2.0"))
                 implementation(npm("web3", "^1.7.0"))
                 implementation(npm("@walletconnect/web3-provider", "^1.8.0"))

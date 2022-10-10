@@ -3,11 +3,9 @@
 [plugins]
 
 org-jetbrains-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 org-jetbrains-kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 org-jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "compose-jb" }
 com-android-application = { id = "com.android.application", version.ref = "agp" }
-com-android-library = { id = "com.android.library", version.ref = "agp" }
 io-github-luca992-multiplatform-swiftpackage = { id = "io.github.luca992.multiplatform-swiftpackage", version.ref = "swift-package" }
 com-vanniktech-maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech-publish" }
 
