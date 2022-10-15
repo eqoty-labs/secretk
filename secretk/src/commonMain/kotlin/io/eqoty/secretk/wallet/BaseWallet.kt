@@ -2,6 +2,7 @@ package io.eqoty.secretk.wallet
 
 import cash.z.ecc.android.bip39.Mnemonics
 import cash.z.ecc.android.bip39.toSeed
+import co.touchlab.kermit.Logger
 import io.eqoty.secretk.crypto.Secp256k1
 import io.eqoty.secretk.crypto.Slip10
 import io.eqoty.secretk.crypto.Slip10Curve
@@ -56,7 +57,11 @@ sealed class BaseWallet(
         val seed = if (mnemonic != null) {
             Mnemonics.MnemonicCode(mnemonic).toSeed().toUByteArray()
         } else {
-            Mnemonics.MnemonicCode(Mnemonics.WordCount.COUNT_12).toSeed().toUByteArray()
+            val mnemonic = Mnemonics.MnemonicCode(Mnemonics.WordCount.COUNT_12)
+            Logger.i("Wallet was created without supplying a mnemonic:")
+            Logger.i("Randomly generated a mnemonic.")
+            Logger.i("mnemonic: $mnemonic")
+            mnemonic.toSeed().toUByteArray()
         }
         val result = Slip10.derivePath(Slip10Curve.Secp256k1, seed, hdPath)
         privkey = result.privkey
