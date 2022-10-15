@@ -45,49 +45,52 @@ interface Wallet {
 
 sealed class BaseWallet(
     mnemonic: String?,
-    hdPath: Array<Slip10RawIndex> = makeSecretNetworkPath(0.toUInt()),
-    bech32Prefix: String = "secret"
+    val hdPath: Array<Slip10RawIndex> = makeSecretNetworkPath(0.toUInt()),
+    val bech32Prefix: String = "secret"
 ) : Wallet {
 
-    private val privkey: UByteArray
-    private val pubkey: UByteArray
-    protected var address: String
+    private val addressToAccounts: MutableMap<String, AccountSigningData> = mutableMapOf()
+    val accountAddresses get() = addressToAccounts.keys
 
     init {
+        addAccount(mnemonic)
+    }
+
+    fun addAccount(mnemonic: String?): AccountSigningData {
         val seed = if (mnemonic != null) {
             Mnemonics.MnemonicCode(mnemonic).toSeed().toUByteArray()
         } else {
-            val mnemonic = Mnemonics.MnemonicCode(Mnemonics.WordCount.COUNT_12)
+            val randMnemonic = Mnemonics.MnemonicCode(Mnemonics.WordCount.COUNT_12)
             Logger.i("Wallet was created without supplying a mnemonic:")
             Logger.i("Randomly generated a mnemonic.")
-            Logger.i("mnemonic: $mnemonic")
-            mnemonic.toSeed().toUByteArray()
+            Logger.i("mnemonic: $randMnemonic")
+            randMnemonic.toSeed().toUByteArray()
         }
         val result = Slip10.derivePath(Slip10Curve.Secp256k1, seed, hdPath)
-        privkey = result.privkey
+        val privkey = result.privkey
         val uncompressed = Secp256k1.makeKeypair(privkey).pubkey
-        pubkey = Secp256k1.compressPubkey(uncompressed)
-        address = pubkeyToAddress(encodeSecp256k1Pubkey(pubkey), bech32Prefix)
+        val pubkey = Secp256k1.compressPubkey(uncompressed)
+        val address = pubkeyToAddress(encodeSecp256k1Pubkey(pubkey), bech32Prefix)
+        addressToAccounts[address] = AccountSigningData(address, Algo.secp256k1, pubkey, privkey)
+        return addressToAccounts[address]!!
     }
+
+    /**
+     * Removes all account data for an address including private keys.
+     *
+     * @return Returns [AccountData] if account is successfully removed from wallet.
+     */
+    fun removeAccount(address: String): AccountData? {
+        return addressToAccounts.remove(address)?.publicData
+    }
+
+    val accounts get() = addressToAccounts.values.map { it.publicData }.toList()
 
     /**
      * Get AccountData array from wallet. Rejects if not enabled.
      */
-    override suspend fun getAccounts(): List<AccountData> = listOf(
-        AccountData(
-            address,
-            Algo.secp256k1,
-            pubkey
-        )
-    )
+    override suspend fun getAccounts(): List<AccountData> = accounts
 
-    val accounts: List<AccountData> = listOf(
-        AccountData(
-            address,
-            Algo.secp256k1,
-            pubkey
-        )
-    )
 
     private fun prehash(bytes: UByteArray, type: PrehashType?): UByteArray {
         return when (type) {
@@ -101,22 +104,23 @@ sealed class BaseWallet(
     /**
      * Creates and returns a signature
      */
-    fun sign(signBytes: UByteArray, prehashType: PrehashType = PrehashType.SHA256): StdSignature {
+    fun sign(
+        signerAddress: String,
+        signBytes: UByteArray,
+        prehashType: PrehashType = PrehashType.SHA256
+    ): StdSignature {
+        val account = addressToAccounts[signerAddress] ?: throw Error("Address $signerAddress not found in wallet")
         val messageHash = prehash(signBytes, prehashType)
-        val signature = Secp256k1.createSignature(messageHash, this.privkey)
+        val signature = Secp256k1.createSignature(messageHash, account.privkey)
         val fixedLengthSignature = signature.r.getPadded(32) + signature.s.getPadded(32)
-        return encodeSecp256k1Signature(this.pubkey, fixedLengthSignature)
+        return encodeSecp256k1Signature(account.publicData.pubkey, fixedLengthSignature)
     }
 
     override suspend fun signAmino(signerAddress: String, signDoc: StdSignDoc): AminoSignResponse {
-        if (signerAddress != this.address) {
-            throw Error("Address $signerAddress not found in wallet")
-        }
-
         val signBytes = Json.encodeToString(signDoc).encodeToByteArray().toUByteArray()
         return AminoSignResponse(
             signed = signDoc,
-            signature = sign(signBytes)
+            signature = sign(signerAddress, signBytes)
         )
     }
 }

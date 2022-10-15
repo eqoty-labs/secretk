@@ -15,14 +15,11 @@ class DirectSigningWallet(
 
     override suspend fun getSignMode(): SignMode? = null
 
-    fun signDirect(address: String, signDoc: SignDocProto): SignResponse {
-        if (address != this.address) {
-            throw Error("Address $address not found in wallet")
-        }
+    fun signDirect(signerAddress: String, signDoc: SignDocProto): SignResponse {
         val signBytes = ProtoBuf.encodeToByteArray(signDoc).toUByteArray()
         return SignResponse(
             signed = signDoc,
-            signature = sign(signBytes)
+            signature = sign(signerAddress, signBytes)
         )
     }
 
