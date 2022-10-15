@@ -152,7 +152,7 @@ private constructor(
         txOptions: TxOptions
     ): TxRawProto {
         val accountFromSigner = wallet.getAccounts().find { account ->
-            account.address == this.senderAddress
+            account.address == senderAddress
         } ?: throw Error("Failed to retrieve account from signer")
         val nonceResult = getNonce(senderAddress)
         val signerData = txOptions.explicitSignerData
@@ -219,7 +219,7 @@ private constructor(
         )
 
         val signResponse = wallet.signDirect(
-            this.senderAddress,
+            senderAddress,
             signDoc,
         )
         val signature = signResponse.signature
