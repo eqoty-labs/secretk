@@ -63,7 +63,7 @@ sealed class BaseWallet(
             val randMnemonic = Mnemonics.MnemonicCode(Mnemonics.WordCount.COUNT_12)
             Logger.i("Wallet was created without supplying a mnemonic:")
             Logger.i("Randomly generated a mnemonic.")
-            Logger.i("mnemonic: $randMnemonic")
+            Logger.i("mnemonic: ${randMnemonic.words.joinToString(separator = " ") { it.concatToString() }}")
             randMnemonic.toSeed().toUByteArray()
         }
         val result = Slip10.derivePath(Slip10Curve.Secp256k1, seed, hdPath)
