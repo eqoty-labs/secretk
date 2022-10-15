@@ -5,10 +5,8 @@
 	<key>AvailableLibraries</key>
 	<array>
 		<dict>
-			<key>DebugSymbolsPath</key>
-			<string>dSYMs</string>
 			<key>LibraryIdentifier</key>
-			<string>ios-arm64_x86_64-simulator</string>
+			<string>macos-arm64_x86_64</string>
 			<key>LibraryPath</key>
 			<string>secretk.framework</string>
 			<key>SupportedArchitectures</key>
@@ -17,9 +15,7 @@
 				<string>x86_64</string>
 			</array>
 			<key>SupportedPlatform</key>
-			<string>ios</string>
-			<key>SupportedPlatformVariant</key>
-			<string>simulator</string>
+			<string>macos</string>
 		</dict>
 		<dict>
 			<key>DebugSymbolsPath</key>
@@ -36,8 +32,10 @@
 			<string>ios</string>
 		</dict>
 		<dict>
+			<key>DebugSymbolsPath</key>
+			<string>dSYMs</string>
 			<key>LibraryIdentifier</key>
-			<string>macos-arm64_x86_64</string>
+			<string>ios-arm64_x86_64-simulator</string>
 			<key>LibraryPath</key>
 			<string>secretk.framework</string>
 			<key>SupportedArchitectures</key>
@@ -46,7 +44,9 @@
 				<string>x86_64</string>
 			</array>
 			<key>SupportedPlatform</key>
-			<string>macos</string>
+			<string>ios</string>
+			<key>SupportedPlatformVariant</key>
+			<string>simulator</string>
 		</dict>
 	</array>
 	<key>CFBundlePackageType</key>
