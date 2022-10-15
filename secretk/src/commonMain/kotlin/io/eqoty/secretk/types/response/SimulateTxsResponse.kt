@@ -6,9 +6,13 @@ import kotlinx.serialization.SerialName
 
 @kotlinx.serialization.Serializable
 data class SimulateTxsResponse(
+    /** Response code. */
+    val code: Int? = null,
+    val message: String? = null,
+    val details: List<String>? = null,
     @SerialName("gas_info")
-    val gasInfo: GasInfo,
-    val result: SimulateTxsResponseData,
+    val gasInfo: GasInfo? = null,
+    val result: SimulateTxsResponseData? = null,
 )
 
 @kotlinx.serialization.Serializable

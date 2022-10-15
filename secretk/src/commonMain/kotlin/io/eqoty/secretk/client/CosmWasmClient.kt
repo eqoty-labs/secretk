@@ -86,8 +86,11 @@ open class CosmWasmClient protected constructor(
     }
 
     suspend fun postSimulateTx(tx: UByteArray): SimulateTxsResponse {
-        val response: SimulateTxsResponse = restClient.postTx(tx, true)
-        return response
+        val txResponse: SimulateTxsResponse = restClient.postTx(tx, true)
+        if (txResponse.code != null && txResponse.code != 0) {
+            throw Error("Simulating transaction failed with code ${txResponse.code} (message: ${txResponse.message}). Details: ${txResponse.details}")
+        }
+        return txResponse
     }
 
 

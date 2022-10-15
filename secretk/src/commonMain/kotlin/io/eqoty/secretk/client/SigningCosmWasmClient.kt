@@ -97,7 +97,7 @@ private constructor(
         } catch (t: Throwable) {
             throw t
         }
-        return simulateTxResponse.gasInfo
+        return simulateTxResponse.gasInfo!!
     }
 
     suspend fun execute(
