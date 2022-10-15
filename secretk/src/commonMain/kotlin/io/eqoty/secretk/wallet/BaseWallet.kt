@@ -56,7 +56,7 @@ sealed class BaseWallet(
         addAccount(mnemonic)
     }
 
-    fun addAccount(mnemonic: String?): AccountSigningData {
+    fun addAccount(mnemonic: String? = null): AccountSigningData {
         val seed = if (mnemonic != null) {
             Mnemonics.MnemonicCode(mnemonic).toSeed().toUByteArray()
         } else {
