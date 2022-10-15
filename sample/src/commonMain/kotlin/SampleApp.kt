@@ -126,8 +126,10 @@ fun SampleApp(client: SigningCosmWasmClient) {
 fun setupAndStartApp() {
     val coroutineScope = rememberCoroutineScope()
     var client: SigningCosmWasmClient? by remember { mutableStateOf(null) }
-    coroutineScope.launch {
-        client = clientWithDirectSigningWallet()
+    if (client == null) {
+        coroutineScope.launch {
+            client = clientWithDirectSigningWallet()
+        }
     }
     client?.let {
         SampleApp(it)
