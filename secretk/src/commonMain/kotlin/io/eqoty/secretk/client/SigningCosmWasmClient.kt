@@ -21,7 +21,7 @@ import kotlin.math.ceil
 class SigningCosmWasmClient
 private constructor(
     val apiUrl: String,
-    val senderAddress: String,
+    var senderAddress: String,
     val wallet: Wallet,
     encryptionUtils: EncryptionUtils,
     broadcastMode: BroadcastMode = BroadcastMode.Block,
