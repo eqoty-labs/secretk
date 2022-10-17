@@ -233,13 +233,17 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Coin")))
 @interface SecretkCoin : SecretkBase
 - (instancetype)initWithDenom:(NSString *)denom amount:(int32_t)amount __attribute__((swift_name("init(denom:amount:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithDenom:(NSString *)denom amount_:(NSString *)amount __attribute__((swift_name("init(denom:amount_:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithDenom:(NSString *)denom amount_:(SecretkBignumBigInteger *)amount __attribute__((swift_name("init(denom:amount_:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithDenom:(NSString *)denom amount__:(NSString *)amount __attribute__((swift_name("init(denom:amount__:)"))) __attribute__((objc_designated_initializer));
 @property (class, readonly, getter=companion) SecretkCoinCompanion *companion __attribute__((swift_name("companion")));
 - (NSString *)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
 - (NSString *)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
 - (SecretkCoin *)doCopyDenom:(NSString *)denom amount:(NSString *)amount __attribute__((swift_name("doCopy(denom:amount:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (SecretkCoin *)minusIncrement:(SecretkCoin *)increment __attribute__((swift_name("minus(increment:)")));
+- (SecretkCoin *)plusIncrement:(SecretkCoin *)increment __attribute__((swift_name("plus(increment:)")));
+- (SecretkCoin *)timesIncrement:(SecretkCoin *)increment __attribute__((swift_name("times(increment:)")));
 - (SecretkCoinProto *)toProto __attribute__((swift_name("toProto()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *amount __attribute__((swift_name("amount")));
