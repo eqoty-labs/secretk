@@ -52,4 +52,17 @@ data class Coin(
         }
     }
 
+    operator fun div(increment: Coin): Coin {
+        return if (increment.denom == denom) {
+            this.copy(
+                amount = (BigInteger.parseString(amount, 10) / BigInteger.parseString(
+                    increment.amount,
+                    10
+                )).toString()
+            )
+        } else {
+            this
+        }
+    }
+
 }
