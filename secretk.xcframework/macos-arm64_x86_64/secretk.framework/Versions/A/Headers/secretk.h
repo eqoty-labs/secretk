@@ -239,6 +239,7 @@ __attribute__((swift_name("Coin")))
 - (NSString *)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
 - (NSString *)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
 - (SecretkCoin *)doCopyDenom:(NSString *)denom amount:(NSString *)amount __attribute__((swift_name("doCopy(denom:amount:)")));
+- (SecretkCoin *)divIncrement:(SecretkCoin *)increment __attribute__((swift_name("div(increment:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (SecretkCoin *)minusIncrement:(SecretkCoin *)increment __attribute__((swift_name("minus(increment:)")));
