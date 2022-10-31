@@ -212,9 +212,9 @@ __attribute__((swift_name("SignJsonCompanion")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Coin")))
 @interface SecretkCoin : SecretkBase
-- (instancetype)initWithDenom:(NSString *)denom amount:(int32_t)amount __attribute__((swift_name("init(denom:amount:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithDenom:(NSString *)denom amount_:(SecretkBignumBigInteger *)amount __attribute__((swift_name("init(denom:amount_:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithAmount:(NSString *)amount denom:(NSString *)denom __attribute__((swift_name("init(amount:denom:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithAmount:(int32_t)amount denom:(NSString *)denom __attribute__((swift_name("init(amount:denom:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithAmount:(SecretkBignumBigInteger *)amount denom_:(NSString *)denom __attribute__((swift_name("init(amount:denom_:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithAmount:(NSString *)amount denom__:(NSString *)denom __attribute__((swift_name("init(amount:denom__:)"))) __attribute__((objc_designated_initializer));
 @property (class, readonly, getter=companion) SecretkCoinCompanion *companion __attribute__((swift_name("companion")));
 - (NSString *)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
 - (NSString *)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
