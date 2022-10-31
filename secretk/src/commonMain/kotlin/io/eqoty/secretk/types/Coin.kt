@@ -5,11 +5,11 @@ import io.eqoty.secretk.types.proto.CoinProto
 
 @kotlinx.serialization.Serializable
 data class Coin(
-    val denom: String,
-    val amount: String
+    val amount: String,
+    val denom: String
 ) {
-    constructor(denom: String, amount: Int) : this(denom, amount.toString())
-    constructor(denom: String, amount: BigInteger) : this(denom, amount.toString())
+    constructor(denom: String, amount: Int) : this(amount.toString(), denom)
+    constructor(denom: String, amount: BigInteger) : this(amount.toString(), denom)
 
     fun toProto() = CoinProto(denom, amount)
 
