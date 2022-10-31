@@ -161,8 +161,8 @@ private constructor(
             gas = txOptions.gasLimit,
             amount = listOf(
                 Coin(
-                    txOptions.feeDenom,
-                    gasToFee(txOptions.gasLimit, txOptions.gasPriceInFeeDenom)
+                    gasToFee(txOptions.gasLimit, txOptions.gasPriceInFeeDenom),
+                    txOptions.feeDenom
                 )
             ),
             granter = txOptions.feeGranter

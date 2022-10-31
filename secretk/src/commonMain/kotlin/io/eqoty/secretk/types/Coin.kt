@@ -8,8 +8,8 @@ data class Coin(
     val amount: String,
     val denom: String
 ) {
-    constructor(denom: String, amount: Int) : this(amount.toString(), denom)
-    constructor(denom: String, amount: BigInteger) : this(amount.toString(), denom)
+    constructor(amount: Int, denom: String) : this(amount.toString(), denom)
+    constructor(amount: BigInteger, denom: String) : this(amount.toString(), denom)
 
     fun toProto() = CoinProto(denom, amount)
 
