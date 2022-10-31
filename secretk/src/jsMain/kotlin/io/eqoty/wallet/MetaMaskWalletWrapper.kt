@@ -11,6 +11,7 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
+// todo: Remove secret.js dependency and just implement it ourselves
 class MetaMaskWalletWrapper(
     val wallet: MetaMaskWallet,
 ) : Wallet {

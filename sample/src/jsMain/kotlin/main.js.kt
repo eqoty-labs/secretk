@@ -21,8 +21,8 @@ import jslib.walletconnect.WalletConnectProvider
 
 fun main() {
     application {
-        val wallet = setupMetamaskAndGetWallet()
-//        val wallet = setupKeplerAndGetWallet()
+//        val wallet = setupMetamaskAndGetWallet()
+        val wallet = setupKeplerAndGetWallet()
         val grpcGatewayEndpoint = "https://api.pulsar.scrttestnet.com"
         // A pen is the most basic tool you can think of for signing.
         // This wraps a single keypair and allows for signing.
@@ -108,6 +108,7 @@ suspend fun setupKeplerAndGetWallet(): OfflineSignerOnlyAminoWalletWrapper {
     console.log(suggestion)
     val promise: Promise<dynamic> = window.asDynamic().keplr.experimentalSuggestChain(suggestion) as Promise<dynamic>
     val enablePromise: Promise<dynamic> = window.asDynamic().keplr.enable(CHAIN_ID) as Promise<dynamic>
+    enablePromise.await()
     val wallet: AminoWallet = window.asDynamic().getOfflineSignerOnlyAmino(CHAIN_ID)
     return OfflineSignerOnlyAminoWalletWrapper(wallet)
 }

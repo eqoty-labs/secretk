@@ -3,12 +3,13 @@ package io.eqoty.secretk.extensions.accesscontrol
 import io.eqoty.secretk.types.*
 import io.eqoty.secretk.types.extensions.Permission
 import io.eqoty.secretk.types.extensions.Permit
-import io.eqoty.secretk.wallet.DirectSigningWallet
 import io.eqoty.secretk.wallet.Wallet
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 object PermitFactory {
 
-    private fun newSignDoc(
+    internal fun newSignDoc(
         chainId: String,
         permitName: String,
         allowedTokens: List<String>,
@@ -42,15 +43,17 @@ object PermitFactory {
         allowedTokens: List<String>,
         permissions: List<Permission>,
     ): Permit {
-        val signature = when (wallet) {
-            is DirectSigningWallet -> {
-                wallet.signAmino(
-                    owner,
-                    newSignDoc(chainId, permitName, allowedTokens, permissions),
-                ).signature
-            }
-
-            else -> TODO()
+        var signature = newPermitWithTargetSpecificWallet(
+            wallet, owner, chainId, permitName, allowedTokens, permissions
+        )
+        if (signature == null) {
+            println(Json.encodeToString(newSignDoc(chainId, permitName, allowedTokens, permissions)))
+            val aa=  wallet.signAmino(
+                owner,
+                newSignDoc(chainId, permitName, allowedTokens, permissions),
+            )
+            println(aa.signature.toString())
+            signature = aa.signature
         }
 
         return Permit(
@@ -64,3 +67,12 @@ object PermitFactory {
         )
     }
 }
+
+internal expect suspend fun PermitFactory.newPermitWithTargetSpecificWallet(
+    wallet: Wallet,
+    owner: String,
+    chainId: String,
+    permitName: String,
+    allowedTokens: List<String>,
+    permissions: List<Permission>,
+): StdSignature?

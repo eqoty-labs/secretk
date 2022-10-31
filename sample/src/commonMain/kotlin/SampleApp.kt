@@ -6,20 +6,27 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import io.eqoty.secretk.client.SigningCosmWasmClient
+import io.eqoty.secretk.extensions.accesscontrol.PermitFactory
 import io.eqoty.secretk.types.MsgExecuteContract
 import io.eqoty.secretk.types.TxOptions
+import io.eqoty.secretk.types.extensions.Permission
+import io.eqoty.secretk.types.extensions.Permit
 import io.eqoty.secretk.wallet.DirectSigningWallet
 import kotlinx.coroutines.launch
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 
 val contractAddress = "secret1lz4m46vpdn8f2aj8yhtnexus40663udv7hhprm"
 
+
 @Composable
 fun SampleApp(client: SigningCosmWasmClient) {
     val coroutineScope = rememberCoroutineScope()
+    var permit: Permit? by remember { mutableStateOf(null) }
     var contractInfoQueryResponse: String? by remember { mutableStateOf(null) }
+    var numTokensQueryWithPermitResponse: String? by remember { mutableStateOf(null) }
     var viewingKeyTxResponse: String? by remember { mutableStateOf(null) }
     var numTokensQueryResponse: String? by remember { mutableStateOf(null) }
     MaterialTheme {
@@ -49,6 +56,44 @@ fun SampleApp(client: SigningCosmWasmClient) {
                         }
                         contractInfoQueryResponse?.let {
                             Text("query response: $contractInfoQueryResponse")
+                        }
+                    }
+                    if (permit == null) {
+                        coroutineScope.launch {
+                            permit = PermitFactory.newPermit(
+                                client.wallet,
+                                client.senderAddress,
+                                client.getChainId(),
+                                "Test",
+                                listOf(contractAddress),
+                                listOf(Permission.Owner),
+                            )
+                        }
+                    } else {
+                        Row {
+                            Button({
+                                coroutineScope.launch {
+                                    val numTokensQuery =
+                                        """
+                                            {
+                                                "with_permit": {
+                                                    "permit": ${Json.encodeToString(permit)},
+                                                    "query": { "num_tokens": {} }
+                                                }
+                                            }
+                                        """
+                                    numTokensQueryWithPermitResponse = try {
+                                        client.queryContractSmart(contractAddress, numTokensQuery)
+                                    } catch (t: Throwable) {
+                                        t.message
+                                    }
+                                }
+                            }) {
+                                Text("Get number of tokens with permit")
+                            }
+                            numTokensQueryWithPermitResponse?.let {
+                                Text("query response: $numTokensQueryWithPermitResponse")
+                            }
                         }
                     }
                     Row {

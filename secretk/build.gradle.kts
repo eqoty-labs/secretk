@@ -123,6 +123,8 @@ kotlin {
                 implementation(npm("libsodium-wrappers-sumo", "^0.7.10"))
                 implementation(npm("secretjs", "^1.4.3"))
                 implementation(npm("google-protobuf", "^3.21.0"))
+                implementation(npm("@cosmjs/amino", "^0.29.3"))
+                implementation(npm("@keplr-wallet/types", "^0.11.13"))
             }
         }
         val jsTest by getting {
