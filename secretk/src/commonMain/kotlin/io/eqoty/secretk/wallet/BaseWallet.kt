@@ -49,8 +49,8 @@ sealed class BaseWallet(
     val bech32Prefix: String = "secret"
 ) : Wallet {
 
-    private val addressToAccounts: MutableMap<String, AccountSigningData> = mutableMapOf()
-    val accountAddresses get() = addressToAccounts.keys
+    val addressToAccountSigningData: MutableMap<String, AccountSigningData> = mutableMapOf()
+    val accountAddresses get() = addressToAccountSigningData.keys
 
     init {
         addAccount(mnemonic)
@@ -71,8 +71,8 @@ sealed class BaseWallet(
         val uncompressed = Secp256k1.makeKeypair(privkey).pubkey
         val pubkey = Secp256k1.compressPubkey(uncompressed)
         val address = pubkeyToAddress(encodeSecp256k1Pubkey(pubkey), bech32Prefix)
-        addressToAccounts[address] = AccountSigningData(address, Algo.secp256k1, pubkey, privkey)
-        return addressToAccounts[address]!!
+        addressToAccountSigningData[address] = AccountSigningData(address, Algo.secp256k1, pubkey, privkey)
+        return addressToAccountSigningData[address]!!
     }
 
     /**
@@ -81,10 +81,10 @@ sealed class BaseWallet(
      * @return Returns [AccountData] if account is successfully removed from wallet.
      */
     fun removeAccount(address: String): AccountData? {
-        return addressToAccounts.remove(address)?.publicData
+        return addressToAccountSigningData.remove(address)?.publicData
     }
 
-    val accounts get() = addressToAccounts.values.map { it.publicData }.toList()
+    val accounts get() = addressToAccountSigningData.values.map { it.publicData }.toList()
 
     /**
      * Get AccountData array from wallet. Rejects if not enabled.
@@ -109,7 +109,7 @@ sealed class BaseWallet(
         signBytes: UByteArray,
         prehashType: PrehashType = PrehashType.SHA256
     ): StdSignature {
-        val account = addressToAccounts[signerAddress] ?: throw Error("Address $signerAddress not found in wallet")
+        val account = addressToAccountSigningData[signerAddress] ?: throw Error("Address $signerAddress not found in wallet")
         val messageHash = prehash(signBytes, prehashType)
         val signature = Secp256k1.createSignature(messageHash, account.privkey)
         val fixedLengthSignature = signature.r.getPadded(32) + signature.s.getPadded(32)
