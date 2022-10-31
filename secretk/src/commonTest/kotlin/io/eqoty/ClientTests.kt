@@ -2,12 +2,15 @@ package io.eqoty
 
 import co.touchlab.kermit.Logger
 import io.eqoty.secretk.client.SigningCosmWasmClient
+import io.eqoty.secretk.extensions.accesscontrol.PermitFactory
 import io.eqoty.secretk.types.MsgExecuteContract
 import io.eqoty.secretk.types.MsgInstantiateContract
 import io.eqoty.secretk.types.MsgStoreCode
 import io.eqoty.secretk.types.TxOptions
+import io.eqoty.secretk.types.extensions.Permission
 import io.eqoty.secretk.wallet.DirectSigningWallet
 import kotlinx.coroutines.test.runTest
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
@@ -89,6 +92,45 @@ class ClientTests {
                     }
                 }
             }
+            """
+
+        val numTokens = client.queryContractSmart(contractAddress, numTokensQuery)
+        println("Num Tokens Response: $numTokens")
+    }
+
+    @Test
+    fun testQueryWithPermit() = runTest {
+        val contractAddress = "secret1lz4m46vpdn8f2aj8yhtnexus40663udv7hhprm"
+        val accAddress = wallet.getAccounts()[0].address
+        val client = SigningCosmWasmClient.init(
+            grpcGatewayEndpoint,
+            accAddress,
+            wallet
+        )
+        println("Querying nft contract info")
+        val contractInfoQuery = """{"contract_info": {}}"""
+        val contractInfo = client.queryContractSmart(contractAddress, contractInfoQuery)
+        println("nft contract info response: $contractInfo")
+
+        assertEquals("""{"contract_info":{"name":"lucasfirstsnip721","symbol":"luca721"}}""", contractInfo)
+
+        println("Querying Num Tokens")
+        val permit = PermitFactory.newPermit(
+            wallet,
+            client.senderAddress,
+            client.getChainId(),
+            "Test",
+            listOf(contractAddress),
+            listOf(Permission.Owner),
+        )
+        val numTokensQuery =
+            """
+                {
+                    "with_permit": {
+                        "permit": ${Json.encodeToString(permit)},
+                        "query": { "num_tokens": {} }
+                    }
+                }
             """
 
         val numTokens = client.queryContractSmart(contractAddress, numTokensQuery)
