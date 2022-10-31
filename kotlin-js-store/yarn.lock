@@ -5870,7 +5870,7 @@ secretjs@0.17.7:
     protobufjs "6.11.3"
     secure-random "1.1.2"
 
-secretjs@^1.4.3:
+secretjs@^1.4.5:
   version "1.4.5"
   resolved "https://registry.yarnpkg.com/secretjs/-/secretjs-1.4.5.tgz#c94098faace9932c5a39cc4622a7510daac44274"
   integrity sha512-WbHzcDTL8VW8WwVMAPXZAMj6QutXBe1gjLhyjOT3lAQX5zU1TKh2h8EpAxNrM0BfLPMPRC24qtngrrkVrdW2CA==
