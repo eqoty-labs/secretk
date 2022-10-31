@@ -51,11 +51,11 @@ data class Coin(
         )
     }
 
-    operator fun times(increment: Coin): Coin {
-        return if (increment.denom == denom) {
+    operator fun times(other: Coin): Coin {
+        return if (other.denom == denom) {
             this.copy(
                 amount = (BigInteger.parseString(amount, 10) * BigInteger.parseString(
-                    increment.amount,
+                    other.amount,
                     10
                 )).toString()
             )
@@ -64,17 +64,17 @@ data class Coin(
         }
     }
 
-    operator fun times(increment: BigInteger): Coin {
+    operator fun times(other: BigInteger): Coin {
         return this.copy(
-            amount = (BigInteger.parseString(amount, 10) * increment).toString()
+            amount = (BigInteger.parseString(amount, 10) * other).toString()
         )
     }
 
-    operator fun div(increment: Coin): Coin {
-        return if (increment.denom == denom) {
+    operator fun div(other: Coin): Coin {
+        return if (other.denom == denom) {
             this.copy(
                 amount = (BigInteger.parseString(amount, 10) / BigInteger.parseString(
-                    increment.amount,
+                    other.amount,
                     10
                 )).toString()
             )
@@ -83,9 +83,28 @@ data class Coin(
         }
     }
 
-    operator fun div(increment: BigInteger): Coin {
+    operator fun div(other: BigInteger): Coin {
         return this.copy(
-            amount = (BigInteger.parseString(amount, 10) / increment).toString()
+            amount = (BigInteger.parseString(amount, 10) / other).toString()
+        )
+    }
+
+    operator fun rem(other: Coin): Coin {
+        return if (other.denom == denom) {
+            this.copy(
+                amount = (BigInteger.parseString(amount, 10) % BigInteger.parseString(
+                    other.amount,
+                    10
+                )).toString()
+            )
+        } else {
+            this
+        }
+    }
+
+    operator fun rem(other: BigInteger): Coin {
+        return this.copy(
+            amount = (BigInteger.parseString(amount, 10) % other).toString()
         )
     }
 }
