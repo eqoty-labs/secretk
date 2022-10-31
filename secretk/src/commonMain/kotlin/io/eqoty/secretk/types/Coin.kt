@@ -26,6 +26,12 @@ data class Coin(
         }
     }
 
+    operator fun plus(increment: BigInteger): Coin {
+        return this.copy(
+            amount = (BigInteger.parseString(amount, 10) + increment).toString()
+        )
+    }
+
     operator fun minus(increment: Coin): Coin {
         return if (increment.denom == denom) {
             this.copy(
@@ -37,6 +43,12 @@ data class Coin(
         } else {
             this
         }
+    }
+
+    operator fun minus(increment: BigInteger): Coin {
+        return this.copy(
+            amount = (BigInteger.parseString(amount, 10) - increment).toString()
+        )
     }
 
     operator fun times(increment: Coin): Coin {
@@ -52,6 +64,12 @@ data class Coin(
         }
     }
 
+    operator fun times(increment: BigInteger): Coin {
+        return this.copy(
+            amount = (BigInteger.parseString(amount, 10) * increment).toString()
+        )
+    }
+
     operator fun div(increment: Coin): Coin {
         return if (increment.denom == denom) {
             this.copy(
@@ -65,4 +83,9 @@ data class Coin(
         }
     }
 
+    operator fun div(increment: BigInteger): Coin {
+        return this.copy(
+            amount = (BigInteger.parseString(amount, 10) / increment).toString()
+        )
+    }
 }
