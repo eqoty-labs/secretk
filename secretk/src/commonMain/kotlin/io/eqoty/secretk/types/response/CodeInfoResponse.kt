@@ -4,12 +4,12 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class CodeInfoResponse(
+data class CodeInfoResponse(
     @SerialName("code_info")
     val codeInfo: CodeInfo,
 ) {
     @Serializable
-    class CodeInfo(
+    data class CodeInfo(
         @SerialName("code_id")
         val codeId: String,
         val creator: String,
