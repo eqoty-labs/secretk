@@ -90,6 +90,7 @@ kotlin {
                 implementation(libs.io.github.luca992.cash.z.ecc.android.kotlinBip39)
                 implementation(libs.com.github.luca992.khash.ripemd160)
                 implementation(libs.io.eqoty.kryptools.aessiv)
+                implementation(libs.io.eqoty.kryptools.bech32)
             }
         }
         val commonTest by getting {

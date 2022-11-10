@@ -1,10 +1,10 @@
 package io.eqoty.secretk.types
 
 import co.touchlab.kermit.Logger
+import io.eqoty.kryptools.bech32.addressToBytes
 import io.eqoty.secretk.types.proto.MsgExecuteContractProto
 import io.eqoty.secretk.types.proto.ProtoMsg
 import io.eqoty.secretk.utils.EncryptionUtils
-import io.eqoty.secretk.utils.addressToBytes
 import io.ktor.util.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject

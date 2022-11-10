@@ -1,8 +1,8 @@
 package io.eqoty.secretk.types
 
+import io.eqoty.kryptools.bech32.addressToBytes
 import io.eqoty.secretk.types.proto.MsgStoreCodeProto
 import io.eqoty.secretk.types.proto.ProtoMsg
-import io.eqoty.secretk.utils.addressToBytes
 import io.ktor.util.*
 
 class MsgStoreCode(

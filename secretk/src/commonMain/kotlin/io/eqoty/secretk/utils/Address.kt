@@ -1,10 +1,10 @@
 package io.eqoty.secretk.utils
 
+import io.eqoty.kryptools.bech32.Bech32
 import io.eqoty.secretk.types.response.PubKey
 import io.eqoty.secretk.types.response.PubKeyEd25519
 import io.eqoty.secretk.types.response.PubKeySecp256k1
 import io.eqoty.secretk.types.response.PubKeySr25519
-import io.eqoty.secretk.utils.bech32.Bech32
 import okio.ByteString.Companion.decodeBase64
 import org.komputing.khash.ripemd160.extensions.digestRipemd160
 
