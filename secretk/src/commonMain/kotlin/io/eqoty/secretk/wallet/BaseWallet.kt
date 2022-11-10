@@ -3,10 +3,10 @@ package io.eqoty.secretk.wallet
 import cash.z.ecc.android.bip39.Mnemonics
 import cash.z.ecc.android.bip39.toSeed
 import co.touchlab.kermit.Logger
-import io.eqoty.secretk.crypto.Secp256k1
-import io.eqoty.secretk.crypto.Slip10
-import io.eqoty.secretk.crypto.Slip10Curve
-import io.eqoty.secretk.crypto.Slip10RawIndex
+import io.eqoty.kryptools.Secp256k1
+import io.eqoty.kryptools.Slip10
+import io.eqoty.kryptools.Slip10Curve
+import io.eqoty.kryptools.Slip10RawIndex
 import io.eqoty.secretk.types.StdSignDoc
 import io.eqoty.secretk.types.StdSignature
 import io.eqoty.secretk.types.proto.SignDocProto

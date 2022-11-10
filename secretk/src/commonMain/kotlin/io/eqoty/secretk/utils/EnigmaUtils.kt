@@ -5,7 +5,7 @@ import com.ionspin.kotlin.crypto.util.encodeToUByteArray
 import io.eqoty.kryptools.aessiv.AesSIV
 import io.eqoty.kryptools.axlsign.AxlSign.generateKeyPair
 import io.eqoty.kryptools.axlsign.AxlSign.sharedKey
-import io.eqoty.secretk.crypto.deriveHKDFKey
+import io.eqoty.kryptools.deriveHKDFKey
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*

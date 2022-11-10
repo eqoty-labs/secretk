@@ -92,6 +92,7 @@ kotlin {
                 implementation(libs.io.eqoty.kryptools.aessiv)
                 implementation(libs.io.eqoty.kryptools.bech32)
                 implementation(libs.io.eqoty.kryptools.axlsign)
+                implementation(libs.io.eqoty.kryptools.secp256k1)
             }
         }
         val commonTest by getting {
