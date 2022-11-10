@@ -6,9 +6,9 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class SecretkKotlinEnumCompanion, SecretkKotlinEnum<E>, SecretkBroadcastMode, SecretkKotlinArray<T>, SecretkStdFee, SecretkTypeValue<V>, SecretkSignJsonCompanion, SecretkSignJson<T>, SecretkBignumBigInteger, SecretkCoinCompanion, SecretkCoin, SecretkCoinProto, SecretkMsgProto, SecretkProtoMsg<M>, SecretkMsgAminoCompanion, SecretkMsgExecuteContractProto, SecretkMsgExecuteContractAminoData, SecretkMsgExecuteContractAminoCompanion, SecretkMsgExecuteContractAminoDataCompanion, SecretkMsgInstantiateContractProto, SecretkMsgQueryPermitAminoData, SecretkMsgQueryPermitAminoCompanion, SecretkPermission, SecretkMsgQueryPermitAminoDataCompanion, SecretkMsgStoreCodeProto, SecretkMsgStoreCodeAminoData, SecretkMsgStoreCodeAminoCompanion, SecretkMsgStoreCodeAminoDataCompanion, SecretkAnyProto, SecretkSigner, SecretkSignerData, SecretkStdFeeCompanion, SecretkStdSignDocCompanion, SecretkStdSignDoc, SecretkPubKey, SecretkStdSignatureCompanion, SecretkStdSignature, SecretkStdTxCompanion, SecretkStdTx<T>, SecretkTxBodyValue<M>, SecretkTxBodyCompanion, SecretkTxBody<M>, SecretkTxBodyValueCompanion, SecretkTxOptions, SecretkV1BetaTypeCompanion, SecretkV1BetaType, SecretkSecp256k1PubKey, SecretkAccountCompanion, SecretkAccount, SecretkAccountResponseCompanion, SecretkAccountResponse, SecretkApplicationVersionCompanion, SecretkApplicationVersion, SecretkBalanceResponseCompanion, SecretkBalanceResponse, SecretkCodeInfoResponseCodeInfo, SecretkCodeInfoResponseCompanion, SecretkCodeInfoResponse, SecretkCodeInfoResponseCodeInfoCompanion, SecretkGasInfoCompanion, SecretkGasInfo, SecretkProtocolVersion, SecretkNodeInfoOther, SecretkNodeInfoCompanion, SecretkNodeInfo, SecretkNodeInfoOtherCompanion, SecretkNodeInfoResponseCompanion, SecretkProtocolVersionCompanion, SecretkTypeValueCompanion, SecretkPubKeyCompanion, SecretkPubKeyEd25519Companion, SecretkPubKeyEd25519, SecretkPubKeyMultisigThresholdCompanion, SecretkPubKeyMultisigThreshold, SecretkPubKeySecp256k1Companion, SecretkPubKeySecp256k1, SecretkPubKeySr25519Companion, SecretkPubKeySr25519, SecretkSecp256k1PubKeyCompanion, SecretkSimulateTxsResponseData, SecretkSimulateTxsResponseCompanion, SecretkSimulateTxsResponse, SecretkLog, SecretkEvent, SecretkSimulateTxsResponseDataCompanion, SecretkSmartQueryResponseCompanion, SecretkTxResponseData, SecretkTxResponseCompanion, SecretkTxResponse, SecretkTxResponseDataCompanion, SecretkWasmResponseCompanion, SecretkWasmResponse<R>, SecretkAttributeCompanion, SecretkAttribute, SecretkEventCompanion, SecretkLogCompanion, SecretkPermissionCompanion, SecretkPermitParams, SecretkPermitCompanion, SecretkPermit, SecretkPermitParamsCompanion, SecretkGetNonceResult, SecretkKotlinByteArray, SecretkAnyProtoCompanion, SecretkSignerInfoProto, SecretkFeeProto, SecretkAuthInfoProtoCompanion, SecretkCoinProtoCompanion, SecretkFeeProtoCompanion, SecretkKeyProtoCompanion, SecretkModeInfoProtoSingle, SecretkModeInfoProtoMulti, SecretkModeInfoProtoCompanion, SecretkModeInfoProtoMultiCompanion, SecretkModeInfoProtoSingleCompanion, SecretkMsgDataProtoCompanion, SecretkMsgExecuteContractProtoCompanion, SecretkMsgExecuteContractResponseProtoCompanion, SecretkMsgInstantiateContractProtoCompanion, SecretkMsgInstantiateContractResponseProtoCompanion, SecretkMsgStoreCodeProtoCompanion, SecretkMsgStoreCodeResponseProtoCompanion, SecretkProtoMsgCompanion, SecretkSignDocProtoCompanion, SecretkSignModeCompanion, SecretkSignMode, SecretkModeInfoProto, SecretkSignerInfoProtoCompanion, SecretkTxBodyProtoCompanion, SecretkMsgDataProto, SecretkTxMsgDataProtoCompanion, SecretkTxRawProtoCompanion, SecretkNodeInfoResponse, SecretkCosmWasmClient, SecretkSigningCosmWasmClientCompanion, SecretkSigningCosmWasmClient, SecretkAddress, SecretkAxlSign, SecretkAxlSignKeys, SecretkKotlinIntArray, SecretkKotlinx_serialization_jsonJsonElement, SecretkEnigmaUtilsCompanion, SecretkKeyPair, SecretkEnigmaUtils, SecretkResultCompanion, SecretkResult, SecretkTxKeyResponseCompanion, SecretkTxKeyResponse, SecretkBech32, SecretkBech32Bech32Data, SecretkBech32Encoding, SecretkKotlinThrowable, SecretkKotlinError, SecretkBech32Error, SecretkAlgo, SecretkAccountData, SecretkAminoSignResponseCompanion, SecretkAminoSignResponse, SecretkAccountSigningData, SecretkPrehashType, SecretkBaseWallet, SecretkSignResponse, SecretkSignDocProto, SecretkPermitFactory, SecretkExtendedSecp256k1Signature, SecretkHKDFError, SecretkSecp256k1, SecretkSecp256k1Keypair, SecretkEC, SecretkSlip10, SecretkSlip10Result, SecretkSlip10Curve, SecretkBasePointCompanion, SecretkBasePoint<C>, SecretkComputedNaf<C>, SecretkBN, SecretkPreComputed<C>, SecretkComputedDoubles<C>, SecretkRed, SecretkShortCurve, SecretkJPoint, SecretkShortCurvePoint, SecretkCurve, SecretkEndomorphism, SecretkDoublesCompanion, SecretkDoubles, SecretkNafCompanion, SecretkNaf, SecretkPrecomputedScep256k1Companion, SecretkPrecomputedScep256k1, SecretkBasis, SecretkScep256k1Preset, SecretkECCompanion, SecretkKeyPair_, SecretkSignature, SecretkKeyPairSignOptions, SecretkKeyPairOptions, SecretkKeyPair_Companion, SecretkKeyPairValidateResult, SecretkBNCompanion, SecretkEGCDResult, SecretkMPrime, SecretkKotlinLongIterator, SecretkKotlinLongArray, SecretkKotlinIntIterator, SecretkOkioByteStringCompanion, SecretkOkioByteString, SecretkKotlinPair<__covariant A, __covariant B>, SecretkBignumBigIntegerCompanion, SecretkBignumBigIntegerQuotientAndRemainder, SecretkBignumSign, SecretkBignumBigIntegerBigIntegerRange, SecretkBignumBigIntegerSqareRootAndRemainder, SecretkBignumModularBigInteger, SecretkMont, SecretkKotlinException, SecretkKotlinRuntimeException, SecretkKotlinIllegalStateException, SecretkKotlinByteIterator, SecretkKotlinx_serialization_jsonJsonElementCompanion, SecretkKotlinCancellationException, SecretkBignumModularBigIntegerCompanion, SecretkBignumModularQuotientAndRemainder, SecretkKotlinx_serialization_coreSerializersModule, SecretkKotlinx_serialization_coreSerialKind, SecretkKotlinNothing, SecretkKotlinx_coroutines_coreAtomicDesc, SecretkKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp, SecretkKotlinx_coroutines_coreAtomicOp<__contravariant T>, SecretkKotlinx_coroutines_coreOpDescriptor, SecretkKotlinx_coroutines_coreLockFreeLinkedListNode, SecretkKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc, SecretkKotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc<T>, SecretkKotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc<T>;
+@class SecretkKotlinEnumCompanion, SecretkKotlinEnum<E>, SecretkBroadcastMode, SecretkKotlinArray<T>, SecretkStdFee, SecretkTypeValue<V>, SecretkSignJsonCompanion, SecretkSignJson<T>, SecretkBignumBigInteger, SecretkCoinCompanion, SecretkCoin, SecretkCoinProto, SecretkMsgProto, SecretkProtoMsg<M>, SecretkMsgAminoCompanion, SecretkMsgExecuteContractProto, SecretkMsgExecuteContractAminoData, SecretkMsgExecuteContractAminoCompanion, SecretkMsgExecuteContractAminoDataCompanion, SecretkMsgInstantiateContractProto, SecretkMsgQueryPermitAminoData, SecretkMsgQueryPermitAminoCompanion, SecretkPermission, SecretkMsgQueryPermitAminoDataCompanion, SecretkMsgStoreCodeProto, SecretkMsgStoreCodeAminoData, SecretkMsgStoreCodeAminoCompanion, SecretkMsgStoreCodeAminoDataCompanion, SecretkAnyProto, SecretkSigner, SecretkSignerData, SecretkStdFeeCompanion, SecretkStdSignDocCompanion, SecretkStdSignDoc, SecretkPubKey, SecretkStdSignatureCompanion, SecretkStdSignature, SecretkStdTxCompanion, SecretkStdTx<T>, SecretkTxBodyValue<M>, SecretkTxBodyCompanion, SecretkTxBody<M>, SecretkTxBodyValueCompanion, SecretkTxOptions, SecretkV1BetaTypeCompanion, SecretkV1BetaType, SecretkSecp256k1PubKey, SecretkAccountCompanion, SecretkAccount, SecretkAccountResponseCompanion, SecretkAccountResponse, SecretkApplicationVersionCompanion, SecretkApplicationVersion, SecretkBalanceResponseCompanion, SecretkBalanceResponse, SecretkCodeInfoResponseCodeInfo, SecretkCodeInfoResponseCompanion, SecretkCodeInfoResponse, SecretkCodeInfoResponseCodeInfoCompanion, SecretkGasInfoCompanion, SecretkGasInfo, SecretkProtocolVersion, SecretkNodeInfoOther, SecretkNodeInfoCompanion, SecretkNodeInfo, SecretkNodeInfoOtherCompanion, SecretkNodeInfoResponseCompanion, SecretkProtocolVersionCompanion, SecretkTypeValueCompanion, SecretkPubKeyCompanion, SecretkPubKeyEd25519Companion, SecretkPubKeyEd25519, SecretkPubKeyMultisigThresholdCompanion, SecretkPubKeyMultisigThreshold, SecretkPubKeySecp256k1Companion, SecretkPubKeySecp256k1, SecretkPubKeySr25519Companion, SecretkPubKeySr25519, SecretkSecp256k1PubKeyCompanion, SecretkSimulateTxsResponseData, SecretkSimulateTxsResponseCompanion, SecretkSimulateTxsResponse, SecretkLog, SecretkEvent, SecretkSimulateTxsResponseDataCompanion, SecretkSmartQueryResponseCompanion, SecretkTxResponseData, SecretkTxResponseCompanion, SecretkTxResponse, SecretkTxResponseDataCompanion, SecretkWasmResponseCompanion, SecretkWasmResponse<R>, SecretkAttributeCompanion, SecretkAttribute, SecretkEventCompanion, SecretkLogCompanion, SecretkPermissionCompanion, SecretkPermitParams, SecretkPermitCompanion, SecretkPermit, SecretkPermitParamsCompanion, SecretkGetNonceResult, SecretkKotlinByteArray, SecretkAnyProtoCompanion, SecretkSignerInfoProto, SecretkFeeProto, SecretkAuthInfoProtoCompanion, SecretkCoinProtoCompanion, SecretkFeeProtoCompanion, SecretkKeyProtoCompanion, SecretkModeInfoProtoSingle, SecretkModeInfoProtoMulti, SecretkModeInfoProtoCompanion, SecretkModeInfoProtoMultiCompanion, SecretkModeInfoProtoSingleCompanion, SecretkMsgDataProtoCompanion, SecretkMsgExecuteContractProtoCompanion, SecretkMsgExecuteContractResponseProtoCompanion, SecretkMsgInstantiateContractProtoCompanion, SecretkMsgInstantiateContractResponseProtoCompanion, SecretkMsgStoreCodeProtoCompanion, SecretkMsgStoreCodeResponseProtoCompanion, SecretkProtoMsgCompanion, SecretkSignDocProtoCompanion, SecretkSignModeCompanion, SecretkSignMode, SecretkModeInfoProto, SecretkSignerInfoProtoCompanion, SecretkTxBodyProtoCompanion, SecretkMsgDataProto, SecretkTxMsgDataProtoCompanion, SecretkTxRawProtoCompanion, SecretkNodeInfoResponse, SecretkCosmWasmClient, SecretkSigningCosmWasmClientCompanion, SecretkSigningCosmWasmClient, SecretkAddress, SecretkKotlinx_serialization_jsonJsonElement, SecretkEnigmaUtilsCompanion, SecretkKeyPair, SecretkEnigmaUtils, SecretkResultCompanion, SecretkResult, SecretkTxKeyResponseCompanion, SecretkTxKeyResponse, SecretkAlgo, SecretkAccountData, SecretkAminoSignResponseCompanion, SecretkAminoSignResponse, SecretkAccountSigningData, SecretkPrehashType, SecretkBaseWallet, SecretkSignResponse, SecretkSignDocProto, SecretkPermitFactory, SecretkKotlinIntIterator, SecretkKotlinIntArray, SecretkOkioByteStringCompanion, SecretkOkioByteString, SecretkKotlinPair<__covariant A, __covariant B>, SecretkBignumBigIntegerCompanion, SecretkBignumBigIntegerQuotientAndRemainder, SecretkBignumSign, SecretkBignumBigIntegerBigIntegerRange, SecretkBignumBigIntegerSqareRootAndRemainder, SecretkBignumModularBigInteger, SecretkKotlinThrowable, SecretkKotlinException, SecretkKotlinRuntimeException, SecretkKotlinIllegalStateException, SecretkKotlinByteIterator, SecretkKotlinx_serialization_jsonJsonElementCompanion, SecretkKotlinCancellationException, SecretkKotlinx_serialization_coreSerializersModule, SecretkKotlinx_serialization_coreSerialKind, SecretkKotlinNothing, SecretkBignumModularBigIntegerCompanion, SecretkBignumModularQuotientAndRemainder, SecretkKotlinx_coroutines_coreAtomicDesc, SecretkKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp, SecretkKotlinx_coroutines_coreAtomicOp<__contravariant T>, SecretkKotlinx_coroutines_coreOpDescriptor, SecretkKotlinx_coroutines_coreLockFreeLinkedListNode, SecretkKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc, SecretkKotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc<T>, SecretkKotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc<T>;
 
-@protocol SecretkKotlinComparable, SecretkKotlinx_serialization_coreKSerializer, SecretkEncryptionUtils, SecretkMsgAmino, SecretkMsg, SecretkEncryptedMsg, SecretkUnencryptedMsg, SecretkWallet, SecretkKotlinx_coroutines_coreDeferred, SecretkPresetCurve, SecretkBignumBigNumber, SecretkBignumBigNumberCreator, SecretkBignumBitwiseCapable, SecretkBignumByteArraySerializable, SecretkKotlinIterator, SecretkKotlinx_serialization_coreEncoder, SecretkKotlinx_serialization_coreSerialDescriptor, SecretkKotlinx_serialization_coreSerializationStrategy, SecretkKotlinx_serialization_coreDecoder, SecretkKotlinx_serialization_coreDeserializationStrategy, SecretkKotlinx_coroutines_coreSelectClause1, SecretkKotlinx_coroutines_coreChildHandle, SecretkKotlinx_coroutines_coreChildJob, SecretkKotlinx_coroutines_coreDisposableHandle, SecretkKotlinx_coroutines_coreJob, SecretkKotlinSequence, SecretkKotlinx_coroutines_coreSelectClause0, SecretkKotlinCoroutineContextKey, SecretkKotlinCoroutineContextElement, SecretkKotlinCoroutineContext, SecretkBignumBigNumberUtil, SecretkBignumByteArrayDeserializable, SecretkKotlinClosedRange, SecretkKotlinIterable, SecretkKotlinx_serialization_coreCompositeEncoder, SecretkKotlinAnnotation, SecretkKotlinx_serialization_coreCompositeDecoder, SecretkKotlinx_coroutines_coreSelectInstance, SecretkKotlinSuspendFunction1, SecretkKotlinx_coroutines_coreParentJob, SecretkKotlinSuspendFunction0, SecretkKotlinx_serialization_coreSerializersModuleCollector, SecretkKotlinKClass, SecretkKotlinContinuation, SecretkKotlinFunction, SecretkKotlinKDeclarationContainer, SecretkKotlinKAnnotatedElement, SecretkKotlinKClassifier;
+@protocol SecretkKotlinComparable, SecretkKotlinx_serialization_coreKSerializer, SecretkEncryptionUtils, SecretkMsgAmino, SecretkMsg, SecretkEncryptedMsg, SecretkUnencryptedMsg, SecretkWallet, SecretkKotlinx_coroutines_coreDeferred, SecretkKotlinIterator, SecretkKotlinx_serialization_coreEncoder, SecretkKotlinx_serialization_coreSerialDescriptor, SecretkKotlinx_serialization_coreSerializationStrategy, SecretkKotlinx_serialization_coreDecoder, SecretkKotlinx_serialization_coreDeserializationStrategy, SecretkBignumBigNumber, SecretkBignumBigNumberCreator, SecretkBignumBitwiseCapable, SecretkBignumByteArraySerializable, SecretkKotlinx_coroutines_coreSelectClause1, SecretkKotlinx_coroutines_coreChildHandle, SecretkKotlinx_coroutines_coreChildJob, SecretkKotlinx_coroutines_coreDisposableHandle, SecretkKotlinx_coroutines_coreJob, SecretkKotlinSequence, SecretkKotlinx_coroutines_coreSelectClause0, SecretkKotlinCoroutineContextKey, SecretkKotlinCoroutineContextElement, SecretkKotlinCoroutineContext, SecretkKotlinx_serialization_coreCompositeEncoder, SecretkKotlinAnnotation, SecretkKotlinx_serialization_coreCompositeDecoder, SecretkBignumBigNumberUtil, SecretkBignumByteArrayDeserializable, SecretkKotlinClosedRange, SecretkKotlinIterable, SecretkKotlinx_coroutines_coreSelectInstance, SecretkKotlinSuspendFunction1, SecretkKotlinx_coroutines_coreParentJob, SecretkKotlinSuspendFunction0, SecretkKotlinx_serialization_coreSerializersModuleCollector, SecretkKotlinKClass, SecretkKotlinContinuation, SecretkKotlinFunction, SecretkKotlinKDeclarationContainer, SecretkKotlinKAnnotatedElement, SecretkKotlinKClassifier;
 
 NS_ASSUME_NONNULL_BEGIN
 #pragma clang diagnostic push
@@ -27,22 +27,22 @@ __attribute__((swift_name("KotlinBase")))
 - (instancetype)init __attribute__((unavailable));
 + (instancetype)new __attribute__((unavailable));
 + (void)initialize __attribute__((objc_requires_super));
-@end;
+@end
 
 @interface SecretkBase (SecretkBaseCopying) <NSCopying>
-@end;
+@end
 
 __attribute__((swift_name("KotlinMutableSet")))
 @interface SecretkMutableSet<ObjectType> : NSMutableSet<ObjectType>
-@end;
+@end
 
 __attribute__((swift_name("KotlinMutableDictionary")))
 @interface SecretkMutableDictionary<KeyType, ObjectType> : NSMutableDictionary<KeyType, ObjectType>
-@end;
+@end
 
 @interface NSError (NSErrorSecretkKotlinException)
 @property (readonly) id _Nullable kotlinException;
-@end;
+@end
 
 __attribute__((swift_name("KotlinNumber")))
 @interface SecretkNumber : NSNumber
@@ -76,79 +76,79 @@ __attribute__((swift_name("KotlinNumber")))
 + (instancetype)numberWithBool:(BOOL)value __attribute__((unavailable));
 + (instancetype)numberWithInteger:(NSInteger)value __attribute__((unavailable));
 + (instancetype)numberWithUnsignedInteger:(NSUInteger)value __attribute__((unavailable));
-@end;
+@end
 
 __attribute__((swift_name("KotlinByte")))
 @interface SecretkByte : SecretkNumber
 - (instancetype)initWithChar:(char)value;
 + (instancetype)numberWithChar:(char)value;
-@end;
+@end
 
 __attribute__((swift_name("KotlinUByte")))
 @interface SecretkUByte : SecretkNumber
 - (instancetype)initWithUnsignedChar:(unsigned char)value;
 + (instancetype)numberWithUnsignedChar:(unsigned char)value;
-@end;
+@end
 
 __attribute__((swift_name("KotlinShort")))
 @interface SecretkShort : SecretkNumber
 - (instancetype)initWithShort:(short)value;
 + (instancetype)numberWithShort:(short)value;
-@end;
+@end
 
 __attribute__((swift_name("KotlinUShort")))
 @interface SecretkUShort : SecretkNumber
 - (instancetype)initWithUnsignedShort:(unsigned short)value;
 + (instancetype)numberWithUnsignedShort:(unsigned short)value;
-@end;
+@end
 
 __attribute__((swift_name("KotlinInt")))
 @interface SecretkInt : SecretkNumber
 - (instancetype)initWithInt:(int)value;
 + (instancetype)numberWithInt:(int)value;
-@end;
+@end
 
 __attribute__((swift_name("KotlinUInt")))
 @interface SecretkUInt : SecretkNumber
 - (instancetype)initWithUnsignedInt:(unsigned int)value;
 + (instancetype)numberWithUnsignedInt:(unsigned int)value;
-@end;
+@end
 
 __attribute__((swift_name("KotlinLong")))
 @interface SecretkLong : SecretkNumber
 - (instancetype)initWithLongLong:(long long)value;
 + (instancetype)numberWithLongLong:(long long)value;
-@end;
+@end
 
 __attribute__((swift_name("KotlinULong")))
 @interface SecretkULong : SecretkNumber
 - (instancetype)initWithUnsignedLongLong:(unsigned long long)value;
 + (instancetype)numberWithUnsignedLongLong:(unsigned long long)value;
-@end;
+@end
 
 __attribute__((swift_name("KotlinFloat")))
 @interface SecretkFloat : SecretkNumber
 - (instancetype)initWithFloat:(float)value;
 + (instancetype)numberWithFloat:(float)value;
-@end;
+@end
 
 __attribute__((swift_name("KotlinDouble")))
 @interface SecretkDouble : SecretkNumber
 - (instancetype)initWithDouble:(double)value;
 + (instancetype)numberWithDouble:(double)value;
-@end;
+@end
 
 __attribute__((swift_name("KotlinBoolean")))
 @interface SecretkBoolean : SecretkNumber
 - (instancetype)initWithBool:(BOOL)value;
 + (instancetype)numberWithBool:(BOOL)value;
-@end;
+@end
 
 __attribute__((swift_name("KotlinComparable")))
 @protocol SecretkKotlinComparable
 @required
 - (int32_t)compareToOther:(id _Nullable)other __attribute__((swift_name("compareTo(other:)")));
-@end;
+@end
 
 __attribute__((swift_name("KotlinEnum")))
 @interface SecretkKotlinEnum<E> : SecretkBase <SecretkKotlinComparable>
@@ -160,7 +160,7 @@ __attribute__((swift_name("KotlinEnum")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *name __attribute__((swift_name("name")));
 @property (readonly) int32_t ordinal __attribute__((swift_name("ordinal")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("BroadcastMode")))
@@ -173,8 +173,13 @@ __attribute__((swift_name("BroadcastMode")))
 @property (class, readonly) SecretkBroadcastMode *async __attribute__((swift_name("async")));
 + (SecretkKotlinArray<SecretkBroadcastMode *> *)values __attribute__((swift_name("values()")));
 @property (readonly) NSString *mode __attribute__((swift_name("mode")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SignJson")))
 @interface SecretkSignJson<T> : SecretkBase
@@ -196,7 +201,7 @@ __attribute__((swift_name("SignJson")))
 @property (readonly) NSString *memo __attribute__((swift_name("memo")));
 @property (readonly) NSArray<SecretkTypeValue<T> *> *msgs __attribute__((swift_name("msgs")));
 @property (readonly) NSString *sequence __attribute__((swift_name("sequence")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SignJsonCompanion")))
@@ -207,8 +212,13 @@ __attribute__((swift_name("SignJsonCompanion")))
 @property (class, readonly, getter=shared) SecretkSignJsonCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializerTypeParamsSerializers:(SecretkKotlinArray<id<SecretkKotlinx_serialization_coreKSerializer>> *)typeParamsSerializers __attribute__((swift_name("serializer(typeParamsSerializers:)")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializerTypeSerial0:(id<SecretkKotlinx_serialization_coreKSerializer>)typeSerial0 __attribute__((swift_name("serializer(typeSerial0:)")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Coin")))
 @interface SecretkCoin : SecretkBase
@@ -235,7 +245,7 @@ __attribute__((swift_name("Coin")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *amount __attribute__((swift_name("amount")));
 @property (readonly) NSString *denom __attribute__((swift_name("denom")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Coin.Companion")))
@@ -245,24 +255,28 @@ __attribute__((swift_name("Coin.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkCoinCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
 __attribute__((swift_name("Msg")))
 @protocol SecretkMsg
 @required
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note annotations
+ *   kotlin.jvm.JvmName(name="toAminoNullable")
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)toAminoUtils:(id<SecretkEncryptionUtils> _Nullable)utils completionHandler_:(void (^)(id<SecretkMsgAmino> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("toAmino(utils:completionHandler_:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note annotations
+ *   kotlin.jvm.JvmName(name="toProtoNullable")
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)toProtoUtils:(id<SecretkEncryptionUtils> _Nullable)utils completionHandler_:(void (^)(SecretkProtoMsg<SecretkMsgProto *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("toProto(utils:completionHandler_:)")));
-@end;
+@end
 
 __attribute__((swift_name("EncryptedMsg")))
 @protocol SecretkEncryptedMsg <SecretkMsg>
@@ -270,22 +284,27 @@ __attribute__((swift_name("EncryptedMsg")))
 - (NSString *)getMissingParameterWarningMethod:(NSString *)method parameter:(NSString *)parameter __attribute__((swift_name("getMissingParameterWarning(method:parameter:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)toAminoUtils:(id<SecretkEncryptionUtils>)utils completionHandler:(void (^)(id<SecretkMsgAmino> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("toAmino(utils:completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)toProtoUtils:(id<SecretkEncryptionUtils>)utils completionHandler:(void (^)(SecretkProtoMsg<SecretkMsgProto *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("toProto(utils:completionHandler:)")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((swift_name("MsgAmino")))
 @protocol SecretkMsgAmino
 @required
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgAminoCompanion")))
@@ -296,7 +315,7 @@ __attribute__((swift_name("MsgAminoCompanion")))
 @property (class, readonly, getter=shared) SecretkMsgAminoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializerTypeParamsSerializers:(SecretkKotlinArray<id<SecretkKotlinx_serialization_coreKSerializer>> *)typeParamsSerializers __attribute__((swift_name("serializer(typeParamsSerializers:)")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgExecuteContract")))
@@ -304,14 +323,14 @@ __attribute__((swift_name("MsgExecuteContract")))
 - (instancetype)initWithSender:(NSString *)sender contractAddress:(NSString *)contractAddress msg:(NSString *)msg sentFunds:(NSArray<SecretkCoin *> *)sentFunds codeHash:(NSString * _Nullable)codeHash __attribute__((swift_name("init(sender:contractAddress:msg:sentFunds:codeHash:)"))) __attribute__((objc_designated_initializer));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)toAminoUtils:(id<SecretkEncryptionUtils>)utils completionHandler:(void (^)(id<SecretkMsgAmino> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("toAmino(utils:completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)toProtoUtils:(id<SecretkEncryptionUtils>)utils completionHandler:(void (^)(SecretkProtoMsg<SecretkMsgExecuteContractProto *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("toProto(utils:completionHandler:)")));
 @property NSString * _Nullable codeHash __attribute__((swift_name("codeHash")));
@@ -319,15 +338,20 @@ __attribute__((swift_name("MsgExecuteContract")))
 @property (readonly) NSString *msg __attribute__((swift_name("msg")));
 @property NSString *sender __attribute__((swift_name("sender")));
 @property NSArray<SecretkCoin *> *sentFunds __attribute__((swift_name("sentFunds")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgExecuteContractAmino")))
 @interface SecretkMsgExecuteContractAmino : SecretkBase <SecretkMsgAmino>
 - (instancetype)initWithValue:(SecretkMsgExecuteContractAminoData *)value __attribute__((swift_name("init(value:)"))) __attribute__((objc_designated_initializer));
 @property (class, readonly, getter=companion) SecretkMsgExecuteContractAminoCompanion *companion __attribute__((swift_name("companion")));
 @property (readonly) SecretkMsgExecuteContractAminoData *value __attribute__((swift_name("value")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgExecuteContractAmino.Companion")))
@@ -337,8 +361,13 @@ __attribute__((swift_name("MsgExecuteContractAmino.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkMsgExecuteContractAminoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgExecuteContractAminoData")))
 @interface SecretkMsgExecuteContractAminoData : SecretkBase
@@ -348,7 +377,7 @@ __attribute__((swift_name("MsgExecuteContractAminoData")))
 @property (readonly) NSString *msg __attribute__((swift_name("msg")));
 @property (readonly) NSString *sender __attribute__((swift_name("sender")));
 @property (readonly) NSArray<SecretkCoin *> *sentFunds __attribute__((swift_name("sentFunds")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgExecuteContractAminoData.Companion")))
@@ -358,7 +387,7 @@ __attribute__((swift_name("MsgExecuteContractAminoData.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkMsgExecuteContractAminoDataCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgInstantiateContract")))
@@ -366,14 +395,14 @@ __attribute__((swift_name("MsgInstantiateContract")))
 - (instancetype)initWithSender:(NSString *)sender codeId:(SecretkInt * _Nullable)codeId label:(NSString *)label initMsg:(NSString *)initMsg initFunds:(NSArray<SecretkCoin *> *)initFunds codeHash:(NSString * _Nullable)codeHash __attribute__((swift_name("init(sender:codeId:label:initMsg:initFunds:codeHash:)"))) __attribute__((objc_designated_initializer));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)toAminoUtils:(id<SecretkEncryptionUtils>)utils completionHandler:(void (^)(id<SecretkMsgAmino> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("toAmino(utils:completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)toProtoUtils:(id<SecretkEncryptionUtils>)utils completionHandler:(void (^)(SecretkProtoMsg<SecretkMsgInstantiateContractProto *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("toProto(utils:completionHandler:)")));
 @property NSString * _Nullable codeHash __attribute__((swift_name("codeHash")));
@@ -382,15 +411,20 @@ __attribute__((swift_name("MsgInstantiateContract")))
 @property (readonly, getter=doInitMsg) NSString *initMsg __attribute__((swift_name("initMsg")));
 @property NSString *label __attribute__((swift_name("label")));
 @property NSString *sender __attribute__((swift_name("sender")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgQueryPermitAmino")))
 @interface SecretkMsgQueryPermitAmino : SecretkBase <SecretkMsgAmino>
 - (instancetype)initWithValue:(SecretkMsgQueryPermitAminoData *)value __attribute__((swift_name("init(value:)"))) __attribute__((objc_designated_initializer));
 @property (class, readonly, getter=companion) SecretkMsgQueryPermitAminoCompanion *companion __attribute__((swift_name("companion")));
 @property (readonly) SecretkMsgQueryPermitAminoData *value __attribute__((swift_name("value")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgQueryPermitAmino.Companion")))
@@ -400,8 +434,13 @@ __attribute__((swift_name("MsgQueryPermitAmino.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkMsgQueryPermitAminoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgQueryPermitAminoData")))
 @interface SecretkMsgQueryPermitAminoData : SecretkBase
@@ -417,7 +456,7 @@ __attribute__((swift_name("MsgQueryPermitAminoData")))
 @property (readonly) NSArray<NSString *> *allowedTokens __attribute__((swift_name("allowedTokens")));
 @property (readonly) NSArray<SecretkPermission *> *permissions __attribute__((swift_name("permissions")));
 @property (readonly) NSString *permitName __attribute__((swift_name("permitName")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgQueryPermitAminoData.Companion")))
@@ -427,24 +466,24 @@ __attribute__((swift_name("MsgQueryPermitAminoData.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkMsgQueryPermitAminoDataCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
 __attribute__((swift_name("UnencryptedMsg")))
 @protocol SecretkUnencryptedMsg <SecretkMsg>
 @required
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)toAminoWithCompletionHandler:(void (^)(id<SecretkMsgAmino> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("toAmino(completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)toProtoWithCompletionHandler:(void (^)(SecretkProtoMsg<SecretkMsgProto *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("toProto(completionHandler:)")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgStoreCode")))
@@ -452,29 +491,34 @@ __attribute__((swift_name("MsgStoreCode")))
 - (instancetype)initWithSender:(NSString *)sender wasmByteCode:(id)wasmByteCode source:(NSString * _Nullable)source builder:(NSString * _Nullable)builder __attribute__((swift_name("init(sender:wasmByteCode:source:builder:)"))) __attribute__((objc_designated_initializer));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)toAminoWithCompletionHandler:(void (^)(id<SecretkMsgAmino> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("toAmino(completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)toProtoWithCompletionHandler:(void (^)(SecretkProtoMsg<SecretkMsgStoreCodeProto *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("toProto(completionHandler:)")));
 @property (readonly) NSString * _Nullable builder __attribute__((swift_name("builder")));
 @property (readonly) NSString *sender __attribute__((swift_name("sender")));
 @property (readonly) NSString * _Nullable source __attribute__((swift_name("source")));
 @property (readonly) id wasmByteCode __attribute__((swift_name("wasmByteCode")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgStoreCodeAmino")))
 @interface SecretkMsgStoreCodeAmino : SecretkBase <SecretkMsgAmino>
 - (instancetype)initWithValue:(SecretkMsgStoreCodeAminoData *)value __attribute__((swift_name("init(value:)"))) __attribute__((objc_designated_initializer));
 @property (class, readonly, getter=companion) SecretkMsgStoreCodeAminoCompanion *companion __attribute__((swift_name("companion")));
 @property (readonly) SecretkMsgStoreCodeAminoData *value __attribute__((swift_name("value")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgStoreCodeAmino.Companion")))
@@ -484,8 +528,13 @@ __attribute__((swift_name("MsgStoreCodeAmino.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkMsgStoreCodeAminoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgStoreCodeAminoData")))
 @interface SecretkMsgStoreCodeAminoData : SecretkBase
@@ -495,7 +544,7 @@ __attribute__((swift_name("MsgStoreCodeAminoData")))
 @property (readonly) NSString *sender __attribute__((swift_name("sender")));
 @property (readonly) NSString * _Nullable source __attribute__((swift_name("source")));
 @property (readonly) NSString *wasmByteCode __attribute__((swift_name("wasmByteCode")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgStoreCodeAminoData.Companion")))
@@ -505,7 +554,7 @@ __attribute__((swift_name("MsgStoreCodeAminoData.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkMsgStoreCodeAminoDataCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Signer")))
@@ -519,7 +568,7 @@ __attribute__((swift_name("Signer")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) SecretkAnyProto *pubkey __attribute__((swift_name("pubkey")));
 @property (readonly) SecretkBignumBigInteger *sequence __attribute__((swift_name("sequence")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SignerData")))
@@ -535,8 +584,13 @@ __attribute__((swift_name("SignerData")))
 @property (readonly) SecretkBignumBigInteger *accountNumber __attribute__((swift_name("accountNumber")));
 @property (readonly) NSString *chainId __attribute__((swift_name("chainId")));
 @property (readonly) SecretkBignumBigInteger *sequence __attribute__((swift_name("sequence")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("StdFee")))
 @interface SecretkStdFee : SecretkBase
@@ -553,7 +607,7 @@ __attribute__((swift_name("StdFee")))
 @property (readonly) NSArray<SecretkCoin *> *amount __attribute__((swift_name("amount")));
 @property (readonly) NSString *gas __attribute__((swift_name("gas")));
 @property (readonly) NSString * _Nullable granter __attribute__((swift_name("granter")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("StdFee.Companion")))
@@ -563,8 +617,13 @@ __attribute__((swift_name("StdFee.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkStdFeeCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("StdSignDoc")))
 @interface SecretkStdSignDoc : SecretkBase
@@ -586,7 +645,7 @@ __attribute__((swift_name("StdSignDoc")))
 @property (readonly) NSString *memo __attribute__((swift_name("memo")));
 @property (readonly) NSArray<id<SecretkMsgAmino>> *msgs __attribute__((swift_name("msgs")));
 @property (readonly) NSString *sequence __attribute__((swift_name("sequence")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("StdSignDoc.Companion")))
@@ -596,8 +655,13 @@ __attribute__((swift_name("StdSignDoc.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkStdSignDocCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("StdSignature")))
 @interface SecretkStdSignature : SecretkBase
@@ -611,7 +675,7 @@ __attribute__((swift_name("StdSignature")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) SecretkPubKey *pubKey __attribute__((swift_name("pubKey")));
 @property (readonly) NSString *signature __attribute__((swift_name("signature")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("StdSignature.Companion")))
@@ -621,8 +685,13 @@ __attribute__((swift_name("StdSignature.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkStdSignatureCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("StdTx")))
 @interface SecretkStdTx<T> : SecretkBase
@@ -640,7 +709,7 @@ __attribute__((swift_name("StdTx")))
 @property (readonly) NSString * _Nullable memo __attribute__((swift_name("memo")));
 @property (readonly) NSArray<SecretkTypeValue<T> *> *msg __attribute__((swift_name("msg")));
 @property (readonly) NSArray<SecretkStdSignature *> *signatures __attribute__((swift_name("signatures")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("StdTxCompanion")))
@@ -651,8 +720,13 @@ __attribute__((swift_name("StdTxCompanion")))
 @property (class, readonly, getter=shared) SecretkStdTxCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializerTypeParamsSerializers:(SecretkKotlinArray<id<SecretkKotlinx_serialization_coreKSerializer>> *)typeParamsSerializers __attribute__((swift_name("serializer(typeParamsSerializers:)")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializerTypeSerial0:(id<SecretkKotlinx_serialization_coreKSerializer>)typeSerial0 __attribute__((swift_name("serializer(typeSerial0:)")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("TxBody")))
 @interface SecretkTxBody<M> : SecretkBase
@@ -666,7 +740,7 @@ __attribute__((swift_name("TxBody")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *typeUrl __attribute__((swift_name("typeUrl")));
 @property (readonly) SecretkTxBodyValue<M> *value __attribute__((swift_name("value")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("TxBodyCompanion")))
@@ -677,8 +751,13 @@ __attribute__((swift_name("TxBodyCompanion")))
 @property (class, readonly, getter=shared) SecretkTxBodyCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializerTypeParamsSerializers:(SecretkKotlinArray<id<SecretkKotlinx_serialization_coreKSerializer>> *)typeParamsSerializers __attribute__((swift_name("serializer(typeParamsSerializers:)")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializerTypeSerial0:(id<SecretkKotlinx_serialization_coreKSerializer>)typeSerial0 __attribute__((swift_name("serializer(typeSerial0:)")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("TxBodyValue")))
 @interface SecretkTxBodyValue<M> : SecretkBase
@@ -692,7 +771,7 @@ __attribute__((swift_name("TxBodyValue")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *memo __attribute__((swift_name("memo")));
 @property (readonly) NSArray<SecretkProtoMsg<M> *> *messages __attribute__((swift_name("messages")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("TxBodyValueCompanion")))
@@ -703,7 +782,7 @@ __attribute__((swift_name("TxBodyValueCompanion")))
 @property (class, readonly, getter=shared) SecretkTxBodyValueCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializerTypeParamsSerializers:(SecretkKotlinArray<id<SecretkKotlinx_serialization_coreKSerializer>> *)typeParamsSerializers __attribute__((swift_name("serializer(typeParamsSerializers:)")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializerTypeSerial0:(id<SecretkKotlinx_serialization_coreKSerializer>)typeSerial0 __attribute__((swift_name("serializer(typeSerial0:)")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("TxOptions")))
@@ -736,13 +815,23 @@ __attribute__((swift_name("TxOptions")))
 @property (readonly) double gasPriceInFeeDenom __attribute__((swift_name("gasPriceInFeeDenom")));
 @property (readonly) NSString *memo __attribute__((swift_name("memo")));
 @property (readonly) BOOL waitForCommit __attribute__((swift_name("waitForCommit")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((swift_name("V1BetaType")))
 @interface SecretkV1BetaType : SecretkBase
 @property (class, readonly, getter=companion) SecretkV1BetaTypeCompanion *companion __attribute__((swift_name("companion")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Account")))
 @interface SecretkAccount : SecretkV1BetaType
@@ -760,7 +849,7 @@ __attribute__((swift_name("Account")))
 @property (readonly) NSString *address __attribute__((swift_name("address")));
 @property (readonly) SecretkSecp256k1PubKey * _Nullable pub_key __attribute__((swift_name("pub_key")));
 @property (readonly) SecretkBignumBigInteger * _Nullable sequence __attribute__((swift_name("sequence")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Account.Companion")))
@@ -770,8 +859,13 @@ __attribute__((swift_name("Account.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkAccountCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("AccountResponse")))
 @interface SecretkAccountResponse : SecretkBase
@@ -783,7 +877,7 @@ __attribute__((swift_name("AccountResponse")))
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) SecretkAccount *account __attribute__((swift_name("account")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("AccountResponse.Companion")))
@@ -793,8 +887,13 @@ __attribute__((swift_name("AccountResponse.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkAccountResponseCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ApplicationVersion")))
 @interface SecretkApplicationVersion : SecretkBase
@@ -816,7 +915,7 @@ __attribute__((swift_name("ApplicationVersion")))
 @property (readonly) NSString *name __attribute__((swift_name("name")));
 @property (readonly) NSString *server_name __attribute__((swift_name("server_name")));
 @property (readonly) NSString *version __attribute__((swift_name("version")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ApplicationVersion.Companion")))
@@ -826,8 +925,13 @@ __attribute__((swift_name("ApplicationVersion.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkApplicationVersionCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("BalanceResponse")))
 @interface SecretkBalanceResponse : SecretkBase
@@ -839,7 +943,7 @@ __attribute__((swift_name("BalanceResponse")))
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSArray<SecretkCoin *> *balances __attribute__((swift_name("balances")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("BalanceResponse.Companion")))
@@ -849,8 +953,13 @@ __attribute__((swift_name("BalanceResponse.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkBalanceResponseCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("CodeInfoResponse")))
 @interface SecretkCodeInfoResponse : SecretkBase
@@ -862,8 +971,13 @@ __attribute__((swift_name("CodeInfoResponse")))
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) SecretkCodeInfoResponseCodeInfo *codeInfo __attribute__((swift_name("codeInfo")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("CodeInfoResponse.CodeInfo")))
 @interface SecretkCodeInfoResponseCodeInfo : SecretkBase
@@ -883,7 +997,7 @@ __attribute__((swift_name("CodeInfoResponse.CodeInfo")))
 @property (readonly) NSString *codeId __attribute__((swift_name("codeId")));
 @property (readonly) NSString *creator __attribute__((swift_name("creator")));
 @property (readonly) NSString *source __attribute__((swift_name("source")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("CodeInfoResponse.CodeInfoCompanion")))
@@ -893,7 +1007,7 @@ __attribute__((swift_name("CodeInfoResponse.CodeInfoCompanion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkCodeInfoResponseCodeInfoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("CodeInfoResponse.Companion")))
@@ -903,8 +1017,13 @@ __attribute__((swift_name("CodeInfoResponse.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkCodeInfoResponseCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("GasInfo")))
 @interface SecretkGasInfo : SecretkBase
@@ -918,7 +1037,7 @@ __attribute__((swift_name("GasInfo")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *gasUsed __attribute__((swift_name("gasUsed")));
 @property (readonly) NSString *gasWanted __attribute__((swift_name("gasWanted")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("GasInfo.Companion")))
@@ -928,8 +1047,13 @@ __attribute__((swift_name("GasInfo.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkGasInfoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("NodeInfo")))
 @interface SecretkNodeInfo : SecretkBase
@@ -955,7 +1079,7 @@ __attribute__((swift_name("NodeInfo")))
 @property (readonly) SecretkNodeInfoOther *other __attribute__((swift_name("other")));
 @property (readonly) SecretkProtocolVersion *protocol_version __attribute__((swift_name("protocol_version")));
 @property (readonly) NSString *version __attribute__((swift_name("version")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("NodeInfo.Companion")))
@@ -965,8 +1089,13 @@ __attribute__((swift_name("NodeInfo.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkNodeInfoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("NodeInfoOther")))
 @interface SecretkNodeInfoOther : SecretkBase
@@ -980,7 +1109,7 @@ __attribute__((swift_name("NodeInfoOther")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *rpc_address __attribute__((swift_name("rpc_address")));
 @property (readonly) NSString *tx_index __attribute__((swift_name("tx_index")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("NodeInfoOther.Companion")))
@@ -990,8 +1119,13 @@ __attribute__((swift_name("NodeInfoOther.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkNodeInfoOtherCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("NodeInfoResponse")))
 @interface SecretkNodeInfoResponse : SecretkBase
@@ -999,7 +1133,7 @@ __attribute__((swift_name("NodeInfoResponse")))
 @property (class, readonly, getter=companion) SecretkNodeInfoResponseCompanion *companion __attribute__((swift_name("companion")));
 @property (readonly) SecretkApplicationVersion *application_version __attribute__((swift_name("application_version")));
 @property (readonly) SecretkNodeInfo *node_info __attribute__((swift_name("node_info")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("NodeInfoResponse.Companion")))
@@ -1009,8 +1143,13 @@ __attribute__((swift_name("NodeInfoResponse.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkNodeInfoResponseCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ProtocolVersion")))
 @interface SecretkProtocolVersion : SecretkBase
@@ -1026,7 +1165,7 @@ __attribute__((swift_name("ProtocolVersion")))
 @property (readonly) NSString *app __attribute__((swift_name("app")));
 @property (readonly) NSString *block __attribute__((swift_name("block")));
 @property (readonly) NSString *p2p __attribute__((swift_name("p2p")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ProtocolVersion.Companion")))
@@ -1036,18 +1175,28 @@ __attribute__((swift_name("ProtocolVersion.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkProtocolVersionCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((swift_name("TypeValue")))
 @interface SecretkTypeValue<V> : SecretkBase
 @property (class, readonly, getter=companion) SecretkTypeValueCompanion *companion __attribute__((swift_name("companion")));
 @property (readonly) V _Nullable value __attribute__((swift_name("value")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((swift_name("PubKey")))
 @interface SecretkPubKey : SecretkTypeValue<NSString *>
 @property (class, readonly, getter=companion) SecretkPubKeyCompanion *companion __attribute__((swift_name("companion")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("PubKey.Companion")))
@@ -1058,8 +1207,13 @@ __attribute__((swift_name("PubKey.Companion")))
 @property (class, readonly, getter=shared) SecretkPubKeyCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializerTypeParamsSerializers:(SecretkKotlinArray<id<SecretkKotlinx_serialization_coreKSerializer>> *)typeParamsSerializers __attribute__((swift_name("serializer(typeParamsSerializers:)")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("PubKeyEd25519")))
 @interface SecretkPubKeyEd25519 : SecretkPubKey
@@ -1071,7 +1225,7 @@ __attribute__((swift_name("PubKeyEd25519")))
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *value __attribute__((swift_name("value")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("PubKeyEd25519.Companion")))
@@ -1081,8 +1235,13 @@ __attribute__((swift_name("PubKeyEd25519.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkPubKeyEd25519Companion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("PubKeyMultisigThreshold")))
 @interface SecretkPubKeyMultisigThreshold : SecretkPubKey
@@ -1094,7 +1253,7 @@ __attribute__((swift_name("PubKeyMultisigThreshold")))
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *value __attribute__((swift_name("value")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("PubKeyMultisigThreshold.Companion")))
@@ -1104,8 +1263,13 @@ __attribute__((swift_name("PubKeyMultisigThreshold.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkPubKeyMultisigThresholdCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("PubKeySecp256k1")))
 @interface SecretkPubKeySecp256k1 : SecretkPubKey
@@ -1117,7 +1281,7 @@ __attribute__((swift_name("PubKeySecp256k1")))
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *value __attribute__((swift_name("value")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("PubKeySecp256k1.Companion")))
@@ -1127,8 +1291,13 @@ __attribute__((swift_name("PubKeySecp256k1.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkPubKeySecp256k1Companion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("PubKeySr25519")))
 @interface SecretkPubKeySr25519 : SecretkPubKey
@@ -1140,7 +1309,7 @@ __attribute__((swift_name("PubKeySr25519")))
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *value __attribute__((swift_name("value")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("PubKeySr25519.Companion")))
@@ -1150,8 +1319,13 @@ __attribute__((swift_name("PubKeySr25519.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkPubKeySr25519Companion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Secp256k1PubKey")))
 @interface SecretkSecp256k1PubKey : SecretkV1BetaType
@@ -1163,7 +1337,7 @@ __attribute__((swift_name("Secp256k1PubKey")))
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *key __attribute__((swift_name("key")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Secp256k1PubKey.Companion")))
@@ -1173,8 +1347,13 @@ __attribute__((swift_name("Secp256k1PubKey.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkSecp256k1PubKeyCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SimulateTxsResponse")))
 @interface SecretkSimulateTxsResponse : SecretkBase
@@ -1194,7 +1373,7 @@ __attribute__((swift_name("SimulateTxsResponse")))
 @property (readonly) SecretkGasInfo * _Nullable gasInfo __attribute__((swift_name("gasInfo")));
 @property (readonly) NSString * _Nullable message __attribute__((swift_name("message")));
 @property (readonly) SecretkSimulateTxsResponseData * _Nullable result __attribute__((swift_name("result")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SimulateTxsResponse.Companion")))
@@ -1204,8 +1383,13 @@ __attribute__((swift_name("SimulateTxsResponse.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkSimulateTxsResponseCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SimulateTxsResponseData")))
 @interface SecretkSimulateTxsResponseData : SecretkBase
@@ -1221,7 +1405,7 @@ __attribute__((swift_name("SimulateTxsResponseData")))
 @property (readonly) NSString *data __attribute__((swift_name("data")));
 @property (readonly) NSArray<SecretkEvent *> *events __attribute__((swift_name("events")));
 @property (readonly) NSArray<SecretkLog *> *logs __attribute__((swift_name("logs")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SimulateTxsResponseData.Companion")))
@@ -1231,8 +1415,13 @@ __attribute__((swift_name("SimulateTxsResponseData.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkSimulateTxsResponseDataCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SmartQueryResponse")))
 @interface SecretkSmartQueryResponse : SecretkBase
@@ -1241,7 +1430,7 @@ __attribute__((swift_name("SmartQueryResponse")))
 @property (readonly) SecretkInt * _Nullable code __attribute__((swift_name("code")));
 @property (readonly) NSString * _Nullable data __attribute__((swift_name("data")));
 @property (readonly) NSString * _Nullable message __attribute__((swift_name("message")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SmartQueryResponse.Companion")))
@@ -1251,8 +1440,13 @@ __attribute__((swift_name("SmartQueryResponse.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkSmartQueryResponseCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("TxResponse")))
 @interface SecretkTxResponse : SecretkBase
@@ -1264,7 +1458,7 @@ __attribute__((swift_name("TxResponse")))
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) SecretkTxResponseData *tx_response __attribute__((swift_name("tx_response")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("TxResponse.Companion")))
@@ -1274,8 +1468,13 @@ __attribute__((swift_name("TxResponse.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkTxResponseCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("TxResponseData")))
 @interface SecretkTxResponseData : SecretkBase
@@ -1313,7 +1512,7 @@ __attribute__((swift_name("TxResponseData")))
 @property (readonly) NSString *timestamp __attribute__((swift_name("timestamp")));
 @property SecretkAnyProto * _Nullable tx __attribute__((swift_name("tx")));
 @property (readonly) NSString *txhash __attribute__((swift_name("txhash")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("TxResponseData.Companion")))
@@ -1323,7 +1522,7 @@ __attribute__((swift_name("TxResponseData.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkTxResponseDataCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("TypeValueCompanion")))
@@ -1334,7 +1533,7 @@ __attribute__((swift_name("TypeValueCompanion")))
 @property (class, readonly, getter=shared) SecretkTypeValueCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializerTypeParamsSerializers:(SecretkKotlinArray<id<SecretkKotlinx_serialization_coreKSerializer>> *)typeParamsSerializers __attribute__((swift_name("serializer(typeParamsSerializers:)")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializerTypeSerial0:(id<SecretkKotlinx_serialization_coreKSerializer>)typeSerial0 __attribute__((swift_name("serializer(typeSerial0:)")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("V1BetaType.Companion")))
@@ -1345,8 +1544,13 @@ __attribute__((swift_name("V1BetaType.Companion")))
 @property (class, readonly, getter=shared) SecretkV1BetaTypeCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializerTypeParamsSerializers:(SecretkKotlinArray<id<SecretkKotlinx_serialization_coreKSerializer>> *)typeParamsSerializers __attribute__((swift_name("serializer(typeParamsSerializers:)")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("WasmResponse")))
 @interface SecretkWasmResponse<R> : SecretkBase
@@ -1360,7 +1564,7 @@ __attribute__((swift_name("WasmResponse")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *height __attribute__((swift_name("height")));
 @property (readonly) R _Nullable result __attribute__((swift_name("result")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("WasmResponseCompanion")))
@@ -1371,8 +1575,13 @@ __attribute__((swift_name("WasmResponseCompanion")))
 @property (class, readonly, getter=shared) SecretkWasmResponseCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializerTypeParamsSerializers:(SecretkKotlinArray<id<SecretkKotlinx_serialization_coreKSerializer>> *)typeParamsSerializers __attribute__((swift_name("serializer(typeParamsSerializers:)")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializerTypeSerial0:(id<SecretkKotlinx_serialization_coreKSerializer>)typeSerial0 __attribute__((swift_name("serializer(typeSerial0:)")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Attribute")))
 @interface SecretkAttribute : SecretkBase
@@ -1386,7 +1595,7 @@ __attribute__((swift_name("Attribute")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property NSString *key __attribute__((swift_name("key")));
 @property NSString *value __attribute__((swift_name("value")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Attribute.Companion")))
@@ -1396,8 +1605,13 @@ __attribute__((swift_name("Attribute.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkAttributeCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Event")))
 @interface SecretkEvent : SecretkBase
@@ -1411,7 +1625,7 @@ __attribute__((swift_name("Event")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSArray<SecretkAttribute *> *attributes __attribute__((swift_name("attributes")));
 @property (readonly) NSString *type __attribute__((swift_name("type")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Event.Companion")))
@@ -1421,8 +1635,13 @@ __attribute__((swift_name("Event.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkEventCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Log")))
 @interface SecretkLog : SecretkBase
@@ -1438,7 +1657,7 @@ __attribute__((swift_name("Log")))
 @property (readonly) NSArray<SecretkEvent *> *events __attribute__((swift_name("events")));
 @property (readonly) NSString *log __attribute__((swift_name("log")));
 @property (readonly) int64_t msg_index __attribute__((swift_name("msg_index")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Log.Companion")))
@@ -1448,8 +1667,13 @@ __attribute__((swift_name("Log.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkLogCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Permission")))
 @interface SecretkPermission : SecretkKotlinEnum<SecretkPermission *>
@@ -1462,7 +1686,7 @@ __attribute__((swift_name("Permission")))
 @property (class, readonly) SecretkPermission *balance __attribute__((swift_name("balance")));
 @property (class, readonly) SecretkPermission *allowance __attribute__((swift_name("allowance")));
 + (SecretkKotlinArray<SecretkPermission *> *)values __attribute__((swift_name("values()")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Permission.Companion")))
@@ -1472,8 +1696,14 @@ __attribute__((swift_name("Permission.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkPermissionCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+- (id<SecretkKotlinx_serialization_coreKSerializer>)serializerTypeParamsSerializers:(SecretkKotlinArray<id<SecretkKotlinx_serialization_coreKSerializer>> *)typeParamsSerializers __attribute__((swift_name("serializer(typeParamsSerializers:)")));
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Permit")))
 @interface SecretkPermit : SecretkBase
@@ -1487,7 +1717,7 @@ __attribute__((swift_name("Permit")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) SecretkPermitParams *params __attribute__((swift_name("params")));
 @property (readonly) SecretkStdSignature *signature __attribute__((swift_name("signature")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Permit.Companion")))
@@ -1497,8 +1727,13 @@ __attribute__((swift_name("Permit.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkPermitCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Permit.Params")))
 @interface SecretkPermitParams : SecretkBase
@@ -1516,7 +1751,7 @@ __attribute__((swift_name("Permit.Params")))
 @property (readonly) NSString *chainId __attribute__((swift_name("chainId")));
 @property (readonly) NSArray<SecretkPermission *> *permissions __attribute__((swift_name("permissions")));
 @property (readonly) NSString *permitName __attribute__((swift_name("permitName")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Permit.ParamsCompanion")))
@@ -1526,7 +1761,7 @@ __attribute__((swift_name("Permit.ParamsCompanion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkPermitParamsCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("GetNonceResult")))
@@ -1540,8 +1775,13 @@ __attribute__((swift_name("GetNonceResult")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) SecretkBignumBigInteger *accountNumber __attribute__((swift_name("accountNumber")));
 @property (readonly) SecretkBignumBigInteger *sequence __attribute__((swift_name("sequence")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("AnyProto")))
 @interface SecretkAnyProto : SecretkBase
@@ -1550,7 +1790,7 @@ __attribute__((swift_name("AnyProto")))
 - (SecretkMsgProto *)toMsg __attribute__((swift_name("toMsg()")));
 @property (readonly) NSString *typeUrl __attribute__((swift_name("typeUrl")));
 @property (readonly) SecretkKotlinByteArray *value __attribute__((swift_name("value")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("AnyProto.Companion")))
@@ -1560,12 +1800,17 @@ __attribute__((swift_name("AnyProto.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkAnyProtoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
 __attribute__((swift_name("MsgProto")))
 @interface SecretkMsgProto : SecretkBase
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("AuthInfoProto")))
 @interface SecretkAuthInfoProto : SecretkMsgProto
@@ -1573,7 +1818,7 @@ __attribute__((swift_name("AuthInfoProto")))
 @property (class, readonly, getter=companion) SecretkAuthInfoProtoCompanion *companion __attribute__((swift_name("companion")));
 @property (readonly) SecretkFeeProto * _Nullable fee __attribute__((swift_name("fee")));
 @property (readonly) NSArray<SecretkSignerInfoProto *> *signerInfos __attribute__((swift_name("signerInfos")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("AuthInfoProto.Companion")))
@@ -1583,8 +1828,13 @@ __attribute__((swift_name("AuthInfoProto.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkAuthInfoProtoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("CoinProto")))
 @interface SecretkCoinProto : SecretkBase
@@ -1598,7 +1848,7 @@ __attribute__((swift_name("CoinProto")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *amount __attribute__((swift_name("amount")));
 @property (readonly) NSString *denom __attribute__((swift_name("denom")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("CoinProto.Companion")))
@@ -1608,8 +1858,13 @@ __attribute__((swift_name("CoinProto.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkCoinProtoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("FeeProto")))
 @interface SecretkFeeProto : SecretkMsgProto
@@ -1619,7 +1874,7 @@ __attribute__((swift_name("FeeProto")))
 @property (readonly) SecretkInt * _Nullable gasLimit __attribute__((swift_name("gasLimit")));
 @property (readonly) NSString * _Nullable granter __attribute__((swift_name("granter")));
 @property (readonly) NSString * _Nullable payer __attribute__((swift_name("payer")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("FeeProto.Companion")))
@@ -1629,15 +1884,20 @@ __attribute__((swift_name("FeeProto.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkFeeProtoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("KeyProto")))
 @interface SecretkKeyProto : SecretkMsgProto
 - (instancetype)initWithKey:(SecretkKotlinByteArray * _Nullable)key __attribute__((swift_name("init(key:)"))) __attribute__((objc_designated_initializer));
 @property (class, readonly, getter=companion) SecretkKeyProtoCompanion *companion __attribute__((swift_name("companion")));
 @property (readonly) SecretkKotlinByteArray * _Nullable key __attribute__((swift_name("key")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("KeyProto.Companion")))
@@ -1647,8 +1907,13 @@ __attribute__((swift_name("KeyProto.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkKeyProtoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ModeInfoProto")))
 @interface SecretkModeInfoProto : SecretkMsgProto
@@ -1656,7 +1921,7 @@ __attribute__((swift_name("ModeInfoProto")))
 @property (class, readonly, getter=companion) SecretkModeInfoProtoCompanion *companion __attribute__((swift_name("companion")));
 @property (readonly) SecretkModeInfoProtoMulti * _Nullable multi __attribute__((swift_name("multi")));
 @property (readonly) SecretkModeInfoProtoSingle * _Nullable single __attribute__((swift_name("single")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ModeInfoProto.Companion")))
@@ -1666,8 +1931,13 @@ __attribute__((swift_name("ModeInfoProto.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkModeInfoProtoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ModeInfoProtoMulti")))
 @interface SecretkModeInfoProtoMulti : SecretkMsgProto
@@ -1679,7 +1949,7 @@ __attribute__((swift_name("ModeInfoProtoMulti")))
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString * _Nullable modeInfos __attribute__((swift_name("modeInfos")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ModeInfoProtoMulti.Companion")))
@@ -1689,8 +1959,13 @@ __attribute__((swift_name("ModeInfoProtoMulti.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkModeInfoProtoMultiCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ModeInfoProtoSingle")))
 @interface SecretkModeInfoProtoSingle : SecretkMsgProto
@@ -1702,7 +1977,7 @@ __attribute__((swift_name("ModeInfoProtoSingle")))
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) int32_t mode __attribute__((swift_name("mode")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ModeInfoProtoSingle.Companion")))
@@ -1712,8 +1987,13 @@ __attribute__((swift_name("ModeInfoProtoSingle.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkModeInfoProtoSingleCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgDataProto")))
 @interface SecretkMsgDataProto : SecretkMsgProto
@@ -1722,7 +2002,7 @@ __attribute__((swift_name("MsgDataProto")))
 - (SecretkMsgProto *)toMsgResponseType __attribute__((swift_name("toMsgResponseType()")));
 @property (readonly) SecretkKotlinByteArray * _Nullable data __attribute__((swift_name("data")));
 @property (readonly) NSString *msgType __attribute__((swift_name("msgType")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgDataProto.Companion")))
@@ -1732,8 +2012,13 @@ __attribute__((swift_name("MsgDataProto.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkMsgDataProtoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgExecuteContractProto")))
 @interface SecretkMsgExecuteContractProto : SecretkMsgProto
@@ -1745,7 +2030,7 @@ __attribute__((swift_name("MsgExecuteContractProto")))
 @property (readonly) SecretkKotlinByteArray *msg __attribute__((swift_name("msg")));
 @property (readonly) SecretkKotlinByteArray *sender __attribute__((swift_name("sender")));
 @property (readonly) NSArray<SecretkCoinProto *> *sentFunds __attribute__((swift_name("sentFunds")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgExecuteContractProto.Companion")))
@@ -1755,15 +2040,20 @@ __attribute__((swift_name("MsgExecuteContractProto.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkMsgExecuteContractProtoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgExecuteContractResponseProto")))
 @interface SecretkMsgExecuteContractResponseProto : SecretkMsgProto
 - (instancetype)initWithData:(SecretkKotlinByteArray * _Nullable)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
 @property (class, readonly, getter=companion) SecretkMsgExecuteContractResponseProtoCompanion *companion __attribute__((swift_name("companion")));
 @property (readonly) SecretkKotlinByteArray * _Nullable data __attribute__((swift_name("data")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgExecuteContractResponseProto.Companion")))
@@ -1773,8 +2063,13 @@ __attribute__((swift_name("MsgExecuteContractResponseProto.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkMsgExecuteContractResponseProtoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgInstantiateContractProto")))
 @interface SecretkMsgInstantiateContractProto : SecretkMsgProto
@@ -1787,7 +2082,7 @@ __attribute__((swift_name("MsgInstantiateContractProto")))
 @property (readonly, getter=doInitMsg) SecretkKotlinByteArray *initMsg __attribute__((swift_name("initMsg")));
 @property (readonly) NSString *label __attribute__((swift_name("label")));
 @property (readonly) SecretkKotlinByteArray *sender __attribute__((swift_name("sender")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgInstantiateContractProto.Companion")))
@@ -1797,8 +2092,13 @@ __attribute__((swift_name("MsgInstantiateContractProto.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkMsgInstantiateContractProtoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgInstantiateContractResponseProto")))
 @interface SecretkMsgInstantiateContractResponseProto : SecretkMsgProto
@@ -1806,7 +2106,7 @@ __attribute__((swift_name("MsgInstantiateContractResponseProto")))
 @property (class, readonly, getter=companion) SecretkMsgInstantiateContractResponseProtoCompanion *companion __attribute__((swift_name("companion")));
 @property (readonly) NSString *address __attribute__((swift_name("address")));
 @property (readonly) SecretkKotlinByteArray * _Nullable data __attribute__((swift_name("data")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgInstantiateContractResponseProto.Companion")))
@@ -1816,8 +2116,13 @@ __attribute__((swift_name("MsgInstantiateContractResponseProto.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkMsgInstantiateContractResponseProtoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgStoreCodeProto")))
 @interface SecretkMsgStoreCodeProto : SecretkMsgProto
@@ -1827,7 +2132,7 @@ __attribute__((swift_name("MsgStoreCodeProto")))
 @property (readonly) SecretkKotlinByteArray *sender __attribute__((swift_name("sender")));
 @property (readonly) NSString * _Nullable source __attribute__((swift_name("source")));
 @property (readonly) SecretkKotlinByteArray *wasmByteCode __attribute__((swift_name("wasmByteCode")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgStoreCodeProto.Companion")))
@@ -1837,15 +2142,20 @@ __attribute__((swift_name("MsgStoreCodeProto.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkMsgStoreCodeProtoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgStoreCodeResponseProto")))
 @interface SecretkMsgStoreCodeResponseProto : SecretkMsgProto
 - (instancetype)initWithCodeId:(int32_t)codeId __attribute__((swift_name("init(codeId:)"))) __attribute__((objc_designated_initializer));
 @property (class, readonly, getter=companion) SecretkMsgStoreCodeResponseProtoCompanion *companion __attribute__((swift_name("companion")));
 @property (readonly) int32_t codeId __attribute__((swift_name("codeId")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgStoreCodeResponseProto.Companion")))
@@ -1855,8 +2165,13 @@ __attribute__((swift_name("MsgStoreCodeResponseProto.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkMsgStoreCodeResponseProtoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ProtoMsg")))
 @interface SecretkProtoMsg<M> : SecretkBase
@@ -1864,7 +2179,7 @@ __attribute__((swift_name("ProtoMsg")))
 @property (class, readonly, getter=companion) SecretkProtoMsgCompanion *companion __attribute__((swift_name("companion")));
 @property (readonly) NSString *typeUrl __attribute__((swift_name("typeUrl")));
 @property (readonly) M value __attribute__((swift_name("value")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ProtoMsgCompanion")))
@@ -1875,8 +2190,13 @@ __attribute__((swift_name("ProtoMsgCompanion")))
 @property (class, readonly, getter=shared) SecretkProtoMsgCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializerTypeParamsSerializers:(SecretkKotlinArray<id<SecretkKotlinx_serialization_coreKSerializer>> *)typeParamsSerializers __attribute__((swift_name("serializer(typeParamsSerializers:)")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializerTypeSerial0:(id<SecretkKotlinx_serialization_coreKSerializer>)typeSerial0 __attribute__((swift_name("serializer(typeSerial0:)")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SignDocProto")))
 @interface SecretkSignDocProto : SecretkMsgProto
@@ -1886,7 +2206,7 @@ __attribute__((swift_name("SignDocProto")))
 @property (readonly) SecretkKotlinByteArray *authInfoBytes __attribute__((swift_name("authInfoBytes")));
 @property (readonly) SecretkKotlinByteArray *bodyBytes __attribute__((swift_name("bodyBytes")));
 @property (readonly) NSString *chainId __attribute__((swift_name("chainId")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SignDocProto.Companion")))
@@ -1896,7 +2216,7 @@ __attribute__((swift_name("SignDocProto.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkSignDocProtoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SignMode")))
@@ -1913,7 +2233,7 @@ __attribute__((swift_name("SignMode")))
 @property (class, readonly) SecretkSignMode *unrecognized __attribute__((swift_name("unrecognized")));
 + (SecretkKotlinArray<SecretkSignMode *> *)values __attribute__((swift_name("values()")));
 @property (readonly) int32_t value __attribute__((swift_name("value")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SignMode.Companion")))
@@ -1923,8 +2243,13 @@ __attribute__((swift_name("SignMode.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkSignModeCompanion *shared __attribute__((swift_name("shared")));
 - (SecretkSignMode * _Nullable)getByValueValue:(SecretkInt * _Nullable)value __attribute__((swift_name("getByValue(value:)")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SignerInfoProto")))
 @interface SecretkSignerInfoProto : SecretkMsgProto
@@ -1933,7 +2258,7 @@ __attribute__((swift_name("SignerInfoProto")))
 @property (readonly) SecretkModeInfoProto * _Nullable modeInfo __attribute__((swift_name("modeInfo")));
 @property (readonly) SecretkAnyProto * _Nullable publicKey __attribute__((swift_name("publicKey")));
 @property (readonly) SecretkInt * _Nullable sequence __attribute__((swift_name("sequence")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SignerInfoProto.Companion")))
@@ -1943,8 +2268,13 @@ __attribute__((swift_name("SignerInfoProto.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkSignerInfoProtoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("TxBodyProto")))
 @interface SecretkTxBodyProto : SecretkMsgProto
@@ -1955,7 +2285,7 @@ __attribute__((swift_name("TxBodyProto")))
 @property (readonly) NSArray<SecretkAnyProto *> *messages __attribute__((swift_name("messages")));
 @property (readonly) NSArray<SecretkAnyProto *> *nonCriticalExtensionOptions __attribute__((swift_name("nonCriticalExtensionOptions")));
 @property (readonly) NSString *timeoutHeight __attribute__((swift_name("timeoutHeight")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("TxBodyProto.Companion")))
@@ -1965,15 +2295,20 @@ __attribute__((swift_name("TxBodyProto.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkTxBodyProtoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("TxMsgDataProto")))
 @interface SecretkTxMsgDataProto : SecretkMsgProto
 - (instancetype)initWithData:(NSArray<SecretkMsgDataProto *> *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
 @property (class, readonly, getter=companion) SecretkTxMsgDataProtoCompanion *companion __attribute__((swift_name("companion")));
 @property (readonly) NSArray<SecretkMsgDataProto *> *data __attribute__((swift_name("data")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("TxMsgDataProto.Companion")))
@@ -1983,8 +2318,13 @@ __attribute__((swift_name("TxMsgDataProto.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkTxMsgDataProtoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("TxRawProto")))
 @interface SecretkTxRawProto : SecretkMsgProto
@@ -1993,7 +2333,7 @@ __attribute__((swift_name("TxRawProto")))
 @property (readonly) SecretkKotlinByteArray *authInfoBytes __attribute__((swift_name("authInfoBytes")));
 @property (readonly) SecretkKotlinByteArray *bodyBytes __attribute__((swift_name("bodyBytes")));
 @property (readonly) NSArray<SecretkKotlinByteArray *> *signatures __attribute__((swift_name("signatures")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("TxRawProto.Companion")))
@@ -2003,96 +2343,104 @@ __attribute__((swift_name("TxRawProto.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkTxRawProtoCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
 __attribute__((swift_name("CosmWasmClient")))
 @interface SecretkCosmWasmClient : SecretkBase
+
+/**
+ * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
 - (instancetype)initWithApiUrl:(NSString *)apiUrl encryptionUtils:(id<SecretkEncryptionUtils>)encryptionUtils broadcastMode:(SecretkBroadcastMode *)broadcastMode chainId:(NSString * _Nullable)chainId __attribute__((swift_name("init(apiUrl:encryptionUtils:broadcastMode:chainId:)"))) __attribute__((objc_designated_initializer));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)getAccountAddress:(NSString *)address completionHandler:(void (^)(SecretkAccount * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getAccount(address:completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)getBalanceAddress:(NSString *)address completionHandler:(void (^)(SecretkBalanceResponse * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getBalance(address:completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)getChainIdWithCompletionHandler:(void (^)(NSString * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getChainId(completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)getCodeHashByContractAddrAddr:(NSString *)addr completionHandler:(void (^)(NSString * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getCodeHashByContractAddr(addr:completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)getCodeInfoByCodeIdCodeId:(NSString *)codeId completionHandler:(void (^)(SecretkCodeInfoResponseCodeInfo * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getCodeInfoByCodeId(codeId:completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)getNonceAddress:(NSString *)address completionHandler:(void (^)(SecretkGetNonceResult * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getNonce(address:completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)nodeInfoWithCompletionHandler:(void (^)(SecretkNodeInfoResponse * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("nodeInfo(completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)postSimulateTxTx:(id)tx completionHandler:(void (^)(SecretkSimulateTxsResponse * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("postSimulateTx(tx:completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)postTxTx:(id)tx completionHandler:(void (^)(SecretkTxResponseData * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("postTx(tx:completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)queryContractSmartContractAddress:(NSString *)contractAddress queryMsg:(NSString *)queryMsg contractCodeHash:(NSString * _Nullable)contractCodeHash completionHandler:(void (^)(NSString * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("queryContractSmart(contractAddress:queryMsg:contractCodeHash:completionHandler:)")));
 @property NSString * _Nullable anyValidAddress __attribute__((swift_name("anyValidAddress")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SigningCosmWasmClient")))
 @interface SecretkSigningCosmWasmClient : SecretkCosmWasmClient
+
+/**
+ * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
 - (instancetype)initWithApiUrl:(NSString *)apiUrl encryptionUtils:(id<SecretkEncryptionUtils>)encryptionUtils broadcastMode:(SecretkBroadcastMode *)broadcastMode chainId:(NSString * _Nullable)chainId __attribute__((swift_name("init(apiUrl:encryptionUtils:broadcastMode:chainId:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 @property (class, readonly, getter=companion) SecretkSigningCosmWasmClientCompanion *companion __attribute__((swift_name("companion")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)executeMsgs:(NSArray<id<SecretkMsg>> *)msgs txOptions:(SecretkTxOptions *)txOptions completionHandler:(void (^)(SecretkTxResponseData * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("execute(msgs:txOptions:completionHandler:)")));
 - (int32_t)gasToFeeGasLimit:(int32_t)gasLimit gasPrice:(double)gasPrice __attribute__((swift_name("gasToFee(gasLimit:gasPrice:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)simulateMsgs:(NSArray<id<SecretkMsg>> *)msgs txOptions:(SecretkTxOptions *)txOptions completionHandler:(void (^)(SecretkGasInfo * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("simulate(msgs:txOptions:completionHandler:)")));
 @property (readonly) NSString *apiUrl __attribute__((swift_name("apiUrl")));
 @property NSString *senderAddress __attribute__((swift_name("senderAddress")));
 @property (readonly) id<SecretkWallet> wallet __attribute__((swift_name("wallet")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SigningCosmWasmClient.Companion")))
@@ -2103,17 +2451,17 @@ __attribute__((swift_name("SigningCosmWasmClient.Companion")))
 @property (class, readonly, getter=shared) SecretkSigningCosmWasmClientCompanion *shared __attribute__((swift_name("shared")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)doInitApiUrl:(NSString *)apiUrl senderAddress:(NSString *)senderAddress wallet:(id<SecretkWallet>)wallet enigmaUtils:(id<SecretkEncryptionUtils>)enigmaUtils broadcastMode:(SecretkBroadcastMode *)broadcastMode chainId:(NSString * _Nullable)chainId completionHandler:(void (^)(SecretkSigningCosmWasmClient * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doInit(apiUrl:senderAddress:wallet:enigmaUtils:broadcastMode:chainId:completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)doInitApiUrl:(NSString *)apiUrl senderAddress:(NSString *)senderAddress wallet:(id<SecretkWallet>)wallet seed:(id _Nullable)seed broadcastMode:(SecretkBroadcastMode *)broadcastMode chainId:(NSString * _Nullable)chainId completionHandler:(void (^)(SecretkSigningCosmWasmClient * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doInit(apiUrl:senderAddress:wallet:seed:broadcastMode:chainId:completionHandler:)")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Address")))
@@ -2124,61 +2472,36 @@ __attribute__((swift_name("Address")))
 @property (class, readonly, getter=shared) SecretkAddress *shared __attribute__((swift_name("shared")));
 - (NSString *)pubkeyToAddressPubkey:(SecretkPubKey *)pubkey prefix:(NSString *)prefix __attribute__((swift_name("pubkeyToAddress(pubkey:prefix:)")));
 - (NSString *)rawSecp256k1PubkeyToAddressPubkeyRaw:(id)pubkeyRaw prefix:(NSString *)prefix __attribute__((swift_name("rawSecp256k1PubkeyToAddress(pubkeyRaw:prefix:)")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("AxlSign")))
-@interface SecretkAxlSign : SecretkBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)axlSign __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SecretkAxlSign *shared __attribute__((swift_name("shared")));
-- (SecretkAxlSignKeys *)generateKeyPairSeed:(SecretkKotlinIntArray *)seed __attribute__((swift_name("generateKeyPair(seed:)")));
-- (SecretkKotlinIntArray * _Nullable)openMessagePublicKey:(SecretkKotlinIntArray *)publicKey signedMsg:(SecretkKotlinIntArray *)signedMsg __attribute__((swift_name("openMessage(publicKey:signedMsg:)")));
-- (NSString *)openMessageStrPublicKey:(SecretkKotlinIntArray *)publicKey signedMsg:(SecretkKotlinIntArray *)signedMsg __attribute__((swift_name("openMessageStr(publicKey:signedMsg:)")));
-- (SecretkKotlinIntArray *)randomBytesSize:(int32_t)size __attribute__((swift_name("randomBytes(size:)")));
-- (SecretkKotlinIntArray *)sharedKeySecretKey:(SecretkKotlinIntArray *)secretKey publicKey:(SecretkKotlinIntArray *)publicKey __attribute__((swift_name("sharedKey(secretKey:publicKey:)")));
-- (SecretkKotlinIntArray *)signSecretKey:(SecretkKotlinIntArray *)secretKey msg:(SecretkKotlinIntArray *)msg opt_random:(SecretkKotlinIntArray * _Nullable)opt_random __attribute__((swift_name("sign(secretKey:msg:opt_random:)")));
-- (SecretkKotlinIntArray *)signMessageSecretKey:(SecretkKotlinIntArray *)secretKey msg:(SecretkKotlinIntArray *)msg opt_random:(SecretkKotlinIntArray * _Nullable)opt_random __attribute__((swift_name("signMessage(secretKey:msg:opt_random:)")));
-- (int32_t)verifyPublicKey:(SecretkKotlinIntArray *)publicKey msg:(SecretkKotlinIntArray *)msg signature:(SecretkKotlinIntArray *)signature __attribute__((swift_name("verify(publicKey:msg:signature:)")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("AxlSign.Keys")))
-@interface SecretkAxlSignKeys : SecretkBase
-- (instancetype)initWithPk:(SecretkKotlinIntArray *)pk sk:(SecretkKotlinIntArray *)sk __attribute__((swift_name("init(pk:sk:)"))) __attribute__((objc_designated_initializer));
-@property SecretkKotlinIntArray *privateKey __attribute__((swift_name("privateKey")));
-@property SecretkKotlinIntArray *publicKey __attribute__((swift_name("publicKey")));
-@end;
+@end
 
 __attribute__((swift_name("EncryptionUtils")))
 @protocol SecretkEncryptionUtils
 @required
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)decryptCiphertext:(id)ciphertext nonce:(id)nonce completionHandler:(void (^)(id _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("decrypt(ciphertext:nonce:completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)encryptContractCodeHash:(NSString *)contractCodeHash message:(NSDictionary<NSString *, SecretkKotlinx_serialization_jsonJsonElement *> *)message completionHandler:(void (^)(id _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("encrypt(contractCodeHash:message:completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)getPubkeyWithCompletionHandler:(void (^)(id<SecretkKotlinx_coroutines_coreDeferred> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getPubkey(completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)getTxEncryptionKeyNonce:(id)nonce completionHandler:(void (^)(id _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getTxEncryptionKey(nonce:completionHandler:)")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("EnigmaUtils")))
@@ -2186,33 +2509,33 @@ __attribute__((swift_name("EnigmaUtils")))
 @property (class, readonly, getter=companion) SecretkEnigmaUtilsCompanion *companion __attribute__((swift_name("companion")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)decryptCiphertext:(id)ciphertext nonce:(id)nonce completionHandler:(void (^)(id _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("decrypt(ciphertext:nonce:completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)encryptContractCodeHash:(NSString *)contractCodeHash message:(NSDictionary<NSString *, SecretkKotlinx_serialization_jsonJsonElement *> *)message completionHandler:(void (^)(id _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("encrypt(contractCodeHash:message:completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)getPubkeyWithCompletionHandler:(void (^)(id<SecretkKotlinx_coroutines_coreDeferred> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getPubkey(completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)getTxEncryptionKeyNonce:(id)nonce completionHandler:(void (^)(id _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getTxEncryptionKey(nonce:completionHandler:)")));
 @property (readonly) NSString *apiUrl __attribute__((swift_name("apiUrl")));
 @property (readonly) id hkdfSalt __attribute__((swift_name("hkdfSalt")));
 @property (readonly) id pubKey __attribute__((swift_name("pubKey")));
 @property (readonly) id seed __attribute__((swift_name("seed")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("EnigmaUtils.Companion")))
@@ -2223,24 +2546,24 @@ __attribute__((swift_name("EnigmaUtils.Companion")))
 @property (class, readonly, getter=shared) SecretkEnigmaUtilsCompanion *shared __attribute__((swift_name("shared")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)GenerateNewKeyPairWithCompletionHandler:(void (^)(SecretkKeyPair * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("GenerateNewKeyPair(completionHandler:)")));
 - (SecretkKeyPair *)GenerateNewKeyPairFromSeedSeed:(id)seed __attribute__((swift_name("GenerateNewKeyPairFromSeed(seed:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)GenerateNewSeedWithCompletionHandler:(void (^)(id _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("GenerateNewSeed(completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)doInitApiUrl:(NSString *)apiUrl seed:(id _Nullable)seed completionHandler:(void (^)(SecretkEnigmaUtils * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doInit(apiUrl:seed:completionHandler:)")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("KeyPair")))
@@ -2254,8 +2577,13 @@ __attribute__((swift_name("KeyPair")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) id privKey __attribute__((swift_name("privKey")));
 @property (readonly) id pubKey __attribute__((swift_name("pubKey")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Result")))
 @interface SecretkResult : SecretkBase
@@ -2267,7 +2595,7 @@ __attribute__((swift_name("Result")))
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *TxKey __attribute__((swift_name("TxKey")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Result.Companion")))
@@ -2277,8 +2605,13 @@ __attribute__((swift_name("Result.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkResultCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("TxKeyResponse")))
 @interface SecretkTxKeyResponse : SecretkBase
@@ -2292,7 +2625,7 @@ __attribute__((swift_name("TxKeyResponse")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) int32_t height __attribute__((swift_name("height")));
 @property (readonly) SecretkResult *result __attribute__((swift_name("result")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("TxKeyResponse.Companion")))
@@ -2302,112 +2635,7 @@ __attribute__((swift_name("TxKeyResponse.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkTxKeyResponseCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Bech32")))
-@interface SecretkBech32 : SecretkBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)bech32 __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SecretkBech32 *shared __attribute__((swift_name("shared")));
-- (SecretkBech32Bech32Data *)decodeMessage:(NSString *)message __attribute__((swift_name("decode(message:)")));
-- (SecretkBech32Bech32Data *)decodeTo5BitArrayStr:(NSString *)str __attribute__((swift_name("decodeTo5BitArray(str:)")));
-- (NSString *)encodeBech32:(SecretkBech32Bech32Data *)bech32 __attribute__((swift_name("encode(bech32:)")));
-- (NSString *)encodeEncoding:(SecretkBech32Encoding *)encoding prefix:(NSString *)prefix data:(SecretkKotlinByteArray *)data __attribute__((swift_name("encode(encoding:prefix:data:)")));
-- (int32_t)polymodStepPre:(int32_t)pre __attribute__((swift_name("polymodStep(pre:)")));
-- (int32_t)prefixChkPrefix:(NSString *)prefix __attribute__((swift_name("prefixChk(prefix:)")));
-- (SecretkBech32Encoding * _Nullable)verifyChecksumHrp:(NSString *)hrp values:(SecretkKotlinByteArray *)values __attribute__((swift_name("verifyChecksum(hrp:values:)")));
-@property (readonly) NSString *CHARSET __attribute__((swift_name("CHARSET")));
-@property (readonly) SecretkKotlinByteArray *CHARSET_REV __attribute__((swift_name("CHARSET_REV")));
-@property (readonly) int32_t CHECKSUM_LENGTH __attribute__((swift_name("CHECKSUM_LENGTH")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Bech32.Bech32Data")))
-@interface SecretkBech32Bech32Data : SecretkBase
-- (instancetype)initWithEncoding:(SecretkBech32Encoding *)encoding hrp:(NSString *)hrp data:(SecretkKotlinByteArray *)data __attribute__((swift_name("init(encoding:hrp:data:)"))) __attribute__((objc_designated_initializer));
-@property (readonly) SecretkKotlinByteArray *data __attribute__((swift_name("data")));
-@property (readonly) SecretkBech32Encoding *encoding __attribute__((swift_name("encoding")));
-@property (readonly) NSString *hrp __attribute__((swift_name("hrp")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Bech32.Encoding")))
-@interface SecretkBech32Encoding : SecretkKotlinEnum<SecretkBech32Encoding *>
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
-@property (class, readonly) SecretkBech32Encoding *bech32 __attribute__((swift_name("bech32")));
-@property (class, readonly) SecretkBech32Encoding *bech32m __attribute__((swift_name("bech32m")));
-+ (SecretkKotlinArray<SecretkBech32Encoding *> *)values __attribute__((swift_name("values()")));
-@property (readonly) int32_t checksum __attribute__((swift_name("checksum")));
-@end;
-
-__attribute__((swift_name("KotlinThrowable")))
-@interface SecretkKotlinThrowable : SecretkBase
-- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithCause:(SecretkKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
-+ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SecretkKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
-- (SecretkKotlinArray<NSString *> *)getStackTrace __attribute__((swift_name("getStackTrace()")));
-- (void)printStackTrace __attribute__((swift_name("printStackTrace()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SecretkKotlinThrowable * _Nullable cause __attribute__((swift_name("cause")));
-@property (readonly) NSString * _Nullable message __attribute__((swift_name("message")));
-- (NSError *)asError __attribute__((swift_name("asError()")));
-@end;
-
-__attribute__((swift_name("KotlinError")))
-@interface SecretkKotlinError : SecretkKotlinThrowable
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
-+ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SecretkKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithCause:(SecretkKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
-@end;
-
-__attribute__((swift_name("Bech32Error")))
-@interface SecretkBech32Error : SecretkKotlinError
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
-+ (instancetype)new __attribute__((unavailable));
-- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
-- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SecretkKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
-- (instancetype)initWithCause:(SecretkKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
-@property (readonly) NSString *message __attribute__((swift_name("message")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("InvalidCharacter")))
-@interface SecretkInvalidCharacter : SecretkBech32Error
-- (instancetype)initWithCharacter:(unichar)character index:(int32_t)index __attribute__((swift_name("init(character:index:)"))) __attribute__((objc_designated_initializer));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("InvalidChecksum")))
-@interface SecretkInvalidChecksum : SecretkBech32Error
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
-+ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("InvalidDataLength")))
-@interface SecretkInvalidDataLength : SecretkBech32Error
-- (instancetype)initWithMessage:(NSString *)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("InvalidPrefix")))
-@interface SecretkInvalidPrefix : SecretkBech32Error
-- (instancetype)initWithMessage:(NSString *)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("RangeError")))
-@interface SecretkRangeError : SecretkBech32Error
-- (instancetype)initWithMessage:(NSString *)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("AccountData")))
@@ -2423,7 +2651,7 @@ __attribute__((swift_name("AccountData")))
 @property (readonly) NSString *address __attribute__((swift_name("address")));
 @property (readonly) SecretkAlgo *algo __attribute__((swift_name("algo")));
 @property (readonly) id pubkey __attribute__((swift_name("pubkey")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("AccountSigningData")))
@@ -2431,7 +2659,7 @@ __attribute__((swift_name("AccountSigningData")))
 - (instancetype)initWithAddress:(NSString *)address algo:(SecretkAlgo *)algo pubkey:(id)pubkey privkey:(id)privkey __attribute__((swift_name("init(address:algo:pubkey:privkey:)"))) __attribute__((objc_designated_initializer));
 @property (readonly) id privkey __attribute__((swift_name("privkey")));
 @property (readonly) SecretkAccountData *publicData __attribute__((swift_name("publicData")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Algo")))
@@ -2443,8 +2671,13 @@ __attribute__((swift_name("Algo")))
 @property (class, readonly) SecretkAlgo *ed25519 __attribute__((swift_name("ed25519")));
 @property (class, readonly) SecretkAlgo *sr25519 __attribute__((swift_name("sr25519")));
 + (SecretkKotlinArray<SecretkAlgo *> *)values __attribute__((swift_name("values()")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("AminoSignResponse")))
 @interface SecretkAminoSignResponse : SecretkBase
@@ -2458,7 +2691,7 @@ __attribute__((swift_name("AminoSignResponse")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) SecretkStdSignature *signature __attribute__((swift_name("signature")));
 @property (readonly, getter=signed) SecretkStdSignDoc *signed_ __attribute__((swift_name("signed_")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("AminoSignResponse.Companion")))
@@ -2468,46 +2701,46 @@ __attribute__((swift_name("AminoSignResponse.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkAminoSignResponseCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
 __attribute__((swift_name("Wallet")))
 @protocol SecretkWallet
 @required
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)getAccountsWithCompletionHandler:(void (^)(NSArray<SecretkAccountData *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getAccounts(completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)getSignModeWithCompletionHandler:(void (^)(SecretkSignMode * _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("getSignMode(completionHandler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)signAminoSignerAddress:(NSString *)signerAddress signDoc:(SecretkStdSignDoc *)signDoc completionHandler:(void (^)(SecretkAminoSignResponse * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("signAmino(signerAddress:signDoc:completionHandler:)")));
-@end;
+@end
 
 __attribute__((swift_name("BaseWallet")))
 @interface SecretkBaseWallet : SecretkBase <SecretkWallet>
 - (SecretkAccountSigningData *)addAccountMnemonic:(NSString * _Nullable)mnemonic __attribute__((swift_name("addAccount(mnemonic:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)getAccountsWithCompletionHandler:(void (^)(NSArray<SecretkAccountData *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getAccounts(completionHandler:)")));
 - (SecretkAccountData * _Nullable)removeAccountAddress:(NSString *)address __attribute__((swift_name("removeAccount(address:)")));
 - (SecretkStdSignature *)signSignerAddress:(NSString *)signerAddress signBytes:(id)signBytes prehashType:(SecretkPrehashType *)prehashType __attribute__((swift_name("sign(signerAddress:signBytes:prehashType:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)signAminoSignerAddress:(NSString *)signerAddress signDoc:(SecretkStdSignDoc *)signDoc completionHandler:(void (^)(SecretkAminoSignResponse * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("signAmino(signerAddress:signDoc:completionHandler:)")));
 @property (readonly) SecretkMutableSet<NSString *> *accountAddresses __attribute__((swift_name("accountAddresses")));
@@ -2515,7 +2748,7 @@ __attribute__((swift_name("BaseWallet")))
 @property (readonly) SecretkMutableDictionary<NSString *, SecretkAccountSigningData *> *addressToAccountSigningData __attribute__((swift_name("addressToAccountSigningData")));
 @property (readonly) NSString *bech32Prefix __attribute__((swift_name("bech32Prefix")));
 @property (readonly) SecretkKotlinArray<id> *hdPath __attribute__((swift_name("hdPath")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("AminoWallet")))
@@ -2523,11 +2756,11 @@ __attribute__((swift_name("AminoWallet")))
 - (instancetype)initWithMnemonic:(NSString *)mnemonic __attribute__((swift_name("init(mnemonic:)"))) __attribute__((objc_designated_initializer));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)getSignModeWithCompletionHandler:(void (^)(SecretkSignMode * _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("getSignMode(completionHandler:)")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("DirectSigningWallet")))
@@ -2537,12 +2770,12 @@ __attribute__((swift_name("DirectSigningWallet")))
 - (instancetype)initWithMnemonic:(NSString * _Nullable)mnemonic __attribute__((swift_name("init(mnemonic:)"))) __attribute__((objc_designated_initializer));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)getSignModeWithCompletionHandler:(void (^)(SecretkSignMode * _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("getSignMode(completionHandler:)")));
 - (SecretkSignResponse *)signDirectSignerAddress:(NSString *)signerAddress signDoc:(SecretkSignDocProto *)signDoc __attribute__((swift_name("signDirect(signerAddress:signDoc:)")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("PrehashType")))
@@ -2554,7 +2787,7 @@ __attribute__((swift_name("PrehashType")))
 @property (class, readonly) SecretkPrehashType *sha512 __attribute__((swift_name("sha512")));
 + (SecretkKotlinArray<SecretkPrehashType *> *)values __attribute__((swift_name("values()")));
 @property (readonly) NSString *type __attribute__((swift_name("type")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SignResponse")))
@@ -2568,7 +2801,7 @@ __attribute__((swift_name("SignResponse")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) SecretkStdSignature *signature __attribute__((swift_name("signature")));
 @property (readonly, getter=signed) SecretkSignDocProto *signed_ __attribute__((swift_name("signed_")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("PermitFactory")))
@@ -2579,674 +2812,11 @@ __attribute__((swift_name("PermitFactory")))
 @property (class, readonly, getter=shared) SecretkPermitFactory *shared __attribute__((swift_name("shared")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)doNewPermitWallet:(id<SecretkWallet>)wallet owner:(NSString *)owner chainId:(NSString *)chainId permitName:(NSString *)permitName allowedTokens:(NSArray<NSString *> *)allowedTokens permissions:(NSArray<SecretkPermission *> *)permissions completionHandler:(void (^)(SecretkPermit * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doNewPermit(wallet:owner:chainId:permitName:allowedTokens:permissions:completionHandler:)")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("AesSIV")))
-@interface SecretkAesSIV : SecretkBase
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
-+ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-
-/**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)decryptTxEncryptionKey:(id)txEncryptionKey ciphertext:(id)ciphertext associatedData:(id)associatedData completionHandler:(void (^)(id _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("decrypt(txEncryptionKey:ciphertext:associatedData:completionHandler:)")));
-
-/**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)encryptTxEncryptionKey:(id)txEncryptionKey plaintext:(id)plaintext associatedData:(id)associatedData completionHandler:(void (^)(id _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("encrypt(txEncryptionKey:plaintext:associatedData:completionHandler:)")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ExtendedSecp256k1Signature")))
-@interface SecretkExtendedSecp256k1Signature : SecretkBase
-- (instancetype)initWithR:(id)r s:(id)s recoveryParam:(int32_t)recoveryParam __attribute__((swift_name("init(r:s:recoveryParam:)"))) __attribute__((objc_designated_initializer));
-- (id)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
-- (id)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
-- (int32_t)component3 __attribute__((swift_name("component3()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkExtendedSecp256k1Signature *)doCopyR:(id)r s:(id)s recoveryParam:(int32_t)recoveryParam __attribute__((swift_name("doCopy(r:s:recoveryParam:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) id r __attribute__((swift_name("r")));
-@property (readonly) int32_t recoveryParam __attribute__((swift_name("recoveryParam")));
-@property (readonly) id s __attribute__((swift_name("s")));
-@end;
-
-__attribute__((swift_name("HKDFError")))
-@interface SecretkHKDFError : SecretkKotlinError
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
-+ (instancetype)new __attribute__((unavailable));
-- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
-- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SecretkKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
-- (instancetype)initWithCause:(SecretkKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
-@property (readonly) NSString *message __attribute__((swift_name("message")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("HKDFInvalidLenError")))
-@interface SecretkHKDFInvalidLenError : SecretkHKDFError
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
-+ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("HKDFInvalidSaltError")))
-@interface SecretkHKDFInvalidSaltError : SecretkHKDFError
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
-+ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("HMACCalculationFailedError")))
-@interface SecretkHMACCalculationFailedError : SecretkHKDFError
-- (instancetype)initWithMessage:(NSString *)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Secp256k1")))
-@interface SecretkSecp256k1 : SecretkBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)secp256k1 __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SecretkSecp256k1 *shared __attribute__((swift_name("shared")));
-- (id)compressPubkeyPubkey:(id)pubkey __attribute__((swift_name("compressPubkey(pubkey:)")));
-- (SecretkExtendedSecp256k1Signature *)createSignatureMessageHash:(id)messageHash privkey:(id)privkey __attribute__((swift_name("createSignature(messageHash:privkey:)")));
-- (SecretkSecp256k1Keypair *)makeKeypairPrivkey:(id)privkey __attribute__((swift_name("makeKeypair(privkey:)")));
-@property (readonly) SecretkEC *secp256k1 __attribute__((swift_name("secp256k1")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Secp256k1Keypair")))
-@interface SecretkSecp256k1Keypair : SecretkBase
-- (instancetype)initWithPubkey:(id)pubkey privkey:(id)privkey __attribute__((swift_name("init(pubkey:privkey:)"))) __attribute__((objc_designated_initializer));
-- (id)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
-- (id)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkSecp256k1Keypair *)doCopyPubkey:(id)pubkey privkey:(id)privkey __attribute__((swift_name("doCopy(pubkey:privkey:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) id privkey __attribute__((swift_name("privkey")));
-@property (readonly) id pubkey __attribute__((swift_name("pubkey")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Slip10")))
-@interface SecretkSlip10 : SecretkBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)slip10 __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SecretkSlip10 *shared __attribute__((swift_name("shared")));
-- (SecretkSlip10Result *)derivePathCurve:(SecretkSlip10Curve *)curve seed:(id)seed path:(SecretkKotlinArray<id> *)path __attribute__((swift_name("derivePath(curve:seed:path:)")));
-@property (readonly) SecretkEC *secp256k1 __attribute__((swift_name("secp256k1")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Slip10Curve")))
-@interface SecretkSlip10Curve : SecretkKotlinEnum<SecretkSlip10Curve *>
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
-@property (class, readonly) SecretkSlip10Curve *secp256k1 __attribute__((swift_name("secp256k1")));
-@property (class, readonly) SecretkSlip10Curve *ed25519 __attribute__((swift_name("ed25519")));
-+ (SecretkKotlinArray<SecretkSlip10Curve *> *)values __attribute__((swift_name("values()")));
-@property (readonly) NSString *key __attribute__((swift_name("key")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Slip10Result")))
-@interface SecretkSlip10Result : SecretkBase
-- (instancetype)initWithChainCode:(id)chainCode privkey:(id)privkey __attribute__((swift_name("init(chainCode:privkey:)"))) __attribute__((objc_designated_initializer));
-- (id)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
-- (id)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkSlip10Result *)doCopyChainCode:(id)chainCode privkey:(id)privkey __attribute__((swift_name("doCopy(chainCode:privkey:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) id chainCode __attribute__((swift_name("chainCode")));
-@property (readonly) id privkey __attribute__((swift_name("privkey")));
-@end;
-
-__attribute__((swift_name("BasePoint")))
-@interface SecretkBasePoint<C> : SecretkBase
-@property (class, readonly, getter=companion) SecretkBasePointCompanion *companion __attribute__((swift_name("companion")));
-- (SecretkBasePoint<C> *)dbl __attribute__((swift_name("dbl()")));
-- (id)encodeCompact:(BOOL)compact __attribute__((swift_name("encode(compact:)")));
-- (id)encodeCompressed __attribute__((swift_name("encodeCompressed()")));
-- (SecretkComputedNaf<C> *)getNAFPointsWnd:(int32_t)wnd __attribute__((swift_name("getNAFPoints(wnd:)")));
-- (BOOL)hasDoublesK:(SecretkBN *)k __attribute__((swift_name("hasDoubles(k:)")));
-- (BOOL)isInfinity __attribute__((swift_name("isInfinity()")));
-- (SecretkBasePoint<C> *)mulK:(SecretkBN *)k __attribute__((swift_name("mul(k:)")));
-- (SecretkBasePoint<C> *)negPrecompute:(SecretkBoolean * _Nullable)precompute __attribute__((swift_name("neg(precompute:)")));
-- (BOOL)validate __attribute__((swift_name("validate()")));
-@property (readonly) C curve __attribute__((swift_name("curve")));
-@property (readonly) BOOL inf __attribute__((swift_name("inf")));
-@property SecretkPreComputed<C> * _Nullable precomputed __attribute__((swift_name("precomputed")));
-@property (readonly) NSString *type __attribute__((swift_name("type")));
-@property SecretkBN * _Nullable x __attribute__((swift_name("x")));
-@property SecretkBN * _Nullable y __attribute__((swift_name("y")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("BasePointCompanion")))
-@interface SecretkBasePointCompanion : SecretkBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SecretkBasePointCompanion *shared __attribute__((swift_name("shared")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ComputedDoubles")))
-@interface SecretkComputedDoubles<C> : SecretkBase
-- (instancetype)initWithStep:(int32_t)step points:(NSArray<SecretkBasePoint<C> *> *)points __attribute__((swift_name("init(step:points:)"))) __attribute__((objc_designated_initializer));
-- (int32_t)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
-- (NSArray<SecretkBasePoint<C> *> *)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkComputedDoubles<C> *)doCopyStep:(int32_t)step points:(NSArray<SecretkBasePoint<C> *> *)points __attribute__((swift_name("doCopy(step:points:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<SecretkBasePoint<C> *> *points __attribute__((swift_name("points")));
-@property (readonly) int32_t step __attribute__((swift_name("step")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ComputedNaf")))
-@interface SecretkComputedNaf<C> : SecretkBase
-- (instancetype)initWithWnd:(int32_t)wnd points:(NSArray<SecretkBasePoint<C> *> *)points __attribute__((swift_name("init(wnd:points:)"))) __attribute__((objc_designated_initializer));
-- (int32_t)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
-- (NSArray<SecretkBasePoint<C> *> *)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkComputedNaf<C> *)doCopyWnd:(int32_t)wnd points:(NSArray<SecretkBasePoint<C> *> *)points __attribute__((swift_name("doCopy(wnd:points:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<SecretkBasePoint<C> *> *points __attribute__((swift_name("points")));
-@property (readonly) int32_t wnd __attribute__((swift_name("wnd")));
-@end;
-
-__attribute__((swift_name("Curve")))
-@interface SecretkCurve : SecretkBase
-- (SecretkBasePoint<id> *)decodePointBytes:(id)bytes enc:(NSString * _Nullable)enc __attribute__((swift_name("decodePoint(bytes:enc:)")));
-- (SecretkBasePoint<id> *)pointFromJSONG:(NSString *)g gRed:(BOOL)gRed __attribute__((swift_name("pointFromJSON(g:gRed:)")));
-- (BOOL)validateBasePoint:(SecretkBasePoint<id> *)basePoint __attribute__((swift_name("validate(basePoint:)")));
-@property (readonly) SecretkKotlinArray<SecretkInt *> *_wnafT1 __attribute__((swift_name("_wnafT1")));
-@property (readonly) SecretkKotlinArray<SecretkKotlinArray<SecretkInt *> *> *_wnafT3 __attribute__((swift_name("_wnafT3")));
-@property (readonly) SecretkKotlinArray<SecretkInt *> *_wnafT4 __attribute__((swift_name("_wnafT4")));
-@property (readonly) uint64_t bitLength __attribute__((swift_name("bitLength")));
-@property (readonly) SecretkBasePoint<id> * _Nullable g __attribute__((swift_name("g")));
-@property (readonly) SecretkBN * _Nullable n __attribute__((swift_name("n")));
-@property (readonly) SecretkBN *one __attribute__((swift_name("one")));
-@property (readonly) SecretkBN *p __attribute__((swift_name("p")));
-@property (readonly) id<SecretkPresetCurve> presetCurve __attribute__((swift_name("presetCurve")));
-@property (readonly) SecretkRed *red __attribute__((swift_name("red")));
-@property (readonly) SecretkBN *two __attribute__((swift_name("two")));
-@property (readonly) SecretkBN *zero __attribute__((swift_name("zero")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("JPoint")))
-@interface SecretkJPoint : SecretkBasePoint<SecretkShortCurve *>
-- (instancetype)initWithCurve:(SecretkShortCurve *)curve x:(SecretkBN * _Nullable)x y:(SecretkBN * _Nullable)y z:(SecretkBN * _Nullable)z __attribute__((swift_name("init(curve:x:y:z:)"))) __attribute__((objc_designated_initializer));
-- (SecretkJPoint *)addP:(SecretkJPoint *)p __attribute__((swift_name("add(p:)")));
-- (SecretkJPoint *)dbl __attribute__((swift_name("dbl()")));
-- (SecretkJPoint *)dblpPow:(SecretkInt * _Nullable)pow __attribute__((swift_name("dblp(pow:)")));
-- (id)encodeCompact:(BOOL)compact __attribute__((swift_name("encode(compact:)")));
-- (BOOL)isInfinity __attribute__((swift_name("isInfinity()")));
-- (SecretkJPoint *)mixedAddP:(SecretkShortCurvePoint *)p __attribute__((swift_name("mixedAdd(p:)")));
-- (SecretkJPoint *)mulK:(SecretkBN *)k __attribute__((swift_name("mul(k:)")));
-- (SecretkJPoint *)negPrecompute:(SecretkBoolean * _Nullable)precompute __attribute__((swift_name("neg(precompute:)")));
-- (SecretkShortCurvePoint *)toP __attribute__((swift_name("toP()")));
-@property (readonly) BOOL inf __attribute__((swift_name("inf")));
-@property SecretkBN * _Nullable x __attribute__((swift_name("x")));
-@property SecretkBN * _Nullable y __attribute__((swift_name("y")));
-@property SecretkBN * _Nullable z __attribute__((swift_name("z")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("PreComputed")))
-@interface SecretkPreComputed<C> : SecretkBase
-- (instancetype)initWithBeta:(SecretkBasePoint<C> * _Nullable)beta doubles:(SecretkComputedDoubles<C> * _Nullable)doubles naf:(SecretkComputedNaf<C> *)naf __attribute__((swift_name("init(beta:doubles:naf:)"))) __attribute__((objc_designated_initializer));
-- (SecretkBasePoint<C> * _Nullable)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkComputedDoubles<C> * _Nullable)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkComputedNaf<C> *)component3 __attribute__((swift_name("component3()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkPreComputed<C> *)doCopyBeta:(SecretkBasePoint<C> * _Nullable)beta doubles:(SecretkComputedDoubles<C> * _Nullable)doubles naf:(SecretkComputedNaf<C> *)naf __attribute__((swift_name("doCopy(beta:doubles:naf:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property SecretkBasePoint<C> * _Nullable beta __attribute__((swift_name("beta")));
-@property (readonly) SecretkComputedDoubles<C> * _Nullable doubles __attribute__((swift_name("doubles")));
-@property (readonly) SecretkComputedNaf<C> *naf __attribute__((swift_name("naf")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ShortCurve")))
-@interface SecretkShortCurve : SecretkCurve
-- (instancetype)initWithPresetCurve:(id<SecretkPresetCurve>)presetCurve __attribute__((swift_name("init(presetCurve:)"))) __attribute__((objc_designated_initializer));
-- (SecretkShortCurvePoint *)decodePointBytes:(id)bytes enc:(NSString * _Nullable)enc __attribute__((swift_name("decodePoint(bytes:enc:)")));
-- (SecretkBasePoint<SecretkShortCurve *> *)endoWnafMulAddPoints:(NSArray<SecretkShortCurvePoint *> *)points coeffs:(NSArray<SecretkBN *> *)coeffs jacobianResult:(id _Nullable)jacobianResult __attribute__((swift_name("endoWnafMulAdd(points:coeffs:jacobianResult:)")));
-- (SecretkBasePoint<SecretkShortCurve *> *)fixedNafMulP:(SecretkShortCurvePoint *)p k:(SecretkBN *)k __attribute__((swift_name("fixedNafMul(p:k:)")));
-- (SecretkJPoint *)jpointX:(SecretkBN * _Nullable)x y:(SecretkBN * _Nullable)y z:(SecretkBN * _Nullable)z __attribute__((swift_name("jpoint(x:y:z:)")));
-- (SecretkShortCurvePoint *)pointX:(SecretkBN * _Nullable)x y:(SecretkBN * _Nullable)y isRed:(SecretkBoolean * _Nullable)isRed __attribute__((swift_name("point(x:y:isRed:)")));
-- (SecretkShortCurvePoint *)pointX:(NSString *)x y:(NSString *)y isRed_:(SecretkBoolean * _Nullable)isRed __attribute__((swift_name("point(x:y:isRed_:)")));
-- (SecretkBasePoint<id> *)pointFromJSONG:(NSString *)g gRed:(BOOL)gRed __attribute__((swift_name("pointFromJSON(g:gRed:)")));
-- (BOOL)validateBasePoint:(SecretkBasePoint<id> *)_point __attribute__((swift_name("validate(basePoint:)")));
-- (SecretkBasePoint<SecretkShortCurve *> *)wnafMulAddDefW:(int32_t)defW points:(NSMutableArray<id> *)points coeffs:(NSArray<id> *)coeffs len:(int32_t)len jacobianResult:(id _Nullable)jacobianResult __attribute__((swift_name("wnafMulAdd(defW:points:coeffs:len:jacobianResult:)")));
-@property (readonly) SecretkBN *a __attribute__((swift_name("a")));
-@property (readonly) SecretkBN *b __attribute__((swift_name("b")));
-@property (readonly) SecretkEndomorphism * _Nullable endo __attribute__((swift_name("endo")));
-@property (readonly) BOOL threeA __attribute__((swift_name("threeA")));
-@property (readonly) BOOL zeroA __attribute__((swift_name("zeroA")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ShortCurvePoint")))
-@interface SecretkShortCurvePoint : SecretkBasePoint<SecretkShortCurve *>
-- (instancetype)initWithCurve:(SecretkShortCurve *)curve type:(NSString *)type x:(NSString * _Nullable)x y:(NSString * _Nullable)y isRed:(SecretkBoolean * _Nullable)isRed __attribute__((swift_name("init(curve:type:x:y:isRed:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithCurve:(SecretkShortCurve *)curve type:(NSString *)type x:(SecretkBN * _Nullable)x y:(SecretkBN * _Nullable)y isRed_:(SecretkBoolean * _Nullable)isRed __attribute__((swift_name("init(curve:type:x:y:isRed_:)"))) __attribute__((objc_designated_initializer));
-- (SecretkShortCurvePoint *)addP:(SecretkShortCurvePoint *)p __attribute__((swift_name("add(p:)")));
-- (SecretkBasePoint<SecretkShortCurve *> *)dbl __attribute__((swift_name("dbl()")));
-- (id)encodeCompact:(BOOL)compact __attribute__((swift_name("encode(compact:)")));
-- (SecretkShortCurvePoint * _Nullable)getBeta __attribute__((swift_name("getBeta()")));
-- (SecretkComputedDoubles<SecretkShortCurve *> *)getDoublesStep:(SecretkInt * _Nullable)step power:(SecretkInt * _Nullable)power __attribute__((swift_name("getDoubles(step:power:)")));
-- (BOOL)isInfinity __attribute__((swift_name("isInfinity()")));
-- (SecretkBasePoint<SecretkShortCurve *> *)mulK:(SecretkBN *)k __attribute__((swift_name("mul(k:)")));
-- (SecretkShortCurvePoint *)negPrecompute:(SecretkBoolean * _Nullable)precompute __attribute__((swift_name("neg(precompute:)")));
-- (SecretkJPoint *)toJ __attribute__((swift_name("toJ()")));
-@property (readonly) BOOL inf __attribute__((swift_name("inf")));
-@property SecretkBN * _Nullable x __attribute__((swift_name("x")));
-@property SecretkBN * _Nullable y __attribute__((swift_name("y")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Doubles")))
-@interface SecretkDoubles : SecretkBase
-- (instancetype)initWithStep:(int32_t)step points:(NSArray<NSArray<NSString *> *> *)points __attribute__((swift_name("init(step:points:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SecretkDoublesCompanion *companion __attribute__((swift_name("companion")));
-- (int32_t)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
-- (NSArray<NSArray<NSString *> *> *)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkDoubles *)doCopyStep:(int32_t)step points:(NSArray<NSArray<NSString *> *> *)points __attribute__((swift_name("doCopy(step:points:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<NSArray<NSString *> *> *points __attribute__((swift_name("points")));
-@property (readonly) int32_t step __attribute__((swift_name("step")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Doubles.Companion")))
-@interface SecretkDoublesCompanion : SecretkBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SecretkDoublesCompanion *shared __attribute__((swift_name("shared")));
-- (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Naf")))
-@interface SecretkNaf : SecretkBase
-- (instancetype)initWithWnd:(int32_t)wnd points:(NSArray<NSArray<NSString *> *> *)points __attribute__((swift_name("init(wnd:points:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SecretkNafCompanion *companion __attribute__((swift_name("companion")));
-- (int32_t)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
-- (NSArray<NSArray<NSString *> *> *)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkNaf *)doCopyWnd:(int32_t)wnd points:(NSArray<NSArray<NSString *> *> *)points __attribute__((swift_name("doCopy(wnd:points:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<NSArray<NSString *> *> *points __attribute__((swift_name("points")));
-@property (readonly) int32_t wnd __attribute__((swift_name("wnd")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Naf.Companion")))
-@interface SecretkNafCompanion : SecretkBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SecretkNafCompanion *shared __attribute__((swift_name("shared")));
-- (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("PrecomputedScep256k1")))
-@interface SecretkPrecomputedScep256k1 : SecretkBase
-- (instancetype)initWithDoubles:(SecretkDoubles *)doubles naf:(SecretkNaf *)naf __attribute__((swift_name("init(doubles:naf:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SecretkPrecomputedScep256k1Companion *companion __attribute__((swift_name("companion")));
-- (SecretkDoubles *)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkNaf *)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkPrecomputedScep256k1 *)doCopyDoubles:(SecretkDoubles *)doubles naf:(SecretkNaf *)naf __attribute__((swift_name("doCopy(doubles:naf:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SecretkDoubles *doubles __attribute__((swift_name("doubles")));
-@property (readonly) SecretkNaf *naf __attribute__((swift_name("naf")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("PrecomputedScep256k1.Companion")))
-@interface SecretkPrecomputedScep256k1Companion : SecretkBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SecretkPrecomputedScep256k1Companion *shared __attribute__((swift_name("shared")));
-- (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Basis")))
-@interface SecretkBasis : SecretkBase
-- (instancetype)initWithA:(SecretkBN *)a b:(SecretkBN *)b __attribute__((swift_name("init(a:b:)"))) __attribute__((objc_designated_initializer));
-- (SecretkBN *)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkBN *)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkBasis *)doCopyA:(SecretkBN *)a b:(SecretkBN *)b __attribute__((swift_name("doCopy(a:b:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SecretkBN *a __attribute__((swift_name("a")));
-@property (readonly) SecretkBN *b __attribute__((swift_name("b")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Endomorphism")))
-@interface SecretkEndomorphism : SecretkBase
-- (instancetype)initWithBeta:(SecretkBN *)beta lambda:(SecretkBN *)lambda basis:(NSArray<SecretkBasis *> *)basis __attribute__((swift_name("init(beta:lambda:basis:)"))) __attribute__((objc_designated_initializer));
-- (SecretkBN *)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkBN *)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
-- (NSArray<SecretkBasis *> *)component3 __attribute__((swift_name("component3()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkEndomorphism *)doCopyBeta:(SecretkBN *)beta lambda:(SecretkBN *)lambda basis:(NSArray<SecretkBasis *> *)basis __attribute__((swift_name("doCopy(beta:lambda:basis:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<SecretkBasis *> *basis __attribute__((swift_name("basis")));
-@property (readonly) SecretkBN *beta __attribute__((swift_name("beta")));
-@property (readonly) SecretkBN *lambda __attribute__((swift_name("lambda")));
-@end;
-
-__attribute__((swift_name("PresetCurve")))
-@protocol SecretkPresetCurve
-@required
-@property (readonly) SecretkBN *a __attribute__((swift_name("a")));
-@property (readonly) SecretkBN *b __attribute__((swift_name("b")));
-@property (readonly) NSArray<SecretkBasis *> *basis __attribute__((swift_name("basis")));
-@property (readonly) SecretkBN * _Nullable beta __attribute__((swift_name("beta")));
-@property (readonly) NSString * _Nullable g __attribute__((swift_name("g")));
-@property (readonly) BOOL gRed __attribute__((swift_name("gRed")));
-@property (readonly) NSString *h __attribute__((swift_name("h")));
-@property (readonly, getter=hash_) NSString *hash __attribute__((swift_name("hash")));
-@property (readonly) SecretkBN *lambda __attribute__((swift_name("lambda")));
-@property (readonly) SecretkBN * _Nullable n __attribute__((swift_name("n")));
-@property (readonly) SecretkBN *p __attribute__((swift_name("p")));
-@property (readonly) NSString * _Nullable prime __attribute__((swift_name("prime")));
-@property (readonly) NSString *type __attribute__((swift_name("type")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Scep256k1Preset")))
-@interface SecretkScep256k1Preset : SecretkBase <SecretkPresetCurve>
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)scep256k1Preset __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SecretkScep256k1Preset *shared __attribute__((swift_name("shared")));
-@property (readonly) SecretkBN *a __attribute__((swift_name("a")));
-@property (readonly) SecretkBN *b __attribute__((swift_name("b")));
-@property (readonly) NSArray<SecretkBasis *> *basis __attribute__((swift_name("basis")));
-@property (readonly) SecretkBN *beta __attribute__((swift_name("beta")));
-@property (readonly) NSString *g __attribute__((swift_name("g")));
-@property (readonly) BOOL gRed __attribute__((swift_name("gRed")));
-@property (readonly) NSString *h __attribute__((swift_name("h")));
-@property (readonly, getter=hash_) NSString *hash __attribute__((swift_name("hash")));
-@property (readonly) SecretkBN *lambda __attribute__((swift_name("lambda")));
-@property (readonly) SecretkBN *n __attribute__((swift_name("n")));
-@property (readonly) SecretkBN *p __attribute__((swift_name("p")));
-@property (readonly) NSString *precomputed __attribute__((swift_name("precomputed")));
-@property (readonly) NSString *prime __attribute__((swift_name("prime")));
-@property (readonly) NSString *type __attribute__((swift_name("type")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("EC")))
-@interface SecretkEC : SecretkBase
-- (instancetype)initWithCurve:(SecretkCurve *)curve __attribute__((swift_name("init(curve:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SecretkECCompanion *companion __attribute__((swift_name("companion")));
-- (SecretkKeyPair_ *)keyFromPrivatePrivkey:(id)privkey enc:(NSString * _Nullable)enc __attribute__((swift_name("keyFromPrivate(privkey:enc:)")));
-- (SecretkKeyPair_ *)keyFromPublicPubkey:(id)pubkey enc:(NSString * _Nullable)enc __attribute__((swift_name("keyFromPublic(pubkey:enc:)")));
-- (SecretkSignature *)sign_msg:(id)_msg key:(SecretkKeyPair_ *)key enc:(NSString * _Nullable)enc _options:(SecretkKeyPairSignOptions * _Nullable)_options __attribute__((swift_name("sign(_msg:key:enc:_options:)")));
-@property (readonly) SecretkCurve *curve __attribute__((swift_name("curve")));
-@property (readonly) SecretkBasePoint<id> * _Nullable g __attribute__((swift_name("g")));
-@property (readonly) SecretkBN * _Nullable n __attribute__((swift_name("n")));
-@property (readonly) SecretkBN *nh __attribute__((swift_name("nh")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("EC.Companion")))
-@interface SecretkECCompanion : SecretkBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SecretkECCompanion *shared __attribute__((swift_name("shared")));
-@property (readonly) SecretkEC *scep256k1 __attribute__((swift_name("scep256k1")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("KeyPair_")))
-@interface SecretkKeyPair_ : SecretkBase
-- (instancetype)initWithEc:(SecretkEC *)ec options:(SecretkKeyPairOptions *)options __attribute__((swift_name("init(ec:options:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SecretkKeyPair_Companion *companion __attribute__((swift_name("companion")));
-- (id _Nullable)getPrivate __attribute__((swift_name("getPrivate()")));
-- (id)getPublicEncodedCompact:(BOOL)compact __attribute__((swift_name("getPublicEncoded(compact:)")));
-- (SecretkSignature *)signMsg:(id)msg enc:(NSString * _Nullable)enc options:(SecretkKeyPairSignOptions * _Nullable)options __attribute__((swift_name("sign(msg:enc:options:)")));
-- (SecretkKeyPairValidateResult *)validate __attribute__((swift_name("validate()")));
-@property (readonly) SecretkEC *ec __attribute__((swift_name("ec")));
-@property SecretkBN * _Nullable priv __attribute__((swift_name("priv")));
-@property SecretkBasePoint<id> * _Nullable pub __attribute__((swift_name("pub")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("KeyPair_.Companion")))
-@interface SecretkKeyPair_Companion : SecretkBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SecretkKeyPair_Companion *shared __attribute__((swift_name("shared")));
-- (SecretkKeyPair_ *)fromPrivateEc:(SecretkEC *)ec priv:(id)priv enc:(NSString * _Nullable)enc __attribute__((swift_name("fromPrivate(ec:priv:enc:)")));
-- (SecretkKeyPair_ *)fromPublicEc:(SecretkEC *)ec pubkey:(id)pubkey enc:(NSString * _Nullable)enc __attribute__((swift_name("fromPublic(ec:pubkey:enc:)")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("KeyPairOptions")))
-@interface SecretkKeyPairOptions : SecretkBase
-- (instancetype)initWithPriv:(id _Nullable)priv pub:(id _Nullable)pub privEnc:(NSString * _Nullable)privEnc pubEnc:(NSString * _Nullable)pubEnc __attribute__((swift_name("init(priv:pub:privEnc:pubEnc:)"))) __attribute__((objc_designated_initializer));
-- (id _Nullable)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
-- (id _Nullable)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
-- (NSString * _Nullable)component3 __attribute__((swift_name("component3()"))) __attribute__((deprecated("use corresponding property instead")));
-- (NSString * _Nullable)component4 __attribute__((swift_name("component4()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkKeyPairOptions *)doCopyPriv:(id _Nullable)priv pub:(id _Nullable)pub privEnc:(NSString * _Nullable)privEnc pubEnc:(NSString * _Nullable)pubEnc __attribute__((swift_name("doCopy(priv:pub:privEnc:pubEnc:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) id _Nullable priv __attribute__((swift_name("priv")));
-@property (readonly) NSString * _Nullable privEnc __attribute__((swift_name("privEnc")));
-@property (readonly) id _Nullable pub __attribute__((swift_name("pub")));
-@property (readonly) NSString * _Nullable pubEnc __attribute__((swift_name("pubEnc")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("KeyPairSignOptions")))
-@interface SecretkKeyPairSignOptions : SecretkBase
-- (instancetype)initWithCanonical:(SecretkBoolean * _Nullable)canonical k:(SecretkBN * _Nullable)k __attribute__((swift_name("init(canonical:k:)"))) __attribute__((objc_designated_initializer));
-- (SecretkBoolean * _Nullable)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkBN * _Nullable)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkKeyPairSignOptions *)doCopyCanonical:(SecretkBoolean * _Nullable)canonical k:(SecretkBN * _Nullable)k __attribute__((swift_name("doCopy(canonical:k:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SecretkBoolean * _Nullable canonical __attribute__((swift_name("canonical")));
-@property (readonly) SecretkBN * _Nullable k __attribute__((swift_name("k")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("KeyPairValidateResult")))
-@interface SecretkKeyPairValidateResult : SecretkBase
-- (instancetype)initWithResult:(BOOL)result reason:(NSString * _Nullable)reason __attribute__((swift_name("init(result:reason:)"))) __attribute__((objc_designated_initializer));
-- (BOOL)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
-- (NSString * _Nullable)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkKeyPairValidateResult *)doCopyResult:(BOOL)result reason:(NSString * _Nullable)reason __attribute__((swift_name("doCopy(result:reason:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString * _Nullable reason __attribute__((swift_name("reason")));
-@property (readonly) BOOL result __attribute__((swift_name("result")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Signature")))
-@interface SecretkSignature : SecretkBase
-- (instancetype)initWithR:(SecretkBN *)r s:(SecretkBN *)s recoveryParam:(SecretkInt * _Nullable)recoveryParam __attribute__((swift_name("init(r:s:recoveryParam:)"))) __attribute__((objc_designated_initializer));
-- (SecretkBN *)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkBN *)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkInt * _Nullable)component3 __attribute__((swift_name("component3()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkSignature *)doCopyR:(SecretkBN *)r s:(SecretkBN *)s recoveryParam:(SecretkInt * _Nullable)recoveryParam __attribute__((swift_name("doCopy(r:s:recoveryParam:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SecretkBN *r __attribute__((swift_name("r")));
-@property (readonly) SecretkInt * _Nullable recoveryParam __attribute__((swift_name("recoveryParam")));
-@property (readonly) SecretkBN *s __attribute__((swift_name("s")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("BN")))
-@interface SecretkBN : SecretkBase
-- (instancetype)initWithNumber:(SecretkBignumBigInteger *)number red:(SecretkRed * _Nullable)red __attribute__((swift_name("init(number:red:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithString:(NSString *)string base:(int32_t)base red:(SecretkRed * _Nullable)red __attribute__((swift_name("init(string:base:red:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithNum:(int32_t)num red:(SecretkRed * _Nullable)red __attribute__((swift_name("init(num:red:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithNumber:(id)number red_:(SecretkRed * _Nullable)red __attribute__((swift_name("init(number:red_:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SecretkBNCompanion *companion __attribute__((swift_name("companion")));
-- (SecretkBN *)_invmpP:(SecretkBN *)p __attribute__((swift_name("_invmp(p:)")));
-- (SecretkBN *)addN:(SecretkBN *)n __attribute__((swift_name("add(n:)")));
-- (SecretkBN *)andN:(SecretkBN *)n __attribute__((swift_name("and(n:)")));
-- (int32_t)andlnNum:(int32_t)num __attribute__((swift_name("andln(num:)")));
-- (uint64_t)bitLength __attribute__((swift_name("bitLength()")));
-- (int32_t)byteLength __attribute__((swift_name("byteLength()")));
-- (int32_t)compareToI:(SecretkBN *)i __attribute__((swift_name("compareTo(i:)")));
-- (int32_t)compareToI_:(int32_t)i __attribute__((swift_name("compareTo(i_:)")));
-- (SecretkBN *)divRoundDivisor:(SecretkBN *)divisor __attribute__((swift_name("divRound(divisor:)")));
-- (SecretkEGCDResult *)egcdP:(SecretkBN *)p __attribute__((swift_name("egcd(p:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (SecretkBN *)fromRed __attribute__((swift_name("fromRed()")));
-- (SecretkBN *)gcdN:(SecretkBN *)n __attribute__((swift_name("gcd(n:)")));
-- (SecretkBN *)invmNum:(SecretkBN *)num __attribute__((swift_name("invm(num:)")));
-- (BOOL)isEven __attribute__((swift_name("isEven()")));
-- (BOOL)isOdd __attribute__((swift_name("isOdd()")));
-- (SecretkBN *)modN:(SecretkBN *)n __attribute__((swift_name("mod(n:)")));
-- (SecretkBN *)multiplyN:(SecretkBN *)n __attribute__((swift_name("multiply(n:)")));
-- (SecretkBN *)negate __attribute__((swift_name("negate()")));
-- (SecretkBN *)redAddNum:(SecretkBN *)num __attribute__((swift_name("redAdd(num:)")));
-- (SecretkBN *)redInvm __attribute__((swift_name("redInvm()")));
-- (SecretkBN *)redMulNum:(SecretkBN *)num __attribute__((swift_name("redMul(num:)")));
-- (SecretkBN *)redNeg __attribute__((swift_name("redNeg()")));
-- (SecretkBN *)redSqr __attribute__((swift_name("redSqr()")));
-- (SecretkBN *)redSubNum:(SecretkBN *)num __attribute__((swift_name("redSub(num:)")));
-- (SecretkBN *)shlN:(int32_t)n __attribute__((swift_name("shl(n:)")));
-- (SecretkBN *)shrN:(int32_t)n __attribute__((swift_name("shr(n:)")));
-- (SecretkBN *)subtractN:(SecretkBN *)n __attribute__((swift_name("subtract(n:)")));
-- (SecretkBN *)toRedCtx:(SecretkRed *)ctx __attribute__((swift_name("toRed(ctx:)")));
-@property (readonly) BOOL negative __attribute__((swift_name("negative")));
-@property (readonly) SecretkBignumBigInteger *number __attribute__((swift_name("number")));
-@property (readonly) SecretkRed * _Nullable red __attribute__((swift_name("red")));
-@property (readonly) SecretkBN *word0 __attribute__((swift_name("word0")));
-@property (readonly) BOOL zero __attribute__((swift_name("zero")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("BN.Companion")))
-@interface SecretkBNCompanion : SecretkBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SecretkBNCompanion *shared __attribute__((swift_name("shared")));
-@property (readonly) SecretkBN *ONE __attribute__((swift_name("ONE")));
-@property (readonly) SecretkBN *ZERO __attribute__((swift_name("ZERO")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("EGCDResult")))
-@interface SecretkEGCDResult : SecretkBase
-- (instancetype)initWithA:(SecretkBN *)a b:(SecretkBN *)b gcd:(SecretkBN *)gcd __attribute__((swift_name("init(a:b:gcd:)"))) __attribute__((objc_designated_initializer));
-- (SecretkBN *)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkBN *)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkBN *)component3 __attribute__((swift_name("component3()"))) __attribute__((deprecated("use corresponding property instead")));
-- (SecretkEGCDResult *)doCopyA:(SecretkBN *)a b:(SecretkBN *)b gcd:(SecretkBN *)gcd __attribute__((swift_name("doCopy(a:b:gcd:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SecretkBN *a __attribute__((swift_name("a")));
-@property (readonly) SecretkBN *b __attribute__((swift_name("b")));
-@property (readonly) SecretkBN *gcd __attribute__((swift_name("gcd")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("MPrime")))
-@interface SecretkMPrime : SecretkBase
-- (instancetype)initWithName:(NSString *)name p:(SecretkBN *)p __attribute__((swift_name("init(name:p:)"))) __attribute__((objc_designated_initializer));
-- (SecretkBN *)ireduceNum:(SecretkBN *)num __attribute__((swift_name("ireduce(num:)")));
-@property (readonly) SecretkBN *k __attribute__((swift_name("k")));
-@property (readonly) int32_t n __attribute__((swift_name("n")));
-@property (readonly) NSString *name __attribute__((swift_name("name")));
-@property (readonly) SecretkBN *p __attribute__((swift_name("p")));
-@end;
-
-__attribute__((swift_name("Red")))
-@interface SecretkRed : SecretkBase
-- (instancetype)initWithM:(NSString *)m __attribute__((swift_name("init(m:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithM_:(SecretkBN *)m __attribute__((swift_name("init(m_:)"))) __attribute__((objc_designated_initializer));
-- (SecretkBN *)addA:(SecretkBN *)a b:(SecretkBN *)b __attribute__((swift_name("add(a:b:)")));
-- (SecretkBN *)convertFromNum:(SecretkBN *)num __attribute__((swift_name("convertFrom(num:)")));
-- (SecretkBN *)convertToNum:(SecretkBN *)num __attribute__((swift_name("convertTo(num:)")));
-- (SecretkBN *)imodA:(SecretkBN *)a __attribute__((swift_name("imod(a:)")));
-- (SecretkBN *)invmNum:(SecretkBN *)num __attribute__((swift_name("invm(num:)")));
-- (SecretkBN *)mulA:(SecretkBN *)a b:(SecretkBN *)b __attribute__((swift_name("mul(a:b:)")));
-- (SecretkBN *)negNum:(SecretkBN *)num __attribute__((swift_name("neg(num:)")));
-- (SecretkBN *)sqrNum:(SecretkBN *)num __attribute__((swift_name("sqr(num:)")));
-- (SecretkBN *)subA:(SecretkBN *)a b:(SecretkBN *)b __attribute__((swift_name("sub(a:b:)")));
-- (void)verify1A:(SecretkBN *)a __attribute__((swift_name("verify1(a:)")));
-@property (readonly) SecretkBN *m __attribute__((swift_name("m")));
-@property SecretkMPrime * _Nullable prime __attribute__((swift_name("prime")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Mont")))
-@interface SecretkMont : SecretkRed
-- (instancetype)initWithM:(SecretkBN *)m __attribute__((swift_name("init(m:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithM_:(SecretkBN *)m __attribute__((swift_name("init(m_:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
-- (SecretkBN *)convertFromNum:(SecretkBN *)num __attribute__((swift_name("convertFrom(num:)")));
-- (SecretkBN *)convertToNum:(SecretkBN *)num __attribute__((swift_name("convertTo(num:)")));
-@property (readonly) uint64_t shift __attribute__((swift_name("shift")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("KotlinLongArray")))
-@interface SecretkKotlinLongArray : SecretkBase
-+ (instancetype)arrayWithSize:(int32_t)size __attribute__((swift_name("init(size:)")));
-+ (instancetype)arrayWithSize:(int32_t)size init:(SecretkLong *(^)(SecretkInt *))init __attribute__((swift_name("init(size:init:)")));
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (int64_t)getIndex:(int32_t)index __attribute__((swift_name("get(index:)")));
-- (SecretkKotlinLongIterator *)iterator __attribute__((swift_name("iterator()")));
-- (void)setIndex:(int32_t)index value:(int64_t)value __attribute__((swift_name("set(index:value:)")));
-@property (readonly) int32_t size __attribute__((swift_name("size")));
-@end;
-
-@interface SecretkKotlinLongArray (Extensions)
-- (SecretkKotlinIntArray *)toIntArray __attribute__((swift_name("toIntArray()")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("KotlinIntArray")))
@@ -3259,11 +2829,11 @@ __attribute__((swift_name("KotlinIntArray")))
 - (SecretkKotlinIntIterator *)iterator __attribute__((swift_name("iterator()")));
 - (void)setIndex:(int32_t)index value:(int32_t)value __attribute__((swift_name("set(index:value:)")));
 @property (readonly) int32_t size __attribute__((swift_name("size")));
-@end;
+@end
 
 @interface SecretkKotlinIntArray (Extensions)
 - (id)toUByteArray __attribute__((swift_name("toUByteArray()")));
-@end;
+@end
 
 __attribute__((swift_name("OkioByteString")))
 @interface SecretkOkioByteString : SecretkBase <SecretkKotlinComparable>
@@ -3300,15 +2870,95 @@ __attribute__((swift_name("OkioByteString")))
 - (NSString *)description __attribute__((swift_name("description()")));
 - (NSString *)utf8 __attribute__((swift_name("utf8()")));
 @property (readonly) int32_t size __attribute__((swift_name("size")));
-@end;
+@end
 
 @interface SecretkOkioByteString (Extensions)
 - (id)toUByteArray __attribute__((swift_name("toUByteArray()")));
-@end;
+@end
 
-@interface SecretkBasePointCompanion (Extensions)
-- (SecretkShortCurvePoint *)fromJSONCurve:(SecretkShortCurve *)curve obj:(NSArray<SecretkKotlinx_serialization_jsonJsonElement *> *)obj red:(BOOL)red __attribute__((swift_name("fromJSON(curve:obj:red:)")));
-@end;
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("MakeSignBytesKt")))
+@interface SecretkMakeSignBytesKt : SecretkBase
++ (id)makeSignBytesMsgs:(NSArray<SecretkTypeValue<id> *> *)msgs fee:(SecretkStdFee *)fee chainId:(NSString *)chainId memo:(NSString *)memo accountNumber:(SecretkBignumBigInteger *)accountNumber sequence:(SecretkBignumBigInteger *)sequence __attribute__((swift_name("makeSignBytes(msgs:fee:chainId:memo:accountNumber:sequence:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("HelpersKt")))
+@interface SecretkHelpersKt : SecretkBase
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
++ (void)ensureLibsodiumInitializedWithCompletionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("ensureLibsodiumInitialized(completionHandler:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("UByteArrayUtilsKt")))
+@interface SecretkUByteArrayUtilsKt : SecretkBase
++ (NSString *)decodeToString:(id)receiver __attribute__((swift_name("decodeToString(_:)")));
++ (id)getPadded:(id)receiver length:(int32_t)length __attribute__((swift_name("getPadded(_:length:)")));
++ (SecretkOkioByteString *)toByteString:(id)receiver __attribute__((swift_name("toByteString(_:)")));
++ (SecretkKotlinIntArray *)toIntArray:(id)receiver __attribute__((swift_name("toIntArray(_:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("PubkeyKt")))
+@interface SecretkPubkeyKt : SecretkBase
++ (SecretkPubKeySecp256k1 *)encodeSecp256k1PubkeyPubkey:(id)pubkey __attribute__((swift_name("encodeSecp256k1Pubkey(pubkey:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SignatureKt")))
+@interface SecretkSignatureKt : SecretkBase
++ (SecretkStdSignature *)encodeSecp256k1SignaturePubkey:(id)pubkey signature:(id)signature __attribute__((swift_name("encodeSecp256k1Signature(pubkey:signature:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("BaseWalletKt")))
+@interface SecretkBaseWalletKt : SecretkBase
++ (SecretkKotlinArray<id> *)makeSecretNetworkPathA:(uint32_t)a __attribute__((swift_name("makeSecretNetworkPath(a:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KotlinEnumCompanion")))
+@interface SecretkKotlinEnumCompanion : SecretkBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) SecretkKotlinEnumCompanion *shared __attribute__((swift_name("shared")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KotlinArray")))
+@interface SecretkKotlinArray<T> : SecretkBase
++ (instancetype)arrayWithSize:(int32_t)size init:(T _Nullable (^)(SecretkInt *))init __attribute__((swift_name("init(size:init:)")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (T _Nullable)getIndex:(int32_t)index __attribute__((swift_name("get(index:)")));
+- (id<SecretkKotlinIterator>)iterator __attribute__((swift_name("iterator()")));
+- (void)setIndex:(int32_t)index value:(T _Nullable)value __attribute__((swift_name("set(index:value:)")));
+@property (readonly) int32_t size __attribute__((swift_name("size")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreSerializationStrategy")))
+@protocol SecretkKotlinx_serialization_coreSerializationStrategy
+@required
+- (void)serializeEncoder:(id<SecretkKotlinx_serialization_coreEncoder>)encoder value:(id _Nullable)value __attribute__((swift_name("serialize(encoder:value:)")));
+@property (readonly) id<SecretkKotlinx_serialization_coreSerialDescriptor> descriptor __attribute__((swift_name("descriptor")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreDeserializationStrategy")))
+@protocol SecretkKotlinx_serialization_coreDeserializationStrategy
+@required
+- (id _Nullable)deserializeDecoder:(id<SecretkKotlinx_serialization_coreDecoder>)decoder __attribute__((swift_name("deserialize(decoder:)")));
+@property (readonly) id<SecretkKotlinx_serialization_coreSerialDescriptor> descriptor __attribute__((swift_name("descriptor")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreKSerializer")))
+@protocol SecretkKotlinx_serialization_coreKSerializer <SecretkKotlinx_serialization_coreSerializationStrategy, SecretkKotlinx_serialization_coreDeserializationStrategy>
+@required
+@end
 
 __attribute__((swift_name("BignumBigNumber")))
 @protocol SecretkBignumBigNumber
@@ -3333,7 +2983,7 @@ __attribute__((swift_name("BignumBigNumber")))
 - (id<SecretkBignumBigNumber>)unaryMinus __attribute__((swift_name("unaryMinus()")));
 @property (readonly) BOOL isNegative __attribute__((swift_name("isNegative")));
 @property (readonly) BOOL isPositive __attribute__((swift_name("isPositive")));
-@end;
+@end
 
 __attribute__((swift_name("BignumBitwiseCapable")))
 @protocol SecretkBignumBitwiseCapable
@@ -3346,14 +2996,14 @@ __attribute__((swift_name("BignumBitwiseCapable")))
 - (id _Nullable)shlPlaces:(int32_t)places __attribute__((swift_name("shl(places:)")));
 - (id _Nullable)shrPlaces:(int32_t)places __attribute__((swift_name("shr(places:)")));
 - (id _Nullable)xorOther:(id _Nullable)other __attribute__((swift_name("xor(other:)")));
-@end;
+@end
 
 __attribute__((swift_name("BignumByteArraySerializable")))
 @protocol SecretkBignumByteArraySerializable
 @required
 - (SecretkKotlinByteArray *)toByteArray __attribute__((swift_name("toByteArray()")));
 - (id)toUByteArray_ __attribute__((swift_name("toUByteArray_()")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("BignumBigInteger")))
@@ -3426,138 +3076,22 @@ __attribute__((swift_name("BignumBigInteger")))
 - (SecretkBignumBigInteger *)xorOther:(SecretkBignumBigInteger *)other __attribute__((swift_name("xor(other:)")));
 @property (readonly) int32_t numberOfWords __attribute__((swift_name("numberOfWords")));
 @property NSString * _Nullable stringRepresentation __attribute__((swift_name("stringRepresentation")));
-@end;
+@end
 
-@interface SecretkBignumBigInteger (Extensions)
-- (uint64_t)andlnNum:(uint64_t)num __attribute__((swift_name("andln(num:)")));
-- (uint64_t)bitLength __attribute__((swift_name("bitLength()")));
-- (uint64_t)byteLength __attribute__((swift_name("byteLength()")));
-- (uint64_t)countBitsW:(uint64_t)w __attribute__((swift_name("countBits(w:)")));
-- (id)toArrayEndian:(NSString *)endian length:(SecretkInt * _Nullable)length __attribute__((swift_name("toArray(endian:length:)")));
-@end;
-
-@interface SecretkBNCompanion (Extensions)
-- (SecretkMont *)montM:(SecretkBN *)m __attribute__((swift_name("mont(m:)")));
-- (SecretkMPrime *)primeName:(NSString *)name __attribute__((swift_name("prime(name:)")));
-- (SecretkRed *)redM:(NSString *)m __attribute__((swift_name("red(m:)")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("MakeSignBytesKt")))
-@interface SecretkMakeSignBytesKt : SecretkBase
-+ (id)makeSignBytesMsgs:(NSArray<SecretkTypeValue<id> *> *)msgs fee:(SecretkStdFee *)fee chainId:(NSString *)chainId memo:(NSString *)memo accountNumber:(SecretkBignumBigInteger *)accountNumber sequence:(SecretkBignumBigInteger *)sequence __attribute__((swift_name("makeSignBytes(msgs:fee:chainId:memo:accountNumber:sequence:)")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("AxlSignKt")))
-@interface SecretkAxlSignKt : SecretkBase
-@property (class, readonly) SecretkKotlinLongArray *D __attribute__((swift_name("D")));
-@property (class, readonly) SecretkKotlinLongArray *D2 __attribute__((swift_name("D2")));
-@property (class, readonly) SecretkKotlinLongArray *I __attribute__((swift_name("I")));
-@property (class) SecretkKotlinLongArray *K __attribute__((swift_name("K")));
-@property (class) SecretkKotlinIntArray *L __attribute__((swift_name("L")));
-@property (class, readonly) SecretkKotlinLongArray *X __attribute__((swift_name("X")));
-@property (class, readonly) SecretkKotlinLongArray *Y __attribute__((swift_name("Y")));
-@property (class, readonly) SecretkKotlinLongArray *_121665 __attribute__((swift_name("_121665")));
-@property (class, readonly) SecretkKotlinIntArray *_9 __attribute__((swift_name("_9")));
-@property (class, readonly) SecretkKotlinLongArray *_HH __attribute__((swift_name("_HH")));
-@property (class, readonly) SecretkKotlinLongArray *_HL __attribute__((swift_name("_HL")));
-@property (class, readonly) SecretkKotlinLongArray *gf0 __attribute__((swift_name("gf0")));
-@property (class, readonly) SecretkKotlinLongArray *gf1 __attribute__((swift_name("gf1")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("HelpersKt")))
-@interface SecretkHelpersKt : SecretkBase
-+ (SecretkKotlinByteArray *)addressToBytesAddress:(NSString *)address __attribute__((swift_name("addressToBytes(address:)")));
-+ (id)addressToUBytesAddress:(NSString *)address __attribute__((swift_name("addressToUBytes(address:)")));
-
-/**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
-*/
-+ (void)ensureLibsodiumInitializedWithCompletionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("ensureLibsodiumInitialized(completionHandler:)")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("UByteArrayUtilsKt")))
-@interface SecretkUByteArrayUtilsKt : SecretkBase
-+ (NSString *)decodeToString:(id)receiver __attribute__((swift_name("decodeToString(_:)")));
-+ (id)getPadded:(id)receiver length:(int32_t)length __attribute__((swift_name("getPadded(_:length:)")));
-+ (SecretkOkioByteString *)toByteString:(id)receiver __attribute__((swift_name("toByteString(_:)")));
-+ (SecretkKotlinIntArray *)toIntArray:(id)receiver __attribute__((swift_name("toIntArray(_:)")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("PubkeyKt")))
-@interface SecretkPubkeyKt : SecretkBase
-+ (SecretkPubKeySecp256k1 *)encodeSecp256k1PubkeyPubkey:(id)pubkey __attribute__((swift_name("encodeSecp256k1Pubkey(pubkey:)")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SignatureKt")))
-@interface SecretkSignatureKt : SecretkBase
-+ (SecretkStdSignature *)encodeSecp256k1SignaturePubkey:(id)pubkey signature:(id)signature __attribute__((swift_name("encodeSecp256k1Signature(pubkey:signature:)")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("BaseWalletKt")))
-@interface SecretkBaseWalletKt : SecretkBase
-+ (SecretkKotlinArray<id> *)makeSecretNetworkPathA:(uint32_t)a __attribute__((swift_name("makeSecretNetworkPath(a:)")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("DeriveHKDFKeyKt")))
-@interface SecretkDeriveHKDFKeyKt : SecretkBase
-+ (id)deriveHKDFKeyIkm:(id)ikm _salt:(id _Nullable)_salt info:(NSString *)info len:(int32_t)len __attribute__((swift_name("deriveHKDFKey(ikm:_salt:info:len:)")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("UtilsKt")))
-@interface SecretkUtilsKt : SecretkBase
-+ (NSArray<NSMutableArray<SecretkInt *> *> *)getJSF_k1:(SecretkBN *)_k1 _k2:(SecretkBN *)_k2 __attribute__((swift_name("getJSF(_k1:_k2:)")));
-+ (SecretkKotlinArray<SecretkInt *> *)getNAFNum:(SecretkBN *)num w:(int32_t)w bits:(int32_t)bits __attribute__((swift_name("getNAF(num:w:bits:)")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("KotlinEnumCompanion")))
-@interface SecretkKotlinEnumCompanion : SecretkBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SecretkKotlinEnumCompanion *shared __attribute__((swift_name("shared")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("KotlinArray")))
-@interface SecretkKotlinArray<T> : SecretkBase
-+ (instancetype)arrayWithSize:(int32_t)size init:(T _Nullable (^)(SecretkInt *))init __attribute__((swift_name("init(size:init:)")));
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (T _Nullable)getIndex:(int32_t)index __attribute__((swift_name("get(index:)")));
-- (id<SecretkKotlinIterator>)iterator __attribute__((swift_name("iterator()")));
-- (void)setIndex:(int32_t)index value:(T _Nullable)value __attribute__((swift_name("set(index:value:)")));
-@property (readonly) int32_t size __attribute__((swift_name("size")));
-@end;
-
-__attribute__((swift_name("Kotlinx_serialization_coreSerializationStrategy")))
-@protocol SecretkKotlinx_serialization_coreSerializationStrategy
-@required
-- (void)serializeEncoder:(id<SecretkKotlinx_serialization_coreEncoder>)encoder value:(id _Nullable)value __attribute__((swift_name("serialize(encoder:value:)")));
-@property (readonly) id<SecretkKotlinx_serialization_coreSerialDescriptor> descriptor __attribute__((swift_name("descriptor")));
-@end;
-
-__attribute__((swift_name("Kotlinx_serialization_coreDeserializationStrategy")))
-@protocol SecretkKotlinx_serialization_coreDeserializationStrategy
-@required
-- (id _Nullable)deserializeDecoder:(id<SecretkKotlinx_serialization_coreDecoder>)decoder __attribute__((swift_name("deserialize(decoder:)")));
-@property (readonly) id<SecretkKotlinx_serialization_coreSerialDescriptor> descriptor __attribute__((swift_name("descriptor")));
-@end;
-
-__attribute__((swift_name("Kotlinx_serialization_coreKSerializer")))
-@protocol SecretkKotlinx_serialization_coreKSerializer <SecretkKotlinx_serialization_coreSerializationStrategy, SecretkKotlinx_serialization_coreDeserializationStrategy>
-@required
-@end;
+__attribute__((swift_name("KotlinThrowable")))
+@interface SecretkKotlinThrowable : SecretkBase
+- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithCause:(SecretkKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SecretkKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
+- (SecretkKotlinArray<NSString *> *)getStackTrace __attribute__((swift_name("getStackTrace()")));
+- (void)printStackTrace __attribute__((swift_name("printStackTrace()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) SecretkKotlinThrowable * _Nullable cause __attribute__((swift_name("cause")));
+@property (readonly) NSString * _Nullable message __attribute__((swift_name("message")));
+- (NSError *)asError __attribute__((swift_name("asError()")));
+@end
 
 __attribute__((swift_name("KotlinException")))
 @interface SecretkKotlinException : SecretkKotlinThrowable
@@ -3566,7 +3100,7 @@ __attribute__((swift_name("KotlinException")))
 - (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SecretkKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCause:(SecretkKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
-@end;
+@end
 
 __attribute__((swift_name("KotlinRuntimeException")))
 @interface SecretkKotlinRuntimeException : SecretkKotlinException
@@ -3575,7 +3109,7 @@ __attribute__((swift_name("KotlinRuntimeException")))
 - (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SecretkKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCause:(SecretkKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
-@end;
+@end
 
 __attribute__((swift_name("KotlinIllegalStateException")))
 @interface SecretkKotlinIllegalStateException : SecretkKotlinRuntimeException
@@ -3584,8 +3118,13 @@ __attribute__((swift_name("KotlinIllegalStateException")))
 - (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SecretkKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCause:(SecretkKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlin.SinceKotlin(version="1.4")
+*/
 __attribute__((swift_name("KotlinCancellationException")))
 @interface SecretkKotlinCancellationException : SecretkKotlinIllegalStateException
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
@@ -3593,7 +3132,7 @@ __attribute__((swift_name("KotlinCancellationException")))
 - (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SecretkKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCause:(SecretkKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("KotlinByteArray")))
@@ -3606,13 +3145,23 @@ __attribute__((swift_name("KotlinByteArray")))
 - (SecretkKotlinByteIterator *)iterator __attribute__((swift_name("iterator()")));
 - (void)setIndex:(int32_t)index value:(int8_t)value __attribute__((swift_name("set(index:value:)")));
 @property (readonly) int32_t size __attribute__((swift_name("size")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable(with=NormalClass(value=kotlinx/serialization/json/JsonElementSerializer))
+*/
 __attribute__((swift_name("Kotlinx_serialization_jsonJsonElement")))
 @interface SecretkKotlinx_serialization_jsonJsonElement : SecretkBase
 @property (class, readonly, getter=companion) SecretkKotlinx_serialization_jsonJsonElementCompanion *companion __attribute__((swift_name("companion")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlin.SinceKotlin(version="1.3")
+*/
 __attribute__((swift_name("KotlinCoroutineContext")))
 @protocol SecretkKotlinCoroutineContext
 @required
@@ -3620,13 +3169,13 @@ __attribute__((swift_name("KotlinCoroutineContext")))
 - (id<SecretkKotlinCoroutineContextElement> _Nullable)getKey:(id<SecretkKotlinCoroutineContextKey>)key __attribute__((swift_name("get(key:)")));
 - (id<SecretkKotlinCoroutineContext>)minusKeyKey:(id<SecretkKotlinCoroutineContextKey>)key __attribute__((swift_name("minusKey(key:)")));
 - (id<SecretkKotlinCoroutineContext>)plusContext:(id<SecretkKotlinCoroutineContext>)context __attribute__((swift_name("plus(context:)")));
-@end;
+@end
 
 __attribute__((swift_name("KotlinCoroutineContextElement")))
 @protocol SecretkKotlinCoroutineContextElement <SecretkKotlinCoroutineContext>
 @required
 @property (readonly) id<SecretkKotlinCoroutineContextKey> key __attribute__((swift_name("key")));
-@end;
+@end
 
 __attribute__((swift_name("Kotlinx_coroutines_coreJob")))
 @protocol SecretkKotlinx_coroutines_coreJob <SecretkKotlinCoroutineContextElement>
@@ -3638,8 +3187,8 @@ __attribute__((swift_name("Kotlinx_coroutines_coreJob")))
 - (id<SecretkKotlinx_coroutines_coreDisposableHandle>)invokeOnCompletionHandler:(void (^)(SecretkKotlinThrowable * _Nullable))handler __attribute__((swift_name("invokeOnCompletion(handler:)")));
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)joinWithCompletionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("join(completionHandler:)")));
 - (id<SecretkKotlinx_coroutines_coreJob>)plusOther:(id<SecretkKotlinx_coroutines_coreJob>)other __attribute__((swift_name("plus(other:)"))) __attribute__((unavailable("Operator '+' on two Job objects is meaningless. Job is a coroutine context element and `+` is a set-sum operator for coroutine contexts. The job to the right of `+` just replaces the job the left of `+`.")));
@@ -3649,36 +3198,38 @@ __attribute__((swift_name("Kotlinx_coroutines_coreJob")))
 @property (readonly) BOOL isCancelled __attribute__((swift_name("isCancelled")));
 @property (readonly) BOOL isCompleted __attribute__((swift_name("isCompleted")));
 @property (readonly) id<SecretkKotlinx_coroutines_coreSelectClause0> onJoin __attribute__((swift_name("onJoin")));
-@end;
+@end
 
 __attribute__((swift_name("Kotlinx_coroutines_coreDeferred")))
 @protocol SecretkKotlinx_coroutines_coreDeferred <SecretkKotlinx_coroutines_coreJob>
 @required
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)awaitWithCompletionHandler:(void (^)(id _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("await(completionHandler:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.coroutines.ExperimentalCoroutinesApi
+*/
 - (id _Nullable)getCompleted __attribute__((swift_name("getCompleted()")));
+
+/**
+ * @note annotations
+ *   kotlinx.coroutines.ExperimentalCoroutinesApi
+*/
 - (SecretkKotlinThrowable * _Nullable)getCompletionExceptionOrNull __attribute__((swift_name("getCompletionExceptionOrNull()")));
 @property (readonly) id<SecretkKotlinx_coroutines_coreSelectClause1> onAwait __attribute__((swift_name("onAwait")));
-@end;
+@end
 
 __attribute__((swift_name("KotlinIterator")))
 @protocol SecretkKotlinIterator
 @required
 - (BOOL)hasNext __attribute__((swift_name("hasNext()")));
 - (id _Nullable)next __attribute__((swift_name("next()")));
-@end;
-
-__attribute__((swift_name("KotlinLongIterator")))
-@interface SecretkKotlinLongIterator : SecretkBase <SecretkKotlinIterator>
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
-+ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (SecretkLong *)next __attribute__((swift_name("next()")));
-- (int64_t)nextLong __attribute__((swift_name("nextLong()")));
-@end;
+@end
 
 __attribute__((swift_name("KotlinIntIterator")))
 @interface SecretkKotlinIntIterator : SecretkBase <SecretkKotlinIterator>
@@ -3686,7 +3237,7 @@ __attribute__((swift_name("KotlinIntIterator")))
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 - (SecretkInt *)next __attribute__((swift_name("next()")));
 - (int32_t)nextInt __attribute__((swift_name("nextInt()")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("OkioByteString.Companion")))
@@ -3701,7 +3252,148 @@ __attribute__((swift_name("OkioByteString.Companion")))
 - (SecretkOkioByteString *)encodeUtf8:(NSString *)receiver __attribute__((swift_name("encodeUtf8(_:)")));
 - (SecretkOkioByteString *)toByteString:(SecretkKotlinByteArray *)receiver offset:(int32_t)offset byteCount:(int32_t)byteCount __attribute__((swift_name("toByteString(_:offset:byteCount:)")));
 @property (readonly) SecretkOkioByteString *EMPTY __attribute__((swift_name("EMPTY")));
-@end;
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreEncoder")))
+@protocol SecretkKotlinx_serialization_coreEncoder
+@required
+- (id<SecretkKotlinx_serialization_coreCompositeEncoder>)beginCollectionDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor collectionSize:(int32_t)collectionSize __attribute__((swift_name("beginCollection(descriptor:collectionSize:)")));
+- (id<SecretkKotlinx_serialization_coreCompositeEncoder>)beginStructureDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("beginStructure(descriptor:)")));
+- (void)encodeBooleanValue:(BOOL)value __attribute__((swift_name("encodeBoolean(value:)")));
+- (void)encodeByteValue:(int8_t)value __attribute__((swift_name("encodeByte(value:)")));
+- (void)encodeCharValue:(unichar)value __attribute__((swift_name("encodeChar(value:)")));
+- (void)encodeDoubleValue:(double)value __attribute__((swift_name("encodeDouble(value:)")));
+- (void)encodeEnumEnumDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)enumDescriptor index:(int32_t)index __attribute__((swift_name("encodeEnum(enumDescriptor:index:)")));
+- (void)encodeFloatValue:(float)value __attribute__((swift_name("encodeFloat(value:)")));
+- (id<SecretkKotlinx_serialization_coreEncoder>)encodeInlineDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("encodeInline(descriptor:)")));
+- (void)encodeIntValue:(int32_t)value __attribute__((swift_name("encodeInt(value:)")));
+- (void)encodeLongValue:(int64_t)value __attribute__((swift_name("encodeLong(value:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (void)encodeNotNullMark __attribute__((swift_name("encodeNotNullMark()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (void)encodeNull __attribute__((swift_name("encodeNull()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (void)encodeNullableSerializableValueSerializer:(id<SecretkKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeNullableSerializableValue(serializer:value:)")));
+- (void)encodeSerializableValueSerializer:(id<SecretkKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeSerializableValue(serializer:value:)")));
+- (void)encodeShortValue:(int16_t)value __attribute__((swift_name("encodeShort(value:)")));
+- (void)encodeStringValue:(NSString *)value __attribute__((swift_name("encodeString(value:)")));
+@property (readonly) SecretkKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreSerialDescriptor")))
+@protocol SecretkKotlinx_serialization_coreSerialDescriptor
+@required
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (NSArray<id<SecretkKotlinAnnotation>> *)getElementAnnotationsIndex:(int32_t)index __attribute__((swift_name("getElementAnnotations(index:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (id<SecretkKotlinx_serialization_coreSerialDescriptor>)getElementDescriptorIndex:(int32_t)index __attribute__((swift_name("getElementDescriptor(index:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (int32_t)getElementIndexName:(NSString *)name __attribute__((swift_name("getElementIndex(name:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (NSString *)getElementNameIndex:(int32_t)index __attribute__((swift_name("getElementName(index:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (BOOL)isElementOptionalIndex:(int32_t)index __attribute__((swift_name("isElementOptional(index:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+@property (readonly) NSArray<id<SecretkKotlinAnnotation>> *annotations __attribute__((swift_name("annotations")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+@property (readonly) int32_t elementsCount __attribute__((swift_name("elementsCount")));
+@property (readonly) BOOL isInline __attribute__((swift_name("isInline")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+@property (readonly) BOOL isNullable __attribute__((swift_name("isNullable")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+@property (readonly) SecretkKotlinx_serialization_coreSerialKind *kind __attribute__((swift_name("kind")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+@property (readonly) NSString *serialName __attribute__((swift_name("serialName")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreDecoder")))
+@protocol SecretkKotlinx_serialization_coreDecoder
+@required
+- (id<SecretkKotlinx_serialization_coreCompositeDecoder>)beginStructureDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("beginStructure(descriptor:)")));
+- (BOOL)decodeBoolean __attribute__((swift_name("decodeBoolean()")));
+- (int8_t)decodeByte __attribute__((swift_name("decodeByte()")));
+- (unichar)decodeChar __attribute__((swift_name("decodeChar()")));
+- (double)decodeDouble __attribute__((swift_name("decodeDouble()")));
+- (int32_t)decodeEnumEnumDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)enumDescriptor __attribute__((swift_name("decodeEnum(enumDescriptor:)")));
+- (float)decodeFloat __attribute__((swift_name("decodeFloat()")));
+- (id<SecretkKotlinx_serialization_coreDecoder>)decodeInlineDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("decodeInline(descriptor:)")));
+- (int32_t)decodeInt __attribute__((swift_name("decodeInt()")));
+- (int64_t)decodeLong __attribute__((swift_name("decodeLong()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (BOOL)decodeNotNullMark __attribute__((swift_name("decodeNotNullMark()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (SecretkKotlinNothing * _Nullable)decodeNull __attribute__((swift_name("decodeNull()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (id _Nullable)decodeNullableSerializableValueDeserializer:(id<SecretkKotlinx_serialization_coreDeserializationStrategy>)deserializer __attribute__((swift_name("decodeNullableSerializableValue(deserializer:)")));
+- (id _Nullable)decodeSerializableValueDeserializer:(id<SecretkKotlinx_serialization_coreDeserializationStrategy>)deserializer __attribute__((swift_name("decodeSerializableValue(deserializer:)")));
+- (int16_t)decodeShort __attribute__((swift_name("decodeShort()")));
+- (NSString *)decodeString __attribute__((swift_name("decodeString()")));
+@property (readonly) SecretkKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("KotlinPair")))
@@ -3715,7 +3407,7 @@ __attribute__((swift_name("KotlinPair")))
 - (NSString *)toString __attribute__((swift_name("toString()")));
 @property (readonly) A _Nullable first __attribute__((swift_name("first")));
 @property (readonly) B _Nullable second __attribute__((swift_name("second")));
-@end;
+@end
 
 __attribute__((swift_name("BignumBigNumberCreator")))
 @protocol SecretkBignumBigNumberCreator
@@ -3736,21 +3428,21 @@ __attribute__((swift_name("BignumBigNumberCreator")))
 @property (readonly) id _Nullable TEN __attribute__((swift_name("TEN")));
 @property (readonly) id _Nullable TWO __attribute__((swift_name("TWO")));
 @property (readonly) id _Nullable ZERO __attribute__((swift_name("ZERO")));
-@end;
+@end
 
 __attribute__((swift_name("BignumBigNumberUtil")))
 @protocol SecretkBignumBigNumberUtil
 @required
 - (id _Nullable)maxFirst:(id _Nullable)first second:(id _Nullable)second __attribute__((swift_name("max(first:second:)")));
 - (id _Nullable)minFirst:(id _Nullable)first second:(id _Nullable)second __attribute__((swift_name("min(first:second:)")));
-@end;
+@end
 
 __attribute__((swift_name("BignumByteArrayDeserializable")))
 @protocol SecretkBignumByteArrayDeserializable
 @required
 - (id<SecretkBignumBigNumber>)fromByteArraySource:(SecretkKotlinByteArray *)source sign:(SecretkBignumSign *)sign __attribute__((swift_name("fromByteArray(source:sign:)")));
 - (id<SecretkBignumBigNumber>)fromUByteArraySource:(id)source sign:(SecretkBignumSign *)sign __attribute__((swift_name("fromUByteArray(source:sign:)")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("BignumBigInteger.Companion")))
@@ -3781,7 +3473,7 @@ __attribute__((swift_name("BignumBigInteger.Companion")))
 @property (readonly) SecretkBignumBigInteger *TEN __attribute__((swift_name("TEN")));
 @property (readonly) SecretkBignumBigInteger *TWO __attribute__((swift_name("TWO")));
 @property (readonly) SecretkBignumBigInteger *ZERO __attribute__((swift_name("ZERO")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("BignumBigInteger.QuotientAndRemainder")))
@@ -3795,7 +3487,7 @@ __attribute__((swift_name("BignumBigInteger.QuotientAndRemainder")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) SecretkBignumBigInteger *quotient __attribute__((swift_name("quotient")));
 @property (readonly) SecretkBignumBigInteger *remainder __attribute__((swift_name("remainder")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("BignumSign")))
@@ -3809,7 +3501,7 @@ __attribute__((swift_name("BignumSign")))
 + (SecretkKotlinArray<SecretkBignumSign *> *)values __attribute__((swift_name("values()")));
 - (SecretkBignumSign *)not __attribute__((swift_name("not()")));
 - (int32_t)toInt __attribute__((swift_name("toInt()")));
-@end;
+@end
 
 __attribute__((swift_name("KotlinClosedRange")))
 @protocol SecretkKotlinClosedRange
@@ -3818,13 +3510,13 @@ __attribute__((swift_name("KotlinClosedRange")))
 - (BOOL)isEmpty __attribute__((swift_name("isEmpty()")));
 @property (readonly) id endInclusive __attribute__((swift_name("endInclusive")));
 @property (readonly, getter=start_) id start __attribute__((swift_name("start")));
-@end;
+@end
 
 __attribute__((swift_name("KotlinIterable")))
 @protocol SecretkKotlinIterable
 @required
 - (id<SecretkKotlinIterator>)iterator __attribute__((swift_name("iterator()")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("BignumBigInteger.BigIntegerRange")))
@@ -3833,7 +3525,7 @@ __attribute__((swift_name("BignumBigInteger.BigIntegerRange")))
 - (id<SecretkKotlinIterator>)iterator __attribute__((swift_name("iterator()")));
 @property (readonly) SecretkBignumBigInteger *endInclusive __attribute__((swift_name("endInclusive")));
 @property (readonly, getter=start_) SecretkBignumBigInteger *start __attribute__((swift_name("start")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("BignumBigInteger.SqareRootAndRemainder")))
@@ -3847,7 +3539,7 @@ __attribute__((swift_name("BignumBigInteger.SqareRootAndRemainder")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) SecretkBignumBigInteger *remainder __attribute__((swift_name("remainder")));
 @property (readonly) SecretkBignumBigInteger *squareRoot __attribute__((swift_name("squareRoot")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("BignumModularBigInteger")))
@@ -3896,68 +3588,7 @@ __attribute__((swift_name("BignumModularBigInteger")))
 - (uint16_t)ushortValueExactRequired:(BOOL)exactRequired __attribute__((swift_name("ushortValue(exactRequired:)")));
 @property (readonly) SecretkBignumBigInteger *modulus __attribute__((swift_name("modulus")));
 @property (readonly) SecretkBignumBigInteger *residue __attribute__((swift_name("residue")));
-@end;
-
-__attribute__((swift_name("Kotlinx_serialization_coreEncoder")))
-@protocol SecretkKotlinx_serialization_coreEncoder
-@required
-- (id<SecretkKotlinx_serialization_coreCompositeEncoder>)beginCollectionDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor collectionSize:(int32_t)collectionSize __attribute__((swift_name("beginCollection(descriptor:collectionSize:)")));
-- (id<SecretkKotlinx_serialization_coreCompositeEncoder>)beginStructureDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("beginStructure(descriptor:)")));
-- (void)encodeBooleanValue:(BOOL)value __attribute__((swift_name("encodeBoolean(value:)")));
-- (void)encodeByteValue:(int8_t)value __attribute__((swift_name("encodeByte(value:)")));
-- (void)encodeCharValue:(unichar)value __attribute__((swift_name("encodeChar(value:)")));
-- (void)encodeDoubleValue:(double)value __attribute__((swift_name("encodeDouble(value:)")));
-- (void)encodeEnumEnumDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)enumDescriptor index:(int32_t)index __attribute__((swift_name("encodeEnum(enumDescriptor:index:)")));
-- (void)encodeFloatValue:(float)value __attribute__((swift_name("encodeFloat(value:)")));
-- (id<SecretkKotlinx_serialization_coreEncoder>)encodeInlineDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("encodeInline(descriptor:)")));
-- (void)encodeIntValue:(int32_t)value __attribute__((swift_name("encodeInt(value:)")));
-- (void)encodeLongValue:(int64_t)value __attribute__((swift_name("encodeLong(value:)")));
-- (void)encodeNotNullMark __attribute__((swift_name("encodeNotNullMark()")));
-- (void)encodeNull __attribute__((swift_name("encodeNull()")));
-- (void)encodeNullableSerializableValueSerializer:(id<SecretkKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeNullableSerializableValue(serializer:value:)")));
-- (void)encodeSerializableValueSerializer:(id<SecretkKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeSerializableValue(serializer:value:)")));
-- (void)encodeShortValue:(int16_t)value __attribute__((swift_name("encodeShort(value:)")));
-- (void)encodeStringValue:(NSString *)value __attribute__((swift_name("encodeString(value:)")));
-@property (readonly) SecretkKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
-@end;
-
-__attribute__((swift_name("Kotlinx_serialization_coreSerialDescriptor")))
-@protocol SecretkKotlinx_serialization_coreSerialDescriptor
-@required
-- (NSArray<id<SecretkKotlinAnnotation>> *)getElementAnnotationsIndex:(int32_t)index __attribute__((swift_name("getElementAnnotations(index:)")));
-- (id<SecretkKotlinx_serialization_coreSerialDescriptor>)getElementDescriptorIndex:(int32_t)index __attribute__((swift_name("getElementDescriptor(index:)")));
-- (int32_t)getElementIndexName:(NSString *)name __attribute__((swift_name("getElementIndex(name:)")));
-- (NSString *)getElementNameIndex:(int32_t)index __attribute__((swift_name("getElementName(index:)")));
-- (BOOL)isElementOptionalIndex:(int32_t)index __attribute__((swift_name("isElementOptional(index:)")));
-@property (readonly) NSArray<id<SecretkKotlinAnnotation>> *annotations __attribute__((swift_name("annotations")));
-@property (readonly) int32_t elementsCount __attribute__((swift_name("elementsCount")));
-@property (readonly) BOOL isInline __attribute__((swift_name("isInline")));
-@property (readonly) BOOL isNullable __attribute__((swift_name("isNullable")));
-@property (readonly) SecretkKotlinx_serialization_coreSerialKind *kind __attribute__((swift_name("kind")));
-@property (readonly) NSString *serialName __attribute__((swift_name("serialName")));
-@end;
-
-__attribute__((swift_name("Kotlinx_serialization_coreDecoder")))
-@protocol SecretkKotlinx_serialization_coreDecoder
-@required
-- (id<SecretkKotlinx_serialization_coreCompositeDecoder>)beginStructureDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("beginStructure(descriptor:)")));
-- (BOOL)decodeBoolean __attribute__((swift_name("decodeBoolean()")));
-- (int8_t)decodeByte __attribute__((swift_name("decodeByte()")));
-- (unichar)decodeChar __attribute__((swift_name("decodeChar()")));
-- (double)decodeDouble __attribute__((swift_name("decodeDouble()")));
-- (int32_t)decodeEnumEnumDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)enumDescriptor __attribute__((swift_name("decodeEnum(enumDescriptor:)")));
-- (float)decodeFloat __attribute__((swift_name("decodeFloat()")));
-- (id<SecretkKotlinx_serialization_coreDecoder>)decodeInlineDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("decodeInline(descriptor:)")));
-- (int32_t)decodeInt __attribute__((swift_name("decodeInt()")));
-- (int64_t)decodeLong __attribute__((swift_name("decodeLong()")));
-- (BOOL)decodeNotNullMark __attribute__((swift_name("decodeNotNullMark()")));
-- (SecretkKotlinNothing * _Nullable)decodeNull __attribute__((swift_name("decodeNull()")));
-- (id _Nullable)decodeNullableSerializableValueDeserializer:(id<SecretkKotlinx_serialization_coreDeserializationStrategy>)deserializer __attribute__((swift_name("decodeNullableSerializableValue(deserializer:)")));
-- (id _Nullable)decodeSerializableValueDeserializer:(id<SecretkKotlinx_serialization_coreDeserializationStrategy>)deserializer __attribute__((swift_name("decodeSerializableValue(deserializer:)")));
-- (int16_t)decodeShort __attribute__((swift_name("decodeShort()")));
-- (NSString *)decodeString __attribute__((swift_name("decodeString()")));
-@property (readonly) SecretkKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
-@end;
+@end
 
 __attribute__((swift_name("KotlinByteIterator")))
 @interface SecretkKotlinByteIterator : SecretkBase <SecretkKotlinIterator>
@@ -3965,7 +3596,7 @@ __attribute__((swift_name("KotlinByteIterator")))
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 - (SecretkByte *)next __attribute__((swift_name("next()")));
 - (int8_t)nextByte __attribute__((swift_name("nextByte()")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Kotlinx_serialization_jsonJsonElement.Companion")))
@@ -3975,49 +3606,160 @@ __attribute__((swift_name("Kotlinx_serialization_jsonJsonElement.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SecretkKotlinx_serialization_jsonJsonElementCompanion *shared __attribute__((swift_name("shared")));
 - (id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
+@end
 
 __attribute__((swift_name("Kotlinx_coroutines_coreSelectClause1")))
 @protocol SecretkKotlinx_coroutines_coreSelectClause1
 @required
 - (void)registerSelectClause1Select:(id<SecretkKotlinx_coroutines_coreSelectInstance>)select block:(id<SecretkKotlinSuspendFunction1>)block __attribute__((swift_name("registerSelectClause1(select:block:)")));
-@end;
+@end
 
 __attribute__((swift_name("Kotlinx_coroutines_coreDisposableHandle")))
 @protocol SecretkKotlinx_coroutines_coreDisposableHandle
 @required
 - (void)dispose __attribute__((swift_name("dispose()")));
-@end;
+@end
 
 __attribute__((swift_name("Kotlinx_coroutines_coreChildHandle")))
 @protocol SecretkKotlinx_coroutines_coreChildHandle <SecretkKotlinx_coroutines_coreDisposableHandle>
 @required
 - (BOOL)childCancelledCause:(SecretkKotlinThrowable *)cause __attribute__((swift_name("childCancelled(cause:)")));
 @property (readonly) id<SecretkKotlinx_coroutines_coreJob> _Nullable parent __attribute__((swift_name("parent")));
-@end;
+@end
 
 __attribute__((swift_name("Kotlinx_coroutines_coreChildJob")))
 @protocol SecretkKotlinx_coroutines_coreChildJob <SecretkKotlinx_coroutines_coreJob>
 @required
 - (void)parentCancelledParentJob:(id<SecretkKotlinx_coroutines_coreParentJob>)parentJob __attribute__((swift_name("parentCancelled(parentJob:)")));
-@end;
+@end
 
 __attribute__((swift_name("KotlinSequence")))
 @protocol SecretkKotlinSequence
 @required
 - (id<SecretkKotlinIterator>)iterator __attribute__((swift_name("iterator()")));
-@end;
+@end
 
 __attribute__((swift_name("Kotlinx_coroutines_coreSelectClause0")))
 @protocol SecretkKotlinx_coroutines_coreSelectClause0
 @required
 - (void)registerSelectClause0Select:(id<SecretkKotlinx_coroutines_coreSelectInstance>)select block:(id<SecretkKotlinSuspendFunction0>)block __attribute__((swift_name("registerSelectClause0(select:block:)")));
-@end;
+@end
 
 __attribute__((swift_name("KotlinCoroutineContextKey")))
 @protocol SecretkKotlinCoroutineContextKey
 @required
-@end;
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreCompositeEncoder")))
+@protocol SecretkKotlinx_serialization_coreCompositeEncoder
+@required
+- (void)encodeBooleanElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(BOOL)value __attribute__((swift_name("encodeBooleanElement(descriptor:index:value:)")));
+- (void)encodeByteElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(int8_t)value __attribute__((swift_name("encodeByteElement(descriptor:index:value:)")));
+- (void)encodeCharElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(unichar)value __attribute__((swift_name("encodeCharElement(descriptor:index:value:)")));
+- (void)encodeDoubleElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(double)value __attribute__((swift_name("encodeDoubleElement(descriptor:index:value:)")));
+- (void)encodeFloatElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(float)value __attribute__((swift_name("encodeFloatElement(descriptor:index:value:)")));
+- (id<SecretkKotlinx_serialization_coreEncoder>)encodeInlineElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("encodeInlineElement(descriptor:index:)")));
+- (void)encodeIntElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(int32_t)value __attribute__((swift_name("encodeIntElement(descriptor:index:value:)")));
+- (void)encodeLongElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(int64_t)value __attribute__((swift_name("encodeLongElement(descriptor:index:value:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (void)encodeNullableSerializableElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index serializer:(id<SecretkKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeNullableSerializableElement(descriptor:index:serializer:value:)")));
+- (void)encodeSerializableElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index serializer:(id<SecretkKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeSerializableElement(descriptor:index:serializer:value:)")));
+- (void)encodeShortElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(int16_t)value __attribute__((swift_name("encodeShortElement(descriptor:index:value:)")));
+- (void)encodeStringElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(NSString *)value __attribute__((swift_name("encodeStringElement(descriptor:index:value:)")));
+- (void)endStructureDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("endStructure(descriptor:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (BOOL)shouldEncodeElementDefaultDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("shouldEncodeElementDefault(descriptor:index:)")));
+@property (readonly) SecretkKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreSerializersModule")))
+@interface SecretkKotlinx_serialization_coreSerializersModule : SecretkBase
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (void)dumpToCollector:(id<SecretkKotlinx_serialization_coreSerializersModuleCollector>)collector __attribute__((swift_name("dumpTo(collector:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (id<SecretkKotlinx_serialization_coreKSerializer> _Nullable)getContextualKClass:(id<SecretkKotlinKClass>)kClass typeArgumentsSerializers:(NSArray<id<SecretkKotlinx_serialization_coreKSerializer>> *)typeArgumentsSerializers __attribute__((swift_name("getContextual(kClass:typeArgumentsSerializers:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (id<SecretkKotlinx_serialization_coreSerializationStrategy> _Nullable)getPolymorphicBaseClass:(id<SecretkKotlinKClass>)baseClass value:(id)value __attribute__((swift_name("getPolymorphic(baseClass:value:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (id<SecretkKotlinx_serialization_coreDeserializationStrategy> _Nullable)getPolymorphicBaseClass:(id<SecretkKotlinKClass>)baseClass serializedClassName:(NSString * _Nullable)serializedClassName __attribute__((swift_name("getPolymorphic(baseClass:serializedClassName:)")));
+@end
+
+__attribute__((swift_name("KotlinAnnotation")))
+@protocol SecretkKotlinAnnotation
+@required
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+__attribute__((swift_name("Kotlinx_serialization_coreSerialKind")))
+@interface SecretkKotlinx_serialization_coreSerialKind : SecretkBase
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreCompositeDecoder")))
+@protocol SecretkKotlinx_serialization_coreCompositeDecoder
+@required
+- (BOOL)decodeBooleanElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeBooleanElement(descriptor:index:)")));
+- (int8_t)decodeByteElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeByteElement(descriptor:index:)")));
+- (unichar)decodeCharElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeCharElement(descriptor:index:)")));
+- (int32_t)decodeCollectionSizeDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("decodeCollectionSize(descriptor:)")));
+- (double)decodeDoubleElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeDoubleElement(descriptor:index:)")));
+- (int32_t)decodeElementIndexDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("decodeElementIndex(descriptor:)")));
+- (float)decodeFloatElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeFloatElement(descriptor:index:)")));
+- (id<SecretkKotlinx_serialization_coreDecoder>)decodeInlineElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeInlineElement(descriptor:index:)")));
+- (int32_t)decodeIntElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeIntElement(descriptor:index:)")));
+- (int64_t)decodeLongElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeLongElement(descriptor:index:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (id _Nullable)decodeNullableSerializableElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index deserializer:(id<SecretkKotlinx_serialization_coreDeserializationStrategy>)deserializer previousValue:(id _Nullable)previousValue __attribute__((swift_name("decodeNullableSerializableElement(descriptor:index:deserializer:previousValue:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (BOOL)decodeSequentially __attribute__((swift_name("decodeSequentially()")));
+- (id _Nullable)decodeSerializableElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index deserializer:(id<SecretkKotlinx_serialization_coreDeserializationStrategy>)deserializer previousValue:(id _Nullable)previousValue __attribute__((swift_name("decodeSerializableElement(descriptor:index:deserializer:previousValue:)")));
+- (int16_t)decodeShortElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeShortElement(descriptor:index:)")));
+- (NSString *)decodeStringElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeStringElement(descriptor:index:)")));
+- (void)endStructureDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("endStructure(descriptor:)")));
+@property (readonly) SecretkKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KotlinNothing")))
+@interface SecretkKotlinNothing : SecretkBase
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("BignumModularBigInteger.Companion")))
@@ -4035,7 +3777,7 @@ __attribute__((swift_name("BignumModularBigInteger.Companion")))
 - (id<SecretkBignumBigNumberCreator>)creatorForModuloModulo______:(uint32_t)modulo __attribute__((swift_name("creatorForModulo(modulo______:)")));
 - (id<SecretkBignumBigNumberCreator>)creatorForModuloModulo_______:(uint64_t)modulo __attribute__((swift_name("creatorForModulo(modulo_______:)")));
 - (id<SecretkBignumBigNumberCreator>)creatorForModuloModulo________:(uint16_t)modulo __attribute__((swift_name("creatorForModulo(modulo________:)")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("BignumModularQuotientAndRemainder")))
@@ -4049,73 +3791,7 @@ __attribute__((swift_name("BignumModularQuotientAndRemainder")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) SecretkBignumModularBigInteger *quotient __attribute__((swift_name("quotient")));
 @property (readonly) SecretkBignumModularBigInteger *remainder __attribute__((swift_name("remainder")));
-@end;
-
-__attribute__((swift_name("Kotlinx_serialization_coreCompositeEncoder")))
-@protocol SecretkKotlinx_serialization_coreCompositeEncoder
-@required
-- (void)encodeBooleanElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(BOOL)value __attribute__((swift_name("encodeBooleanElement(descriptor:index:value:)")));
-- (void)encodeByteElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(int8_t)value __attribute__((swift_name("encodeByteElement(descriptor:index:value:)")));
-- (void)encodeCharElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(unichar)value __attribute__((swift_name("encodeCharElement(descriptor:index:value:)")));
-- (void)encodeDoubleElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(double)value __attribute__((swift_name("encodeDoubleElement(descriptor:index:value:)")));
-- (void)encodeFloatElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(float)value __attribute__((swift_name("encodeFloatElement(descriptor:index:value:)")));
-- (id<SecretkKotlinx_serialization_coreEncoder>)encodeInlineElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("encodeInlineElement(descriptor:index:)")));
-- (void)encodeIntElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(int32_t)value __attribute__((swift_name("encodeIntElement(descriptor:index:value:)")));
-- (void)encodeLongElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(int64_t)value __attribute__((swift_name("encodeLongElement(descriptor:index:value:)")));
-- (void)encodeNullableSerializableElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index serializer:(id<SecretkKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeNullableSerializableElement(descriptor:index:serializer:value:)")));
-- (void)encodeSerializableElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index serializer:(id<SecretkKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeSerializableElement(descriptor:index:serializer:value:)")));
-- (void)encodeShortElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(int16_t)value __attribute__((swift_name("encodeShortElement(descriptor:index:value:)")));
-- (void)encodeStringElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(NSString *)value __attribute__((swift_name("encodeStringElement(descriptor:index:value:)")));
-- (void)endStructureDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("endStructure(descriptor:)")));
-- (BOOL)shouldEncodeElementDefaultDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("shouldEncodeElementDefault(descriptor:index:)")));
-@property (readonly) SecretkKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
-@end;
-
-__attribute__((swift_name("Kotlinx_serialization_coreSerializersModule")))
-@interface SecretkKotlinx_serialization_coreSerializersModule : SecretkBase
-- (void)dumpToCollector:(id<SecretkKotlinx_serialization_coreSerializersModuleCollector>)collector __attribute__((swift_name("dumpTo(collector:)")));
-- (id<SecretkKotlinx_serialization_coreKSerializer> _Nullable)getContextualKClass:(id<SecretkKotlinKClass>)kClass typeArgumentsSerializers:(NSArray<id<SecretkKotlinx_serialization_coreKSerializer>> *)typeArgumentsSerializers __attribute__((swift_name("getContextual(kClass:typeArgumentsSerializers:)")));
-- (id<SecretkKotlinx_serialization_coreSerializationStrategy> _Nullable)getPolymorphicBaseClass:(id<SecretkKotlinKClass>)baseClass value:(id)value __attribute__((swift_name("getPolymorphic(baseClass:value:)")));
-- (id<SecretkKotlinx_serialization_coreDeserializationStrategy> _Nullable)getPolymorphicBaseClass:(id<SecretkKotlinKClass>)baseClass serializedClassName:(NSString * _Nullable)serializedClassName __attribute__((swift_name("getPolymorphic(baseClass:serializedClassName:)")));
-@end;
-
-__attribute__((swift_name("KotlinAnnotation")))
-@protocol SecretkKotlinAnnotation
-@required
-@end;
-
-__attribute__((swift_name("Kotlinx_serialization_coreSerialKind")))
-@interface SecretkKotlinx_serialization_coreSerialKind : SecretkBase
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@end;
-
-__attribute__((swift_name("Kotlinx_serialization_coreCompositeDecoder")))
-@protocol SecretkKotlinx_serialization_coreCompositeDecoder
-@required
-- (BOOL)decodeBooleanElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeBooleanElement(descriptor:index:)")));
-- (int8_t)decodeByteElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeByteElement(descriptor:index:)")));
-- (unichar)decodeCharElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeCharElement(descriptor:index:)")));
-- (int32_t)decodeCollectionSizeDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("decodeCollectionSize(descriptor:)")));
-- (double)decodeDoubleElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeDoubleElement(descriptor:index:)")));
-- (int32_t)decodeElementIndexDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("decodeElementIndex(descriptor:)")));
-- (float)decodeFloatElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeFloatElement(descriptor:index:)")));
-- (id<SecretkKotlinx_serialization_coreDecoder>)decodeInlineElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeInlineElement(descriptor:index:)")));
-- (int32_t)decodeIntElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeIntElement(descriptor:index:)")));
-- (int64_t)decodeLongElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeLongElement(descriptor:index:)")));
-- (id _Nullable)decodeNullableSerializableElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index deserializer:(id<SecretkKotlinx_serialization_coreDeserializationStrategy>)deserializer previousValue:(id _Nullable)previousValue __attribute__((swift_name("decodeNullableSerializableElement(descriptor:index:deserializer:previousValue:)")));
-- (BOOL)decodeSequentially __attribute__((swift_name("decodeSequentially()")));
-- (id _Nullable)decodeSerializableElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index deserializer:(id<SecretkKotlinx_serialization_coreDeserializationStrategy>)deserializer previousValue:(id _Nullable)previousValue __attribute__((swift_name("decodeSerializableElement(descriptor:index:deserializer:previousValue:)")));
-- (int16_t)decodeShortElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeShortElement(descriptor:index:)")));
-- (NSString *)decodeStringElementDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeStringElement(descriptor:index:)")));
-- (void)endStructureDescriptor:(id<SecretkKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("endStructure(descriptor:)")));
-@property (readonly) SecretkKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("KotlinNothing")))
-@interface SecretkKotlinNothing : SecretkBase
-@end;
+@end
 
 __attribute__((swift_name("Kotlinx_coroutines_coreSelectInstance")))
 @protocol SecretkKotlinx_coroutines_coreSelectInstance
@@ -4127,41 +3803,46 @@ __attribute__((swift_name("Kotlinx_coroutines_coreSelectInstance")))
 - (id _Nullable)trySelectOtherOtherOp:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp * _Nullable)otherOp __attribute__((swift_name("trySelectOther(otherOp:)")));
 @property (readonly) id<SecretkKotlinContinuation> completion __attribute__((swift_name("completion")));
 @property (readonly) BOOL isSelected __attribute__((swift_name("isSelected")));
-@end;
+@end
 
 __attribute__((swift_name("KotlinFunction")))
 @protocol SecretkKotlinFunction
 @required
-@end;
+@end
 
 __attribute__((swift_name("KotlinSuspendFunction1")))
 @protocol SecretkKotlinSuspendFunction1 <SecretkKotlinFunction>
 @required
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)invokeP1:(id _Nullable)p1 completionHandler:(void (^)(id _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(p1:completionHandler:)")));
-@end;
+@end
 
 __attribute__((swift_name("Kotlinx_coroutines_coreParentJob")))
 @protocol SecretkKotlinx_coroutines_coreParentJob <SecretkKotlinx_coroutines_coreJob>
 @required
 - (SecretkKotlinCancellationException *)getChildJobCancellationCause __attribute__((swift_name("getChildJobCancellationCause()")));
-@end;
+@end
 
 __attribute__((swift_name("KotlinSuspendFunction0")))
 @protocol SecretkKotlinSuspendFunction0 <SecretkKotlinFunction>
 @required
 
 /**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)invokeWithCompletionHandler:(void (^)(id _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(completionHandler:)")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
 __attribute__((swift_name("Kotlinx_serialization_coreSerializersModuleCollector")))
 @protocol SecretkKotlinx_serialization_coreSerializersModuleCollector
 @required
@@ -4169,32 +3850,52 @@ __attribute__((swift_name("Kotlinx_serialization_coreSerializersModuleCollector"
 - (void)contextualKClass:(id<SecretkKotlinKClass>)kClass serializer:(id<SecretkKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("contextual(kClass:serializer:)")));
 - (void)polymorphicBaseClass:(id<SecretkKotlinKClass>)baseClass actualClass:(id<SecretkKotlinKClass>)actualClass actualSerializer:(id<SecretkKotlinx_serialization_coreKSerializer>)actualSerializer __attribute__((swift_name("polymorphic(baseClass:actualClass:actualSerializer:)")));
 - (void)polymorphicDefaultBaseClass:(id<SecretkKotlinKClass>)baseClass defaultDeserializerProvider:(id<SecretkKotlinx_serialization_coreDeserializationStrategy> _Nullable (^)(NSString * _Nullable))defaultDeserializerProvider __attribute__((swift_name("polymorphicDefault(baseClass:defaultDeserializerProvider:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
 - (void)polymorphicDefaultDeserializerBaseClass:(id<SecretkKotlinKClass>)baseClass defaultDeserializerProvider:(id<SecretkKotlinx_serialization_coreDeserializationStrategy> _Nullable (^)(NSString * _Nullable))defaultDeserializerProvider __attribute__((swift_name("polymorphicDefaultDeserializer(baseClass:defaultDeserializerProvider:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
 - (void)polymorphicDefaultSerializerBaseClass:(id<SecretkKotlinKClass>)baseClass defaultSerializerProvider:(id<SecretkKotlinx_serialization_coreSerializationStrategy> _Nullable (^)(id))defaultSerializerProvider __attribute__((swift_name("polymorphicDefaultSerializer(baseClass:defaultSerializerProvider:)")));
-@end;
+@end
 
 __attribute__((swift_name("KotlinKDeclarationContainer")))
 @protocol SecretkKotlinKDeclarationContainer
 @required
-@end;
+@end
 
 __attribute__((swift_name("KotlinKAnnotatedElement")))
 @protocol SecretkKotlinKAnnotatedElement
 @required
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlin.SinceKotlin(version="1.1")
+*/
 __attribute__((swift_name("KotlinKClassifier")))
 @protocol SecretkKotlinKClassifier
 @required
-@end;
+@end
 
 __attribute__((swift_name("KotlinKClass")))
 @protocol SecretkKotlinKClass <SecretkKotlinKDeclarationContainer, SecretkKotlinKAnnotatedElement, SecretkKotlinKClassifier>
 @required
+
+/**
+ * @note annotations
+ *   kotlin.SinceKotlin(version="1.1")
+*/
 - (BOOL)isInstanceValue:(id _Nullable)value __attribute__((swift_name("isInstance(value:)")));
 @property (readonly) NSString * _Nullable qualifiedName __attribute__((swift_name("qualifiedName")));
 @property (readonly) NSString * _Nullable simpleName __attribute__((swift_name("simpleName")));
-@end;
+@end
 
 __attribute__((swift_name("Kotlinx_coroutines_coreAtomicDesc")))
 @interface SecretkKotlinx_coroutines_coreAtomicDesc : SecretkBase
@@ -4203,7 +3904,7 @@ __attribute__((swift_name("Kotlinx_coroutines_coreAtomicDesc")))
 - (void)completeOp:(SecretkKotlinx_coroutines_coreAtomicOp<id> *)op failure:(id _Nullable)failure __attribute__((swift_name("complete(op:failure:)")));
 - (id _Nullable)prepareOp:(SecretkKotlinx_coroutines_coreAtomicOp<id> *)op __attribute__((swift_name("prepare(op:)")));
 @property SecretkKotlinx_coroutines_coreAtomicOp<id> *atomicOp __attribute__((swift_name("atomicOp")));
-@end;
+@end
 
 __attribute__((swift_name("Kotlinx_coroutines_coreOpDescriptor")))
 @interface SecretkKotlinx_coroutines_coreOpDescriptor : SecretkBase
@@ -4213,7 +3914,7 @@ __attribute__((swift_name("Kotlinx_coroutines_coreOpDescriptor")))
 - (id _Nullable)performAffected:(id _Nullable)affected __attribute__((swift_name("perform(affected:)")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) SecretkKotlinx_coroutines_coreAtomicOp<id> * _Nullable atomicOp __attribute__((swift_name("atomicOp")));
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Kotlinx_coroutines_coreLockFreeLinkedListNode.PrepareOp")))
@@ -4228,14 +3929,19 @@ __attribute__((swift_name("Kotlinx_coroutines_coreLockFreeLinkedListNode.Prepare
 @property (readonly) SecretkKotlinx_coroutines_coreAtomicOp<id> *atomicOp __attribute__((swift_name("atomicOp")));
 @property (readonly) SecretkKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc *desc __attribute__((swift_name("desc")));
 @property (readonly) SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *next __attribute__((swift_name("next")));
-@end;
+@end
 
+
+/**
+ * @note annotations
+ *   kotlin.SinceKotlin(version="1.3")
+*/
 __attribute__((swift_name("KotlinContinuation")))
 @protocol SecretkKotlinContinuation
 @required
 - (void)resumeWithResult:(id _Nullable)result __attribute__((swift_name("resumeWith(result:)")));
 @property (readonly) id<SecretkKotlinCoroutineContext> context __attribute__((swift_name("context")));
-@end;
+@end
 
 __attribute__((swift_name("Kotlinx_coroutines_coreAtomicOp")))
 @interface SecretkKotlinx_coroutines_coreAtomicOp<__contravariant T> : SecretkKotlinx_coroutines_coreOpDescriptor
@@ -4249,7 +3955,7 @@ __attribute__((swift_name("Kotlinx_coroutines_coreAtomicOp")))
 @property (readonly) id _Nullable consensus __attribute__((swift_name("consensus")));
 @property (readonly) BOOL isDecided __attribute__((swift_name("isDecided")));
 @property (readonly) int64_t opSequence __attribute__((swift_name("opSequence")));
-@end;
+@end
 
 __attribute__((swift_name("Kotlinx_coroutines_coreLockFreeLinkedListNode")))
 @interface SecretkKotlinx_coroutines_coreLockFreeLinkedListNode : SecretkBase
@@ -4263,6 +3969,10 @@ __attribute__((swift_name("Kotlinx_coroutines_coreLockFreeLinkedListNode")))
 - (SecretkKotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc<SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *> *)describeAddLastNode:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *)node __attribute__((swift_name("describeAddLast(node:)")));
 - (SecretkKotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc<SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *> *)describeRemoveFirst __attribute__((swift_name("describeRemoveFirst()")));
 - (void)helpRemove __attribute__((swift_name("helpRemove()")));
+
+/**
+ * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
 - (SecretkKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable)nextIfRemoved __attribute__((swift_name("nextIfRemoved()")));
 - (BOOL)remove __attribute__((swift_name("remove()")));
 - (id _Nullable)removeFirstIfIsInstanceOfOrPeekIfPredicate:(SecretkBoolean *(^)(id _Nullable))predicate __attribute__((swift_name("removeFirstIfIsInstanceOfOrPeekIf(predicate:)")));
@@ -4272,58 +3982,102 @@ __attribute__((swift_name("Kotlinx_coroutines_coreLockFreeLinkedListNode")))
 @property (readonly, getter=next_) id next __attribute__((swift_name("next")));
 @property (readonly) SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *nextNode __attribute__((swift_name("nextNode")));
 @property (readonly) SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *prevNode __attribute__((swift_name("prevNode")));
-@end;
+@end
 
 __attribute__((swift_name("Kotlinx_coroutines_coreLockFreeLinkedListNode.AbstractAtomicDesc")))
 @interface SecretkKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc : SecretkKotlinx_coroutines_coreAtomicDesc
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 - (void)completeOp:(SecretkKotlinx_coroutines_coreAtomicOp<id> *)op failure:(id _Nullable)failure __attribute__((swift_name("complete(op:failure:)")));
+
+/**
+ * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
 - (id _Nullable)failureAffected:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *)affected __attribute__((swift_name("failure(affected:)")));
+
+/**
+ * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
 - (void)finishOnSuccessAffected:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *)next __attribute__((swift_name("finishOnSuccess(affected:next:)")));
 - (void)finishPreparePrepareOp:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp *)prepareOp __attribute__((swift_name("finishPrepare(prepareOp:)")));
 - (id _Nullable)onPreparePrepareOp:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp *)prepareOp __attribute__((swift_name("onPrepare(prepareOp:)")));
 - (void)onRemovedAffected:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *)affected __attribute__((swift_name("onRemoved(affected:)")));
 - (id _Nullable)prepareOp:(SecretkKotlinx_coroutines_coreAtomicOp<id> *)op __attribute__((swift_name("prepare(op:)")));
+
+/**
+ * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
 - (BOOL)retryAffected:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(id)next __attribute__((swift_name("retry(affected:next:)")));
+
+/**
+ * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
 - (SecretkKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable)takeAffectedNodeOp:(SecretkKotlinx_coroutines_coreOpDescriptor *)op __attribute__((swift_name("takeAffectedNode(op:)")));
 - (id)updatedNextAffected:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *)next __attribute__((swift_name("updatedNext(affected:next:)")));
 @property (readonly) SecretkKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable affectedNode __attribute__((swift_name("affectedNode")));
 @property (readonly) SecretkKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable originalNext __attribute__((swift_name("originalNext")));
-@end;
+@end
 
 __attribute__((swift_name("Kotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc")))
 @interface SecretkKotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc<T> : SecretkKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc
 - (instancetype)initWithQueue:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *)queue node:(T)node __attribute__((swift_name("init(queue:node:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)new __attribute__((unavailable));
+
+/**
+ * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
 - (void)finishOnSuccessAffected:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *)next __attribute__((swift_name("finishOnSuccess(affected:next:)")));
 - (void)finishPreparePrepareOp:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp *)prepareOp __attribute__((swift_name("finishPrepare(prepareOp:)")));
+
+/**
+ * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
 - (BOOL)retryAffected:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(id)next __attribute__((swift_name("retry(affected:next:)")));
+
+/**
+ * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
 - (SecretkKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable)takeAffectedNodeOp:(SecretkKotlinx_coroutines_coreOpDescriptor *)op __attribute__((swift_name("takeAffectedNode(op:)")));
 - (id)updatedNextAffected:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *)next __attribute__((swift_name("updatedNext(affected:next:)")));
 @property (readonly) SecretkKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable affectedNode __attribute__((swift_name("affectedNode")));
 @property (readonly) T node __attribute__((swift_name("node")));
 @property (readonly) SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *originalNext __attribute__((swift_name("originalNext")));
 @property (readonly) SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *queue __attribute__((swift_name("queue")));
-@end;
+@end
 
 __attribute__((swift_name("Kotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc")))
 @interface SecretkKotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc<T> : SecretkKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc
 - (instancetype)initWithQueue:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *)queue __attribute__((swift_name("init(queue:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)new __attribute__((unavailable));
+
+/**
+ * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
 - (id _Nullable)failureAffected:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *)affected __attribute__((swift_name("failure(affected:)")));
+
+/**
+ * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
 - (void)finishOnSuccessAffected:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *)next __attribute__((swift_name("finishOnSuccess(affected:next:)")));
 - (void)finishPreparePrepareOp:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp *)prepareOp __attribute__((swift_name("finishPrepare(prepareOp:)")));
+
+/**
+ * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
 - (BOOL)retryAffected:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(id)next __attribute__((swift_name("retry(affected:next:)")));
+
+/**
+ * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
 - (SecretkKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable)takeAffectedNodeOp:(SecretkKotlinx_coroutines_coreOpDescriptor *)op __attribute__((swift_name("takeAffectedNode(op:)")));
 - (id)updatedNextAffected:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *)next __attribute__((swift_name("updatedNext(affected:next:)")));
 @property (readonly) SecretkKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable affectedNode __attribute__((swift_name("affectedNode")));
 @property (readonly) SecretkKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable originalNext __attribute__((swift_name("originalNext")));
 @property (readonly) SecretkKotlinx_coroutines_coreLockFreeLinkedListNode *queue __attribute__((swift_name("queue")));
 @property (readonly) T _Nullable result __attribute__((swift_name("result")));
-@end;
+@end
 
 #pragma pop_macro("_Nullable_result")
 #pragma clang diagnostic pop
