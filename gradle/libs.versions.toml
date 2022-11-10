@@ -131,3 +131,4 @@ org-cryptomator-sivMode = { module = "org.cryptomator:siv-mode", version.ref = "
 
 io-eqoty-kryptools-aessiv = { module = "io.eqoty.kryptools:aes-siv", version.ref = "kryptools" }
 io-eqoty-kryptools-bech32 = { module = "io.eqoty.kryptools:bech32", version.ref = "kryptools" }
+io-eqoty-kryptools-axlsign = { module = "io.eqoty.kryptools:axlsign", version.ref = "kryptools" }
