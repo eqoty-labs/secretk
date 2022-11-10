@@ -1,9 +1,0 @@
-[submodule "nativelibs/libaes_siv"]
-	path = secretk/nativelibs/libaes_siv
-	url = https://github.com/dfoxfranke/libaes_siv.git
-[submodule "nativelibs/ios-cmake"]
-	path = secretk/nativelibs/ios-cmake
-	url = https://github.com/leetal/ios-cmake.git
-[submodule "nativelibs/darwinopenssl"]
-	path = secretk/nativelibs/darwinopenssl
-	url = https://github.com/krzyzanowskim/OpenSSL

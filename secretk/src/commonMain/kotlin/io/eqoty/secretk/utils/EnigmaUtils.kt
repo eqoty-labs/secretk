@@ -2,7 +2,7 @@ package io.eqoty.secretk.utils
 
 import com.ionspin.kotlin.crypto.util.LibsodiumRandom
 import com.ionspin.kotlin.crypto.util.encodeToUByteArray
-import io.eqoty.secretk.crypto.AesSIV
+import io.eqoty.kryptools.aessiv.AesSIV
 import io.eqoty.secretk.crypto.deriveHKDFKey
 import io.eqoty.secretk.utils.AxlSign.generateKeyPair
 import io.eqoty.secretk.utils.AxlSign.sharedKey

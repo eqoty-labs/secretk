@@ -47,23 +47,18 @@ kotlin {
     val darwinTargets = mutableListOf<KotlinNativeTarget>()
     macosX64 {
         darwinTargets.add(this)
-        setupCinterop(Target.MacosX64)
     }
     macosArm64 {
         darwinTargets.add(this)
-        setupCinterop(Target.MacosArm64)
     }
     iosX64 {
         darwinTargets.add(this)
-        setupCinterop(Target.IosSimulatorX64)
     }
     iosArm64 {
         darwinTargets.add(this)
-        setupCinterop(Target.IosArm64)
     }
     iosSimulatorArm64 {
         darwinTargets.add(this)
-        setupCinterop(Target.IosSimulatorArm64)
     }
     darwinTargets.forEach {
         it.apply {
@@ -94,7 +89,7 @@ kotlin {
                 implementation(libs.com.ionspin.kotlin.multiplatformCryptoLibsodiumBindings)
                 implementation(libs.io.github.luca992.cash.z.ecc.android.kotlinBip39)
                 implementation(libs.com.github.luca992.khash.ripemd160)
-
+                implementation(libs.io.eqoty.kryptools.aessiv)
             }
         }
         val commonTest by getting {
@@ -183,73 +178,6 @@ multiplatformSwiftPackage {
         iOS { v("13") }
         macOS { v("10_11") }
     }
-}
-
-fun KotlinNativeTarget.setupCinterop(target: Target) =
-    apply {
-        compilations.getByName("main") {
-            cinterops {
-                val libAesSiv by creating {
-                    defFile(project.file("src/nativeInterop/cinterop/libaes_siv.def"))
-                    includeDirs.allHeaders(project.file("$projectDir/nativelibs/libaes_siv/"))
-                }
-            }
-            val buildFolderName = target.buildName
-            val releaseFolderName = target.releaseFolderName
-            val opensslTargetName = target.opensslTargetName
-            kotlinOptions.freeCompilerArgs = listOf(
-                "-include-binary",
-                "$projectDir/nativelibs/libaes_siv_build/$buildFolderName/$releaseFolderName/libaes_siv.a",
-                "-include-binary",
-                "$projectDir/nativelibs/darwinopenssl/$opensslTargetName/lib/libcrypto.a"
-            )
-        }
-    }
-
-enum class Target(
-    val taskSuffix: String,
-    val buildName: String,
-    val releaseFolderName: String,
-    val opensslTargetName: String
-) {
-    MacosArm64("MacosArm64", "MAC_ARM64", "Release", "macosx"),
-    MacosX64("MacosX64", "MAC", "Release", "macosx"),
-    IosArm64("IosArm64", "OS64", "Release-iphoneos", "iphoneos"),
-    IosSimulatorX64("IosX64", "SIMULATOR64", "Release-iphonesimulator", "iphonesimulator"),
-    IosSimulatorArm64("IosSimulatorArm64", "SIMULATORARM64", "Release-iphonesimulator", "iphonesimulator")
-}
-
-fun makeLibAesSivTask(target: Target): Task =
-    target.run {
-        task<Exec>("makeLibAesSiv$taskSuffix") {
-            workingDir = File("./nativelibs")
-            commandLine("./make-libaes_siv.sh", buildName)
-        }.apply {
-            onlyIf {
-                !file("./nativelibs/libaes_siv_build/$buildName/$releaseFolderName/libaes_siv.a").exists()
-            }
-        }
-    }
-
-
-tasks.findByName("cinteropLibAesSivMacosArm64")!!.dependsOn(makeLibAesSivTask(Target.MacosArm64))
-tasks.findByName("cinteropLibAesSivMacosX64")!!.dependsOn(makeLibAesSivTask(Target.MacosX64))
-tasks.findByName("cinteropLibAesSivIosArm64")!!.dependsOn(makeLibAesSivTask(Target.IosArm64))
-tasks.findByName("cinteropLibAesSivIosX64")!!.dependsOn(makeLibAesSivTask(Target.IosSimulatorX64))
-tasks.findByName("cinteropLibAesSivIosSimulatorArm64")!!.dependsOn(makeLibAesSivTask(Target.IosSimulatorArm64))
-
-tasks.clean {
-    doFirst {
-        val libAesSivBuild = File("$projectDir/nativelibs/libaes_siv_build")
-        libAesSivBuild.deleteRecursively()
-    }
-}
-
-// https://youtrack.jetbrains.com/issue/KT-46466
-val dependsOnTasks = mutableListOf<String>()
-tasks.withType<AbstractPublishToMaven>().configureEach {
-    dependsOnTasks.add(this.name.replace("publish", "sign").replaceAfter("Publication", ""))
-    dependsOn(dependsOnTasks)
 }
 
 plugins.withId("com.vanniktech.maven.publish.base") {
