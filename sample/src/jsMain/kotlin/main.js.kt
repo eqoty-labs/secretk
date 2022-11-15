@@ -106,7 +106,8 @@ suspend fun setupKeplerAndGetWallet(): OfflineSignerOnlyAminoWalletWrapper {
         }"""
     )
     console.log(suggestion)
-    val promise: Promise<dynamic> = window.asDynamic().keplr.experimentalSuggestChain(suggestion) as Promise<dynamic>
+    val suggestChainPromise: Promise<dynamic> = window.asDynamic().keplr.experimentalSuggestChain(suggestion) as Promise<dynamic>
+    suggestChainPromise.await()
     val enablePromise: Promise<dynamic> = window.asDynamic().keplr.enable(CHAIN_ID) as Promise<dynamic>
     enablePromise.await()
     val wallet: AminoWallet = window.asDynamic().getOfflineSignerOnlyAmino(CHAIN_ID)
