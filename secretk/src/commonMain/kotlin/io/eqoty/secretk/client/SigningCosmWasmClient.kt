@@ -155,8 +155,11 @@ private constructor(
             account.address == senderAddress
         } ?: throw Error("Failed to retrieve account from signer")
         val nonceResult = getNonce(senderAddress)
+        if (chainId == null) {
+            chainId = getChainId()
+        }
         val signerData = txOptions.explicitSignerData
-            ?: SignerData(nonceResult.accountNumber, nonceResult.sequence, getChainId())
+            ?: SignerData(nonceResult.accountNumber, nonceResult.sequence, chainId!!)
         val fee = StdFee(
             gas = txOptions.gasLimit,
             amount = listOf(

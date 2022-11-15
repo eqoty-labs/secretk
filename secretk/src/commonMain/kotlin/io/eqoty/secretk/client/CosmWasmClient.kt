@@ -11,7 +11,7 @@ open class CosmWasmClient protected constructor(
     apiUrl: String,
     encryptionUtils: EncryptionUtils,
     broadcastMode: BroadcastMode = BroadcastMode.Block,
-    private var chainId: String? = null
+    var chainId: String? = null
 ) {
     internal val restClient = RestClient(apiUrl, broadcastMode, encryptionUtils)
 
