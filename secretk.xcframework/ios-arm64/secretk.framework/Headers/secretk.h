@@ -2413,6 +2413,7 @@ __attribute__((swift_name("CosmWasmClient")))
 */
 - (void)queryContractSmartContractAddress:(NSString *)contractAddress queryMsg:(NSString *)queryMsg contractCodeHash:(NSString * _Nullable)contractCodeHash completionHandler:(void (^)(NSString * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("queryContractSmart(contractAddress:queryMsg:contractCodeHash:completionHandler:)")));
 @property NSString * _Nullable anyValidAddress __attribute__((swift_name("anyValidAddress")));
+@property NSString * _Nullable chainId __attribute__((swift_name("chainId")));
 @end
 
 __attribute__((objc_subclassing_restricted))
