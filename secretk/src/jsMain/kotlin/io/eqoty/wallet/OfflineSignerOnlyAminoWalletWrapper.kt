@@ -12,7 +12,9 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 class OfflineSignerOnlyAminoWalletWrapper(
-    val wallet: AminoWallet,
+    val keplr: dynamic,
+    val chainId: String,
+    val wallet: AminoWallet = keplr.getOfflineSignerOnlyAmino(chainId)
 ) : Wallet {
 
     override suspend fun getSignMode(): SignMode? = null
