@@ -111,6 +111,9 @@ kotlin {
                 implementation(npm("@metamask/detect-provider", "^1.2.0"))
                 implementation(npm("web3", "^1.7.0"))
                 implementation(npm("@walletconnect/web3-provider", "^1.8.0"))
+                implementation(npm("@walletconnect/client", "^1.8.0"))
+                implementation(npm("@keplr-wallet/wc-client", "^0.11.17"))
+                implementation(npm("@keplr-wallet/wc-qrcode-modal", "^0.11.17"))
                 implementation(npm("@babel/core", "^7.18.13"))
                 implementation(npm("events", "^3.3.0"))
 

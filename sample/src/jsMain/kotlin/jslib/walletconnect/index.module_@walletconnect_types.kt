@@ -1,7 +1,13 @@
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS")
+@file:Suppress(
+    "INTERFACE_WITH_SUPERCLASS",
+    "OVERRIDING_FINAL_MEMBER",
+    "RETURN_TYPE_MISMATCH_ON_OVERRIDE",
+    "CONFLICTING_OVERLOADS"
+)
 
 package jslib.walletconnect
 
+import org.khronos.webgl.ArrayBuffer
 import kotlin.js.Promise
 
 external interface IConnector {
@@ -35,9 +41,39 @@ external interface IConnector {
     fun signTypedData(params: Array<Any>): Promise<Any>
     fun updateChain(chainParams: IUpdateChainParams): Promise<Any>
     fun sendCustomRequest(request: IJsonRpcRequestPartial, options: IRequestOptions = definedExternally): Promise<Any>
-    fun unsafeSend(request: IJsonRpcRequest, options: IRequestOptions = definedExternally): Promise<dynamic /* IJsonRpcResponseSuccess | IJsonRpcResponseError */>
+    fun unsafeSend(
+        request: IJsonRpcRequest,
+        options: IRequestOptions = definedExternally
+    ): Promise<dynamic /* IJsonRpcResponseSuccess | IJsonRpcResponseError */>
+
     fun approveRequest(response: IJsonRpcResponseSuccessPartial)
     fun rejectRequest(response: IJsonRpcResponseErrorPartial)
+}
+
+external interface ICryptoLib {
+    var generateKey: (length: Number) -> Promise<ArrayBuffer>
+    var encrypt: (data: dynamic /* IJsonRpcRequest | IJsonRpcResponseSuccess | IJsonRpcResponseError */, key: ArrayBuffer, iv: ArrayBuffer) -> Promise<IEncryptionPayload>
+    var decrypt: (payload: IEncryptionPayload, key: ArrayBuffer) -> Promise<dynamic /* IJsonRpcRequest? | IJsonRpcResponseSuccess? | IJsonRpcResponseError? */>
+}
+
+external interface ITransportLib {
+    var open: () -> Unit
+    var close: () -> Unit
+    var send: (message: String, topic: String, silent: Boolean) -> Unit
+    var subscribe: (topic: String) -> Unit
+    var on: (event: String, callback: (payload: Any) -> Unit) -> Unit
+}
+
+external interface ISessionStorage {
+    var getSession: () -> IWalletConnectSession?
+    var setSession: (session: IWalletConnectSession) -> IWalletConnectSession
+    var removeSession: () -> Unit
+}
+
+external interface IEncryptionPayload {
+    var data: String
+    var hmac: String
+    var iv: String
 }
 
 external interface ISessionStatus {
@@ -177,7 +213,63 @@ external interface IWalletConnectSession {
     var handshakeTopic: String
 }
 
-external interface `T$17` {
+external interface IWalletConnectOptions {
+    var bridge: String?
+        get() = definedExternally
+        set(value) = definedExternally
+    var uri: String?
+        get() = definedExternally
+        set(value) = definedExternally
+    var storageId: String?
+        get() = definedExternally
+        set(value) = definedExternally
+    var signingMethods: Array<String>?
+        get() = definedExternally
+        set(value) = definedExternally
+    var session: IWalletConnectSession?
+        get() = definedExternally
+        set(value) = definedExternally
+    var storage: ISessionStorage?
+        get() = definedExternally
+        set(value) = definedExternally
+    var clientMeta: IClientMeta?
+        get() = definedExternally
+        set(value) = definedExternally
+    var qrcodeModal: IQRCodeModal?
+        get() = definedExternally
+        set(value) = definedExternally
+    var qrcodeModalOptions: IQRCodeModalOptions?
+        get() = definedExternally
+        set(value) = definedExternally
+}
+
+external interface IConnectorOpts {
+    var cryptoLib: ICryptoLib
+    var connectorOpts: IWalletConnectOptions
+    var transport: ITransportLib?
+        get() = definedExternally
+        set(value) = definedExternally
+    var sessionStorage: ISessionStorage?
+        get() = definedExternally
+        set(value) = definedExternally
+    var pushServerOpts: IPushServerOptions?
+        get() = definedExternally
+        set(value) = definedExternally
+}
+
+external interface IPushServerOptions {
+    var url: String
+    var type: String
+    var token: String
+    var peerMeta: Boolean?
+        get() = definedExternally
+        set(value) = definedExternally
+    var language: String?
+        get() = definedExternally
+        set(value) = definedExternally
+}
+
+external interface `T$12` {
     var name: String
     var symbol: String
 }
@@ -186,18 +278,15 @@ external interface IUpdateChainParams {
     var chainId: Number
     var networkId: Number
     var rpcUrl: String
-    var nativeCurrency: `T$17`
+    var nativeCurrency: `T$12`
 }
 
 external interface IRPCMap {
-}
+    @nativeGetter
+    operator fun get(chainId: Number): String?
 
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun IRPCMap.get(chainId: Number): String? = asDynamic()[chainId]
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun IRPCMap.set(chainId: Number, value: String) {
-    asDynamic()[chainId] = value
+    @nativeSetter
+    operator fun set(chainId: Number, value: String)
 }
 
 external interface IWCRpcConnectionOptions {
@@ -245,12 +334,14 @@ external interface IWalletConnectProviderOptions : IWCEthRpcConnectionOptions {
         set(value) = definedExternally
 }
 
-class IWalletConnectProviderOptionsInstance(override var infuraId: String?): IWalletConnectProviderOptions
-
 external interface IRequestOptions {
     var forcePushNotification: Boolean?
         get() = definedExternally
         set(value) = definedExternally
+}
+
+external interface IInternalRequestOptions : IRequestOptions {
+    var topic: String
 }
 
 external interface ICreateSessionOptions {
