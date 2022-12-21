@@ -3,8 +3,8 @@ package io.eqoty.secretk.utils
 import com.ionspin.kotlin.crypto.util.LibsodiumRandom
 import com.ionspin.kotlin.crypto.util.encodeToUByteArray
 import io.eqoty.kryptools.aessiv.AesSIV
-import io.eqoty.kryptools.axlsign.AxlSign.generateKeyPair
-import io.eqoty.kryptools.axlsign.AxlSign.sharedKey
+import io.eqoty.kryptools.axlsign.AxlSign
+import io.eqoty.kryptools.axlsign.AxlSignDouble
 import io.eqoty.kryptools.deriveHKDFKey
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -67,6 +67,7 @@ class EnigmaUtils internal constructor(val apiUrl: String, val seed: UByteArray)
 
 
     private val siv = AesSIV()
+    private val axlSign = AxlSignDouble()
     private val privKey: UByteArray
     val pubKey: UByteArray
 
@@ -95,7 +96,7 @@ class EnigmaUtils internal constructor(val apiUrl: String, val seed: UByteArray)
         }
 
         fun GenerateNewKeyPairFromSeed(seed: UByteArray): KeyPair {
-            val keys = generateKeyPair(seed.toIntArray())
+            val keys = AxlSignDouble().generateKeyPair(seed.toIntArray())
             return KeyPair(
                 keys.privateKey.toUByteArray(),
                 keys.publicKey.toUByteArray()
@@ -157,7 +158,7 @@ class EnigmaUtils internal constructor(val apiUrl: String, val seed: UByteArray)
 
     override suspend fun getTxEncryptionKey(nonce: UByteArray): UByteArray {
         val consensusIoPubKey = getConsensusIoPubKey()
-        val txEncryptionIkm = sharedKey(this.privKey.toIntArray(), consensusIoPubKey.toIntArray()).toUByteArray()
+        val txEncryptionIkm = axlSign.sharedKey(this.privKey.toIntArray(), consensusIoPubKey.toIntArray()).toUByteArray()
         return deriveHKDFKey(txEncryptionIkm + nonce, hkdfSalt, len = 32)
     }
 
