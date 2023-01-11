@@ -150,6 +150,13 @@ kotlin {
     }
 }
 
+compose {
+    // workaround for:
+    // This version of Compose Multiplatform doesn't support Kotlin 1.7.21
+    // https://github.com/JetBrains/compose-jb/blob/master/VERSIONING.md#using-jetpack-compose-compiler
+    kotlinCompilerPlugin.set("androidx.compose.compiler:compiler:1.4.0-alpha02")
+}
+
 compose.desktop {
     application {
         mainClass = "Main_desktopKt"
