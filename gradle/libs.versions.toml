@@ -80,7 +80,7 @@ kermit = "1.2.2"
 
 secretk = "0.1.2"
 
-compose-jb = "1.3.0-rc02"
+compose-jb = "1.2.2"
 bootstrap-compose = "0.1.10"
 
 bignum = "0.3.7"
