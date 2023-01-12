@@ -6,6 +6,7 @@ import io.eqoty.secretk.client.SigningCosmWasmClient
 import io.eqoty.wallet.MetaMaskWalletWrapper
 import io.eqoty.wallet.OfflineSignerOnlyAminoWalletWrapper
 import jslib.walletconnect.*
+import jslib.walletconnect.IQRCodeModal
 import jslibs.secretjs.MetaMaskWallet
 import kotlinx.browser.window
 import kotlinx.coroutines.MainScope
@@ -25,8 +26,8 @@ fun main() {
     application {
 //        val client = getClientWithMetamaskWallet(Chain.Pulsar2)
 //        val client = setupEthWalletConnectAndGetWallet(Chain.Pulsar2)
-        val client = getClientWithKeplrWallet(Chain.Pulsar2)
-//        val client = setupKeplrWalletConnectAndGetWallet(Chain.Secret4)
+//        val client = getClientWithKeplrWallet(Chain.Pulsar2)
+        val client = setupCosmosWalletConnectAndGetWallet(Chain.Secret4, WalletConnectModal.Cosmostation)
 
         console.log(client)
         onWasmReady {
@@ -149,16 +150,31 @@ suspend fun getClientWithMetamaskWallet(chain: Chain): SigningCosmWasmClient {
     )
 }
 
+enum class WalletConnectModal(val signingMethods: Array<String>, val qrcodeModal: IQRCodeModal){
+    Keplr(
+        signingMethods = arrayOf(
+            "keplr_enable_wallet_connect_v1",
+            "keplr_sign_amino_wallet_connect_v1",
+        ),
+        qrcodeModal = KeplrQRCodeModalV1()
+    ),
+    Cosmostation(
+        signingMethods = arrayOf(
+//            "cosmostation_enable_wallet_connect_v1",
+//            "cosmostation_sign_amino_wallet_connect_v1",
+            "cosmostation_wc_accounts_v1",
+            "cosmostation_wc_sign_tx_v1",
+        ),
+        qrcodeModal = CosmostationWCModal()
+    )
+}
 
-suspend fun setupKeplrWalletConnectAndGetWallet(chain: Chain): SigningCosmWasmClient {
+suspend fun setupCosmosWalletConnectAndGetWallet(chain: Chain, wcModal: WalletConnectModal): SigningCosmWasmClient {
     val connector = WalletConnect(
         IWalletConnectOptionsInstance(
             bridge = "https://bridge.walletconnect.org", // Required
-            signingMethods = arrayOf(
-                "keplr_enable_wallet_connect_v1",
-                "keplr_sign_amino_wallet_connect_v1",
-            ),
-            qrcodeModal = KeplrQRCodeModalV1(),
+            signingMethods = wcModal.signingMethods,
+            qrcodeModal = wcModal.qrcodeModal,
         )
     )
     val keplr = if (!connector.connected) {

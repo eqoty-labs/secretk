@@ -378,6 +378,17 @@
   resolved "https://registry.yarnpkg.com/@cosmjs/utils/-/utils-0.29.3.tgz#d7e1f381267e61b7d3219ebd75d46defc397cd43"
   integrity sha512-UuKoBN2xiRXcBpz7jzCwagKhOnLOsRmR8mu3IzY+Yx38i8rW52FSXMbxC/yE83X0vLea+zgMQFPwv0gy4QWUJw==
 
+"@cosmostation/wc-modal@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@cosmostation/wc-modal/-/wc-modal-0.0.5.tgz#1d76e050dcd9eadc133ebc42aa547ee9b8e0c510"
+  integrity sha512-r/DjNIrmDkncGihLg6/wF9SeqKbPG4er4XPt8hTuHj1FR+MaVfYSpICd4ghagGMKHW9oB4u7kpHzbz3ns4JPxw==
+  dependencies:
+    "@walletconnect/browser-utils" "^1.6.5"
+    "@walletconnect/types" "^1.6.5"
+    qrcode.react "^1.0.1"
+    react "^16.14.0"
+    react-dom "^16.14.0"
+
 "@discoveryjs/json-ext@^0.5.0":
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
