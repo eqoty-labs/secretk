@@ -2730,6 +2730,7 @@ __attribute__((swift_name("Wallet")))
 __attribute__((swift_name("BaseWallet")))
 @interface SecretkBaseWallet : SecretkBase <SecretkWallet>
 - (SecretkAccountSigningData *)addAccountMnemonic:(NSString * _Nullable)mnemonic __attribute__((swift_name("addAccount(mnemonic:)")));
+- (SecretkAccountSigningData *)addAccountPrivkey:(id)privkey __attribute__((swift_name("addAccount(privkey:)")));
 
 /**
  * @note This method converts instances of CancellationException to errors.
@@ -2766,9 +2767,10 @@ __attribute__((swift_name("AminoWallet")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("DirectSigningWallet")))
 @interface SecretkDirectSigningWallet : SecretkBaseWallet
+- (instancetype)initWithMnemonic:(NSString * _Nullable)mnemonic __attribute__((swift_name("init(mnemonic:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithPrivkey:(id)privkey __attribute__((swift_name("init(privkey:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (instancetype)initWithMnemonic:(NSString * _Nullable)mnemonic __attribute__((swift_name("init(mnemonic:)"))) __attribute__((objc_designated_initializer));
 
 /**
  * @note This method converts instances of CancellationException to errors.

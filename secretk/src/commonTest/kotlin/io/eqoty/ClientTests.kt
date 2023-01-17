@@ -50,7 +50,7 @@ class ClientTests {
         val walletFromPrivKey = DirectSigningWallet(privKey)
         assertEquals(walletFromPrivKey.getAccounts()[0].address, wallet.getAccounts()[0].address)
     }
-    
+
     @Test
     fun testCreateViewingKeyAndUseToQuery() = runTest {
         val contractAddress = "secret1lz4m46vpdn8f2aj8yhtnexus40663udv7hhprm"
