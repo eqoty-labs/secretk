@@ -43,17 +43,30 @@ interface Wallet {
     suspend fun signAmino(signerAddress: String, signDoc: StdSignDoc): AminoSignResponse
 }
 
-sealed class BaseWallet(
-    mnemonic: String?,
-    val hdPath: Array<Slip10RawIndex> = makeSecretNetworkPath(0.toUInt()),
-    val bech32Prefix: String = "secret"
-) : Wallet {
-
+sealed class BaseWallet : Wallet {
+    val hdPath: Array<Slip10RawIndex>
+    val bech32Prefix: String
     val addressToAccountSigningData: MutableMap<String, AccountSigningData> = mutableMapOf()
     val accountAddresses get() = addressToAccountSigningData.keys
 
-    init {
+    constructor(
+        mnemonic: String?,
+        hdPath: Array<Slip10RawIndex> = makeSecretNetworkPath(0.toUInt()),
+        bech32Prefix: String = "secret"
+    ) {
+        this.hdPath = hdPath
+        this.bech32Prefix = bech32Prefix
         addAccount(mnemonic)
+    }
+
+    constructor(
+        privkey: UByteArray,
+        hdPath: Array<Slip10RawIndex> = makeSecretNetworkPath(0.toUInt()),
+        bech32Prefix: String = "secret"
+    ) {
+        this.hdPath = hdPath
+        this.bech32Prefix = bech32Prefix
+        addAccount(privkey)
     }
 
     fun addAccount(mnemonic: String? = null): AccountSigningData {
@@ -68,6 +81,14 @@ sealed class BaseWallet(
         }
         val result = Slip10.derivePath(Slip10Curve.Secp256k1, seed, hdPath)
         val privkey = result.privkey
+        val uncompressed = Secp256k1.makeKeypair(privkey).pubkey
+        val pubkey = Secp256k1.compressPubkey(uncompressed)
+        val address = pubkeyToAddress(encodeSecp256k1Pubkey(pubkey), bech32Prefix)
+        addressToAccountSigningData[address] = AccountSigningData(address, Algo.secp256k1, pubkey, privkey)
+        return addressToAccountSigningData[address]!!
+    }
+
+    fun addAccount(privkey: UByteArray): AccountSigningData {
         val uncompressed = Secp256k1.makeKeypair(privkey).pubkey
         val pubkey = Secp256k1.compressPubkey(uncompressed)
         val address = pubkeyToAddress(encodeSecp256k1Pubkey(pubkey), bech32Prefix)
@@ -109,7 +130,8 @@ sealed class BaseWallet(
         signBytes: UByteArray,
         prehashType: PrehashType = PrehashType.SHA256
     ): StdSignature {
-        val account = addressToAccountSigningData[signerAddress] ?: throw Error("Address $signerAddress not found in wallet")
+        val account =
+            addressToAccountSigningData[signerAddress] ?: throw Error("Address $signerAddress not found in wallet")
         val messageHash = prehash(signBytes, prehashType)
         val signature = Secp256k1.createSignature(messageHash, account.privkey)
         val fixedLengthSignature = signature.r.getPadded(32) + signature.s.getPadded(32)

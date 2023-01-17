@@ -6,9 +6,10 @@ import kotlinx.serialization.encodeToByteArray
 import kotlinx.serialization.protobuf.ProtoBuf
 
 
-class DirectSigningWallet(
-    mnemonic: String?,
-) : BaseWallet(mnemonic) {
+class DirectSigningWallet : BaseWallet {
+
+    constructor(mnemonic: String?) : super(mnemonic)
+    constructor(privkey: UByteArray) : super(privkey)
 
     // helper constructor for swift
     constructor() : this(null)
