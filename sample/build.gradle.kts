@@ -1,7 +1,5 @@
-import org.jetbrains.compose.compose
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.compose.experimental.dsl.IOSDevices
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -110,8 +108,10 @@ kotlin {
                 implementation(compose.web.core)
                 implementation(npm("@metamask/detect-provider", "^1.2.0"))
                 implementation(npm("web3", "^1.7.0"))
-                implementation(npm("@walletconnect/web3-provider", "^1.8.0"))
-                implementation(npm("@walletconnect/client", "^1.8.0"))
+                implementation(npm("@walletconnect/types", "2.2.1"))
+                implementation(npm("@walletconnect/utils", "2.2.1"))
+                implementation(npm("@web3modal/standalone", "^2.0.0-beta.10"))
+                implementation(npm("@walletconnect/universal-provider", "2.2.1-29d82574"))
                 implementation(npm("@keplr-wallet/wc-client", "^0.11.17"))
                 implementation(npm("@keplr-wallet/wc-qrcode-modal", "^0.11.17"))
                 implementation(npm("@cosmostation/wc-modal", "^0.0.5"))
