@@ -4,8 +4,6 @@ import io.eqoty.secretk.types.*
 import io.eqoty.secretk.types.extensions.Permission
 import io.eqoty.secretk.types.extensions.Permit
 import io.eqoty.secretk.wallet.Wallet
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 
 object PermitFactory {
 
@@ -47,13 +45,10 @@ object PermitFactory {
             wallet, owner, chainId, permitName, allowedTokens, permissions
         )
         if (signature == null) {
-            println(Json.encodeToString(newSignDoc(chainId, permitName, allowedTokens, permissions)))
-            val aa=  wallet.signAmino(
+            signature = wallet.signAmino(
                 owner,
                 newSignDoc(chainId, permitName, allowedTokens, permissions),
-            )
-            println(aa.signature.toString())
-            signature = aa.signature
+            ).signature
         }
 
         return Permit(
