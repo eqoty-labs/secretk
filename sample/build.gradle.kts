@@ -200,6 +200,10 @@ compose.desktop.nativeApplication {
     }
 }
 
+compose {
+    kotlinCompilerPlugin.set("androidx.compose.compiler:compiler:1.4.0")
+}
+
 // TODO: remove when https://youtrack.jetbrains.com/issue/KT-50778 fixed
 project.tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile::class.java).configureEach {
     kotlinOptions.freeCompilerArgs += listOf(

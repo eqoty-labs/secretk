@@ -26,8 +26,8 @@ fun main() {
     application {
 //        val client = getClientWithMetamaskWallet(Chain.Pulsar2)
 //        val client = setupEthWalletConnectAndGetWallet(Chain.Pulsar2)
-//        val client = getClientWithKeplrWallet(Chain.Pulsar2)
-        val client = setupCosmosWalletConnectAndGetWallet(Chain.Secret4, WalletConnectModal.Cosmostation)
+        val client = getClientWithKeplrWallet(Chain.Pulsar2)
+//        val client = setupCosmosWalletConnectAndGetWallet(Chain.Secret4, WalletConnectModal.Cosmostation)
 
         console.log(client)
         onWasmReady {

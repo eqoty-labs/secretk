@@ -188,58 +188,29 @@ external interface Method {
 external interface AbiItem {
     var anonymous: Boolean?
     var constant: Boolean?
-    var inputs: Array<AbiInputImpl>?
+    var inputs: Array<AbiInput>?
     var name: String?
-    var outputs: Array<AbiOutputImpl>?
+    var outputs: Array<AbiOutput>?
     var payable: Boolean?
     var stateMutability: String?
     var type: String /* "function" | "constructor" | "event" | "fallback" */
     var gas: Double?
 }
 
-@Serializable
-class AbiItemImpl(
-    override var anonymous: Boolean?,
-    override var constant: Boolean?,
-    override var inputs: Array<AbiInputImpl>?,
-    override var name: String?,
-    override var outputs: Array<AbiOutputImpl>?,
-    override var payable: Boolean?,
-    override var stateMutability: String?,
-    override var type: String,
-    override var gas: Double?
-) : AbiItem
-
-@Serializable
-class AbiInputImpl(
-    override var name: String,
-    override var type: String,
-    override var indexed: Boolean?,
-    override var components: Array<AbiInputImpl>?,
-    override var internalType: String?
-) : AbiInput
 
 external interface AbiInput {
     var name: String
     var type: String
     var indexed: Boolean?
-    var components: Array<AbiInputImpl>?
+//    var components: Array<AbiInput>?
     var internalType: String?
 }
-
-@Serializable
-class AbiOutputImpl(
-    override var name: String,
-    override var type: String,
-    override var components: Array<AbiOutputImpl>?,
-    override var internalType: String?
-) : AbiOutput
 
 
 external interface AbiOutput {
     var name: String
     var type: String
-    var components: Array<AbiOutputImpl>?
+//    var components: Array<AbiOutput>?
     var internalType: String?
 }
 
