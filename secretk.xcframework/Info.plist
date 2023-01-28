@@ -36,6 +36,8 @@
 			<string>ios</string>
 		</dict>
 		<dict>
+			<key>DebugSymbolsPath</key>
+			<string>dSYMs</string>
 			<key>LibraryIdentifier</key>
 			<string>macos-arm64_x86_64</string>
 			<key>LibraryPath</key>

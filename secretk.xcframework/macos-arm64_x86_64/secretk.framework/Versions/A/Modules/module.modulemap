@@ -3,6 +3,4 @@ framework module secretk {
 
     export *
     module * { export * }
-
-    use Foundation
 }

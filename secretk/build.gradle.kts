@@ -190,10 +190,11 @@ tasks.withType<AbstractPublishToMaven>().configureEach {
     dependsOn(dependsOnTasks)
 }
 
-plugins.withId("com.vanniktech.maven.publish.base") {
+plugins.withId("com.vanniktech.maven.publish") {
     mavenPublishing {
         publishToMavenCentral(SonatypeHost.S01)
         signAllPublications()
-        pomFromGradleProperties()
+//        @Suppress("UnstableApiUsage")
+//        pomFromGradleProperties()
     }
 }
