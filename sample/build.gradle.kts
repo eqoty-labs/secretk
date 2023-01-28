@@ -201,6 +201,8 @@ compose.desktop.nativeApplication {
 }
 
 compose {
+    // workaround to use kotlin 1.8.0
+    // https://github.com/JetBrains/compose-jb/blob/master/VERSIONING.md#using-jetpack-compose-compiler
     kotlinCompilerPlugin.set("androidx.compose.compiler:compiler:1.4.0")
 }
 
