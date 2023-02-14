@@ -118,7 +118,6 @@ kotlin {
                 implementation(npm("stream-browserify", "^3.0.0"))
                 implementation(npm("os-browserify", "^0.3.0"))
                 implementation(npm("miscreant", "^0.3.2"))
-                implementation(npm("libsodium-wrappers-sumo", "^0.7.10"))
                 implementation(npm("secretjs", "^1.4.5"))
                 implementation(npm("google-protobuf", "^3.21.0"))
                 implementation(npm("@cosmjs/amino", "^0.29.3"))

@@ -4718,13 +4718,6 @@ libsodium-wrappers-sumo@0.7.9:
   dependencies:
     libsodium-sumo "^0.7.0"
 
-libsodium-wrappers-sumo@^0.7.10:
-  version "0.7.10"
-  resolved "https://registry.yarnpkg.com/libsodium-wrappers-sumo/-/libsodium-wrappers-sumo-0.7.10.tgz#592b0cc714ddf3954f93e2292ff3aadebd2b282b"
-  integrity sha512-1noz8Mcl/LUzO/iSO/FJzoJyIaPwxl+/+E4CoTIXtsPiEEXQx2sxalmrVWxteLpynqgX0ASo28ChB9NEVRh0Pg==
-  dependencies:
-    libsodium-sumo "^0.7.0"
-
 libsodium-wrappers@^0.7.6:
   version "0.7.10"
   resolved "https://registry.yarnpkg.com/libsodium-wrappers/-/libsodium-wrappers-0.7.10.tgz#13ced44cacb0fc44d6ac9ce67d725956089ce733"

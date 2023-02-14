@@ -151,12 +151,6 @@ kotlin {
     }
 }
 
-compose {
-    // workaround for:
-    // This version of Compose Multiplatform doesn't support Kotlin 1.7.21
-    // https://github.com/JetBrains/compose-jb/blob/master/VERSIONING.md#using-jetpack-compose-compiler
-    kotlinCompilerPlugin.set("androidx.compose.compiler:compiler:1.4.0-alpha02")
-}
 
 compose.desktop {
     application {
@@ -201,9 +195,9 @@ compose.desktop.nativeApplication {
 }
 
 compose {
-    // workaround to use kotlin 1.8.0
+    // workaround to use kotlin 1.8.10
     // https://github.com/JetBrains/compose-jb/blob/master/VERSIONING.md#using-jetpack-compose-compiler
-    kotlinCompilerPlugin.set("androidx.compose.compiler:compiler:1.4.0")
+    kotlinCompilerPlugin.set("androidx.compose.compiler:compiler:1.4.2")
 }
 
 // TODO: remove when https://youtrack.jetbrains.com/issue/KT-50778 fixed
