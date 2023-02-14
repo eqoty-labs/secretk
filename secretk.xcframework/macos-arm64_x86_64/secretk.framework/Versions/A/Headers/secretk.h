@@ -2858,6 +2858,7 @@ __attribute__((swift_name("BignumBitwiseCapable")))
 @required
 - (id _Nullable)andOther:(id _Nullable)other __attribute__((swift_name("and(other:)")));
 - (BOOL)bitAtPosition:(int64_t)position __attribute__((swift_name("bitAt(position:)")));
+- (int32_t)bitLength __attribute__((swift_name("bitLength()")));
 - (id _Nullable)not __attribute__((swift_name("not()")));
 - (id _Nullable)orOther:(id _Nullable)other __attribute__((swift_name("or(other:)")));
 - (id _Nullable)setBitAtPosition:(int64_t)position bit:(BOOL)bit __attribute__((swift_name("setBitAt(position:bit:)")));
@@ -2885,6 +2886,7 @@ __attribute__((swift_name("BignumBigInteger")))
 - (SecretkBignumBigInteger *)addOther:(SecretkBignumBigInteger *)other __attribute__((swift_name("add(other:)")));
 - (SecretkBignumBigInteger *)andOther:(SecretkBignumBigInteger *)other __attribute__((swift_name("and(other:)")));
 - (BOOL)bitAtPosition:(int64_t)position __attribute__((swift_name("bitAt(position:)")));
+- (int32_t)bitLength __attribute__((swift_name("bitLength()")));
 - (int8_t)byteValueExactRequired:(BOOL)exactRequired __attribute__((swift_name("byteValue(exactRequired:)")));
 - (int32_t)compareOther:(SecretkBignumBigInteger *)other __attribute__((swift_name("compare(other:)")));
 - (int32_t)compareDoubleAndBigIntDouble:(double)double_ comparisonBlock:(SecretkInt *(^)(SecretkBignumBigInteger *))comparisonBlock __attribute__((swift_name("compareDoubleAndBigInt(double:comparisonBlock:)")));
