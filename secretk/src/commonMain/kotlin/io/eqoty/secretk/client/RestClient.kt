@@ -174,24 +174,28 @@ internal class RestClient(
                     throw Error(responseData.message)
                 }
             }
-        } catch (err: Throwable) {
-            val message = err.message ?: throw err
-            val errorMessageRgx = Regex("""encrypted: (.+?): (?:instantiate|execute|query|reply to) contract failed""")
-            val matches = errorMessageRgx.findAll(message).toList()
-            if (matches.isEmpty() || matches.first().groupValues.size < 2) {
-                throw err
-            }
-            val decodedError: Error = try {
-                val errorCipherB64 = matches.first().groupValues[1]
-                val errorCipherBz = errorCipherB64.decodeBase64()!!.toUByteArray()
-                val errorPlainBz = enigmautils.decrypt(errorCipherBz, nonce).decodeToString()
-                Error(errorPlainBz)
-            } catch (decryptionError: Throwable) {
-                Error("Failed to decrypt the following error message: ${err.message}. Due to decryptionError: $decryptionError")
-            }
-            throw decodedError
+        } catch (t: Throwable) {
+            throw decrypt(t, nonce)
         }
         return response
+    }
+
+    suspend fun decrypt(t: Throwable, nonce: UByteArray): Throwable {
+        val message = t.message ?: return t
+        val errorMessageRgx = Regex("""encrypted: (.+?): (?:instantiate|execute|query|reply to) contract failed""")
+        val matches = errorMessageRgx.findAll(message).toList()
+        if (matches.isEmpty() || matches.first().groupValues.size < 2) {
+            return t
+        }
+        val decodedError: Error = try {
+            val errorCipherB64 = matches.first().groupValues[1]
+            val errorCipherBz = errorCipherB64.decodeBase64()!!.toUByteArray()
+            val errorPlainBz = enigmautils.decrypt(errorCipherBz, nonce).decodeToString()
+            Error(errorPlainBz)
+        } catch (decryptionError: Throwable) {
+            Error("Failed to decrypt the following error message: ${t.message}. Due to decryptionError: $decryptionError")
+        }
+        return decodedError
     }
 
     suspend fun decryptDataField(msg: MsgProto, nonce: UByteArray?): UByteArray {

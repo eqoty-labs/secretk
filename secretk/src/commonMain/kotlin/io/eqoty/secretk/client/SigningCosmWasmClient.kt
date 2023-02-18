@@ -95,7 +95,13 @@ private constructor(
         val simulateTxResponse = try {
             postSimulateTx(txRawBytes)
         } catch (t: Throwable) {
-            throw t
+            val nonces = msgs.map { msg ->
+                msg.populateCodeHash()
+                msg.toProto(this.restClient.enigmautils).value
+            }.map { anyProto ->
+                extractMessageNonceIfNeeded(anyProto)
+            }
+            throw restClient.decrypt(t, nonces[0]!!)
         }
         return simulateTxResponse.gasInfo!!
     }
@@ -108,33 +114,16 @@ private constructor(
         val txRawBytes = ProtoBuf.encodeToByteArray(txRawProto).toUByteArray()
         val txResponse = try {
             postTx(txRawBytes)
-        } catch (err: Throwable) {
-//            try {
-//                const errorMessageRgx = /failed to execute message; message index: 0: encrypted: (.+?): (?:instantiate|execute|query) contract failed/g;
-//                // console.log(`Got error message: ${err.message}`);
-//
-//                const rgxMatches = errorMessageRgx.exec(err.message);
-//                if (rgxMatches == null || rgxMatches.length != 2) {
-//                    throw err;
-//                }
-//
-//                const errorCipherB64 = rgxMatches[1];
-//
-//                // console.log(`Got error message: ${errorCipherB64}`);
-//
-//                const errorCipherBz = Encoding.fromBase64(errorCipherB64);
-//
-//                const errorPlainBz = await this.restClient.enigmautils.decrypt(errorCipherBz, encryptionNonce);
-//
-//                err.message = err.message.replace(errorCipherB64, Encoding.fromUtf8(errorPlainBz));
-//            } catch (decryptionError) {
-//                throw new Error(
-//                        `Failed to decrypt the following error message: ${err.message}. Decryption error of the error message: ${decryptionError.message}`,
-//                );
-//            }
-
-            throw err
+        } catch (t: Throwable) {
+            val nonces = msgs.map { msg ->
+                msg.populateCodeHash()
+                msg.toProto(this.restClient.enigmautils).value
+            }.map { anyProto ->
+                extractMessageNonceIfNeeded(anyProto)
+            }
+            throw restClient.decrypt(t, nonces[0]!!)
         }
+
         txResponse.data = if (this.restClient.broadcastMode == BroadcastMode.Block) {
             // inject tx here to standardize decoding tx responses. Since txsQuery responses (not implemented yet)
             // will actually have a tx value populated.
