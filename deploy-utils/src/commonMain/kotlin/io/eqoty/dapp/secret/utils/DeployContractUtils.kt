@@ -1,5 +1,5 @@
 import io.eqoty.cosmwasm.std.types.CodeInfo
-import io.eqoty.dapp.secret.types.ContractInfo
+import io.eqoty.dapp.secret.types.ContractInstance
 import io.eqoty.dapp.secret.utils.fileSystem
 import io.eqoty.dapp.secret.utils.logger
 import io.eqoty.secretk.client.SigningCosmWasmClient
@@ -67,7 +67,7 @@ object DeployContractUtils {
         client: SigningCosmWasmClient,
         codeInfo: CodeInfo,
         instantiateMsgs: List<MsgInstantiateContract>,
-    ): ContractInfo {
+    ): ContractInstance {
         instantiateMsgs.forEach {
             it.codeId = codeInfo.codeId.toInt()
             it.codeHash = codeInfo.codeHash
@@ -83,14 +83,14 @@ object DeployContractUtils {
             ?.attributes
             ?.find { it.key == "contract_address" }?.value!!
         logger.i("contract address:  $contractAddress")
-        return ContractInfo(codeInfo, contractAddress)
+        return ContractInstance(codeInfo, contractAddress)
     }
 
     suspend fun getOrStoreCodeAndInstantiate(
         client: SigningCosmWasmClient,
         codePath: Path,
         instantiateMsgs: List<MsgInstantiateContract>,
-    ): ContractInfo {
+    ): ContractInstance {
         val codeInfo = getOrStoreCode(client, codePath)
         return instantiateCode(client, codeInfo, instantiateMsgs)
     }

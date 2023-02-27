@@ -2,7 +2,7 @@ package io.eqoty.dapp.secret.utils
 
 import com.ionspin.kotlin.bignum.integer.BigInteger
 import io.eqoty.cosmwasm.std.types.Coin
-import io.eqoty.dapp.secret.types.ContractInfo
+import io.eqoty.dapp.secret.types.ContractInstance
 import io.eqoty.secret.std.contract.msg.Snip20Msgs
 import io.eqoty.secret.std.contract.msg.SnipMsgs
 import io.eqoty.secretk.client.SigningCosmWasmClient
@@ -21,7 +21,7 @@ import kotlin.random.Random
 object BalanceUtils {
 
     private val snip20ToAddressViewingKey =
-        mutableMapOf<ContractInfo, MutableMap<String, SnipMsgs.ExecuteAnswer.ViewingKey>>()
+        mutableMapOf<ContractInstance, MutableMap<String, SnipMsgs.ExecuteAnswer.ViewingKey>>()
 
     private val httpClient = HttpClient {
         expectSuccess = true
@@ -76,19 +76,19 @@ object BalanceUtils {
     suspend fun getSnip20Balance(
         client: SigningCosmWasmClient,
         senderAddress: String = client.senderAddress,
-        contractInfo: ContractInfo
+        contractInstance: ContractInstance
     ): BigInteger? {
         val viewingKey =
-            snip20ToAddressViewingKey[contractInfo]?.get(senderAddress)
-                ?: createViewingKey(client, senderAddress, contractInfo).apply {
-                    snip20ToAddressViewingKey[contractInfo]?.set(senderAddress, this)
+            snip20ToAddressViewingKey[contractInstance]?.get(senderAddress)
+                ?: createViewingKey(client, senderAddress, contractInstance).apply {
+                    snip20ToAddressViewingKey[contractInstance]?.set(senderAddress, this)
                 }
         val query =
             Json.encodeToString(Snip20Msgs.Query(balance = Snip20Msgs.Query.Balance(senderAddress, viewingKey.key)))
         val response = client.queryContractSmart(
-            contractInfo.address,
+            contractInstance.address,
             query,
-            contractInfo.codeInfo.codeHash
+            contractInstance.codeInfo.codeHash
         )
         return Json.decodeFromString<Snip20Msgs.QueryAnswer>(response).balance!!.amount
     }
@@ -122,7 +122,7 @@ object BalanceUtils {
     private suspend fun createViewingKey(
         client: SigningCosmWasmClient,
         senderAddress: String,
-        contractInfo: ContractInfo
+        contractInstance: ContractInstance
     ): SnipMsgs.ExecuteAnswer.ViewingKey {
         val originalSenderAddress = client.senderAddress
         client.senderAddress = senderAddress
@@ -131,8 +131,8 @@ object BalanceUtils {
         val msgs = listOf(
             MsgExecuteContract(
                 sender = client.senderAddress,
-                contractAddress = contractInfo.address,
-                codeHash = contractInfo.codeInfo.codeHash,
+                contractAddress = contractInstance.address,
+                codeHash = contractInstance.codeInfo.codeHash,
                 msg = msg,
             )
         )

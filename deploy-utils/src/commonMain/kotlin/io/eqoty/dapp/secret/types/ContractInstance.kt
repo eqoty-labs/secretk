@@ -4,4 +4,4 @@ import io.eqoty.cosmwasm.std.types.CodeInfo
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ContractInfo(val codeInfo: CodeInfo, val address: String)
+data class ContractInstance(val codeInfo: CodeInfo, val address: String)
