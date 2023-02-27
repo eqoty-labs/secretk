@@ -2,7 +2,6 @@ package io.eqoty.secretk.wallet
 
 import cash.z.ecc.android.bip39.Mnemonics
 import cash.z.ecc.android.bip39.toSeed
-import io.eqoty.secretk.utils.logger
 import io.eqoty.kryptools.Secp256k1
 import io.eqoty.kryptools.Slip10
 import io.eqoty.kryptools.Slip10Curve
@@ -70,21 +69,20 @@ sealed class BaseWallet : Wallet {
     }
 
     fun addAccount(mnemonic: String? = null): AccountSigningData {
-        val seed = if (mnemonic != null) {
-            Mnemonics.MnemonicCode(mnemonic).toSeed().toUByteArray()
+        val mnemonicCode = if (mnemonic != null) {
+            Mnemonics.MnemonicCode(mnemonic)
         } else {
             val randMnemonic = Mnemonics.MnemonicCode(Mnemonics.WordCount.COUNT_12)
-            logger.i("Wallet was created without supplying a mnemonic:")
-            logger.i("Randomly generated a mnemonic.")
-            logger.i("mnemonic: ${randMnemonic.words.joinToString(separator = " ") { it.concatToString() }}")
-            randMnemonic.toSeed().toUByteArray()
+            randMnemonic
         }
+        val seed = mnemonicCode.toSeed().toUByteArray()
         val result = Slip10.derivePath(Slip10Curve.Secp256k1, seed, hdPath)
         val privkey = result.privkey
         val uncompressed = Secp256k1.makeKeypair(privkey).pubkey
         val pubkey = Secp256k1.compressPubkey(uncompressed)
         val address = pubkeyToAddress(encodeSecp256k1Pubkey(pubkey), bech32Prefix)
-        addressToAccountSigningData[address] = AccountSigningData(address, Algo.secp256k1, pubkey, privkey)
+        addressToAccountSigningData[address] =
+            AccountSigningData(address, Algo.secp256k1, pubkey, privkey, mnemonicCode.words)
         return addressToAccountSigningData[address]!!
     }
 
