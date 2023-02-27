@@ -1,8 +1,10 @@
 package io.eqoty.secretk.types
 
+import io.eqoty.cosmwasm.std.types.Coin
 import io.eqoty.kryptools.bech32.addressToBytes
 import io.eqoty.secretk.types.proto.MsgInstantiateContractProto
 import io.eqoty.secretk.types.proto.ProtoMsg
+import io.eqoty.secretk.types.proto.toProto
 import io.eqoty.secretk.utils.EncryptionUtils
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject

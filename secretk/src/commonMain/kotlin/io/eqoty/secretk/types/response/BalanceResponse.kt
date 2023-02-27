@@ -1,6 +1,6 @@
 package io.eqoty.secretk.types.response
 
-import io.eqoty.secretk.types.Coin
+import io.eqoty.cosmwasm.std.types.Coin
 
 @kotlinx.serialization.Serializable
 data class BalanceResponse(

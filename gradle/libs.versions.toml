@@ -18,7 +18,7 @@ swift-package = "2.1.1"
 okio = "3.3.0"
 ktor = "2.2.3"
 kotlinx-datetime = "0.4.0"
-kotlinx-serialization = "1.5.0-RC"
+kotlinx-serialization = "1.5.0"
 kotlinx-coroutines = "1.6.4"
 
 androidx-activity = "1.6.1"

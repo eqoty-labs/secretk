@@ -1,5 +1,6 @@
 package io.eqoty.secretk.extensions.accesscontrol
 
+import io.eqoty.cosmwasm.std.types.Coin
 import io.eqoty.secretk.types.*
 import io.eqoty.secretk.types.extensions.Permission
 import io.eqoty.secretk.types.extensions.Permit

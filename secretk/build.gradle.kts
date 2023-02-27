@@ -75,6 +75,7 @@ kotlin {
         }
         val commonMain by getting {
             dependencies {
+                implementation(project(":cosmwasm-std-types"))
                 implementation(libs.co.touchlab.kermit)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.kotlinx.serialization.json)

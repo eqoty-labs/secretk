@@ -1,5 +1,7 @@
 package io.eqoty.secretk.types
 
+import io.eqoty.cosmwasm.std.types.Coin
+
 @kotlinx.serialization.Serializable
 data class StdFee(
     val amount: List<Coin>,

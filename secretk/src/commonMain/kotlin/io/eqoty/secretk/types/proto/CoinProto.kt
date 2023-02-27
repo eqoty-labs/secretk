@@ -1,5 +1,6 @@
 package io.eqoty.secretk.types.proto
 
+import io.eqoty.cosmwasm.std.types.Coin
 import kotlinx.serialization.protobuf.ProtoNumber
 
 /***
@@ -11,3 +12,5 @@ data class CoinProto(
     @ProtoNumber(1) val denom: String = "",
     @ProtoNumber(2) val amount: String = ""
 )
+
+fun Coin.toProto() = CoinProto(denom, amount)

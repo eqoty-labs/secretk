@@ -1,7 +1,6 @@
-package io.eqoty.secretk.types
+package io.eqoty.cosmwasm.std.types
 
 import com.ionspin.kotlin.bignum.integer.BigInteger
-import io.eqoty.secretk.types.proto.CoinProto
 
 @kotlinx.serialization.Serializable
 data class Coin(
@@ -10,8 +9,6 @@ data class Coin(
 ) {
     constructor(amount: Int, denom: String) : this(amount.toString(), denom)
     constructor(amount: BigInteger, denom: String) : this(amount.toString(), denom)
-
-    fun toProto() = CoinProto(denom, amount)
 
     operator fun plus(increment: Coin): Coin {
         return if (increment.denom == denom) {
