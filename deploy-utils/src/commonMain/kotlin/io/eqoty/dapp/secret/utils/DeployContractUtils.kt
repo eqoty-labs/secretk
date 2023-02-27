@@ -1,7 +1,7 @@
-import io.eqoty.secretk.utils.logger
 import io.eqoty.cosmwasm.std.types.CodeInfo
 import io.eqoty.dapp.secret.types.ContractInfo
 import io.eqoty.dapp.secret.utils.fileSystem
+import io.eqoty.dapp.secret.utils.logger
 import io.eqoty.secretk.client.SigningCosmWasmClient
 import io.eqoty.secretk.types.MsgInstantiateContract
 import io.eqoty.secretk.types.MsgStoreCode

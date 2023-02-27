@@ -1,6 +1,5 @@
 package io.eqoty.dapp.secret.utils
 
-import io.eqoty.secretk.utils.logger
 import com.ionspin.kotlin.bignum.integer.BigInteger
 import io.eqoty.cosmwasm.std.types.Coin
 import io.eqoty.dapp.secret.types.ContractInfo
