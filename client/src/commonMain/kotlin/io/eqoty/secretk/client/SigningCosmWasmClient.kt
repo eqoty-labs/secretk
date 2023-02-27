@@ -1,6 +1,6 @@
 package io.eqoty.secretk.client
 
-import co.touchlab.kermit.Logger
+import io.eqoty.secretk.utils.logger
 import com.ionspin.kotlin.bignum.integer.toBigInteger
 import io.eqoty.cosmwasm.std.types.Coin
 import io.eqoty.secret.std.types.PubKey
@@ -33,9 +33,8 @@ private constructor(
 ) : CosmWasmClient(apiUrl, encryptionUtils, broadcastMode, chainId) {
 
     init {
-        Logger.setTag("secretk")
         if (chainId.isNullOrBlank()) {
-            Logger.w(
+            logger.w(
                 "SigningCosmWasmClient was created without the \"chainId\" parameter. This is discouraged " +
                         "and will result in slower execution times for your app."
             )

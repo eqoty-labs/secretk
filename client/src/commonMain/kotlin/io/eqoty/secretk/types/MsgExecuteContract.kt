@@ -1,6 +1,6 @@
 package io.eqoty.secretk.types
 
-import co.touchlab.kermit.Logger
+import io.eqoty.secretk.utils.logger
 import io.eqoty.cosmwasm.std.types.Coin
 import io.eqoty.kryptools.bech32.addressToBytes
 import io.eqoty.secretk.types.proto.MsgExecuteContractProto
@@ -40,7 +40,7 @@ class MsgExecuteContract(
             if (!value.isNullOrBlank()) {
                 field = value.replace("0x", "").lowercase()
             } else {
-                Logger.w { getMissingParameterWarning("MsgExecuteContract", "codeHash") }
+                logger.w { getMissingParameterWarning("MsgExecuteContract", "codeHash") }
                 field = null
             }
         }

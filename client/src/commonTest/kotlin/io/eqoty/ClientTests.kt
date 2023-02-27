@@ -1,13 +1,13 @@
 package io.eqoty
 
-import co.touchlab.kermit.Logger
+import io.eqoty.secret.std.types.Permission
 import io.eqoty.secretk.client.SigningCosmWasmClient
 import io.eqoty.secretk.extensions.accesscontrol.PermitFactory
 import io.eqoty.secretk.types.MsgExecuteContract
 import io.eqoty.secretk.types.MsgInstantiateContract
 import io.eqoty.secretk.types.MsgStoreCode
 import io.eqoty.secretk.types.TxOptions
-import io.eqoty.secretk.types.extensions.Permission
+import io.eqoty.secretk.utils.logger
 import io.eqoty.secretk.wallet.DirectSigningWallet
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.encodeToString
@@ -172,12 +172,12 @@ class ClientTests {
             .find { it.type == "message" }
             ?.attributes
             ?.find { it.key == "code_id" }?.value!!
-        Logger.i("codeId:  $codeId")
+        logger.i("codeId:  $codeId")
 
 
         // contract hash, useful for contract composition
         val codeInfo = client.getCodeInfoByCodeId(codeId)
-        Logger.i("code hash: ${codeInfo.codeHash}")
+        logger.i("code hash: ${codeInfo.codeHash}")
 
         assertEquals("5b64d22c7774b11cbc3aac55168d11f624a51921679b005df7d59487d254c892", codeInfo.codeHash)
     }
@@ -242,7 +242,7 @@ class ClientTests {
             .find { it.type == "message" }
             ?.attributes
             ?.find { it.key == "contract_address" }?.value!!
-        Logger.i("contract address:  $contractAddress")
+        logger.i("contract address:  $contractAddress")
         assertContains(contractAddress, "secret1")
     }
 

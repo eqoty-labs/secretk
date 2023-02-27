@@ -1,6 +1,6 @@
 package io.eqoty.dapp.secret.utils
 
-import co.touchlab.kermit.Logger
+import io.eqoty.secretk.utils.logger
 import com.ionspin.kotlin.bignum.integer.BigInteger
 import io.eqoty.cosmwasm.std.types.Coin
 import io.eqoty.dapp.secret.types.ContractInfo
@@ -39,8 +39,8 @@ object BalanceUtils {
         var balance = try {
             getScrtBalance(client, address)
         } catch (t: Throwable) {
-            Logger.i(t.message ?: "getScrtBalance failed")
-            Logger.i("Attempting to fill address $address from faucet")
+            logger.i(t.message ?: "getScrtBalance failed")
+            logger.i("Attempting to fill address $address from faucet")
             zeroUscrt
         }
         while (balance.amount.toInt() < targetBalance) {
@@ -57,7 +57,7 @@ object BalanceUtils {
                 newBalance = try {
                     getScrtBalance(client, address)
                 } catch (t: Throwable) {
-                    Logger.i("getScrtBalance try ${++tries}/$maxTries failed with: ${t.message}")
+                    logger.i("getScrtBalance try ${++tries}/$maxTries failed with: ${t.message}")
                     zeroUscrt
                 }
                 if (tries >= maxTries) {
@@ -65,7 +65,7 @@ object BalanceUtils {
                 }
             }
             balance = newBalance
-            Logger.i("got tokens from faucet. New balance: $balance, target balance: $targetBalance")
+            logger.i("got tokens from faucet. New balance: $balance, target balance: $targetBalance")
         }
     }
 

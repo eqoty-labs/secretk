@@ -1,4 +1,4 @@
-import co.touchlab.kermit.Logger
+import io.eqoty.secretk.utils.logger
 import io.eqoty.cosmwasm.std.types.CodeInfo
 import io.eqoty.dapp.secret.types.ContractInfo
 import io.eqoty.dapp.secret.utils.fileSystem
@@ -58,7 +58,7 @@ object DeployContractUtils {
             .find { it.type == "message" }
             ?.attributes
             ?.find { it.key == "code_id" }?.value!!
-        Logger.i("codeId:  $codeId")
+        logger.i("codeId:  $codeId")
 
         return client.getCodeInfoByCodeId(codeId)
     }
@@ -82,7 +82,7 @@ object DeployContractUtils {
             .find { it.type == "message" }
             ?.attributes
             ?.find { it.key == "contract_address" }?.value!!
-        Logger.i("contract address:  $contractAddress")
+        logger.i("contract address:  $contractAddress")
         return ContractInfo(codeInfo, contractAddress)
     }
 
