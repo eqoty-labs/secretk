@@ -1,6 +1,7 @@
 package io.eqoty.secretk.client
 
 import com.ionspin.kotlin.bignum.serialization.kotlinx.biginteger.bigIntegerhumanReadableSerializerModule
+import io.eqoty.cosmwasm.std.types.CodeInfo
 import io.eqoty.secretk.BroadcastMode
 import io.eqoty.secretk.types.proto.MsgExecuteContractResponseProto
 import io.eqoty.secretk.types.proto.MsgInstantiateContractResponseProto
@@ -130,7 +131,7 @@ internal class RestClient(
         return responseData.result
     }
 
-    suspend fun getCodeInfoByCodeId(codeId: String): CodeInfoResponse.CodeInfo {
+    suspend fun getCodeInfoByCodeId(codeId: String): CodeInfo {
         val path = "/compute/v1beta1/code/$codeId"
         val responseData: CodeInfoResponse = get(path)
         return responseData.codeInfo

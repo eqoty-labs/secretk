@@ -1,7 +1,8 @@
 package io.eqoty.secretk.types
 
+import io.eqoty.secret.std.types.StdSignature
+import io.eqoty.secret.std.types.TypeValue
 import io.eqoty.secretk.types.proto.MsgProto
-import io.eqoty.secretk.types.response.TypeValue
 
 /** An Amino/Cosmos SDK StdTx */
 @kotlinx.serialization.Serializable

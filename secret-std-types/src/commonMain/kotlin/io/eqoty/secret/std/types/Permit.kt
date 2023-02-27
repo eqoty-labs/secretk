@@ -1,6 +1,5 @@
-package io.eqoty.secretk.types.extensions
+package io.eqoty.secret.std.types
 
-import io.eqoty.secretk.types.StdSignature
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

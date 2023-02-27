@@ -1,4 +1,4 @@
-package io.eqoty.secretk.types.response
+package io.eqoty.secret.std.types
 
 
 @kotlinx.serialization.Serializable

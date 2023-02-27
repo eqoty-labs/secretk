@@ -7,8 +7,8 @@ import io.eqoty.kryptools.Secp256k1
 import io.eqoty.kryptools.Slip10
 import io.eqoty.kryptools.Slip10Curve
 import io.eqoty.kryptools.Slip10RawIndex
+import io.eqoty.secret.std.types.StdSignature
 import io.eqoty.secretk.types.StdSignDoc
-import io.eqoty.secretk.types.StdSignature
 import io.eqoty.secretk.types.proto.SignDocProto
 import io.eqoty.secretk.types.proto.SignMode
 import io.eqoty.secretk.utils.Address.pubkeyToAddress

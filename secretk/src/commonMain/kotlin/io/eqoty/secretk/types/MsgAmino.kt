@@ -1,7 +1,7 @@
 package io.eqoty.secretk.types
 
 import io.eqoty.cosmwasm.std.types.Coin
-import io.eqoty.secretk.types.extensions.Permission
+import io.eqoty.secret.std.types.Permission
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

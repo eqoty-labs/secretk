@@ -1,9 +1,13 @@
 package io.eqoty.secretk.extensions.accesscontrol
 
 import io.eqoty.cosmwasm.std.types.Coin
-import io.eqoty.secretk.types.*
-import io.eqoty.secretk.types.extensions.Permission
-import io.eqoty.secretk.types.extensions.Permit
+import io.eqoty.secret.std.types.Permission
+import io.eqoty.secret.std.types.Permit
+import io.eqoty.secret.std.types.StdSignature
+import io.eqoty.secretk.types.MsgQueryPermitAmino
+import io.eqoty.secretk.types.MsgQueryPermitAminoData
+import io.eqoty.secretk.types.StdFee
+import io.eqoty.secretk.types.StdSignDoc
 import io.eqoty.secretk.wallet.Wallet
 
 object PermitFactory {

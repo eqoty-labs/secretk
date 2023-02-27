@@ -921,7 +921,7 @@ __attribute__((swift_name("CodeInfoResponse")))
  *   kotlinx.serialization.Serializable
 */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("CodeInfoResponse.CodeInfo")))
+__attribute__((swift_name("CodeInfo")))
 @interface SecretkCodeInfoResponseCodeInfo : SecretkBase
 - (instancetype)initWithCodeId:(NSString *)codeId creator:(NSString *)creator codeHash:(NSString *)codeHash source:(NSString *)source builder:(NSString *)builder __attribute__((swift_name("init(codeId:creator:codeHash:source:builder:)"))) __attribute__((objc_designated_initializer));
 @property (class, readonly, getter=companion) SecretkCodeInfoResponseCodeInfoCompanion *companion __attribute__((swift_name("companion")));
@@ -937,7 +937,7 @@ __attribute__((swift_name("CodeInfoResponse.CodeInfo")))
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("CodeInfoResponse.CodeInfoCompanion")))
+__attribute__((swift_name("CodeInfoCompanion")))
 @interface SecretkCodeInfoResponseCodeInfoCompanion : SecretkBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));

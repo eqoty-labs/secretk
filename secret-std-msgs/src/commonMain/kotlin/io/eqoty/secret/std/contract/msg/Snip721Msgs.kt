@@ -1,6 +1,6 @@
 package io.eqoty.secret.std.contract.msg
 
-import io.eqoty.secretk.types.extensions.Permit
+import io.eqoty.secret.std.types.Permit
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmInline

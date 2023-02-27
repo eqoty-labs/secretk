@@ -3,6 +3,9 @@ package io.eqoty.secretk.client
 import co.touchlab.kermit.Logger
 import com.ionspin.kotlin.bignum.integer.toBigInteger
 import io.eqoty.cosmwasm.std.types.Coin
+import io.eqoty.secret.std.types.PubKey
+import io.eqoty.secret.std.types.PubKeyMultisigThreshold
+import io.eqoty.secret.std.types.PubKeySecp256k1
 import io.eqoty.secretk.BroadcastMode
 import io.eqoty.secretk.types.*
 import io.eqoty.secretk.types.proto.*

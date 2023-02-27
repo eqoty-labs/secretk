@@ -45,5 +45,7 @@ refreshVersions { // Optional: configure the plugin
 }
 include(":secretk")
 include(":secret-std-msgs")
+include(":secret-std-types")
 include(":cosmwasm-std-types")
+include(":deploy-utils")
 include(":sample")

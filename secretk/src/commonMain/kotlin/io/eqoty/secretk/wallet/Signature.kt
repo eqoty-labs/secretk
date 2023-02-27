@@ -1,6 +1,6 @@
 package io.eqoty.secretk.wallet
 
-import io.eqoty.secretk.types.StdSignature
+import io.eqoty.secret.std.types.StdSignature
 import io.eqoty.secretk.utils.toByteString
 
 

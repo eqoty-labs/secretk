@@ -1,5 +1,6 @@
 package io.eqoty.secretk.client
 
+import io.eqoty.cosmwasm.std.types.CodeInfo
 import io.eqoty.secretk.BroadcastMode
 import io.eqoty.secretk.types.response.*
 import io.eqoty.secretk.types.result.GetNonceResult
@@ -18,7 +19,7 @@ open class CosmWasmClient protected constructor(
     /** Any address the chain considers valid (valid bech32 with proper prefix) */
     protected var anyValidAddress: String? = null
 
-    suspend fun getCodeInfoByCodeId(codeId: String): CodeInfoResponse.CodeInfo =
+    suspend fun getCodeInfoByCodeId(codeId: String): CodeInfo =
         restClient.getCodeInfoByCodeId(codeId)
 
     suspend fun getCodeHashByContractAddr(addr: String): String =

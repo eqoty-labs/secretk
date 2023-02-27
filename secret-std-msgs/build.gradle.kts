@@ -40,6 +40,7 @@ kotlin {
         }
         val commonMain by getting {
             dependencies {
+                implementation(project(":secret-std-types"))
                 implementation(libs.kotlinx.serialization.json)
                 implementation(libs.bignum)
                 implementation(libs.bignum.serialization.kotlinx)

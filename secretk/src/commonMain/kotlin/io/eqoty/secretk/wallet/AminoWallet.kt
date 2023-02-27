@@ -1,7 +1,7 @@
 package io.eqoty.secretk.wallet
 
+import io.eqoty.secret.std.types.StdSignature
 import io.eqoty.secretk.types.StdSignDoc
-import io.eqoty.secretk.types.StdSignature
 import io.eqoty.secretk.types.proto.SignMode
 import kotlinx.serialization.Serializable
 

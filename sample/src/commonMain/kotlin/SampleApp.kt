@@ -5,12 +5,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import io.eqoty.secret.std.types.Permission
+import io.eqoty.secret.std.types.Permit
 import io.eqoty.secretk.client.SigningCosmWasmClient
 import io.eqoty.secretk.extensions.accesscontrol.PermitFactory
 import io.eqoty.secretk.types.MsgExecuteContract
 import io.eqoty.secretk.types.TxOptions
-import io.eqoty.secretk.types.extensions.Permission
-import io.eqoty.secretk.types.extensions.Permit
 import io.eqoty.secretk.wallet.DirectSigningWallet
 import kotlinx.coroutines.launch
 import kotlinx.serialization.encodeToString

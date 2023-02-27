@@ -1,6 +1,6 @@
 package io.eqoty.secretk.wallet
 
-import io.eqoty.secretk.types.response.PubKeySecp256k1
+import io.eqoty.secret.std.types.PubKeySecp256k1
 import io.eqoty.secretk.utils.toByteString
 
 fun encodeSecp256k1Pubkey(pubkey: UByteArray): PubKeySecp256k1 {

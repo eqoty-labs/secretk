@@ -1,0 +1,21 @@
+{
+  "nodes": [
+    {
+      "type": "LocalSecret",
+      "chainId": "secretdev-1",
+      "grpcGatewayEndpoint": "http://localhost:1317",
+      "faucetAddressEndpoint": "http://localhost:5000/faucet?address="
+    },
+    {
+      "type": "Pulsar2",
+      "chainId": "pulsar-2",
+      "grpcGatewayEndpoint": "https://pulsar-2.api.trivium.network:1317",
+      "faucetAddressEndpoint": "https://faucetbe.pulsar.scrttestnet.com/credit"
+    },
+    {
+      "type": "Secret4",
+      "chainId": "secret-4",
+      "grpcGatewayEndpoint": "https://secret.api.consensus.one"
+    }
+  ]
+}

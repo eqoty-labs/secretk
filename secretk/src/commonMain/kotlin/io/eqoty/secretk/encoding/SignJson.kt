@@ -1,7 +1,7 @@
 package io.eqoty.secretk.encoding
 
+import io.eqoty.secret.std.types.TypeValue
 import io.eqoty.secretk.types.StdFee
-import io.eqoty.secretk.types.response.TypeValue
 
 @kotlinx.serialization.Serializable
 data class SignJson<T>(

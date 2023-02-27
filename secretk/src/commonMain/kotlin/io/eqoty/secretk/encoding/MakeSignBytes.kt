@@ -2,8 +2,8 @@ package io.eqoty.secretk.encoding
 
 import com.ionspin.kotlin.bignum.integer.BigInteger
 import com.ionspin.kotlin.crypto.util.encodeToUByteArray
+import io.eqoty.secret.std.types.TypeValue
 import io.eqoty.secretk.types.StdFee
-import io.eqoty.secretk.types.response.TypeValue
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
