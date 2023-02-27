@@ -33,7 +33,7 @@ kotlin {
         }
         val commonMain by getting {
             dependencies {
-                implementation(project(":secretk"))
+                implementation(project(":client"))
                 implementation(project(":secret-std-msgs"))
                 implementation(libs.com.squareup.okio)
                 implementation(libs.kotlinx.serialization.json)
@@ -68,12 +68,12 @@ kotlin {
     }
 }
 
-// https://youtrack.jetbrains.com/issue/KT-46466
-val dependsOnTasks = mutableListOf<String>()
-tasks.withType<AbstractPublishToMaven>().configureEach {
-    dependsOnTasks.add(this.name.replace("publish", "sign").replaceAfter("Publication", ""))
-    dependsOn(dependsOnTasks)
-}
+//// https://youtrack.jetbrains.com/issue/KT-46466
+//val dependsOnTasks = mutableListOf<String>()
+//tasks.withType<AbstractPublishToMaven>().configureEach {
+//    dependsOnTasks.add(this.name.replace("publish", "sign").replaceAfter("Publication", ""))
+//    dependsOn(dependsOnTasks)
+//}
 
 plugins.withId("com.vanniktech.maven.publish") {
     mavenPublishing {

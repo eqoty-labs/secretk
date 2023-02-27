@@ -184,18 +184,16 @@ multiplatformSwiftPackage {
     }
 }
 
-// https://youtrack.jetbrains.com/issue/KT-46466
-val dependsOnTasks = mutableListOf<String>()
-tasks.withType<AbstractPublishToMaven>().configureEach {
-    dependsOnTasks.add(this.name.replace("publish", "sign").replaceAfter("Publication", ""))
-    dependsOn(dependsOnTasks)
-}
+//// https://youtrack.jetbrains.com/issue/KT-46466
+//val dependsOnTasks = mutableListOf<String>()
+//tasks.withType<AbstractPublishToMaven>().configureEach {
+//    dependsOnTasks.add(this.name.replace("publish", "sign").replaceAfter("Publication", ""))
+//    dependsOn(dependsOnTasks)
+//}
 
 plugins.withId("com.vanniktech.maven.publish") {
     mavenPublishing {
         publishToMavenCentral(SonatypeHost.S01)
         signAllPublications()
-//        @Suppress("UnstableApiUsage")
-//        pomFromGradleProperties()
     }
 }

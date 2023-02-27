@@ -43,7 +43,7 @@ plugins {
 refreshVersions { // Optional: configure the plugin
     // ...
 }
-include(":secretk")
+include(":client")
 include(":secret-std-msgs")
 include(":secret-std-types")
 include(":cosmwasm-std-types")

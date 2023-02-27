@@ -156,6 +156,6 @@ lint/tmp/
 *.hprof
 
 .DS_Store
-secretk/nativelibs/libaes_siv_build/
-secretk/externals/
+client/nativelibs/libaes_siv_build/
+client/externals/
 sample/externals/

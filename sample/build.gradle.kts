@@ -71,7 +71,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":secretk"))
+                implementation(project(":client"))
                 implementation(compose.ui)
                 implementation(compose.foundation)
                 implementation(compose.material)
