@@ -1,4 +1,4 @@
-package io.eqoty.secret.std.types
+package io.eqoty.cosmwasm.std.types
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
