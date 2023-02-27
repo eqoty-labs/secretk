@@ -148,9 +148,10 @@ let SigningCosmWasmClientCompanion = SigningCosmWasmClient.Companion()
 let client = try! await SigningCosmWasmClient.Companion.doInit(SigningCosmWasmClientCompanion)(
     apiUrl: grpcGatewayEndpoint,
     senderAddress: accAddress,
-    signer: wallet,
+    wallet: wallet,
     seed: nil,
-    broadcastMode: BroadcastMode.block
+    broadcastMode: BroadcastMode.block,
+    chainId: nil
 )
 ```
 

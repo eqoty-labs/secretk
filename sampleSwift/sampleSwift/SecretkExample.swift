@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import secretk
+import client
 
 
 
@@ -21,9 +21,10 @@ struct SecretkExample {
         let client = try! await SigningCosmWasmClient.Companion.doInit(SigningCosmWasmClientCompanion)(
             apiUrl: grpcGatewayEndpoint,
             senderAddress: accAddress,
-            signer: wallet,
+            wallet: wallet,
             seed: nil,
-            broadcastMode: BroadcastMode.block
+            broadcastMode: BroadcastMode.block,
+            chainId: nil
         )
 
         let contractAddress = "secret1lz4m46vpdn8f2aj8yhtnexus40663udv7hhprm"

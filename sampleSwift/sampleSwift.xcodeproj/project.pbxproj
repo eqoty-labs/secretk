@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		243B773A28DBE9AD00FF1C04 /* SecretkExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243B773928DBE9AD00FF1C04 /* SecretkExample.swift */; };
-		243B774628DC12AD00FF1C04 /* secretk in Frameworks */ = {isa = PBXBuildFile; productRef = 243B774528DC12AD00FF1C04 /* secretk */; };
+		24B1E36129AC724900EF1286 /* secretk in Frameworks */ = {isa = PBXBuildFile; productRef = 24B1E36029AC724900EF1286 /* secretk */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,7 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				243B774628DC12AD00FF1C04 /* secretk in Frameworks */,
+				24B1E36129AC724900EF1286 /* secretk in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +83,7 @@
 			);
 			name = sampleSwift;
 			packageProductDependencies = (
-				243B774528DC12AD00FF1C04 /* secretk */,
+				24B1E36029AC724900EF1286 /* secretk */,
 			);
 			productName = sampleIos;
 			productReference = 243B773628DBE9AD00FF1C04 /* sampleSwift */;
@@ -97,7 +97,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1330;
-				LastUpgradeCheck = 1330;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					243B773528DBE9AD00FF1C04 = {
 						CreatedOnToolsVersion = 13.3.1;
@@ -114,7 +114,7 @@
 			);
 			mainGroup = 243B772D28DBE9AD00FF1C04;
 			packageReferences = (
-				243B774428DC12AD00FF1C04 /* XCRemoteSwiftPackageReference "secretk" */,
+				24B1E35F29AC724900EF1286 /* XCRemoteSwiftPackageReference "secretk" */,
 			);
 			productRefGroup = 243B773728DBE9AD00FF1C04 /* Products */;
 			projectDirPath = "";
@@ -170,6 +170,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -230,6 +231,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -256,6 +258,7 @@
 				CODE_SIGN_ENTITLEMENTS = sampleSwift/sampleSwift.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = F6P2P5GDRF;
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -269,6 +272,7 @@
 				CODE_SIGN_ENTITLEMENTS = sampleSwift/sampleSwift.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = F6P2P5GDRF;
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -300,7 +304,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		243B774428DC12AD00FF1C04 /* XCRemoteSwiftPackageReference "secretk" */ = {
+		24B1E35F29AC724900EF1286 /* XCRemoteSwiftPackageReference "secretk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/luca992/secretk.git";
 			requirement = {
@@ -311,9 +315,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		243B774528DC12AD00FF1C04 /* secretk */ = {
+		24B1E36029AC724900EF1286 /* secretk */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 243B774428DC12AD00FF1C04 /* XCRemoteSwiftPackageReference "secretk" */;
+			package = 24B1E35F29AC724900EF1286 /* XCRemoteSwiftPackageReference "secretk" */;
 			productName = secretk;
 		};
 /* End XCSwiftPackageProductDependency section */
