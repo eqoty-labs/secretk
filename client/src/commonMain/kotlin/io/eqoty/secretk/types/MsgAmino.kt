@@ -5,16 +5,16 @@ import io.eqoty.secret.std.types.Permission
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@kotlinx.serialization.Serializable
+@Serializable
 sealed interface MsgAmino
 
-@kotlinx.serialization.Serializable
+@Serializable
 @SerialName("wasm/MsgExecuteContract")
 class MsgExecuteContractAmino(
     val value: MsgExecuteContractAminoData,
 ) : MsgAmino
 
-@kotlinx.serialization.Serializable
+@Serializable
 class MsgExecuteContractAminoData(
     val sender: String,
     val contract: String,
@@ -23,13 +23,13 @@ class MsgExecuteContractAminoData(
     val sentFunds: List<Coin>,
 )
 
-@kotlinx.serialization.Serializable
+@Serializable
 @SerialName("wasm/MsgStoreCode")
 class MsgStoreCodeAmino(
     val value: MsgStoreCodeAminoData,
 ) : MsgAmino
 
-@kotlinx.serialization.Serializable
+@Serializable
 class MsgStoreCodeAminoData(
     val sender: String,
     @SerialName("wasm_byte_code")
@@ -38,7 +38,23 @@ class MsgStoreCodeAminoData(
     val builder: String? = null,
 )
 
-@kotlinx.serialization.Serializable
+@Serializable
+@SerialName("cosmos-sdk/MsgSend")
+class MsgSendAmino(
+    val value: MsgSendAminoData,
+) : MsgAmino
+
+@Serializable
+class MsgSendAminoData(
+    @SerialName("from_address")
+    val fromAddress: String,
+    @SerialName("to_address")
+    val toAddress: String,
+    val amount: List<Coin>,
+)
+
+
+@Serializable
 @SerialName("query_permit")
 class MsgQueryPermitAmino(
     val value: MsgQueryPermitAminoData,

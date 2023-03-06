@@ -4,7 +4,7 @@ import kotlinx.serialization.protobuf.ProtoNumber
 
 /***
  * Reference:
- * https://github.com/scrtlabs/secret.js/blob/master/src/protobuf_stuff/secret/compute/v1beta1/msg.ts
+ * https://github.com/scrtlabs/SecretNetwork/blob/master/proto/secret/compute/v1beta1/msg.proto
  */
 @kotlinx.serialization.Serializable
 class MsgExecuteContractProto(

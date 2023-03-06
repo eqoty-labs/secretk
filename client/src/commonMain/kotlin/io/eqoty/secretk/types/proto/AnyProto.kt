@@ -27,6 +27,10 @@ class AnyProto(
                 ProtoBuf.decodeFromByteArray(value) as MsgStoreCodeProto
             }
 
+            "/cosmos.bank.v1beta1.MsgSend" -> {
+                ProtoBuf.decodeFromByteArray(value) as MsgSendProto
+            }
+
             else -> throw UnsupportedOperationException("calling toMsg() on an Any proto with typeUrl:${typeUrl} is not supported")
         }
     }

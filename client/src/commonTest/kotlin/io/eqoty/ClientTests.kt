@@ -1,12 +1,10 @@
 package io.eqoty
 
+import io.eqoty.cosmwasm.std.types.Coin
 import io.eqoty.secret.std.types.Permission
 import io.eqoty.secretk.client.SigningCosmWasmClient
 import io.eqoty.secretk.extensions.accesscontrol.PermitFactory
-import io.eqoty.secretk.types.MsgExecuteContract
-import io.eqoty.secretk.types.MsgInstantiateContract
-import io.eqoty.secretk.types.MsgStoreCode
-import io.eqoty.secretk.types.TxOptions
+import io.eqoty.secretk.types.*
 import io.eqoty.secretk.utils.logger
 import io.eqoty.secretk.wallet.DirectSigningWallet
 import kotlinx.coroutines.test.runTest
@@ -244,6 +242,33 @@ class ClientTests {
             ?.find { it.key == "contract_address" }?.value!!
         logger.i("contract address:  $contractAddress")
         assertContains(contractAddress, "secret1")
+    }
+
+    @Test
+    fun testSendCoin() = runTest {
+        val accAddress = wallet.getAccounts()[0].address
+        val client = SigningCosmWasmClient.init(
+            grpcGatewayEndpoint,
+            accAddress,
+            wallet
+        )
+        val toAccount = wallet.addAccount()
+        val amountToSend = listOf(Coin(10, "uscrt"))
+        val msgs = listOf(
+            MsgSend(
+                fromAddress = accAddress,
+                toAddress = toAccount.publicData.address,
+                amount = amountToSend
+            )
+        )
+        val simulate = client.simulate(msgs)
+        val gasLimit = (simulate.gasUsed.toDouble() * 1.1).toInt()
+        client.execute(
+            msgs,
+            txOptions = TxOptions(gasLimit = gasLimit)
+        )
+        val recipientBalance = client.getBalance(toAccount.publicData.address).balances
+        assertEquals(recipientBalance, amountToSend)
     }
 
 }
