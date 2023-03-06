@@ -1,6 +1,5 @@
 package io.eqoty.secretk.client
 
-import io.eqoty.secretk.utils.logger
 import com.ionspin.kotlin.bignum.integer.toBigInteger
 import io.eqoty.cosmwasm.std.types.Coin
 import io.eqoty.secret.std.types.PubKey
@@ -10,10 +9,7 @@ import io.eqoty.secretk.BroadcastMode
 import io.eqoty.secretk.types.*
 import io.eqoty.secretk.types.proto.*
 import io.eqoty.secretk.types.response.*
-import io.eqoty.secretk.utils.EncryptionUtils
-import io.eqoty.secretk.utils.EnigmaUtils
-import io.eqoty.secretk.utils.decodeToString
-import io.eqoty.secretk.utils.ensureLibsodiumInitialized
+import io.eqoty.secretk.utils.*
 import io.eqoty.secretk.wallet.*
 import kotlinx.serialization.decodeFromByteArray
 import kotlinx.serialization.encodeToByteArray
@@ -104,7 +100,10 @@ private constructor(
             }.map { anyProto ->
                 extractMessageNonceIfNeeded(anyProto)
             }
-            throw restClient.decrypt(t, nonces[0]!!)
+            throw nonces[0]?.let { nonce ->
+                restClient.decrypt(t, nonce)
+            } ?: t
+
         }
         return simulateTxResponse.gasInfo!!
     }
@@ -124,7 +123,9 @@ private constructor(
             }.map { anyProto ->
                 extractMessageNonceIfNeeded(anyProto)
             }
-            throw restClient.decrypt(t, nonces[0]!!)
+            throw nonces[0]?.let { nonce ->
+                restClient.decrypt(t, nonce)
+            } ?: t
         }
 
         txResponse.data = if (this.restClient.broadcastMode == BroadcastMode.Block) {
@@ -346,6 +347,10 @@ private constructor(
                     }
 
                     is MsgStoreCodeProto -> {
+                        ProtoBuf.encodeToByteArray(message.value)
+                    }
+
+                    is MsgSendProto -> {
                         ProtoBuf.encodeToByteArray(message.value)
                     }
 

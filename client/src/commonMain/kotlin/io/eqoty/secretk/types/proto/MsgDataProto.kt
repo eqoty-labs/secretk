@@ -26,6 +26,10 @@ class MsgDataProto(
             ProtoBuf.decodeFromByteArray(data ?: byteArrayOf()) as MsgStoreCodeResponseProto
         }
 
+        "/cosmos.bank.v1beta1.MsgSend" -> {
+            ProtoBuf.decodeFromByteArray(data ?: byteArrayOf()) as MsgSendResponseProto
+        }
+
         else -> throw UnsupportedOperationException("calling toMsg() on an Any proto with typeUrl:${msgType} is not supported")
     }
 }

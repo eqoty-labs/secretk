@@ -14,6 +14,7 @@ old) + [secret.js](https://github.com/scrtlabs/secret.js)
 * Contract Execution (MsgExecuteContract)
 * Contract Code Upload (MsgStoreCode)
 * Contract Instantiate (MsgInstantiateContract)
+* Bank Send (MsgSend)
 * Web: Delegate signing transactions to Kepler or Metamask browser wallets
 
 ### Supported Targets:
@@ -135,6 +136,33 @@ val numTokensQuery =
 
 val numTokens = client.queryContractSmart(contractAddress, numTokensQuery)
 println("Num Tokens Response: $numTokens")
+```
+
+#### Bank Send Tx
+
+```kotlin
+val client = SigningCosmWasmClient.init(
+    grpcGatewayEndpoint,
+    accAddress,
+    wallet
+)
+val toAccount = wallet.addAccount()
+val amountToSend = listOf(Coin(10, "uscrt"))
+val msgs = listOf(
+    MsgSend(
+        fromAddress = accAddress,
+        toAddress = toAccount.publicData.address,
+        amount = amountToSend
+    )
+)
+val simulate = client.simulate(msgs)
+val gasLimit = (simulate.gasUsed.toDouble() * 1.1).toInt()
+client.execute(
+    msgs,
+    txOptions = TxOptions(gasLimit = gasLimit)
+)
+val recipientBalance = client.getBalance(toAccount.publicData.address).balances
+println("recipientBalance: $recipientBalance")
 ```
 
 ### Swift
