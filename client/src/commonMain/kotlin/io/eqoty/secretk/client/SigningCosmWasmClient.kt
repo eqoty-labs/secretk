@@ -104,7 +104,10 @@ private constructor(
             }.map { anyProto ->
                 extractMessageNonceIfNeeded(anyProto)
             }
-            throw restClient.decrypt(t, nonces[0]!!)
+            throw nonces[0]?.let { nonce ->
+                restClient.decrypt(t, nonce)
+            } ?: t
+
         }
         return simulateTxResponse.gasInfo!!
     }
@@ -124,7 +127,9 @@ private constructor(
             }.map { anyProto ->
                 extractMessageNonceIfNeeded(anyProto)
             }
-            throw restClient.decrypt(t, nonces[0]!!)
+            throw nonces[0]?.let { nonce ->
+                restClient.decrypt(t, nonce)
+            } ?: t
         }
 
         txResponse.data = if (this.restClient.broadcastMode == BroadcastMode.Block) {
