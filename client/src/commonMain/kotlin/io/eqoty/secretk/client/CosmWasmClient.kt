@@ -25,6 +25,9 @@ open class CosmWasmClient protected constructor(
     suspend fun getCodeHashByContractAddr(addr: String): String =
         restClient.getCodeHashByContractAddr(addr)
 
+    suspend fun getLabelByContractAddr(addr: String): String =
+        restClient.getLabelByContractAddr(addr)
+
     // The /node_info endpoint
     suspend fun nodeInfo(): NodeInfoResponse {
         return restClient.get("/node_info")
