@@ -2065,6 +2065,12 @@ __attribute__((swift_name("CosmWasmClient")))
  * @note This method converts instances of CancellationException to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
+- (void)getLabelByContractAddrAddr:(NSString *)addr completionHandler:(void (^)(NSString * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getLabelByContractAddr(addr:completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
 - (void)getNonceAddress:(NSString *)address completionHandler:(void (^)(ClientGetNonceResult * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getNonce(address:completionHandler:)")));
 
 /**
