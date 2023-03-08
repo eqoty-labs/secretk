@@ -131,6 +131,12 @@ internal class RestClient(
         return responseData.result
     }
 
+    suspend fun getLabelByContractAddr(addr: String): String {
+        val path = "/compute/v1beta1/label/$addr"
+        val response: LabelResponse = get(path)
+        return response.label
+    }
+
     suspend fun getCodeInfoByCodeId(codeId: String): CodeInfo {
         val path = "/compute/v1beta1/code/$codeId"
         val responseData: CodeInfoResponse = get(path)
