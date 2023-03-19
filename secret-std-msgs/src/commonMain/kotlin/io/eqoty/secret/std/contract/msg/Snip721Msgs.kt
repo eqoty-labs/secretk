@@ -270,6 +270,7 @@ object Snip721Msgs {
         @SerialName("add_minters") val addMinters: AddMinters? = null,
         @SerialName("remove_minters") val removeMinters: RemoveMinters? = null,
         @SerialName("set_minters") val setMinters: SetMinters? = null,
+        @SerialName("make_ownership_private") val makeOwnershipPrivate: MakeOwnershipPrivate? = null,
         @SerialName("transfer_nft") val transferNft: TransferNft? = null,
     ) {
         @Serializable
@@ -318,6 +319,12 @@ object Snip721Msgs {
         )
 
         @Serializable
+        data class MakeOwnershipPrivate(
+            /// optional message length padding
+            val padding: String? = null
+        )
+
+        @Serializable
         data class TransferNft(
             /// recipient of the transfer
             val recipient: String,
@@ -337,6 +344,8 @@ object Snip721Msgs {
         @SerialName("add_minters") val addMinters: AddMinters? = null,
         @SerialName("remove_minters") val removeMinters: RemoveMinters? = null,
         @SerialName("set_minters") val setMinters: SetMinters? = null,
+        @SerialName("make_ownership_private") val makeOwnershipPrivate: MakeOwnershipPrivate? = null,
+        @SerialName("transfer_nft") val transferNft: TransferNft? = null,
     ) {
 
         enum class ResponseStatus {
@@ -361,6 +370,16 @@ object Snip721Msgs {
 
         @Serializable
         data class SetMinters(
+            val status: ResponseStatus,
+        )
+
+        @Serializable
+        data class MakeOwnershipPrivate(
+            val status: ResponseStatus,
+        )
+
+        @Serializable
+        data class TransferNft(
             val status: ResponseStatus,
         )
     }
