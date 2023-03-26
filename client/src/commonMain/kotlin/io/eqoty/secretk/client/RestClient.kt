@@ -54,6 +54,9 @@ internal class RestClient(
         install(ContentNegotiation) {
             json(json)
         }
+        install(HttpTimeout) {
+            socketTimeoutMillis = 60_000
+        }
     }
 
 
