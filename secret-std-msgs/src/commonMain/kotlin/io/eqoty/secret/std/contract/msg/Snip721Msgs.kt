@@ -271,6 +271,7 @@ object Snip721Msgs {
         @SerialName("remove_minters") val removeMinters: RemoveMinters? = null,
         @SerialName("set_minters") val setMinters: SetMinters? = null,
         @SerialName("make_ownership_private") val makeOwnershipPrivate: MakeOwnershipPrivate? = null,
+        @SerialName("set_whitelisted_approval") val setWhitelistedApproval: SetWhitelistedApproval? = null,
         @SerialName("transfer_nft") val transferNft: TransferNft? = null,
     ) {
         @Serializable
@@ -325,6 +326,24 @@ object Snip721Msgs {
         )
 
         @Serializable
+        data class SetWhitelistedApproval(
+            /// address being granted/revoked permission
+            val address: String,
+            /// optional token id to apply approval/revocation to
+            val token_id: String? = null,
+            /// optional permission level for viewing the owner
+            val view_owner: AccessLevel? = null,
+            /// optional permission level for viewing private metadata
+            val view_private_metadata: AccessLevel? = null,
+            /// optional permission level for transferring
+            val transfer: AccessLevel? = null,
+            /// optional expiration
+            val expires: Expiration? = null,
+            /// optional message length padding
+            val padding: String? = null,
+        )
+
+        @Serializable
         data class TransferNft(
             /// recipient of the transfer
             val recipient: String,
@@ -336,6 +355,25 @@ object Snip721Msgs {
             /// optional message length padding
             val padding: String? = null,
         )
+
+        @Serializable
+        enum class AccessLevel {
+            /// approve permission only for the specified token
+            @SerialName("approve_token")
+            ApproveToken,
+
+            /// grant permission for all tokens
+            @SerialName("all")
+            All,
+
+            /// revoke permission only for the specified token
+            @SerialName("revoke_token")
+            RevokeToken,
+
+            /// remove all permissions for this address
+            @SerialName("none")
+            None,
+        }
     }
 
     @Serializable
@@ -345,6 +383,7 @@ object Snip721Msgs {
         @SerialName("remove_minters") val removeMinters: RemoveMinters? = null,
         @SerialName("set_minters") val setMinters: SetMinters? = null,
         @SerialName("make_ownership_private") val makeOwnershipPrivate: MakeOwnershipPrivate? = null,
+        @SerialName("set_whitelisted_approval") val setWhitelistedApproval: SetWhitelistedApproval? = null,
         @SerialName("transfer_nft") val transferNft: TransferNft? = null,
     ) {
 
@@ -375,6 +414,11 @@ object Snip721Msgs {
 
         @Serializable
         data class MakeOwnershipPrivate(
+            val status: ResponseStatus,
+        )
+
+        @Serializable
+        data class SetWhitelistedApproval(
             val status: ResponseStatus,
         )
 
