@@ -1,7 +1,5 @@
-import org.jetbrains.compose.compose
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.compose.experimental.dsl.IOSDevices
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -226,6 +224,7 @@ android {
             res.srcDirs("src/androidMain/res", "src/commonMain/resources")
         }
     }
+    namespace = "io.eqoty.secretk.sample"
 }
 
 tasks.findByName("jsProcessResources")!!.dependsOn("unpackSkikoWasmRuntimeJs")
