@@ -440,6 +440,7 @@ object Snip721Msgs {
         @SerialName("nft_dossier") val nftDossier: NftDossier? = null,
         @SerialName("batch_nft_dossier") val batchNftDossier: BatchNftDossier? = null,
         @SerialName("tokens") val tokens: Tokens? = null,
+        @SerialName("royalty_info") val royaltyInfo: QueryWithPermit.RoyaltyInfo? = null,
         @SerialName("with_permit") val withPermit: WithPermit? = null,
     ) {
 
@@ -519,6 +520,15 @@ object Snip721Msgs {
             val limit: UInt? = null,
         )
 
+        @Serializable
+        data class RoyaltyInfo(
+            /// optional ID of the token whose royalty information should be displayed.  If not
+            /// provided, display the contract's default royalty information
+            val token_id: String? = null,
+            /// optional address and key requesting to view the royalty information
+            val viewer: ViewerInfo? = null
+        )
+
 
         @Serializable
         data class WithPermit(
@@ -531,6 +541,7 @@ object Snip721Msgs {
 
     @Serializable
     data class QueryWithPermit(
+        @SerialName("royalty_info") val royaltyInfo: RoyaltyInfo? = null,
         @SerialName("num_tokens_of_owner") val numTokensOfOwner: NumTokensOfOwner? = null,
         @SerialName("num_tokens") val numTokens: NumTokens? = null,
         @SerialName("tokens") val tokens: Tokens? = null,
@@ -539,6 +550,14 @@ object Snip721Msgs {
         @SerialName("batch_nft_dossier") val batchNftDossier: BatchNftDossier? = null,
         @SerialName("transaction_history") val transactionHistory: TransactionHistory? = null
     ) {
+
+        @Serializable
+        data class RoyaltyInfo(
+            /// optional ID of the token whose royalty information should be displayed.  If not
+            /// provided, display the contract's default royalty information
+            val token_id: String? = null,
+        )
+
         @Serializable
         data class NumTokensOfOwner(
             val owner: String
@@ -614,6 +633,8 @@ object Snip721Msgs {
         val tokenList: TokenList? = null,
         @SerialName("transaction_history")
         val transactionHistory: TransactionHistory? = null,
+        @SerialName("royalty_info")
+        val royaltyInfo: RoyaltyInfo? = null,
     ) {
 
         @Serializable
@@ -692,6 +713,12 @@ object Snip721Msgs {
             /// total transaction count
             val total: ULong,
             val txs: List<Tx>,
+        )
+
+        @Serializable
+        data class RoyaltyInfo(
+            @SerialName("royalty_info")
+            val royaltyInfo: DisplayRoyaltyInfo? = null
         )
     }
 }
