@@ -6,9 +6,9 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class ClientKotlinEnumCompanion, ClientKotlinEnum<E>, ClientBroadcastMode, ClientKotlinArray<T>, ClientStdFee, ClientSecret_std_typesTypeValue<V>, ClientSignJsonCompanion, ClientSignJson<T>, ClientMsgProto, ClientProtoMsg<M>, ClientMsgAminoCompanion, ClientCosmwasm_std_typesCoin, ClientMsgExecuteContractProto, ClientMsgExecuteContractAminoData, ClientMsgExecuteContractAminoCompanion, ClientMsgExecuteContractAminoDataCompanion, ClientMsgInstantiateContractProto, ClientMsgQueryPermitAminoData, ClientMsgQueryPermitAminoCompanion, ClientSecret_std_typesPermission, ClientMsgQueryPermitAminoDataCompanion, ClientMsgSendProto, ClientMsgSendAminoData, ClientMsgSendAminoCompanion, ClientMsgSendAminoDataCompanion, ClientMsgStoreCodeProto, ClientMsgStoreCodeAminoData, ClientMsgStoreCodeAminoCompanion, ClientMsgStoreCodeAminoDataCompanion, ClientAnyProto, ClientBignumBigInteger, ClientSigner, ClientSignerData, ClientStdFeeCompanion, ClientStdSignDocCompanion, ClientStdSignDoc, ClientSecret_std_typesStdSignature, ClientStdTxCompanion, ClientStdTx<T>, ClientTxBodyValue<M>, ClientTxBodyCompanion, ClientTxBody<M>, ClientTxBodyValueCompanion, ClientTxOptions, ClientV1BetaTypeCompanion, ClientV1BetaType, ClientSecp256k1PubKey, ClientAccountCompanion, ClientAccount, ClientAccountResponseCompanion, ClientAccountResponse, ClientApplicationVersionCompanion, ClientApplicationVersion, ClientBalanceResponseCompanion, ClientBalanceResponse, ClientCosmwasm_std_typesCodeInfo, ClientCodeInfoResponseCompanion, ClientCodeInfoResponse, ClientGasInfoCompanion, ClientGasInfo, ClientLabelResponseCompanion, ClientLabelResponse, ClientProtocolVersion, ClientNodeInfoOther, ClientNodeInfoCompanion, ClientNodeInfo, ClientNodeInfoOtherCompanion, ClientNodeInfoResponseCompanion, ClientProtocolVersionCompanion, ClientSecp256k1PubKeyCompanion, ClientSimulateTxsResponseData, ClientSimulateTxsResponseCompanion, ClientSimulateTxsResponse, ClientLog, ClientEvent, ClientSimulateTxsResponseDataCompanion, ClientSmartQueryResponseCompanion, ClientTxResponseData, ClientTxResponseCompanion, ClientTxResponse, ClientTxResponseDataCompanion, ClientWasmResponseCompanion, ClientWasmResponse<R>, ClientAttributeCompanion, ClientAttribute, ClientEventCompanion, ClientLogCompanion, ClientGetNonceResult, ClientKotlinByteArray, ClientAnyProtoCompanion, ClientSignerInfoProto, ClientFeeProto, ClientAuthInfoProtoCompanion, ClientCoinProtoCompanion, ClientCoinProto, ClientFeeProtoCompanion, ClientKeyProtoCompanion, ClientModeInfoProtoSingle, ClientModeInfoProtoMulti, ClientModeInfoProtoCompanion, ClientModeInfoProtoMultiCompanion, ClientModeInfoProtoSingleCompanion, ClientMsgDataProtoCompanion, ClientMsgExecuteContractProtoCompanion, ClientMsgExecuteContractResponseProtoCompanion, ClientMsgInstantiateContractProtoCompanion, ClientMsgInstantiateContractResponseProtoCompanion, ClientMsgSendProtoCompanion, ClientMsgSendResponseProtoCompanion, ClientMsgStoreCodeProtoCompanion, ClientMsgStoreCodeResponseProtoCompanion, ClientProtoMsgCompanion, ClientSignDocProtoCompanion, ClientSignModeCompanion, ClientSignMode, ClientModeInfoProto, ClientSignerInfoProtoCompanion, ClientTxBodyProtoCompanion, ClientMsgDataProto, ClientTxMsgDataProtoCompanion, ClientTxRawProtoCompanion, ClientNodeInfoResponse, ClientCosmWasmClient, ClientSigningCosmWasmClientCompanion, ClientSigningCosmWasmClient, ClientAddress, ClientSecret_std_typesPubKey, ClientKotlinx_serialization_jsonJsonElement, ClientEnigmaUtilsCompanion, ClientKeyPair, ClientEnigmaUtils, ClientResultCompanion, ClientResult, ClientTxKeyResponseCompanion, ClientTxKeyResponse, ClientAlgo, ClientAccountData, ClientKotlinCharArray, ClientAminoSignResponseCompanion, ClientAminoSignResponse, ClientAccountSigningData, ClientPrehashType, ClientBaseWallet, ClientSignResponse, ClientSignDocProto, ClientPermitFactory, ClientSecret_std_typesPermit, ClientCosmwasm_std_typesCoinCompanion, ClientKotlinIntIterator, ClientKotlinIntArray, ClientOkioByteStringCompanion, ClientOkioByteString, ClientSecret_std_typesPubKeySecp256k1, ClientSecret_std_typesTypeValueCompanion, ClientKotlinThrowable, ClientKotlinException, ClientKotlinRuntimeException, ClientKotlinIllegalStateException, ClientSecret_std_typesPermissionCompanion, ClientKotlinPair<__covariant A, __covariant B>, ClientBignumBigIntegerCompanion, ClientBignumBigIntegerQuotientAndRemainder, ClientBignumSign, ClientBignumBigIntegerBigIntegerRange, ClientBignumBigIntegerSqareRootAndRemainder, ClientBignumModularBigInteger, ClientSecret_std_typesStdSignatureCompanion, ClientCosmwasm_std_typesCodeInfoCompanion, ClientKotlinByteIterator, ClientSecret_std_typesPubKeyCompanion, ClientKotlinx_serialization_jsonJsonElementCompanion, ClientKotlinCancellationException, ClientKotlinCharIterator, ClientSecret_std_typesPermitParams, ClientSecret_std_typesPermitCompanion, NSData, ClientSecret_std_typesPubKeySecp256k1Companion, ClientKotlinx_serialization_coreSerializersModule, ClientKotlinx_serialization_coreSerialKind, ClientKotlinNothing, ClientBignumModularBigIntegerCompanion, ClientBignumModularQuotientAndRemainder, ClientSecret_std_typesPermitParamsCompanion, ClientKotlinx_coroutines_coreAtomicDesc, ClientKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp, ClientKotlinx_coroutines_coreAtomicOp<__contravariant T>, ClientKotlinx_coroutines_coreOpDescriptor, ClientKotlinx_coroutines_coreLockFreeLinkedListNode, ClientKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc, ClientKotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc<T>, ClientKotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc<T>;
+@class ClientKotlinEnumCompanion, ClientKotlinEnum<E>, ClientBroadcastMode, ClientKotlinArray<T>, ClientStdFee, ClientSecret_std_typesTypeValue<V>, ClientSignJsonCompanion, ClientSignJson<T>, ClientMsgProto, ClientProtoMsg<M>, ClientMsgAminoCompanion, ClientCosmwasm_std_typesCoin, ClientMsgExecuteContractProto, ClientMsgExecuteContractAminoData, ClientMsgExecuteContractAminoCompanion, ClientMsgExecuteContractAminoDataCompanion, ClientMsgInstantiateContractProto, ClientMsgQueryPermitAminoData, ClientMsgQueryPermitAminoCompanion, ClientSecret_std_typesPermission, ClientMsgQueryPermitAminoDataCompanion, ClientMsgSendProto, ClientMsgSendAminoData, ClientMsgSendAminoCompanion, ClientMsgSendAminoDataCompanion, ClientMsgStoreCodeProto, ClientMsgStoreCodeAminoData, ClientMsgStoreCodeAminoCompanion, ClientMsgStoreCodeAminoDataCompanion, ClientAnyProto, ClientBignumBigInteger, ClientSigner, ClientSignerData, ClientStdFeeCompanion, ClientStdSignDocCompanion, ClientStdSignDoc, ClientSecret_std_typesStdSignature, ClientStdTxCompanion, ClientStdTx<T>, ClientTxBodyValue<M>, ClientTxBodyCompanion, ClientTxBody<M>, ClientTxBodyValueCompanion, ClientTxOptions, ClientV1BetaTypeCompanion, ClientV1BetaType, ClientSecp256k1PubKey, ClientAccountCompanion, ClientAccount, ClientAccountResponseCompanion, ClientAccountResponse, ClientApplicationVersionCompanion, ClientApplicationVersion, ClientBalanceResponseCompanion, ClientBalanceResponse, ClientCosmwasm_std_typesCodeInfo, ClientCodeInfoResponseCompanion, ClientCodeInfoResponse, ClientGasInfoCompanion, ClientGasInfo, ClientLabelResponseCompanion, ClientLabelResponse, ClientProtocolVersion, ClientNodeInfoOther, ClientNodeInfoCompanion, ClientNodeInfo, ClientNodeInfoOtherCompanion, ClientNodeInfoResponseCompanion, ClientProtocolVersionCompanion, ClientSecp256k1PubKeyCompanion, ClientSimulateTxsResponseData, ClientSimulateTxsResponseCompanion, ClientSimulateTxsResponse, ClientLog, ClientEvent, ClientSimulateTxsResponseDataCompanion, ClientSmartQueryResponseCompanion, ClientTxResponseData, ClientTxResponseCompanion, ClientTxResponse, ClientTxResponseDataCompanion, ClientWasmResponseCompanion, ClientWasmResponse<R>, ClientAttributeCompanion, ClientAttribute, ClientEventCompanion, ClientLogCompanion, ClientGetNonceResult, ClientKotlinByteArray, ClientAnyProtoCompanion, ClientSignerInfoProto, ClientFeeProto, ClientAuthInfoProtoCompanion, ClientCoinProtoCompanion, ClientCoinProto, ClientFeeProtoCompanion, ClientKeyProtoCompanion, ClientModeInfoProtoSingle, ClientModeInfoProtoMulti, ClientModeInfoProtoCompanion, ClientModeInfoProtoMultiCompanion, ClientModeInfoProtoSingleCompanion, ClientMsgDataProtoCompanion, ClientMsgExecuteContractProtoCompanion, ClientMsgExecuteContractResponseProtoCompanion, ClientMsgInstantiateContractProtoCompanion, ClientMsgInstantiateContractResponseProtoCompanion, ClientMsgSendProtoCompanion, ClientMsgSendResponseProtoCompanion, ClientMsgStoreCodeProtoCompanion, ClientMsgStoreCodeResponseProtoCompanion, ClientProtoMsgCompanion, ClientSignDocProtoCompanion, ClientSignModeCompanion, ClientSignMode, ClientModeInfoProto, ClientSignerInfoProtoCompanion, ClientTxBodyProtoCompanion, ClientMsgDataProto, ClientTxMsgDataProtoCompanion, ClientTxRawProtoCompanion, ClientNodeInfoResponse, ClientCosmWasmClient, ClientSigningCosmWasmClientCompanion, ClientSigningCosmWasmClient, ClientAddress, ClientSecret_std_typesPubKey, ClientKotlinx_serialization_jsonJsonElement, ClientEnigmaUtilsCompanion, ClientKeyPair, ClientEnigmaUtils, ClientResultCompanion, ClientResult, ClientTxKeyResponseCompanion, ClientTxKeyResponse, ClientAlgo, ClientAccountData, ClientKotlinCharArray, ClientAminoSignResponseCompanion, ClientAminoSignResponse, ClientAccountSigningData, ClientPrehashType, ClientBaseWallet, ClientSignResponse, ClientSignDocProto, ClientPermitFactory, ClientSecret_std_typesPermit, ClientCosmwasm_std_typesCoinCompanion, ClientKotlinIntIterator, ClientKotlinIntArray, ClientOkioByteStringCompanion, ClientOkioByteString, ClientKotlinx_serialization_jsonJson, ClientSecret_std_typesPubKeySecp256k1, ClientSecret_std_typesTypeValueCompanion, ClientKotlinThrowable, ClientKotlinException, ClientKotlinRuntimeException, ClientKotlinIllegalStateException, ClientSecret_std_typesPermissionCompanion, ClientKotlinPair<__covariant A, __covariant B>, ClientBignumBigIntegerCompanion, ClientBignumBigIntegerQuotientAndRemainder, ClientBignumSign, ClientBignumBigIntegerBigIntegerRange, ClientBignumBigIntegerSqareRootAndRemainder, ClientBignumModularBigInteger, ClientSecret_std_typesStdSignatureCompanion, ClientCosmwasm_std_typesCodeInfoCompanion, ClientKotlinByteIterator, ClientSecret_std_typesPubKeyCompanion, ClientKotlinx_serialization_jsonJsonElementCompanion, ClientKotlinCancellationException, ClientKotlinCharIterator, ClientSecret_std_typesPermitParams, ClientSecret_std_typesPermitCompanion, NSData, ClientKotlinx_serialization_coreSerializersModule, ClientKotlinx_serialization_jsonJsonDefault, ClientKotlinx_serialization_jsonJsonConfiguration, ClientSecret_std_typesPubKeySecp256k1Companion, ClientKotlinx_serialization_coreSerialKind, ClientKotlinNothing, ClientBignumModularBigIntegerCompanion, ClientBignumModularQuotientAndRemainder, ClientSecret_std_typesPermitParamsCompanion, ClientKotlinx_coroutines_coreAtomicDesc, ClientKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp, ClientKotlinx_coroutines_coreAtomicOp<__contravariant T>, ClientKotlinx_coroutines_coreOpDescriptor, ClientKotlinx_coroutines_coreLockFreeLinkedListNode, ClientKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc, ClientKotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc<T>, ClientKotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc<T>;
 
-@protocol ClientKotlinComparable, ClientKotlinx_serialization_coreKSerializer, ClientEncryptionUtils, ClientMsgAmino, ClientMsg, ClientEncryptedMsg, ClientUnencryptedMsg, ClientWallet, ClientKotlinx_coroutines_coreDeferred, ClientKotlinIterator, ClientKotlinx_serialization_coreEncoder, ClientKotlinx_serialization_coreSerialDescriptor, ClientKotlinx_serialization_coreSerializationStrategy, ClientKotlinx_serialization_coreDecoder, ClientKotlinx_serialization_coreDeserializationStrategy, ClientBignumBigNumber, ClientBignumBigNumberCreator, ClientBignumBitwiseCapable, ClientBignumByteArraySerializable, ClientKotlinx_coroutines_coreSelectClause1, ClientKotlinx_coroutines_coreChildHandle, ClientKotlinx_coroutines_coreChildJob, ClientKotlinx_coroutines_coreDisposableHandle, ClientKotlinx_coroutines_coreJob, ClientKotlinSequence, ClientKotlinx_coroutines_coreSelectClause0, ClientKotlinCoroutineContextKey, ClientKotlinCoroutineContextElement, ClientKotlinCoroutineContext, ClientKotlinx_serialization_coreCompositeEncoder, ClientKotlinAnnotation, ClientKotlinx_serialization_coreCompositeDecoder, ClientBignumBigNumberUtil, ClientBignumByteArrayDeserializable, ClientKotlinClosedRange, ClientKotlinIterable, ClientKotlinx_coroutines_coreSelectInstance, ClientKotlinSuspendFunction1, ClientKotlinx_coroutines_coreParentJob, ClientKotlinSuspendFunction0, ClientKotlinx_serialization_coreSerializersModuleCollector, ClientKotlinKClass, ClientKotlinContinuation, ClientKotlinFunction, ClientKotlinKDeclarationContainer, ClientKotlinKAnnotatedElement, ClientKotlinKClassifier;
+@protocol ClientKotlinComparable, ClientKotlinx_serialization_coreKSerializer, ClientEncryptionUtils, ClientMsgAmino, ClientMsg, ClientEncryptedMsg, ClientUnencryptedMsg, ClientWallet, ClientKotlinx_coroutines_coreDeferred, ClientKotlinIterator, ClientKotlinx_serialization_coreEncoder, ClientKotlinx_serialization_coreSerialDescriptor, ClientKotlinx_serialization_coreSerializationStrategy, ClientKotlinx_serialization_coreDecoder, ClientKotlinx_serialization_coreDeserializationStrategy, ClientBignumBigNumber, ClientBignumBigNumberCreator, ClientBignumBitwiseCapable, ClientBignumByteArraySerializable, ClientKotlinx_coroutines_coreSelectClause1, ClientKotlinx_coroutines_coreChildHandle, ClientKotlinx_coroutines_coreChildJob, ClientKotlinx_coroutines_coreDisposableHandle, ClientKotlinx_coroutines_coreJob, ClientKotlinSequence, ClientKotlinx_coroutines_coreSelectClause0, ClientKotlinCoroutineContextKey, ClientKotlinCoroutineContextElement, ClientKotlinCoroutineContext, ClientKotlinx_serialization_coreSerialFormat, ClientKotlinx_serialization_coreStringFormat, ClientKotlinx_serialization_coreCompositeEncoder, ClientKotlinAnnotation, ClientKotlinx_serialization_coreCompositeDecoder, ClientBignumBigNumberUtil, ClientBignumByteArrayDeserializable, ClientKotlinClosedRange, ClientKotlinIterable, ClientKotlinx_coroutines_coreSelectInstance, ClientKotlinSuspendFunction1, ClientKotlinx_coroutines_coreParentJob, ClientKotlinSuspendFunction0, ClientKotlinx_serialization_coreSerializersModuleCollector, ClientKotlinKClass, ClientKotlinx_serialization_jsonJsonNamingStrategy, ClientKotlinContinuation, ClientKotlinFunction, ClientKotlinKDeclarationContainer, ClientKotlinKAnnotatedElement, ClientKotlinKClassifier;
 
 NS_ASSUME_NONNULL_BEGIN
 #pragma clang diagnostic push
@@ -2597,6 +2597,12 @@ __attribute__((swift_name("MakeSignBytesKt")))
 @end
 
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("JsonKt")))
+@interface ClientJsonKt : ClientBase
+@property (class, readonly) ClientKotlinx_serialization_jsonJson *Json __attribute__((swift_name("Json")));
+@end
+
+__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("HelpersKt")))
 @interface ClientHelpersKt : ClientBase
 
@@ -3089,6 +3095,31 @@ __attribute__((swift_name("OkioByteString.Companion")))
 - (ClientOkioByteString *)toByteString:(ClientKotlinByteArray *)receiver offset:(int32_t)offset byteCount:(int32_t)byteCount __attribute__((swift_name("toByteString(_:offset:byteCount:)")));
 - (ClientOkioByteString *)toByteString:(NSData *)receiver __attribute__((swift_name("toByteString(_:)")));
 @property (readonly) ClientOkioByteString *EMPTY __attribute__((swift_name("EMPTY")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreSerialFormat")))
+@protocol ClientKotlinx_serialization_coreSerialFormat
+@required
+@property (readonly) ClientKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreStringFormat")))
+@protocol ClientKotlinx_serialization_coreStringFormat <ClientKotlinx_serialization_coreSerialFormat>
+@required
+- (id _Nullable)decodeFromStringDeserializer:(id<ClientKotlinx_serialization_coreDeserializationStrategy>)deserializer string:(NSString *)string __attribute__((swift_name("decodeFromString(deserializer:string:)")));
+- (NSString *)encodeToStringSerializer:(id<ClientKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeToString(serializer:value:)")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_jsonJson")))
+@interface ClientKotlinx_serialization_jsonJson : ClientBase <ClientKotlinx_serialization_coreStringFormat>
+@property (class, readonly, getter=companion) ClientKotlinx_serialization_jsonJsonDefault *companion __attribute__((swift_name("companion")));
+- (id _Nullable)decodeFromJsonElementDeserializer:(id<ClientKotlinx_serialization_coreDeserializationStrategy>)deserializer element:(ClientKotlinx_serialization_jsonJsonElement *)element __attribute__((swift_name("decodeFromJsonElement(deserializer:element:)")));
+- (id _Nullable)decodeFromStringDeserializer:(id<ClientKotlinx_serialization_coreDeserializationStrategy>)deserializer string:(NSString *)string __attribute__((swift_name("decodeFromString(deserializer:string:)")));
+- (ClientKotlinx_serialization_jsonJsonElement *)encodeToJsonElementSerializer:(id<ClientKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeToJsonElement(serializer:value:)")));
+- (NSString *)encodeToStringSerializer:(id<ClientKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeToString(serializer:value:)")));
+- (ClientKotlinx_serialization_jsonJsonElement *)parseToJsonElementString:(NSString *)string __attribute__((swift_name("parseToJsonElement(string:)")));
+@property (readonly) ClientKotlinx_serialization_jsonJsonConfiguration *configuration __attribute__((swift_name("configuration")));
+@property (readonly) ClientKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
 @end
 
 
@@ -3589,6 +3620,77 @@ __attribute__((swift_name("Secret_std_typesPermit.Companion")))
 - (id<ClientKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
+__attribute__((swift_name("Kotlinx_serialization_coreSerializersModule")))
+@interface ClientKotlinx_serialization_coreSerializersModule : ClientBase
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (void)dumpToCollector:(id<ClientKotlinx_serialization_coreSerializersModuleCollector>)collector __attribute__((swift_name("dumpTo(collector:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (id<ClientKotlinx_serialization_coreKSerializer> _Nullable)getContextualKClass:(id<ClientKotlinKClass>)kClass typeArgumentsSerializers:(NSArray<id<ClientKotlinx_serialization_coreKSerializer>> *)typeArgumentsSerializers __attribute__((swift_name("getContextual(kClass:typeArgumentsSerializers:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (id<ClientKotlinx_serialization_coreSerializationStrategy> _Nullable)getPolymorphicBaseClass:(id<ClientKotlinKClass>)baseClass value:(id)value __attribute__((swift_name("getPolymorphic(baseClass:value:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (id<ClientKotlinx_serialization_coreDeserializationStrategy> _Nullable)getPolymorphicBaseClass:(id<ClientKotlinKClass>)baseClass serializedClassName:(NSString * _Nullable)serializedClassName __attribute__((swift_name("getPolymorphic(baseClass:serializedClassName:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_jsonJson.Default")))
+@interface ClientKotlinx_serialization_jsonJsonDefault : ClientKotlinx_serialization_jsonJson
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)default_ __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) ClientKotlinx_serialization_jsonJsonDefault *shared __attribute__((swift_name("shared")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_jsonJsonConfiguration")))
+@interface ClientKotlinx_serialization_jsonJsonConfiguration : ClientBase
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) BOOL allowSpecialFloatingPointValues __attribute__((swift_name("allowSpecialFloatingPointValues")));
+@property (readonly) BOOL allowStructuredMapKeys __attribute__((swift_name("allowStructuredMapKeys")));
+@property (readonly) NSString *classDiscriminator __attribute__((swift_name("classDiscriminator")));
+@property (readonly) BOOL coerceInputValues __attribute__((swift_name("coerceInputValues")));
+@property (readonly) BOOL encodeDefaults __attribute__((swift_name("encodeDefaults")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+@property (readonly) BOOL explicitNulls __attribute__((swift_name("explicitNulls")));
+@property (readonly) BOOL ignoreUnknownKeys __attribute__((swift_name("ignoreUnknownKeys")));
+@property (readonly) BOOL isLenient __attribute__((swift_name("isLenient")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+@property (readonly) id<ClientKotlinx_serialization_jsonJsonNamingStrategy> _Nullable namingStrategy __attribute__((swift_name("namingStrategy")));
+@property (readonly) BOOL prettyPrint __attribute__((swift_name("prettyPrint")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+@property (readonly) NSString *prettyPrintIndent __attribute__((swift_name("prettyPrintIndent")));
+@property (readonly) BOOL useAlternativeNames __attribute__((swift_name("useAlternativeNames")));
+@property (readonly) BOOL useArrayPolymorphism __attribute__((swift_name("useArrayPolymorphism")));
+@end
+
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Secret_std_typesPubKeySecp256k1.Companion")))
 @interface ClientSecret_std_typesPubKeySecp256k1Companion : ClientBase
@@ -3627,34 +3729,6 @@ __attribute__((swift_name("Kotlinx_serialization_coreCompositeEncoder")))
 */
 - (BOOL)shouldEncodeElementDefaultDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("shouldEncodeElementDefault(descriptor:index:)")));
 @property (readonly) ClientKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
-@end
-
-__attribute__((swift_name("Kotlinx_serialization_coreSerializersModule")))
-@interface ClientKotlinx_serialization_coreSerializersModule : ClientBase
-
-/**
- * @note annotations
- *   kotlinx.serialization.ExperimentalSerializationApi
-*/
-- (void)dumpToCollector:(id<ClientKotlinx_serialization_coreSerializersModuleCollector>)collector __attribute__((swift_name("dumpTo(collector:)")));
-
-/**
- * @note annotations
- *   kotlinx.serialization.ExperimentalSerializationApi
-*/
-- (id<ClientKotlinx_serialization_coreKSerializer> _Nullable)getContextualKClass:(id<ClientKotlinKClass>)kClass typeArgumentsSerializers:(NSArray<id<ClientKotlinx_serialization_coreKSerializer>> *)typeArgumentsSerializers __attribute__((swift_name("getContextual(kClass:typeArgumentsSerializers:)")));
-
-/**
- * @note annotations
- *   kotlinx.serialization.ExperimentalSerializationApi
-*/
-- (id<ClientKotlinx_serialization_coreSerializationStrategy> _Nullable)getPolymorphicBaseClass:(id<ClientKotlinKClass>)baseClass value:(id)value __attribute__((swift_name("getPolymorphic(baseClass:value:)")));
-
-/**
- * @note annotations
- *   kotlinx.serialization.ExperimentalSerializationApi
-*/
-- (id<ClientKotlinx_serialization_coreDeserializationStrategy> _Nullable)getPolymorphicBaseClass:(id<ClientKotlinKClass>)baseClass serializedClassName:(NSString * _Nullable)serializedClassName __attribute__((swift_name("getPolymorphic(baseClass:serializedClassName:)")));
 @end
 
 __attribute__((swift_name("KotlinAnnotation")))
@@ -3842,6 +3916,17 @@ __attribute__((swift_name("KotlinKClass")))
 - (BOOL)isInstanceValue:(id _Nullable)value __attribute__((swift_name("isInstance(value:)")));
 @property (readonly) NSString * _Nullable qualifiedName __attribute__((swift_name("qualifiedName")));
 @property (readonly) NSString * _Nullable simpleName __attribute__((swift_name("simpleName")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+__attribute__((swift_name("Kotlinx_serialization_jsonJsonNamingStrategy")))
+@protocol ClientKotlinx_serialization_jsonJsonNamingStrategy
+@required
+- (NSString *)serialNameForJsonDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor elementIndex:(int32_t)elementIndex serialName:(NSString *)serialName __attribute__((swift_name("serialNameForJson(descriptor:elementIndex:serialName:)")));
 @end
 
 __attribute__((swift_name("Kotlinx_coroutines_coreAtomicDesc")))
