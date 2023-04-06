@@ -23,6 +23,10 @@ object SnipMsgs {
     ) {
         val viewingKey: ViewingKey? = viewingKey0 ?: viewingKey1
 
+        enum class ResponseStatus {
+            success, failure
+        }
+
         @Serializable
         data class ViewingKey(val key: String)
     }

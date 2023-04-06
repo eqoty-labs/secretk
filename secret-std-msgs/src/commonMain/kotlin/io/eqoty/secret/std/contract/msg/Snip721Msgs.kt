@@ -1,5 +1,6 @@
 package io.eqoty.secret.std.contract.msg
 
+import io.eqoty.secret.std.contract.msg.SnipMsgs.ExecuteAnswer.ResponseStatus
 import io.eqoty.secret.std.types.Permit
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -386,10 +387,6 @@ object Snip721Msgs {
         @SerialName("set_whitelisted_approval") val setWhitelistedApproval: SetWhitelistedApproval? = null,
         @SerialName("transfer_nft") val transferNft: TransferNft? = null,
     ) {
-
-        enum class ResponseStatus {
-            success, failure
-        }
 
         @Serializable
         data class MintNft(
