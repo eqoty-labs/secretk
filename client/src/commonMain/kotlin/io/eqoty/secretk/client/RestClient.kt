@@ -1,6 +1,5 @@
 package io.eqoty.secretk.client
 
-import com.ionspin.kotlin.bignum.serialization.kotlinx.biginteger.bigIntegerhumanReadableSerializerModule
 import io.eqoty.cosmwasm.std.types.CodeInfo
 import io.eqoty.secretk.BroadcastMode
 import io.eqoty.secretk.types.proto.MsgExecuteContractResponseProto
@@ -17,7 +16,6 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
-import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonObject
 import okio.ByteString.Companion.decodeBase64
@@ -42,17 +40,12 @@ internal class RestClient(
 ) {
     val codeHashCache: MutableMap<Any, String> = mutableMapOf()
 
-    val json: Json = Json {
-        ignoreUnknownKeys = true
-        serializersModule = bigIntegerhumanReadableSerializerModule
-    }
-
     val client: HttpClient = HttpClient {
         install(DefaultRequest) {
             contentType(ContentType.Application.Json)
         }
         install(ContentNegotiation) {
-            json(json)
+            json(Json)
         }
         install(HttpTimeout) {
             socketTimeoutMillis = 60_000
@@ -105,7 +98,7 @@ internal class RestClient(
     suspend inline fun <reified T : Any> postTx(tx: UByteArray, simulate: Boolean): T {
         val txString = tx.toByteString().base64()
         val params =
-            json.parseToJsonElement(
+            Json.parseToJsonElement(
                 """{
                 "tx_bytes": "$txString",
                 "mode": "${this.broadcastMode.mode}"
