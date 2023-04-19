@@ -192,11 +192,11 @@ compose.desktop.nativeApplication {
     }
 }
 
-compose {
-    // workaround to use kotlin 1.8.10
-    // https://github.com/JetBrains/compose-jb/blob/master/VERSIONING.md#using-jetpack-compose-compiler
-    kotlinCompilerPlugin.set("androidx.compose.compiler:compiler:1.4.2")
-}
+//compose {
+//    // workaround to use kotlin 1.8.10
+//    // https://github.com/JetBrains/compose-jb/blob/master/VERSIONING.md#using-jetpack-compose-compiler
+//    kotlinCompilerPlugin.set("androidx.compose.compiler:compiler:1.4.2")
+//}
 
 // TODO: remove when https://youtrack.jetbrains.com/issue/KT-50778 fixed
 project.tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile::class.java).configureEach {
