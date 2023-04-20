@@ -41,7 +41,7 @@ ripemd160 = "1.1.3-nativempp"
 slf4j-simple = "2.0.7"
 siv-mode = "1.4.4"
 
-kryptools = "0.2.1"
+kryptools = "0.2.2"
 
 [libraries]
 
