@@ -3,8 +3,6 @@ import java.util.*
 
 
 plugins {
-    @Suppress("DSL_SCOPE_VIOLATION")
-    val libs = libs
     alias(libs.plugins.org.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.org.jetbrains.kotlin.plugin.serialization)
     alias(libs.plugins.com.vanniktech.maven.publish)

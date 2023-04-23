@@ -3,9 +3,6 @@ import org.jetbrains.compose.experimental.dsl.IOSDevices
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    @Suppress("DSL_SCOPE_VIOLATION")
-    val libs = libs
-    // https://youtrack.jetbrains.com/issue/KTIJ-19369
     alias(libs.plugins.org.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.org.jetbrains.compose)
     alias(libs.plugins.org.jetbrains.kotlin.plugin.serialization)
