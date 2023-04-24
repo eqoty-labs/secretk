@@ -2,16 +2,13 @@ package io.eqoty.secretk.wallet
 
 import cash.z.ecc.android.bip39.Mnemonics
 import cash.z.ecc.android.bip39.toSeed
-import io.eqoty.kryptools.Secp256k1
-import io.eqoty.kryptools.Slip10
-import io.eqoty.kryptools.Slip10Curve
-import io.eqoty.kryptools.Slip10RawIndex
+import io.eqoty.kryptools.*
 import io.eqoty.secret.std.types.StdSignature
 import io.eqoty.secretk.types.StdSignDoc
 import io.eqoty.secretk.types.proto.SignDocProto
 import io.eqoty.secretk.types.proto.SignMode
 import io.eqoty.secretk.utils.Address.pubkeyToAddress
-import io.eqoty.secretk.utils.getPadded
+import io.eqoty.secretk.utils.logger
 import io.eqoty.secretk.utils.toByteString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -77,8 +74,16 @@ sealed class BaseWallet : Wallet {
         }
         val seed = mnemonicCode.toSeed().toUByteArray()
         val result = Slip10.derivePath(Slip10Curve.Secp256k1, seed, hdPath)
-        val privkey = result.privkey
-        val uncompressed = Secp256k1.makeKeypair(privkey).pubkey
+        val privkey = result.privkey.getPadded(32)
+        val uncompressed = try {
+            Secp256k1.makeKeypair(privkey).pubkey
+        } catch (t: Throwable){
+            if (mnemonic == null){
+                // todo: remove this after https://github.com/eqoty-labs/kryptools/issues/2 fixed
+                logger.w("A bad key was randomly generated. Trying again. See https://github.com/eqoty-labs/kryptools/issues/2")
+                return addAccount()
+            } else throw t
+        }
         val pubkey = Secp256k1.compressPubkey(uncompressed)
         val address = pubkeyToAddress(encodeSecp256k1Pubkey(pubkey), bech32Prefix)
         addressToAccountSigningData[address] =

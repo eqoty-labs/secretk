@@ -19,12 +19,3 @@ fun UByteArray.decodeToString(): String =
 
 fun ByteString.toUByteArray(): UByteArray =
     toByteArray().asUByteArray()
-
-fun UByteArray.getPadded(length: Int): UByteArray {
-    val paddingLength = length - this.size
-    if (paddingLength < 0) {
-        throw Error("Length too small to hold parameter r")
-    }
-    val padding = UByteArray(paddingLength) { 0u }
-    return padding + this
-}

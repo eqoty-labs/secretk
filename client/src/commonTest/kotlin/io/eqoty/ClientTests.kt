@@ -16,10 +16,7 @@ import okio.FileSystem
 import okio.Path
 import kotlin.math.ceil
 import kotlin.random.Random
-import kotlin.test.BeforeTest
-import kotlin.test.Test
-import kotlin.test.assertContains
-import kotlin.test.assertEquals
+import kotlin.test.*
 
 expect val fileSystem: FileSystem
 expect val snip721ReferenceImplWasmGz: Path
@@ -35,6 +32,16 @@ class ClientTests {
         platformBeforeEach()
     }
 
+
+    @Test
+    fun walletsUnique() = runTest {
+        val mnemonics = mutableSetOf<String>()
+        (0..1000).forEach { idx ->
+            val randWallet = DirectSigningWallet()
+            assertTrue(mnemonics.add(randWallet.accounts[0].address), "account already generated")
+            if (idx % 500 == 0) logger.i(idx.toString())
+        }
+    }
 
     @Test
     fun testPubKeyToAddress() = runTest {
