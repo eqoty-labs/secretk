@@ -2617,7 +2617,6 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("UByteArrayUtilsKt")))
 @interface ClientUByteArrayUtilsKt : ClientBase
 + (NSString *)decodeToString:(id)receiver __attribute__((swift_name("decodeToString(_:)")));
-+ (id)getPadded:(id)receiver length:(int32_t)length __attribute__((swift_name("getPadded(_:length:)")));
 + (ClientOkioByteString *)toByteString:(id)receiver __attribute__((swift_name("toByteString(_:)")));
 + (ClientKotlinIntArray *)toIntArray:(id)receiver __attribute__((swift_name("toIntArray(_:)")));
 @end
