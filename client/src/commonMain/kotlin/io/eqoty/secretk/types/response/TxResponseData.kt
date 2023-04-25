@@ -4,13 +4,35 @@ import io.eqoty.secretk.types.proto.AnyProto
 import io.eqoty.secretk.types.response.logs.Event
 import io.eqoty.secretk.types.response.logs.Log
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonContentPolymorphicSerializer
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.jsonObject
 
-@kotlinx.serialization.Serializable
-data class TxResponse(
-    val tx_response: TxResponseData,
-)
+@Serializable(with = TxResponseSerializer::class)
+sealed interface TxResponse
 
-@kotlinx.serialization.Serializable
+object TxResponseSerializer : JsonContentPolymorphicSerializer<TxResponse>(TxResponse::class) {
+    override fun selectDeserializer(element: JsonElement) = when {
+        "tx_response" in element.jsonObject -> TxResponseValid.serializer()
+        else -> TxResponseError.serializer()
+    }
+}
+
+@Serializable
+data class TxResponseValid(
+    @SerialName("tx_response")
+    val txResponse: TxResponseData
+) : TxResponse
+
+@Serializable
+data class TxResponseError(
+    val code: Int,
+    val message: String,
+    val details: List<String>
+) : TxResponse
+
+@Serializable
 data class TxResponseData(
     /** The block height */
     val height: String,

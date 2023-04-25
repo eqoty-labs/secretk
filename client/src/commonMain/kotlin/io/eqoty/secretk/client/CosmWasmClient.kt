@@ -73,20 +73,26 @@ open class CosmWasmClient protected constructor(
     }
 
     suspend fun postTx(tx: UByteArray): TxResponseData {
-        val response: TxResponse = restClient.postTx(tx, false)
-        val txResponse = response.tx_response
-        if (txResponse.txhash.isBlank()) {
-            throw Error("Unexpected response data format")
-        }
-        if (txResponse.txhash.contains("""^([0-9A-F][0-9A-F])+$""")) {
-            throw Error("Received ill-formatted txhash. Must be non-empty upper-case hex")
-        }
+        return when (val response: TxResponse = restClient.postTx(tx, false)) {
+            is TxResponseValid -> {
+                val txResponse = response.txResponse
+                if (txResponse.txhash.isBlank()) {
+                    throw Error("Unexpected response data format")
+                }
+                if (txResponse.txhash.contains("""^([0-9A-F][0-9A-F])+$""")) {
+                    throw Error("Received ill-formatted txhash. Must be non-empty upper-case hex")
+                }
 
-        if (txResponse.code != 0) {
-            throw Error("Broadcasting transaction failed with code ${txResponse.code} (codespace: ${txResponse.codespace}). Log: ${txResponse.rawLog}")
-        }
+                if (txResponse.code != 0) {
+                    throw Error("Broadcasting transaction failed with code ${txResponse.code} (codespace: ${txResponse.codespace}). Log: ${txResponse.rawLog}")
+                }
+                txResponse
+            }
 
-        return txResponse
+            is TxResponseError -> {
+                throw Error("Request Error code:${response.code}, message: ${response.message} }")
+            }
+        }
     }
 
     suspend fun postSimulateTx(tx: UByteArray): SimulateTxsResponse {
