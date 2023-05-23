@@ -127,7 +127,7 @@ class EnigmaUtils internal constructor(val apiUrl: String, val seed: UByteArray)
     }
 
 
-    override suspend fun getPubkey(): Deferred<UByteArray> {
+    override suspend fun getPubkey(): UByteArray {
         TODO("Not yet implemented")
     }
 
