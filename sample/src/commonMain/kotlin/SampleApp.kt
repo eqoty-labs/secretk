@@ -18,8 +18,10 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 
+// a `secret-4` nft contract`
+//val contractAddress = "secret1d96jn9azwqw40paqyd5g02kz0ye0udhhqlue7j"
+// a `pulsar-2` nft contract
 val contractAddress = "secret1lz4m46vpdn8f2aj8yhtnexus40663udv7hhprm"
-
 
 @Composable
 fun SampleApp(client: SigningCosmWasmClient) {
@@ -109,8 +111,8 @@ fun SampleApp(client: SigningCosmWasmClient) {
                                             msg = handleMsg,
                                         )
                                     )
-                                    val simulate = client.simulate(msgs)
-                                    val gasLimit = (simulate.gasUsed.toDouble() * 1.1).toInt()
+//                                    val simulate = client.simulate(msgs)
+                                    val gasLimit = 50_000//(simulate.gasUsed.toDouble() * 1.1).toInt()
 
                                     val response = client.execute(
                                         msgs,

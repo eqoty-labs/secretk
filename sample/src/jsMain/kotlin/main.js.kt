@@ -3,6 +3,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Window
 import io.eqoty.secretk.client.SigningCosmWasmClient
+import io.eqoty.utils.KeplrEnigmaUtils
 import io.eqoty.wallet.MetaMaskWalletWrapper
 import io.eqoty.wallet.OfflineSignerOnlyAminoWalletWrapper
 import jslib.walletconnect.*
@@ -27,7 +28,7 @@ fun main() {
 //        val client = getClientWithMetamaskWallet(Chain.Pulsar2)
 //        val client = setupEthWalletConnectAndGetWallet(Chain.Pulsar2)
         val client = getClientWithKeplrWallet(Chain.Pulsar2)
-//        val client = setupCosmosWalletConnectAndGetWallet(Chain.Secret4, WalletConnectModal.Cosmostation)
+//        val client = setupCosmosWalletConnectAndGetWallet(Chain.Secret4, WalletConnectModal.Keplr)
 
         console.log(client)
         onWasmReady {
@@ -41,7 +42,7 @@ fun main() {
 }
 
 enum class Chain(val id: String, val grpcGatewayEndpoint: String, val rpcEndpoint: String) {
-    Pulsar2("pulsar-2", "https://pulsar-2.api.trivium.network:1317", "https://pulsar-2.api.trivium.network:26657"),
+    Pulsar2("pulsar-2", "https://api.pulsar.scrttestnet.com", "https://rpc.pulsar.scrttestnet.com"),
     Secret4("secret-4", "https://secret-4.api.trivium.network:1317", "https://secret-4.api.trivium.network:26657")
 }
 
@@ -129,7 +130,8 @@ suspend fun getClientWithKeplrWallet(
     return SigningCosmWasmClient.init(
         chain.grpcGatewayEndpoint,
         accAddress,
-        wallet
+        wallet,
+        enigmaUtils = KeplrEnigmaUtils(keplr, chain.id)
     )
 }
 
