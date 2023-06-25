@@ -84,10 +84,17 @@ suspend fun getClientWithKeplrWallet(
             "rpc": "$rpcUrl",
             "rest": "$lcdUrl",
             "bip44": { "coinType": 529 },
+            "alternativeBIP44s": [
+                {
+                    "coinType": 118
+                }
+            ],
             "coinType": 529,
             "stakeCurrency": { "coinDenom": "$denom",
                              "coinMinimalDenom": "$minimalDenom",
-                             "coinDecimals": 6
+                             "coinDecimals": 6,
+                             "coinGeckoId": "secret",
+                             "coinImageUrl": "https://dhj8dql1kzq2v.cloudfront.net/white/secret.png"
                              },
             "bech32Config": {
                 "bech32PrefixAccAddr": "secret",
@@ -100,13 +107,17 @@ suspend fun getClientWithKeplrWallet(
             "currencies": [
                 { "coinDenom": "$denom",
                   "coinMinimalDenom": "$minimalDenom",
-                  "coinDecimals": 6
+                  "coinDecimals": 6,
+                  "coinGeckoId": "secret",
+                  "coinImageUrl": "https://dhj8dql1kzq2v.cloudfront.net/white/secret.png"
                 }
             ],
             "feeCurrencies": [
                 { "coinDenom": "$denom",
                   "coinMinimalDenom": "$minimalDenom",
                   "coinDecimals": 6,
+                  "coinGeckoId": "secret",
+                  "coinImageUrl": "https://dhj8dql1kzq2v.cloudfront.net/white/secret.png",
                   "gasPriceStep": { 
                         "low": 0.1,
                         "average": 0.25,
@@ -114,7 +125,8 @@ suspend fun getClientWithKeplrWallet(
                    }
                 }
             ],
-            "features": ["secretwasm"]
+            "chainSymbolImageUrl": "https://dhj8dql1kzq2v.cloudfront.net/white/secret.png",
+            "features": ["secretwasm", "ibc-go", "ibc-transfer"]
         }"""
         )
         console.log(suggestion)
