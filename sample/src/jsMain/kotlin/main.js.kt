@@ -1,5 +1,9 @@
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Button
+import androidx.compose.material.Text
+import androidx.compose.runtime.NoLiveLiterals
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Window
 import io.eqoty.secretk.client.SigningCosmWasmClient
@@ -23,18 +27,37 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 import kotlin.js.Promise
 
+@NoLiveLiterals
 fun main() {
     application {
 //        val client = getClientWithMetamaskWallet(Chain.Pulsar2)
 //        val client = setupEthWalletConnectAndGetWallet(Chain.Pulsar2)
-        val client = getClientWithKeplrWallet(Chain.Pulsar2)
+        val client = getClientWithKeplrWallet(Chain.Secret4)
 //        val client = setupCosmosWalletConnectAndGetWallet(Chain.Secret4, WalletConnectModal.Keplr)
 
         console.log(client)
         onWasmReady {
             Window("secretk demo") {
                 Column(modifier = Modifier.fillMaxSize()) {
-                    SampleApp(client)
+                    SampleApp(client) {
+                        Row {
+                            Button({
+                                if (client.wallet is OfflineSignerOnlyAminoWalletWrapper) {
+                                    val keplr = (client.wallet as OfflineSignerOnlyAminoWalletWrapper).keplr
+                                    (keplr.suggestToken(
+                                        Chain.Secret4.id,
+                                        "secret153wu605vvp934xhd4k9dtd640zsep5jkesstdm",
+                                        "the_viewing_key",
+                                        true
+                                    ) as Promise<Unit>).then {
+                                        console.log("token suggested")
+                                    }
+                                }
+                            }) {
+                                Text("Suggest token")
+                            }
+                        }
+                    }
                 }
             }
         }

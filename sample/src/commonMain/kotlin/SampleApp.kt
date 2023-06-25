@@ -1,7 +1,4 @@
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -24,7 +21,10 @@ import kotlinx.serialization.json.jsonPrimitive
 val contractAddress = "secret1lz4m46vpdn8f2aj8yhtnexus40663udv7hhprm"
 
 @Composable
-fun SampleApp(client: SigningCosmWasmClient) {
+fun SampleApp(
+    client: SigningCosmWasmClient,
+    platformSpecificItems: @Composable ColumnScope.() -> Unit = {}
+) {
     val coroutineScope = rememberCoroutineScope()
     var permit: Permit? by remember { mutableStateOf(null) }
     var contractInfoQueryResponse: String? by remember { mutableStateOf(null) }
@@ -43,6 +43,7 @@ fun SampleApp(client: SigningCosmWasmClient) {
                 Column(
                     modifier = Modifier.fillMaxSize()
                 ) {
+                    platformSpecificItems()
                     Row {
                         Button({
                             coroutineScope.launch {
