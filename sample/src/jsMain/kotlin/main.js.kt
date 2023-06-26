@@ -57,6 +57,21 @@ fun main() {
                                 Text("Suggest token")
                             }
                         }
+                        Row {
+                            Button({
+                                if (client.wallet is OfflineSignerOnlyAminoWalletWrapper) {
+                                    val keplr = (client.wallet as OfflineSignerOnlyAminoWalletWrapper).keplr
+                                    (keplr.getSecret20QueryAuthorization(
+                                        Chain.Secret4.id,
+                                        "secret153wu605vvp934xhd4k9dtd640zsep5jkesstdm",
+                                    ) as Promise<dynamic>).then { result: dynamic ->
+                                        console.log("Get Query Authorization: ${JSON.stringify(result)}")
+                                    }
+                                }
+                            }) {
+                                Text("Get Query Authorization")
+                            }
+                        }
                     }
                 }
             }
