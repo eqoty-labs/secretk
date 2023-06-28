@@ -1,3 +1,5 @@
+import de.fayard.refreshVersions.core.StabilityLevel
+
 rootProject.name = "secretk"
 
 pluginManagement {
@@ -40,9 +42,12 @@ plugins {
 }
 
 
-refreshVersions { // Optional: configure the plugin
-    // ...
+refreshVersions {
+    rejectVersionIf {
+        candidate.stabilityLevel != StabilityLevel.Stable
+    }
 }
+
 include(":client")
 include(":secret-std-msgs")
 include(":secret-std-types")
