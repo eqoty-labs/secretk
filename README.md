@@ -2,11 +2,6 @@
 
 A Kotlin multiplatform Encryption and REST client for Secret Network utilizing gRPC gateway endpoints.
 
-Based on the work of:
-
-[secret.js](https://github.com/scrtlabs/SecretNetwork/tree/f01dda32b12e02c6cc2326ea58f8b13bf6e3ff8f/cosmwasm-js/packages/sdk) (
-old) + [secret.js](https://github.com/scrtlabs/secret.js)
-
 ### Supported Features:
 
 * Contract Queries
@@ -242,3 +237,10 @@ let numTokens = try! await client.queryContractSmart(
     contractCodeHash: nil)
 print("Num Tokens Response: \(numTokens)")
 ```
+
+
+
+### Credits:
+#### Based on the work of:
+   - [secret.js](https://github.com/scrtlabs/SecretNetwork/tree/f01dda32b12e02c6cc2326ea58f8b13bf6e3ff8f/cosmwasm-js/packages/sdk)
+   - [Old secret.js](https://github.com/scrtlabs/secret.js)
