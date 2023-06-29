@@ -11,13 +11,13 @@ com-vanniktech-maven-publish = { id = "com.vanniktech.maven.publish", version.re
 
 [versions]
 
-kotlin = "1.8.20"
+kotlin = "1.8.22"
 agp = "7.4.2"
 
 vanniktech-publish = "0.25.2"
 swift-package = "2.1.2"
 okio = "3.3.0"
-ktor = "2.3.1"
+ktor = "2.3.2"
 kotlinx-datetime = "0.4.0"
 kotlinx-serialization = "1.5.1"
 kotlinx-coroutines = "1.7.1"
@@ -31,7 +31,7 @@ kermit = "1.2.2"
 
 getenv = "0.1.0"
 
-compose-jb = "1.4.0"
+compose-jb = "1.4.1"
 
 bignum = "0.3.8"
 libsodium = "0.8.9"
