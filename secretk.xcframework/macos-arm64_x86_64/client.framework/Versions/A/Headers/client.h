@@ -6,9 +6,9 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class ClientKotlinEnumCompanion, ClientKotlinEnum<E>, ClientBroadcastMode, ClientKotlinArray<T>, ClientStdFee, ClientSecret_std_typesTypeValue<V>, ClientSignJsonCompanion, ClientSignJson<T>, ClientMsgProto, ClientProtoMsg<M>, ClientMsgAminoCompanion, ClientCosmwasm_std_typesCoin, ClientMsgExecuteContractProto, ClientMsgExecuteContractAminoData, ClientMsgExecuteContractAminoCompanion, ClientMsgExecuteContractAminoDataCompanion, ClientMsgInstantiateContractProto, ClientMsgQueryPermitAminoData, ClientMsgQueryPermitAminoCompanion, ClientSecret_std_typesPermission, ClientMsgQueryPermitAminoDataCompanion, ClientMsgSendProto, ClientMsgSendAminoData, ClientMsgSendAminoCompanion, ClientMsgSendAminoDataCompanion, ClientMsgStoreCodeProto, ClientMsgStoreCodeAminoData, ClientMsgStoreCodeAminoCompanion, ClientMsgStoreCodeAminoDataCompanion, ClientAnyProto, ClientBignumBigInteger, ClientSigner, ClientSignerData, ClientStdFeeCompanion, ClientStdSignDocCompanion, ClientStdSignDoc, ClientSecret_std_typesStdSignature, ClientStdTxCompanion, ClientStdTx<T>, ClientTxBodyValue<M>, ClientTxBodyCompanion, ClientTxBody<M>, ClientTxBodyValueCompanion, ClientTxOptions, ClientV1BetaTypeCompanion, ClientV1BetaType, ClientSecp256k1PubKey, ClientAccountCompanion, ClientAccount, ClientAccountResponseCompanion, ClientAccountResponse, ClientApplicationVersionCompanion, ClientApplicationVersion, ClientBalanceResponseCompanion, ClientBalanceResponse, ClientCosmwasm_std_typesCodeInfo, ClientCodeInfoResponseCompanion, ClientCodeInfoResponse, ClientGasInfoCompanion, ClientGasInfo, ClientLabelResponseCompanion, ClientLabelResponse, ClientProtocolVersion, ClientNodeInfoOther, ClientNodeInfoCompanion, ClientNodeInfo, ClientNodeInfoOtherCompanion, ClientNodeInfoResponseCompanion, ClientProtocolVersionCompanion, ClientSecp256k1PubKeyCompanion, ClientSimulateTxsResponseData, ClientSimulateTxsResponseCompanion, ClientSimulateTxsResponse, ClientLog, ClientEvent, ClientSimulateTxsResponseDataCompanion, ClientSmartQueryResponseCompanion, ClientTxResponseCompanion, ClientTxResponseDataCompanion, ClientTxResponseData, ClientTxResponseErrorCompanion, ClientTxResponseError, ClientKotlinx_serialization_jsonJsonElement, ClientKotlinx_serialization_jsonJsonContentPolymorphicSerializer<T>, ClientTxResponseSerializer, ClientTxResponseValidCompanion, ClientTxResponseValid, ClientWasmResponseCompanion, ClientWasmResponse<R>, ClientAttributeCompanion, ClientAttribute, ClientEventCompanion, ClientLogCompanion, ClientGetNonceResult, ClientKotlinByteArray, ClientAnyProtoCompanion, ClientSignerInfoProto, ClientFeeProto, ClientAuthInfoProtoCompanion, ClientCoinProtoCompanion, ClientCoinProto, ClientFeeProtoCompanion, ClientKeyProtoCompanion, ClientModeInfoProtoSingle, ClientModeInfoProtoMulti, ClientModeInfoProtoCompanion, ClientModeInfoProtoMultiCompanion, ClientModeInfoProtoSingleCompanion, ClientMsgDataProtoCompanion, ClientMsgExecuteContractProtoCompanion, ClientMsgExecuteContractResponseProtoCompanion, ClientMsgInstantiateContractProtoCompanion, ClientMsgInstantiateContractResponseProtoCompanion, ClientMsgSendProtoCompanion, ClientMsgSendResponseProtoCompanion, ClientMsgStoreCodeProtoCompanion, ClientMsgStoreCodeResponseProtoCompanion, ClientProtoMsgCompanion, ClientSignDocProtoCompanion, ClientSignModeCompanion, ClientSignMode, ClientModeInfoProto, ClientSignerInfoProtoCompanion, ClientTxBodyProtoCompanion, ClientMsgDataProto, ClientTxMsgDataProtoCompanion, ClientTxRawProtoCompanion, ClientNodeInfoResponse, ClientCosmWasmClient, ClientSigningCosmWasmClientCompanion, ClientSigningCosmWasmClient, ClientAddress, ClientSecret_std_typesPubKey, ClientEnigmaUtilsCompanion, ClientKeyPair, ClientEnigmaUtils, ClientResultCompanion, ClientResult, ClientTxKeyResponseCompanion, ClientTxKeyResponse, ClientAlgo, ClientAccountData, ClientKotlinCharArray, ClientAminoSignResponseCompanion, ClientAminoSignResponse, ClientAccountSigningData, ClientPrehashType, ClientBaseWallet, ClientSignResponse, ClientSignDocProto, ClientPermitFactory, ClientSecret_std_typesPermit, ClientCosmwasm_std_typesCoinCompanion, ClientKotlinIntIterator, ClientKotlinIntArray, ClientOkioByteStringCompanion, ClientOkioByteString, ClientKotlinx_serialization_jsonJson, ClientSecret_std_typesPubKeySecp256k1, ClientSecret_std_typesTypeValueCompanion, ClientKotlinThrowable, ClientKotlinException, ClientKotlinRuntimeException, ClientKotlinIllegalStateException, ClientSecret_std_typesPermissionCompanion, ClientKotlinPair<__covariant A, __covariant B>, ClientBignumBigIntegerCompanion, ClientBignumBigIntegerQuotientAndRemainder, ClientBignumSign, ClientBignumBigIntegerBigIntegerRange, ClientBignumBigIntegerSqareRootAndRemainder, ClientBignumModularBigInteger, ClientSecret_std_typesStdSignatureCompanion, ClientCosmwasm_std_typesCodeInfoCompanion, ClientKotlinx_serialization_coreSerializersModule, ClientKotlinx_serialization_coreSerialKind, ClientKotlinNothing, ClientKotlinx_serialization_jsonJsonElementCompanion, ClientKotlinByteIterator, ClientSecret_std_typesPubKeyCompanion, ClientKotlinCancellationException, ClientKotlinCharIterator, ClientSecret_std_typesPermitParams, ClientSecret_std_typesPermitCompanion, NSData, ClientKotlinx_serialization_jsonJsonDefault, ClientKotlinx_serialization_jsonJsonConfiguration, ClientSecret_std_typesPubKeySecp256k1Companion, ClientBignumModularBigIntegerCompanion, ClientBignumModularQuotientAndRemainder, ClientSecret_std_typesPermitParamsCompanion, ClientKotlinx_coroutines_coreAtomicDesc, ClientKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp, ClientKotlinx_coroutines_coreAtomicOp<__contravariant T>, ClientKotlinx_coroutines_coreOpDescriptor, ClientKotlinx_coroutines_coreLockFreeLinkedListNode, ClientKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc, ClientKotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc<T>, ClientKotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc<T>;
+@class ClientKotlinEnumCompanion, ClientKotlinEnum<E>, ClientBroadcastMode, ClientKotlinArray<T>, ClientStdFee, ClientSecret_std_typesTypeValue<V>, ClientSignJsonCompanion, ClientSignJson<T>, ClientMsgProto, ClientProtoMsg<M>, ClientMsgAminoCompanion, ClientCosmwasm_std_typesCoin, ClientMsgExecuteContractProto, ClientMsgExecuteContractAminoData, ClientMsgExecuteContractAminoCompanion, ClientMsgExecuteContractAminoDataCompanion, ClientMsgInstantiateContractProto, ClientMsgQueryPermitAminoData, ClientMsgQueryPermitAminoCompanion, ClientSecret_std_typesPermission, ClientMsgQueryPermitAminoDataCompanion, ClientMsgSendProto, ClientMsgSendAminoData, ClientMsgSendAminoCompanion, ClientMsgSendAminoDataCompanion, ClientMsgStoreCodeProto, ClientMsgStoreCodeAminoData, ClientMsgStoreCodeAminoCompanion, ClientMsgStoreCodeAminoDataCompanion, ClientAnyProto, ClientBignumBigInteger, ClientSigner, ClientSignerData, ClientStdFeeCompanion, ClientStdSignDocCompanion, ClientStdSignDoc, ClientSecret_std_typesStdSignature, ClientStdTxCompanion, ClientStdTx<T>, ClientTxBodyValue<M>, ClientTxBodyCompanion, ClientTxBody<M>, ClientTxBodyValueCompanion, ClientTxOptions, ClientV1BetaTypeCompanion, ClientV1BetaType, ClientSecp256k1PubKey, ClientAccountCompanion, ClientAccount, ClientAccountResponseCompanion, ClientAccountResponse, ClientApplicationVersionCompanion, ClientApplicationVersion, ClientBalanceResponseCompanion, ClientBalanceResponse, ClientCosmwasm_std_typesCodeInfo, ClientCodeInfoResponseCompanion, ClientCodeInfoResponse, ClientGasInfoCompanion, ClientGasInfo, ClientLabelResponseCompanion, ClientLabelResponse, ClientProtocolVersion, ClientNodeInfoOther, ClientNodeInfoCompanion, ClientNodeInfo, ClientNodeInfoOtherCompanion, ClientNodeInfoResponseCompanion, ClientProtocolVersionCompanion, ClientSecp256k1PubKeyCompanion, ClientSimulateTxsResponseData, ClientSimulateTxsResponseCompanion, ClientSimulateTxsResponse, ClientLog, ClientEvent, ClientSimulateTxsResponseDataCompanion, ClientSmartQueryResponseCompanion, ClientTxResponseCompanion, ClientTxResponseDataCompanion, ClientTxResponseData, ClientTxResponseErrorCompanion, ClientTxResponseError, ClientKotlinx_serialization_jsonJsonElement, ClientKotlinx_serialization_jsonJsonContentPolymorphicSerializer<T>, ClientTxResponseSerializer, ClientTxResponseValidCompanion, ClientTxResponseValid, ClientWasmResponseCompanion, ClientWasmResponse<R>, ClientAttributeCompanion, ClientAttribute, ClientEventCompanion, ClientLogCompanion, ClientGetNonceResult, ClientKotlinByteArray, ClientAnyProtoCompanion, ClientSignerInfoProto, ClientFeeProto, ClientAuthInfoProtoCompanion, ClientCoinProtoCompanion, ClientCoinProto, ClientFeeProtoCompanion, ClientKeyProtoCompanion, ClientModeInfoProtoSingle, ClientModeInfoProtoMulti, ClientModeInfoProtoCompanion, ClientModeInfoProtoMultiCompanion, ClientModeInfoProtoSingleCompanion, ClientMsgDataProtoCompanion, ClientMsgExecuteContractProtoCompanion, ClientMsgExecuteContractResponseProtoCompanion, ClientMsgInstantiateContractProtoCompanion, ClientMsgInstantiateContractResponseProtoCompanion, ClientMsgSendProtoCompanion, ClientMsgSendResponseProtoCompanion, ClientMsgStoreCodeProtoCompanion, ClientMsgStoreCodeResponseProtoCompanion, ClientProtoMsgCompanion, ClientSignDocProtoCompanion, ClientSignModeCompanion, ClientSignMode, ClientModeInfoProto, ClientSignerInfoProtoCompanion, ClientTxBodyProtoCompanion, ClientMsgDataProto, ClientTxMsgDataProtoCompanion, ClientTxRawProtoCompanion, ClientNodeInfoResponse, ClientCosmWasmClient, ClientSigningCosmWasmClientCompanion, ClientSigningCosmWasmClient, ClientAddress, ClientSecret_std_typesPubKey, ClientEnigmaUtilsCompanion, ClientKeyPair, ClientEnigmaUtils, ClientResultCompanion, ClientResult, ClientTxKeyResponseCompanion, ClientTxKeyResponse, ClientAlgo, ClientAccountData, ClientKotlinCharArray, ClientAminoSignResponseCompanion, ClientAminoSignResponse, ClientAccountSigningData, ClientPrehashType, ClientBaseWallet, ClientSignResponse, ClientSignDocProto, ClientPermitFactory, ClientSecret_std_typesPermit, ClientCosmwasm_std_typesCoinCompanion, ClientKotlinIntIterator, ClientKotlinIntArray, ClientOkioByteStringCompanion, ClientOkioByteString, ClientKotlinx_serialization_jsonJson, ClientSecret_std_typesPubKeySecp256k1, ClientSecret_std_typesTypeValueCompanion, ClientKotlinThrowable, ClientKotlinException, ClientKotlinRuntimeException, ClientKotlinIllegalStateException, ClientSecret_std_typesPermissionCompanion, ClientKotlinPair<__covariant A, __covariant B>, ClientBignumBigIntegerCompanion, ClientBignumBigIntegerQuotientAndRemainder, ClientBignumSign, ClientBignumBigIntegerBigIntegerRange, ClientBignumBigIntegerSqareRootAndRemainder, ClientBignumModularBigInteger, ClientSecret_std_typesStdSignatureCompanion, ClientCosmwasm_std_typesCodeInfoCompanion, ClientKotlinx_serialization_coreSerializersModule, ClientKotlinx_serialization_coreSerialKind, ClientKotlinNothing, ClientKotlinx_serialization_jsonJsonElementCompanion, ClientKotlinByteIterator, ClientSecret_std_typesPubKeyCompanion, ClientKotlinCharIterator, ClientSecret_std_typesPermitParams, ClientSecret_std_typesPermitCompanion, NSData, ClientKotlinx_serialization_jsonJsonDefault, ClientKotlinx_serialization_jsonJsonConfiguration, ClientSecret_std_typesPubKeySecp256k1Companion, ClientBignumModularBigIntegerCompanion, ClientBignumModularQuotientAndRemainder, ClientSecret_std_typesPermitParamsCompanion;
 
-@protocol ClientKotlinComparable, ClientKotlinx_serialization_coreKSerializer, ClientEncryptionUtils, ClientMsgAmino, ClientMsg, ClientEncryptedMsg, ClientUnencryptedMsg, ClientTxResponse, ClientKotlinx_serialization_coreEncoder, ClientKotlinx_serialization_coreSerialDescriptor, ClientKotlinx_serialization_coreSerializationStrategy, ClientKotlinx_serialization_coreDecoder, ClientKotlinx_serialization_coreDeserializationStrategy, ClientKotlinKClass, ClientWallet, ClientKotlinx_coroutines_coreDeferred, ClientKotlinIterator, ClientBignumBigNumber, ClientBignumBigNumberCreator, ClientBignumBitwiseCapable, ClientBignumByteArraySerializable, ClientKotlinx_serialization_coreCompositeEncoder, ClientKotlinAnnotation, ClientKotlinx_serialization_coreCompositeDecoder, ClientKotlinKDeclarationContainer, ClientKotlinKAnnotatedElement, ClientKotlinKClassifier, ClientKotlinx_coroutines_coreSelectClause1, ClientKotlinx_coroutines_coreChildHandle, ClientKotlinx_coroutines_coreChildJob, ClientKotlinx_coroutines_coreDisposableHandle, ClientKotlinx_coroutines_coreJob, ClientKotlinSequence, ClientKotlinx_coroutines_coreSelectClause0, ClientKotlinCoroutineContextKey, ClientKotlinCoroutineContextElement, ClientKotlinCoroutineContext, ClientKotlinx_serialization_coreSerialFormat, ClientKotlinx_serialization_coreStringFormat, ClientBignumBigNumberUtil, ClientBignumByteArrayDeserializable, ClientKotlinClosedRange, ClientKotlinIterable, ClientKotlinx_serialization_coreSerializersModuleCollector, ClientKotlinx_coroutines_coreSelectInstance, ClientKotlinSuspendFunction1, ClientKotlinx_coroutines_coreParentJob, ClientKotlinSuspendFunction0, ClientKotlinx_serialization_jsonJsonNamingStrategy, ClientKotlinContinuation, ClientKotlinFunction;
+@protocol ClientKotlinComparable, ClientKotlinx_serialization_coreKSerializer, ClientEncryptionUtils, ClientMsgAmino, ClientMsg, ClientEncryptedMsg, ClientUnencryptedMsg, ClientTxResponse, ClientKotlinx_serialization_coreEncoder, ClientKotlinx_serialization_coreSerialDescriptor, ClientKotlinx_serialization_coreSerializationStrategy, ClientKotlinx_serialization_coreDecoder, ClientKotlinx_serialization_coreDeserializationStrategy, ClientKotlinKClass, ClientWallet, ClientKotlinIterator, ClientBignumBigNumber, ClientBignumBigNumberCreator, ClientBignumBitwiseCapable, ClientBignumByteArraySerializable, ClientKotlinx_serialization_coreCompositeEncoder, ClientKotlinAnnotation, ClientKotlinx_serialization_coreCompositeDecoder, ClientKotlinKDeclarationContainer, ClientKotlinKAnnotatedElement, ClientKotlinKClassifier, ClientKotlinx_serialization_coreSerialFormat, ClientKotlinx_serialization_coreStringFormat, ClientBignumBigNumberUtil, ClientBignumByteArrayDeserializable, ClientKotlinClosedRange, ClientKotlinIterable, ClientKotlinx_serialization_coreSerializersModuleCollector, ClientKotlinx_serialization_jsonJsonNamingStrategy;
 
 NS_ASSUME_NONNULL_BEGIN
 #pragma clang diagnostic push
@@ -2280,7 +2280,7 @@ __attribute__((swift_name("EncryptionUtils")))
  * @note This method converts instances of CancellationException to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (void)getPubkeyWithCompletionHandler:(void (^)(id<ClientKotlinx_coroutines_coreDeferred> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getPubkey(completionHandler:)")));
+- (void)getPubkeyWithCompletionHandler:(void (^)(id _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getPubkey(completionHandler:)")));
 
 /**
  * @note This method converts instances of CancellationException to errors.
@@ -2310,7 +2310,7 @@ __attribute__((swift_name("EnigmaUtils")))
  * @note This method converts instances of CancellationException to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (void)getPubkeyWithCompletionHandler:(void (^)(id<ClientKotlinx_coroutines_coreDeferred> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getPubkey(completionHandler:)")));
+- (void)getPubkeyWithCompletionHandler:(void (^)(id _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getPubkey(completionHandler:)")));
 
 /**
  * @note This method converts instances of CancellationException to errors.
@@ -3209,73 +3209,6 @@ __attribute__((swift_name("Secret_std_typesPubKey")))
 @property (class, readonly, getter=companion) ClientSecret_std_typesPubKeyCompanion *companion __attribute__((swift_name("companion")));
 @end
 
-
-/**
- * @note annotations
- *   kotlin.SinceKotlin(version="1.3")
-*/
-__attribute__((swift_name("KotlinCoroutineContext")))
-@protocol ClientKotlinCoroutineContext
-@required
-- (id _Nullable)foldInitial:(id _Nullable)initial operation:(id _Nullable (^)(id _Nullable, id<ClientKotlinCoroutineContextElement>))operation __attribute__((swift_name("fold(initial:operation:)")));
-- (id<ClientKotlinCoroutineContextElement> _Nullable)getKey:(id<ClientKotlinCoroutineContextKey>)key __attribute__((swift_name("get(key:)")));
-- (id<ClientKotlinCoroutineContext>)minusKeyKey:(id<ClientKotlinCoroutineContextKey>)key __attribute__((swift_name("minusKey(key:)")));
-- (id<ClientKotlinCoroutineContext>)plusContext:(id<ClientKotlinCoroutineContext>)context __attribute__((swift_name("plus(context:)")));
-@end
-
-__attribute__((swift_name("KotlinCoroutineContextElement")))
-@protocol ClientKotlinCoroutineContextElement <ClientKotlinCoroutineContext>
-@required
-@property (readonly) id<ClientKotlinCoroutineContextKey> key __attribute__((swift_name("key")));
-@end
-
-__attribute__((swift_name("Kotlinx_coroutines_coreJob")))
-@protocol ClientKotlinx_coroutines_coreJob <ClientKotlinCoroutineContextElement>
-@required
-- (id<ClientKotlinx_coroutines_coreChildHandle>)attachChildChild:(id<ClientKotlinx_coroutines_coreChildJob>)child __attribute__((swift_name("attachChild(child:)")));
-- (void)cancelCause:(ClientKotlinCancellationException * _Nullable)cause __attribute__((swift_name("cancel(cause:)")));
-- (ClientKotlinCancellationException *)getCancellationException __attribute__((swift_name("getCancellationException()")));
-- (id<ClientKotlinx_coroutines_coreDisposableHandle>)invokeOnCompletionOnCancelling:(BOOL)onCancelling invokeImmediately:(BOOL)invokeImmediately handler:(void (^)(ClientKotlinThrowable * _Nullable))handler __attribute__((swift_name("invokeOnCompletion(onCancelling:invokeImmediately:handler:)")));
-- (id<ClientKotlinx_coroutines_coreDisposableHandle>)invokeOnCompletionHandler:(void (^)(ClientKotlinThrowable * _Nullable))handler __attribute__((swift_name("invokeOnCompletion(handler:)")));
-
-/**
- * @note This method converts instances of CancellationException to errors.
- * Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)joinWithCompletionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("join(completionHandler:)")));
-- (id<ClientKotlinx_coroutines_coreJob>)plusOther:(id<ClientKotlinx_coroutines_coreJob>)other __attribute__((swift_name("plus(other:)"))) __attribute__((unavailable("Operator '+' on two Job objects is meaningless. Job is a coroutine context element and `+` is a set-sum operator for coroutine contexts. The job to the right of `+` just replaces the job the left of `+`.")));
-- (BOOL)start __attribute__((swift_name("start()")));
-@property (readonly) id<ClientKotlinSequence> children __attribute__((swift_name("children")));
-@property (readonly) BOOL isActive __attribute__((swift_name("isActive")));
-@property (readonly) BOOL isCancelled __attribute__((swift_name("isCancelled")));
-@property (readonly) BOOL isCompleted __attribute__((swift_name("isCompleted")));
-@property (readonly) id<ClientKotlinx_coroutines_coreSelectClause0> onJoin __attribute__((swift_name("onJoin")));
-@end
-
-__attribute__((swift_name("Kotlinx_coroutines_coreDeferred")))
-@protocol ClientKotlinx_coroutines_coreDeferred <ClientKotlinx_coroutines_coreJob>
-@required
-
-/**
- * @note This method converts instances of CancellationException to errors.
- * Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)awaitWithCompletionHandler:(void (^)(id _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("await(completionHandler:)")));
-
-/**
- * @note annotations
- *   kotlinx.coroutines.ExperimentalCoroutinesApi
-*/
-- (id _Nullable)getCompleted __attribute__((swift_name("getCompleted()")));
-
-/**
- * @note annotations
- *   kotlinx.coroutines.ExperimentalCoroutinesApi
-*/
-- (ClientKotlinThrowable * _Nullable)getCompletionExceptionOrNull __attribute__((swift_name("getCompletionExceptionOrNull()")));
-@property (readonly) id<ClientKotlinx_coroutines_coreSelectClause1> onAwait __attribute__((swift_name("onAwait")));
-@end
-
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("KotlinCharArray")))
 @interface ClientKotlinCharArray : ClientBase
@@ -3365,6 +3298,7 @@ __attribute__((swift_name("Kotlinx_serialization_jsonJson")))
 @interface ClientKotlinx_serialization_jsonJson : ClientBase <ClientKotlinx_serialization_coreStringFormat>
 @property (class, readonly, getter=companion) ClientKotlinx_serialization_jsonJsonDefault *companion __attribute__((swift_name("companion")));
 - (id _Nullable)decodeFromJsonElementDeserializer:(id<ClientKotlinx_serialization_coreDeserializationStrategy>)deserializer element:(ClientKotlinx_serialization_jsonJsonElement *)element __attribute__((swift_name("decodeFromJsonElement(deserializer:element:)")));
+- (id _Nullable)decodeFromStringString:(NSString *)string __attribute__((swift_name("decodeFromString(string:)")));
 - (id _Nullable)decodeFromStringDeserializer:(id<ClientKotlinx_serialization_coreDeserializationStrategy>)deserializer string:(NSString *)string __attribute__((swift_name("decodeFromString(deserializer:string:)")));
 - (ClientKotlinx_serialization_jsonJsonElement *)encodeToJsonElementSerializer:(id<ClientKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeToJsonElement(serializer:value:)")));
 - (NSString *)encodeToStringSerializer:(id<ClientKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeToString(serializer:value:)")));
@@ -3522,7 +3456,7 @@ __attribute__((swift_name("KotlinClosedRange")))
 - (BOOL)containsValue:(id)value __attribute__((swift_name("contains(value:)")));
 - (BOOL)isEmpty __attribute__((swift_name("isEmpty()")));
 @property (readonly) id endInclusive __attribute__((swift_name("endInclusive")));
-@property (readonly, getter=start_) id start __attribute__((swift_name("start")));
+@property (readonly) id start __attribute__((swift_name("start")));
 @end
 
 __attribute__((swift_name("KotlinIterable")))
@@ -3537,7 +3471,7 @@ __attribute__((swift_name("BignumBigInteger.BigIntegerRange")))
 - (instancetype)initWithStart:(ClientBignumBigInteger *)start endInclusive:(ClientBignumBigInteger *)endInclusive __attribute__((swift_name("init(start:endInclusive:)"))) __attribute__((objc_designated_initializer));
 - (id<ClientKotlinIterator>)iterator __attribute__((swift_name("iterator()")));
 @property (readonly) ClientBignumBigInteger *endInclusive __attribute__((swift_name("endInclusive")));
-@property (readonly, getter=start_) ClientBignumBigInteger *start __attribute__((swift_name("start")));
+@property (readonly) ClientBignumBigInteger *start __attribute__((swift_name("start")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -3761,48 +3695,6 @@ __attribute__((swift_name("Secret_std_typesPubKey.Companion")))
 - (id<ClientKotlinx_serialization_coreKSerializer>)serializerTypeParamsSerializers:(ClientKotlinArray<id<ClientKotlinx_serialization_coreKSerializer>> *)typeParamsSerializers __attribute__((swift_name("serializer(typeParamsSerializers:)")));
 @end
 
-__attribute__((swift_name("Kotlinx_coroutines_coreSelectClause1")))
-@protocol ClientKotlinx_coroutines_coreSelectClause1
-@required
-- (void)registerSelectClause1Select:(id<ClientKotlinx_coroutines_coreSelectInstance>)select block:(id<ClientKotlinSuspendFunction1>)block __attribute__((swift_name("registerSelectClause1(select:block:)")));
-@end
-
-__attribute__((swift_name("Kotlinx_coroutines_coreDisposableHandle")))
-@protocol ClientKotlinx_coroutines_coreDisposableHandle
-@required
-- (void)dispose __attribute__((swift_name("dispose()")));
-@end
-
-__attribute__((swift_name("Kotlinx_coroutines_coreChildHandle")))
-@protocol ClientKotlinx_coroutines_coreChildHandle <ClientKotlinx_coroutines_coreDisposableHandle>
-@required
-- (BOOL)childCancelledCause:(ClientKotlinThrowable *)cause __attribute__((swift_name("childCancelled(cause:)")));
-@property (readonly) id<ClientKotlinx_coroutines_coreJob> _Nullable parent __attribute__((swift_name("parent")));
-@end
-
-__attribute__((swift_name("Kotlinx_coroutines_coreChildJob")))
-@protocol ClientKotlinx_coroutines_coreChildJob <ClientKotlinx_coroutines_coreJob>
-@required
-- (void)parentCancelledParentJob:(id<ClientKotlinx_coroutines_coreParentJob>)parentJob __attribute__((swift_name("parentCancelled(parentJob:)")));
-@end
-
-__attribute__((swift_name("KotlinSequence")))
-@protocol ClientKotlinSequence
-@required
-- (id<ClientKotlinIterator>)iterator __attribute__((swift_name("iterator()")));
-@end
-
-__attribute__((swift_name("Kotlinx_coroutines_coreSelectClause0")))
-@protocol ClientKotlinx_coroutines_coreSelectClause0
-@required
-- (void)registerSelectClause0Select:(id<ClientKotlinx_coroutines_coreSelectInstance>)select block:(id<ClientKotlinSuspendFunction0>)block __attribute__((swift_name("registerSelectClause0(select:block:)")));
-@end
-
-__attribute__((swift_name("KotlinCoroutineContextKey")))
-@protocol ClientKotlinCoroutineContextKey
-@required
-@end
-
 __attribute__((swift_name("KotlinCharIterator")))
 @interface ClientKotlinCharIterator : ClientBase <ClientKotlinIterator>
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
@@ -3940,51 +3832,6 @@ __attribute__((swift_name("Kotlinx_serialization_coreSerializersModuleCollector"
 - (void)polymorphicDefaultSerializerBaseClass:(id<ClientKotlinKClass>)baseClass defaultSerializerProvider:(id<ClientKotlinx_serialization_coreSerializationStrategy> _Nullable (^)(id))defaultSerializerProvider __attribute__((swift_name("polymorphicDefaultSerializer(baseClass:defaultSerializerProvider:)")));
 @end
 
-__attribute__((swift_name("Kotlinx_coroutines_coreSelectInstance")))
-@protocol ClientKotlinx_coroutines_coreSelectInstance
-@required
-- (void)disposeOnSelectHandle:(id<ClientKotlinx_coroutines_coreDisposableHandle>)handle __attribute__((swift_name("disposeOnSelect(handle:)")));
-- (id _Nullable)performAtomicTrySelectDesc:(ClientKotlinx_coroutines_coreAtomicDesc *)desc __attribute__((swift_name("performAtomicTrySelect(desc:)")));
-- (void)resumeSelectWithExceptionException:(ClientKotlinThrowable *)exception __attribute__((swift_name("resumeSelectWithException(exception:)")));
-- (BOOL)trySelect __attribute__((swift_name("trySelect()")));
-- (id _Nullable)trySelectOtherOtherOp:(ClientKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp * _Nullable)otherOp __attribute__((swift_name("trySelectOther(otherOp:)")));
-@property (readonly) id<ClientKotlinContinuation> completion __attribute__((swift_name("completion")));
-@property (readonly) BOOL isSelected __attribute__((swift_name("isSelected")));
-@end
-
-__attribute__((swift_name("KotlinFunction")))
-@protocol ClientKotlinFunction
-@required
-@end
-
-__attribute__((swift_name("KotlinSuspendFunction1")))
-@protocol ClientKotlinSuspendFunction1 <ClientKotlinFunction>
-@required
-
-/**
- * @note This method converts instances of CancellationException to errors.
- * Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)invokeP1:(id _Nullable)p1 completionHandler:(void (^)(id _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(p1:completionHandler:)")));
-@end
-
-__attribute__((swift_name("Kotlinx_coroutines_coreParentJob")))
-@protocol ClientKotlinx_coroutines_coreParentJob <ClientKotlinx_coroutines_coreJob>
-@required
-- (ClientKotlinCancellationException *)getChildJobCancellationCause __attribute__((swift_name("getChildJobCancellationCause()")));
-@end
-
-__attribute__((swift_name("KotlinSuspendFunction0")))
-@protocol ClientKotlinSuspendFunction0 <ClientKotlinFunction>
-@required
-
-/**
- * @note This method converts instances of CancellationException to errors.
- * Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)invokeWithCompletionHandler:(void (^)(id _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(completionHandler:)")));
-@end
-
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Secret_std_typesPermit.ParamsCompanion")))
 @interface ClientSecret_std_typesPermitParamsCompanion : ClientBase
@@ -4004,212 +3851,6 @@ __attribute__((swift_name("Kotlinx_serialization_jsonJsonNamingStrategy")))
 @protocol ClientKotlinx_serialization_jsonJsonNamingStrategy
 @required
 - (NSString *)serialNameForJsonDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor elementIndex:(int32_t)elementIndex serialName:(NSString *)serialName __attribute__((swift_name("serialNameForJson(descriptor:elementIndex:serialName:)")));
-@end
-
-__attribute__((swift_name("Kotlinx_coroutines_coreAtomicDesc")))
-@interface ClientKotlinx_coroutines_coreAtomicDesc : ClientBase
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
-+ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (void)completeOp:(ClientKotlinx_coroutines_coreAtomicOp<id> *)op failure:(id _Nullable)failure __attribute__((swift_name("complete(op:failure:)")));
-- (id _Nullable)prepareOp:(ClientKotlinx_coroutines_coreAtomicOp<id> *)op __attribute__((swift_name("prepare(op:)")));
-@property ClientKotlinx_coroutines_coreAtomicOp<id> *atomicOp __attribute__((swift_name("atomicOp")));
-@end
-
-__attribute__((swift_name("Kotlinx_coroutines_coreOpDescriptor")))
-@interface ClientKotlinx_coroutines_coreOpDescriptor : ClientBase
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
-+ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (BOOL)isEarlierThanThat:(ClientKotlinx_coroutines_coreOpDescriptor *)that __attribute__((swift_name("isEarlierThan(that:)")));
-- (id _Nullable)performAffected:(id _Nullable)affected __attribute__((swift_name("perform(affected:)")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) ClientKotlinx_coroutines_coreAtomicOp<id> * _Nullable atomicOp __attribute__((swift_name("atomicOp")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Kotlinx_coroutines_coreLockFreeLinkedListNode.PrepareOp")))
-@interface ClientKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp : ClientKotlinx_coroutines_coreOpDescriptor
-- (instancetype)initWithAffected:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)next desc:(ClientKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc *)desc __attribute__((swift_name("init(affected:next:desc:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
-+ (instancetype)new __attribute__((unavailable));
-- (void)finishPrepare __attribute__((swift_name("finishPrepare()")));
-- (id _Nullable)performAffected:(id _Nullable)affected __attribute__((swift_name("perform(affected:)")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) ClientKotlinx_coroutines_coreLockFreeLinkedListNode *affected __attribute__((swift_name("affected")));
-@property (readonly) ClientKotlinx_coroutines_coreAtomicOp<id> *atomicOp __attribute__((swift_name("atomicOp")));
-@property (readonly) ClientKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc *desc __attribute__((swift_name("desc")));
-@property (readonly) ClientKotlinx_coroutines_coreLockFreeLinkedListNode *next __attribute__((swift_name("next")));
-@end
-
-
-/**
- * @note annotations
- *   kotlin.SinceKotlin(version="1.3")
-*/
-__attribute__((swift_name("KotlinContinuation")))
-@protocol ClientKotlinContinuation
-@required
-- (void)resumeWithResult:(id _Nullable)result __attribute__((swift_name("resumeWith(result:)")));
-@property (readonly) id<ClientKotlinCoroutineContext> context __attribute__((swift_name("context")));
-@end
-
-__attribute__((swift_name("Kotlinx_coroutines_coreAtomicOp")))
-@interface ClientKotlinx_coroutines_coreAtomicOp<__contravariant T> : ClientKotlinx_coroutines_coreOpDescriptor
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
-+ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (void)completeAffected:(T _Nullable)affected failure:(id _Nullable)failure __attribute__((swift_name("complete(affected:failure:)")));
-- (id _Nullable)decideDecision:(id _Nullable)decision __attribute__((swift_name("decide(decision:)")));
-- (id _Nullable)performAffected:(id _Nullable)affected __attribute__((swift_name("perform(affected:)")));
-- (id _Nullable)prepareAffected:(T _Nullable)affected __attribute__((swift_name("prepare(affected:)")));
-@property (readonly) ClientKotlinx_coroutines_coreAtomicOp<id> *atomicOp __attribute__((swift_name("atomicOp")));
-@property (readonly) id _Nullable consensus __attribute__((swift_name("consensus")));
-@property (readonly) BOOL isDecided __attribute__((swift_name("isDecided")));
-@property (readonly) int64_t opSequence __attribute__((swift_name("opSequence")));
-@end
-
-__attribute__((swift_name("Kotlinx_coroutines_coreLockFreeLinkedListNode")))
-@interface ClientKotlinx_coroutines_coreLockFreeLinkedListNode : ClientBase
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
-+ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (void)addLastNode:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)node __attribute__((swift_name("addLast(node:)")));
-- (BOOL)addLastIfNode:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)node condition:(ClientBoolean *(^)(void))condition __attribute__((swift_name("addLastIf(node:condition:)")));
-- (BOOL)addLastIfPrevNode:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)node predicate:(ClientBoolean *(^)(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *))predicate __attribute__((swift_name("addLastIfPrev(node:predicate:)")));
-- (BOOL)addLastIfPrevAndIfNode:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)node predicate:(ClientBoolean *(^)(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *))predicate condition:(ClientBoolean *(^)(void))condition __attribute__((swift_name("addLastIfPrevAndIf(node:predicate:condition:)")));
-- (BOOL)addOneIfEmptyNode:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)node __attribute__((swift_name("addOneIfEmpty(node:)")));
-- (ClientKotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc<ClientKotlinx_coroutines_coreLockFreeLinkedListNode *> *)describeAddLastNode:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)node __attribute__((swift_name("describeAddLast(node:)")));
-- (ClientKotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc<ClientKotlinx_coroutines_coreLockFreeLinkedListNode *> *)describeRemoveFirst __attribute__((swift_name("describeRemoveFirst()")));
-- (void)helpRemove __attribute__((swift_name("helpRemove()")));
-
-/**
- * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
-*/
-- (ClientKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable)nextIfRemoved __attribute__((swift_name("nextIfRemoved()")));
-- (BOOL)remove __attribute__((swift_name("remove()")));
-- (id _Nullable)removeFirstIfIsInstanceOfOrPeekIfPredicate:(ClientBoolean *(^)(id _Nullable))predicate __attribute__((swift_name("removeFirstIfIsInstanceOfOrPeekIf(predicate:)")));
-- (ClientKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable)removeFirstOrNull __attribute__((swift_name("removeFirstOrNull()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) BOOL isRemoved __attribute__((swift_name("isRemoved")));
-@property (readonly, getter=next_) id next __attribute__((swift_name("next")));
-@property (readonly) ClientKotlinx_coroutines_coreLockFreeLinkedListNode *nextNode __attribute__((swift_name("nextNode")));
-@property (readonly) ClientKotlinx_coroutines_coreLockFreeLinkedListNode *prevNode __attribute__((swift_name("prevNode")));
-@end
-
-__attribute__((swift_name("Kotlinx_coroutines_coreLockFreeLinkedListNode.AbstractAtomicDesc")))
-@interface ClientKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc : ClientKotlinx_coroutines_coreAtomicDesc
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
-+ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (void)completeOp:(ClientKotlinx_coroutines_coreAtomicOp<id> *)op failure:(id _Nullable)failure __attribute__((swift_name("complete(op:failure:)")));
-
-/**
- * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
-*/
-- (id _Nullable)failureAffected:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)affected __attribute__((swift_name("failure(affected:)")));
-
-/**
- * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
-*/
-- (void)finishOnSuccessAffected:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)next __attribute__((swift_name("finishOnSuccess(affected:next:)")));
-- (void)finishPreparePrepareOp:(ClientKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp *)prepareOp __attribute__((swift_name("finishPrepare(prepareOp:)")));
-- (id _Nullable)onPreparePrepareOp:(ClientKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp *)prepareOp __attribute__((swift_name("onPrepare(prepareOp:)")));
-- (void)onRemovedAffected:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)affected __attribute__((swift_name("onRemoved(affected:)")));
-- (id _Nullable)prepareOp:(ClientKotlinx_coroutines_coreAtomicOp<id> *)op __attribute__((swift_name("prepare(op:)")));
-
-/**
- * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
-*/
-- (BOOL)retryAffected:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(id)next __attribute__((swift_name("retry(affected:next:)")));
-
-/**
- * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
-*/
-- (ClientKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable)takeAffectedNodeOp:(ClientKotlinx_coroutines_coreOpDescriptor *)op __attribute__((swift_name("takeAffectedNode(op:)")));
-- (id)updatedNextAffected:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)next __attribute__((swift_name("updatedNext(affected:next:)")));
-
-/**
- * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
-*/
-@property (readonly) ClientKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable affectedNode __attribute__((swift_name("affectedNode")));
-
-/**
- * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
-*/
-@property (readonly) ClientKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable originalNext __attribute__((swift_name("originalNext")));
-@end
-
-__attribute__((swift_name("Kotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc")))
-@interface ClientKotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc<T> : ClientKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc
-- (instancetype)initWithQueue:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)queue node:(T)node __attribute__((swift_name("init(queue:node:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
-+ (instancetype)new __attribute__((unavailable));
-
-/**
- * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
-*/
-- (void)finishOnSuccessAffected:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)next __attribute__((swift_name("finishOnSuccess(affected:next:)")));
-- (void)finishPreparePrepareOp:(ClientKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp *)prepareOp __attribute__((swift_name("finishPrepare(prepareOp:)")));
-
-/**
- * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
-*/
-- (BOOL)retryAffected:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(id)next __attribute__((swift_name("retry(affected:next:)")));
-
-/**
- * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
-*/
-- (ClientKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable)takeAffectedNodeOp:(ClientKotlinx_coroutines_coreOpDescriptor *)op __attribute__((swift_name("takeAffectedNode(op:)")));
-- (id)updatedNextAffected:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)next __attribute__((swift_name("updatedNext(affected:next:)")));
-
-/**
- * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
-*/
-@property (readonly) ClientKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable affectedNode __attribute__((swift_name("affectedNode")));
-@property (readonly) T node __attribute__((swift_name("node")));
-
-/**
- * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
-*/
-@property (readonly) ClientKotlinx_coroutines_coreLockFreeLinkedListNode *originalNext __attribute__((swift_name("originalNext")));
-@property (readonly) ClientKotlinx_coroutines_coreLockFreeLinkedListNode *queue __attribute__((swift_name("queue")));
-@end
-
-__attribute__((swift_name("Kotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc")))
-@interface ClientKotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc<T> : ClientKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc
-- (instancetype)initWithQueue:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)queue __attribute__((swift_name("init(queue:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
-+ (instancetype)new __attribute__((unavailable));
-
-/**
- * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
-*/
-- (id _Nullable)failureAffected:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)affected __attribute__((swift_name("failure(affected:)")));
-
-/**
- * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
-*/
-- (void)finishOnSuccessAffected:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)next __attribute__((swift_name("finishOnSuccess(affected:next:)")));
-- (void)finishPreparePrepareOp:(ClientKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp *)prepareOp __attribute__((swift_name("finishPrepare(prepareOp:)")));
-
-/**
- * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
-*/
-- (BOOL)retryAffected:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(id)next __attribute__((swift_name("retry(affected:next:)")));
-
-/**
- * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
-*/
-- (ClientKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable)takeAffectedNodeOp:(ClientKotlinx_coroutines_coreOpDescriptor *)op __attribute__((swift_name("takeAffectedNode(op:)")));
-- (id)updatedNextAffected:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(ClientKotlinx_coroutines_coreLockFreeLinkedListNode *)next __attribute__((swift_name("updatedNext(affected:next:)")));
-
-/**
- * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
-*/
-@property (readonly) ClientKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable affectedNode __attribute__((swift_name("affectedNode")));
-
-/**
- * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
-*/
-@property (readonly) ClientKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable originalNext __attribute__((swift_name("originalNext")));
-@property (readonly) ClientKotlinx_coroutines_coreLockFreeLinkedListNode *queue __attribute__((swift_name("queue")));
-@property (readonly) T _Nullable result __attribute__((swift_name("result")));
 @end
 
 #pragma pop_macro("_Nullable_result")
