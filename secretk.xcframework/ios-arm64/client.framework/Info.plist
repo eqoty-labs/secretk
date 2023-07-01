@@ -5,7 +5,7 @@
     <key>CFBundleExecutable</key>
     <string>client</string>
     <key>CFBundleIdentifier</key>
-    <string>io.eqoty.secretk.client</string>
+    <string>client</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
