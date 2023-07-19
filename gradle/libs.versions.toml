@@ -14,9 +14,9 @@ com-vanniktech-maven-publish = { id = "com.vanniktech.maven.publish", version.re
 kotlin = "1.8.22"
 agp = "7.4.2"
 
-vanniktech-publish = "0.25.2"
+vanniktech-publish = "0.25.3"
 swift-package = "2.1.2"
-okio = "3.3.0"
+okio = "3.4.0"
 ktor = "2.3.2"
 kotlinx-datetime = "0.4.0"
 kotlinx-serialization = "1.5.1"
@@ -29,7 +29,7 @@ androidx-appcompat = "1.6.1"
 
 kermit = "1.2.2"
 
-getenv = "0.1.0"
+getenv = "0.2.0"
 
 compose-jb = "1.4.1"
 
