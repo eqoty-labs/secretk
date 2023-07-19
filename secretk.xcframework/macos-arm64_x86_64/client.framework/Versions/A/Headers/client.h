@@ -248,6 +248,7 @@ __attribute__((swift_name("Msg")))
  * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)toProtoUtils:(id<ClientEncryptionUtils> _Nullable)utils completionHandler_:(void (^)(ClientProtoMsg<ClientMsgProto *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("toProto(utils:completionHandler_:)")));
+@property (readonly) NSString *sender __attribute__((swift_name("sender")));
 @end
 
 __attribute__((swift_name("EncryptedMsg")))
@@ -306,10 +307,10 @@ __attribute__((swift_name("MsgExecuteContract")))
 */
 - (void)toProtoUtils:(id<ClientEncryptionUtils>)utils completionHandler:(void (^)(ClientProtoMsg<ClientMsgExecuteContractProto *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("toProto(utils:completionHandler:)")));
 @property NSString * _Nullable codeHash __attribute__((swift_name("codeHash")));
-@property NSString *contractAddress __attribute__((swift_name("contractAddress")));
+@property (readonly) NSString *contractAddress __attribute__((swift_name("contractAddress")));
 @property (readonly) NSString *msg __attribute__((swift_name("msg")));
-@property NSString *sender __attribute__((swift_name("sender")));
-@property NSArray<ClientCosmwasm_std_typesCoin *> *sentFunds __attribute__((swift_name("sentFunds")));
+@property (readonly) NSString *sender __attribute__((swift_name("sender")));
+@property (readonly) NSArray<ClientCosmwasm_std_typesCoin *> *sentFunds __attribute__((swift_name("sentFunds")));
 @end
 
 
@@ -379,10 +380,10 @@ __attribute__((swift_name("MsgInstantiateContract")))
 - (void)toProtoUtils:(id<ClientEncryptionUtils>)utils completionHandler:(void (^)(ClientProtoMsg<ClientMsgInstantiateContractProto *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("toProto(utils:completionHandler:)")));
 @property NSString * _Nullable codeHash __attribute__((swift_name("codeHash")));
 @property ClientInt * _Nullable codeId __attribute__((swift_name("codeId")));
-@property (getter=doInitFunds) NSArray<ClientCosmwasm_std_typesCoin *> *initFunds __attribute__((swift_name("initFunds")));
+@property (readonly, getter=doInitFunds) NSArray<ClientCosmwasm_std_typesCoin *> *initFunds __attribute__((swift_name("initFunds")));
 @property (readonly, getter=doInitMsg) NSString *initMsg __attribute__((swift_name("initMsg")));
-@property NSString *label __attribute__((swift_name("label")));
-@property NSString *sender __attribute__((swift_name("sender")));
+@property (readonly) NSString *label __attribute__((swift_name("label")));
+@property (readonly) NSString *sender __attribute__((swift_name("sender")));
 @end
 
 
@@ -470,9 +471,10 @@ __attribute__((swift_name("MsgSend")))
  * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)toProtoWithCompletionHandler:(void (^)(ClientProtoMsg<ClientMsgSendProto *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("toProto(completionHandler:)")));
-@property NSArray<ClientCosmwasm_std_typesCoin *> *amount __attribute__((swift_name("amount")));
-@property NSString *fromAddress __attribute__((swift_name("fromAddress")));
-@property NSString *toAddress __attribute__((swift_name("toAddress")));
+@property (readonly) NSArray<ClientCosmwasm_std_typesCoin *> *amount __attribute__((swift_name("amount")));
+@property (readonly) NSString *fromAddress __attribute__((swift_name("fromAddress")));
+@property (readonly) NSString *sender __attribute__((swift_name("sender")));
+@property (readonly) NSString *toAddress __attribute__((swift_name("toAddress")));
 @end
 
 
@@ -2245,8 +2247,7 @@ __attribute__((swift_name("SigningCosmWasmClient")))
 */
 - (void)simulateMsgs:(NSArray<id<ClientMsg>> *)msgs txOptions:(ClientTxOptions *)txOptions completionHandler:(void (^)(ClientGasInfo * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("simulate(msgs:txOptions:completionHandler:)")));
 @property (readonly) NSString *apiUrl __attribute__((swift_name("apiUrl")));
-@property NSString *senderAddress __attribute__((swift_name("senderAddress")));
-@property (readonly) id<ClientWallet> wallet __attribute__((swift_name("wallet")));
+@property id<ClientWallet> _Nullable wallet __attribute__((swift_name("wallet")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -2261,13 +2262,13 @@ __attribute__((swift_name("SigningCosmWasmClient.Companion")))
  * @note This method converts instances of CancellationException to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (void)doInitApiUrl:(NSString *)apiUrl senderAddress:(NSString *)senderAddress wallet:(id<ClientWallet>)wallet enigmaUtils:(id<ClientEncryptionUtils>)enigmaUtils broadcastMode:(ClientBroadcastMode *)broadcastMode chainId:(NSString * _Nullable)chainId completionHandler:(void (^)(ClientSigningCosmWasmClient * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doInit(apiUrl:senderAddress:wallet:enigmaUtils:broadcastMode:chainId:completionHandler:)")));
+- (void)doInitApiUrl:(NSString *)apiUrl wallet:(id<ClientWallet> _Nullable)wallet enigmaUtils:(id<ClientEncryptionUtils>)enigmaUtils broadcastMode:(ClientBroadcastMode *)broadcastMode chainId:(NSString * _Nullable)chainId completionHandler:(void (^)(ClientSigningCosmWasmClient * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doInit(apiUrl:wallet:enigmaUtils:broadcastMode:chainId:completionHandler:)")));
 
 /**
  * @note This method converts instances of CancellationException to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (void)doInitApiUrl:(NSString *)apiUrl senderAddress:(NSString *)senderAddress wallet:(id<ClientWallet>)wallet seed:(id _Nullable)seed broadcastMode:(ClientBroadcastMode *)broadcastMode chainId:(NSString * _Nullable)chainId completionHandler:(void (^)(ClientSigningCosmWasmClient * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doInit(apiUrl:senderAddress:wallet:seed:broadcastMode:chainId:completionHandler:)")));
+- (void)doInitApiUrl:(NSString *)apiUrl wallet:(id<ClientWallet> _Nullable)wallet seed:(id _Nullable)seed broadcastMode:(ClientBroadcastMode *)broadcastMode chainId:(NSString * _Nullable)chainId completionHandler:(void (^)(ClientSigningCosmWasmClient * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doInit(apiUrl:wallet:seed:broadcastMode:chainId:completionHandler:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -2509,6 +2510,12 @@ __attribute__((swift_name("Wallet")))
  * @note This method converts instances of CancellationException to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
+- (void)getAccountAddress:(NSString *)address completionHandler:(void (^)(ClientAccountData * _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("getAccount(address:completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
 - (void)getAccountsWithCompletionHandler:(void (^)(NSArray<ClientAccountData *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getAccounts(completionHandler:)")));
 
 /**
@@ -2528,6 +2535,12 @@ __attribute__((swift_name("BaseWallet")))
 @interface ClientBaseWallet : ClientBase <ClientWallet>
 - (ClientAccountSigningData *)addAccountMnemonic:(NSString * _Nullable)mnemonic __attribute__((swift_name("addAccount(mnemonic:)")));
 - (ClientAccountSigningData *)addAccountPrivkey:(id)privkey __attribute__((swift_name("addAccount(privkey:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getAccountAddress:(NSString *)address completionHandler:(void (^)(ClientAccountData * _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("getAccount(address:completionHandler:)")));
 
 /**
  * @note This method converts instances of CancellationException to errors.

@@ -29,23 +29,7 @@ A Kotlin multiplatform Encryption and REST client for Secret Network utilizing g
 
 ### Gradle
 
-```gradle
-repositories {
-    mavenCentral()
-    // And the following repository to workaround this issue: 
-    // https://youtrack.jetbrains.com/issue/KT-52240/Dependencies-of-a-dependency-are-not-resolved
-    maven {
-        name = "komputing/KHash GitHub Packages"
-        url = uri("https://maven.pkg.github.com/komputing/KHash")
-        credentials {
-            username = "token"
-            // see: https://github.community/t/download-from-github-package-registry-without-authentication/14407/44
-            password =
-                "\u0039\u0032\u0037\u0034\u0031\u0064\u0038\u0033\u0064\u0036\u0039\u0061\u0063\u0061\u0066\u0031\u0062\u0034\u0061\u0030\u0034\u0035\u0033\u0061\u0063\u0032\u0036\u0038\u0036\u0062\u0036\u0032\u0035\u0065\u0034\u0061\u0065\u0034\u0032\u0062"
-        }
-    }
-}
-
+```kotlin
 dependencies {
     implementation("io.eqoty.secretk:client:$latest")
 }
@@ -75,10 +59,8 @@ you need to declare your dependency in your `Package.swift`:
 val grpcGatewayEndpoint = "http://secretnetworkendpoint.com:1337"
 val mnemonic = ""
 val wallet = DirectSigningWallet(mnemonic)
-val accAddress = wallet.getAccounts()[0].address
 val client = SigningCosmWasmClient.init(
     grpcGatewayEndpoint,
-    accAddress,
     wallet
 )
 ```
@@ -167,11 +149,9 @@ println("recipientBalance: $recipientBalance")
 
 ```swift
 let wallet = DirectSigningWallet(mnemonic: mnemonic)
-let accAddress = (try! await wallet.getAccounts())[0].address
 let SigningCosmWasmClientCompanion = SigningCosmWasmClient.Companion()
 let client = try! await SigningCosmWasmClient.Companion.doInit(SigningCosmWasmClientCompanion)(
     apiUrl: grpcGatewayEndpoint,
-    senderAddress: accAddress,
     wallet: wallet,
     seed: nil,
     broadcastMode: BroadcastMode.block,

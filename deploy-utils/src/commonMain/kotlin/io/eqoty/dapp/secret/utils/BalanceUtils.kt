@@ -14,7 +14,6 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.util.*
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlin.random.Random
 
@@ -33,7 +32,7 @@ object BalanceUtils {
         nodeInfo: NodeInfo,
         client: SigningCosmWasmClient,
         targetBalance: Int,
-        address: String = client.senderAddress,
+        address: String,
     ) {
         var balance = try {
             getScrtBalance(client, address)
@@ -44,7 +43,7 @@ object BalanceUtils {
         }
         while (balance.amount.toInt() < targetBalance) {
             try {
-                getFromFaucet(client, nodeInfo, address)
+                getFromFaucet(nodeInfo, address)
             } catch (t: Throwable) {
                 throw RuntimeException("failed to get tokens from faucet: $t")
             }
@@ -68,14 +67,14 @@ object BalanceUtils {
         }
     }
 
-    suspend fun getScrtBalance(client: SigningCosmWasmClient, address: String = client.senderAddress): Coin {
+    suspend fun getScrtBalance(client: SigningCosmWasmClient, address: String): Coin {
         val balance = client.getBalance(address).balances
         return balance.getOrNull(0) ?: zeroUscrt
     }
 
     suspend fun getSnip20Balance(
         client: SigningCosmWasmClient,
-        senderAddress: String = client.senderAddress,
+        senderAddress: String,
         contract: ContractInfo
     ): BigInteger? {
         val viewingKey =
@@ -94,7 +93,6 @@ object BalanceUtils {
     }
 
     private suspend fun getFromFaucet(
-        client: SigningCosmWasmClient,
         nodeInfo: NodeInfo, address: String
     ): String {
         val response = when (nodeInfo) {
@@ -124,13 +122,11 @@ object BalanceUtils {
         senderAddress: String,
         contract: ContractInfo
     ): SnipMsgs.ExecuteAnswer.ViewingKey {
-        val originalSenderAddress = client.senderAddress
-        client.senderAddress = senderAddress
         val entropy = Random.nextBytes(40).encodeBase64()
         val msg = Json.encodeToString(SnipMsgs.Execute(createViewingKey = SnipMsgs.Execute.CreateViewingKey(entropy)))
         val msgs = listOf(
             MsgExecuteContract(
-                sender = client.senderAddress,
+                sender = senderAddress,
                 contractAddress = contract.address,
                 codeHash = contract.codeHash,
                 msg = msg,
@@ -143,7 +139,6 @@ object BalanceUtils {
             msgs,
             txOptions = TxOptions(gasLimit = gasLimit)
         )
-        client.senderAddress = originalSenderAddress
         return Json.decodeFromString<SnipMsgs.ExecuteAnswer>(response.data[0]).viewingKey!!
     }
 

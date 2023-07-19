@@ -14,7 +14,9 @@ object DeployContractUtils {
 
     suspend fun getOrStoreCode(
         client: SigningCosmWasmClient,
-        contractCodePath: Path
+        senderAddress: String,
+        contractCodePath: Path,
+        gasLimit: Int?,
     ): CodeInfo {
         val wasmBytes =
             fileSystem.read(contractCodePath) {
@@ -22,36 +24,44 @@ object DeployContractUtils {
             }
 
         return storedCode.getOrPut(wasmBytes.contentHashCode()) {
-            storeCode(client, wasmBytes)
+            storeCode(client, senderAddress, wasmBytes, gasLimit)
         }
     }
 
     suspend fun storeCode(
         client: SigningCosmWasmClient,
-        contractCodePath: Path
+        senderAddress: String,
+        contractCodePath: Path,
+        gasLimit: Int?,
     ): CodeInfo {
         val wasmBytes =
             fileSystem.read(contractCodePath) {
                 readByteArray()
             }
-        return storeCode(client, wasmBytes)
+        return storeCode(client, senderAddress, wasmBytes, gasLimit)
     }
 
     private suspend fun storeCode(
         client: SigningCosmWasmClient,
-        wasmBytes: ByteArray
+        senderAddress: String,
+        wasmBytes: ByteArray,
+        gasLimit: Int?,
     ): CodeInfo {
         val msgs0 = listOf(
             MsgStoreCode(
-                sender = client.senderAddress,
+                sender = senderAddress,
                 wasmByteCode = wasmBytes.toUByteArray(),
             )
         )
-        val simulate = client.simulate(msgs0)
-        val gasLimit = (simulate.gasUsed.toDouble() * 1.1).toInt()
+        val limit = if (gasLimit == null) {
+            val simulate = client.simulate(msgs0)
+            (simulate.gasUsed.toDouble() * 1.1).toInt()
+        } else {
+            gasLimit
+        }
         val response = client.execute(
             msgs0,
-            txOptions = TxOptions(gasLimit = gasLimit)
+            txOptions = TxOptions(gasLimit = limit)
         )
 
         val codeId = response.logs[0].events
@@ -67,16 +77,21 @@ object DeployContractUtils {
         client: SigningCosmWasmClient,
         codeInfo: CodeInfo,
         instantiateMsgs: List<MsgInstantiateContract>,
+        gasLimit: Int?,
     ): ContractInstance {
         instantiateMsgs.forEach {
             it.codeId = codeInfo.codeId.toInt()
             it.codeHash = codeInfo.codeHash
         }
-        val simulate = client.simulate(instantiateMsgs)
-        val gasLimit = (simulate.gasUsed.toDouble() * 1.1).toInt()
+        val limit = if (gasLimit == null) {
+            val simulate = client.simulate(instantiateMsgs)
+            (simulate.gasUsed.toDouble() * 1.1).toInt()
+        } else {
+            gasLimit
+        }
         val instantiateResponse = client.execute(
             instantiateMsgs,
-            txOptions = TxOptions(gasLimit = gasLimit)
+            txOptions = TxOptions(gasLimit = limit)
         )
         val contractAddress = instantiateResponse.logs[0].events
             .find { it.type == "message" }
@@ -88,11 +103,14 @@ object DeployContractUtils {
 
     suspend fun getOrStoreCodeAndInstantiate(
         client: SigningCosmWasmClient,
+        senderAddress: String,
         codePath: Path,
         instantiateMsgs: List<MsgInstantiateContract>,
+        storeCodeGasLimit: Int?,
+        instantiateGasLimit: Int?,
     ): ContractInstance {
-        val codeInfo = getOrStoreCode(client, codePath)
-        return instantiateCode(client, codeInfo, instantiateMsgs)
+        val codeInfo = getOrStoreCode(client, senderAddress, codePath, storeCodeGasLimit)
+        return instantiateCode(client, codeInfo, instantiateMsgs, instantiateGasLimit)
     }
 
 }

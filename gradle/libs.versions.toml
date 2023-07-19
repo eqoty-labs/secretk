@@ -29,7 +29,7 @@ androidx-appcompat = "1.6.1"
 
 kermit = "1.2.2"
 
-getenv = "0.2.0"
+getenv = "0.1.0"
 
 compose-jb = "1.4.1"
 
