@@ -7,6 +7,8 @@ import kotlin.jvm.JvmName
 
 interface Msg<M : MsgProto> {
 
+    val sender: String
+
     // https://youtrack.jetbrains.com/issue/KT-31420
     @Suppress("INAPPLICABLE_JVM_NAME")
     @JvmName("toProtoNullable")

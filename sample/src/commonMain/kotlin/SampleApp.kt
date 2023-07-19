@@ -23,6 +23,7 @@ val contractAddress = "secret1lz4m46vpdn8f2aj8yhtnexus40663udv7hhprm"
 @Composable
 fun SampleApp(
     client: SigningCosmWasmClient,
+    senderAddress: String,
     platformSpecificItems: @Composable ColumnScope.() -> Unit = {}
 ) {
     val coroutineScope = rememberCoroutineScope()
@@ -64,8 +65,8 @@ fun SampleApp(
                     if (permit == null) {
                         coroutineScope.launch {
                             permit = PermitFactory.newPermit(
-                                client.wallet,
-                                client.senderAddress,
+                                client.wallet!!,
+                                senderAddress,
                                 client.getChainId(),
                                 "Test",
                                 listOf(contractAddress),
@@ -107,7 +108,7 @@ fun SampleApp(
                                 viewingKeyTxResponse = try {
                                     val msgs = listOf(
                                         MsgExecuteContract(
-                                            sender = client.senderAddress,
+                                            sender = senderAddress,
                                             contractAddress = contractAddress,
                                             msg = handleMsg,
                                         )
@@ -144,7 +145,7 @@ fun SampleApp(
                                         {
                                             "num_tokens": {
                                                 "viewer": {
-                                                    "address": "${client.senderAddress}",
+                                                    "address": "${senderAddress}",
                                                     "viewing_key": "$viewingKey"
                                                 }
                                             }
@@ -180,19 +181,19 @@ fun setupAndStartApp() {
         }
     }
     client?.let {
-        SampleApp(it)
+        val mnemonic = "sand check forward humble between movie language siege where social crumble mouse"
+        val wallet = DirectSigningWallet(mnemonic)
+        val accAddress = wallet.accounts[0].address
+        client!!.wallet = wallet
+        SampleApp(it, accAddress)
     }
 }
 
 
 suspend fun clientWithDirectSigningWallet(): SigningCosmWasmClient {
     val grpcGatewayEndpoint = "https://api.pulsar.scrttestnet.com"
-    val mnemonic = "sand check forward humble between movie language siege where social crumble mouse"
-    val wallet = DirectSigningWallet(mnemonic)
-    val accAddress = wallet.accounts[0].address
     return SigningCosmWasmClient.init(
         grpcGatewayEndpoint,
-        accAddress,
-        wallet
+        null
     )
 }

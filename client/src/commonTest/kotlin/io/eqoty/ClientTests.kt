@@ -62,7 +62,6 @@ class ClientTests {
         val accAddress = wallet.getAccounts()[0].address
         val client = SigningCosmWasmClient.init(
             grpcGatewayEndpoint,
-            accAddress,
             wallet
         )
         println("Querying nft contract info")
@@ -115,7 +114,6 @@ class ClientTests {
         val accAddress = wallet.getAccounts()[0].address
         val client = SigningCosmWasmClient.init(
             grpcGatewayEndpoint,
-            accAddress,
             wallet
         )
         println("Querying nft contract info")
@@ -128,7 +126,7 @@ class ClientTests {
         println("Querying Num Tokens")
         val permit = PermitFactory.newPermit(
             wallet,
-            client.senderAddress,
+            accAddress,
             client.getChainId(),
             "Test",
             listOf(contractAddress),
@@ -153,7 +151,6 @@ class ClientTests {
         val accAddress = wallet.getAccounts()[0].address
         val client = SigningCosmWasmClient.init(
             grpcGatewayEndpoint,
-            accAddress,
             wallet
         )
         val wasmBytes =
@@ -213,7 +210,6 @@ class ClientTests {
         val accAddress = wallet.getAccounts()[0].address
         val client = SigningCosmWasmClient.init(
             grpcGatewayEndpoint,
-            accAddress,
             wallet
         )
         val initMsg =
@@ -256,7 +252,6 @@ class ClientTests {
         val accAddress = wallet.getAccounts()[0].address
         val client = SigningCosmWasmClient.init(
             grpcGatewayEndpoint,
-            accAddress,
             wallet
         )
         val toAccount = wallet.addAccount()

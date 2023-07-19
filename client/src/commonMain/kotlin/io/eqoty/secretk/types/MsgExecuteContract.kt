@@ -1,24 +1,24 @@
 package io.eqoty.secretk.types
 
-import io.eqoty.secretk.utils.logger
 import io.eqoty.cosmwasm.std.types.Coin
 import io.eqoty.kryptools.bech32.addressToBytes
 import io.eqoty.secretk.types.proto.MsgExecuteContractProto
 import io.eqoty.secretk.types.proto.ProtoMsg
 import io.eqoty.secretk.types.proto.toProto
 import io.eqoty.secretk.utils.EncryptionUtils
+import io.eqoty.secretk.utils.logger
 import io.ktor.util.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 
 class MsgExecuteContract(
-    var sender: String,
+    override val sender: String,
     /** The contract's address */
-    var contractAddress: String,
+    val contractAddress: String,
     /** The input message */
     val msg: String,
     /** Funds to send to the contract */
-    var sentFunds: List<Coin> = emptyList(),
+    val sentFunds: List<Coin> = emptyList(),
     /** The SHA256 hash value of the contract's WASM bytecode, represented as case-insensitive 64
      * character hex String.
      * This is used to make sure only the contract that's being invoked can decrypt the query data.
@@ -37,11 +37,11 @@ class MsgExecuteContract(
     private var msgEncrypted: UByteArray? = null
     var codeHash: String? = codeHash
         set(value) {
-            if (!value.isNullOrBlank()) {
-                field = value.replace("0x", "").lowercase()
+            field = if (!value.isNullOrBlank()) {
+                value.replace("0x", "").lowercase()
             } else {
                 logger.w { getMissingParameterWarning("MsgExecuteContract", "codeHash") }
-                field = null
+                null
             }
         }
 

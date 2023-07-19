@@ -8,9 +8,13 @@ import io.eqoty.secret.std.types.PubKeySecp256k1
 import io.eqoty.secretk.BroadcastMode
 import io.eqoty.secretk.types.*
 import io.eqoty.secretk.types.proto.*
-import io.eqoty.secretk.types.response.*
+import io.eqoty.secretk.types.response.GasInfo
+import io.eqoty.secretk.types.response.TxResponseData
 import io.eqoty.secretk.utils.*
-import io.eqoty.secretk.wallet.*
+import io.eqoty.secretk.wallet.AccountData
+import io.eqoty.secretk.wallet.DirectSigningWallet
+import io.eqoty.secretk.wallet.Wallet
+import io.eqoty.secretk.wallet.encodeSecp256k1Pubkey
 import kotlinx.serialization.decodeFromByteArray
 import kotlinx.serialization.encodeToByteArray
 import kotlinx.serialization.protobuf.ProtoBuf
@@ -21,8 +25,7 @@ import kotlin.math.ceil
 class SigningCosmWasmClient
 private constructor(
     val apiUrl: String,
-    var senderAddress: String,
-    val wallet: Wallet,
+    var wallet: Wallet?,
     encryptionUtils: EncryptionUtils,
     broadcastMode: BroadcastMode = BroadcastMode.Block,
     chainId: String? = null
@@ -85,11 +88,20 @@ private constructor(
         }
     }
 
+    private fun getSender(msgs: List<Msg<*>>): String {
+        val senders = msgs.map { it.sender }.toSet()
+        if (senders.size > 1) {
+            throw IllegalArgumentException("The same sender must be used for all messages.")
+        }
+        return senders.first()
+    }
+
     suspend fun simulate(
         msgs: List<Msg<*>>,
         txOptions: TxOptions = TxOptions(),
     ): GasInfo {
-        val txRawProto = prepareAndSign(msgs, txOptions)
+        val sender = getSender(msgs)
+        val txRawProto = prepareAndSign(sender, msgs, txOptions)
         val txRawBytes = ProtoBuf.encodeToByteArray(txRawProto).toUByteArray()
         val simulateTxResponse = try {
             postSimulateTx(txRawBytes)
@@ -112,7 +124,8 @@ private constructor(
         msgs: List<Msg<*>>,
         txOptions: TxOptions = TxOptions(),
     ): TxResponseData {
-        val txRawProto = prepareAndSign(msgs, txOptions)
+        val sender = getSender(msgs)
+        val txRawProto = prepareAndSign(sender, msgs, txOptions)
         val txRawBytes = ProtoBuf.encodeToByteArray(txRawProto).toUByteArray()
         val txResponse = try {
             postTx(txRawBytes)
@@ -141,13 +154,13 @@ private constructor(
     }
 
     private suspend fun prepareAndSign(
+        sender: String,
         messages: List<Msg<*>>,
         txOptions: TxOptions
     ): TxRawProto {
-        val accountFromSigner = wallet.getAccounts().find { account ->
-            account.address == senderAddress
-        } ?: throw Error("Failed to retrieve account from signer")
-        val nonceResult = getNonce(senderAddress)
+        val accountFromWallet =
+            wallet?.getAccount(sender) ?: throw Error("Failed to retrieve account $sender from wallet")
+        val nonceResult = getNonce(accountFromWallet.address)
         if (chainId == null) {
             chainId = getChainId()
         }
@@ -166,24 +179,32 @@ private constructor(
 
         return when (wallet) {
             is DirectSigningWallet -> {
-                signDirect(accountFromSigner, messages, fee, txOptions.memo, signerData)
+                signDirect(
+                    wallet as DirectSigningWallet,
+                    accountFromWallet,
+                    messages,
+                    fee,
+                    txOptions.memo,
+                    signerData
+                )
             }
 
-            else -> {
-                signAmino(accountFromSigner, messages, fee, txOptions.memo, signerData)
+            is Wallet -> {
+                signAmino(wallet!!, accountFromWallet, messages, fee, txOptions.memo, signerData)
             }
+
+            else -> throw Error("Wallet not set")
         }
-
     }
 
     private suspend fun signDirect(
+        wallet: DirectSigningWallet,
         account: AccountData,
         msgs: List<Msg<*>>,
         fee: StdFee,
         memo: String,
         signerData: SignerData,
     ): TxRawProto {
-        val wallet: DirectSigningWallet = wallet as DirectSigningWallet
         val txBody = TxBody(
             value = TxBodyValue(
                 messages = msgs
@@ -215,7 +236,7 @@ private constructor(
         )
 
         val signResponse = wallet.signDirect(
-            senderAddress,
+            account.address,
             signDoc,
         )
         val signature = signResponse.signature
@@ -227,6 +248,7 @@ private constructor(
     }
 
     private suspend fun signAmino(
+        wallet: Wallet,
         account: AccountData,
         messages: List<Msg<*>>,
         fee: StdFee,
@@ -398,11 +420,9 @@ private constructor(
 
     companion object {
 
-        @OptIn(ExperimentalUnsignedTypes::class)
         suspend fun init(
             apiUrl: String,
-            senderAddress: String,
-            wallet: Wallet,
+            wallet: Wallet?,
             seed: UByteArray? = null,
             broadcastMode: BroadcastMode = BroadcastMode.Block,
             chainId: String? = null
@@ -410,7 +430,6 @@ private constructor(
             ensureLibsodiumInitialized()
             return SigningCosmWasmClient(
                 apiUrl,
-                senderAddress,
                 wallet,
                 EnigmaUtils(apiUrl, seed ?: EnigmaUtils.GenerateNewSeed()),
                 broadcastMode,
@@ -420,8 +439,7 @@ private constructor(
 
         suspend fun init(
             apiUrl: String,
-            senderAddress: String,
-            wallet: Wallet,
+            wallet: Wallet?,
             enigmaUtils: EncryptionUtils,
             broadcastMode: BroadcastMode = BroadcastMode.Block,
             chainId: String? = null
@@ -429,7 +447,6 @@ private constructor(
             ensureLibsodiumInitialized()
             return SigningCosmWasmClient(
                 apiUrl,
-                senderAddress,
                 wallet,
                 enigmaUtils,
                 broadcastMode,
@@ -437,6 +454,5 @@ private constructor(
             )
         }
     }
-
 
 }

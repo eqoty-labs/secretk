@@ -11,7 +11,6 @@ import io.eqoty.utils.KeplrEnigmaUtils
 import io.eqoty.wallet.MetaMaskWalletWrapper
 import io.eqoty.wallet.OfflineSignerOnlyAminoWalletWrapper
 import jslib.walletconnect.*
-import jslib.walletconnect.IQRCodeModal
 import jslibs.secretjs.MetaMaskWallet
 import kotlinx.browser.window
 import kotlinx.coroutines.MainScope
@@ -30,16 +29,29 @@ import kotlin.js.Promise
 @NoLiveLiterals
 fun main() {
     application {
+        val chain = Chain.Pulsar2
 //        val client = getClientWithMetamaskWallet(Chain.Pulsar2)
 //        val client = setupEthWalletConnectAndGetWallet(Chain.Pulsar2)
-        val client = getClientWithKeplrWallet(Chain.Pulsar2)
+        val wallet = getClientWithKeplrWallet(chain)
 //        val client = setupCosmosWalletConnectAndGetWallet(Chain.Secret4, WalletConnectModal.Keplr)
-
+        val accAddress = wallet.getAccounts()[0].address
+        println(accAddress)
+        val enigmaUtils = when (wallet) {
+            is OfflineSignerOnlyAminoWalletWrapper -> KeplrEnigmaUtils(wallet.keplr, chain.id)
+            else -> {
+                TODO()
+            }
+        }
+        val client = SigningCosmWasmClient.init(
+            chain.grpcGatewayEndpoint,
+            wallet,
+            enigmaUtils = enigmaUtils
+        )
         console.log(client)
         onWasmReady {
             Window("secretk demo") {
                 Column(modifier = Modifier.fillMaxSize()) {
-                    SampleApp(client) {
+                    SampleApp(client, accAddress) {
                         Row {
                             Button({
                                 if (client.wallet is OfflineSignerOnlyAminoWalletWrapper) {
@@ -94,7 +106,7 @@ suspend fun getClientWithKeplrWallet(
     chain: Chain,
     keplr: dynamic = null,
     suggestChain: Boolean = true
-): SigningCosmWasmClient {
+): OfflineSignerOnlyAminoWalletWrapper {
     @Suppress("NAME_SHADOWING")
     val keplr = if (keplr == null) {
         while (
@@ -174,35 +186,20 @@ suspend fun getClientWithKeplrWallet(
     }
     val enablePromise: Promise<dynamic> = keplr.enable(chain.id) as Promise<dynamic>
     enablePromise.await()
-    val wallet = OfflineSignerOnlyAminoWalletWrapper(keplr, chain.id)
-    val accAddress = wallet.getAccounts()[0].address
-    println(accAddress)
-    return SigningCosmWasmClient.init(
-        chain.grpcGatewayEndpoint,
-        accAddress,
-        wallet,
-        enigmaUtils = KeplrEnigmaUtils(keplr, chain.id)
-    )
+    return OfflineSignerOnlyAminoWalletWrapper(keplr, chain.id)
 }
 
 
-suspend fun getClientWithMetamaskWallet(chain: Chain): SigningCosmWasmClient {
+suspend fun getClientWithMetamaskWallet(chain: Chain): MetaMaskWalletWrapper {
     val provider = window["ethereum"]
     val web3 = Web3(provider).apply {
         eth.handleRevert = true
     }
     val account = web3.eth.requestAccounts().await().firstOrNull()!!
-    val wallet = MetaMaskWalletWrapper(MetaMaskWallet.create(provider, account).await())
-    val accAddress = wallet.getAccounts()[0].address
-    println(accAddress)
-    return SigningCosmWasmClient.init(
-        chain.grpcGatewayEndpoint,
-        accAddress,
-        wallet
-    )
+    return MetaMaskWalletWrapper(MetaMaskWallet.create(provider, account).await())
 }
 
-enum class WalletConnectModal(val signingMethods: Array<String>, val qrcodeModal: IQRCodeModal){
+enum class WalletConnectModal(val signingMethods: Array<String>, val qrcodeModal: IQRCodeModal) {
     Keplr(
         signingMethods = arrayOf(
             "keplr_enable_wallet_connect_v1",
@@ -221,7 +218,10 @@ enum class WalletConnectModal(val signingMethods: Array<String>, val qrcodeModal
     )
 }
 
-suspend fun setupCosmosWalletConnectAndGetWallet(chain: Chain, wcModal: WalletConnectModal): SigningCosmWasmClient {
+suspend fun setupCosmosWalletConnectAndGetWallet(
+    chain: Chain,
+    wcModal: WalletConnectModal
+): OfflineSignerOnlyAminoWalletWrapper {
     val connector = WalletConnect(
         IWalletConnectOptionsInstance(
             bridge = "https://bridge.walletconnect.org", // Required
@@ -260,7 +260,7 @@ suspend fun setupCosmosWalletConnectAndGetWallet(chain: Chain, wcModal: WalletCo
     return getClientWithKeplrWallet(chain, keplr, false)
 }
 
-suspend fun setupEthWalletConnectAndGetWallet(chain: Chain): SigningCosmWasmClient {
+suspend fun setupEthWalletConnectAndGetWallet(chain: Chain): MetaMaskWalletWrapper {
     val provider = WalletConnectProvider(
         IWalletConnectProviderOptionsInstance(
             infuraId = "YOUR_ID",
@@ -275,12 +275,5 @@ suspend fun setupEthWalletConnectAndGetWallet(chain: Chain): SigningCosmWasmClie
         eth.handleRevert = true
     }
     val account = web3.eth.getAccounts().await().firstOrNull()!!
-    val wallet = MetaMaskWalletWrapper(MetaMaskWallet.create(provider, account).await())
-    val accAddress = wallet.getAccounts()[0].address
-    println(accAddress)
-    return SigningCosmWasmClient.init(
-        chain.grpcGatewayEndpoint,
-        accAddress,
-        wallet
-    )
+    return MetaMaskWalletWrapper(MetaMaskWallet.create(provider, account).await())
 }

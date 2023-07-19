@@ -1,7 +1,6 @@
 package io.eqoty.secretk.types
 
 import io.eqoty.cosmwasm.std.types.Coin
-import io.eqoty.kryptools.bech32.addressToBytes
 import io.eqoty.secretk.types.proto.MsgSendProto
 import io.eqoty.secretk.types.proto.ProtoMsg
 import io.eqoty.secretk.types.proto.toProto
@@ -10,12 +9,14 @@ import io.eqoty.secretk.types.proto.toProto
  *  MsgSend represents a message to send coins from one account to another.
  */
 class MsgSend(
-    var fromAddress: String,
-    var toAddress: String,
+    val fromAddress: String,
+    val toAddress: String,
     /** Funds to send to the address */
-    var amount: List<Coin> = emptyList(),
+    val amount: List<Coin> = emptyList(),
 ) : UnencryptedMsg<MsgSendProto> {
 
+    override val sender: String
+        get() = fromAddress
 
     override suspend fun toProto(): ProtoMsg<MsgSendProto> {
         val msgContent = MsgSendProto(
@@ -39,5 +40,6 @@ class MsgSend(
             )
         )
     }
+
 }
 

@@ -10,15 +10,15 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 
 class MsgInstantiateContract(
-    var sender: String,
+    override val sender: String,
     /** The id of the contract's WASM code */
-    var codeId: Int?,
+    val codeId: Int?,
     /** A unique label across all contracts */
-    var label: String,
+    val label: String,
     /** The input message to the contract's constructor */
     val initMsg: String,
     /** Funds to send to the contract */
-    var initFunds: List<Coin> = emptyList(),
+    val initFunds: List<Coin> = emptyList(),
     /** The SHA256 hash value of the contract's WASM bytecode, represented as case-insensitive 64
      * character hex string.
      * This is used to make sure only the contract that's being invoked can decrypt the query data.
@@ -36,10 +36,10 @@ class MsgInstantiateContract(
     private var initMsgEncrypted: UByteArray? = null
     var codeHash: String? = codeHash
         set(value) {
-            if (!value.isNullOrBlank()) {
-                field = value.replace("0x", "").lowercase()
+            field = if (!value.isNullOrBlank()) {
+                value.replace("0x", "").lowercase()
             } else {
-                field = null
+                null
             }
         }
 
@@ -65,7 +65,7 @@ class MsgInstantiateContract(
 
         val msgContent = MsgInstantiateContractProto(
             sender = addressToBytes(sender),
-            codeId = codeId!!,
+            codeId = codeId,
             label = label,
             initMsg = initMsgEncrypted!!.toByteArray(),
             initFunds = initFunds.map { it.toProto() },

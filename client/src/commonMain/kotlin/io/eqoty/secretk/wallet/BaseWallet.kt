@@ -6,7 +6,6 @@ import io.eqoty.kryptools.*
 import io.eqoty.secret.std.types.StdSignature
 import io.eqoty.secretk.types.StdSignDoc
 import io.eqoty.secretk.types.proto.SignDocProto
-import io.eqoty.secretk.types.proto.SignMode
 import io.eqoty.secretk.utils.Address.pubkeyToAddress
 import io.eqoty.secretk.utils.logger
 import io.eqoty.secretk.utils.toByteString
@@ -31,12 +30,6 @@ fun makeSecretNetworkPath(a: UInt): Array<Slip10RawIndex> = arrayOf(
 enum class PrehashType(val type: String) {
     SHA256("sha256"),
     SHA512("sha512")
-}
-
-interface Wallet {
-    suspend fun getSignMode(): SignMode?
-    suspend fun getAccounts(): List<AccountData>
-    suspend fun signAmino(signerAddress: String, signDoc: StdSignDoc): AminoSignResponse
 }
 
 sealed class BaseWallet : Wallet {
@@ -77,8 +70,8 @@ sealed class BaseWallet : Wallet {
         val privkey = result.privkey.getPadded(32)
         val uncompressed = try {
             Secp256k1.makeKeypair(privkey).pubkey
-        } catch (t: Throwable){
-            if (mnemonic == null){
+        } catch (t: Throwable) {
+            if (mnemonic == null) {
                 // todo: remove this after https://github.com/eqoty-labs/kryptools/issues/2 fixed
                 logger.w("A bad key was randomly generated. Trying again. See https://github.com/eqoty-labs/kryptools/issues/2")
                 return addAccount()
@@ -109,6 +102,10 @@ sealed class BaseWallet : Wallet {
     }
 
     val accounts get() = addressToAccountSigningData.values.map { it.publicData }.toList()
+
+    override suspend fun getAccount(address: String): AccountData? {
+        return addressToAccountSigningData[address]?.publicData
+    }
 
     /**
      * Get AccountData array from wallet. Rejects if not enabled.

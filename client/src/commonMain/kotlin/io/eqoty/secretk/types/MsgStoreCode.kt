@@ -6,7 +6,7 @@ import io.eqoty.secretk.types.proto.ProtoMsg
 import io.ktor.util.*
 
 class MsgStoreCode(
-    val sender: String,
+    override val sender: String,
     /** WASMByteCode can be raw or gzip compressed */
     val wasmByteCode: UByteArray,
     /** Source is a valid absolute HTTPS URI to the contract's source code, optional */
