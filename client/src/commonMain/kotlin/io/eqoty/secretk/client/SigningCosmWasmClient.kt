@@ -22,11 +22,16 @@ import okio.ByteString.Companion.decodeBase64
 import okio.ByteString.Companion.decodeHex
 import kotlin.math.ceil
 
-class SigningCosmWasmClient
-private constructor(
+/***
+ * A Secret Network Client that can sign transactions.
+ * Note: libsodium must be initialized before instantiating the client.
+ * use [SigningCosmWasmClient.init] to handle initializing libsodium automatically.
+ * Or call ensureSodiumInitialized() before creating [SigningCosmWasmClient]
+ */
+class SigningCosmWasmClient(
     val apiUrl: String,
     var wallet: Wallet?,
-    encryptionUtils: EncryptionUtils,
+    encryptionUtils: EncryptionUtils = EnigmaUtils(apiUrl, EnigmaUtils.GenerateNewSeed()),
     broadcastMode: BroadcastMode = BroadcastMode.Block,
     chainId: String? = null
 ) : CosmWasmClient(apiUrl, encryptionUtils, broadcastMode, chainId) {
@@ -420,10 +425,13 @@ private constructor(
 
     companion object {
 
+        /**
+         * Helper to initialize libsodium and then create the client.
+         */
         suspend fun init(
             apiUrl: String,
             wallet: Wallet?,
-            seed: UByteArray? = null,
+            enigmaUtils: EncryptionUtils? = null,
             broadcastMode: BroadcastMode = BroadcastMode.Block,
             chainId: String? = null
         ): SigningCosmWasmClient {
@@ -431,24 +439,7 @@ private constructor(
             return SigningCosmWasmClient(
                 apiUrl,
                 wallet,
-                EnigmaUtils(apiUrl, seed ?: EnigmaUtils.GenerateNewSeed()),
-                broadcastMode,
-                chainId
-            )
-        }
-
-        suspend fun init(
-            apiUrl: String,
-            wallet: Wallet?,
-            enigmaUtils: EncryptionUtils,
-            broadcastMode: BroadcastMode = BroadcastMode.Block,
-            chainId: String? = null
-        ): SigningCosmWasmClient {
-            ensureLibsodiumInitialized()
-            return SigningCosmWasmClient(
-                apiUrl,
-                wallet,
-                enigmaUtils,
+                enigmaUtils ?: EnigmaUtils(apiUrl, EnigmaUtils.GenerateNewSeed()),
                 broadcastMode,
                 chainId
             )

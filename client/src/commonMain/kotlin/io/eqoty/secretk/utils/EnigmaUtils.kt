@@ -3,7 +3,6 @@ package io.eqoty.secretk.utils
 import com.ionspin.kotlin.crypto.util.LibsodiumRandom
 import com.ionspin.kotlin.crypto.util.encodeToUByteArray
 import io.eqoty.kryptools.aessiv.AesSIV
-import io.eqoty.kryptools.axlsign.AxlSign
 import io.eqoty.kryptools.axlsign.AxlSignDouble
 import io.eqoty.kryptools.deriveHKDFKey
 import io.ktor.client.*
@@ -14,7 +13,6 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.util.*
-import kotlinx.coroutines.Deferred
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
@@ -28,7 +26,7 @@ data class TxKeyResponse(val height: Int, val result: Result)
 
 data class KeyPair(val privKey: UByteArray, val pubKey: UByteArray)
 
-class EnigmaUtils internal constructor(val apiUrl: String, val seed: UByteArray) : EncryptionUtils {
+class EnigmaUtils(val apiUrl: String, val seed: UByteArray = GenerateNewSeed()) : EncryptionUtils {
 
     val hkdfSalt = ubyteArrayOf(
         0x00.toUByte(),
@@ -81,17 +79,12 @@ class EnigmaUtils internal constructor(val apiUrl: String, val seed: UByteArray)
     }
 
     companion object {
-        suspend fun init(apiUrl: String, seed: UByteArray?): EnigmaUtils {
-            ensureLibsodiumInitialized()
-            return EnigmaUtils(apiUrl, seed ?: GenerateNewSeed())
-        }
 
-        suspend fun GenerateNewKeyPair(): KeyPair {
+        fun GenerateNewKeyPair(): KeyPair {
             return GenerateNewKeyPairFromSeed(GenerateNewSeed())
         }
 
-        suspend fun GenerateNewSeed(): UByteArray {
-            ensureLibsodiumInitialized()
+        fun GenerateNewSeed(): UByteArray {
             return LibsodiumRandom.buf(32)
         }
 
@@ -158,7 +151,8 @@ class EnigmaUtils internal constructor(val apiUrl: String, val seed: UByteArray)
 
     override suspend fun getTxEncryptionKey(nonce: UByteArray): UByteArray {
         val consensusIoPubKey = getConsensusIoPubKey()
-        val txEncryptionIkm = axlSign.sharedKey(this.privKey.toIntArray(), consensusIoPubKey.toIntArray()).toUByteArray()
+        val txEncryptionIkm =
+            axlSign.sharedKey(this.privKey.toIntArray(), consensusIoPubKey.toIntArray()).toUByteArray()
         return deriveHKDFKey(txEncryptionIkm + nonce, hkdfSalt, len = 32)
     }
 
