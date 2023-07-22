@@ -20,11 +20,6 @@ A Kotlin multiplatform Encryption and REST client for Secret Network utilizing g
 * macOS
 * TODO: linux
 
-### Build Requirements
-
-* Xcode 13.2.1
-    * Note: Xcode 13.3 [build issue](https://github.com/leetal/ios-cmake/issues/141)
-
 ## Setup
 
 ### Gradle
