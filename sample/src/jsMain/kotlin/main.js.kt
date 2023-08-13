@@ -29,7 +29,7 @@ import kotlin.js.Promise
 @NoLiveLiterals
 fun main() {
     application {
-        val chain = Chain.Pulsar2
+        val chain = Chain.Pulsar3
 //        val client = getClientWithMetamaskWallet(Chain.Pulsar2)
 //        val client = setupEthWalletConnectAndGetWallet(Chain.Pulsar2)
         val wallet = getClientWithKeplrWallet(chain)
@@ -93,6 +93,7 @@ fun main() {
 
 enum class Chain(val id: String, val grpcGatewayEndpoint: String, val rpcEndpoint: String) {
     Pulsar2("pulsar-2", "https://api.pulsar.scrttestnet.com", "https://rpc.pulsar.scrttestnet.com"),
+    Pulsar3("pulsar-3", "https://api.pulsar3.scrttestnet.com", "https://rpc.pulsar3.scrttestnet.com"),
     Secret4("secret-4", "https://secret-4.api.trivium.network:1317", "https://secret-4.api.trivium.network:26657")
 }
 
