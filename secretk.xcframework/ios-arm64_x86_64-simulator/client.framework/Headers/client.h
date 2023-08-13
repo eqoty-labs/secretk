@@ -193,6 +193,7 @@ __attribute__((swift_name("BroadcastMode")))
 @property (class, readonly) ClientBroadcastMode *sync __attribute__((swift_name("sync")));
 @property (class, readonly) ClientBroadcastMode *async __attribute__((swift_name("async")));
 + (ClientKotlinArray<ClientBroadcastMode *> *)values __attribute__((swift_name("values()")));
+@property (class, readonly) NSArray<ClientBroadcastMode *> *entries __attribute__((swift_name("entries")));
 @property (readonly) NSString *mode __attribute__((swift_name("mode")));
 @end
 
@@ -2030,6 +2031,7 @@ __attribute__((swift_name("SignMode")))
 @property (class, readonly) ClientSignMode *signModeEip191 __attribute__((swift_name("signModeEip191")));
 @property (class, readonly) ClientSignMode *unrecognized __attribute__((swift_name("unrecognized")));
 + (ClientKotlinArray<ClientSignMode *> *)values __attribute__((swift_name("values()")));
+@property (class, readonly) NSArray<ClientSignMode *> *entries __attribute__((swift_name("entries")));
 @property (readonly) int32_t value __attribute__((swift_name("value")));
 @end
 
@@ -2452,6 +2454,7 @@ __attribute__((swift_name("Algo")))
 @property (class, readonly) ClientAlgo *ed25519 __attribute__((swift_name("ed25519")));
 @property (class, readonly) ClientAlgo *sr25519 __attribute__((swift_name("sr25519")));
 + (ClientKotlinArray<ClientAlgo *> *)values __attribute__((swift_name("values()")));
+@property (class, readonly) NSArray<ClientAlgo *> *entries __attribute__((swift_name("entries")));
 @end
 
 
@@ -2579,6 +2582,7 @@ __attribute__((swift_name("PrehashType")))
 @property (class, readonly) ClientPrehashType *sha256 __attribute__((swift_name("sha256")));
 @property (class, readonly) ClientPrehashType *sha512 __attribute__((swift_name("sha512")));
 + (ClientKotlinArray<ClientPrehashType *> *)values __attribute__((swift_name("values()")));
+@property (class, readonly) NSArray<ClientPrehashType *> *entries __attribute__((swift_name("entries")));
 @property (readonly) NSString *type __attribute__((swift_name("type")));
 @end
 
@@ -2820,6 +2824,11 @@ __attribute__((swift_name("KotlinThrowable")))
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 - (instancetype)initWithMessage:(NSString * _Nullable)message cause:(ClientKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
+
+/**
+ * @note annotations
+ *   kotlin.experimental.ExperimentalNativeApi
+*/
 - (ClientKotlinArray<NSString *> *)getStackTrace __attribute__((swift_name("getStackTrace()")));
 - (void)printStackTrace __attribute__((swift_name("printStackTrace()")));
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -2886,6 +2895,7 @@ __attribute__((swift_name("Secret_std_typesPermission")))
 @property (class, readonly) ClientSecret_std_typesPermission *balance __attribute__((swift_name("balance")));
 @property (class, readonly) ClientSecret_std_typesPermission *allowance __attribute__((swift_name("allowance")));
 + (ClientKotlinArray<ClientSecret_std_typesPermission *> *)values __attribute__((swift_name("values()")));
+@property (class, readonly) NSArray<ClientSecret_std_typesPermission *> *entries __attribute__((swift_name("entries")));
 @end
 
 __attribute__((swift_name("BignumBigNumber")))

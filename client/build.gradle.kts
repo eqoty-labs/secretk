@@ -27,19 +27,14 @@ object Targets {
 }
 
 kotlin {
-    jvm {
-        compilations.all {
-            kotlinOptions.jvmTarget = "11"
-        }
-        withJava()
-    }
+    jvm()
     js(IR) {
         browser {
-            testTask {
+            testTask(Action {
                 useMocha {
                     timeout = "20s"
                 }
-            }
+            })
         }
     }
     val darwinTargets = mutableListOf<KotlinNativeTarget>()
