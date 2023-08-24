@@ -176,10 +176,6 @@ compose.experimental {
     }
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
-}
-
 compose.desktop.nativeApplication {
     targets(kotlin.targets.getByName("macosArm64"))
     distributions {

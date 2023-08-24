@@ -19,7 +19,7 @@ swift-package = "2.1.2"
 okio = "3.5.0"
 ktor = "2.3.3"
 kotlinx-datetime = "0.4.0"
-kotlinx-serialization = "1.5.1"
+kotlinx-serialization = "1.6.0"
 kotlinx-coroutines = "1.7.3"
 
 androidx-activity = "1.7.2"
@@ -27,11 +27,11 @@ androidx-lifecycle = "2.6.1"
 androidx-startup = "1.1.1"
 androidx-appcompat = "1.6.1"
 
-kermit = "1.2.2"
+kermit = "2.0.0-RC5"
 
 getenv = "0.2.0"
 
-compose-jb = "1.4.3"
+compose-jb = "1.5.0-rc04"
 
 bignum = "0.3.8"
 libsodium = "0.8.9"
