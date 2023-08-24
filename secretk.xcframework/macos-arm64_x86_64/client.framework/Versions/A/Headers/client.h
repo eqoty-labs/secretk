@@ -318,6 +318,7 @@ __attribute__((swift_name("MsgExecuteContract")))
 /**
  * @note annotations
  *   kotlinx.serialization.Serializable
+ *   kotlinx.serialization.SerialName(value="wasm/MsgExecuteContract")
 */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgExecuteContractAmino")))
@@ -350,6 +351,11 @@ __attribute__((swift_name("MsgExecuteContractAminoData")))
 @property (readonly) NSString *contract __attribute__((swift_name("contract")));
 @property (readonly) NSString *msg __attribute__((swift_name("msg")));
 @property (readonly) NSString *sender __attribute__((swift_name("sender")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="sent_funds")
+*/
 @property (readonly) NSArray<ClientCosmwasm_std_typesCoin *> *sentFunds __attribute__((swift_name("sentFunds")));
 @end
 
@@ -391,6 +397,7 @@ __attribute__((swift_name("MsgInstantiateContract")))
 /**
  * @note annotations
  *   kotlinx.serialization.Serializable
+ *   kotlinx.serialization.SerialName(value="query_permit")
 */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgQueryPermitAmino")))
@@ -424,8 +431,18 @@ __attribute__((swift_name("MsgQueryPermitAminoData")))
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="allowed_tokens")
+*/
 @property (readonly) NSArray<NSString *> *allowedTokens __attribute__((swift_name("allowedTokens")));
 @property (readonly) NSArray<ClientSecret_std_typesPermission *> *permissions __attribute__((swift_name("permissions")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="permit_name")
+*/
 @property (readonly) NSString *permitName __attribute__((swift_name("permitName")));
 @end
 
@@ -482,6 +499,7 @@ __attribute__((swift_name("MsgSend")))
 /**
  * @note annotations
  *   kotlinx.serialization.Serializable
+ *   kotlinx.serialization.SerialName(value="cosmos-sdk/MsgSend")
 */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgSendAmino")))
@@ -512,7 +530,17 @@ __attribute__((swift_name("MsgSendAminoData")))
 - (instancetype)initWithFromAddress:(NSString *)fromAddress toAddress:(NSString *)toAddress amount:(NSArray<ClientCosmwasm_std_typesCoin *> *)amount __attribute__((swift_name("init(fromAddress:toAddress:amount:)"))) __attribute__((objc_designated_initializer));
 @property (class, readonly, getter=companion) ClientMsgSendAminoDataCompanion *companion __attribute__((swift_name("companion")));
 @property (readonly) NSArray<ClientCosmwasm_std_typesCoin *> *amount __attribute__((swift_name("amount")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="from_address")
+*/
 @property (readonly) NSString *fromAddress __attribute__((swift_name("fromAddress")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="to_address")
+*/
 @property (readonly) NSString *toAddress __attribute__((swift_name("toAddress")));
 @end
 
@@ -552,6 +580,7 @@ __attribute__((swift_name("MsgStoreCode")))
 /**
  * @note annotations
  *   kotlinx.serialization.Serializable
+ *   kotlinx.serialization.SerialName(value="wasm/MsgStoreCode")
 */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MsgStoreCodeAmino")))
@@ -584,6 +613,11 @@ __attribute__((swift_name("MsgStoreCodeAminoData")))
 @property (readonly) NSString * _Nullable builder __attribute__((swift_name("builder")));
 @property (readonly) NSString *sender __attribute__((swift_name("sender")));
 @property (readonly) NSString * _Nullable source __attribute__((swift_name("source")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="wasm_byte_code")
+*/
 @property (readonly) NSString *wasmByteCode __attribute__((swift_name("wasmByteCode")));
 @end
 
@@ -666,7 +700,17 @@ __attribute__((swift_name("StdSignDoc")))
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="account_number")
+*/
 @property (readonly) NSString *accountNumber __attribute__((swift_name("accountNumber")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="chain_id")
+*/
 @property (readonly) NSString *chainId __attribute__((swift_name("chainId")));
 @property (readonly) ClientStdFee *fee __attribute__((swift_name("fee")));
 @property (readonly) NSString *memo __attribute__((swift_name("memo")));
@@ -810,6 +854,7 @@ __attribute__((swift_name("V1BetaType")))
 /**
  * @note annotations
  *   kotlinx.serialization.Serializable
+ *   kotlinx.serialization.SerialName(value="/cosmos.auth.v1beta1.BaseAccount")
 */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Account")))
@@ -820,6 +865,11 @@ __attribute__((swift_name("Account")))
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="account_number")
+*/
 @property (readonly) ClientBignumBigInteger * _Nullable accountNumber __attribute__((swift_name("accountNumber")));
 @property (readonly) NSString *address __attribute__((swift_name("address")));
 @property (readonly) ClientSecp256k1PubKey * _Nullable pub_key __attribute__((swift_name("pub_key")));
@@ -936,6 +986,11 @@ __attribute__((swift_name("CodeInfoResponse")))
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="code_info")
+*/
 @property (readonly) ClientCosmwasm_std_typesCodeInfo *codeInfo __attribute__((swift_name("codeInfo")));
 @end
 
@@ -963,7 +1018,17 @@ __attribute__((swift_name("GasInfo")))
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="gas_used")
+*/
 @property (readonly) NSString *gasUsed __attribute__((swift_name("gasUsed")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="gas_wanted")
+*/
 @property (readonly) NSString *gasWanted __attribute__((swift_name("gasWanted")));
 @end
 
@@ -1123,6 +1188,7 @@ __attribute__((swift_name("ProtocolVersion.Companion")))
 /**
  * @note annotations
  *   kotlinx.serialization.Serializable
+ *   kotlinx.serialization.SerialName(value="/cosmos.crypto.secp256k1.PubKey")
 */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Secp256k1PubKey")))
@@ -1162,6 +1228,11 @@ __attribute__((swift_name("SimulateTxsResponse")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) ClientInt * _Nullable code __attribute__((swift_name("code")));
 @property (readonly) NSArray<NSString *> * _Nullable details __attribute__((swift_name("details")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="gas_info")
+*/
 @property (readonly) ClientGasInfo * _Nullable gasInfo __attribute__((swift_name("gasInfo")));
 @property (readonly) NSString * _Nullable message __attribute__((swift_name("message")));
 @property (readonly) ClientSimulateTxsResponseData * _Nullable result __attribute__((swift_name("result")));
@@ -1268,14 +1339,39 @@ __attribute__((swift_name("TxResponseData")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) ClientInt * _Nullable code __attribute__((swift_name("code")));
 @property (readonly) NSString *codespace __attribute__((swift_name("codespace")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="unused")
+*/
 @property NSArray<NSString *> *data __attribute__((swift_name("data")));
 @property (readonly) NSArray<ClientEvent *> *events __attribute__((swift_name("events")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="gas_used")
+*/
 @property (readonly) NSString * _Nullable gasUsed __attribute__((swift_name("gasUsed")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="gas_wanted")
+*/
 @property (readonly) NSString * _Nullable gasWanted __attribute__((swift_name("gasWanted")));
 @property (readonly) NSString *height __attribute__((swift_name("height")));
 @property (readonly) NSString * _Nullable info __attribute__((swift_name("info")));
 @property (readonly) NSArray<ClientLog *> *logs __attribute__((swift_name("logs")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="data")
+*/
 @property (readonly) NSString *rawData __attribute__((swift_name("rawData")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="raw_log")
+*/
 @property (readonly) NSString * _Nullable rawLog __attribute__((swift_name("rawLog")));
 @property (readonly) NSString *timestamp __attribute__((swift_name("timestamp")));
 @property ClientAnyProto * _Nullable tx __attribute__((swift_name("tx")));
@@ -1382,6 +1478,11 @@ __attribute__((swift_name("TxResponseValid")))
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="tx_response")
+*/
 @property (readonly) ClientTxResponseData *txResponse __attribute__((swift_name("txResponse")));
 @end
 
@@ -3032,6 +3133,11 @@ __attribute__((swift_name("Secret_std_typesStdSignature")))
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="pub_key")
+*/
 @property (readonly) ClientSecret_std_typesPubKey *pubKey __attribute__((swift_name("pubKey")));
 @property (readonly) NSString *signature __attribute__((swift_name("signature")));
 @end
@@ -3051,7 +3157,17 @@ __attribute__((swift_name("Cosmwasm_std_typesCodeInfo")))
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *builder __attribute__((swift_name("builder")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="code_hash")
+*/
 @property (readonly) NSString *codeHash __attribute__((swift_name("codeHash")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="code_id")
+*/
 @property (readonly) NSString *codeId __attribute__((swift_name("codeId")));
 @property (readonly) NSString *creator __attribute__((swift_name("creator")));
 @property (readonly) NSString *source __attribute__((swift_name("source")));
@@ -3361,6 +3477,7 @@ __attribute__((swift_name("Kotlinx_serialization_jsonJson")))
 /**
  * @note annotations
  *   kotlinx.serialization.Serializable
+ *   kotlinx.serialization.SerialName(value="tendermint/PubKeySecp256k1")
 */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Secret_std_typesPubKeySecp256k1")))
@@ -3759,9 +3876,24 @@ __attribute__((swift_name("Secret_std_typesPermit.Params")))
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="allowed_tokens")
+*/
 @property (readonly) NSArray<NSString *> *allowedTokens __attribute__((swift_name("allowedTokens")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="chain_id")
+*/
 @property (readonly) NSString *chainId __attribute__((swift_name("chainId")));
 @property (readonly) NSArray<ClientSecret_std_typesPermission *> *permissions __attribute__((swift_name("permissions")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="permit_name")
+*/
 @property (readonly) NSString *permitName __attribute__((swift_name("permitName")));
 @end
 
@@ -3792,6 +3924,12 @@ __attribute__((swift_name("Kotlinx_serialization_jsonJsonConfiguration")))
 @property (readonly) BOOL allowStructuredMapKeys __attribute__((swift_name("allowStructuredMapKeys")));
 @property (readonly) NSString *classDiscriminator __attribute__((swift_name("classDiscriminator")));
 @property (readonly) BOOL coerceInputValues __attribute__((swift_name("coerceInputValues")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+@property (readonly) BOOL decodeEnumsCaseInsensitive __attribute__((swift_name("decodeEnumsCaseInsensitive")));
 @property (readonly) BOOL encodeDefaults __attribute__((swift_name("encodeDefaults")));
 
 /**
