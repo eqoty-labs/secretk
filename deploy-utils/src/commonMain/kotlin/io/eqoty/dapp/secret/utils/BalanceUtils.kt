@@ -96,8 +96,8 @@ object BalanceUtils {
         nodeInfo: NodeInfo, address: String
     ): String {
         val response = when (nodeInfo) {
-            is Pulsar2 -> {
-                httpClient.post(nodeInfo.faucetAddressEndpoint) {
+            is Pulsar2, is Pulsar3 -> {
+                httpClient.post(nodeInfo.faucetAddressEndpoint!!) {
                     contentType(ContentType.Application.Json)
                     setBody(
                         """

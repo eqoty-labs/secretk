@@ -5,7 +5,6 @@ import io.eqoty.dapp.secret.utils.Constants.NODE_TYPE_ENV_NAME
 import io.getenv
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import okio.Path
 import okio.Path.Companion.toPath
@@ -30,7 +29,17 @@ data class LocalSecret(
 
 @Serializable
 @SerialName("Pulsar2")
+@Deprecated("Use Pulsar3 instead")
 data class Pulsar2(
+    override val type: String,
+    override val chainId: String,
+    override val grpcGatewayEndpoint: String,
+    override val faucetAddressEndpoint: String,
+) : NodeInfo
+
+@Serializable
+@SerialName("Pulsar3")
+data class Pulsar3(
     override val type: String,
     override val chainId: String,
     override val grpcGatewayEndpoint: String,

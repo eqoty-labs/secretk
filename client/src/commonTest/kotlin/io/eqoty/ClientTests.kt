@@ -17,13 +17,14 @@ import okio.Path
 import kotlin.math.ceil
 import kotlin.random.Random
 import kotlin.test.*
+import kotlin.time.Duration.Companion.seconds
 
 expect val fileSystem: FileSystem
 expect val snip721ReferenceImplWasmGz: Path
 
 class ClientTests {
     val json: Json = Json
-    val grpcGatewayEndpoint = "https://api.pulsar.scrttestnet.com"
+    val grpcGatewayEndpoint = "https://api.pulsar3.scrttestnet.com"
     val mnemonic = "sand check forward humble between movie language siege where social crumble mouse"
     var wallet = DirectSigningWallet(mnemonic)
 
@@ -34,7 +35,7 @@ class ClientTests {
 
 
     @Test
-    fun walletsUnique() = runTest {
+    fun walletsUnique() = runTest(timeout = 20.seconds) {
         val mnemonics = mutableSetOf<String>()
         (0..1000).forEach { idx ->
             val randWallet = DirectSigningWallet()
@@ -58,7 +59,7 @@ class ClientTests {
 
     @Test
     fun testCreateViewingKeyAndUseToQuery() = runTest {
-        val contractAddress = "secret1lz4m46vpdn8f2aj8yhtnexus40663udv7hhprm"
+        val contractAddress = "secret1yk7cd95nanxfcac7kfkkdh2dcm2m0v2eu7umz8"
         val accAddress = wallet.getAccounts()[0].address
         val client = SigningCosmWasmClient.init(
             grpcGatewayEndpoint,
@@ -81,8 +82,13 @@ class ClientTests {
                 msg = handleMsg,
             )
         )
-        val simulate = client.simulate(msgs)
-        val gasLimit = (simulate.gasUsed.toDouble() * 1.1).toInt()
+        val gasLimit = if (client.chainId != "secret-dev1") {
+            // public testnet doesn't support simulate: for large txs?
+            50_000
+        } else {
+            val simulate = client.simulate(msgs)
+            (simulate.gasUsed.toDouble() * 1.1).toInt()
+        }
         val response = client.execute(
             msgs,
             txOptions = TxOptions(gasLimit = gasLimit)
@@ -110,7 +116,7 @@ class ClientTests {
 
     @Test
     fun testQueryWithPermit() = runTest {
-        val contractAddress = "secret1lz4m46vpdn8f2aj8yhtnexus40663udv7hhprm"
+        val contractAddress = "secret1yk7cd95nanxfcac7kfkkdh2dcm2m0v2eu7umz8"
         val accAddress = wallet.getAccounts()[0].address
         val client = SigningCosmWasmClient.init(
             grpcGatewayEndpoint,
@@ -147,7 +153,7 @@ class ClientTests {
     }
 
     @Test
-    fun testStoreCode() = runTest {
+    fun testStoreCode() = runTest(timeout = 20.seconds) {
         val accAddress = wallet.getAccounts()[0].address
         val client = SigningCosmWasmClient.init(
             grpcGatewayEndpoint,
@@ -206,7 +212,7 @@ class ClientTests {
     }
 
     suspend fun testInstantiateContract(codeHash: String?) {
-        val codeId = 13526
+        val codeId = 797
         val accAddress = wallet.getAccounts()[0].address
         val client = SigningCosmWasmClient.init(
             grpcGatewayEndpoint,
@@ -233,8 +239,13 @@ class ClientTests {
                 label = "My Snip721" + ceil(Random.nextDouble() * 10000),
             )
         )
-        val simulate = client.simulate(msgs)
-        val gasLimit = (simulate.gasUsed.toDouble() * 1.1).toInt()
+        val gasLimit = if (client.chainId != "secret-dev1") {
+            // public testnet doesn't support simulate: for large txs?
+            50_000
+        } else {
+            val simulate = client.simulate(msgs)
+            (simulate.gasUsed.toDouble() * 1.1).toInt()
+        }
         val instantiateResponse = client.execute(
             msgs,
             txOptions = TxOptions(gasLimit = gasLimit)
