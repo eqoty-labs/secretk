@@ -4,7 +4,6 @@ import io.eqoty.secret.std.contract.msg.SnipMsgs.ExecuteAnswer.ResponseStatus
 import io.eqoty.secret.std.types.Permit
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlin.jvm.JvmInline
 
 
 object Snip721Msgs {
@@ -168,23 +167,20 @@ object Snip721Msgs {
         val quantityMintedThisRun: UInt?,
     )
 
+
     @Serializable
-    sealed interface Expiration {
+    data class Expiration(
+        /// expires at this block height
+        @SerialName("at_height")
+        val atHeight: ULong? = null,
+        /// expires at the time in seconds since 01/01/1970
+        @SerialName("at_time")
+        val atTime: ULong? = null,
+        /// never expires
+        val never: Never? = null,
+    ) {
         @Serializable
-        data class AtHeight(
-            /// expires at this block height
-            @SerialName("at_height") val atHeight: ULong? = null,
-        ) : Expiration
-
-        @Serializable
-        data class AtTime(
-            /// expires at the time in seconds since 01/01/1970
-            @SerialName("at_time") val atTime: ULong? = null,
-        ) : Expiration
-
-        @JvmInline
-        @Serializable
-        value class ExpirationNever(private val never: String) : Expiration
+        class Never
     }
 
 
