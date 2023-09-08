@@ -102,7 +102,7 @@ kotlin {
         val jsMain by getting {
             dependsOn(commonMain)
             dependencies {
-                implementation(compose.web.core)
+                implementation(compose.html.core)
                 implementation(npm("@metamask/detect-provider", "^1.2.0"))
                 implementation(npm("web3", "^1.7.0"))
                 implementation(npm("@walletconnect/web3-provider", "^1.8.0"))

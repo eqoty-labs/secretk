@@ -12,7 +12,7 @@ pluginManagement {
     }
     plugins {
         // See https://jmfayard.github.io/refreshVersions
-        id("de.fayard.refreshVersions") version "0.60.0"
+        id("de.fayard.refreshVersions") version "0.60.2"
     }
 }
 
@@ -44,7 +44,7 @@ plugins {
 
 refreshVersions {
     rejectVersionIf {
-        candidate.stabilityLevel != StabilityLevel.ReleaseCandidate
+        candidate.stabilityLevel >= StabilityLevel.ReleaseCandidate
     }
 }
 
