@@ -7,9 +7,9 @@
       "faucetAddressEndpoint": "http://localhost:5000/faucet?address="
     },
     {
-      "type": "Pulsar2",
-      "chainId": "pulsar-2",
-      "grpcGatewayEndpoint": "https://pulsar-2.api.trivium.network:1317",
+      "type": "Pulsar3",
+      "chainId": "pulsar-3",
+      "grpcGatewayEndpoint": "https://pulsar-3.api.trivium.network:1317",
       "faucetAddressEndpoint": "https://faucetbe.pulsar.scrttestnet.com/credit"
     },
     {

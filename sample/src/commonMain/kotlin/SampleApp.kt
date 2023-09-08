@@ -18,7 +18,7 @@ import kotlinx.serialization.json.jsonPrimitive
 // a `secret-4` nft contract`
 //val contractAddress = "secret1d96jn9azwqw40paqyd5g02kz0ye0udhhqlue7j"
 // a `pulsar-3` nft contract
-val contractAddress = "secret1lz4m46vpdn8f2aj8yhtnexus40663udv7hhprm"
+val contractAddress = "secret1wwj677a02ca3amdkw4qy45rpk5ydgussnwlq7x"
 
 @Composable
 fun SampleApp(

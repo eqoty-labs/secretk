@@ -92,8 +92,7 @@ fun main() {
 }
 
 enum class Chain(val id: String, val grpcGatewayEndpoint: String, val rpcEndpoint: String) {
-    Pulsar2("pulsar-2", "https://api.pulsar.scrttestnet.com", "https://rpc.pulsar.scrttestnet.com"),
-    Pulsar3("pulsar-3", "https://api.pulsar3.scrttestnet.com", "https://rpc.pulsar3.scrttestnet.com"),
+    Pulsar3("pulsar-3", "https://api.pulsar.scrttestnet.com", "https://rpc.pulsar.scrttestnet.com"),
     Secret4("secret-4", "https://secret-4.api.trivium.network:1317", "https://secret-4.api.trivium.network:26657")
 }
 
