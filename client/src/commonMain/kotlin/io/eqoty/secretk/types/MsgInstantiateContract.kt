@@ -31,7 +31,9 @@ class MsgInstantiateContract(
      * - "AF74387E276BE8874F07BEC3A87023EE49B0E7EBE08178C49D0A49C3C98ED60E"
      * - "0xAF74387E276BE8874F07BEC3A87023EE49B0E7EBE08178C49D0A49C3C98ED60E"
      */
-    codeHash: String?
+    codeHash: String?,
+    /** The address of the admin account for enabling contract migration, if any */
+    val admin: String? = null,
 ) : EncryptedMsg<MsgInstantiateContractProto> {
     private var initMsgEncrypted: UByteArray? = null
     var codeHash: String? = codeHash
@@ -72,6 +74,7 @@ class MsgInstantiateContract(
             // callbackSig & callbackCodeHash are internal stuff that doesn't matter here
             callbackSig = null,
             callbackCodeHash = null,
+            admin = admin
         )
 
         return ProtoMsg(

@@ -193,27 +193,35 @@ class ClientTests {
 
     @Test
     fun testInstantiateContractWithCodeHash() = runTest {
-        testInstantiateContract("5b64d22c7774b11cbc3aac55168d11f624a51921679b005df7d59487d254c892")
+        testInstantiateContract(
+            wallet.getAccounts()[0].address,
+            "5b64d22c7774b11cbc3aac55168d11f624a51921679b005df7d59487d254c892"
+        )
     }
 
     @Test
     fun testInstantiateContractWithNullCodeHash() = runTest {
-        testInstantiateContract(null)
+        testInstantiateContract(wallet.getAccounts()[0].address, null)
     }
 
     @Test
     fun testInstantiateContractWithEmptyStringCodeHash() = runTest {
-        testInstantiateContract("")
+        testInstantiateContract(wallet.getAccounts()[0].address, "")
     }
 
     @Test
     fun testInstantiateContractWithBlankStringCodeHash() = runTest {
-        testInstantiateContract("  ")
+        testInstantiateContract(wallet.getAccounts()[0].address, "  ")
     }
 
-    suspend fun testInstantiateContract(codeHash: String?) {
-        val codeId = 797
+    @Test
+    fun testMigrateContract() = runTest {
         val accAddress = wallet.getAccounts()[0].address
+        testInstantiateContract(accAddress, null, accAddress)
+    }
+
+    suspend fun testInstantiateContract(sender: String, codeHash: String?, admin: String? = null) {
+        val codeId = 797
         val client = SigningCosmWasmClient.init(
             grpcGatewayEndpoint,
             wallet
@@ -233,10 +241,11 @@ class ClientTests {
         val msgs = listOf(
             MsgInstantiateContract(
                 codeId = codeId,
-                sender = accAddress,
+                sender = sender,
                 codeHash = codeHash,
                 initMsg = initMsg,
                 label = "My Snip721" + ceil(Random.nextDouble() * 10000),
+                admin = admin
             )
         )
         val gasLimit = if (client.chainId != "secret-dev1") {
