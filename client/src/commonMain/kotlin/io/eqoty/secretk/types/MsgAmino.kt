@@ -9,6 +9,20 @@ import kotlinx.serialization.Serializable
 sealed interface MsgAmino
 
 @Serializable
+@SerialName("wasm/MsgMigrateContract")
+class MsgMigrateContractAmino(
+    val value: MsgMigrateContractAminoData,
+) : MsgAmino
+
+@Serializable
+class MsgMigrateContractAminoData(
+    val sender: String,
+    val contract: String,
+    val msg: String,
+    @SerialName("code_id")
+    val codeId: Int,
+)
+@Serializable
 @SerialName("wasm/MsgExecuteContract")
 class MsgExecuteContractAmino(
     val value: MsgExecuteContractAminoData,

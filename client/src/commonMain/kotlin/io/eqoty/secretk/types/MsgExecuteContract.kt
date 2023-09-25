@@ -35,7 +35,7 @@ class MsgExecuteContract(
 ) : EncryptedMsg<MsgExecuteContractProto> {
 
     private var msgEncrypted: UByteArray? = null
-    var codeHash: String? = codeHash
+    override var codeHash: String? = codeHash
         set(value) {
             field = if (!value.isNullOrBlank()) {
                 value.replace("0x", "").lowercase()

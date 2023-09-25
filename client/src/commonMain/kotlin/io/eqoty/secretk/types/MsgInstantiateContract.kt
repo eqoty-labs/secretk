@@ -36,7 +36,7 @@ class MsgInstantiateContract(
     val admin: String? = null,
 ) : EncryptedMsg<MsgInstantiateContractProto> {
     private var initMsgEncrypted: UByteArray? = null
-    var codeHash: String? = codeHash
+    override var codeHash: String? = codeHash
         set(value) {
             field = if (!value.isNullOrBlank()) {
                 value.replace("0x", "").lowercase()

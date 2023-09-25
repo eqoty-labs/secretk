@@ -152,20 +152,14 @@ class ClientTests {
         println("Num Tokens Response: $numTokens")
     }
 
-    @Test
-    fun testStoreCode() = runTest(timeout = 20.seconds) {
-        val accAddress = wallet.getAccounts()[0].address
-        val client = SigningCosmWasmClient.init(
-            grpcGatewayEndpoint,
-            wallet
-        )
+    suspend fun storeCode(client: SigningCosmWasmClient, sender: String): Int {
         val wasmBytes =
             fileSystem.read(snip721ReferenceImplWasmGz) {
                 readByteArray()
             }
         val msgs = listOf(
             MsgStoreCode(
-                sender = accAddress,
+                sender = sender,
                 wasmByteCode = wasmBytes.toUByteArray(),
             )
         )
@@ -181,7 +175,17 @@ class ClientTests {
             ?.attributes
             ?.find { it.key == "code_id" }?.value!!
         logger.i("codeId:  $codeId")
+        return codeId.toInt()
+    }
 
+    @Test
+    fun testStoreCode() = runTest(timeout = 20.seconds) {
+        val accAddress = wallet.getAccounts()[0].address
+        val client = SigningCosmWasmClient.init(
+            grpcGatewayEndpoint,
+            wallet
+        )
+        val codeId = storeCode(client, accAddress)
 
         // contract hash, useful for contract composition
         val codeInfo = client.getCodeInfoByCodeId(codeId)
@@ -193,39 +197,79 @@ class ClientTests {
 
     @Test
     fun testInstantiateContractWithCodeHash() = runTest {
+        val accAddress = wallet.getAccounts()[0].address
+        val client = SigningCosmWasmClient.init(
+            grpcGatewayEndpoint,
+            wallet
+        )
         testInstantiateContract(
-            wallet.getAccounts()[0].address,
-            "5b64d22c7774b11cbc3aac55168d11f624a51921679b005df7d59487d254c892"
+            client,
+            accAddress,
+            "5b64d22c7774b11cbc3aac55168d11f624a51921679b005df7d59487d254c892",
+            accAddress
         )
     }
 
     @Test
     fun testInstantiateContractWithNullCodeHash() = runTest {
-        testInstantiateContract(wallet.getAccounts()[0].address, null)
-    }
-
-    @Test
-    fun testInstantiateContractWithEmptyStringCodeHash() = runTest {
-        testInstantiateContract(wallet.getAccounts()[0].address, "")
-    }
-
-    @Test
-    fun testInstantiateContractWithBlankStringCodeHash() = runTest {
-        testInstantiateContract(wallet.getAccounts()[0].address, "  ")
-    }
-
-    @Test
-    fun testMigrateContract() = runTest {
         val accAddress = wallet.getAccounts()[0].address
-        testInstantiateContract(accAddress, null, accAddress)
-    }
-
-    suspend fun testInstantiateContract(sender: String, codeHash: String?, admin: String? = null) {
-        val codeId = 797
         val client = SigningCosmWasmClient.init(
             grpcGatewayEndpoint,
             wallet
         )
+        testInstantiateContract(client, accAddress, null, accAddress)
+    }
+
+    @Test
+    fun testInstantiateContractWithEmptyStringCodeHash() = runTest {
+        val accAddress = wallet.getAccounts()[0].address
+        val client = SigningCosmWasmClient.init(
+            grpcGatewayEndpoint,
+            wallet
+        )
+        testInstantiateContract(client, accAddress, "", accAddress)
+    }
+
+    @Test
+    fun testInstantiateContractWithBlankStringCodeHash() = runTest {
+        val accAddress = wallet.getAccounts()[0].address
+        val client = SigningCosmWasmClient.init(
+            grpcGatewayEndpoint,
+            wallet
+        )
+        testInstantiateContract(client, accAddress, "  ", accAddress)
+    }
+
+    @Test
+    fun testMigrateContract() = runTest(timeout = 30.seconds) {
+        val senderAddr = wallet.getAccounts()[0].address
+        val client = SigningCosmWasmClient.init(
+            grpcGatewayEndpoint,
+            wallet
+        )
+        val contractAddr = testInstantiateContract(client, senderAddr, null, senderAddr)
+        val codeId = storeCode(client, senderAddr)
+        val msgs = listOf(
+            MsgMigrateContract(
+                sender = senderAddr,
+                contractAddress = contractAddr,
+                codeId = codeId
+            )
+        )
+        val gasLimit = (100_000.toDouble() * 1.1).toInt()
+        client.execute(
+            msgs,
+            txOptions = TxOptions(gasLimit = gasLimit)
+        )
+    }
+
+    suspend fun testInstantiateContract(
+        client: SigningCosmWasmClient,
+        sender: String,
+        codeHash: String?,
+        admin: String? = null
+    ): String {
+        val codeId = 797
         val initMsg =
             """
             {
@@ -265,6 +309,7 @@ class ClientTests {
             ?.find { it.key == "contract_address" }?.value!!
         logger.i("contract address:  $contractAddress")
         assertContains(contractAddress, "secret1")
+        return contractAddress
     }
 
     @Test

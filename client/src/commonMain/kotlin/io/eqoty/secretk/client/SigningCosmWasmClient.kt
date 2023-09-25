@@ -112,7 +112,7 @@ class SigningCosmWasmClient(
             postSimulateTx(txRawBytes)
         } catch (t: Throwable) {
             val nonces = msgs.map { msg ->
-                msg.populateCodeHash()
+                if (msg is EncryptedMsg) msg.populateCodeHash()
                 msg.toProto(this.restClient.enigmautils).value
             }.map { anyProto ->
                 extractMessageNonceIfNeeded(anyProto)
@@ -136,7 +136,7 @@ class SigningCosmWasmClient(
             postTx(txRawBytes)
         } catch (t: Throwable) {
             val nonces = msgs.map { msg ->
-                msg.populateCodeHash()
+                if (msg is EncryptedMsg) msg.populateCodeHash()
                 msg.toProto(this.restClient.enigmautils).value
             }.map { anyProto ->
                 extractMessageNonceIfNeeded(anyProto)
@@ -214,7 +214,7 @@ class SigningCosmWasmClient(
             value = TxBodyValue(
                 messages = msgs
                     .map { msg ->
-                        msg.populateCodeHash()
+                        if (msg is EncryptedMsg) msg.populateCodeHash()
                         msg.toProto(this.restClient.enigmautils)
                     },
                 memo = memo
@@ -262,7 +262,7 @@ class SigningCosmWasmClient(
     ): TxRawProto {
         val signMode = wallet.getSignMode() ?: SignMode.SIGN_MODE_LEGACY_AMINO_JSON
         val msgs = messages.map { msg ->
-            msg.populateCodeHash()
+            if (msg is EncryptedMsg) msg.populateCodeHash()
             msg.toAmino(this.restClient.enigmautils)
         }
 
@@ -283,7 +283,7 @@ class SigningCosmWasmClient(
             value = TxBodyValue(
                 messages = messages
                     .map { msg ->
-                        msg.populateCodeHash()
+                        if (msg is EncryptedMsg) msg.populateCodeHash()
                         msg.toProto(this.restClient.enigmautils)
                     },
                 memo = memo
@@ -309,14 +309,24 @@ class SigningCosmWasmClient(
         )
     }
 
-    private suspend fun Msg<*>.populateCodeHash() {
-        if (this is MsgExecuteContract) {
-            if (codeHash.isNullOrBlank()) {
-                codeHash = restClient.getCodeHashByContractAddr(contractAddress)
+    private suspend fun EncryptedMsg<*>.populateCodeHash() {
+        when (this) {
+            is MsgExecuteContract -> {
+                if (codeHash.isNullOrBlank()) {
+                    codeHash = restClient.getCodeHashByContractAddr(contractAddress)
+                }
             }
-        } else if (this is MsgInstantiateContract) {
-            if (codeHash.isNullOrBlank()) {
-                codeHash = restClient.getCodeInfoByCodeId(codeId.toString()).codeHash
+
+            is MsgInstantiateContract -> {
+                if (codeHash.isNullOrBlank()) {
+                    codeHash = restClient.getCodeInfoByCodeId(codeId).codeHash
+                }
+            }
+
+            is MsgMigrateContract -> {
+                if (codeHash.isNullOrBlank()) {
+                    codeHash = restClient.getCodeInfoByCodeId(codeId).codeHash
+                }
             }
         }
     }
@@ -378,6 +388,10 @@ class SigningCosmWasmClient(
                     }
 
                     is MsgSendProto -> {
+                        ProtoBuf.encodeToByteArray(message.value)
+                    }
+
+                    is MsgMigrateContractProto -> {
                         ProtoBuf.encodeToByteArray(message.value)
                     }
 

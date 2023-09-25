@@ -5,7 +5,7 @@ import io.eqoty.secretk.types.proto.ProtoMsg
 import io.eqoty.secretk.utils.EncryptionUtils
 import kotlin.jvm.JvmName
 
-interface Msg<M : MsgProto> {
+sealed interface Msg<M : MsgProto> {
 
     val sender: String
 
@@ -19,7 +19,9 @@ interface Msg<M : MsgProto> {
     suspend fun toAmino(utils: EncryptionUtils?): MsgAmino
 }
 
-interface EncryptedMsg<M : MsgProto> : Msg<M> {
+sealed interface EncryptedMsg<M : MsgProto> : Msg<M> {
+
+    var codeHash: String?
 
     fun getMissingParameterWarning(method: String, parameter: String): String =
         """${method} was used without the "codeHash" parameter. 
@@ -39,7 +41,7 @@ interface EncryptedMsg<M : MsgProto> : Msg<M> {
     suspend fun toAmino(utils: EncryptionUtils): MsgAmino
 }
 
-interface UnencryptedMsg<M : MsgProto> : Msg<M> {
+sealed interface UnencryptedMsg<M : MsgProto> : Msg<M> {
 
     @Suppress("INAPPLICABLE_JVM_NAME")
     @JvmName("toProtoNullable")
