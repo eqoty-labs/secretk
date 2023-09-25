@@ -15,20 +15,25 @@ class AnyProto(
 ) {
     fun toMsg(): MsgProto {
         return when (typeUrl) {
-            "/secret.compute.v1beta1.MsgInstantiateContract" -> {
-                ProtoBuf.decodeFromByteArray(value) as MsgInstantiateContractProto
-            }
 
             "/secret.compute.v1beta1.MsgExecuteContract" -> {
                 ProtoBuf.decodeFromByteArray(value) as MsgExecuteContractProto
             }
 
-            "/secret.compute.v1beta1.MsgStoreCode" -> {
-                ProtoBuf.decodeFromByteArray(value) as MsgStoreCodeProto
-            }
-
             "/cosmos.bank.v1beta1.MsgSend" -> {
                 ProtoBuf.decodeFromByteArray(value) as MsgSendProto
+            }
+
+            "/secret.compute.v1beta1.MsgInstantiateContract" -> {
+                ProtoBuf.decodeFromByteArray(value) as MsgInstantiateContractProto
+            }
+
+            "/secret.compute.v1beta1.MsgMigrateContract" -> {
+                ProtoBuf.decodeFromByteArray(value) as MsgMigrateContractProto
+            }
+
+            "/secret.compute.v1beta1.MsgStoreCode" -> {
+                ProtoBuf.decodeFromByteArray(value) as MsgStoreCodeProto
             }
 
             else -> throw UnsupportedOperationException("calling toMsg() on an Any proto with typeUrl:${typeUrl} is not supported")

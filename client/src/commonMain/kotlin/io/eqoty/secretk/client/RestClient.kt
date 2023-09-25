@@ -139,6 +139,11 @@ internal class RestClient(
         return responseData.codeInfo
     }
 
+    suspend fun getContractInfoByAddress(address: String): ContractInfoResponse {
+        val path = "/compute/v1beta1/info/$address"
+        return get(path)
+    }
+
 
     /**
      * Makes a smart query on the contract and parses the reponse as JSON.
@@ -185,7 +190,8 @@ internal class RestClient(
 
     suspend fun decrypt(t: Throwable, nonce: UByteArray): Throwable {
         val message = t.message ?: return t
-        val errorMessageRgx = Regex("""encrypted: (.+?): (?:instantiate|execute|migrate|query|reply to) contract failed""")
+        val errorMessageRgx =
+            Regex("""encrypted: (.+?): (?:instantiate|execute|migrate|query|reply to) contract failed""")
         val matches = errorMessageRgx.findAll(message).toList()
         if (matches.isEmpty() || matches.first().groupValues.size < 2) {
             return t

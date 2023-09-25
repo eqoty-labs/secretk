@@ -14,21 +14,27 @@ class MsgDataProto(
     @ProtoNumber(2) val data: ByteArray? = null,
 ) : MsgProto() {
     fun toMsgResponseType(): MsgProto = when (msgType) {
+
+        "/secret.compute.v1beta1.MsgExecuteContract" -> {
+            ProtoBuf.decodeFromByteArray(data ?: byteArrayOf()) as MsgExecuteContractResponseProto
+        }
+
+        "/cosmos.bank.v1beta1.MsgSend" -> {
+            ProtoBuf.decodeFromByteArray(data ?: byteArrayOf()) as MsgSendResponseProto
+        }
+
         "/secret.compute.v1beta1.MsgInstantiateContract" -> {
             ProtoBuf.decodeFromByteArray(data ?: byteArrayOf()) as MsgInstantiateContractResponseProto
         }
 
-        "/secret.compute.v1beta1.MsgExecuteContract" -> {
-            ProtoBuf.decodeFromByteArray(data ?: byteArrayOf()) as MsgExecuteContractResponseProto
+        "/secret.compute.v1beta1.MsgMigrateContract" -> {
+            ProtoBuf.decodeFromByteArray(data ?: byteArrayOf()) as MsgMigrateContractResponseProto
         }
 
         "/secret.compute.v1beta1.MsgStoreCode" -> {
             ProtoBuf.decodeFromByteArray(data ?: byteArrayOf()) as MsgStoreCodeResponseProto
         }
 
-        "/cosmos.bank.v1beta1.MsgSend" -> {
-            ProtoBuf.decodeFromByteArray(data ?: byteArrayOf()) as MsgSendResponseProto
-        }
 
         else -> throw UnsupportedOperationException("calling toMsg() on an Any proto with typeUrl:${msgType} is not supported")
     }

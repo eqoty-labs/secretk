@@ -20,7 +20,7 @@ import kotlin.test.*
 import kotlin.time.Duration.Companion.seconds
 
 expect val fileSystem: FileSystem
-expect val snip721ReferenceImplWasmGz: Path
+expect val snip721MigratableWasmGz: Path
 
 class ClientTests {
     val json: Json = Json
@@ -154,7 +154,7 @@ class ClientTests {
 
     suspend fun storeCode(client: SigningCosmWasmClient, sender: String): Int {
         val wasmBytes =
-            fileSystem.read(snip721ReferenceImplWasmGz) {
+            fileSystem.read(snip721MigratableWasmGz) {
                 readByteArray()
             }
         val msgs = listOf(
@@ -191,7 +191,7 @@ class ClientTests {
         val codeInfo = client.getCodeInfoByCodeId(codeId)
         logger.i("code hash: ${codeInfo.codeHash}")
 
-        assertEquals("5b64d22c7774b11cbc3aac55168d11f624a51921679b005df7d59487d254c892", codeInfo.codeHash)
+        assertEquals("203e69ab1cd265aa8d1f61cf8510c53fa8210cfd4bab7891616bae9e94547b26", codeInfo.codeHash)
     }
 
 
@@ -248,19 +248,22 @@ class ClientTests {
             wallet
         )
         val contractAddr = testInstantiateContract(client, senderAddr, null, senderAddr)
-        val codeId = storeCode(client, senderAddr)
+        val newCodeId = storeCode(client, senderAddr)
+        assertNotEquals(newCodeId, client.getContractInfoByAddress(contractAddr).contractInfo.codeId)
         val msgs = listOf(
             MsgMigrateContract(
                 sender = senderAddr,
                 contractAddress = contractAddr,
-                codeId = codeId
+                codeId = newCodeId,
+                msg = "{}"
             )
         )
-        val gasLimit = (100_000.toDouble() * 1.1).toInt()
+        val gasLimit = (1_000_000.toDouble() * 1.1).toInt()
         client.execute(
             msgs,
             txOptions = TxOptions(gasLimit = gasLimit)
         )
+        assertEquals(newCodeId, client.getContractInfoByAddress(contractAddr).contractInfo.codeId)
     }
 
     suspend fun testInstantiateContract(
@@ -269,17 +272,20 @@ class ClientTests {
         codeHash: String?,
         admin: String? = null
     ): String {
-        val codeId = 797
+        val codeId = 1331
         val initMsg =
             """
-            {
-                "name": "lucasfirstsnip721",
-                "symbol": "luca721",
-                "entropy": "sadfsadfasdfvabadfb",
-                "config": {
-                    "public_token_supply": false,
-                    "public_owner": true
-                }
+            { 
+                "instantiate": {
+                    "name": "lucasfirstsnip721",
+                    "symbol": "luca721",
+                    "entropy": "sadfsadfasdfvabadfb",
+                    "config": {
+                        "public_token_supply": false,
+                        "public_owner": true
+                    }
+                },
+                "max_migration_complete_event_subscribers": 0
             }
             """
         val msgs = listOf(

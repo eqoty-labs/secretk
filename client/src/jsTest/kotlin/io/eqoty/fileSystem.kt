@@ -6,5 +6,5 @@ import okio.Path
 import okio.Path.Companion.toPath
 
 actual val fileSystem: FileSystem = NodeJsFileSystem
-actual val snip721ReferenceImplWasmGz: Path =
-    "./kotlin/files/snip721-reference-impl.wasm.gz".toPath()
+actual val snip721MigratableWasmGz: Path =
+    "./kotlin/files/snip721_migratable.wasm.gz".toPath()
