@@ -17,19 +17,15 @@ data class ContractInfoResponse(
         @SerialName("code_id")
         val codeId: Int,
 
-        @SerialName("creator")
         val creator: String,
 
-        @SerialName("label")
         val label: String,
 
-        @SerialName("created")
-        val creationInfo: CreationInfo,
+        val created: CreationInfo,
 
         @SerialName("ibc_port_id")
         val ibcPortId: String,
 
-        @SerialName("admin")
         val admin: String,
 
         @SerialName("admin_proof")
