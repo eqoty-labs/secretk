@@ -3,7 +3,7 @@ package io.eqoty.secretk.client
 import io.eqoty.cosmwasm.std.types.CodeInfo
 import io.eqoty.secretk.BroadcastMode
 import io.eqoty.secretk.types.response.*
-import io.eqoty.secretk.types.result.GetNonceResult
+import io.eqoty.secretk.types.response.GetNonceResult
 import io.eqoty.secretk.utils.EncryptionUtils
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
@@ -19,14 +19,11 @@ open class CosmWasmClient protected constructor(
     /** Any address the chain considers valid (valid bech32 with proper prefix) */
     protected var anyValidAddress: String? = null
 
-    suspend fun getCodeInfoByCodeId(codeId: String): CodeInfo =
-        restClient.getCodeInfoByCodeId(codeId)
+    suspend fun getCodeInfoByCodeId(codeId: String): CodeInfo = restClient.getCodeInfoByCodeId(codeId)
 
-    suspend fun getCodeHashByContractAddr(addr: String): String =
-        restClient.getCodeHashByContractAddr(addr)
+    suspend fun getCodeHashByContractAddr(addr: String): String = restClient.getCodeHashByContractAddr(addr)
 
-    suspend fun getLabelByContractAddr(addr: String): String =
-        restClient.getLabelByContractAddr(addr)
+    suspend fun getLabelByContractAddr(addr: String): String = restClient.getLabelByContractAddr(addr)
 
     // The /node_info endpoint
     suspend fun nodeInfo(): NodeInfoResponse {

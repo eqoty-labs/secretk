@@ -1,4 +1,4 @@
-package io.eqoty.secretk.types.result
+package io.eqoty.secretk.types.response
 
 import com.ionspin.kotlin.bignum.integer.BigInteger
 
