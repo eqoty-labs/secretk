@@ -89,6 +89,10 @@ class SigningCosmWasmClient(
                 msg.msg.toUByteArray().copyOfRange(0, 32)
             }
 
+            is MsgMigrateContractProto -> {
+                msg.msg.toUByteArray().copyOfRange(0, 32)
+            }
+
             else -> null
         }
     }

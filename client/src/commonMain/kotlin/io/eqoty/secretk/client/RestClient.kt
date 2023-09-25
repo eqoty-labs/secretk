@@ -185,7 +185,7 @@ internal class RestClient(
 
     suspend fun decrypt(t: Throwable, nonce: UByteArray): Throwable {
         val message = t.message ?: return t
-        val errorMessageRgx = Regex("""encrypted: (.+?): (?:instantiate|execute|query|reply to) contract failed""")
+        val errorMessageRgx = Regex("""encrypted: (.+?): (?:instantiate|execute|migrate|query|reply to) contract failed""")
         val matches = errorMessageRgx.findAll(message).toList()
         if (matches.isEmpty() || matches.first().groupValues.size < 2) {
             return t
