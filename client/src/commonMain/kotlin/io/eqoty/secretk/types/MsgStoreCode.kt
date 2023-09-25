@@ -20,7 +20,7 @@ class MsgStoreCode(
         // TODO: val wasmByteCode = gzipWasm()
         val msgContent = MsgStoreCodeProto(
             sender = addressToBytes(this.sender),
-            wasmByteCode = this.wasmByteCode.toByteArray(),
+            wasmByteCode = this.wasmByteCode.asByteArray(),
             source = this.source,
             builder = this.builder,
         )
@@ -36,7 +36,7 @@ class MsgStoreCode(
         return MsgStoreCodeAmino(
             MsgStoreCodeAminoData(
                 sender = sender,
-                wasmByteCode = wasmByteCode.toByteArray().encodeBase64(),
+                wasmByteCode = wasmByteCode.asByteArray().encodeBase64(),
                 source = source,
                 builder = builder
             )

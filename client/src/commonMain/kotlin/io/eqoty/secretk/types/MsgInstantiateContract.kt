@@ -69,7 +69,7 @@ class MsgInstantiateContract(
             sender = addressToBytes(sender),
             codeId = codeId!!,
             label = label,
-            initMsg = initMsgEncrypted!!.toByteArray(),
+            initMsg = initMsgEncrypted!!.asByteArray(),
             initFunds = initFunds.map { it.toProto() },
             // callbackSig & callbackCodeHash are internal stuff that doesn't matter here
             callbackSig = null,

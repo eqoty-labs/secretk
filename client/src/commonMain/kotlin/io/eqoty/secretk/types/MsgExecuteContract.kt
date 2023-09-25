@@ -66,7 +66,7 @@ class MsgExecuteContract(
         val msgContent = MsgExecuteContractProto(
             sender = addressToBytes(sender),
             contract = addressToBytes(contractAddress),
-            msg = msgEncrypted!!.toByteArray(),
+            msg = msgEncrypted!!.asByteArray(),
             sentFunds = sentFunds.map { it.toProto() },
             // callbackSig & callbackCodeHash are internal stuff that doesn't matter here
 //            callbackSig = byteArrayOf(),
@@ -95,7 +95,7 @@ class MsgExecuteContract(
             MsgExecuteContractAminoData(
                 sender = sender,
                 contract = contractAddress,
-                msg = msgEncrypted!!.toByteArray().encodeBase64(),
+                msg = msgEncrypted!!.asByteArray().encodeBase64(),
                 sentFunds = sentFunds,
             )
         )
