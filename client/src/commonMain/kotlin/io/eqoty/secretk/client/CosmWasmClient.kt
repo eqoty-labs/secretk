@@ -19,7 +19,7 @@ open class CosmWasmClient protected constructor(
     /** Any address the chain considers valid (valid bech32 with proper prefix) */
     protected var anyValidAddress: String? = null
 
-    suspend fun getCodeInfoByCodeId(codeId: String): CodeInfo = restClient.getCodeInfoByCodeId(codeId)
+    suspend fun getCodeInfoByCodeId(codeId: Int): CodeInfo = restClient.getCodeInfoByCodeId(codeId)
 
     suspend fun getCodeHashByContractAddr(addr: String): String = restClient.getCodeHashByContractAddr(addr)
 

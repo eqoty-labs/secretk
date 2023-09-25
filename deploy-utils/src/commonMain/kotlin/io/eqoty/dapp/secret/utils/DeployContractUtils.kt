@@ -70,7 +70,7 @@ object DeployContractUtils {
             ?.find { it.key == "code_id" }?.value!!
         logger.i("codeId:  $codeId")
 
-        return client.getCodeInfoByCodeId(codeId)
+        return client.getCodeInfoByCodeId(codeId.toInt())
     }
 
     suspend fun instantiateCode(

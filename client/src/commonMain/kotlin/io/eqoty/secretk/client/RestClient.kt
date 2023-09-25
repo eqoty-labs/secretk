@@ -133,7 +133,7 @@ internal class RestClient(
         return response.label
     }
 
-    suspend fun getCodeInfoByCodeId(codeId: String): CodeInfo {
+    suspend fun getCodeInfoByCodeId(codeId: Int): CodeInfo {
         val path = "/compute/v1beta1/code/$codeId"
         val responseData: CodeInfoResponse = get(path)
         return responseData.codeInfo

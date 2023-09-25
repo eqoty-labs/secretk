@@ -12,7 +12,7 @@ import kotlinx.serialization.json.jsonObject
 class MsgInstantiateContract(
     override val sender: String,
     /** The id of the contract's WASM code */
-    var codeId: Int?,
+    var codeId: Int,
     /** A unique label across all contracts */
     val label: String,
     /** The input message to the contract's constructor */
