@@ -15,7 +15,7 @@ kotlin = "1.9.10"
 agp = "8.1.1"
 
 vanniktech-publish = "0.25.3"
-swift-package = "2.1.2"
+swift-package = "2.1.4"
 okio = "3.5.0"
 ktor = "2.3.4"
 kotlinx-datetime = "0.4.1"
@@ -27,14 +27,14 @@ androidx-lifecycle = "2.6.2"
 androidx-startup = "1.1.1"
 androidx-appcompat = "1.6.1"
 
-kermit = "2.0.0-RC5"
+kermit = "2.0.1"
 
 getenv = "0.2.0"
 
 compose-jb = "1.5.1"
 
 bignum = "0.3.8"
-libsodium = "0.8.9"
+libsodium = "0.9.0"
 bip39 = "1.0.2-mpp"
 ripemd160 = "1.1.3"
 
