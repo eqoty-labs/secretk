@@ -11,7 +11,7 @@ import kotlinx.serialization.json.jsonObject
 class MsgMigrateContract(
     override val sender: String,
     val contractAddress: String,
-    val msg: String? = null,
+    val msg: String,
     var codeId: Int,
     codeHash: String? = null
 ) : EncryptedMsg<MsgMigrateContractProto> {
@@ -42,7 +42,7 @@ class MsgMigrateContract(
             // The encryption uses a random nonce
             // toProto() & toAmino() are called multiple times during signing
             // so to keep the msg consistent across calls we encrypt the msg only once
-            msgEncrypted = msg?.let { utils.encrypt(codeHash!!, Json.parseToJsonElement(it).jsonObject) } ?: ubyteArrayOf()
+            msgEncrypted = utils.encrypt(codeHash!!, Json.parseToJsonElement(msg).jsonObject)
         }
 
         val msgContent = MsgMigrateContractProto(
@@ -70,7 +70,7 @@ class MsgMigrateContract(
             // The encryption uses a random nonce
             // toProto() & toAmino() are called multiple times during signing
             // so to keep the msg consistent across calls we encrypt the msg only once
-            msgEncrypted = msg?.let { utils.encrypt(codeHash!!, Json.parseToJsonElement(it).jsonObject) } ?: ubyteArrayOf()
+            msgEncrypted = utils.encrypt(codeHash!!, Json.parseToJsonElement(msg).jsonObject)
         }
 
         return MsgMigrateContractAmino(
