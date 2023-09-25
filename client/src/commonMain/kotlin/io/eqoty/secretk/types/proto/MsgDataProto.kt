@@ -35,6 +35,14 @@ class MsgDataProto(
             ProtoBuf.decodeFromByteArray(data ?: byteArrayOf()) as MsgStoreCodeResponseProto
         }
 
+        "/secret.compute.v1beta1.MsgClearAdmin" -> {
+            ProtoBuf.decodeFromByteArray(data ?: byteArrayOf()) as MsgClearAdminResponseProto
+        }
+
+        "/secret.compute.v1beta1.MsgUpdateAdmin" -> {
+            ProtoBuf.decodeFromByteArray(data ?: byteArrayOf()) as MsgUpdateAdminResponseProto
+        }
+
 
         else -> throw UnsupportedOperationException("calling toMsg() on an Any proto with typeUrl:${msgType} is not supported")
     }

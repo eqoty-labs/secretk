@@ -7,7 +7,6 @@ import io.eqoty.secretk.wallet.Wallet
 import io.eqoty.wallet.OfflineSignerOnlyAminoWalletWrapper
 import jslibs.keplrwallet.types.KeplrSignOptionsImpl
 import kotlinx.coroutines.await
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlin.js.Promise

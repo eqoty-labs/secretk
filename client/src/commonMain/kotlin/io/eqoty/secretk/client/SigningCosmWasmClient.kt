@@ -399,6 +399,14 @@ class SigningCosmWasmClient(
                         ProtoBuf.encodeToByteArray(message.value)
                     }
 
+                    is MsgClearAdminProto -> {
+                        ProtoBuf.encodeToByteArray(message.value)
+                    }
+
+                    is MsgUpdateAdminProto -> {
+                        ProtoBuf.encodeToByteArray(message.value)
+                    }
+
                     else -> TODO()
                 }
                 AnyProto(

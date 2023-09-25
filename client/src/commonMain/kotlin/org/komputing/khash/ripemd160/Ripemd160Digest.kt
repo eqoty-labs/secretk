@@ -4,7 +4,7 @@ package org.komputing.khash.ripemd160
  * implementation of RIPEMD see,
  * http://www.esat.kuleuven.ac.be/~bosselae/ripemd160.html
  */
-public class Ripemd160Digest {
+class Ripemd160Digest {
 
     private var h0: Int = 0
     private var h1: Int = 0
@@ -24,7 +24,7 @@ public class Ripemd160Digest {
         reset()
     }
 
-    public fun update(input: Byte) {
+    fun update(input: Byte) {
         xBuf[xBufOff++] = input
 
         if (xBufOff == xBuf.size) {
@@ -35,7 +35,7 @@ public class Ripemd160Digest {
         byteCount++
     }
 
-    public fun update(input: ByteArray, inputOffset: Int, len: Int) {
+    fun update(input: ByteArray, inputOffset: Int, len: Int) {
         var pos = inputOffset
         var toProcess = len
         //
@@ -136,7 +136,7 @@ public class Ripemd160Digest {
         out[outOffset + 3] = word.ushr(24).toByte()
     }
 
-    public fun doFinal(out: ByteArray, outOffset: Int): Int {
+    fun doFinal(out: ByteArray, outOffset: Int): Int {
         finish()
 
         unpackWord(h0, out, outOffset)
@@ -567,7 +567,7 @@ public class Ripemd160Digest {
         }
     }
 
-    public companion object {
-        public const val DIGEST_LENGTH: Int = 20
+    companion object {
+        const val DIGEST_LENGTH: Int = 20
     }
 }

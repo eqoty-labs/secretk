@@ -266,6 +266,54 @@ class ClientTests {
         assertEquals(newCodeId, client.getContractInfoByAddress(contractAddr).contractInfo.codeId)
     }
 
+    @Test
+    fun testClearContractAdmin() = runTest(timeout = 30.seconds) {
+        val senderAddr = wallet.getAccounts()[0].address
+        val client = SigningCosmWasmClient.init(
+            grpcGatewayEndpoint,
+            wallet
+        )
+        val contractAddr = testInstantiateContract(client, senderAddr, null, senderAddr)
+        assertEquals(senderAddr, client.getContractInfoByAddress(contractAddr).contractInfo.admin)
+        val msgs = listOf(
+            MsgClearAdmin(
+                sender = senderAddr,
+                contractAddress = contractAddr,
+            )
+        )
+        val gasLimit = (1_000_000.toDouble() * 1.1).toInt()
+        client.execute(
+            msgs,
+            txOptions = TxOptions(gasLimit = gasLimit)
+        )
+        assertEquals("", client.getContractInfoByAddress(contractAddr).contractInfo.admin)
+    }
+
+    @Test
+    fun testUpdateContractAdmin() = runTest(timeout = 30.seconds) {
+        val senderAddr = wallet.getAccounts()[0].address
+        val client = SigningCosmWasmClient.init(
+            grpcGatewayEndpoint,
+            wallet
+        )
+        val contractAddr = testInstantiateContract(client, senderAddr, null, senderAddr)
+        assertEquals(senderAddr, client.getContractInfoByAddress(contractAddr).contractInfo.admin)
+
+        val msgs = listOf(
+            MsgUpdateAdmin(
+                sender = senderAddr,
+                newAdmin = "secret1yk7cd95nanxfcac7kfkkdh2dcm2m0v2eu7umz8",
+                contractAddress = contractAddr,
+            )
+        )
+        val gasLimit = (1_000_000.toDouble() * 1.1).toInt()
+        client.execute(
+            msgs,
+            txOptions = TxOptions(gasLimit = gasLimit)
+        )
+        assertEquals("secret1yk7cd95nanxfcac7kfkkdh2dcm2m0v2eu7umz8", client.getContractInfoByAddress(contractAddr).contractInfo.admin)
+    }
+
     suspend fun testInstantiateContract(
         client: SigningCosmWasmClient,
         sender: String,

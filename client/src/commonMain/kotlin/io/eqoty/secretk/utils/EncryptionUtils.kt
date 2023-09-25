@@ -1,6 +1,5 @@
 package io.eqoty.secretk.utils
 
-import kotlinx.coroutines.Deferred
 import kotlinx.serialization.json.JsonObject
 
 interface EncryptionUtils {

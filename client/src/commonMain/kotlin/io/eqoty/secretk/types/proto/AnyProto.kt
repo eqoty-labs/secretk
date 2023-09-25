@@ -36,6 +36,14 @@ class AnyProto(
                 ProtoBuf.decodeFromByteArray(value) as MsgStoreCodeProto
             }
 
+            "/secret.compute.v1beta1.MsgUpdateAdmin" -> {
+                ProtoBuf.decodeFromByteArray(value) as MsgUpdateAdminProto
+            }
+
+            "/secret.compute.v1beta1.MsgClearAdmin" -> {
+                ProtoBuf.decodeFromByteArray(value) as MsgClearAdminProto
+            }
+
             else -> throw UnsupportedOperationException("calling toMsg() on an Any proto with typeUrl:${typeUrl} is not supported")
         }
     }

@@ -60,7 +60,7 @@ open class CosmWasmClient protected constructor(
         }
     }
 
-    suspend fun getAccount(address: String): io.eqoty.secretk.types.response.Account {
+    suspend fun getAccount(address: String): Account {
         return try {
             restClient.get<AccountResponse>("/cosmos/auth/v1beta1/accounts/${address}").account
         } catch (t: Throwable) {

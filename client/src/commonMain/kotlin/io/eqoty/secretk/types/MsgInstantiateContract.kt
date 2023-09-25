@@ -67,7 +67,7 @@ class MsgInstantiateContract(
 
         val msgContent = MsgInstantiateContractProto(
             sender = addressToBytes(sender),
-            codeId = codeId!!,
+            codeId = codeId,
             label = label,
             initMsg = initMsgEncrypted!!.asByteArray(),
             initFunds = initFunds.map { it.toProto() },

@@ -1,4 +1,4 @@
-package io.eqoty.utils;
+package io.eqoty.utils
 
 import io.eqoty.secretk.utils.EncryptionUtils
 import kotlinx.coroutines.await

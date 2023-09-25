@@ -22,6 +22,33 @@ class MsgMigrateContractAminoData(
     @SerialName("code_id")
     val codeId: Int,
 )
+
+@Serializable
+@SerialName("wasm/MsgUpdateAdmin")
+class MsgUpdateAdminAmino(
+    val value: MsgUpdateAdminAminoData,
+) : MsgAmino
+
+@Serializable
+class MsgUpdateAdminAminoData(
+    val sender: String,
+    @SerialName("new_admin")
+    val newAdmin: String,
+    val contract: String,
+)
+
+@Serializable
+@SerialName("wasm/MsgClearAdmin")
+class MsgClearAdminAmino(
+    val value: MsgClearAdminAminoData,
+) : MsgAmino
+
+@Serializable
+class MsgClearAdminAminoData(
+    val sender: String,
+    val contract: String,
+)
+
 @Serializable
 @SerialName("wasm/MsgExecuteContract")
 class MsgExecuteContractAmino(

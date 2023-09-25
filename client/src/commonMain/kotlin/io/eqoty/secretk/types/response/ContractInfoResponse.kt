@@ -1,4 +1,4 @@
-package io.eqoty.secretk.types.response;
+package io.eqoty.secretk.types.response
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
