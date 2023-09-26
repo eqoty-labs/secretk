@@ -9,6 +9,9 @@ A Kotlin multiplatform Encryption and REST client for Secret Network utilizing g
 * Contract Execution (MsgExecuteContract)
 * Contract Code Upload (MsgStoreCode)
 * Contract Instantiate (MsgInstantiateContract)
+* Contract Migrate (MsgMigrateContract)
+* Contract Update Admin (MsgUpdateAdmin)
+* Contract Clear Admin (MsgClearAdmin)
 * Bank Send (MsgSend)
 * Web: Delegate signing transactions to Kepler or Metamask browser wallets
 
