@@ -18,7 +18,7 @@ import kotlinx.serialization.json.jsonPrimitive
 // a `secret-4` nft contract`
 //val contractAddress = "secret1d96jn9azwqw40paqyd5g02kz0ye0udhhqlue7j"
 // a `pulsar-3` nft contract
-val contractAddress = "secret1wwj677a02ca3amdkw4qy45rpk5ydgussnwlq7x"
+val contractAddress = "secret13wgwunerja49j68eehvn6ynnfnzceg42uqut5x"
 
 @Composable
 fun SampleApp(
@@ -189,11 +189,14 @@ fun setupAndStartApp() {
     }
 }
 
+enum class Chain(val id: String, val grpcGatewayEndpoint: String, val rpcEndpoint: String) {
+    Pulsar3("pulsar-3", "https://api.pulsar.scrttestnet.com", "https://rpc.pulsar.scrttestnet.com"),
+    Secret4("secret-4", "https://secret-4.api.trivium.network:1317", "https://secret-4.api.trivium.network:26657")
+}
 
 suspend fun clientWithDirectSigningWallet(): SigningCosmWasmClient {
-    val grpcGatewayEndpoint = "https://api.pulsar.scrttestnet.com"
     return SigningCosmWasmClient.init(
-        grpcGatewayEndpoint,
+        Chain.Pulsar3.grpcGatewayEndpoint,
         null
     )
 }
