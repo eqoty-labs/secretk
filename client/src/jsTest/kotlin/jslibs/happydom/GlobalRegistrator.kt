@@ -4,7 +4,7 @@
 package jslibs.happydom
 
 
-external object GlobalRegistrator{
-   fun register()
-   fun unregister()
+external object GlobalRegistrator {
+    fun register()
+    fun unregister()
 }

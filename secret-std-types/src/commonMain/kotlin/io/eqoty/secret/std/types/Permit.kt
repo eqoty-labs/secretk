@@ -25,10 +25,13 @@ data class Permit(
 enum class Permission {
     @SerialName("owner")
     Owner,
+
     @SerialName("history")
     History,
+
     @SerialName("balance")
     Balance,
+
     @SerialName("allowance")
     Allowance,
 }

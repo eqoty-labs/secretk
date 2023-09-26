@@ -1,4 +1,9 @@
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS")
+@file:Suppress(
+    "INTERFACE_WITH_SUPERCLASS",
+    "OVERRIDING_FINAL_MEMBER",
+    "RETURN_TYPE_MISMATCH_ON_OVERRIDE",
+    "CONFLICTING_OVERLOADS"
+)
 
 package web3
 
@@ -36,15 +41,31 @@ external interface Providers {
 }
 
 external interface PromiEvent<T> : Promise<T> {
-    fun once(type: String /* "sending" | "sent" | "error" | "confirmation" | "receipt" | "transactionHash" | "sent" | "sending" */, handler: (payload: Any? /* Error? | TransactionReceipt? | String? | Any? */) -> Unit): PromiEvent<T>
+    fun once(
+        type: String /* "sending" | "sent" | "error" | "confirmation" | "receipt" | "transactionHash" | "sent" | "sending" */,
+        handler: (payload: Any? /* Error? | TransactionReceipt? | String? | Any? */) -> Unit
+    ): PromiEvent<T>
+
     fun once(type: String /* "transactionHash" */, handler: (transactionHash: String) -> Unit): PromiEvent<T>
     fun once(type: String /* "receipt" */, handler: (receipt: TransactionReceipt) -> Unit): PromiEvent<T>
-    fun once(type: String /* "confirmation" */, handler: (confirmationNumber: Number, receipt: TransactionReceipt, latestBlockHash: String) -> Unit): PromiEvent<T>
+    fun once(
+        type: String /* "confirmation" */,
+        handler: (confirmationNumber: Number, receipt: TransactionReceipt, latestBlockHash: String) -> Unit
+    ): PromiEvent<T>
+
     fun once(type: String /* "error" */, handler: (error: Error) -> Unit): PromiEvent<T>
-    fun on(type: String /* "sending" | "sent" | "error" | "confirmation" | "receipt" | "transactionHash" | "sent" | "sending" */, handler: (payload: Any? /* Error? | TransactionReceipt? | String? | Any? */) -> Unit): PromiEvent<T>
+    fun on(
+        type: String /* "sending" | "sent" | "error" | "confirmation" | "receipt" | "transactionHash" | "sent" | "sending" */,
+        handler: (payload: Any? /* Error? | TransactionReceipt? | String? | Any? */) -> Unit
+    ): PromiEvent<T>
+
     fun on(type: String /* "transactionHash" */, handler: (receipt: String) -> Unit): PromiEvent<T>
     fun on(type: String /* "receipt" */, handler: (receipt: TransactionReceipt) -> Unit): PromiEvent<T>
-    fun on(type: String /* "confirmation" */, handler: (confNumber: Number, receipt: TransactionReceipt, latestBlockHash: String) -> Unit): PromiEvent<T>
+    fun on(
+        type: String /* "confirmation" */,
+        handler: (confNumber: Number, receipt: TransactionReceipt, latestBlockHash: String) -> Unit
+    ): PromiEvent<T>
+
     fun on(type: String /* "error" */, handler: (error: Error) -> Unit): PromiEvent<T>
 }
 
@@ -211,7 +232,8 @@ external interface Log {
 open external class NetworkBase {
     constructor()
     constructor(provider: HttpProvider?)
-//    constructor(provider: IpcProvider?)
+
+    //    constructor(provider: IpcProvider?)
     constructor(provider: WebsocketProvider?)
     constructor(provider: AbstractProvider?)
     constructor(provider: String?)
@@ -220,7 +242,8 @@ open external class NetworkBase {
     open var currentProvider: dynamic /* HttpProvider? | IpcProvider? | WebsocketProvider? | AbstractProvider? | String? */
     open var BatchRequest: Any
     open fun setProvider(provider: HttpProvider?): Boolean
-//    open fun setProvider(provider: IpcProvider?): Boolean
+
+    //    open fun setProvider(provider: IpcProvider?): Boolean
     open fun setProvider(provider: WebsocketProvider?): Boolean
     open fun setProvider(provider: AbstractProvider?): Boolean
     open fun setProvider(provider: String?): Boolean
@@ -239,7 +262,8 @@ open external class NetworkBase {
 open external class AccountsBase {
     constructor()
     constructor(provider: HttpProvider?)
-//    constructor(provider: IpcProvider?)
+
+    //    constructor(provider: IpcProvider?)
     constructor(provider: WebsocketProvider?)
     constructor(provider: AbstractProvider?)
     constructor(provider: String?)
@@ -247,13 +271,19 @@ open external class AccountsBase {
     open var givenProvider: Any
     open var currentProvider: dynamic /* HttpProvider? | IpcProvider? | WebsocketProvider? | AbstractProvider? | String? */
     open fun setProvider(provider: HttpProvider?): Boolean
-//    open fun setProvider(provider: IpcProvider?): Boolean
+
+    //    open fun setProvider(provider: IpcProvider?): Boolean
     open fun setProvider(provider: WebsocketProvider?): Boolean
     open fun setProvider(provider: AbstractProvider?): Boolean
     open fun setProvider(provider: String?): Boolean
     open fun create(entropy: String = definedExternally): Account
     open fun privateKeyToAccount(privateKey: String, ignoreLength: Boolean = definedExternally): Account
-    open fun signTransaction(transactionConfig: TransactionConfig, privateKey: String, callback: (error: Error?, signedTransaction: SignedTransaction) -> Unit = definedExternally): Promise<SignedTransaction>
+    open fun signTransaction(
+        transactionConfig: TransactionConfig,
+        privateKey: String,
+        callback: (error: Error?, signedTransaction: SignedTransaction) -> Unit = definedExternally
+    ): Promise<SignedTransaction>
+
     open fun recoverTransaction(signature: String): String
     open fun hashMessage(message: String): String
     open fun sign(data: String, privateKey: String): Sign
@@ -356,7 +386,8 @@ open external class HttpProvider(host: String, options: HttpProviderOptions = de
 
 //external open class IpcProvider(path: String, net: Server) : IpcProviderBase
 
-open external class WebsocketProvider(host: String, options: WebsocketProviderOptions = definedExternally) : WebsocketProviderBase
+open external class WebsocketProvider(host: String, options: WebsocketProviderOptions = definedExternally) :
+    WebsocketProviderBase
 
 external interface PastLogsOptions : LogsOptions {
     var toBlock: dynamic /* String? | Number? | BN? | BigNumber? | "latest" | "pending" | "earliest" | "genesis" */

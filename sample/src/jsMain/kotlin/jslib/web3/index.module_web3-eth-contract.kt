@@ -1,7 +1,6 @@
 package web3.eth
 
 
-import kotlinx.serialization.Serializable
 import web3.*
 import kotlin.js.Json
 import kotlin.js.Promise
@@ -202,7 +201,8 @@ external interface AbiInput {
     var name: String
     var type: String
     var indexed: Boolean?
-//    var components: Array<AbiInput>?
+
+    //    var components: Array<AbiInput>?
     var internalType: String?
 }
 
@@ -210,7 +210,8 @@ external interface AbiInput {
 external interface AbiOutput {
     var name: String
     var type: String
-//    var components: Array<AbiOutput>?
+
+    //    var components: Array<AbiOutput>?
     var internalType: String?
 }
 

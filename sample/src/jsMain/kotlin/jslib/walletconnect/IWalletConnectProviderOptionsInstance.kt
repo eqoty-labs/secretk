@@ -1,3 +1,3 @@
 package jslib.walletconnect
 
-class IWalletConnectProviderOptionsInstance(override var infuraId: String?): IWalletConnectProviderOptions
+class IWalletConnectProviderOptionsInstance(override var infuraId: String?) : IWalletConnectProviderOptions

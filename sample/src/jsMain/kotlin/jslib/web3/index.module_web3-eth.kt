@@ -1,4 +1,9 @@
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS")
+@file:Suppress(
+    "INTERFACE_WITH_SUPERCLASS",
+    "OVERRIDING_FINAL_MEMBER",
+    "RETURN_TYPE_MISMATCH_ON_OVERRIDE",
+    "CONFLICTING_OVERLOADS"
+)
 
 package web3
 
@@ -16,18 +21,21 @@ typealias BigNumber = Any
 external class Eth {
     constructor()
     constructor(provider: HttpProvider?)
-//    constructor(provider: IpcProvider?)
+
+    //    constructor(provider: IpcProvider?)
     constructor(provider: WebsocketProvider?)
     constructor(provider: AbstractProvider?)
     constructor(provider: String?)
-//    constructor(provider: HttpProvider?, net: Socket)
+
+    //    constructor(provider: HttpProvider?, net: Socket)
 //    constructor(provider: IpcProvider?, net: Socket)
 //    constructor(provider: WebsocketProvider?, net: Socket)
 //    constructor(provider: AbstractProvider?, net: Socket)
 //    constructor(provider: String?, net: Socket)
     val Contract: (Array<AbiItem>, String, ContractOptions?) -> Contract<*>
     open var Iban: Any
-//    open var personal: Personal
+
+    //    open var personal: Personal
 //    open var accounts: Accounts
 //    open var ens: Ens
 //    open var abi: AbiCoder
@@ -44,19 +52,37 @@ external class Eth {
     open var handleRevert: Boolean
     open var currentProvider: AbstractProvider /* HttpProvider? | IpcProvider? | WebsocketProvider? | AbstractProvider? | String? */
     open fun setProvider(provider: HttpProvider?): Boolean
-//    open fun setProvider(provider: IpcProvider?): Boolean
+
+    //    open fun setProvider(provider: IpcProvider?): Boolean
     open fun setProvider(provider: WebsocketProvider?): Boolean
     open fun setProvider(provider: AbstractProvider?): Boolean
     open fun setProvider(provider: String?): Boolean
     open var BatchRequest: Any
     open fun extend(extension: Extension): Any
     open fun clearSubscriptions(callback: (error: Error?, result: Boolean) -> Unit)
-    open fun subscribe(type: String /* "logs" */, options: LogsOptions, callback: (error: Error?, log: Log) -> Unit = definedExternally): Subscription<Log>
+    open fun subscribe(
+        type: String /* "logs" */,
+        options: LogsOptions,
+        callback: (error: Error?, log: Log) -> Unit = definedExternally
+    ): Subscription<Log>
+
     open fun subscribe(type: String /* "logs" */, options: LogsOptions): Subscription<Log>
-    open fun subscribe(type: String /* "syncing" */, callback: (error: Error?, result: Syncing) -> Unit = definedExternally): Subscription<Syncing>
+    open fun subscribe(
+        type: String /* "syncing" */,
+        callback: (error: Error?, result: Syncing) -> Unit = definedExternally
+    ): Subscription<Syncing>
+
     open fun subscribe(type: String /* "syncing" | "newBlockHeaders" | "pendingTransactions" */): dynamic /* Subscription */
-    open fun subscribe(type: String /* "newBlockHeaders" */, callback: (error: Error?, blockHeader: BlockHeader) -> Unit = definedExternally): Subscription<BlockHeader>
-    open fun subscribe(type: String /* "pendingTransactions" */, callback: (error: Error?, transactionHash: String) -> Unit = definedExternally): Subscription<String>
+    open fun subscribe(
+        type: String /* "newBlockHeaders" */,
+        callback: (error: Error?, blockHeader: BlockHeader) -> Unit = definedExternally
+    ): Subscription<BlockHeader>
+
+    open fun subscribe(
+        type: String /* "pendingTransactions" */,
+        callback: (error: Error?, transactionHash: String) -> Unit = definedExternally
+    ): Subscription<String>
+
     open fun getProtocolVersion(callback: (error: Error?, protocolVersion: String) -> Unit = definedExternally): Promise<String>
     open fun isSyncing(callback: (error: Error?, syncing: Syncing) -> Unit = definedExternally): Promise<dynamic /* Syncing | Boolean */>
     open fun getCoinbase(callback: (error: Error?, coinbaseAddress: String) -> Unit = definedExternally): Promise<String>
@@ -65,7 +91,8 @@ external class Eth {
     open fun getNodeInfo(callback: (error: Error?, version: String) -> Unit = definedExternally): Promise<String>
     open fun getChainId(callback: (error: Error?, version: Number) -> Unit = definedExternally): Promise<Number>
     open fun getGasPrice(callback: (error: Error?, gasPrice: String) -> Unit = definedExternally): Promise<String>
-//    open fun getFeeHistory(blockCount: Number, lastBlock: Any /* Number | BigNumber | BN | String */, rewardPercentiles: Array<Number>, callback: (error: Error?, feeHistory: FeeHistoryResult) -> Unit = definedExternally): Promise<FeeHistoryResult>
+
+    //    open fun getFeeHistory(blockCount: Number, lastBlock: Any /* Number | BigNumber | BN | String */, rewardPercentiles: Array<Number>, callback: (error: Error?, feeHistory: FeeHistoryResult) -> Unit = definedExternally): Promise<FeeHistoryResult>
 //    open fun getFeeHistory(blockCount: Number, lastBlock: Any /* Number | BigNumber | BN | String */, rewardPercentiles: Array<Number>): Promise<FeeHistoryResult>
 //    open fun getFeeHistory(blockCount: BigNumber, lastBlock: Any /* Number | BigNumber | BN | String */, rewardPercentiles: Array<Number>, callback: (error: Error?, feeHistory: FeeHistoryResult) -> Unit = definedExternally): Promise<FeeHistoryResult>
 //    open fun getFeeHistory(blockCount: BigNumber, lastBlock: Any /* Number | BigNumber | BN | String */, rewardPercentiles: Array<Number>): Promise<FeeHistoryResult>
@@ -74,14 +101,20 @@ external class Eth {
 //    open fun getFeeHistory(blockCount: String, lastBlock: Any /* Number | BigNumber | BN | String */, rewardPercentiles: Array<Number>, callback: (error: Error?, feeHistory: FeeHistoryResult) -> Unit = definedExternally): Promise<FeeHistoryResult>
 //    open fun getFeeHistory(blockCount: String, lastBlock: Any /* Number | BigNumber | BN | String */, rewardPercentiles: Array<Number>): Promise<FeeHistoryResult>
     open fun getAccounts(callback: (error: Error?, accounts: Array<String>) -> Unit = definedExternally): Promise<Array<String>>
-//    open fun getBlockNumber(callback: (error: Error?, blockNumber: Number) -> Unit = definedExternally): Promise<Number>
+
+    //    open fun getBlockNumber(callback: (error: Error?, blockNumber: Number) -> Unit = definedExternally): Promise<Number>
     open fun getBalance(address: String): Promise<String>
-//    open fun getBalance(address: String, defaultBlock: String /* "latest" | "pending" | "earliest" | "genesis" | "latest" | "pending" | "earliest" | "genesis" */): Promise<String>
+
+    //    open fun getBalance(address: String, defaultBlock: String /* "latest" | "pending" | "earliest" | "genesis" | "latest" | "pending" | "earliest" | "genesis" */): Promise<String>
 //    open fun getBalance(address: String, defaultBlock: Number): Promise<String>
 //    open fun getBalance(address: String, defaultBlock: BN): Promise<String>
 //    open fun getBalance(address: String, defaultBlock: BigNumber): Promise<String>
-    open fun getBalance(address: String, callback: (error: Error?, balance: String) -> Unit = definedExternally): Promise<String>
-//    open fun getBalance(address: String, defaultBlock: String /* "latest" | "pending" | "earliest" | "genesis" */, callback: (error: Error?, balance: String) -> Unit = definedExternally): Promise<String>
+    open fun getBalance(
+        address: String,
+        callback: (error: Error?, balance: String) -> Unit = definedExternally
+    ): Promise<String>
+
+    //    open fun getBalance(address: String, defaultBlock: String /* "latest" | "pending" | "earliest" | "genesis" */, callback: (error: Error?, balance: String) -> Unit = definedExternally): Promise<String>
 //    open fun getBalance(address: String, defaultBlock: Number, callback: (error: Error?, balance: String) -> Unit = definedExternally): Promise<String>
 //    open fun getBalance(address: String, defaultBlock: BN, callback: (error: Error?, balance: String) -> Unit = definedExternally): Promise<String>
 //    open fun getBalance(address: String, defaultBlock: BigNumber, callback: (error: Error?, balance: String) -> Unit = definedExternally): Promise<String>
@@ -214,7 +247,6 @@ external class Eth {
 //    open fun getProof(address: String, storageKey: Array<String>, blockNumber: Any /* String | Number | BN | BigNumber | "latest" | "pending" | "earliest" | "genesis" */): Promise<GetProof>
     open fun requestAccounts(): Promise<Array<String>>
     open fun requestAccounts(callback: (error: Error?, result: Array<String>) -> Unit): Promise<Array<String>>
-
 
 
     companion object {

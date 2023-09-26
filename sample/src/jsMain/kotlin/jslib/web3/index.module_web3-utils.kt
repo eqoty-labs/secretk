@@ -1,4 +1,9 @@
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS")
+@file:Suppress(
+    "INTERFACE_WITH_SUPERCLASS",
+    "OVERRIDING_FINAL_MEMBER",
+    "RETURN_TYPE_MISMATCH_ON_OVERRIDE",
+    "CONFLICTING_OVERLOADS"
+)
 
 package web3
 
@@ -32,7 +37,11 @@ external interface Utils {
     fun fromDecimal(value: String): String
     fun fromDecimal(value: Number): String
     fun fromUtf8(string: String): String
-    fun fromWei(value: String, unit: String /* "noether" | "wei" | "kwei" | "Kwei" | "babbage" | "femtoether" | "mwei" | "Mwei" | "lovelace" | "picoether" | "gwei" | "Gwei" | "shannon" | "nanoether" | "nano" | "szabo" | "microether" | "micro" | "finney" | "milliether" | "milli" | "ether" | "kether" | "grand" | "mether" | "gether" | "tether" */ = definedExternally): String
+    fun fromWei(
+        value: String,
+        unit: String /* "noether" | "wei" | "kwei" | "Kwei" | "babbage" | "femtoether" | "mwei" | "Mwei" | "lovelace" | "picoether" | "gwei" | "Gwei" | "shannon" | "nanoether" | "nano" | "szabo" | "microether" | "micro" | "finney" | "milliether" | "milli" | "ether" | "kether" | "grand" | "mether" | "gether" | "tether" */ = definedExternally
+    ): String
+
     fun fromWei(value: String): String
     fun hexToBytes(hex: String): Array<Number>
     fun hexToBytes(hex: Number): Array<Number>
@@ -70,7 +79,11 @@ external interface Utils {
     fun toHex(value: Number): String
     fun toHex(value: String): String
     fun toUtf8(string: String): String
-    fun toWei(param_val: String, unit: String /* "noether" | "wei" | "kwei" | "Kwei" | "babbage" | "femtoether" | "mwei" | "Mwei" | "lovelace" | "picoether" | "gwei" | "Gwei" | "shannon" | "nanoether" | "nano" | "szabo" | "microether" | "micro" | "finney" | "milliether" | "milli" | "ether" | "kether" | "grand" | "mether" | "gether" | "tether" */ = definedExternally): String
+    fun toWei(
+        param_val: String,
+        unit: String /* "noether" | "wei" | "kwei" | "Kwei" | "babbage" | "femtoether" | "mwei" | "Mwei" | "lovelace" | "picoether" | "gwei" | "Gwei" | "shannon" | "nanoether" | "nano" | "szabo" | "microether" | "micro" | "finney" | "milliether" | "milli" | "ether" | "kether" | "grand" | "mether" | "gether" | "tether" */ = definedExternally
+    ): String
+
     fun toWei(param_val: String): String
     fun isBloom(bloom: String): Boolean
     fun isInBloom(bloom: String, value: String): Boolean

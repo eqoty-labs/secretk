@@ -1,12 +1,17 @@
 @file:JsModule("@walletconnect/web3-provider")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS")
+@file:Suppress(
+    "INTERFACE_WITH_SUPERCLASS",
+    "OVERRIDING_FINAL_MEMBER",
+    "RETURN_TYPE_MISMATCH_ON_OVERRIDE",
+    "CONFLICTING_OVERLOADS"
+)
 
 package jslib.walletconnect
 
 import kotlin.js.Promise
 
-external interface ProviderEngine: Any
+external interface ProviderEngine : Any
 
 external interface `T$14` {
     var open: (uri: String, cb: Any, qrcodeModalOptions: IQRCodeModalOptions?) -> Unit

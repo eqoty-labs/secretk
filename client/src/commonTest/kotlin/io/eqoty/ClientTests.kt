@@ -311,7 +311,10 @@ class ClientTests {
             msgs,
             txOptions = TxOptions(gasLimit = gasLimit)
         )
-        assertEquals("secret1yk7cd95nanxfcac7kfkkdh2dcm2m0v2eu7umz8", client.getContractInfoByAddress(contractAddr).contractInfo.admin)
+        assertEquals(
+            "secret1yk7cd95nanxfcac7kfkkdh2dcm2m0v2eu7umz8",
+            client.getContractInfoByAddress(contractAddr).contractInfo.admin
+        )
     }
 
     suspend fun testInstantiateContract(

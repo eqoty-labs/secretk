@@ -1,10 +1,9 @@
-
 package web3
 
 
 @JsModule("web3")
 @JsNonModule
-open external class Web3(provider: String)  {
+open external class Web3(provider: String) {
 
     val utils: Utils = definedExternally
     val eth: Eth = definedExternally

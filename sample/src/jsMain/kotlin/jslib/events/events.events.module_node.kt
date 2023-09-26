@@ -1,4 +1,10 @@
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS")
+@file:Suppress(
+    "INTERFACE_WITH_SUPERCLASS",
+    "OVERRIDING_FINAL_MEMBER",
+    "RETURN_TYPE_MISMATCH_ON_OVERRIDE",
+    "CONFLICTING_OVERLOADS"
+)
+
 package jslib.events
 
 import kotlin.js.Promise
@@ -65,17 +71,36 @@ open external class EventEmitter(options: EventEmitterOptions = definedExternall
 //    }
 
     companion object {
-        fun once(emitter: NodeEventTarget, eventName: String, options: StaticEventEmitterOptions = definedExternally): Promise<Array<Any>>
-        fun once(emitter: NodeEventTarget, eventName: Any, options: StaticEventEmitterOptions = definedExternally): Promise<Array<Any>>
-        fun once(emitter: DOMEventTarget, eventName: String, options: StaticEventEmitterOptions = definedExternally): Promise<Array<Any>>
-//        fun on(emitter: events.global.NodeJS.EventEmitter, eventName: String, options: StaticEventEmitterOptions = definedExternally): AsyncIterableIterator<Any>
+        fun once(
+            emitter: NodeEventTarget,
+            eventName: String,
+            options: StaticEventEmitterOptions = definedExternally
+        ): Promise<Array<Any>>
+
+        fun once(
+            emitter: NodeEventTarget,
+            eventName: Any,
+            options: StaticEventEmitterOptions = definedExternally
+        ): Promise<Array<Any>>
+
+        fun once(
+            emitter: DOMEventTarget,
+            eventName: String,
+            options: StaticEventEmitterOptions = definedExternally
+        ): Promise<Array<Any>>
+
+        //        fun on(emitter: events.global.NodeJS.EventEmitter, eventName: String, options: StaticEventEmitterOptions = definedExternally): AsyncIterableIterator<Any>
         fun listenerCount(emitter: events.global.NodeJS.EventEmitter, eventName: String): Number
         fun listenerCount(emitter: events.global.NodeJS.EventEmitter, eventName: Any): Number
         fun getEventListeners(emitter: DOMEventTarget, name: String): Array<Function<*>>
         fun getEventListeners(emitter: DOMEventTarget, name: Any): Array<Function<*>>
         fun getEventListeners(emitter: events.global.NodeJS.EventEmitter, name: String): Array<Function<*>>
         fun getEventListeners(emitter: events.global.NodeJS.EventEmitter, name: Any): Array<Function<*>>
-        fun setMaxListeners(n: Number = definedExternally, vararg eventTargets: Any /* DOMEventTarget | NodeJS.EventEmitter */)
+        fun setMaxListeners(
+            n: Number = definedExternally,
+            vararg eventTargets: Any /* DOMEventTarget | NodeJS.EventEmitter */
+        )
+
         var errorMonitor: Any
         var captureRejectionSymbol: Any
         var captureRejections: Boolean
