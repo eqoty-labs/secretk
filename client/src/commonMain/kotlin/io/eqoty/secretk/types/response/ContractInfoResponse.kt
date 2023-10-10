@@ -29,7 +29,7 @@ data class ContractInfoResponse(
         val admin: String,
 
         @SerialName("admin_proof")
-        val adminProof: String
+        val adminProof: String?
     )
 
     @Serializable
