@@ -248,6 +248,10 @@ class ClientTests {
             wallet
         )
         val contractAddr = testInstantiateContract(client, senderAddr, null, senderAddr)
+
+        client.getCodeHashByContractAddr(contractAddr)
+        assertTrue(client.restClient.addressToCodeHashCache.contains(contractAddr))
+
         val newCodeId = storeCode(client, senderAddr)
         assertNotEquals(newCodeId, client.getContractInfoByAddress(contractAddr).contractInfo.codeId)
         val msgs = listOf(
@@ -264,6 +268,8 @@ class ClientTests {
             txOptions = TxOptions(gasLimit = gasLimit)
         )
         assertEquals(newCodeId, client.getContractInfoByAddress(contractAddr).contractInfo.codeId)
+        // should have cleared the old cashed code hash
+        assertFalse(client.restClient.addressToCodeHashCache.contains(contractAddr))
     }
 
     @Test

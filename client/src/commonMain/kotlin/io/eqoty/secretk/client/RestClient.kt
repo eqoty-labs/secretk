@@ -38,7 +38,7 @@ internal class RestClient(
     val broadcastMode: BroadcastMode = BroadcastMode.Block,
     val enigmautils: EncryptionUtils
 ) {
-    val codeHashCache: MutableMap<Any, String> = mutableMapOf()
+    val addressToCodeHashCache: MutableMap<String, String> = mutableMapOf()
 
     val client: HttpClient = HttpClient {
         install(DefaultRequest) {
@@ -97,13 +97,12 @@ internal class RestClient(
      */
     suspend inline fun <reified T : Any> postTx(tx: UByteArray, simulate: Boolean): T {
         val txString = tx.toByteString().base64()
-        val params =
-            Json.parseToJsonElement(
-                """{
+        val params = Json.parseToJsonElement(
+            """{
                 "tx_bytes": "$txString",
                 "mode": "${this.broadcastMode.mode}"
             }"""
-            ).jsonObject
+        ).jsonObject
         // https://v1.cosmos.network/rpc/v0.45.1
         val path = if (simulate) "/cosmos/tx/v1beta1/simulate" else "/cosmos/tx/v1beta1/txs"
         return post(path, params)
@@ -111,19 +110,14 @@ internal class RestClient(
 
 
     suspend fun getCodeHashByContractAddr(addr: String): String {
-        val codeHashFromCache = codeHashCache[addr]
+        val codeHashFromCache = addressToCodeHashCache[addr]
         if (codeHashFromCache != null) {
             return codeHashFromCache
         }
-        // Works... for now...
-        // But we may need to switch to getting hash by grpc gateway endpoints:
-        // getting codeId from /compute/v1beta1/contract/{address}
-        // then using codeId to get hash with:
-        // /compute/v1beta1/code/{code_id} endpoint
         val path = "/wasm/contract/${addr}/code-hash"
         val responseData: WasmResponse<String> = get(path)
 
-        codeHashCache[addr] = responseData.result
+        addressToCodeHashCache[addr] = responseData.result
         return responseData.result
     }
 
@@ -152,13 +146,13 @@ internal class RestClient(
     suspend fun queryContractSmart(
         contractAddress: String,
         query: JsonObject,
-        _contractCodeHash: String? = null,
+        contractCodeHash: String? = null,
     ): String {
-        val contractCodeHash = if (_contractCodeHash == null) {
+        @Suppress("NAME_SHADOWING") val contractCodeHash = if (contractCodeHash == null) {
             this.getCodeHashByContractAddr(contractAddress)
         } else {
-            this.codeHashCache[contractAddress] = _contractCodeHash
-            _contractCodeHash
+            this.addressToCodeHashCache[contractAddress] = contractCodeHash
+            contractCodeHash
         }
 
         val encrypted = this.enigmautils.encrypt(contractCodeHash, query)
@@ -227,11 +221,8 @@ internal class RestClient(
 
         val error: Throwable
         try {
-            val data = enigmautils
-                .decrypt(wasmOutputDataCipherBz, nonce)
-                .decodeToString()
-                .decodeBase64()!!
-                .toUByteArray()
+            val data =
+                enigmautils.decrypt(wasmOutputDataCipherBz, nonce).decodeToString().decodeBase64()!!.toUByteArray()
 
             return data
         } catch (t: Throwable) {

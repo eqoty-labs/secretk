@@ -158,6 +158,7 @@ class SigningCosmWasmClient(
         } else {
             emptyList()
         }
+        msgs.filterIsInstance<MsgMigrateContract>().forEach { restClient.addressToCodeHashCache.remove(it.contractAddress) }
 
         return txResponse
     }
