@@ -54,9 +54,6 @@ class MsgInstantiateContract(
         if (codeHash.isNullOrBlank()) {
             throw RuntimeException(getMissingParameterWarning("MsgInstantiateContract", "codeHash"))
         }
-        if (codeId == null) {
-            throw RuntimeException(getMissingParameterWarning("MsgInstantiateContract", "codeId"))
-        }
 
         if (initMsgEncrypted == null) {
             // The encryption uses a random nonce
