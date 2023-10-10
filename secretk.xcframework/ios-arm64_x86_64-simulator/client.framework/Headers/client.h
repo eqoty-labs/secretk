@@ -1240,9 +1240,9 @@ __attribute__((swift_name("ContractInfoResponse.Companion")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ContractInfoResponse.ContractInfo")))
 @interface ClientContractInfoResponseContractInfo : ClientBase
-- (instancetype)initWithCodeId:(int32_t)codeId creator:(NSString *)creator label:(NSString *)label created:(ClientContractInfoResponseCreationInfo *)created ibcPortId:(NSString *)ibcPortId admin:(NSString *)admin adminProof:(NSString *)adminProof __attribute__((swift_name("init(codeId:creator:label:created:ibcPortId:admin:adminProof:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithCodeId:(int32_t)codeId creator:(NSString *)creator label:(NSString *)label created:(ClientContractInfoResponseCreationInfo *)created ibcPortId:(NSString *)ibcPortId admin:(NSString *)admin adminProof:(NSString * _Nullable)adminProof __attribute__((swift_name("init(codeId:creator:label:created:ibcPortId:admin:adminProof:)"))) __attribute__((objc_designated_initializer));
 @property (class, readonly, getter=companion) ClientContractInfoResponseContractInfoCompanion *companion __attribute__((swift_name("companion")));
-- (ClientContractInfoResponseContractInfo *)doCopyCodeId:(int32_t)codeId creator:(NSString *)creator label:(NSString *)label created:(ClientContractInfoResponseCreationInfo *)created ibcPortId:(NSString *)ibcPortId admin:(NSString *)admin adminProof:(NSString *)adminProof __attribute__((swift_name("doCopy(codeId:creator:label:created:ibcPortId:admin:adminProof:)")));
+- (ClientContractInfoResponseContractInfo *)doCopyCodeId:(int32_t)codeId creator:(NSString *)creator label:(NSString *)label created:(ClientContractInfoResponseCreationInfo *)created ibcPortId:(NSString *)ibcPortId admin:(NSString *)admin adminProof:(NSString * _Nullable)adminProof __attribute__((swift_name("doCopy(codeId:creator:label:created:ibcPortId:admin:adminProof:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -1252,7 +1252,7 @@ __attribute__((swift_name("ContractInfoResponse.ContractInfo")))
  * @note annotations
  *   kotlinx.serialization.SerialName(value="admin_proof")
 */
-@property (readonly) NSString *adminProof __attribute__((swift_name("adminProof")));
+@property (readonly) NSString * _Nullable adminProof __attribute__((swift_name("adminProof")));
 
 /**
  * @note annotations
