@@ -39,6 +39,7 @@ internal class RestClient(
     val enigmautils: EncryptionUtils
 ) {
     val addressToCodeHashCache: MutableMap<String, String> = mutableMapOf()
+    val codeIdToCodeInfoCache: MutableMap<Int, CodeInfo> = mutableMapOf()
 
     val client: HttpClient = HttpClient {
         install(DefaultRequest) {
@@ -110,15 +111,11 @@ internal class RestClient(
 
 
     suspend fun getCodeHashByContractAddr(addr: String): String {
-        val codeHashFromCache = addressToCodeHashCache[addr]
-        if (codeHashFromCache != null) {
-            return codeHashFromCache
+        return addressToCodeHashCache.getOrPut(addr) {
+            val path = "/wasm/contract/${addr}/code-hash"
+            val responseData: WasmResponse<String> = get(path)
+            responseData.result
         }
-        val path = "/wasm/contract/${addr}/code-hash"
-        val responseData: WasmResponse<String> = get(path)
-
-        addressToCodeHashCache[addr] = responseData.result
-        return responseData.result
     }
 
     suspend fun getLabelByContractAddr(addr: String): String {
@@ -128,9 +125,11 @@ internal class RestClient(
     }
 
     suspend fun getCodeInfoByCodeId(codeId: Int): CodeInfo {
-        val path = "/compute/v1beta1/code/$codeId"
-        val responseData: CodeInfoResponse = get(path)
-        return responseData.codeInfo
+        return codeIdToCodeInfoCache.getOrPut(codeId) {
+            val path = "/compute/v1beta1/code/$codeId"
+            val responseData: CodeInfoResponse = get(path)
+            responseData.codeInfo
+        }
     }
 
     suspend fun getContractInfoByAddress(address: String): ContractInfoResponse {
