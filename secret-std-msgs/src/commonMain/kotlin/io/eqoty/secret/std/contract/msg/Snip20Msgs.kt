@@ -2,6 +2,7 @@ package io.eqoty.secret.std.contract.msg
 
 import com.ionspin.kotlin.bignum.integer.BigInteger
 import io.eqoty.secret.std.contract.msg.SnipMsgs.ExecuteAnswer.ResponseStatus
+import io.eqoty.secret.std.types.Permit
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -27,13 +28,30 @@ object Snip20Msgs {
     @Serializable
     data class Query(
         val balance: Balance? = null,
+        @SerialName("with_permit")
+        val withPermit: WithPermit? = null,
     ) {
         @Serializable
         data class Balance(
             val address: String,
             val key: String,
         )
+
+        @Serializable
+        data class WithPermit(
+            val permit: Permit,
+            val query: QueryWithPermit,
+        )
     }
+
+    @Serializable
+    data class QueryWithPermit(
+        val balance: Balance? = null,
+    ) {
+        @Serializable
+        class Balance
+    }
+
 
     @Serializable
     data class QueryAnswer(
@@ -60,8 +78,7 @@ object Snip20Msgs {
         @Serializable
         data class Send(
             val recipient: String,
-            @SerialName("recipient_code_hash")
-            val recipientCodeHash: String? = null,
+            @SerialName("recipient_code_hash") val recipientCodeHash: String? = null,
             @Contextual val amount: BigInteger,
             val msg: String? = null,
             val memo: String? = null,
@@ -105,16 +122,11 @@ object Snip20Msgs {
 
     @Serializable
     data class InitConfig(
-        @SerialName("public_total_supply")
-        val publicTotalSupply: Boolean? = null,
-        @SerialName("enable_deposit")
-        val enableDeposit: Boolean? = null,
-        @SerialName("enable_redeem")
-        val enableRedeem: Boolean? = null,
-        @SerialName("enable_mint")
-        val enableMint: Boolean? = null,
-        @SerialName("enable_burn")
-        val enableBurn: Boolean? = null,
+        @SerialName("public_total_supply") val publicTotalSupply: Boolean? = null,
+        @SerialName("enable_deposit") val enableDeposit: Boolean? = null,
+        @SerialName("enable_redeem") val enableRedeem: Boolean? = null,
+        @SerialName("enable_mint") val enableMint: Boolean? = null,
+        @SerialName("enable_burn") val enableBurn: Boolean? = null,
     )
 
 }
