@@ -57,7 +57,10 @@ fun SampleApp(
                             coroutineScope.launch {
                                 val contractInfoQuery = """{"token_info": {}}"""
                                 response = try {
-                                    client.queryContractSmart("secret14kkk84pxtfedqngpz8pyg7az8x4v9luyvqne6t", contractInfoQuery)
+                                    client.queryContractSmart(
+                                        "secret14kkk84pxtfedqngpz8pyg7az8x4v9luyvqne6t",
+                                        contractInfoQuery
+                                    )
                                 } catch (t: Throwable) {
                                     t.message
                                 }
@@ -75,7 +78,10 @@ fun SampleApp(
                             coroutineScope.launch {
                                 val contractInfoQuery = """{"state": {}}"""
                                 response = try {
-                                    client.queryContractSmart("secret14kkk84pxtfedqngpz8pyg7az8x4v9luyvqne6t", contractInfoQuery)
+                                    client.queryContractSmart(
+                                        "secret14kkk84pxtfedqngpz8pyg7az8x4v9luyvqne6t",
+                                        contractInfoQuery
+                                    )
                                 } catch (t: Throwable) {
                                     t.message
                                 }
@@ -93,9 +99,13 @@ fun SampleApp(
                         var response: String? by remember { mutableStateOf(null) }
                         Button({
                             coroutineScope.launch {
-                                val contractInfoQuery = """{"balance": {"address": "$senderAddress", "key": "bf9497b30dbd277fbd93cd42f5961238b7ea091897b7a4603ae0c6b14e4f90dd"}}"""
+                                val contractInfoQuery =
+                                    """{"balance": {"address": "$senderAddress", "key": "bf9497b30dbd277fbd93cd42f5961238b7ea091897b7a4603ae0c6b14e4f90dd"}}"""
                                 response = try {
-                                    client.queryContractSmart("secret14kkk84pxtfedqngpz8pyg7az8x4v9luyvqne6t", contractInfoQuery)
+                                    client.queryContractSmart(
+                                        "secret14kkk84pxtfedqngpz8pyg7az8x4v9luyvqne6t",
+                                        contractInfoQuery
+                                    )
                                 } catch (t: Throwable) {
                                     t.message
                                 }
@@ -111,9 +121,13 @@ fun SampleApp(
                         var response: String? by remember { mutableStateOf(null) }
                         Button({
                             coroutineScope.launch {
-                                val contractInfoQuery = """{"balance": {"address": "$senderAddress", "key": "9296a19b1661c96f80d4e4155bb637f7afba79a721206ecfc3c90730f150a2b6"}}"""
+                                val contractInfoQuery =
+                                    """{"balance": {"address": "$senderAddress", "key": "9296a19b1661c96f80d4e4155bb637f7afba79a721206ecfc3c90730f150a2b6"}}"""
                                 response = try {
-                                    client.queryContractSmart("secret10mw4v29cgljeh2vad0n7zakcrvu3kfdw44t3kc", contractInfoQuery)
+                                    client.queryContractSmart(
+                                        "secret10mw4v29cgljeh2vad0n7zakcrvu3kfdw44t3kc",
+                                        contractInfoQuery
+                                    )
                                 } catch (t: Throwable) {
                                     t.message
                                 }
@@ -129,9 +143,13 @@ fun SampleApp(
                         var response: String? by remember { mutableStateOf(null) }
                         Button({
                             coroutineScope.launch {
-                                val contractInfoQuery = """{"rewards": {"user_info": {"at": ${Clock.System.now().epochSeconds}, "address":"$senderAddress", "key": "9296a19b1661c96f80d4e4155bb637f7afba79a721206ecfc3c90730f150a2b6"}}}"""
+                                val contractInfoQuery =
+                                    """{"rewards": {"user_info": {"at": ${Clock.System.now().epochSeconds}, "address":"$senderAddress", "key": "9296a19b1661c96f80d4e4155bb637f7afba79a721206ecfc3c90730f150a2b6"}}}"""
                                 response = try {
-                                    client.queryContractSmart("secret10mw4v29cgljeh2vad0n7zakcrvu3kfdw44t3kc", contractInfoQuery)
+                                    client.queryContractSmart(
+                                        "secret10mw4v29cgljeh2vad0n7zakcrvu3kfdw44t3kc",
+                                        contractInfoQuery
+                                    )
                                 } catch (t: Throwable) {
                                     t.message
                                 }

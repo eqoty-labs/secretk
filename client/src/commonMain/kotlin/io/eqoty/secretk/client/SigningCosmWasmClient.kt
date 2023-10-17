@@ -38,10 +38,10 @@ class SigningCosmWasmClient(
 
     init {
         if (chainId.isNullOrBlank()) {
-            logger.w(
-                "SigningCosmWasmClient was created without the \"chainId\" parameter. This is discouraged " +
-                        "and will result in slower execution times for your app."
-            )
+            logger.w {
+                "SigningCosmWasmClient was created without the \"chainId\" parameter. " + //
+                        "This is discouraged and will result in slower execution times for your app."
+            }
         }
     }
 
@@ -169,9 +169,7 @@ class SigningCosmWasmClient(
     }
 
     private suspend fun prepareAndSign(
-        sender: String,
-        messages: List<Msg<*>>,
-        txOptions: TxOptions
+        sender: String, messages: List<Msg<*>>, txOptions: TxOptions
     ): TxRawProto {
         val accountFromWallet =
             wallet?.getAccount(sender) ?: throw Error("Failed to retrieve account $sender from wallet")
@@ -179,28 +177,20 @@ class SigningCosmWasmClient(
         if (chainId == null) {
             chainId = getChainId()
         }
-        val signerData = txOptions.explicitSignerData
-            ?: SignerData(nonceResult.accountNumber, nonceResult.sequence, chainId!!)
+        val signerData =
+            txOptions.explicitSignerData ?: SignerData(nonceResult.accountNumber, nonceResult.sequence, chainId!!)
         val fee = StdFee(
-            gas = txOptions.gasLimit,
-            amount = listOf(
+            gas = txOptions.gasLimit, amount = listOf(
                 Coin(
-                    gasToFee(txOptions.gasLimit, txOptions.gasPriceInFeeDenom),
-                    txOptions.feeDenom
+                    gasToFee(txOptions.gasLimit, txOptions.gasPriceInFeeDenom), txOptions.feeDenom
                 )
-            ),
-            granter = txOptions.feeGranter
+            ), granter = txOptions.feeGranter
         )
 
         return when (wallet) {
             is DirectSigningWallet -> {
                 signDirect(
-                    wallet as DirectSigningWallet,
-                    accountFromWallet,
-                    messages,
-                    fee,
-                    txOptions.memo,
-                    signerData
+                    wallet as DirectSigningWallet, accountFromWallet, messages, fee, txOptions.memo, signerData
                 )
             }
 
@@ -222,12 +212,10 @@ class SigningCosmWasmClient(
     ): TxRawProto {
         val txBody = TxBody(
             value = TxBodyValue(
-                messages = msgs
-                    .map { msg ->
-                        if (msg is EncryptedMsg) msg.populateCodeHash()
-                        msg.toProto(this.restClient.enigmautils)
-                    },
-                memo = memo
+                messages = msgs.map { msg ->
+                    if (msg is EncryptedMsg) msg.populateCodeHash()
+                    msg.toProto(this.restClient.enigmautils)
+                }, memo = memo
             )
         )
 
@@ -237,10 +225,7 @@ class SigningCosmWasmClient(
 
 
         val authInfoBytes = makeAuthInfoBytes(
-            listOf(Signer(pubkey, signerData.sequence)),
-            fee.amount,
-            gasLimit,
-            SignMode.SIGN_MODE_DIRECT
+            listOf(Signer(pubkey, signerData.sequence)), fee.amount, gasLimit, SignMode.SIGN_MODE_DIRECT
         )
 
         val signDoc = SignDocProto(
@@ -291,12 +276,10 @@ class SigningCosmWasmClient(
 
         val txBody = TxBody(
             value = TxBodyValue(
-                messages = messages
-                    .map { msg ->
-                        if (msg is EncryptedMsg) msg.populateCodeHash()
-                        msg.toProto(this.restClient.enigmautils)
-                    },
-                memo = memo
+                messages = messages.map { msg ->
+                    if (msg is EncryptedMsg) msg.populateCodeHash()
+                    msg.toProto(this.restClient.enigmautils)
+                }, memo = memo
             )
         )
 
@@ -306,10 +289,7 @@ class SigningCosmWasmClient(
         val signedSequence = signResponse.signed.sequence.toBigInteger(10)
         val pubkey = encodePubkey(encodeSecp256k1Pubkey(account.pubkey))
         val signedAuthInfoBytes = makeAuthInfoBytes(
-            listOf(Signer(pubkey, signedSequence)),
-            signedFeeAmount,
-            signedGasLimit,
-            signMode
+            listOf(Signer(pubkey, signedSequence)), signedFeeAmount, signedGasLimit, signMode
         )
         val signature = signResponse.signature
         return TxRawProto(
@@ -347,16 +327,11 @@ class SigningCosmWasmClient(
      * This implementation does not support different signing modes for the different signers.
      */
     private fun makeAuthInfoBytes(
-        signers: List<Signer>,
-        amount: List<Coin>,
-        gasLimit: Int,
-        signMode: SignMode
+        signers: List<Signer>, amount: List<Coin>, gasLimit: Int, signMode: SignMode
     ): ByteArray {
         val authInfo = AuthInfoProto(
-            signerInfos = makeSignerInfos(signers, signMode),
-            fee = FeeProto(
-                amount = amount.map { it.toProto() },
-                gasLimit = gasLimit
+            signerInfos = makeSignerInfos(signers, signMode), fee = FeeProto(
+                amount = amount.map { it.toProto() }, gasLimit = gasLimit
             )
         )
         return ProtoBuf.encodeToByteArray(authInfo)
@@ -368,8 +343,7 @@ class SigningCosmWasmClient(
      * This implementation does not support different signing modes for the different signers.
      */
     private fun makeSignerInfos(
-        signers: List<Signer>,
-        signMode: SignMode
+        signers: List<Signer>, signMode: SignMode
     ): List<SignerInfoProto> {
         return signers.map { signer ->
             SignerInfoProto(
@@ -382,47 +356,44 @@ class SigningCosmWasmClient(
 
 
     private fun encodeTx(txBody: TxBody<out MsgProto>): ByteArray {
-        val wrappedMessages = txBody.value.messages
-            .map { message ->
-                val anyValue = when (message.value) {
-                    is MsgInstantiateContractProto -> {
-                        ProtoBuf.encodeToByteArray(message.value)
-                    }
-
-                    is MsgExecuteContractProto -> {
-                        ProtoBuf.encodeToByteArray(message.value)
-                    }
-
-                    is MsgStoreCodeProto -> {
-                        ProtoBuf.encodeToByteArray(message.value)
-                    }
-
-                    is MsgSendProto -> {
-                        ProtoBuf.encodeToByteArray(message.value)
-                    }
-
-                    is MsgMigrateContractProto -> {
-                        ProtoBuf.encodeToByteArray(message.value)
-                    }
-
-                    is MsgClearAdminProto -> {
-                        ProtoBuf.encodeToByteArray(message.value)
-                    }
-
-                    is MsgUpdateAdminProto -> {
-                        ProtoBuf.encodeToByteArray(message.value)
-                    }
-
-                    else -> TODO()
+        val wrappedMessages = txBody.value.messages.map { message ->
+            val anyValue = when (message.value) {
+                is MsgInstantiateContractProto -> {
+                    ProtoBuf.encodeToByteArray(message.value)
                 }
-                AnyProto(
-                    typeUrl = message.typeUrl,
-                    value = anyValue
-                )
+
+                is MsgExecuteContractProto -> {
+                    ProtoBuf.encodeToByteArray(message.value)
+                }
+
+                is MsgStoreCodeProto -> {
+                    ProtoBuf.encodeToByteArray(message.value)
+                }
+
+                is MsgSendProto -> {
+                    ProtoBuf.encodeToByteArray(message.value)
+                }
+
+                is MsgMigrateContractProto -> {
+                    ProtoBuf.encodeToByteArray(message.value)
+                }
+
+                is MsgClearAdminProto -> {
+                    ProtoBuf.encodeToByteArray(message.value)
+                }
+
+                is MsgUpdateAdminProto -> {
+                    ProtoBuf.encodeToByteArray(message.value)
+                }
+
+                else -> TODO()
             }
+            AnyProto(
+                typeUrl = message.typeUrl, value = anyValue
+            )
+        }
         val txBodyEncoded = TxBodyProto(
-            messages = wrappedMessages,
-            memo = txBody.value.memo
+            messages = wrappedMessages, memo = txBody.value.memo
         )
         return ProtoBuf.encodeToByteArray(txBodyEncoded)
     }
@@ -444,8 +415,7 @@ class SigningCosmWasmClient(
         }
 
         this.restClient.decryptLogs(
-            postTxResult.logs,
-            nonces.values.toList()
+            postTxResult.logs, nonces.values.toList()
         )
 
         return data.map { it.decodeToString() }
