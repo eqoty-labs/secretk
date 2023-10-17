@@ -2813,6 +2813,7 @@ __attribute__((swift_name("SigningCosmWasmClient")))
 */
 - (void)executeMsgs:(NSArray<id<ClientMsg>> *)msgs txOptions:(ClientTxOptions *)txOptions completionHandler:(void (^)(ClientTxResponseData * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("execute(msgs:txOptions:completionHandler:)")));
 - (int32_t)gasToFeeGasLimit:(int32_t)gasLimit gasPrice:(double)gasPrice __attribute__((swift_name("gasToFee(gasLimit:gasPrice:)")));
+- (void)setEncryptionUtilsEncryptionUtils:(id<ClientEncryptionUtils>)encryptionUtils __attribute__((swift_name("setEncryptionUtils(encryptionUtils:)")));
 
 /**
  * @note This method converts instances of CancellationException to errors.
