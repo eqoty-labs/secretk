@@ -45,6 +45,10 @@ class SigningCosmWasmClient(
         }
     }
 
+    fun setEncryptionUtils(encryptionUtils: EncryptionUtils) {
+        restClient.enigmautils = encryptionUtils
+    }
+
     private fun encodePubkey(
         pubkey: PubKey,
     ): AnyProto {
@@ -158,7 +162,8 @@ class SigningCosmWasmClient(
         } else {
             emptyList()
         }
-        msgs.filterIsInstance<MsgMigrateContract>().forEach { restClient.addressToCodeHashCache.remove(it.contractAddress) }
+        msgs.filterIsInstance<MsgMigrateContract>()
+            .forEach { restClient.addressToCodeHashCache.remove(it.contractAddress) }
 
         return txResponse
     }

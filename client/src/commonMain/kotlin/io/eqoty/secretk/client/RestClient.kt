@@ -36,7 +36,7 @@ import okio.ByteString.Companion.toByteString
 internal class RestClient(
     val apiUrl: String,
     val broadcastMode: BroadcastMode = BroadcastMode.Block,
-    val enigmautils: EncryptionUtils
+    var enigmautils: EncryptionUtils
 ) {
     val addressToCodeHashCache: MutableMap<String, String> = mutableMapOf()
     val codeIdToCodeInfoCache: MutableMap<Int, CodeInfo> = mutableMapOf()
