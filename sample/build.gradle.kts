@@ -1,5 +1,4 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.compose.experimental.dsl.IOSDevices
 
 plugins {
     alias(libs.plugins.org.jetbrains.kotlin.multiplatform)
@@ -154,25 +153,25 @@ compose.desktop {
 
 compose.experimental {
     web.application {}
-    uikit.application {
-        bundleIdPrefix = "io.eqoty.secretk"
-        projectName = "secretk sample"
-        deployConfigurations {
-            simulator("IPhone8") {
-                //Usage: ./gradlew iosDeployIPhone8Debug
-                device = IOSDevices.IPHONE_8
-            }
-            simulator("IPad") {
-                //Usage: ./gradlew iosDeployIPadDebug
-                device = IOSDevices.IPAD_MINI_6th_Gen
-            }
-            connectedDevice("Device") {
-                //First need specify your teamId here, or in local.properties (compose.ios.teamId=***)
-                //teamId="***"
-                //Usage: ./gradlew iosDeployDeviceRelease
-            }
-        }
-    }
+//    uikit.application {
+//        bundleIdPrefix = "io.eqoty.secretk"
+//        projectName = "secretk sample"
+//        deployConfigurations {
+//            simulator("IPhone8") {
+//                //Usage: ./gradlew iosDeployIPhone8Debug
+//                device = IOSDevices.IPHONE_8
+//            }
+//            simulator("IPad") {
+//                //Usage: ./gradlew iosDeployIPadDebug
+//                device = IOSDevices.IPAD_MINI_6th_Gen
+//            }
+//            connectedDevice("Device") {
+//                //First need specify your teamId here, or in local.properties (compose.ios.teamId=***)
+//                //teamId="***"
+//                //Usage: ./gradlew iosDeployDeviceRelease
+//            }
+//        }
+//    }
 }
 
 compose.desktop.nativeApplication {
