@@ -2,7 +2,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import io.eqoty.secret.std.types.Permission
@@ -26,6 +26,7 @@ val contractAddress = "secret13wgwunerja49j68eehvn6ynnfnzceg42uqut5x"
 
 private val jsonPretty = Json { prettyPrint = true }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SampleApp(
     client: SigningCosmWasmClient,
@@ -48,7 +49,7 @@ fun SampleApp(
                 }
             ) {
                 Column(
-                    modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())
+                    modifier = Modifier.fillMaxSize().padding(it).verticalScroll(rememberScrollState())
                 ) {
                     platformSpecificItems()
                     Row {
