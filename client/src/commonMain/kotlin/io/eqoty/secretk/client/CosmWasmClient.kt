@@ -26,6 +26,8 @@ open class CosmWasmClient protected constructor(
 
     suspend fun getContractInfoByAddress(addr: String): ContractInfoResponse = restClient.getContractInfoByAddress(addr)
 
+    suspend fun getLatestBlock(): BlockResponse = restClient.getLatestBlock()
+
     // The /node_info endpoint
     suspend fun nodeInfo(): NodeInfoResponse {
         return restClient.get("/node_info")

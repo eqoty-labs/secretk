@@ -16,6 +16,8 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonNamingStrategy
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonObject
 import okio.ByteString.Companion.decodeBase64
@@ -46,7 +48,10 @@ internal class RestClient(
             contentType(ContentType.Application.Json)
         }
         install(ContentNegotiation) {
-            json(Json)
+            json(Json {
+                namingStrategy = JsonNamingStrategy.SnakeCase
+                ignoreUnknownKeys = true
+            })
         }
         install(HttpTimeout) {
             socketTimeoutMillis = 60_000
@@ -134,6 +139,11 @@ internal class RestClient(
 
     suspend fun getContractInfoByAddress(address: String): ContractInfoResponse {
         val path = "/compute/v1beta1/info/$address"
+        return get(path)
+    }
+
+    suspend fun getLatestBlock(): BlockResponse {
+        val path = "/cosmos/base/tendermint/v1beta1/blocks/latest"
         return get(path)
     }
 

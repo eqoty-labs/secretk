@@ -401,4 +401,14 @@ class ClientTests {
         assertEquals(recipientBalance, amountToSend)
     }
 
+    @Test
+    fun testGetLatestBlockDeserializesSuccessfully() = runTest {
+        val client = SigningCosmWasmClient.init(
+            grpcGatewayEndpoint,
+            wallet
+        )
+        val block = client.getLatestBlock()
+        assertTrue(block.block.header.height.toLong() > 0)
+    }
+
 }
