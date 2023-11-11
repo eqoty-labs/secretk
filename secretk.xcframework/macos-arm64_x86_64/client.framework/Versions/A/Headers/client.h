@@ -2677,16 +2677,16 @@ __attribute__((swift_name("Secp256k1PubKey.Companion")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Signature")))
 @interface ClientSignature : ClientBase
-- (instancetype)initWithBlockIdFlag:(NSString *)blockIdFlag validatorAddress:(NSString *)validatorAddress timestamp:(NSString *)timestamp signature:(NSString *)signature __attribute__((swift_name("init(blockIdFlag:validatorAddress:timestamp:signature:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithBlockIdFlag:(NSString *)blockIdFlag validatorAddress:(NSString * _Nullable)validatorAddress timestamp:(NSString *)timestamp signature:(NSString * _Nullable)signature __attribute__((swift_name("init(blockIdFlag:validatorAddress:timestamp:signature:)"))) __attribute__((objc_designated_initializer));
 @property (class, readonly, getter=companion) ClientSignatureCompanion *companion __attribute__((swift_name("companion")));
-- (ClientSignature *)doCopyBlockIdFlag:(NSString *)blockIdFlag validatorAddress:(NSString *)validatorAddress timestamp:(NSString *)timestamp signature:(NSString *)signature __attribute__((swift_name("doCopy(blockIdFlag:validatorAddress:timestamp:signature:)")));
+- (ClientSignature *)doCopyBlockIdFlag:(NSString *)blockIdFlag validatorAddress:(NSString * _Nullable)validatorAddress timestamp:(NSString *)timestamp signature:(NSString * _Nullable)signature __attribute__((swift_name("doCopy(blockIdFlag:validatorAddress:timestamp:signature:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *blockIdFlag __attribute__((swift_name("blockIdFlag")));
-@property (readonly) NSString *signature __attribute__((swift_name("signature")));
+@property (readonly) NSString * _Nullable signature __attribute__((swift_name("signature")));
 @property (readonly) NSString *timestamp __attribute__((swift_name("timestamp")));
-@property (readonly) NSString *validatorAddress __attribute__((swift_name("validatorAddress")));
+@property (readonly) NSString * _Nullable validatorAddress __attribute__((swift_name("validatorAddress")));
 @end
 
 __attribute__((objc_subclassing_restricted))
