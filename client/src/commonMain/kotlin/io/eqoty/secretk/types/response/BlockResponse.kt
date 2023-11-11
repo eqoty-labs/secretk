@@ -81,7 +81,7 @@ data class LastCommit(
 @Serializable
 data class Signature(
     val blockIdFlag: String,
-    val validatorAddress: String,
+    val validatorAddress: String?,
     val timestamp: String,
-    val signature: String
+    val signature: String?,
 )
