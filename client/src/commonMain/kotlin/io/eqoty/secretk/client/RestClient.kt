@@ -16,8 +16,6 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonNamingStrategy
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonObject
 import okio.ByteString.Companion.decodeBase64
@@ -36,9 +34,7 @@ import okio.ByteString.Companion.toByteString
  * @param seed - The seed used to generate sender TX encryption key. If empty will generate random new one
  */
 internal class RestClient(
-    val apiUrl: String,
-    val broadcastMode: BroadcastMode = BroadcastMode.Block,
-    var enigmautils: EncryptionUtils
+    val apiUrl: String, val broadcastMode: BroadcastMode = BroadcastMode.Block, var enigmautils: EncryptionUtils
 ) {
     val addressToCodeHashCache: MutableMap<String, String> = mutableMapOf()
     val codeIdToCodeInfoCache: MutableMap<Int, CodeInfo> = mutableMapOf()
@@ -48,10 +44,7 @@ internal class RestClient(
             contentType(ContentType.Application.Json)
         }
         install(ContentNegotiation) {
-            json(Json {
-                namingStrategy = JsonNamingStrategy.SnakeCase
-                ignoreUnknownKeys = true
-            })
+            json(Json)
         }
         install(HttpTimeout) {
             socketTimeoutMillis = 60_000
