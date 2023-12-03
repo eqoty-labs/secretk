@@ -65,6 +65,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":client"))
+                implementation(project(":secret-std-msgs"))
                 implementation(compose.ui)
                 implementation(compose.foundation)
                 implementation(compose.material3)

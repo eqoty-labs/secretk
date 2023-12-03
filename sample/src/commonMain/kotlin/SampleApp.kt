@@ -5,6 +5,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import io.eqoty.secret.std.contract.msg.Snip20Msgs
 import io.eqoty.secret.std.types.Permission
 import io.eqoty.secret.std.types.Permit
 import io.eqoty.secretk.client.SigningCosmWasmClient
@@ -56,11 +57,31 @@ fun SampleApp(
                         var response: String? by remember { mutableStateOf(null) }
                         Button({
                             coroutineScope.launch {
-                                val contractInfoQuery = """{"token_info": {}}"""
+                                val contractInfoQuery = """{"royalty_info": {}}"""
+                                response = try {
+                                    client.queryContractSmart(
+                                        "secret1d96jn9azwqw40paqyd5g02kz0ye0udhhqlue7j",
+                                        contractInfoQuery
+                                    )
+                                } catch (t: Throwable) {
+                                    t.message
+                                }
+                            }
+                        }) {
+                            Text("Snip721 royalty info")
+                        }
+                        response?.let {
+                            Text("query response: $response")
+                        }
+                    }
+                    Row {
+                        var response: String? by remember { mutableStateOf(null) }
+                        Button({
+                            coroutineScope.launch {
                                 response = try {
                                     client.queryContractSmart(
                                         "secret14kkk84pxtfedqngpz8pyg7az8x4v9luyvqne6t",
-                                        contractInfoQuery
+                                        Json.encodeToString(Snip20Msgs.Query(tokenInfo = Snip20Msgs.Query.TokenInfo()))
                                     )
                                 } catch (t: Throwable) {
                                     t.message

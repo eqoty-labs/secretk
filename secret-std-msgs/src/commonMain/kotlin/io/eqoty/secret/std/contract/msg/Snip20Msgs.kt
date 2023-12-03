@@ -28,14 +28,17 @@ object Snip20Msgs {
     @Serializable
     data class Query(
         val balance: Balance? = null,
-        @SerialName("with_permit")
-        val withPermit: WithPermit? = null,
+        @SerialName("token_info") val tokenInfo: TokenInfo? = null,
+        @SerialName("with_permit") val withPermit: WithPermit? = null,
     ) {
         @Serializable
         data class Balance(
             val address: String,
             val key: String,
         )
+
+        @Serializable
+        class TokenInfo
 
         @Serializable
         data class WithPermit(
@@ -55,11 +58,19 @@ object Snip20Msgs {
 
     @Serializable
     data class QueryAnswer(
-        val balance: Balance? = null,
+        val balance: Balance? = null, @SerialName("token_info") val tokenInfo: TokenInfo? = null
     ) {
         @Serializable
         data class Balance(
             @Contextual val amount: BigInteger?,
+        )
+
+        @Serializable
+        data class TokenInfo(
+            val name: String,
+            val symbol: String,
+            val decimals: UByte,
+            @Contextual val total_supply: BigInteger,
         )
 
     }
