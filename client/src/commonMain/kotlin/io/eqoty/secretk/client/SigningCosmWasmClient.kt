@@ -424,28 +424,4 @@ class SigningCosmWasmClient(
     fun gasToFee(gasLimit: Int, gasPrice: Double): Int {
         return ceil(gasLimit.toDouble() * gasPrice).toInt()
     }
-
-    companion object {
-
-        /**
-         * Helper to initialize libsodium and then create the client.
-         */
-        suspend fun init(
-            apiUrl: String,
-            wallet: Wallet?,
-            enigmaUtils: EncryptionUtils? = null,
-            broadcastMode: BroadcastMode = BroadcastMode.Block,
-            chainId: String? = null
-        ): SigningCosmWasmClient {
-            ensureLibsodiumInitialized()
-            return SigningCosmWasmClient(
-                apiUrl,
-                wallet,
-                enigmaUtils ?: EnigmaUtils(apiUrl, EnigmaUtils.GenerateNewSeed()),
-                broadcastMode,
-                chainId
-            )
-        }
-    }
-
 }

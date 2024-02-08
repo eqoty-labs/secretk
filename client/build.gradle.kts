@@ -81,13 +81,13 @@ kotlin {
                 implementation(libs.com.squareup.okio)
                 implementation(libs.bignum)
                 implementation(libs.bignum.serialization.kotlinx)
-                implementation(libs.com.ionspin.kotlin.multiplatformCryptoLibsodiumBindings)
                 implementation(libs.io.github.luca992.cash.z.ecc.android.kotlinBip39)
 //                implementation(libs.com.github.komputing.khash.ripemd160)
                 implementation(libs.io.eqoty.kryptools.aessiv)
                 implementation(libs.io.eqoty.kryptools.bech32)
                 implementation(libs.io.eqoty.kryptools.axlsign)
                 implementation(libs.io.eqoty.kryptools.secp256k1)
+                implementation(libs.cryptography.random)
             }
         }
         val commonTest by getting {

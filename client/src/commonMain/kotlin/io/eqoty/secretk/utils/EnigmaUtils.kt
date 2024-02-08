@@ -1,7 +1,6 @@
 package io.eqoty.secretk.utils
 
-import com.ionspin.kotlin.crypto.util.LibsodiumRandom
-import com.ionspin.kotlin.crypto.util.encodeToUByteArray
+import dev.whyoleg.cryptography.random.CryptographyRandom
 import io.eqoty.kryptools.aessiv.AesSIV
 import io.eqoty.kryptools.axlsign.AxlSignDouble
 import io.eqoty.kryptools.deriveHKDFKey
@@ -16,6 +15,7 @@ import io.ktor.util.*
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
+import kotlin.random.nextUBytes
 
 
 @Serializable
@@ -85,7 +85,7 @@ class EnigmaUtils(val apiUrl: String, val seed: UByteArray = GenerateNewSeed()) 
         }
 
         fun GenerateNewSeed(): UByteArray {
-            return LibsodiumRandom.buf(32)
+            return CryptographyRandom.nextUBytes(32)
         }
 
         fun GenerateNewKeyPairFromSeed(seed: UByteArray): KeyPair {
@@ -138,13 +138,13 @@ class EnigmaUtils(val apiUrl: String, val seed: UByteArray = GenerateNewSeed()) 
     }
 
     override suspend fun encrypt(contractCodeHash: String, message: JsonObject): UByteArray {
-        val nonce = LibsodiumRandom.buf(32)
+        val nonce = CryptographyRandom.nextUBytes(32)
 
         val txEncryptionKey = getTxEncryptionKey(nonce)
 
-        val plaintext = contractCodeHash + message
+        val plaintext = (contractCodeHash + message).encodeToByteArray().asUByteArray()
 
-        val ciphertext = siv.encrypt(txEncryptionKey, plaintext.encodeToUByteArray(), ubyteArrayOf())
+        val ciphertext = siv.encrypt(txEncryptionKey, plaintext, ubyteArrayOf())
 
         return nonce + this.pubKey + ciphertext
     }

@@ -1,8 +1,8 @@
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Button
-import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.NoLiveLiterals
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Window
@@ -42,10 +42,10 @@ fun main() {
                 TODO()
             }
         }
-        val client = SigningCosmWasmClient.init(
+        val client = SigningCosmWasmClient(
             chain.grpcGatewayEndpoint,
             wallet,
-            enigmaUtils = enigmaUtils
+            encryptionUtils = enigmaUtils
         )
         console.log(client)
         onWasmReady {

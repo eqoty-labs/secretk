@@ -434,7 +434,7 @@ enum class Chain(val id: String, val grpcGatewayEndpoint: String, val rpcEndpoin
 }
 
 suspend fun clientWithDirectSigningWallet(): SigningCosmWasmClient {
-    return SigningCosmWasmClient.init(
+    return SigningCosmWasmClient(
         Chain.Secret4.grpcGatewayEndpoint,
         null
     )

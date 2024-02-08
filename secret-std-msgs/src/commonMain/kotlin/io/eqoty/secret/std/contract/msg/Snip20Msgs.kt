@@ -70,7 +70,7 @@ object Snip20Msgs {
             val name: String,
             val symbol: String,
             val decimals: UByte,
-            @Contextual val total_supply: BigInteger,
+            @Contextual val total_supply: BigInteger? = null,
         )
 
     }
