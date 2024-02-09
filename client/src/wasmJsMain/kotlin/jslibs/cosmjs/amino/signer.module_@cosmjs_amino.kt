@@ -10,18 +10,18 @@ package jslibs.cosmjs.amino
 import org.khronos.webgl.Uint8Array
 import kotlin.js.Promise
 
-external interface AccountData {
+external interface AccountData : JsAny {
     var address: String
     var algo: String /* "secp256k1" | "ed25519" | "sr25519" */
     var pubkey: Uint8Array
 }
 
-//external interface AminoSignResponse {
-//    var signed: StdSignDoc
-//    var signature: StdSignature
-//}
-//
-//external interface OfflineAminoSigner {
-//    var getAccounts: () -> Promise<Array<AccountData>>
-//    var signAmino: (signerAddress: String, signDoc: StdSignDoc) -> Promise<AminoSignResponse>
-//}
+external interface AminoSignResponse : JsAny {
+    var signed: StdSignDoc
+    var signature: StdSignature
+}
+
+external interface OfflineAminoSigner {
+    var getAccounts: () -> Promise<JsArray<AccountData>>
+    var signAmino: (signerAddress: String, signDoc: StdSignDoc) -> Promise<AminoSignResponse>
+}

@@ -91,8 +91,3 @@ package jslibs.secretjs
 //    var value: Any
 //    fun encode(): Promise<Uint8Array>
 //}
-
-external interface AminoMsg: JsAny {
-    var type: String
-    var value: JsAny
-}

@@ -8,6 +8,8 @@
 
 package jslibs.secretjs
 
+import jslibs.cosmjs.amino.AminoSignResponse
+import jslibs.cosmjs.amino.StdSignDoc
 import org.khronos.webgl.Uint8Array
 import kotlin.js.Promise
 

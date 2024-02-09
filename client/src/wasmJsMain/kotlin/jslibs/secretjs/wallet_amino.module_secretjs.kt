@@ -8,70 +8,36 @@
 
 package jslibs.secretjs
 
+import jslibs.cosmjs.amino.AminoSignResponse
+import jslibs.cosmjs.amino.StdSignDoc
 import org.khronos.webgl.Uint8Array
+import kotlin.js.Promise
 
-//
-//external interface WalletOptions {
-//    var hdAccountIndex: Number?
-//        get() = definedExternally
-//        set(value) = definedExternally
-//    var coinType: Number?
-//        get() = definedExternally
-//        set(value) = definedExternally
-//    var bech32Prefix: String?
-//        get() = definedExternally
-//        set(value) = definedExternally
-//}
-//
-//open external class AminoWallet(mnemonic: String = definedExternally, options: WalletOptions = definedExternally) {
-//    open var mnemonic: String
-//    open var hdAccountIndex: Number
-//    open var coinType: Number
-//    open var privateKey: Uint8Array
-//    open var publicKey: Uint8Array
-//    open var address: String
-//    open var bech32Prefix: Any
-//    open fun getAccounts(): Promise<Array<AccountData>>
-//    open fun signAmino(signerAddress: String, signDoc: StdSignDoc): Promise<AminoSignResponse>
-//}
+
+external interface WalletOptions {
+    var hdAccountIndex: JsNumber?
+    var coinType: JsNumber?
+    var bech32Prefix: String?
+}
+
+open external class AminoWallet(mnemonic: String = definedExternally, options: WalletOptions = definedExternally) {
+    open var mnemonic: String
+    open var hdAccountIndex: JsNumber
+    open var coinType: JsNumber
+    open var privateKey: Uint8Array
+    open var publicKey: Uint8Array
+    open var address: String
+    open var bech32Prefix: JsAny
+    open fun getAccounts(): Promise<JsArray<AccountData>>
+    open fun signAmino(signerAddress: String, signDoc: StdSignDoc): Promise<AminoSignResponse>
+}
+
 //
 //external fun pubkeyToAddress(pubkey: Uint8Array, prefix: String = definedExternally): String
 //
 //external fun base64PubkeyToAddress(pubkey: String, prefix: String = definedExternally): String
 //
 //
-external interface AminoSignResponse : JsAny {
-    var signed: StdSignDoc
-    var signature: StdSignature
-}
-
-//
-external interface StdSignDoc {
-    var chain_id: String
-    var account_number: String
-    var sequence: String
-    var fee: StdFee
-    var msgs: JsArray<AminoMsg>
-    var memo: String
-}
-
-external interface StdFee {
-    var amount: JsArray<Coin>
-    var gas: String
-    var granter: String?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface StdSignature {
-    var pub_key: Pubkey
-    var signature: String
-}
-
-external interface Pubkey {
-    var type: String
-    var value: JsAny
-}
 
 external interface AccountData : JsAny {
     var address: String

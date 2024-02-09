@@ -7,7 +7,7 @@
 
 package jslibs.cosmjs.amino
 
-external interface Coin {
+external interface Coin: JsAny {
     var denom: String
     var amount: String
 }
