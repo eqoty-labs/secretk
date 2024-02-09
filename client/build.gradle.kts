@@ -1,7 +1,6 @@
 import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
 
 plugins {
     alias(libs.plugins.org.jetbrains.kotlin.multiplatform)
@@ -41,7 +40,7 @@ kotlin {
     }
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
-        browser {}
+        browser()
         nodejs()
     }
     val darwinTargets = mutableListOf<KotlinNativeTarget>()
