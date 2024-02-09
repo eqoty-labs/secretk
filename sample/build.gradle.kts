@@ -1,4 +1,5 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 plugins {
     alias(libs.plugins.org.jetbrains.kotlin.multiplatform)
@@ -14,6 +15,13 @@ kotlin {
     jvm("desktop")
     js(IR) {
         browser()
+        binaries.executable()
+    }
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs{
+        browser{
+//            useEsModules()
+        }
         binaries.executable()
     }
     macosX64 {
@@ -66,10 +74,8 @@ kotlin {
             dependencies {
                 implementation(project(":client"))
                 implementation(project(":secret-std-msgs"))
-                implementation(compose.ui)
                 implementation(compose.foundation)
                 implementation(compose.material3)
-                implementation(compose.runtime)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.kotlinx.serialization.json)
                 implementation(libs.kotlinx.datetime)
@@ -117,6 +123,16 @@ kotlin {
                 implementation(npm("vm-browserify", "^1.1.2"))
                 implementation(npm("url", "^0.11.0"))
 
+            }
+        }
+
+        val wasmJsMain by getting {
+            dependencies {
+                implementation(npm("assert", "^2.0.0"))
+                implementation(npm("stream-http", "^3.2.0"))
+                implementation(npm("https-browserify", "^1.0.0"))
+                implementation(npm("vm-browserify", "^1.1.2"))
+                implementation(npm("url", "^0.11.0"))
             }
         }
 

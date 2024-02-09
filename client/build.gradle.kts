@@ -1,6 +1,7 @@
 import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
 
 plugins {
     alias(libs.plugins.org.jetbrains.kotlin.multiplatform)
@@ -37,6 +38,11 @@ kotlin {
                 }
             })
         }
+    }
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        browser {}
+        nodejs()
     }
     val darwinTargets = mutableListOf<KotlinNativeTarget>()
     macosX64 {
@@ -120,12 +126,15 @@ kotlin {
                 implementation(npm("@keplr-wallet/types", "^0.11.13"))
             }
         }
+        val wasmJsMain by getting {
+            dependencies {
+                implementation(libs.ktor.client.js.wasm.js)
+            }
+        }
         val jsTest by getting {
             dependsOn(commonTest)
             dependencies {
                 implementation(libs.com.squareup.okio.nodefilesystem)
-                implementation(devNpm("@peculiar/webcrypto", "^1.4.0"))
-                implementation(devNpm("@happy-dom/global-registrator", "^7.5.2"))
             }
         }
         val nativeMain by creating {

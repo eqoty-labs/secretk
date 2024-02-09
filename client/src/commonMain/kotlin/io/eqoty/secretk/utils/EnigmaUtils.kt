@@ -15,6 +15,7 @@ import io.ktor.util.*
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
+import okio.internal.commonToUtf8String
 import kotlin.random.nextUBytes
 
 
@@ -131,9 +132,19 @@ class EnigmaUtils(val apiUrl: String, val seed: UByteArray = GenerateNewSeed()) 
 
         val txEncryptionKey = getTxEncryptionKey(nonce)
 
-        //console.log(`decrypt tx encryption key: ${Encoding.toHex(txEncryptionKey)}`);
-
-        val plaintext = siv.decrypt(txEncryptionKey, ciphertext, ubyteArrayOf())
+        logger.i("decrypt tx encryption key: ${txEncryptionKey.toByteString().hex()}");
+        logger.i("decrypt ciphertext: ${ciphertext.toByteString().hex()}")
+        val plaintext = try {
+            siv.decrypt(txEncryptionKey, ciphertext, listOf(ubyteArrayOf()))
+        } catch (e: Throwable) {
+            logger.e("decrypt error: ${e.message}")
+            ubyteArrayOf()
+        }
+        logger.i(
+            "decrypt plaintext: ${
+                plaintext.asByteArray().commonToUtf8String().decodeBase64Bytes().commonToUtf8String()
+            }"
+        );
         return plaintext
     }
 
@@ -143,9 +154,7 @@ class EnigmaUtils(val apiUrl: String, val seed: UByteArray = GenerateNewSeed()) 
         val txEncryptionKey = getTxEncryptionKey(nonce)
 
         val plaintext = (contractCodeHash + message).encodeToByteArray().asUByteArray()
-
-        val ciphertext = siv.encrypt(txEncryptionKey, plaintext, ubyteArrayOf())
-
+        val ciphertext = siv.encrypt(txEncryptionKey, plaintext, listOf(ubyteArrayOf()))
         return nonce + this.pubKey + ciphertext
     }
 
