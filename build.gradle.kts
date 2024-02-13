@@ -23,7 +23,7 @@ allprojects {
  */
 plugins.withType<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin> {
     extensions.getByType<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().apply {
-        nodeVersion = "21.0.0-v8-canary20231019bd785be450"
+        nodeVersion = "22.0.0-v8-canary202402125abc5744f6"
         nodeDownloadBaseUrl = "https://nodejs.org/download/v8-canary"
     }
     // Suppress an error because yarn doesn't like our Node version string.
