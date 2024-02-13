@@ -14,7 +14,14 @@ kotlin {
     androidTarget()
     jvm("desktop")
     js(IR) {
-        browser()
+        browser {
+            commonWebpackConfig {
+                val currentDir = System.getProperty("user.dir")
+                println(currentDir)
+                println(file("webpack.config.d.js"))
+                configDirectory = file("webpack.config.d.js/")
+            }
+        }
         binaries.executable()
     }
     @OptIn(ExperimentalWasmDsl::class)
@@ -130,24 +137,13 @@ kotlin {
                 implementation(npm("@keplr-wallet/wc-qrcode-modal", "^0.11.63"))
                 implementation(npm("@cosmostation/wc-modal", "^0.0.5"))
                 implementation(npm("@babel/core", "^7.18.13"))
-                implementation(npm("events", "^3.3.0"))
 
                 implementation(npm("assert", "^2.0.0"))
                 implementation(npm("stream-http", "^3.2.0"))
                 implementation(npm("https-browserify", "^1.0.0"))
-                implementation(npm("vm-browserify", "^1.1.2"))
+                implementation(npm("os-browserify", "^0.3.0"))
                 implementation(npm("url", "^0.11.0"))
 
-            }
-        }
-
-        val wasmJsMain by getting {
-            dependencies {
-                implementation(npm("assert", "^2.0.0"))
-                implementation(npm("stream-http", "^3.2.0"))
-                implementation(npm("https-browserify", "^1.0.0"))
-                implementation(npm("vm-browserify", "^1.1.2"))
-                implementation(npm("url", "^0.11.0"))
             }
         }
 

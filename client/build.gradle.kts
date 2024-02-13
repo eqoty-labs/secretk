@@ -112,12 +112,6 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 implementation(libs.ktor.client.js)
-                implementation(npm("file-system", "^2.2.2"))
-                implementation(npm("path-browserify", "^1.0.1"))
-                implementation(npm("crypto-browserify", "^3.12.0"))
-                implementation(npm("buffer", "^6.0.3"))
-                implementation(npm("stream-browserify", "^3.0.0"))
-                implementation(npm("os-browserify", "^0.3.0"))
                 implementation(npm("miscreant", "^0.3.2"))
                 implementation(npm("secretjs", "^1.4.5"))
                 implementation(npm("google-protobuf", "^3.21.0"))
