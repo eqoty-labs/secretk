@@ -5,7 +5,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import io.eqoty.secret.std.contract.msg.Snip20Msgs
 import io.eqoty.secret.std.types.Permission
 import io.eqoty.secret.std.types.Permit
 import io.eqoty.secretk.client.SigningCosmWasmClient
@@ -14,7 +13,6 @@ import io.eqoty.secretk.types.MsgExecuteContract
 import io.eqoty.secretk.types.TxOptions
 import io.eqoty.secretk.wallet.DirectSigningWallet
 import kotlinx.coroutines.launch
-import kotlinx.datetime.Clock
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
@@ -67,7 +65,9 @@ fun SampleApp(
                             Text("Query Contract Info")
                         }
                         contractInfoQueryResponse?.let {
-                            Text("query response: $contractInfoQueryResponse")
+                            SelectionContainer {
+                                Text("query response: $contractInfoQueryResponse")
+                            }
                         }
                     }
                     if (permit == null) {
@@ -104,7 +104,9 @@ fun SampleApp(
                                 Text("Get number of tokens with permit")
                             }
                             numTokensQueryWithPermitResponse?.let {
-                                Text("query response: $numTokensQueryWithPermitResponse")
+                                SelectionContainer {
+                                    Text("query response: $numTokensQueryWithPermitResponse")
+                                }
                             }
                         }
                     }
@@ -138,7 +140,9 @@ fun SampleApp(
                             Text("Create Viewing Key")
                         }
                         viewingKeyTxResponse?.let {
-                            Text("tx response: $viewingKeyTxResponse")
+                            SelectionContainer {
+                                Text("tx response: $viewingKeyTxResponse")
+                            }
                         }
                     }
                     viewingKeyTxResponse?.let { viewingKeyTxResponse ->
@@ -169,7 +173,9 @@ fun SampleApp(
                                 Text("Get number of tokens")
                             }
                             numTokensQueryResponse?.let {
-                                Text("query response using viewing key: $numTokensQueryResponse")
+                                SelectionContainer {
+                                    Text("query response using viewing key: $numTokensQueryResponse")
+                                }
                             }
                         }
                     }
