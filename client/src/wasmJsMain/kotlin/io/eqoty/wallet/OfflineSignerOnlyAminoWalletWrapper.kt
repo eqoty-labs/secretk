@@ -26,16 +26,7 @@ class OfflineSignerOnlyAminoWalletWrapper(
     override suspend fun signAmino(signerAddress: String, signDoc: StdSignDoc): AminoSignResponse {
         val result: jslibs.cosmjs.amino.AminoSignResponse =
             wallet.signAmino(signerAddress, parseStdSignDocJsonToJsStdSignDoc(Json.encodeToString(signDoc))).await()
-
         return Json.decodeFromString(stringify(result))
     }
 
 }
-
-//language=JavaScript
-internal fun stringify(any: JsAny): String = js("JSON.stringify(any)")
-
-//language=JavaScript
-internal fun parseStdSignDocJsonToJsStdSignDoc(signDocJson: String): jslibs.cosmjs.amino.StdSignDoc =
-    js("JSON.parse(signDocJson)")
-

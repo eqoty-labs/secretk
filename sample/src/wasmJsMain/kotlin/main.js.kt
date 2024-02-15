@@ -4,34 +4,40 @@ import androidx.compose.runtime.NoLiveLiterals
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.CanvasBasedWindow
+import io.eqoty.secretk.client.SigningCosmWasmClient
+import io.eqoty.utils.KeplrEnigmaUtils
+import io.eqoty.wallet.OfflineSignerOnlyAminoWalletWrapper
+import jslibs.keplrwallet.types.Keplr
 import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.await
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.js.Promise
 
 @OptIn(ExperimentalComposeUiApi::class)
 @NoLiveLiterals
 fun main() {
     application {
-//        val chain = Chain.Pulsar3
+        val chain = Chain.Pulsar3
 ////        val client = getClientWithMetamaskWallet(Chain.Pulsar2)
 ////        val client = setupEthWalletConnectAndGetWallet(Chain.Pulsar2)
-////        val wallet = getClientWithKeplrWallet(chain)
+        val wallet = getClientWithKeplrWallet(chain)
 ////        val client = setupCosmosWalletConnectAndGetWallet(Chain.Secret4, WalletConnectModal.Keplr)
-//        val accAddress = wallet.getAccounts()[0].address
-//        println(accAddress)
-//        val enigmaUtils = when (wallet) {
-//            is OfflineSignerOnlyAminoWalletWrapper -> KeplrEnigmaUtils(wallet.keplr, chain.id)
-//            else -> {
-//                TODO()
-//            }
-//        }
-//        val client = SigningCosmWasmClient(
-//            chain.grpcGatewayEndpoint, wallet, encryptionUtils = enigmaUtils
-//        )
+        val accAddress = wallet.getAccounts()[0].address
+        println(accAddress)
+        val enigmaUtils = when (wallet) {
+            is OfflineSignerOnlyAminoWalletWrapper -> KeplrEnigmaUtils(wallet.keplr, chain.id)
+            else -> {
+                TODO()
+            }
+        }
+        val client = SigningCosmWasmClient(
+            chain.grpcGatewayEndpoint, wallet, encryptionUtils = enigmaUtils
+        )
 //        console.log(client)
         CanvasBasedWindow("secretk demo") {
             Column(modifier = Modifier.fillMaxSize()) {
-                setupAndStartApp()
-//                SampleApp(client, accAddress) {
+                SampleApp(client, accAddress) {
 //                    Row {
 //                        Button({
 //                            if (client.wallet is OfflineSignerOnlyAminoWalletWrapper) {
@@ -64,7 +70,7 @@ fun main() {
 //                            Text("Get Query Authorization")
 //                        }
 //                    }
-//                }
+                }
             }
         }
     }
@@ -76,84 +82,109 @@ fun application(block: suspend () -> Unit) {
     }
 }
 
-//suspend fun getClientWithKeplrWallet(
-//    chain: Chain, keplr: dynamic = null, suggestChain: Boolean = true
-//): OfflineSignerOnlyAminoWalletWrapper {
-//    @Suppress("NAME_SHADOWING") val keplr = if (keplr == null) {
-//        while (window.asDynamic().keplr == null || window.asDynamic().getOfflineSignerOnlyAmino == null || window.asDynamic().getEnigmaUtils == null) {
-//            delay(10)
-//        }
-//        window.asDynamic().keplr
-//    } else {
-//        keplr
-//    }
-//    if (suggestChain) {
-//        val chainId = chain.id
-//        val chainName = "Local Testnet"  //Anything you want
-//        val lcdUrl = chain.grpcGatewayEndpoint
-//        val rpcUrl = chain.rpcEndpoint
-//        val denom = "SCRT"
-//        val minimalDenom = "uscrt"
-//        val suggestion: dynamic = JSON.parse(
-//            """{
-//            "chainId": "$chainId",
-//            "chainName": "$chainName",
-//            "rpc": "$rpcUrl",
-//            "rest": "$lcdUrl",
-//            "bip44": { "coinType": 529 },
-//            "alternativeBIP44s": [
-//                {
-//                    "coinType": 118
-//                }
-//            ],
-//            "coinType": 529,
-//            "stakeCurrency": { "coinDenom": "$denom",
-//                             "coinMinimalDenom": "$minimalDenom",
-//                             "coinDecimals": 6,
-//                             "coinGeckoId": "secret",
-//                             "coinImageUrl": "https://dhj8dql1kzq2v.cloudfront.net/white/secret.png"
-//                             },
-//            "bech32Config": {
-//                "bech32PrefixAccAddr": "secret",
-//                "bech32PrefixAccPub": "secretpub",
-//                "bech32PrefixValAddr": "secretvaloper",
-//                "bech32PrefixValPub": "secretvaloperpub",
-//                "bech32PrefixConsAddr": "secretvalcons",
-//                "bech32PrefixConsPub": "secretvalconspub"
-//            },
-//            "currencies": [
-//                { "coinDenom": "$denom",
-//                  "coinMinimalDenom": "$minimalDenom",
-//                  "coinDecimals": 6,
-//                  "coinGeckoId": "secret",
-//                  "coinImageUrl": "https://dhj8dql1kzq2v.cloudfront.net/white/secret.png"
-//                }
-//            ],
-//            "feeCurrencies": [
-//                { "coinDenom": "$denom",
-//                  "coinMinimalDenom": "$minimalDenom",
-//                  "coinDecimals": 6,
-//                  "coinGeckoId": "secret",
-//                  "coinImageUrl": "https://dhj8dql1kzq2v.cloudfront.net/white/secret.png",
-//                  "gasPriceStep": {
-//                        "low": 0.1,
-//                        "average": 0.25,
-//                        "high": 0.4
-//                   }
-//                }
-//            ],
-//            "chainSymbolImageUrl": "https://dhj8dql1kzq2v.cloudfront.net/white/secret.png",
-//            "features": ["secretwasm", "ibc-go", "ibc-transfer"]
-//        }"""
-//        )
-//        console.log(suggestion)
-//        val suggestChainPromise: Promise<dynamic> = keplr.experimentalSuggestChain(suggestion) as Promise<dynamic>
-//        suggestChainPromise.await()
-//    }
-//    val enablePromise: Promise<dynamic> = keplr.enable(chain.id) as Promise<dynamic>
-//    enablePromise.await()
-//    return OfflineSignerOnlyAminoWalletWrapper(keplr, chain.id)
-//}
+//language=JavaScript
+private fun getKeplr(): Keplr? {
+    js(
+        code = "return window.keplr"
+    )
+}
+
+//language=JavaScript
+private fun getOfflineSignerOnlyAmino(): JsAny? {
+    js(
+        code = "return window.getOfflineSignerOnlyAmino"
+    )
+}
+
+//language=JavaScript
+private fun getEnigmaUtils(): JsAny? {
+    js(
+        code = "return window.getEnigmaUtils"
+    )
+}
+
+//language=JavaScript
+private fun parse(json: String): JsAny = js("JSON.parse(json)")
+
+
+suspend fun getClientWithKeplrWallet(
+    chain: Chain, keplr: Keplr? = null, suggestChain: Boolean = true
+): OfflineSignerOnlyAminoWalletWrapper {
+    @Suppress("NAME_SHADOWING") val keplr = if (keplr == null) {
+        while (getKeplr() == null || getOfflineSignerOnlyAmino() == null || getEnigmaUtils() == null) {
+            delay(10)
+        }
+        getKeplr()!!
+    } else {
+        keplr
+    }
+    if (suggestChain) {
+        val chainId = chain.id
+        val chainName = "Local Testnet"  //Anything you want
+        val lcdUrl = chain.grpcGatewayEndpoint
+        val rpcUrl = chain.rpcEndpoint
+        val denom = "SCRT"
+        val minimalDenom = "uscrt"
+        val suggestion: JsAny = parse(
+            """{
+            "chainId": "$chainId",
+            "chainName": "$chainName",
+            "rpc": "$rpcUrl",
+            "rest": "$lcdUrl",
+            "bip44": { "coinType": 529 },
+            "alternativeBIP44s": [
+                {
+                    "coinType": 118
+                }
+            ],
+            "coinType": 529,
+            "stakeCurrency": { "coinDenom": "$denom",
+                             "coinMinimalDenom": "$minimalDenom",
+                             "coinDecimals": 6,
+                             "coinGeckoId": "secret",
+                             "coinImageUrl": "https://dhj8dql1kzq2v.cloudfront.net/white/secret.png"
+                             },
+            "bech32Config": {
+                "bech32PrefixAccAddr": "secret",
+                "bech32PrefixAccPub": "secretpub",
+                "bech32PrefixValAddr": "secretvaloper",
+                "bech32PrefixValPub": "secretvaloperpub",
+                "bech32PrefixConsAddr": "secretvalcons",
+                "bech32PrefixConsPub": "secretvalconspub"
+            },
+            "currencies": [
+                { "coinDenom": "$denom",
+                  "coinMinimalDenom": "$minimalDenom",
+                  "coinDecimals": 6,
+                  "coinGeckoId": "secret",
+                  "coinImageUrl": "https://dhj8dql1kzq2v.cloudfront.net/white/secret.png"
+                }
+            ],
+            "feeCurrencies": [
+                { "coinDenom": "$denom",
+                  "coinMinimalDenom": "$minimalDenom",
+                  "coinDecimals": 6,
+                  "coinGeckoId": "secret",
+                  "coinImageUrl": "https://dhj8dql1kzq2v.cloudfront.net/white/secret.png",
+                  "gasPriceStep": {
+                        "low": 0.1,
+                        "average": 0.25,
+                        "high": 0.4
+                   }
+                }
+            ],
+            "chainSymbolImageUrl": "https://dhj8dql1kzq2v.cloudfront.net/white/secret.png",
+            "features": ["secretwasm", "ibc-go", "ibc-transfer"]
+        }"""
+        )
+        println(suggestion)
+        val suggestChainPromise: Promise<JsAny> = keplr.experimentalSuggestChain(suggestion)
+        suggestChainPromise.await<JsAny>()
+    }
+    val enablePromise: Promise<JsAny> = keplr.enable(chain.id)
+    enablePromise.await<JsAny>()
+    return OfflineSignerOnlyAminoWalletWrapper(keplr, chain.id)
+}
 
 
 //suspend fun getClientWithMetamaskWallet(chain: Chain): MetaMaskWalletWrapper {

@@ -27,9 +27,9 @@ class MetaMaskWalletWrapper(
     }
 
     override suspend fun signAmino(signerAddress: String, signDoc: StdSignDoc): AminoSignResponse {
-        TODO()
-//        val result = wallet.signAmino(signerAddress, JSON.parse(Json.encodeToString(signDoc))).await()
-//        return Json.decodeFromString(JSON.stringify(result))
+        val result: jslibs.cosmjs.amino.AminoSignResponse =
+            wallet.signAmino(signerAddress, parseStdSignDocJsonToJsStdSignDoc(Json.encodeToString(signDoc))).await()
+        return Json.decodeFromString(stringify(result))
     }
 
 }
