@@ -112,7 +112,6 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 implementation(libs.ktor.client.js)
-                implementation(npm("miscreant", "^0.3.2"))
                 implementation(npm("secretjs", "^1.4.5"))
                 implementation(npm("google-protobuf", "^3.21.0"))
                 implementation(npm("@cosmjs/amino", "^0.29.3"))

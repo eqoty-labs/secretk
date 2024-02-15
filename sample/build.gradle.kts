@@ -138,6 +138,7 @@ kotlin {
                 implementation(npm("@cosmostation/wc-modal", "^0.0.5"))
                 implementation(npm("@babel/core", "^7.18.13"))
 
+                implementation(npm("stream-browserify", "^3.0.0"))
                 implementation(npm("assert", "^2.0.0"))
                 implementation(npm("stream-http", "^3.2.0"))
                 implementation(npm("https-browserify", "^1.0.0"))
