@@ -79,6 +79,8 @@ object Snip20Msgs {
     data class Execute(
         val deposit: Deposit? = null,
         val send: Send? = null,
+        @SerialName("increase_allowance") val increaseAllowance: IncreaseAllowance? = null,
+        @SerialName("decrease_allowance") val decreaseAllowance: DecreaseAllowance? = null,
         val transfer: Transfer? = null,
     ) {
         @Serializable
@@ -104,6 +106,22 @@ object Snip20Msgs {
             val amount: String,
             val memo: String? = null,
             val padding: String? = null,
+        )
+
+        @Serializable
+        data class IncreaseAllowance(
+            val spender: String,
+            val amount: String,
+            val expiration: ULong?,
+            val padding: String?,
+        )
+
+        @Serializable
+        data class DecreaseAllowance(
+            val spender: String,
+            val amount: String,
+            val expiration: ULong?,
+            val padding: String?,
         )
     }
 
