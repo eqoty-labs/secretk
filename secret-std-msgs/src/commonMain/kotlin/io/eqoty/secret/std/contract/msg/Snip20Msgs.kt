@@ -112,16 +112,16 @@ object Snip20Msgs {
         data class IncreaseAllowance(
             val spender: String,
             val amount: String,
-            val expiration: ULong?,
-            val padding: String?,
+            val expiration: ULong? = null,
+            val padding: String? = null
         )
 
         @Serializable
         data class DecreaseAllowance(
             val spender: String,
             val amount: String,
-            val expiration: ULong?,
-            val padding: String?,
+            val expiration: ULong? = null,
+            val padding: String? = null,
         )
     }
 
