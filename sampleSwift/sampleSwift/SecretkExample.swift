@@ -20,14 +20,13 @@ struct SecretkExample {
         let SigningCosmWasmClientCompanion = SigningCosmWasmClient.Companion()
         let client = try! await SigningCosmWasmClient.Companion.doInit(SigningCosmWasmClientCompanion)(
             apiUrl: grpcGatewayEndpoint,
-            senderAddress: accAddress,
             wallet: wallet,
-            seed: nil,
+            enigmaUtils: nil,
             broadcastMode: BroadcastMode.block,
             chainId: nil
         )
 
-        let contractAddress = "secret1lz4m46vpdn8f2aj8yhtnexus40663udv7hhprm"
+        let contractAddress = "secret1yk7cd95nanxfcac7kfkkdh2dcm2m0v2eu7umz8"
         let contractInfoQuery = #"{"contract_info": {}}"#
         let contractInfo = try! await client.queryContractSmart(
             contractAddress: contractAddress,
@@ -48,8 +47,8 @@ struct SecretkExample {
                 codeHash: nil
             )
         ]
-        let simulate = try! await client.simulate(msgs: msgs, txOptions: TxOptions())
-        let gasLimit = Int32(Double(simulate.gasUsed)! * 1.1)
+//        let simulate = try! await client.simulate(msgs: msgs, txOptions: TxOptions())
+        let gasLimit = Int32(50_000)
         let response = try! await client.execute(
             msgs: msgs,
             txOptions: TxOptions(customGasLimit: gasLimit)

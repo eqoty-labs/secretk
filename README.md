@@ -152,7 +152,7 @@ let SigningCosmWasmClientCompanion = SigningCosmWasmClient.Companion()
 let client = try! await SigningCosmWasmClient.Companion.doInit(SigningCosmWasmClientCompanion)(
     apiUrl: grpcGatewayEndpoint,
     wallet: wallet,
-    seed: nil,
+    enigmaUtils: nil,
     broadcastMode: BroadcastMode.block,
     chainId: nil
 )
@@ -183,8 +183,7 @@ let msgs = [
         codeHash: nil  // optional but faster if you include
     )
 ]
-let simulate = try! await client.simulate(msgs: msgs, txOptions: TxOptions())
-let gasLimit = Int32(Double(simulate.gasUsed)! * 1.1)
+let gasLimit = Int32(50_000)
 let response = try! await client.execute(
     msgs: msgs,
     txOptions: TxOptions(customGasLimit: gasLimit)
