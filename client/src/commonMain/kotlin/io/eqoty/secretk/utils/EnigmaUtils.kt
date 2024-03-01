@@ -133,7 +133,7 @@ class EnigmaUtils(val apiUrl: String, val seed: UByteArray = GenerateNewSeed()) 
 
         //console.log(`decrypt tx encryption key: ${Encoding.toHex(txEncryptionKey)}`);
 
-        val plaintext = siv.decrypt(txEncryptionKey, ciphertext, ubyteArrayOf())
+        val plaintext = siv.decrypt(txEncryptionKey, ciphertext, listOf(ubyteArrayOf()))
         return plaintext
     }
 
@@ -144,7 +144,7 @@ class EnigmaUtils(val apiUrl: String, val seed: UByteArray = GenerateNewSeed()) 
 
         val plaintext = contractCodeHash + message
 
-        val ciphertext = siv.encrypt(txEncryptionKey, plaintext.encodeToUByteArray(), ubyteArrayOf())
+        val ciphertext = siv.encrypt(txEncryptionKey, plaintext.encodeToUByteArray(), listOf(ubyteArrayOf()))
 
         return nonce + this.pubKey + ciphertext
     }
