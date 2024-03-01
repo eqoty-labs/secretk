@@ -11,21 +11,6 @@ plugins {
 group = project.property("GROUP") as String
 version = project.property("VERSION_NAME") as String
 
-object Targets {
-
-    val iosTargets = arrayOf(
-        "iosArm64", "iosX64", "iosSimulatorArm64",
-    )
-    val macosTargets = arrayOf(
-        "macosX64", "macosArm64",
-    )
-    val darwinTargets = iosTargets + macosTargets
-    val linuxTargets = arrayOf<String>()
-    val mingwTargets = arrayOf<String>()
-    val nativeTargets = linuxTargets + darwinTargets + mingwTargets
-
-}
-
 kotlin {
     jvm()
     js(IR) {
@@ -140,10 +125,13 @@ kotlin {
 multiplatformSwiftPackage {
     outputDirectory(projectDir.parentFile)
     packageName(rootProject.name)
-    swiftToolsVersion("5.3")
+    swiftToolsVersion("6.0")
     targetPlatforms {
         iOS { v("13") }
         macOS { v("10_11") }
+        // https://github.com/luca992/multiplatform-swiftpackage/issues/18
+//        watchOS { v("4") }
+        tvOS { v("9") }
     }
 }
 

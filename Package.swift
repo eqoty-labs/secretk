@@ -1,11 +1,12 @@
-// swift-tools-version:5.3
+// swift-tools-version:6.0
 import PackageDescription
 
 let package = Package(
     name: "secretk",
     platforms: [
         .iOS(.v13),
-.macOS(.v10_11)
+.macOS(.v10_11),
+.tvOS(.v9)
     ],
     products: [
         .library(
