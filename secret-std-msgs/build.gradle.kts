@@ -1,4 +1,5 @@
 import com.vanniktech.maven.publish.SonatypeHost
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 
 plugins {
@@ -10,26 +11,25 @@ plugins {
 group = project.property("GROUP") as String
 version = project.property("VERSION_NAME") as String
 
-object Targets {
-    val iosTargets = arrayOf(
-        "iosArm64", "iosX64", "iosSimulatorArm64",
-    )
-    val macosTargets = arrayOf("macosX64", "macosArm64")
-    val darwinTargets = iosTargets + macosTargets
-    val linuxTargets = arrayOf<String>()
-    val mingwTargets = arrayOf<String>()
-    val nativeTargets = linuxTargets + darwinTargets + mingwTargets
-}
-
 kotlin {
     jvm()
     js(IR) {
         browser()
         nodejs()
     }
-    for (target in Targets.nativeTargets) {
-        targets.add(presets.getByName(target).createTarget(target))
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs{
+        browser()
+        nodejs()
     }
+    iosArm64(); iosX64() ;iosSimulatorArm64()
+    tvosArm64(); tvosX64(); tvosSimulatorArm64()
+    watchosArm32(); watchosArm64(); watchosSimulatorArm64()
+    macosX64(); macosArm64()
+    linuxX64()
+    mingwX64()
+
+    applyDefaultHierarchyTemplate()
     sourceSets {
         all {
             languageSettings.optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")

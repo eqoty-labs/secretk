@@ -37,29 +37,18 @@ kotlin {
             })
         }
     }
-    val darwinTargets = mutableListOf<KotlinNativeTarget>()
-    macosX64 {
-        darwinTargets.add(this)
-    }
-    macosArm64 {
-        darwinTargets.add(this)
-    }
-    iosX64 {
-        darwinTargets.add(this)
-    }
-    iosArm64 {
-        darwinTargets.add(this)
-    }
-    iosSimulatorArm64 {
-        darwinTargets.add(this)
-    }
-    darwinTargets.forEach {
-        it.apply {
-            binaries.framework()
-        }
-    }
-//    linuxX64()
+    iosArm64(); iosX64();iosSimulatorArm64()
+    tvosArm64(); tvosX64(); tvosSimulatorArm64()
+    watchosArm32(); watchosArm64(); watchosSimulatorArm64()
+    macosX64(); macosArm64()
+    linuxX64()
+    mingwX64()
 
+    targets.filterIsInstance<KotlinNativeTarget>().filter { it.konanTarget.family.isAppleFamily }.forEach {
+            it.binaries.framework()
+        }
+
+    applyDefaultHierarchyTemplate()
     sourceSets {
         all {
             languageSettings.optIn("kotlin.ExperimentalUnsignedTypes")
@@ -127,41 +116,22 @@ kotlin {
                 implementation(devNpm("@happy-dom/global-registrator", "^7.5.2"))
             }
         }
-        val nativeMain by creating {
-            dependsOn(commonMain)
-        }
-        val nativeTest by creating {
-            dependsOn(commonTest)
-        }
-        val darwinMain by creating {
-            dependsOn(nativeMain)
+
+        appleMain {
             dependencies {
                 implementation(libs.ktor.client.darwin)
             }
         }
-        val darwinTest by creating {
-            dependsOn(nativeTest)
-        }
-        Targets.macosTargets.forEach { target ->
-            getByName("${target}Main") {
-                dependsOn(darwinMain)
-            }
-            getByName("${target}Test") {
-                dependsOn(darwinTest)
+
+        linuxMain {
+            dependencies {
+                implementation(libs.ktor.client.curl)
             }
         }
-        val iosMain by creating {
-            dependsOn(darwinMain)
-        }
-        val iosTest by creating {
-            dependsOn(darwinTest)
-        }
-        Targets.iosTargets.forEach { target ->
-            getByName("${target}Main") {
-                dependsOn(iosMain)
-            }
-            getByName("${target}Test") {
-                dependsOn(iosTest)
+
+        mingwMain {
+            dependencies {
+                implementation(libs.ktor.client.winhttp)
             }
         }
     }
