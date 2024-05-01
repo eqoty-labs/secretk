@@ -1,4 +1,4 @@
-framework module client {
+framework module "client" {
     umbrella header "client.h"
 
     export *
