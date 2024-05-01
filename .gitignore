@@ -159,3 +159,6 @@ lint/tmp/
 client/nativelibs/libaes_siv_build/
 client/externals/
 sample/externals/
+
+.kotlin
+versions.properties
