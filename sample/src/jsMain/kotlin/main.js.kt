@@ -1,11 +1,12 @@
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Button
-import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.NoLiveLiterals
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.window.Window
+import androidx.compose.ui.window.CanvasBasedWindow
 import io.eqoty.secretk.client.SigningCosmWasmClient
 import io.eqoty.utils.KeplrEnigmaUtils
 import io.eqoty.wallet.MetaMaskWalletWrapper
@@ -26,6 +27,7 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 import kotlin.js.Promise
 
+@OptIn(ExperimentalComposeUiApi::class)
 @NoLiveLiterals
 fun main() {
     application {
@@ -43,13 +45,11 @@ fun main() {
             }
         }
         val client = SigningCosmWasmClient.init(
-            chain.grpcGatewayEndpoint,
-            wallet,
-            enigmaUtils = enigmaUtils
+            chain.grpcGatewayEndpoint, wallet, enigmaUtils = enigmaUtils
         )
         console.log(client)
         onWasmReady {
-            Window("secretk demo") {
+            CanvasBasedWindow("secretk demo") {
                 Column(modifier = Modifier.fillMaxSize()) {
                     SampleApp(client, accAddress) {
                         Row {
@@ -98,17 +98,10 @@ fun application(block: suspend () -> Unit) {
 }
 
 suspend fun getClientWithKeplrWallet(
-    chain: Chain,
-    keplr: dynamic = null,
-    suggestChain: Boolean = true
+    chain: Chain, keplr: dynamic = null, suggestChain: Boolean = true
 ): OfflineSignerOnlyAminoWalletWrapper {
-    @Suppress("NAME_SHADOWING")
-    val keplr = if (keplr == null) {
-        while (
-            window.asDynamic().keplr == null ||
-            window.asDynamic().getOfflineSignerOnlyAmino == null ||
-            window.asDynamic().getEnigmaUtils == null
-        ) {
+    @Suppress("NAME_SHADOWING") val keplr = if (keplr == null) {
+        while (window.asDynamic().keplr == null || window.asDynamic().getOfflineSignerOnlyAmino == null || window.asDynamic().getEnigmaUtils == null) {
             delay(10)
         }
         window.asDynamic().keplr
@@ -175,8 +168,7 @@ suspend fun getClientWithKeplrWallet(
         }"""
         )
         console.log(suggestion)
-        val suggestChainPromise: Promise<dynamic> =
-            keplr.experimentalSuggestChain(suggestion) as Promise<dynamic>
+        val suggestChainPromise: Promise<dynamic> = keplr.experimentalSuggestChain(suggestion) as Promise<dynamic>
         suggestChainPromise.await()
     }
     val enablePromise: Promise<dynamic> = keplr.enable(chain.id) as Promise<dynamic>
@@ -199,8 +191,7 @@ enum class WalletConnectModal(val signingMethods: Array<String>, val qrcodeModal
         signingMethods = arrayOf(
             "keplr_enable_wallet_connect_v1",
             "keplr_sign_amino_wallet_connect_v1",
-        ),
-        qrcodeModal = KeplrQRCodeModalV1()
+        ), qrcodeModal = KeplrQRCodeModalV1()
     ),
     Cosmostation(
         signingMethods = arrayOf(
@@ -208,14 +199,12 @@ enum class WalletConnectModal(val signingMethods: Array<String>, val qrcodeModal
 //            "cosmostation_sign_amino_wallet_connect_v1",
             "cosmostation_wc_accounts_v1",
             "cosmostation_wc_sign_tx_v1",
-        ),
-        qrcodeModal = CosmostationWCModal()
+        ), qrcodeModal = CosmostationWCModal()
     )
 }
 
 suspend fun setupCosmosWalletConnectAndGetWallet(
-    chain: Chain,
-    wcModal: WalletConnectModal
+    chain: Chain, wcModal: WalletConnectModal
 ): OfflineSignerOnlyAminoWalletWrapper {
     val connector = WalletConnect(
         IWalletConnectOptionsInstance(
@@ -231,24 +220,20 @@ suspend fun setupCosmosWalletConnectAndGetWallet(
                 if (error != null) {
                     continuation.resumeWithException(error)
                 } else {
-                    val keplr = KeplrWalletConnectV1(connector,
-                        KeplrWalletConnectV1OptionsInstance(null) { a, b, c ->
-                            console.log("SEND TX CALLED")
-                            Promise.resolve(Uint8Array(1))
-                        }
-                    )
+                    val keplr = KeplrWalletConnectV1(connector, KeplrWalletConnectV1OptionsInstance(null) { a, b, c ->
+                        console.log("SEND TX CALLED")
+                        Promise.resolve(Uint8Array(1))
+                    })
                     continuation.resume(keplr)
 
                 }
             }
         }
     } else {
-        KeplrWalletConnectV1(connector,
-            KeplrWalletConnectV1OptionsInstance(null) { a, b, c ->
-                console.log("SEND TX CALLED")
-                Promise.resolve(Uint8Array(1))
-            }
-        )
+        KeplrWalletConnectV1(connector, KeplrWalletConnectV1OptionsInstance(null) { a, b, c ->
+            console.log("SEND TX CALLED")
+            Promise.resolve(Uint8Array(1))
+        })
     }
     // experimentalSuggestChain not implemented yet on WalletConnect
     // https://github.com/chainapsis/keplr-wallet/blob/682c8402ccd09b35cecf9f028d97635b6a5cd015/packages/wc-client/src/index.ts#L275
