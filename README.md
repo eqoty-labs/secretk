@@ -153,7 +153,7 @@ let client = try! await SigningCosmWasmClient.Companion.doInit(SigningCosmWasmCl
     apiUrl: grpcGatewayEndpoint,
     wallet: wallet,
     enigmaUtils: nil,
-    broadcastMode: BroadcastMode.block,
+    broadcastMode: BroadcastMode.Sync,
     chainId: nil
 )
 ```

@@ -22,7 +22,7 @@ struct SecretkExample {
             apiUrl: grpcGatewayEndpoint,
             wallet: wallet,
             enigmaUtils: nil,
-            broadcastMode: BroadcastMode.block,
+            broadcastMode: BroadcastMode.Sync,
             chainId: nil
         )
 

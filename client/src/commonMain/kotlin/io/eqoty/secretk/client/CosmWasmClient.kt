@@ -10,7 +10,7 @@ import kotlinx.serialization.json.jsonObject
 open class CosmWasmClient protected constructor(
     apiUrl: String,
     encryptionUtils: EncryptionUtils,
-    broadcastMode: BroadcastMode = BroadcastMode.Block,
+    broadcastMode: BroadcastMode = BroadcastMode.Sync,
     var chainId: String? = null
 ) {
     internal val restClient = RestClient(apiUrl, broadcastMode, encryptionUtils)

@@ -38,7 +38,7 @@ data class TxOptions(
      *
      * @see https://docs.tendermint.com/master/rpc/#/Tx/broadcast_tx_async
      */
-    val broadcastMode: BroadcastMode = BroadcastMode.Block,
+    val broadcastMode: BroadcastMode = BroadcastMode.Sync,
     /**
      * explicitSignerData can be used to override `chainId`, `accountNumber` & `accountSequence`.
      * This is useful when using {@link BroadcastMode.Async} or when you don't want secretjs

@@ -32,7 +32,7 @@ class SigningCosmWasmClient(
     val apiUrl: String,
     var wallet: Wallet?,
     encryptionUtils: EncryptionUtils = EnigmaUtils(apiUrl, EnigmaUtils.GenerateNewSeed()),
-    broadcastMode: BroadcastMode = BroadcastMode.Block,
+    broadcastMode: BroadcastMode = BroadcastMode.Sync,
     chainId: String? = null
 ) : CosmWasmClient(apiUrl, encryptionUtils, broadcastMode, chainId) {
 
@@ -435,7 +435,7 @@ class SigningCosmWasmClient(
             apiUrl: String,
             wallet: Wallet?,
             enigmaUtils: EncryptionUtils? = null,
-            broadcastMode: BroadcastMode = BroadcastMode.Block,
+            broadcastMode: BroadcastMode = BroadcastMode.Sync,
             chainId: String? = null
         ): SigningCosmWasmClient {
             ensureLibsodiumInitialized()

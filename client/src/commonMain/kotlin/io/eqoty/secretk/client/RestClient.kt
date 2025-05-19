@@ -34,7 +34,7 @@ import okio.ByteString.Companion.toByteString
  * @param seed - The seed used to generate sender TX encryption key. If empty will generate random new one
  */
 internal class RestClient(
-    val apiUrl: String, val broadcastMode: BroadcastMode = BroadcastMode.Block, var enigmautils: EncryptionUtils
+    val apiUrl: String, val broadcastMode: BroadcastMode = BroadcastMode.Sync, var enigmautils: EncryptionUtils
 ) {
     val addressToCodeHashCache: MutableMap<String, String> = mutableMapOf()
     val codeIdToCodeInfoCache: MutableMap<Int, CodeInfo> = mutableMapOf()
