@@ -110,9 +110,9 @@ internal class RestClient(
 
     suspend fun getCodeHashByContractAddr(addr: String): String {
         return addressToCodeHashCache.getOrPut(addr) {
-            val path = "/wasm/contract/${addr}/code-hash"
-            val responseData: WasmResponse<String> = get(path)
-            responseData.result
+            val path = "/compute/v1beta1/code_hash/by_contract_address/${addr}"
+            val responseData: CodeHashResponse = get(path)
+            responseData.codeHash
         }
     }
 

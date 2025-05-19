@@ -11,15 +11,15 @@ data class ProtocolVersion(
 
 @Serializable
 data class NodeInfoOther(
-    val tx_index: String,
-    val rpc_address: String,
+    val txIndex: String,
+    val rpcAddress: String,
 )
 
 @Serializable
 data class NodeInfo(
-    val protocol_version: ProtocolVersion,
-    val id: String,
-    val listen_addr: String,
+    val protocolVersion: ProtocolVersion,
+    val defaultNodeId: String,
+    val listenAddr: String,
     val network: String,
     val version: String,
     val channels: String,
@@ -30,9 +30,9 @@ data class NodeInfo(
 @Serializable
 data class ApplicationVersion(
     val name: String,
-    val server_name: String,
+    val appName: String,
     val version: String,
-    val commit: String,
-    val build_tags: String,
-    val go: String,
+    val gitCommit: String,
+    val buildTags: String,
+    val goVersion: String,
 )

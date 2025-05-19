@@ -30,13 +30,13 @@ open class CosmWasmClient protected constructor(
 
     // The /node_info endpoint
     suspend fun nodeInfo(): NodeInfoResponse {
-        return restClient.get("/node_info")
+        return restClient.get("/cosmos/base/tendermint/v1beta1/node_info")
     }
 
     suspend fun getChainId(): String {
         if (chainId == null) {
             val response = nodeInfo()
-            val chainId = response.node_info.network
+            val chainId = response.defaultNodeInfo.network
             if (chainId == "") throw Error("Chain ID must not be empty")
             this.chainId = chainId
         }
@@ -73,6 +73,29 @@ open class CosmWasmClient protected constructor(
     }
 
     suspend fun postTx(tx: UByteArray): TxResponseData {
+        return when (val response: TxResponse = restClient.postTx(tx, false)) {
+            is TxResponseValid -> {
+                val txResponse = response.txResponse
+                if (txResponse.txhash.isBlank()) {
+                    throw Error("Unexpected response data format")
+                }
+                if (txResponse.txhash.contains("""^([0-9A-F][0-9A-F])+$""")) {
+                    throw Error("Received ill-formatted txhash. Must be non-empty upper-case hex")
+                }
+
+                if (txResponse.code != 0) {
+                    throw Error("Broadcasting transaction failed with code ${txResponse.code} (codespace: ${txResponse.codespace}). Log: ${txResponse.rawLog}")
+                }
+                txResponse
+            }
+
+            is TxResponseError -> {
+                throw Error("Request Error code:${response.code}, message: ${response.message} }")
+            }
+        }
+    }
+
+    suspend fun getTx(hash: String): TxResponseData {
         return when (val response: TxResponse = restClient.postTx(tx, false)) {
             is TxResponseValid -> {
                 val txResponse = response.txResponse

@@ -140,7 +140,7 @@ class SigningCosmWasmClient(
         val sender = getSender(msgs)
         val txRawProto = prepareAndSign(sender, msgs, txOptions)
         val txRawBytes = ProtoBuf.encodeToByteArray(txRawProto).toUByteArray()
-        val txResponse = try {
+        val postTxResponse = try {
             postTx(txRawBytes)
         } catch (t: Throwable) {
             val nonces = msgs.map { msg ->
@@ -154,18 +154,19 @@ class SigningCosmWasmClient(
             } ?: t
         }
 
-        txResponse.data = if (this.restClient.broadcastMode == BroadcastMode.Block) {
+        postTxResponse.data = if (this.restClient.broadcastMode == BroadcastMode.Sync) {
             // inject tx here to standardize decoding tx responses. Since txsQuery responses (not implemented yet)
             // will actually have a tx value populated.
-            txResponse.tx = AnyProto(value = txRawBytes.toByteArray())
-            decodeTxResponses(txResponse)
+            postTxResponse.tx = AnyProto(value = txRawBytes.toByteArray())
+
+            decodeTxResponses(postTxResponse)
         } else {
             emptyList()
         }
         msgs.filterIsInstance<MsgMigrateContract>()
             .forEach { restClient.addressToCodeHashCache.remove(it.contractAddress) }
 
-        return txResponse
+        return postTxResponse
     }
 
     private suspend fun prepareAndSign(

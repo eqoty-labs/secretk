@@ -22,7 +22,7 @@ import kotlinx.serialization.json.JsonObject
 data class Result(val TxKey: String)
 
 @Serializable
-data class TxKeyResponse(val height: Int, val result: Result)
+data class TxKeyResponse(val key: String)
 
 data class KeyPair(val privKey: UByteArray, val pubKey: UByteArray)
 
@@ -113,8 +113,8 @@ class EnigmaUtils(val apiUrl: String, val seed: UByteArray = GenerateNewSeed()) 
             return this.consensusIoPubKey!!
         }
 
-        val txKeyResponse: TxKeyResponse = client.get(this.apiUrl + "/reg/tx-key").body()
-        val txKey = txKeyResponse.result.TxKey.decodeBase64Bytes()
+        val txKeyResponse: TxKeyResponse = client.get(this.apiUrl + "/registration/v1beta1/tx-key").body()
+        val txKey = txKeyResponse.key.decodeBase64Bytes()
         this.consensusIoPubKey = txKey.toUByteArray()
         return this.consensusIoPubKey!!
     }

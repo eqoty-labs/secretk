@@ -24,7 +24,7 @@ expect val snip721MigratableWasmGz: Path
 
 class ClientTests {
     val json: Json = Json
-    val grpcGatewayEndpoint = "https://api.pulsar.scrttestnet.com"
+    val grpcGatewayEndpoint = "https://pulsar.lcd.secretnodes.com"
     val mnemonic = "sand check forward humble between movie language siege where social crumble mouse"
     var wallet = DirectSigningWallet(mnemonic)
 
