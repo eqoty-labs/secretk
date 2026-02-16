@@ -337,7 +337,7 @@ class SigningCosmWasmClient(
             fee = FeeProto(
                 amount = amount.map { it.toProto() },
                 gasLimit = gasLimit,
-                granter = granter ?: ""
+                granter = if (granter.isNullOrEmpty()) null else granter
             )
         )
         return ProtoBuf.encodeToByteArray(authInfo)
