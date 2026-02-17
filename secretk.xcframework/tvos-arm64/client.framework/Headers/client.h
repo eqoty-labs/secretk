@@ -337,16 +337,12 @@ __attribute__((swift_name("Msg")))
 @required
 
 /**
- * @note annotations
- *   kotlin.jvm.JvmName(name="toAminoNullable")
  * @note This method converts instances of CancellationException to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)toAminoUtils:(id<ClientEncryptionUtils> _Nullable)utils completionHandler_:(void (^)(id<ClientMsgAmino> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("toAmino(utils:completionHandler_:)")));
 
 /**
- * @note annotations
- *   kotlin.jvm.JvmName(name="toProtoNullable")
  * @note This method converts instances of CancellationException to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
@@ -3620,35 +3616,267 @@ __attribute__((swift_name("TxResponseError.Companion")))
 - (id<ClientKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
+
+/**
+ * Serialization strategy defines the serial form of a type [T], including its structural description,
+ * declared by the [descriptor] and the actual serialization process, defined by the implementation
+ * of the [serialize] method.
+ *
+ * [serialize] method takes an instance of [T] and transforms it into its serial form (a sequence of primitives),
+ * calling the corresponding [Encoder] methods.
+ *
+ * A serial form of the type is a transformation of the concrete instance into a sequence of primitive values
+ * and vice versa. The serial form is not required to completely mimic the structure of the class, for example,
+ * a specific implementation may represent multiple integer values as a single string, omit or add some
+ * values that are present in the type, but not in the instance.
+ *
+ * For a more detailed explanation of the serialization process, please refer to [KSerializer] documentation.
+ */
 __attribute__((swift_name("Kotlinx_serialization_coreSerializationStrategy")))
 @protocol ClientKotlinx_serialization_coreSerializationStrategy
 @required
+
+/**
+ * Serializes the [value] of type [T] using the format that is represented by the given [encoder].
+ * [serialize] method is format-agnostic and operates with a high-level structured [Encoder] API.
+ * Throws [SerializationException] if value cannot be serialized.
+ *
+ * Example of serialize method:
+ * ```
+ * class MyData(int: Int, stringList: List<String>, alwaysZero: Long)
+ *
+ * fun serialize(encoder: Encoder, value: MyData): Unit = encoder.encodeStructure(descriptor) {
+ *     // encodeStructure encodes beginning and end of the structure
+ *     // encode 'int' property as Int
+ *     encodeIntElement(descriptor, index = 0, value.int)
+ *     // encode 'stringList' property as List<String>
+ *     encodeSerializableElement(descriptor, index = 1, serializer<List<String>>, value.stringList)
+ *     // don't encode 'alwaysZero' property because we decided to do so
+ * } // end of the structure
+ * ```
+ *
+ * @throws SerializationException in case of any serialization-specific error
+ * @throws IllegalArgumentException if the supplied input does not comply encoder's specification
+ * @see KSerializer for additional information about general contracts and exception specifics
+ */
 - (void)serializeEncoder:(id<ClientKotlinx_serialization_coreEncoder>)encoder value:(id _Nullable)value __attribute__((swift_name("serialize(encoder:value:)")));
+
+/**
+ * Describes the structure of the serializable representation of [T], produced
+ * by this serializer.
+ */
 @property (readonly) id<ClientKotlinx_serialization_coreSerialDescriptor> descriptor __attribute__((swift_name("descriptor")));
 @end
 
+
+/**
+ * Deserialization strategy defines the serial form of a type [T], including its structural description,
+ * declared by the [descriptor] and the actual deserialization process, defined by the implementation
+ * of the [deserialize] method.
+ *
+ * [deserialize] method takes an instance of [Decoder], and, knowing the serial form of the [T],
+ * invokes primitive retrieval methods on the decoder and then transforms the received primitives
+ * to an instance of [T].
+ *
+ * A serial form of the type is a transformation of the concrete instance into a sequence of primitive values
+ * and vice versa. The serial form is not required to completely mimic the structure of the class, for example,
+ * a specific implementation may represent multiple integer values as a single string, omit or add some
+ * values that are present in the type, but not in the instance.
+ *
+ * For a more detailed explanation of the serialization process, please refer to [KSerializer] documentation.
+ */
 __attribute__((swift_name("Kotlinx_serialization_coreDeserializationStrategy")))
 @protocol ClientKotlinx_serialization_coreDeserializationStrategy
 @required
+
+/**
+ * Deserializes the value of type [T] using the format that is represented by the given [decoder].
+ * [deserialize] method is format-agnostic and operates with a high-level structured [Decoder] API.
+ * As long as most of the formats imply an arbitrary order of properties, deserializer should be able
+ * to decode these properties in an arbitrary order and in a format-agnostic way.
+ * For that purposes, [CompositeDecoder.decodeElementIndex]-based loop is used: decoder firstly
+ * signals property at which index it is ready to decode and then expects caller to decode
+ * property with the given index.
+ *
+ * Throws [SerializationException] if value cannot be deserialized.
+ *
+ * Example of deserialize method:
+ * ```
+ * class MyData(int: Int, stringList: List<String>, alwaysZero: Long)
+ *
+ * fun deserialize(decoder: Decoder): MyData = decoder.decodeStructure(descriptor) {
+ *     // decodeStructure decodes beginning and end of the structure
+ *     var int: Int? = null
+ *     var list: List<String>? = null
+ *     loop@ while (true) {
+ *         when (val index = decodeElementIndex(descriptor)) {
+ *             DECODE_DONE -> break@loop
+ *             0 -> {
+ *                 // Decode 'int' property as Int
+ *                 int = decodeIntElement(descriptor, index = 0)
+ *             }
+ *             1 -> {
+ *                 // Decode 'stringList' property as List<String>
+ *                 list = decodeSerializableElement(descriptor, index = 1, serializer<List<String>>())
+ *             }
+ *             else -> throw SerializationException("Unexpected index $index")
+ *         }
+ *      }
+ *     if (int == null || list == null) throwMissingFieldException()
+ *     // Always use 0 as a value for alwaysZero property because we decided to do so.
+ *     return MyData(int, list, alwaysZero = 0L)
+ * }
+ * ```
+ *
+ * @throws MissingFieldException if non-optional fields were not found during deserialization
+ * @throws SerializationException in case of any deserialization-specific error
+ * @throws IllegalArgumentException if the decoded input is not a valid instance of [T]
+ * @see KSerializer for additional information about general contracts and exception specifics
+ */
 - (id _Nullable)deserializeDecoder:(id<ClientKotlinx_serialization_coreDecoder>)decoder __attribute__((swift_name("deserialize(decoder:)")));
+
+/**
+ * Describes the structure of the serializable representation of [T], that current
+ * deserializer is able to deserialize.
+ */
 @property (readonly) id<ClientKotlinx_serialization_coreSerialDescriptor> descriptor __attribute__((swift_name("descriptor")));
 @end
 
+
+/**
+ * KSerializer is responsible for the representation of a serial form of a type [T]
+ * in terms of [encoders][Encoder] and [decoders][Decoder] and for constructing and deconstructing [T]
+ * from/to a sequence of encoding primitives. For classes marked with [@Serializable][Serializable], can be
+ * obtained from generated companion extension `.serializer()` or from [serializer<T>()][serializer] function.
+ *
+ * Serialization is decoupled from the encoding process to make it completely format-agnostic.
+ * Serialization represents a type as its serial form and is abstracted from the actual
+ * format (whether its JSON, ProtoBuf or a hashing) and unaware of the underlying storage
+ * (whether it is a string builder, byte array or a network socket), while
+ * encoding/decoding is abstracted from a particular type and its serial form and is responsible
+ * for transforming primitives ("here in an int property 'foo'" call from a serializer) into a particular
+ * format-specific representation ("for a given int, append a property name in quotation marks,
+ * then append a colon, then append an actual value" for JSON) and how to retrieve a primitive
+ * ("give me an int that is 'foo' property") from the underlying representation ("expect the next string to be 'foo',
+ * parse it, then parse colon, then parse a string until the next comma as an int and return it).
+ *
+ * Serial form consists of a structural description, declared by the [descriptor] and
+ * actual serialization and deserialization processes, defined by the corresponding
+ * [serialize] and [deserialize] methods implementation.
+ *
+ * Structural description specifies how the [T] is represented in the serial form:
+ * its [kind][SerialKind] (e.g. whether it is represented as a primitive, a list or a class),
+ * its [elements][SerialDescriptor.elementNames] and their [positional names][SerialDescriptor.getElementName].
+ *
+ * Serialization process is defined as a sequence of calls to an [Encoder], and transforms a type [T]
+ * into a stream of format-agnostic primitives that represent [T], such as "here is an int, here is a double
+ * and here is another nested object". It can be demonstrated by the example:
+ * ```
+ * class MyData(int: Int, stringList: List<String>, alwaysZero: Long)
+ *
+ * // .. serialize method of a corresponding serializer
+ * fun serialize(encoder: Encoder, value: MyData): Unit = encoder.encodeStructure(descriptor) {
+ *     // encodeStructure encodes beginning and end of the structure
+ *     // encode 'int' property as Int
+ *     encodeIntElement(descriptor, index = 0, value.int)
+ *     // encode 'stringList' property as List<String>
+ *     encodeSerializableElement(descriptor, index = 1, serializer<List<String>>, value.stringList)
+ *     // don't encode 'alwaysZero' property because we decided to do so
+ * } // end of the structure
+ * ```
+ *
+ * Deserialization process is symmetric and uses [Decoder].
+ *
+ * ### Exception types for `KSerializer` implementation
+ *
+ * Implementations of [serialize] and [deserialize] methods are allowed to throw
+ * any subtype of [IllegalArgumentException] in order to indicate serialization
+ * and deserialization errors.
+ *
+ * For serializer implementations, it is recommended to throw subclasses of [SerializationException] for
+ * any serialization-specific errors related to invalid or unsupported format of the data
+ * and [IllegalStateException] for errors during validation of the data.
+ */
 __attribute__((swift_name("Kotlinx_serialization_coreKSerializer")))
 @protocol ClientKotlinx_serialization_coreKSerializer <ClientKotlinx_serialization_coreSerializationStrategy, ClientKotlinx_serialization_coreDeserializationStrategy>
 @required
 @end
 
+
+/**
+ * Base class for custom serializers that allows selecting polymorphic serializer
+ * without a dedicated class discriminator, on a content basis.
+ *
+ * Usually, polymorphic serialization (represented by [PolymorphicSerializer] and [SealedClassSerializer])
+ * requires a dedicated `"type"` property in the JSON to
+ * determine actual serializer that is used to deserialize Kotlin class.
+ *
+ * However, sometimes (e.g. when interacting with external API) type property is not present in the input
+ * and it is expected to guess the actual type by the shape of JSON, for example by the presence of specific key.
+ * [JsonContentPolymorphicSerializer] provides a skeleton implementation for such strategy. Please note that
+ * since JSON content is represented by [JsonElement] class and could be read only with [JsonDecoder] decoder,
+ * this class works only with [Json] format.
+ *
+ * Deserialization happens in two stages: first, a value from the input JSON is read
+ * to as a [JsonElement]. Second, [selectDeserializer] function is called to determine which serializer should be used.
+ * The returned serializer is used to deserialize [JsonElement] back to Kotlin object.
+ *
+ * It is possible to serialize values this serializer. In that case, class discriminator property won't
+ * be added to JSON stream, i.e., deserializing a class from the string and serializing it back yields the original string.
+ * However, to determine a serializer, a standard polymorphic mechanism represented by [SerializersModule] is used.
+ * For convenience, [serialize] method can lookup default serializer, but it is recommended to follow
+ * standard procedure with [registering][SerializersModuleBuilder.polymorphic].
+ *
+ * Usage example:
+ * ```
+ * interface Payment {
+ *     val amount: String
+ * }
+ *
+ * @Serializable
+ * data class SuccessfulPayment(override val amount: String, val date: String) : Payment
+ *
+ * @Serializable
+ * data class RefundedPayment(override val amount: String, val date: String, val reason: String) : Payment
+ *
+ * object PaymentSerializer : JsonContentPolymorphicSerializer<Payment>(Payment::class) {
+ *     override fun selectDeserializer(content: JsonElement) = when {
+ *         "reason" in content.jsonObject -> RefundedPayment.serializer()
+ *         else -> SuccessfulPayment.serializer()
+ *     }
+ * }
+ *
+ * // Now both statements will yield different subclasses of Payment:
+ *
+ * Json.decodeFromString(PaymentSerializer, """{"amount":"1.0","date":"03.02.2020"}""")
+ * Json.decodeFromString(PaymentSerializer, """{"amount":"2.0","date":"03.02.2020","reason":"complaint"}""")
+ * ```
+ *
+ * @param T A root type for all classes that could be possibly encountered during serialization and deserialization.
+ * Must be non-final class or interface.
+ * @param baseClass A class token for [T].
+ */
 __attribute__((swift_name("Kotlinx_serialization_jsonJsonContentPolymorphicSerializer")))
 @interface ClientKotlinx_serialization_jsonJsonContentPolymorphicSerializer<T> : ClientBase <ClientKotlinx_serialization_coreKSerializer>
 - (instancetype)initWithBaseClass:(id<ClientKotlinKClass>)baseClass __attribute__((swift_name("init(baseClass:)"))) __attribute__((objc_designated_initializer));
 - (T)deserializeDecoder:(id<ClientKotlinx_serialization_coreDecoder>)decoder __attribute__((swift_name("deserialize(decoder:)")));
 
 /**
+ * Determines a particular strategy for deserialization by looking on a parsed JSON [element].
+ *
  * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
 */
 - (id<ClientKotlinx_serialization_coreDeserializationStrategy>)selectDeserializerElement:(ClientKotlinx_serialization_jsonJsonElement *)element __attribute__((swift_name("selectDeserializer(element:)")));
 - (void)serializeEncoder:(id<ClientKotlinx_serialization_coreEncoder>)encoder value:(T)value __attribute__((swift_name("serialize(encoder:value:)")));
+
+/**
+ * A descriptor for this set of content-based serializers.
+ * By default, it uses the name composed of [baseClass] simple name,
+ * kind is set to [PolymorphicKind.SEALED] and contains 0 elements.
+ *
+ * However, this descriptor can be overridden to achieve better representation of custom transformed JSON shape
+ * for schema generating/introspection purposes.
+ */
 @property (readonly) id<ClientKotlinx_serialization_coreSerialDescriptor> descriptor __attribute__((swift_name("descriptor")));
 @end
 
@@ -4326,8 +4554,14 @@ __attribute__((swift_name("OkioByteString")))
 - (int8_t)getIndex:(int32_t)index __attribute__((swift_name("get(index:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)hex __attribute__((swift_name("hex()")));
+
+/** Returns the 160-bit SHA-1 HMAC of this byte string.  */
 - (ClientOkioByteString *)hmacSha1Key:(ClientOkioByteString *)key __attribute__((swift_name("hmacSha1(key:)")));
+
+/** Returns the 256-bit SHA-256 HMAC of this byte string.  */
 - (ClientOkioByteString *)hmacSha256Key:(ClientOkioByteString *)key __attribute__((swift_name("hmacSha256(key:)")));
+
+/** Returns the 512-bit SHA-512 HMAC of this byte string.  */
 - (ClientOkioByteString *)hmacSha512Key:(ClientOkioByteString *)key __attribute__((swift_name("hmacSha512(key:)")));
 - (int32_t)indexOfOther:(ClientKotlinByteArray *)other fromIndex:(int32_t)fromIndex __attribute__((swift_name("indexOf(other:fromIndex:)")));
 - (int32_t)indexOfOther:(ClientOkioByteString *)other fromIndex_:(int32_t)fromIndex __attribute__((swift_name("indexOf(other:fromIndex_:)")));
@@ -4345,6 +4579,11 @@ __attribute__((swift_name("OkioByteString")))
 - (ClientOkioByteString *)toAsciiLowercase __attribute__((swift_name("toAsciiLowercase()")));
 - (ClientOkioByteString *)toAsciiUppercase __attribute__((swift_name("toAsciiUppercase()")));
 - (ClientKotlinByteArray *)toByteArray __attribute__((swift_name("toByteArray()")));
+
+/**
+ * Returns a human-readable string that describes the contents of this byte string. Typically this
+ * is a string like `[text=Hello]` or `[hex=0000ffff]`.
+ */
 - (NSString *)description __attribute__((swift_name("description()")));
 - (NSString *)utf8 __attribute__((swift_name("utf8()")));
 @property (readonly) int32_t size __attribute__((swift_name("size")));
@@ -4735,94 +4974,943 @@ __attribute__((swift_name("Secret_std_typesStdSignature")))
 @property (readonly) NSString *signature __attribute__((swift_name("signature")));
 @end
 
+
+/**
+ * Encoder is a core serialization primitive that encapsulates the knowledge of the underlying
+ * format and its storage, exposing only structural methods to the serializer, making it completely
+ * format-agnostic. Serialization process transforms a single value into the sequence of its
+ * primitive elements, also called its serial form, while encoding transforms these primitive elements into an actual
+ * format representation: JSON string, ProtoBuf ByteArray, in-memory map representation etc.
+ *
+ * Encoder provides high-level API that operates with basic primitive types, collections
+ * and nested structures. Internally, encoder represents output storage and operates with its state
+ * and lower level format-specific details.
+ *
+ * To be more specific, serialization transforms a value into a sequence of "here is an int, here is
+ * a double, here a list of strings and here is another object that is a nested int", while encoding
+ * transforms this sequence into a format-specific commands such as "insert opening curly bracket
+ * for a nested object start, insert a name of the value, and the value separated with colon for an int etc."
+ *
+ * The symmetric interface for the deserialization process is [Decoder].
+ *
+ * ### Serialization. Primitives
+ *
+ * If a class is represented as a single [primitive][PrimitiveKind] value in its serialized form,
+ * then one of the `encode*` methods (e.g. [encodeInt]) can be used directly.
+ *
+ * ### Serialization. Structured types.
+ *
+ * If a class is represented as a structure or has multiple values in its serialized form,
+ * `encode*` methods are not that helpful, because they do not allow working with collection types or establish structure boundaries.
+ * All these capabilities are delegated to the [CompositeEncoder] interface with a more specific API surface.
+ * To denote a structure start, [beginStructure] should be used.
+ * ```
+ * // Denote the structure start,
+ * val composite = encoder.beginStructure(descriptor)
+ * // Encoding all elements within the structure using 'composite'
+ * ...
+ * // Denote the structure end
+ * composite.endStructure(descriptor)
+ * ```
+ *
+ * E.g. if the encoder belongs to JSON format, then [beginStructure] will write an opening bracket
+ * (`{` or `[`, depending on the descriptor kind), returning the [CompositeEncoder] that is aware of colon separator,
+ * that should be appended between each key-value pair, whilst [CompositeEncoder.endStructure] will write a closing bracket.
+ *
+ * ### Exception guarantees
+ *
+ * For the regular exceptions, such as invalid input, conflicting serial names,
+ * [SerializationException] can be thrown by any encoder methods.
+ * It is recommended to declare a format-specific subclass of [SerializationException] and throw it.
+ *
+ * ### Exception safety
+ *
+ * In general, catching [SerializationException] from any of `encode*` methods is not allowed and produces unspecified behaviour.
+ * After thrown exception, the current encoder is left in an arbitrary state, no longer suitable for further encoding.
+ *
+ * ### Format encapsulation
+ *
+ * For example, for the following serializer:
+ * ```
+ * class StringHolder(val stringValue: String)
+ *
+ * object StringPairDeserializer : SerializationStrategy<StringHolder> {
+ *    override val descriptor = ...
+ *
+ *    override fun serializer(encoder: Encoder, value: StringHolder) {
+ *        // Denotes start of the structure, StringHolder is not a "plain" data type
+ *        val composite = encoder.beginStructure(descriptor)
+ *        // Encode the nested string value
+ *        composite.encodeStringElement(descriptor, index = 0)
+ *        // Denotes end of the structure
+ *        composite.endStructure(descriptor)
+ *    }
+ * }
+ * ```
+ *
+ * This serializer does not know anything about the underlying storage and will work with any properly-implemented encoder.
+ * JSON, for example, writes an opening bracket `{` during the `beginStructure` call, writes `stringValue` key along
+ * with its value in `encodeStringElement` and writes the closing bracket `}` during the `endStructure`.
+ * XML would do roughly the same, but with different separators and structures, while ProtoBuf
+ * machinery could be completely different.
+ * In any case, all these parsing details are encapsulated by an encoder.
+ *
+ * ### Encoder implementation.
+ *
+ * While being strictly typed, an underlying format can transform actual types in the way it wants.
+ * For example, a format can support only string types and encode/decode all primitives in a string form:
+ * ```
+ * StringFormatEncoder : Encoder {
+ *
+ *     ...
+ *     override fun encodeDouble(value: Double) = encodeString(value.toString())
+ *     override fun encodeInt(value: Int) = encodeString(value.toString())
+ *     ...
+ * }
+ * ```
+ *
+ * ### Not stable for inheritance
+ *
+ * `Encoder` interface is not stable for inheritance in 3rd party libraries, as new methods
+ * might be added to this interface or contracts of the existing methods can be changed.
+ */
 __attribute__((swift_name("Kotlinx_serialization_coreEncoder")))
 @protocol ClientKotlinx_serialization_coreEncoder
 @required
+
+/**
+ * Encodes the beginning of the collection with size [collectionSize] and the given serializer of its type parameters.
+ * This method has to be implemented only if you need to know collection size in advance, otherwise, [beginStructure] can be used.
+ */
 - (id<ClientKotlinx_serialization_coreCompositeEncoder>)beginCollectionDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor collectionSize:(int32_t)collectionSize __attribute__((swift_name("beginCollection(descriptor:collectionSize:)")));
+
+/**
+ * Encodes the beginning of the nested structure in a serialized form
+ * and returns [CompositeDecoder] responsible for encoding this very structure.
+ * E.g the hierarchy:
+ * ```
+ * class StringHolder(val stringValue: String)
+ * class Holder(val stringHolder: StringHolder)
+ * ```
+ *
+ * with the following serialized form in JSON:
+ * ```
+ * {
+ *   "stringHolder" : { "stringValue": "value" }
+ * }
+ * ```
+ *
+ * will be roughly represented as the following sequence of calls:
+ * ```
+ * // Holder serializer
+ * fun serialize(encoder: Encoder, value: Holder) {
+ *     val composite = encoder.beginStructure(descriptor) // the very first opening bracket '{'
+ *     composite.encodeSerializableElement(descriptor, 0, value.stringHolder) // Serialize nested StringHolder
+ *     composite.endStructure(descriptor) // The very last closing bracket
+ * }
+ *
+ * // StringHolder serializer
+ * fun serialize(encoder: Encoder, value: StringHolder) {
+ *     val composite = encoder.beginStructure(descriptor) // One more '{' when the key "stringHolder" is already written
+ *     composite.encodeStringElement(descriptor, 0, value.stringValue) // Serialize actual value
+ *     composite.endStructure(descriptor) // Closing bracket
+ * }
+ * ```
+ */
 - (id<ClientKotlinx_serialization_coreCompositeEncoder>)beginStructureDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("beginStructure(descriptor:)")));
+
+/**
+ * Encodes a boolean value.
+ * Corresponding kind is [PrimitiveKind.BOOLEAN].
+ */
 - (void)encodeBooleanValue:(BOOL)value __attribute__((swift_name("encodeBoolean(value:)")));
+
+/**
+ * Encodes a single byte value.
+ * Corresponding kind is [PrimitiveKind.BYTE].
+ */
 - (void)encodeByteValue:(int8_t)value __attribute__((swift_name("encodeByte(value:)")));
+
+/**
+ * Encodes a 16-bit unicode character value.
+ * Corresponding kind is [PrimitiveKind.CHAR].
+ */
 - (void)encodeCharValue:(unichar)value __attribute__((swift_name("encodeChar(value:)")));
+
+/**
+ * Encodes a 64-bit IEEE 754 floating point value.
+ * Corresponding kind is [PrimitiveKind.DOUBLE].
+ */
 - (void)encodeDoubleValue:(double)value __attribute__((swift_name("encodeDouble(value:)")));
+
+/**
+ * Encodes a enum value that is stored at the [index] in [enumDescriptor] elements collection.
+ * Corresponding kind is [SerialKind.ENUM].
+ *
+ * E.g. for the enum `enum class Letters { A, B, C, D }` and
+ * serializable value "C", [encodeEnum] method should be called with `2` as am index.
+ *
+ * This method does not imply any restrictions on the output format,
+ * the format is free to store the enum by its name, index, ordinal or any other
+ */
 - (void)encodeEnumEnumDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)enumDescriptor index:(int32_t)index __attribute__((swift_name("encodeEnum(enumDescriptor:index:)")));
+
+/**
+ * Encodes a 32-bit IEEE 754 floating point value.
+ * Corresponding kind is [PrimitiveKind.FLOAT].
+ */
 - (void)encodeFloatValue:(float)value __attribute__((swift_name("encodeFloat(value:)")));
+
+/**
+ * Returns [Encoder] for encoding an underlying type of a value class in an inline manner.
+ * [descriptor] describes a serializable value class.
+ *
+ * Namely, for the `@Serializable @JvmInline value class MyInt(val my: Int)`,
+ * the following sequence is used:
+ * ```
+ * thisEncoder.encodeInline(MyInt.serializer().descriptor).encodeInt(my)
+ * ```
+ *
+ * Current encoder may return any other instance of [Encoder] class, depending on the provided [descriptor].
+ * For example, when this function is called on Json encoder with `UInt.serializer().descriptor`, the returned encoder is able
+ * to encode unsigned integers.
+ *
+ * Note that this function returns [Encoder] instead of the [CompositeEncoder]
+ * because value classes always have the single property.
+ * Calling [Encoder.beginStructure] on returned instance leads to an unspecified behavior and, in general, is prohibited.
+ */
 - (id<ClientKotlinx_serialization_coreEncoder>)encodeInlineDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("encodeInline(descriptor:)")));
+
+/**
+ * Encodes a 32-bit integer value.
+ * Corresponding kind is [PrimitiveKind.INT].
+ */
 - (void)encodeIntValue:(int32_t)value __attribute__((swift_name("encodeInt(value:)")));
+
+/**
+ * Encodes a 64-bit integer value.
+ * Corresponding kind is [PrimitiveKind.LONG].
+ */
 - (void)encodeLongValue:(int64_t)value __attribute__((swift_name("encodeLong(value:)")));
 
 /**
+ * Notifies the encoder that value of a nullable type that is
+ * being serialized is not null. It should be called before writing a non-null value
+ * of nullable type:
+ * ```
+ * // Could be String? serialize method
+ * if (value != null) {
+ *     encoder.encodeNotNullMark()
+ *     encoder.encodeStringValue(value)
+ * } else {
+ *     encoder.encodeNull()
+ * }
+ * ```
+ *
+ * This method has a use in highly-performant binary formats and can
+ * be safely ignore by most of the regular formats.
+ *
  * @note annotations
  *   kotlinx.serialization.ExperimentalSerializationApi
 */
 - (void)encodeNotNullMark __attribute__((swift_name("encodeNotNullMark()")));
 
 /**
+ * Encodes `null` value.
+ *
  * @note annotations
  *   kotlinx.serialization.ExperimentalSerializationApi
 */
 - (void)encodeNull __attribute__((swift_name("encodeNull()")));
 
 /**
+ * Encodes the nullable [value] of type [T] by delegating the encoding process to the given [serializer].
+ *
  * @note annotations
  *   kotlinx.serialization.ExperimentalSerializationApi
 */
 - (void)encodeNullableSerializableValueSerializer:(id<ClientKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeNullableSerializableValue(serializer:value:)")));
+
+/**
+ * Encodes the [value] of type [T] by delegating the encoding process to the given [serializer].
+ * For example, `encodeInt` call is equivalent to delegating integer encoding to [Int.serializer][Int.Companion.serializer]:
+ * `encodeSerializableValue(Int.serializer())`
+ */
 - (void)encodeSerializableValueSerializer:(id<ClientKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeSerializableValue(serializer:value:)")));
+
+/**
+ * Encodes a 16-bit short value.
+ * Corresponding kind is [PrimitiveKind.SHORT].
+ */
 - (void)encodeShortValue:(int16_t)value __attribute__((swift_name("encodeShort(value:)")));
+
+/**
+ * Encodes a string value.
+ * Corresponding kind is [PrimitiveKind.STRING].
+ */
 - (void)encodeStringValue:(NSString *)value __attribute__((swift_name("encodeString(value:)")));
+
+/**
+ * Context of the current serialization process, including contextual and polymorphic serialization and,
+ * potentially, a format-specific configuration.
+ */
 @property (readonly) ClientKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
 @end
 
+
+/**
+ * Serial descriptor is an inherent property of [KSerializer] that describes the structure of the serializable type.
+ * The structure of the serializable type is not only the characteristic of the type itself, but also of the serializer as well,
+ * meaning that one type can have multiple descriptors that have completely different structures.
+ *
+ * For example, the class `class Color(val rgb: Int)` can have multiple serializable representations,
+ * such as `{"rgb": 255}`, `"#0000FF"`, `[0, 0, 255]` and `{"red": 0, "green": 0, "blue": 255}`.
+ * Representations are determined by serializers, and each such serializer has its own descriptor that identifies
+ * each structure in a distinguishable and format-agnostic manner.
+ *
+ * ### Structure
+ * Serial descriptor is identified by its [name][serialName] and consists of a kind, potentially empty set of
+ * children elements, and additional metadata.
+ *
+ * * [serialName] uniquely identifies the descriptor (and the corresponding serializer) for non-generic types.
+ *   For generic types, the actual type substitution is omitted from the string representation, and the name
+ *   identifies the family of the serializers without type substitutions. However, type substitution is accounted for
+ *   in [equals] and [hashCode] operations, meaning that descriptors of generic classes with the same name but different type
+ *   arguments are not equal to each other.
+ *   [serialName] is typically used to specify the type of the target class during serialization of polymorphic and sealed
+ *   classes, for observability and diagnostics.
+ * * [Kind][SerialKind] defines what this descriptor represents: primitive, enum, object, collection, etc.
+ * * Children elements are represented as serial descriptors as well and define the structure of the type's elements.
+ * * Metadata carries additional information, such as [nullability][nullable], [optionality][isElementOptional]
+ *   and [serial annotations][getElementAnnotations].
+ *
+ * ### Usages
+ * There are two general usages of the descriptors: THE serialization process and serialization introspection.
+ *
+ * #### Serialization
+ * Serial descriptor is used as a bridge between decoders/encoders and serializers.
+ * When asking for a next element, the serializer provides an expected descriptor to the decoder, and,
+ * based on the descriptor content, the decoder decides how to parse its input.
+ * In JSON, for example, when the encoder is asked to encode the next element and this element
+ * is a subtype of [List], the encoder receives a descriptor with [StructureKind.LIST] and, based on that,
+ * first writes an opening square bracket before writing the content of the list.
+ *
+ * Serial descriptor _encapsulates_ the structure of the data, so serializers can be free from
+ * format-specific details. `ListSerializer` knows nothing about JSON and square brackets, providing
+ * only the structure of the data and delegating encoding decision to the format itself.
+ *
+ * #### Introspection
+ * Another usage of a serial descriptor is type introspection without its serialization.
+ * Introspection can be used to check whether the given serializable class complies the
+ * corresponding scheme and to generate JSON or ProtoBuf schema from the given class.
+ *
+ * ### Indices
+ * Serial descriptor API operates with children indices.
+ * For the fixed-size structures, such as regular classes, index is represented by a value in
+ * the range from zero to [elementsCount] and represent and index of the property in this class.
+ * Consequently, primitives do not have children and their element count is zero.
+ *
+ * For collections and maps indices do not have a fixed bound. Regular collections descriptors usually
+ * have one element (`T`, maps have two, one for keys and one for values), but potentially unlimited
+ * number of actual children values. Valid indices range is not known statically,
+ * and implementations of such a descriptor should provide consistent and unbounded names and indices.
+ *
+ * In practice, for regular classes it is allowed to invoke `getElement*(index)` methods
+ * with an index from `0` to [elementsCount] range and the element at the particular index corresponds to the
+ * serializable property at the given position.
+ * For collections and maps, index parameter for `getElement*(index)` methods is effectively bounded
+ * by the maximal number of collection/map elements.
+ *
+ * ### Thread-safety and mutability
+ * Serial descriptor implementation should be immutable and, thus, thread-safe.
+ *
+ * ### Equality and caching
+ * Serial descriptor can be used as a unique identifier for format-specific data or schemas and
+ * this implies the following restrictions on its `equals` and `hashCode`:
+ *
+ * An [equals] implementation should use both [serialName] and elements structure.
+ * Comparing [elementDescriptors] directly is discouraged,
+ * because it may cause a stack overflow error, e.g., if a serializable class `T` contains elements of type `T`.
+ * To avoid it, a serial descriptor implementation should compare only descriptors
+ * of class' type parameters, in a way that `serializer<Box<Int>>().descriptor != serializer<Box<String>>().descriptor`.
+ * If type parameters are equal, descriptor structure should be compared by using children elements
+ * descriptors' [serialName]s, which correspond to class names
+ * (do not confuse with elements' own names, which correspond to properties' names); and/or other [SerialDescriptor]
+ * properties, such as [kind].
+ * An example of [equals] implementation:
+ * ```
+ * if (this === other) return true
+ * if (other::class != this::class) return false
+ * if (serialName != other.serialName) return false
+ * if (!typeParametersAreEqual(other)) return false
+ * if (this.elementDescriptors().map { it.serialName } != other.elementDescriptors().map { it.serialName }) return false
+ * return true
+ * ```
+ *
+ * [hashCode] implementation should use the same properties for computing the result.
+ *
+ * ### User-defined serial descriptors
+ * The best way to define a custom descriptor is to use [buildClassSerialDescriptor] builder function, where
+ * for each serializable property the corresponding element is declared.
+ *
+ * Example:
+ * ```
+ * // Class with custom serializer and custom serial descriptor
+ * class Data(
+ *     val intField: Int, // This field is ignored by custom serializer
+ *     val longField: Long, // This field is written as long, but in serialized form is named as "_longField"
+ *     val stringList: List<String> // This field is written as regular list of strings
+ * )
+ *
+ * // Descriptor for such class:
+ * buildClassSerialDescriptor("my.package.Data") {
+ *     // intField is deliberately ignored by serializer -- not present in the descriptor as well
+ *     element<Long>("_longField") // longField is named as _longField
+ *     element("stringField", listSerialDescriptor<String>())
+ * }
+ *
+ * // Example of 'serialize' function for such descriptor
+ * override fun serialize(encoder: Encoder, value: Data) {
+ *     encoder.encodeStructure(descriptor) {
+ *         encodeLongElement(descriptor, 0, value.longField) // Will be written as "_longField" because descriptor's child at index 0 says so
+ *         encodeSerializableElement(descriptor, 1, ListSerializer(String.serializer()), value.stringList)
+ *     }
+ * }
+ * ```
+ *
+ * For classes that are represented as a single primitive value, [PrimitiveSerialDescriptor] builder function can be used instead.
+ *
+ * ### Consistency violations
+ * An implementation of [SerialDescriptor] should be consistent with the implementation of the corresponding [KSerializer].
+ * Yet it is not type-checked statically, thus making it possible to declare a non-consistent implementation of descriptor and serializer.
+ * In such cases, the behavior of an underlying format is unspecified and may lead to both runtime errors and encoding of
+ * corrupted data that is impossible to decode back.
+ *
+ * ### Not for implementation
+ *
+ * `SerialDescriptor` interface should not be implemented in 3rd party libraries, as new methods
+ * might be added to this interface when kotlinx.serialization adds support for new Kotlin features.
+ * This interface is safe to use and construct via [buildClassSerialDescriptor], [PrimitiveSerialDescriptor], and `SerialDescriptor` factory function.
+ */
 __attribute__((swift_name("Kotlinx_serialization_coreSerialDescriptor")))
 @protocol ClientKotlinx_serialization_coreSerialDescriptor
 @required
+
+/**
+ * Returns serial annotations of the child element at the given [index].
+ * This method differs from `getElementDescriptor(index).annotations` by reporting only
+ * element-specific annotations:
+ * ```
+ * @Serializable
+ * @OnClassSerialAnnotation
+ * class Nested(...)
+ *
+ * @Serializable
+ * class Outer(@OnPropertySerialAnnotation val nested: Nested)
+ *
+ * val outerDescriptor = Outer.serializer().descriptor
+ *
+ * outerDescriptor.getElementAnnotations(0) // Returns [@OnPropertySerialAnnotation]
+ * outerDescriptor.getElementDescriptor(0).annotations // Returns [@OnClassSerialAnnotation]
+ * ```
+ * Only annotations marked with [SerialInfo] are added to the resulting list.
+ *
+ * @throws IndexOutOfBoundsException for an illegal [index] values.
+ * @throws IllegalStateException if the current descriptor does not support children elements (e.g. is a primitive).
+ */
 - (NSArray<id<ClientKotlinAnnotation>> *)getElementAnnotationsIndex:(int32_t)index __attribute__((swift_name("getElementAnnotations(index:)")));
+
+/**
+ * Retrieves the descriptor of the child element for the given [index].
+ * For the property of type `T` on the position `i`, `getElementDescriptor(i)` yields the same result
+ * as for `T.serializer().descriptor`, if the serializer for this property is not explicitly overridden
+ * with `@Serializable(with = ...`)`, [Polymorphic] or [Contextual].
+ * This method can be used to completely introspect the type that the current descriptor describes.
+ *
+ * Example:
+ * ```
+ * @Serializable
+ * @OnClassSerialAnnotation
+ * class Nested(...)
+ *
+ * @Serializable
+ * class Outer(val nested: Nested)
+ *
+ * val outerDescriptor = Outer.serializer().descriptor
+ *
+ * outerDescriptor.getElementDescriptor(0).serialName // Returns "Nested"
+ * outerDescriptor.getElementDescriptor(0).annotations // Returns [@OnClassSerialAnnotation]
+ * ```
+ *
+ * @throws IndexOutOfBoundsException for illegal [index] values.
+ * @throws IllegalStateException if the current descriptor does not support children elements (e.g. is a primitive).
+ */
 - (id<ClientKotlinx_serialization_coreSerialDescriptor>)getElementDescriptorIndex:(int32_t)index __attribute__((swift_name("getElementDescriptor(index:)")));
+
+/**
+ * Returns an index in the children list of the given element by its name or [CompositeDecoder.UNKNOWN_NAME]
+ * if there is no such element.
+ * The resulting index, if it is not [CompositeDecoder.UNKNOWN_NAME], is guaranteed to be usable with [getElementName].
+ *
+ * Example:
+ *
+ * ```
+ * @Serializable
+ * class User(val name: String, val alias: String?)
+ *
+ * val userDescriptor = User.serializer().descriptor
+ *
+ * userDescriptor.getElementIndex("name") // Returns 0
+ * userDescriptor.getElementIndex("alias") // Returns 1
+ * userDescriptor.getElementIndex("lastName") // Returns CompositeDecoder.UNKNOWN_NAME = -3
+ * ```
+ */
 - (int32_t)getElementIndexName:(NSString *)name __attribute__((swift_name("getElementIndex(name:)")));
+
+/**
+ * Returns a positional name of the child at the given [index].
+ * Positional name represents a corresponding property name in the class, associated with
+ * the current descriptor.
+ *
+ * Do not confuse with [serialName], which returns class name:
+ *
+ * ```
+ * package my.app
+ *
+ * @Serializable
+ * class User(val name: String)
+ *
+ * val userDescriptor = User.serializer().descriptor
+ *
+ * userDescriptor.serialName // Returns "my.app.User"
+ * userDescriptor.getElementName(0) // Returns "name"
+ * ```
+ *
+ * @throws IndexOutOfBoundsException for an illegal [index] values.
+ * @throws IllegalStateException if the current descriptor does not support children elements (e.g. is a primitive)
+ */
 - (NSString *)getElementNameIndex:(int32_t)index __attribute__((swift_name("getElementName(index:)")));
+
+/**
+ * Whether the element at the given [index] is optional (can be absent in serialized form).
+ * For generated descriptors, all elements that have a corresponding default parameter value are
+ * marked as optional. Custom serializers can treat optional values in a serialization-specific manner
+ * without a default parameters constraint.
+ *
+ * Example of optionality:
+ * ```
+ * @Serializable
+ * class Holder(
+ *     val a: Int, // isElementOptional(0) == false
+ *     val b: Int?, // isElementOptional(1) == false
+ *     val c: Int? = null, // isElementOptional(2) == true
+ *     val d: List<Int>, // isElementOptional(3) == false
+ *     val e: List<Int> = listOf(1), // isElementOptional(4) == true
+ * )
+ * ```
+ * Returns `false` for valid indices of collections, maps, and enums.
+ *
+ * @throws IndexOutOfBoundsException for an illegal [index] values.
+ * @throws IllegalStateException if the current descriptor does not support children elements (e.g. is a primitive).
+ */
 - (BOOL)isElementOptionalIndex:(int32_t)index __attribute__((swift_name("isElementOptional(index:)")));
+
+/**
+ * Returns serial annotations of the associated class.
+ * Serial annotations can be used to specify additional metadata that may be used during serialization.
+ * Only annotations marked with [SerialInfo] are added to the resulting list.
+ *
+ * Do not confuse with [getElementAnnotations]:
+ * ```
+ * @Serializable
+ * @OnClassSerialAnnotation
+ * class Nested(...)
+ *
+ * @Serializable
+ * class Outer(@OnPropertySerialAnnotation val nested: Nested)
+ *
+ * val outerDescriptor = Outer.serializer().descriptor
+ *
+ * outerDescriptor.getElementAnnotations(0) // Returns [@OnPropertySerialAnnotation]
+ * outerDescriptor.getElementDescriptor(0).annotations // Returns [@OnClassSerialAnnotation]
+ * ```
+ */
 @property (readonly) NSArray<id<ClientKotlinAnnotation>> *annotations __attribute__((swift_name("annotations")));
+
+/**
+ * The number of elements this descriptor describes, besides from the class itself.
+ * [elementsCount] describes the number of **semantic** elements, not the number
+ * of actual fields/properties in the serialized form, even though they frequently match.
+ *
+ * For example, for the following class
+ * `class Complex(val real: Long, val imaginary: Long)` the corresponding descriptor
+ * and the serialized form both have two elements, while for `List<Int>`
+ * the corresponding descriptor has a single element (`IntDescriptor`, the type of list element),
+ * but from zero up to `Int.MAX_VALUE` values in the serialized form:
+ *
+ * ```
+ * @Serializable
+ * class Complex(val real: Long, val imaginary: Long)
+ *
+ * Complex.serializer().descriptor.elementsCount // Returns 2
+ *
+ * @Serializable
+ * class OuterList(val list: List<Int>)
+ *
+ * OuterList.serializer().descriptor.getElementDescriptor(0).elementsCount // Returns 1
+ * ```
+ */
 @property (readonly) int32_t elementsCount __attribute__((swift_name("elementsCount")));
+
+/**
+ * Returns `true` if this descriptor describes a serializable value class which underlying value
+ * is serialized directly.
+ *
+ * This property is true for serializable `@JvmInline value` classes:
+ * ```
+ * @Serializable
+ * class User(val name: Name)
+ *
+ * @Serializable
+ * @JvmInline
+ * value class Name(val value: String)
+ *
+ * User.serializer().descriptor.isInline // false
+ * User.serializer().descriptor.getElementDescriptor(0).isInline // true
+ * Name.serializer().descriptor.isInline // true
+ * ```
+ */
 @property (readonly) BOOL isInline __attribute__((swift_name("isInline")));
+
+/**
+ * Whether the descriptor describes a nullable type.
+ * Returns `true` if associated serializer can serialize/deserialize nullable elements of the described type.
+ *
+ * Example:
+ *
+ * ```
+ * @Serializable
+ * class User(val name: String, val alias: String?)
+ *
+ * val userDescriptor = User.serializer().descriptor
+ *
+ * userDescriptor.isNullable // Returns false
+ * userDescriptor.getElementDescriptor(0).isNullable // Returns false
+ * userDescriptor.getElementDescriptor(1).isNullable // Returns true
+ * ```
+ */
 @property (readonly) BOOL isNullable __attribute__((swift_name("isNullable")));
+
+/**
+ * The kind of the serialized form that determines **the shape** of the serialized data.
+ * Formats use serial kind to add and parse serializer-agnostic metadata to the result.
+ *
+ * For example, JSON format wraps [classes][StructureKind.CLASS] and [StructureKind.MAP] into
+ * brackets, while ProtoBuf just serialize these types in separate ways.
+ *
+ * Kind should be consistent with the implementation, for example, if it is a [primitive][PrimitiveKind],
+ * then its element count should be zero and vice versa.
+ *
+ * Example of introspecting kinds:
+ *
+ * ```
+ * @Serializable
+ * class User(val name: String)
+ *
+ * val userDescriptor = User.serializer().descriptor
+ *
+ * userDescriptor.kind // Returns StructureKind.CLASS
+ * userDescriptor.getElementDescriptor(0).kind // Returns PrimitiveKind.STRING
+ * ```
+ */
 @property (readonly) ClientKotlinx_serialization_coreSerialKind *kind __attribute__((swift_name("kind")));
+
+/**
+ * Serial name of the descriptor that identifies a pair of the associated serializer and target class.
+ *
+ * For generated and default serializers, the serial name is equal to the corresponding class's fully qualified name
+ * or, if overridden, [SerialName].
+ * Custom serializers should provide a unique serial name that identifies both the serializable class and
+ * the serializer itself, ignoring type arguments if they are present, for example: `my.package.LongAsTrimmedString`.
+ *
+ * Do not confuse with [getElementName], which returns property name:
+ *
+ * ```
+ * package my.app
+ *
+ * @Serializable
+ * class User(val name: String)
+ *
+ * val userDescriptor = User.serializer().descriptor
+ *
+ * userDescriptor.serialName // Returns "my.app.User"
+ * userDescriptor.getElementName(0) // Returns "name"
+ * ```
+ */
 @property (readonly) NSString *serialName __attribute__((swift_name("serialName")));
 @end
 
+
+/**
+ * Decoder is a core deserialization primitive that encapsulates the knowledge of the underlying
+ * format and an underlying storage, exposing only structural methods to the deserializer, making it completely
+ * format-agnostic. Deserialization process takes a decoder and asks him for a sequence of primitive elements,
+ * defined by a deserializer serial form, while decoder knows how to retrieve these primitive elements from an actual format
+ * representations.
+ *
+ * Decoder provides high-level API that operates with basic primitive types, collections
+ * and nested structures. Internally, the decoder represents input storage, and operates with its state
+ * and lower level format-specific details.
+ *
+ * To be more specific, serialization asks a decoder for a sequence of "give me an int, give me
+ * a double, give me a list of strings and give me another object that is a nested int", while decoding
+ * transforms this sequence into a format-specific commands such as "parse the part of the string until the next quotation mark
+ * as an int to retrieve an int, parse everything within the next curly braces to retrieve elements of a nested object etc."
+ *
+ * The symmetric interface for the serialization process is [Encoder].
+ *
+ * ### Deserialization. Primitives
+ *
+ * If a class is represented as a single [primitive][PrimitiveKind] value in its serialized form,
+ * then one of the `decode*` methods (e.g. [decodeInt]) can be used directly.
+ *
+ * ### Deserialization. Structured types
+ *
+ * If a class is represented as a structure or has multiple values in its serialized form,
+ * `decode*` methods are not that helpful, because format may not require a strict order of data
+ * (e.g. JSON or XML), do not allow working with collection types or establish structure boundaries.
+ * All these capabilities are delegated to the [CompositeDecoder] interface with a more specific API surface.
+ * To denote a structure start, [beginStructure] should be used.
+ * ```
+ * // Denote the structure start,
+ * val composite = decoder.beginStructure(descriptor)
+ * // Decode all elements within the structure using 'composite'
+ * ...
+ * // Denote the structure end
+ * composite.endStructure(descriptor)
+ * ```
+ *
+ * E.g. if the decoder belongs to JSON format, then [beginStructure] will parse an opening bracket
+ * (`{` or `[`, depending on the descriptor kind), returning the [CompositeDecoder] that is aware of colon separator,
+ * that should be read after each key-value pair, whilst [CompositeDecoder.endStructure] will parse a closing bracket.
+ *
+ * ### Exception guarantees
+ *
+ * For the regular exceptions, such as invalid input, missing control symbols or attributes, and unknown symbols,
+ * [SerializationException] can be thrown by any decoder methods. It is recommended to declare a format-specific
+ * subclass of [SerializationException] and throw it.
+ *
+ * ### Exception safety
+ *
+ * In general, catching [SerializationException] from any of `decode*` methods is not allowed and produces unspecified behavior.
+ * After thrown exception, the current decoder is left in an arbitrary state, no longer suitable for further decoding.
+ *
+ * ### Format encapsulation
+ *
+ * For example, for the following deserializer:
+ * ```
+ * class StringHolder(val stringValue: String)
+ *
+ * object StringPairDeserializer : DeserializationStrategy<StringHolder> {
+ *    override val descriptor = ...
+ *
+ *    override fun deserializer(decoder: Decoder): StringHolder {
+ *        // Denotes start of the structure, StringHolder is not a "plain" data type
+ *        val composite = decoder.beginStructure(descriptor)
+ *        if (composite.decodeElementIndex(descriptor) != 0)
+ *            throw MissingFieldException("Field 'stringValue' is missing")
+ *        // Decode the nested string value
+ *        val value = composite.decodeStringElement(descriptor, index = 0)
+ *        // Denotes end of the structure
+ *        composite.endStructure(descriptor)
+ *    }
+ * }
+ * ```
+ *
+ * This deserializer does not know anything about the underlying data and will work with any properly-implemented decoder.
+ * JSON, for example, parses an opening bracket `{` during the `beginStructure` call, checks that the next key
+ * after this bracket is `stringValue` (using the descriptor), returns the value after the colon as string value
+ * and parses closing bracket `}` during the `endStructure`.
+ * XML would do roughly the same, but with different separators and parsing structures, while ProtoBuf
+ * machinery could be completely different.
+ * In any case, all these parsing details are encapsulated by a decoder.
+ *
+ * ### Decoder implementation
+ *
+ * While being strictly typed, an underlying format can transform actual types in the way it wants.
+ * For example, a format can support only string types and encode/decode all primitives in a string form:
+ * ```
+ * StringFormatDecoder : Decoder {
+ *
+ *     ...
+ *     override fun decodeDouble(): Double = decodeString().toDouble()
+ *     override fun decodeInt(): Int = decodeString().toInt()
+ *     ...
+ * }
+ * ```
+ *
+ * ### Not stable for inheritance
+ *
+ * `Decoder` interface is not stable for inheritance in 3rd-party libraries, as new methods
+ * might be added to this interface or contracts of the existing methods can be changed.
+ */
 __attribute__((swift_name("Kotlinx_serialization_coreDecoder")))
 @protocol ClientKotlinx_serialization_coreDecoder
 @required
+
+/**
+ * Decodes the beginning of the nested structure in a serialized form
+ * and returns [CompositeDecoder] responsible for decoding this very structure.
+ *
+ * Typically, classes, collections and maps are represented as a nested structure in a serialized form.
+ * E.g. the following JSON
+ * ```
+ * {
+ *     "a": 2,
+ *     "b": { "nested": "c" }
+ *     "c": [1, 2, 3],
+ *     "d": null
+ * }
+ * ```
+ * has three nested structures: the very beginning of the data, "b" value and "c" value.
+ */
 - (id<ClientKotlinx_serialization_coreCompositeDecoder>)beginStructureDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("beginStructure(descriptor:)")));
+
+/**
+ * Decodes a boolean value.
+ * Corresponding kind is [PrimitiveKind.BOOLEAN].
+ */
 - (BOOL)decodeBoolean __attribute__((swift_name("decodeBoolean()")));
+
+/**
+ * Decodes a single byte value.
+ * Corresponding kind is [PrimitiveKind.BYTE].
+ */
 - (int8_t)decodeByte __attribute__((swift_name("decodeByte()")));
+
+/**
+ * Decodes a 16-bit unicode character value.
+ * Corresponding kind is [PrimitiveKind.CHAR].
+ */
 - (unichar)decodeChar __attribute__((swift_name("decodeChar()")));
+
+/**
+ * Decodes a 64-bit IEEE 754 floating point value.
+ * Corresponding kind is [PrimitiveKind.DOUBLE].
+ */
 - (double)decodeDouble __attribute__((swift_name("decodeDouble()")));
+
+/**
+ * Decodes a enum value and returns its index in [enumDescriptor] elements collection.
+ * Corresponding kind is [SerialKind.ENUM].
+ *
+ * E.g. for the enum `enum class Letters { A, B, C, D }` and
+ * underlying input "C", [decodeEnum] method should return `2` as a result.
+ *
+ * This method does not imply any restrictions on the input format,
+ * the format is free to store the enum by its name, index, ordinal or any other enum representation.
+ */
 - (int32_t)decodeEnumEnumDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)enumDescriptor __attribute__((swift_name("decodeEnum(enumDescriptor:)")));
+
+/**
+ * Decodes a 32-bit IEEE 754 floating point value.
+ * Corresponding kind is [PrimitiveKind.FLOAT].
+ */
 - (float)decodeFloat __attribute__((swift_name("decodeFloat()")));
+
+/**
+ * Returns [Decoder] for decoding an underlying type of a value class in an inline manner.
+ * [descriptor] describes a target value class.
+ *
+ * Namely, for the `@Serializable @JvmInline value class MyInt(val my: Int)`, the following sequence is used:
+ * ```
+ * thisDecoder.decodeInline(MyInt.serializer().descriptor).decodeInt()
+ * ```
+ *
+ * Current decoder may return any other instance of [Decoder] class, depending on the provided [descriptor].
+ * For example, when this function is called on `Json` decoder with
+ * `UInt.serializer().descriptor`, the returned decoder is able to decode unsigned integers.
+ *
+ * Note that this function returns [Decoder] instead of the [CompositeDecoder]
+ * because value classes always have the single property.
+ *
+ * Calling [Decoder.beginStructure] on returned instance leads to an unspecified behavior and, in general, is prohibited.
+ */
 - (id<ClientKotlinx_serialization_coreDecoder>)decodeInlineDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("decodeInline(descriptor:)")));
+
+/**
+ * Decodes a 32-bit integer value.
+ * Corresponding kind is [PrimitiveKind.INT].
+ */
 - (int32_t)decodeInt __attribute__((swift_name("decodeInt()")));
+
+/**
+ * Decodes a 64-bit integer value.
+ * Corresponding kind is [PrimitiveKind.LONG].
+ */
 - (int64_t)decodeLong __attribute__((swift_name("decodeLong()")));
 
 /**
+ * Returns `true` if the current value in decoder is not null, false otherwise.
+ * This method is usually used to decode potentially nullable data:
+ * ```
+ * // Could be String? deserialize() method
+ * public fun deserialize(decoder: Decoder): String? {
+ *     if (decoder.decodeNotNullMark()) {
+ *         return decoder.decodeString()
+ *     } else {
+ *         return decoder.decodeNull()
+ *     }
+ * }
+ * ```
+ *
  * @note annotations
  *   kotlinx.serialization.ExperimentalSerializationApi
 */
 - (BOOL)decodeNotNullMark __attribute__((swift_name("decodeNotNullMark()")));
 
 /**
+ * Decodes the `null` value and returns it.
+ *
+ * It is expected that `decodeNotNullMark` was called
+ * prior to `decodeNull` invocation and the case when it returned `true` was handled.
+ *
  * @note annotations
  *   kotlinx.serialization.ExperimentalSerializationApi
 */
 - (ClientKotlinNothing * _Nullable)decodeNull __attribute__((swift_name("decodeNull()")));
 
 /**
+ * Decodes the nullable value of type [T] by delegating the decoding process to the given [deserializer].
+ *
  * @note annotations
  *   kotlinx.serialization.ExperimentalSerializationApi
 */
 - (id _Nullable)decodeNullableSerializableValueDeserializer:(id<ClientKotlinx_serialization_coreDeserializationStrategy>)deserializer __attribute__((swift_name("decodeNullableSerializableValue(deserializer:)")));
+
+/**
+ * Decodes the value of type [T] by delegating the decoding process to the given [deserializer].
+ * For example, `decodeInt` call is equivalent to delegating integer decoding to [Int.serializer][Int.Companion.serializer]:
+ * `decodeSerializableValue(Int.serializer())`
+ */
 - (id _Nullable)decodeSerializableValueDeserializer:(id<ClientKotlinx_serialization_coreDeserializationStrategy>)deserializer __attribute__((swift_name("decodeSerializableValue(deserializer:)")));
+
+/**
+ * Decodes a 16-bit short value.
+ * Corresponding kind is [PrimitiveKind.SHORT].
+ */
 - (int16_t)decodeShort __attribute__((swift_name("decodeShort()")));
+
+/**
+ * Decodes a string value.
+ * Corresponding kind is [PrimitiveKind.STRING].
+ */
 - (NSString *)decodeString __attribute__((swift_name("decodeString()")));
+
+/**
+ * Context of the current serialization process, including contextual and polymorphic serialization and,
+ * potentially, a format-specific configuration.
+ */
 @property (readonly) ClientKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
 @end
 
@@ -4861,6 +5949,15 @@ __attribute__((swift_name("KotlinKClass")))
 
 
 /**
+ * Class representing single JSON element.
+ * Can be [JsonPrimitive], [JsonArray] or [JsonObject].
+ *
+ * [JsonElement.toString] properly prints JSON tree as valid JSON, taking into account quoted values and primitives.
+ * Whole hierarchy is serializable, but only when used with [Json] as [JsonElement] is purely JSON-specific structure
+ * which has a meaningful schemaless semantics only for JSON.
+ *
+ * The whole hierarchy is [serializable][Serializable] only by [Json] format.
+ *
  * @note annotations
  *   kotlinx.serialization.Serializable(with=NormalClass(value=kotlinx/serialization/json/JsonElementSerializer))
 */
@@ -4941,28 +6038,236 @@ __attribute__((swift_name("OkioByteString.Companion")))
 @property (readonly) ClientOkioByteString *EMPTY __attribute__((swift_name("EMPTY")));
 @end
 
+
+/**
+ * Represents an instance of a serialization format
+ * that can interact with [KSerializer] and is a supertype of all entry points for a serialization.
+ * It does not impose any restrictions on a serialized form or underlying storage, neither it exposes them.
+ *
+ * Concrete data types and API for user-interaction are responsibility of a concrete subclass or subinterface,
+ * for example [StringFormat], [BinaryFormat] or `Json`.
+ *
+ * Typically, formats have their specific [Encoder] and [Decoder] implementations
+ * as private classes and do not expose them.
+ *
+ * ### Exception types for `SerialFormat` implementation
+ *
+ * Methods responsible for format-specific encoding and decoding are allowed to throw
+ * any subtype of [IllegalArgumentException] in order to indicate serialization
+ * and deserialization errors. It is recommended to throw subtypes of [SerializationException]
+ * for encoder and decoder specific errors and [IllegalArgumentException] for input
+ * and output validation-specific errors.
+ *
+ * For formats
+ *
+ * ### Not stable for inheritance
+ *
+ * `SerialFormat` interface is not stable for inheritance in 3rd party libraries, as new methods
+ * might be added to this interface or contracts of the existing methods can be changed.
+ *
+ * It is safe to operate with instances of `SerialFormat` and call its methods.
+ */
 __attribute__((swift_name("Kotlinx_serialization_coreSerialFormat")))
 @protocol ClientKotlinx_serialization_coreSerialFormat
 @required
+
+/**
+ * Contains all serializers registered by format user for [Contextual] and [Polymorphic] serialization.
+ *
+ * The same module should be exposed in the format's [Encoder] and [Decoder].
+ */
 @property (readonly) ClientKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
 @end
 
+
+/**
+ * [SerialFormat] that allows conversions to and from [String] via [encodeToString] and [decodeFromString] methods.
+ *
+ * ### Not stable for inheritance
+ *
+ * `StringFormat` interface is not stable for inheritance in 3rd party libraries, as new methods
+ * might be added to this interface or contracts of the existing methods can be changed.
+ *
+ * It is safe to operate with instances of `StringFormat` and call its methods.
+ */
 __attribute__((swift_name("Kotlinx_serialization_coreStringFormat")))
 @protocol ClientKotlinx_serialization_coreStringFormat <ClientKotlinx_serialization_coreSerialFormat>
 @required
+
+/**
+ * Decodes and deserializes the given [string] to the value of type [T] using the given [deserializer].
+ *
+ * @throws SerializationException in case of any decoding-specific error
+ * @throws IllegalArgumentException if the decoded input is not a valid instance of [T]
+ */
 - (id _Nullable)decodeFromStringDeserializer:(id<ClientKotlinx_serialization_coreDeserializationStrategy>)deserializer string:(NSString *)string __attribute__((swift_name("decodeFromString(deserializer:string:)")));
+
+/**
+ * Serializes and encodes the given [value] to string using the given [serializer].
+ *
+ * @throws SerializationException in case of any encoding-specific error
+ * @throws IllegalArgumentException if the encoded input does not comply format's specification
+ */
 - (NSString *)encodeToStringSerializer:(id<ClientKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeToString(serializer:value:)")));
 @end
 
+
+/**
+ * The main entry point to work with JSON serialization.
+ * It is typically used by constructing an application-specific instance, with configured JSON-specific behaviour
+ * and, if necessary, registered in [SerializersModule] custom serializers.
+ * `Json` instance can be configured in its `Json {}` factory function using [JsonBuilder].
+ * For demonstration purposes or trivial usages, Json [companion][Json.Default] can be used instead.
+ *
+ * Then constructed instance can be used either as regular [SerialFormat] or [StringFormat]
+ * or for converting objects to [JsonElement] back and forth.
+ *
+ * This is the only serial format which has the first-class [JsonElement] support.
+ * Any serializable class can be serialized to or from [JsonElement] with [Json.decodeFromJsonElement] and [Json.encodeToJsonElement] respectively or
+ * serialize properties of [JsonElement] type.
+ *
+ * Example of usage:
+ * ```
+ * @Serializable
+ * data class Data(val id: Int, val data: String, val extensions: JsonElement)
+ *
+ * val json = Json { ignoreUnknownKeys = true }
+ * val instance = Data(42, "some data", buildJsonObject { put("key", "value") })
+ *
+ * // Plain Json usage: returns '{"id": 42, "some data", "extensions": {"key": "value" } }'
+ * val jsonString: String = json.encodeToString(instance)
+ *
+ * // JsonElement serialization, specific for JSON format
+ * val jsonElement: JsonElement = json.encodeToJsonElement(instance)
+ *
+ * // Deserialize from string
+ * val deserialized: Data = json.decodeFromString<Data>(jsonString)
+ *
+ * // Deserialize from json element, JSON-specific
+ * val deserializedFromElement: Data = json.decodeFromJsonElement<Data>(jsonElement)
+ *
+ *  // Deserialize from string to JSON tree, JSON-specific
+ * val deserializedElement: JsonElement = json.parseToJsonElement(jsonString)
+ *
+ * // Deserialize a stream of a single item from an input stream
+ * val sequence = Json.decodeToSequence<Data>(ByteArrayInputStream(jsonString.encodeToByteArray()))
+ * for (item in sequence) {
+ *     println(item) // Prints deserialized Data value
+ * }
+ * ```
+ *
+ * Json instance also exposes its [configuration] that can be used in custom serializers
+ * that rely on [JsonDecoder] and [JsonEncoder] for customizable behaviour.
+ *
+ * Json format configuration can be refined using the corresponding constructor:
+ * ```
+ * val defaultJson = Json {
+ *     encodeDefaults = true
+ *     ignoreUnknownKeys = true
+ * }
+ * // Will inherit the properties of defaultJson
+ * val debugEndpointJson = Json(defaultJson) {
+ *     // ignoreUnknownKeys and encodeDefaults are set to true
+ *     prettyPrint = true
+ * }
+ * ```
+ */
 __attribute__((swift_name("Kotlinx_serialization_jsonJson")))
 @interface ClientKotlinx_serialization_jsonJson : ClientBase <ClientKotlinx_serialization_coreStringFormat>
 @property (class, readonly, getter=companion) ClientKotlinx_serialization_jsonJsonDefault *companion __attribute__((swift_name("companion")));
+
+/**
+ * Deserializes the given [element] into a value of type [T] using the given [deserializer].
+ *
+ * @throws [SerializationException] if the given JSON element is not a valid JSON input for the type [T]
+ * @throws [IllegalArgumentException] if the decoded input cannot be represented as a valid instance of type [T]
+ */
 - (id _Nullable)decodeFromJsonElementDeserializer:(id<ClientKotlinx_serialization_coreDeserializationStrategy>)deserializer element:(ClientKotlinx_serialization_jsonJsonElement *)element __attribute__((swift_name("decodeFromJsonElement(deserializer:element:)")));
+
+/**
+ * Decodes and deserializes the given JSON [string] to the value of type [T] using deserializer
+ * retrieved from the reified type parameter.
+ * Example:
+ * ```
+ * @Serializable
+ * data class Project(val name: String, val language: String)
+ * //  Project(name=kotlinx.serialization, language=Kotlin)
+ * println(Json.decodeFromString<Project>("""{"name":"kotlinx.serialization","language":"Kotlin"}"""))
+ * ```
+ *
+ * @throws SerializationException in case of any decoding-specific error
+ * @throws IllegalArgumentException if the decoded input is not a valid instance of [T]
+ */
 - (id _Nullable)decodeFromStringString:(NSString *)string __attribute__((swift_name("decodeFromString(string:)")));
+
+/**
+ * Deserializes the given JSON [string] into a value of type [T] using the given [deserializer].
+ * Example:
+ * ```
+ * @Serializable
+ * data class Project(val name: String, val language: String)
+ * //  Project(name=kotlinx.serialization, language=Kotlin)
+ * println(Json.decodeFromString(Project.serializer(), """{"name":"kotlinx.serialization","language":"Kotlin"}"""))
+ * ```
+ *
+ * @throws [SerializationException] if the given JSON string is not a valid JSON input for the type [T]
+ * @throws [IllegalArgumentException] if the decoded input cannot be represented as a valid instance of type [T]
+ */
 - (id _Nullable)decodeFromStringDeserializer:(id<ClientKotlinx_serialization_coreDeserializationStrategy>)deserializer string:(NSString *)string __attribute__((swift_name("decodeFromString(deserializer:string:)")));
+
+/**
+ * Serializes the given [value] into an equivalent [JsonElement] using the given [serializer]
+ *
+ * @throws [SerializationException] if the given value cannot be serialized to JSON
+ */
 - (ClientKotlinx_serialization_jsonJsonElement *)encodeToJsonElementSerializer:(id<ClientKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeToJsonElement(serializer:value:)")));
+
+/**
+ * Serializes the [value] of type [T] into an equivalent JSON using serializer
+ * retrieved from the reified type parameter.
+ *
+ * Example of usage:
+ * ```
+ * @Serializable
+ * class Project(val name: String, val language: String)
+ *
+ * val data = Project("kotlinx.serialization", "Kotlin")
+ *
+ * // Prints {"name":"kotlinx.serialization","language":"Kotlin"}
+ * println(Json.encodeToString(data))
+ * ```
+ *
+ * @throws [SerializationException] if the given value cannot be serialized to JSON.
+ */
 - (NSString *)encodeToStringValue:(id _Nullable)value __attribute__((swift_name("encodeToString(value:)")));
+
+/**
+ * Serializes the [value] into an equivalent JSON using the given [serializer].
+ * This method is recommended to be used with an explicit serializer (e.g. the custom or third-party one),
+ * otherwise the `encodeToString(value: T)` version might be preferred as the most concise one.
+ *
+ * Example of usage:
+ * ```
+ * @Serializable
+ * class Project(val name: String, val language: String)
+ *
+ * val data = Project("kotlinx.serialization", "Kotlin")
+ *
+ * // Prints {"name":"kotlinx.serialization","language":"Kotlin"}
+ * println(Json.encodeToString(Project.serializer(), data))
+ * // The same as Json.encodeToString<T>(value: T) overload
+ * println(Json.encodeToString(data))
+ * ```
+ *
+ * @throws [SerializationException] if the given value cannot be serialized to JSON.
+ */
 - (NSString *)encodeToStringSerializer:(id<ClientKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeToString(serializer:value:)")));
+
+/**
+ * Deserializes the given JSON [string] into a corresponding [JsonElement] representation.
+ *
+ * @throws [SerializationException] if the given string is not a valid JSON
+ */
 - (ClientKotlinx_serialization_jsonJsonElement *)parseToJsonElementString:(NSString *)string __attribute__((swift_name("parseToJsonElement(string:)")));
 @property (readonly) ClientKotlinx_serialization_jsonJsonConfiguration *configuration __attribute__((swift_name("configuration")));
 @property (readonly) ClientKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
@@ -5264,58 +6569,216 @@ __attribute__((swift_name("Secret_std_typesStdSignature.Companion")))
 - (id<ClientKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
+
+/**
+ * [CompositeEncoder] is a part of encoding process that is bound to a particular structured part of
+ * the serialized form, described by the serial descriptor passed to [Encoder.beginStructure].
+ *
+ * All `encode*` methods have `index` and `serialDescriptor` parameters with a strict semantics and constraints:
+ *   * `descriptor` is always the same as one used in [Encoder.beginStructure]. While this parameter may seem redundant,
+ *      it is required for efficient serialization process to avoid excessive field spilling.
+ *      If you are writing your own format, you can safely ignore this parameter and use one used in `beginStructure`
+ *      for simplicity.
+ *   * `index` of the element being encoded. This element at this index in the descriptor should be associated with
+ *      the one being written.
+ *
+ * The symmetric interface for the deserialization process is [CompositeDecoder].
+ *
+ * ### Not stable for inheritance
+ *
+ * `CompositeEncoder` interface is not stable for inheritance in 3rd party libraries, as new methods
+ * might be added to this interface or contracts of the existing methods can be changed.
+ */
 __attribute__((swift_name("Kotlinx_serialization_coreCompositeEncoder")))
 @protocol ClientKotlinx_serialization_coreCompositeEncoder
 @required
+
+/**
+ * Encodes a boolean [value] associated with an element at the given [index] in [serial descriptor][descriptor].
+ * The element at the given [index] should have [PrimitiveKind.BOOLEAN] kind.
+ */
 - (void)encodeBooleanElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(BOOL)value __attribute__((swift_name("encodeBooleanElement(descriptor:index:value:)")));
+
+/**
+ * Encodes a single byte [value] associated with an element at the given [index] in [serial descriptor][descriptor].
+ * The element at the given [index] should have [PrimitiveKind.BYTE] kind.
+ */
 - (void)encodeByteElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(int8_t)value __attribute__((swift_name("encodeByteElement(descriptor:index:value:)")));
+
+/**
+ * Encodes a 16-bit unicode character [value] associated with an element at the given [index] in [serial descriptor][descriptor].
+ * The element at the given [index] should have [PrimitiveKind.CHAR] kind.
+ */
 - (void)encodeCharElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(unichar)value __attribute__((swift_name("encodeCharElement(descriptor:index:value:)")));
+
+/**
+ * Encodes a 64-bit IEEE 754 floating point [value] associated with an element
+ * at the given [index] in [serial descriptor][descriptor].
+ * The element at the given [index] should have [PrimitiveKind.DOUBLE] kind.
+ */
 - (void)encodeDoubleElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(double)value __attribute__((swift_name("encodeDoubleElement(descriptor:index:value:)")));
+
+/**
+ * Encodes a 32-bit IEEE 754 floating point [value] associated with an element
+ * at the given [index] in [serial descriptor][descriptor].
+ * The element at the given [index] should have [PrimitiveKind.FLOAT] kind.
+ */
 - (void)encodeFloatElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(float)value __attribute__((swift_name("encodeFloatElement(descriptor:index:value:)")));
+
+/**
+ * Returns [Encoder] for decoding an underlying type of a value class in an inline manner.
+ * Serializable value class is described by the [child descriptor][SerialDescriptor.getElementDescriptor]
+ * of given [descriptor] at [index].
+ *
+ * Namely, for the `@Serializable @JvmInline value class MyInt(val my: Int)`,
+ * and `@Serializable class MyData(val myInt: MyInt)` the following sequence is used:
+ * ```
+ * thisEncoder.encodeInlineElement(MyData.serializer.descriptor, 0).encodeInt(my)
+ * ```
+ *
+ * This method provides an opportunity for the optimization to avoid boxing of a carried value
+ * and its invocation should be equivalent to the following:
+ * ```
+ * thisEncoder.encodeSerializableElement(MyData.serializer.descriptor, 0, MyInt.serializer(), myInt)
+ * ```
+ *
+ * Current encoder may return any other instance of [Encoder] class, depending on provided descriptor.
+ * For example, when this function is called on Json encoder with descriptor that has
+ * `UInt.serializer().descriptor` at the given [index], the returned encoder is able
+ * to encode unsigned integers.
+ *
+ * Note that this function returns [Encoder] instead of the [CompositeEncoder]
+ * because value classes always have the single property.
+ * Calling [Encoder.beginStructure] on returned instance leads to an unspecified behavior and, in general, is prohibited.
+ *
+ * @see Encoder.encodeInline
+ * @see SerialDescriptor.getElementDescriptor
+ */
 - (id<ClientKotlinx_serialization_coreEncoder>)encodeInlineElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("encodeInlineElement(descriptor:index:)")));
+
+/**
+ * Encodes a 32-bit integer [value] associated with an element at the given [index] in [serial descriptor][descriptor].
+ * The element at the given [index] should have [PrimitiveKind.INT] kind.
+ */
 - (void)encodeIntElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(int32_t)value __attribute__((swift_name("encodeIntElement(descriptor:index:value:)")));
+
+/**
+ * Encodes a 64-bit integer [value] associated with an element at the given [index] in [serial descriptor][descriptor].
+ * The element at the given [index] should have [PrimitiveKind.LONG] kind.
+ */
 - (void)encodeLongElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(int64_t)value __attribute__((swift_name("encodeLongElement(descriptor:index:value:)")));
 
 /**
+ * Delegates nullable [value] encoding of the type [T] to the given [serializer].
+ * [value] is associated with an element at the given [index] in [serial descriptor][descriptor].
+ *
  * @note annotations
  *   kotlinx.serialization.ExperimentalSerializationApi
 */
 - (void)encodeNullableSerializableElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index serializer:(id<ClientKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeNullableSerializableElement(descriptor:index:serializer:value:)")));
+
+/**
+ * Delegates [value] encoding of the type [T] to the given [serializer].
+ * [value] is associated with an element at the given [index] in [serial descriptor][descriptor].
+ */
 - (void)encodeSerializableElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index serializer:(id<ClientKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeSerializableElement(descriptor:index:serializer:value:)")));
+
+/**
+ * Encodes a 16-bit short [value] associated with an element at the given [index] in [serial descriptor][descriptor].
+ * The element at the given [index] should have [PrimitiveKind.SHORT] kind.
+ */
 - (void)encodeShortElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(int16_t)value __attribute__((swift_name("encodeShortElement(descriptor:index:value:)")));
+
+/**
+ * Encodes a string [value] associated with an element at the given [index] in [serial descriptor][descriptor].
+ * The element at the given [index] should have [PrimitiveKind.STRING] kind.
+ */
 - (void)encodeStringElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(NSString *)value __attribute__((swift_name("encodeStringElement(descriptor:index:value:)")));
+
+/**
+ * Denotes the end of the structure associated with current encoder.
+ * For example, composite encoder of JSON format will write
+ * a closing bracket in the underlying input and reduce the number of nesting for pretty printing.
+ */
 - (void)endStructureDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("endStructure(descriptor:)")));
 
 /**
+ * Whether the format should encode values that are equal to the default values.
+ * This method is used by plugin-generated serializers for properties with default values:
+ * ```
+ * @Serializable
+ * class WithDefault(val int: Int = 42)
+ * // serialize method
+ * if (value.int != 42 || output.shouldEncodeElementDefault(serialDesc, 0)) {
+ *    encoder.encodeIntElement(serialDesc, 0, value.int);
+ * }
+ * ```
+ *
+ * This method is never invoked for properties annotated with [EncodeDefault].
+ *
  * @note annotations
  *   kotlinx.serialization.ExperimentalSerializationApi
 */
 - (BOOL)shouldEncodeElementDefaultDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("shouldEncodeElementDefault(descriptor:index:)")));
+
+/**
+ * Context of the current serialization process, including contextual and polymorphic serialization and,
+ * potentially, a format-specific configuration.
+ */
 @property (readonly) ClientKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
 @end
 
+
+/**
+ * [SerializersModule] is a collection of serializers used by [ContextualSerializer] and [PolymorphicSerializer]
+ * to override or provide serializers at the runtime, whereas at the compile-time they provided by the serialization plugin.
+ * It can be considered as a map where serializers can be found using their statically known KClasses.
+ *
+ * To enable runtime serializers resolution, one of the special annotations must be used on target types
+ * ([Polymorphic] or [Contextual]), and a serial module with serializers should be used during construction of [SerialFormat].
+ *
+ * Serializers module can be built with `SerializersModule {}` builder function.
+ * Empty module can be obtained with `EmptySerializersModule()` factory function.
+ *
+ * @see Contextual
+ * @see Polymorphic
+ */
 __attribute__((swift_name("Kotlinx_serialization_coreSerializersModule")))
 @interface ClientKotlinx_serialization_coreSerializersModule : ClientBase
 
 /**
+ * Copies contents of this module to the given [collector].
+ *
  * @note annotations
  *   kotlinx.serialization.ExperimentalSerializationApi
 */
 - (void)dumpToCollector:(id<ClientKotlinx_serialization_coreSerializersModuleCollector>)collector __attribute__((swift_name("dumpTo(collector:)")));
 
 /**
+ * Returns a contextual serializer associated with a given [kClass].
+ * If given class has generic parameters and module has provider for [kClass],
+ * [typeArgumentsSerializers] are used to create serializer.
+ * This method is used in context-sensitive operations on a property marked with [Contextual] by a [ContextualSerializer].
+ *
+ * @see SerializersModuleBuilder.contextual
+ *
  * @note annotations
  *   kotlinx.serialization.ExperimentalSerializationApi
 */
 - (id<ClientKotlinx_serialization_coreKSerializer> _Nullable)getContextualKClass:(id<ClientKotlinKClass>)kClass typeArgumentsSerializers:(NSArray<id<ClientKotlinx_serialization_coreKSerializer>> *)typeArgumentsSerializers __attribute__((swift_name("getContextual(kClass:typeArgumentsSerializers:)")));
 
 /**
+ * Returns a polymorphic serializer registered for a class of the given [value] in the scope of [baseClass].
+ *
  * @note annotations
  *   kotlinx.serialization.ExperimentalSerializationApi
 */
 - (id<ClientKotlinx_serialization_coreSerializationStrategy> _Nullable)getPolymorphicBaseClass:(id<ClientKotlinKClass>)baseClass value:(id)value __attribute__((swift_name("getPolymorphic(baseClass:value:)")));
 
 /**
+ * Returns a polymorphic deserializer registered for a [serializedClassName] in the scope of [baseClass]
+ * or default value constructed from [serializedClassName] if a default serializer provider was registered.
+ *
  * @note annotations
  *   kotlinx.serialization.ExperimentalSerializationApi
 */
@@ -5327,41 +6790,293 @@ __attribute__((swift_name("KotlinAnnotation")))
 @required
 @end
 
+
+/**
+ * Serial kind is an intrinsic property of [SerialDescriptor] that indicates how
+ * the corresponding type is structurally represented by its serializer.
+ *
+ * Kind is used by serialization formats to determine how exactly the given type
+ * should be serialized. For example, JSON format detects the kind of the value and,
+ * depending on that, may write it as a plain value for primitive kinds, open a
+ * curly brace '{' for class-like structures and square bracket '[' for list- and array- like structures.
+ *
+ * Kinds are used both during serialization, to serialize a value properly and statically, and
+ * to introspect the type structure or build serialization schema.
+ *
+ * Kind should match the structure of the serialized form, not the structure of the corresponding Kotlin class.
+ * Meaning that if serializable class `class IntPair(val left: Int, val right: Int)` is represented by the serializer
+ * as a single `Long` value, its descriptor should have [PrimitiveKind.LONG] without nested elements even though the class itself
+ * represents a structure with two primitive fields.
+ */
 __attribute__((swift_name("Kotlinx_serialization_coreSerialKind")))
 @interface ClientKotlinx_serialization_coreSerialKind : ClientBase
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @end
 
+
+/**
+ * [CompositeDecoder] is a part of decoding process that is bound to a particular structured part of
+ * the serialized form, described by the serial descriptor passed to [Decoder.beginStructure].
+ *
+ * Typically, for unordered data, [CompositeDecoder] is used by a serializer withing a [decodeElementIndex]-based
+ * loop that decodes all the required data one-by-one in any order and then terminates by calling [endStructure].
+ * Please refer to [decodeElementIndex] for example of such loop.
+ *
+ * All `decode*` methods have `index` and `serialDescriptor` parameters with a strict semantics and constraints:
+ *   * `descriptor` argument is always the same as one used in [Decoder.beginStructure].
+ *   * `index` of the element being decoded. For [sequential][decodeSequentially] decoding, it is always a monotonic
+ *      sequence from `0` to `descriptor.elementsCount` and for indexing-loop it is always an index that [decodeElementIndex]
+ *      has returned from the last call.
+ *
+ * The symmetric interface for the serialization process is [CompositeEncoder].
+ *
+ * ### Not stable for inheritance
+ *
+ * `CompositeDecoder` interface is not stable for inheritance in 3rd party libraries, as new methods
+ * might be added to this interface or contracts of the existing methods can be changed.
+ */
 __attribute__((swift_name("Kotlinx_serialization_coreCompositeDecoder")))
 @protocol ClientKotlinx_serialization_coreCompositeDecoder
 @required
+
+/**
+ * Decodes a boolean value from the underlying input.
+ * The resulting value is associated with the [descriptor] element at the given [index].
+ * The element at the given index should have [PrimitiveKind.BOOLEAN] kind.
+ */
 - (BOOL)decodeBooleanElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeBooleanElement(descriptor:index:)")));
+
+/**
+ * Decodes a single byte value from the underlying input.
+ * The resulting value is associated with the [descriptor] element at the given [index].
+ * The element at the given index should have [PrimitiveKind.BYTE] kind.
+ */
 - (int8_t)decodeByteElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeByteElement(descriptor:index:)")));
+
+/**
+ * Decodes a 16-bit unicode character value from the underlying input.
+ * The resulting value is associated with the [descriptor] element at the given [index].
+ * The element at the given index should have [PrimitiveKind.CHAR] kind.
+ */
 - (unichar)decodeCharElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeCharElement(descriptor:index:)")));
+
+/**
+ * Method to decode collection size that may be called before the collection decoding.
+ * Collection type includes [Collection], [Map] and [Array] (including primitive arrays).
+ * Method can return `-1` if the size is not known in advance, though for [sequential decoding][decodeSequentially]
+ * knowing precise size is a mandatory requirement.
+ */
 - (int32_t)decodeCollectionSizeDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("decodeCollectionSize(descriptor:)")));
+
+/**
+ * Decodes a 64-bit IEEE 754 floating point value from the underlying input.
+ * The resulting value is associated with the [descriptor] element at the given [index].
+ * The element at the given index should have [PrimitiveKind.DOUBLE] kind.
+ */
 - (double)decodeDoubleElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeDoubleElement(descriptor:index:)")));
+
+/**
+ *  Decodes the index of the next element to be decoded.
+ *  Index represents a position of the current element in the serial descriptor element that can be found
+ *  with [SerialDescriptor.getElementIndex].
+ *
+ *  If this method returns non-negative index, the caller should call one of the `decode*Element` methods
+ *  with a resulting index.
+ *  Apart from positive values, this method can return [DECODE_DONE] to indicate that no more elements
+ *  are left or [UNKNOWN_NAME] to indicate that symbol with an unknown name was encountered.
+ *
+ * Example of usage:
+ * ```
+ * class MyPair(i: Int, d: Double)
+ *
+ * object MyPairSerializer : KSerializer<MyPair> {
+ *     // ... other methods omitted
+ *
+ *    fun deserialize(decoder: Decoder): MyPair {
+ *        val composite = decoder.beginStructure(descriptor)
+ *        var i: Int? = null
+ *        var d: Double? = null
+ *        while (true) {
+ *            when (val index = composite.decodeElementIndex(descriptor)) {
+ *                0 -> i = composite.decodeIntElement(descriptor, 0)
+ *                1 -> d = composite.decodeDoubleElement(descriptor, 1)
+ *                DECODE_DONE -> break // Input is over
+ *                else -> error("Unexpected index: $index)
+ *            }
+ *        }
+ *        composite.endStructure(descriptor)
+ *        require(i != null && d != null)
+ *        return MyPair(i, d)
+ *    }
+ * }
+ * ```
+ * This example is a rough equivalent of what serialization plugin generates for serializable pair class.
+ *
+ * The need in such a loop comes from unstructured nature of most serialization formats.
+ * For example, JSON for the following input `{"d": 2.0, "i": 1}`, will first read `d` key with index `1`
+ * and only after `i` with the index `0`.
+ *
+ * A potential implementation of this method for JSON format can be the following:
+ * ```
+ * fun decodeElementIndex(descriptor: SerialDescriptor): Int {
+ *     // Ignore arrays
+ *     val nextKey: String? = myStringJsonParser.nextKey()
+ *     if (nextKey == null) return DECODE_DONE
+ *     return descriptor.getElementIndex(nextKey) // getElementIndex can return UNKNOWN_NAME
+ * }
+ * ```
+ *
+ * If [decodeSequentially] returns `true`, the caller might skip calling this method.
+ */
 - (int32_t)decodeElementIndexDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("decodeElementIndex(descriptor:)")));
+
+/**
+ * Decodes a 32-bit IEEE 754 floating point value from the underlying input.
+ * The resulting value is associated with the [descriptor] element at the given [index].
+ * The element at the given index should have [PrimitiveKind.FLOAT] kind.
+ */
 - (float)decodeFloatElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeFloatElement(descriptor:index:)")));
+
+/**
+ * Returns [Decoder] for decoding an underlying type of a value class in an inline manner.
+ * Serializable value class is described by the [child descriptor][SerialDescriptor.getElementDescriptor]
+ * of given [descriptor] at [index].
+ *
+ * Namely, for the `@Serializable @JvmInline value class MyInt(val my: Int)`,
+ * and `@Serializable class MyData(val myInt: MyInt)` the following sequence is used:
+ * ```
+ * thisDecoder.decodeInlineElement(MyData.serializer().descriptor, 0).decodeInt()
+ * ```
+ *
+ * This method provides an opportunity for the optimization to avoid boxing of a carried value
+ * and its invocation should be equivalent to the following:
+ * ```
+ * thisDecoder.decodeSerializableElement(MyData.serializer.descriptor, 0, MyInt.serializer())
+ * ```
+ *
+ * Current decoder may return any other instance of [Decoder] class, depending on the provided descriptor.
+ * For example, when this function is called on `Json` decoder with descriptor that has
+ * `UInt.serializer().descriptor` at the given [index], the returned decoder is able
+ * to decode unsigned integers.
+ *
+ * Note that this function returns [Decoder] instead of the [CompositeDecoder]
+ * because value classes always have the single property.
+ * Calling [Decoder.beginStructure] on returned instance leads to an unspecified behavior and, in general, is prohibited.
+ *
+ * @see Decoder.decodeInline
+ * @see SerialDescriptor.getElementDescriptor
+ */
 - (id<ClientKotlinx_serialization_coreDecoder>)decodeInlineElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeInlineElement(descriptor:index:)")));
+
+/**
+ * Decodes a 32-bit integer value from the underlying input.
+ * The resulting value is associated with the [descriptor] element at the given [index].
+ * The element at the given index should have [PrimitiveKind.INT] kind.
+ */
 - (int32_t)decodeIntElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeIntElement(descriptor:index:)")));
+
+/**
+ * Decodes a 64-bit integer value from the underlying input.
+ * The resulting value is associated with the [descriptor] element at the given [index].
+ * The element at the given index should have [PrimitiveKind.LONG] kind.
+ */
 - (int64_t)decodeLongElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeLongElement(descriptor:index:)")));
 
 /**
+ * Decodes nullable value of the type [T] with the given [deserializer].
+ *
+ * If value at given [index] was already decoded with previous [decodeSerializableElement] call with the same index,
+ * [previousValue] would contain a previously decoded value.
+ * This parameter can be used to aggregate multiple values of the given property to the only one.
+ * Implementation can safely ignore it and return a new value, efficiently using 'the last one wins' strategy,
+ * or apply format-specific aggregating strategies, e.g. appending scattered Protobuf lists to a single one.
+ *
  * @note annotations
  *   kotlinx.serialization.ExperimentalSerializationApi
 */
 - (id _Nullable)decodeNullableSerializableElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index deserializer:(id<ClientKotlinx_serialization_coreDeserializationStrategy>)deserializer previousValue:(id _Nullable)previousValue __attribute__((swift_name("decodeNullableSerializableElement(descriptor:index:deserializer:previousValue:)")));
 
 /**
+ * Checks whether the current decoder supports strictly ordered decoding of the data
+ * without calling to [decodeElementIndex].
+ * If the method returns `true`, the caller might skip [decodeElementIndex] calls
+ * and start invoking `decode*Element` directly, incrementing the index of the element one by one.
+ * This method can be called by serializers (either generated or user-defined) as a performance optimization,
+ * but there is no guarantee that the method will be ever called. Practically, it means that implementations
+ * that may benefit from sequential decoding should also support a regular [decodeElementIndex]-based decoding as well.
+ *
+ * Example of usage:
+ * ```
+ * class MyPair(i: Int, d: Double)
+ *
+ * object MyPairSerializer : KSerializer<MyPair> {
+ *     // ... other methods omitted
+ *
+ *    fun deserialize(decoder: Decoder): MyPair {
+ *        val composite = decoder.beginStructure(descriptor)
+ *        if (composite.decodeSequentially()) {
+ *            val i = composite.decodeIntElement(descriptor, index = 0) // Mind the sequential indexing
+ *            val d = composite.decodeIntElement(descriptor, index = 1)
+ *            composite.endStructure(descriptor)
+ *            return MyPair(i, d)
+ *        } else {
+ *            // Fallback to `decodeElementIndex` loop, refer to its documentation for details
+ *        }
+ *    }
+ * }
+ * ```
+ * This example is a rough equivalent of what serialization plugin generates for serializable pair class.
+ *
+ * Sequential decoding is a performance optimization for formats with strictly ordered schema,
+ * usually binary ones. Regular formats such as JSON or ProtoBuf cannot use this optimization,
+ * because e.g. in the latter example, the same data can be represented both as
+ * `{"i": 1, "d": 1.0}` and `{"d": 1.0, "i": 1}` (thus, unordered).
+ *
  * @note annotations
  *   kotlinx.serialization.ExperimentalSerializationApi
 */
 - (BOOL)decodeSequentially __attribute__((swift_name("decodeSequentially()")));
+
+/**
+ * Decodes value of the type [T] with the given [deserializer].
+ *
+ * Implementations of [CompositeDecoder] may use their format-specific deserializers
+ * for particular data types, e.g. handle [ByteArray] specifically if format is binary.
+ *
+ * If value at given [index] was already decoded with previous [decodeSerializableElement] call with the same index,
+ * [previousValue] would contain a previously decoded value.
+ * This parameter can be used to aggregate multiple values of the given property to the only one.
+ * Implementation can safely ignore it and return a new value, effectively using 'the last one wins' strategy,
+ * or apply format-specific aggregating strategies, e.g. appending scattered Protobuf lists to a single one.
+ */
 - (id _Nullable)decodeSerializableElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index deserializer:(id<ClientKotlinx_serialization_coreDeserializationStrategy>)deserializer previousValue:(id _Nullable)previousValue __attribute__((swift_name("decodeSerializableElement(descriptor:index:deserializer:previousValue:)")));
+
+/**
+ * Decodes a 16-bit short value from the underlying input.
+ * The resulting value is associated with the [descriptor] element at the given [index].
+ * The element at the given index should have [PrimitiveKind.SHORT] kind.
+ */
 - (int16_t)decodeShortElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeShortElement(descriptor:index:)")));
+
+/**
+ * Decodes a string value from the underlying input.
+ * The resulting value is associated with the [descriptor] element at the given [index].
+ * The element at the given index should have [PrimitiveKind.STRING] kind.
+ */
 - (NSString *)decodeStringElementDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeStringElement(descriptor:index:)")));
+
+/**
+ * Denotes the end of the structure associated with current decoder.
+ * For example, composite decoder of JSON format will expect (and parse)
+ * a closing bracket in the underlying input.
+ */
 - (void)endStructureDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("endStructure(descriptor:)")));
+
+/**
+ * Context of the current decoding process, including contextual and polymorphic serialization and,
+ * potentially, a format-specific configuration.
+ */
 @property (readonly) ClientKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
 @end
 
@@ -5370,13 +7085,46 @@ __attribute__((swift_name("KotlinNothing")))
 @interface ClientKotlinNothing : ClientBase
 @end
 
+
+/**
+ * Class representing single JSON element.
+ * Can be [JsonPrimitive], [JsonArray] or [JsonObject].
+ *
+ * [JsonElement.toString] properly prints JSON tree as valid JSON, taking into account quoted values and primitives.
+ * Whole hierarchy is serializable, but only when used with [Json] as [JsonElement] is purely JSON-specific structure
+ * which has a meaningful schemaless semantics only for JSON.
+ *
+ * The whole hierarchy is [serializable][Serializable] only by [Json] format.
+ */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Kotlinx_serialization_jsonJsonElement.Companion")))
 @interface ClientKotlinx_serialization_jsonJsonElementCompanion : ClientBase
 + (instancetype)alloc __attribute__((unavailable));
+
+/**
+ * Class representing single JSON element.
+ * Can be [JsonPrimitive], [JsonArray] or [JsonObject].
+ *
+ * [JsonElement.toString] properly prints JSON tree as valid JSON, taking into account quoted values and primitives.
+ * Whole hierarchy is serializable, but only when used with [Json] as [JsonElement] is purely JSON-specific structure
+ * which has a meaningful schemaless semantics only for JSON.
+ *
+ * The whole hierarchy is [serializable][Serializable] only by [Json] format.
+ */
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) ClientKotlinx_serialization_jsonJsonElementCompanion *shared __attribute__((swift_name("shared")));
+
+/**
+ * Class representing single JSON element.
+ * Can be [JsonPrimitive], [JsonArray] or [JsonObject].
+ *
+ * [JsonElement.toString] properly prints JSON tree as valid JSON, taking into account quoted values and primitives.
+ * Whole hierarchy is serializable, but only when used with [Json] as [JsonElement] is purely JSON-specific structure
+ * which has a meaningful schemaless semantics only for JSON.
+ *
+ * The whole hierarchy is [serializable][Serializable] only by [Json] format.
+ */
 - (id<ClientKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
@@ -5399,32 +7147,65 @@ __attribute__((swift_name("KotlinCharIterator")))
 - (unichar)nextChar __attribute__((swift_name("nextChar()")));
 @end
 
+
+/**
+ * The default instance of [Json] with default configuration.
+ *
+ * Example of usage:
+ * ```
+ * @Serializable
+ * class Project(val name: String, val language: String)
+ *
+ * val data = Project("kotlinx.serialization", "Kotlin")
+ * // Prints {"name":"kotlinx.serialization","language":"Kotlin"}
+ * println(Json.encodeToString(data))
+ * ```
+ */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Kotlinx_serialization_jsonJson.Default")))
 @interface ClientKotlinx_serialization_jsonJsonDefault : ClientKotlinx_serialization_jsonJson
 + (instancetype)alloc __attribute__((unavailable));
+
+/**
+ * The default instance of [Json] with default configuration.
+ *
+ * Example of usage:
+ * ```
+ * @Serializable
+ * class Project(val name: String, val language: String)
+ *
+ * val data = Project("kotlinx.serialization", "Kotlin")
+ * // Prints {"name":"kotlinx.serialization","language":"Kotlin"}
+ * println(Json.encodeToString(data))
+ * ```
+ */
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)default_ __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) ClientKotlinx_serialization_jsonJsonDefault *shared __attribute__((swift_name("shared")));
 @end
 
+
+/**
+ * Configuration of the current [Json] instance available through [Json.configuration]
+ * and configured with [JsonBuilder] constructor.
+ *
+ * Can be used for debug purposes and for custom Json-specific serializers
+ * via [JsonEncoder] and [JsonDecoder].
+ *
+ * Standalone configuration object is meaningless and can nor be used outside the
+ * [Json], neither new [Json] instance can be created from it.
+ *
+ * Detailed description of each property is available in [JsonBuilder] class.
+ */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Kotlinx_serialization_jsonJsonConfiguration")))
 @interface ClientKotlinx_serialization_jsonJsonConfiguration : ClientBase
-- (NSString *)description __attribute__((swift_name("description()")));
 
-/**
- * @note annotations
- *   kotlinx.serialization.ExperimentalSerializationApi
-*/
+/** @suppress Dokka **/
+- (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) BOOL allowComments __attribute__((swift_name("allowComments")));
 @property (readonly) BOOL allowSpecialFloatingPointValues __attribute__((swift_name("allowSpecialFloatingPointValues")));
 @property (readonly) BOOL allowStructuredMapKeys __attribute__((swift_name("allowStructuredMapKeys")));
-
-/**
- * @note annotations
- *   kotlinx.serialization.ExperimentalSerializationApi
-*/
 @property (readonly) BOOL allowTrailingComma __attribute__((swift_name("allowTrailingComma")));
 @property (readonly) NSString *classDiscriminator __attribute__((swift_name("classDiscriminator")));
 
@@ -5434,11 +7215,6 @@ __attribute__((swift_name("Kotlinx_serialization_jsonJsonConfiguration")))
 */
 @property ClientKotlinx_serialization_jsonClassDiscriminatorMode *classDiscriminatorMode __attribute__((swift_name("classDiscriminatorMode")));
 @property (readonly) BOOL coerceInputValues __attribute__((swift_name("coerceInputValues")));
-
-/**
- * @note annotations
- *   kotlinx.serialization.ExperimentalSerializationApi
-*/
 @property (readonly) BOOL decodeEnumsCaseInsensitive __attribute__((swift_name("decodeEnumsCaseInsensitive")));
 @property (readonly) BOOL encodeDefaults __attribute__((swift_name("encodeDefaults")));
 @property (readonly) BOOL explicitNulls __attribute__((swift_name("explicitNulls")));
@@ -5451,11 +7227,6 @@ __attribute__((swift_name("Kotlinx_serialization_jsonJsonConfiguration")))
 */
 @property (readonly) id<ClientKotlinx_serialization_jsonJsonNamingStrategy> _Nullable namingStrategy __attribute__((swift_name("namingStrategy")));
 @property (readonly) BOOL prettyPrint __attribute__((swift_name("prettyPrint")));
-
-/**
- * @note annotations
- *   kotlinx.serialization.ExperimentalSerializationApi
-*/
 @property (readonly) NSString *prettyPrintIndent __attribute__((swift_name("prettyPrintIndent")));
 @property (readonly) BOOL useAlternativeNames __attribute__((swift_name("useAlternativeNames")));
 @property (readonly) BOOL useArrayPolymorphism __attribute__((swift_name("useArrayPolymorphism")));
@@ -5513,24 +7284,114 @@ __attribute__((swift_name("BignumModularQuotientAndRemainder")))
 
 
 /**
+ * [SerializersModuleCollector] can introspect and accumulate content of any [SerializersModule] via [SerializersModule.dumpTo],
+ * using a visitor-like pattern: [contextual] and [polymorphic] functions are invoked for each registered serializer.
+ *
+ * ### Not stable for inheritance
+ *
+ * `SerializersModuleCollector` interface is not stable for inheritance in 3rd party libraries, as new methods
+ * might be added to this interface or contracts of the existing methods can be changed.
+ *
  * @note annotations
  *   kotlinx.serialization.ExperimentalSerializationApi
 */
 __attribute__((swift_name("Kotlinx_serialization_coreSerializersModuleCollector")))
 @protocol ClientKotlinx_serialization_coreSerializersModuleCollector
 @required
-- (void)contextualKClass:(id<ClientKotlinKClass>)kClass provider:(id<ClientKotlinx_serialization_coreKSerializer> (^)(NSArray<id<ClientKotlinx_serialization_coreKSerializer>> *))provider __attribute__((swift_name("contextual(kClass:provider:)")));
+
+/**
+ * Accept a provider, associated with generic [kClass] for contextual serialization.
+ */
+- (void)contextualKClass:(id<ClientKotlinKClass>)kClass provider:(id<ClientKotlinx_serialization_coreKSerializer> (^)(NSArray<id<ClientKotlinx_serialization_coreKSerializer>> *typeArgumentsSerializers))provider __attribute__((swift_name("contextual(kClass:provider:)")));
+
+/**
+ * Accept a serializer, associated with [kClass] for contextual serialization.
+ */
 - (void)contextualKClass:(id<ClientKotlinKClass>)kClass serializer:(id<ClientKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("contextual(kClass:serializer:)")));
+
+/**
+ * Accept a serializer, associated with [actualClass] for polymorphic serialization.
+ */
 - (void)polymorphicBaseClass:(id<ClientKotlinKClass>)baseClass actualClass:(id<ClientKotlinKClass>)actualClass actualSerializer:(id<ClientKotlinx_serialization_coreKSerializer>)actualSerializer __attribute__((swift_name("polymorphic(baseClass:actualClass:actualSerializer:)")));
-- (void)polymorphicDefaultBaseClass:(id<ClientKotlinKClass>)baseClass defaultDeserializerProvider:(id<ClientKotlinx_serialization_coreDeserializationStrategy> _Nullable (^)(NSString * _Nullable))defaultDeserializerProvider __attribute__((swift_name("polymorphicDefault(baseClass:defaultDeserializerProvider:)"))) __attribute__((deprecated("Deprecated in favor of function with more precise name: polymorphicDefaultDeserializer")));
-- (void)polymorphicDefaultDeserializerBaseClass:(id<ClientKotlinKClass>)baseClass defaultDeserializerProvider:(id<ClientKotlinx_serialization_coreDeserializationStrategy> _Nullable (^)(NSString * _Nullable))defaultDeserializerProvider __attribute__((swift_name("polymorphicDefaultDeserializer(baseClass:defaultDeserializerProvider:)")));
-- (void)polymorphicDefaultSerializerBaseClass:(id<ClientKotlinKClass>)baseClass defaultSerializerProvider:(id<ClientKotlinx_serialization_coreSerializationStrategy> _Nullable (^)(id))defaultSerializerProvider __attribute__((swift_name("polymorphicDefaultSerializer(baseClass:defaultSerializerProvider:)")));
+
+/**
+ * Accept a default deserializer provider, associated with the [baseClass] for polymorphic deserialization.
+ *
+ * This function affect only deserialization process. To avoid confusion, it was deprecated and replaced with [polymorphicDefaultDeserializer].
+ * To affect serialization process, use [SerializersModuleCollector.polymorphicDefaultSerializer].
+ *
+ * [defaultDeserializerProvider] is invoked when no polymorphic serializers associated with the `className`
+ * in the scope of [baseClass] were found. `className` could be `null` for formats that support nullable class discriminators
+ * (currently only `Json` with `useArrayPolymorphism` set to `false`).
+ *
+ * [defaultDeserializerProvider] can be stateful and lookup a serializer for the missing type dynamically.
+ *
+ * @see SerializersModuleCollector.polymorphicDefaultDeserializer
+ * @see SerializersModuleCollector.polymorphicDefaultSerializer
+ */
+- (void)polymorphicDefaultBaseClass:(id<ClientKotlinKClass>)baseClass defaultDeserializerProvider:(id<ClientKotlinx_serialization_coreDeserializationStrategy> _Nullable (^)(NSString * _Nullable className))defaultDeserializerProvider __attribute__((swift_name("polymorphicDefault(baseClass:defaultDeserializerProvider:)"))) __attribute__((deprecated("Deprecated in favor of function with more precise name: polymorphicDefaultDeserializer")));
+
+/**
+ * Accept a default deserializer provider, associated with the [baseClass] for polymorphic deserialization.
+ * [defaultDeserializerProvider] is invoked when no polymorphic serializers associated with the `className`
+ * in the scope of [baseClass] were found. `className` could be `null` for formats that support nullable class discriminators
+ * (currently only `Json` with `useArrayPolymorphism` set to `false`).
+ *
+ * Default deserializers provider affects only deserialization process. Serializers are accepted in the
+ * [SerializersModuleCollector.polymorphicDefaultSerializer] method.
+ *
+ * [defaultDeserializerProvider] can be stateful and lookup a serializer for the missing type dynamically.
+ */
+- (void)polymorphicDefaultDeserializerBaseClass:(id<ClientKotlinKClass>)baseClass defaultDeserializerProvider:(id<ClientKotlinx_serialization_coreDeserializationStrategy> _Nullable (^)(NSString * _Nullable className))defaultDeserializerProvider __attribute__((swift_name("polymorphicDefaultDeserializer(baseClass:defaultDeserializerProvider:)")));
+
+/**
+ * Accept a default serializer provider, associated with the [baseClass] for polymorphic serialization.
+ * [defaultSerializerProvider] is invoked when no polymorphic serializers for `value` in the scope of [baseClass] were found.
+ *
+ * Default serializers provider affects only serialization process. Deserializers are accepted in the
+ * [SerializersModuleCollector.polymorphicDefaultDeserializer] method.
+ *
+ * [defaultSerializerProvider] can be stateful and lookup a serializer for the missing type dynamically.
+ */
+- (void)polymorphicDefaultSerializerBaseClass:(id<ClientKotlinKClass>)baseClass defaultSerializerProvider:(id<ClientKotlinx_serialization_coreSerializationStrategy> _Nullable (^)(id value))defaultSerializerProvider __attribute__((swift_name("polymorphicDefaultSerializer(baseClass:defaultSerializerProvider:)")));
 @end
 
+
+/**
+ * Defines which classes and objects should have their serial name included in the json as so-called class discriminator.
+ *
+ * Class discriminator is a JSON field added by kotlinx.serialization that has [JsonBuilder.classDiscriminator] as a key (`type` by default),
+ * and class' serial name as a value (fully qualified name by default, can be changed with [SerialName] annotation).
+ *
+ * Class discriminator is important for serializing and deserializing [polymorphic class hierarchies](https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/polymorphism.md#sealed-classes).
+ * Default [ClassDiscriminatorMode.POLYMORPHIC] mode adds discriminator only to polymorphic classes.
+ * This behavior can be changed to match various JSON schemas.
+ *
+ * @see JsonBuilder.classDiscriminator
+ * @see JsonBuilder.classDiscriminatorMode
+ * @see Polymorphic
+ * @see PolymorphicSerializer
+ */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Kotlinx_serialization_jsonClassDiscriminatorMode")))
 @interface ClientKotlinx_serialization_jsonClassDiscriminatorMode : ClientKotlinEnum<ClientKotlinx_serialization_jsonClassDiscriminatorMode *>
 + (instancetype)alloc __attribute__((unavailable));
+
+/**
+ * Defines which classes and objects should have their serial name included in the json as so-called class discriminator.
+ *
+ * Class discriminator is a JSON field added by kotlinx.serialization that has [JsonBuilder.classDiscriminator] as a key (`type` by default),
+ * and class' serial name as a value (fully qualified name by default, can be changed with [SerialName] annotation).
+ *
+ * Class discriminator is important for serializing and deserializing [polymorphic class hierarchies](https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/polymorphism.md#sealed-classes).
+ * Default [ClassDiscriminatorMode.POLYMORPHIC] mode adds discriminator only to polymorphic classes.
+ * This behavior can be changed to match various JSON schemas.
+ *
+ * @see JsonBuilder.classDiscriminator
+ * @see JsonBuilder.classDiscriminatorMode
+ * @see Polymorphic
+ * @see PolymorphicSerializer
+ */
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 - (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 @property (class, readonly) ClientKotlinx_serialization_jsonClassDiscriminatorMode *none __attribute__((swift_name("none")));
@@ -5542,12 +7403,67 @@ __attribute__((swift_name("Kotlinx_serialization_jsonClassDiscriminatorMode")))
 
 
 /**
+ * Represents naming strategy — a transformer for serial names in a [Json] format.
+ * Transformed serial names are used for both serialization and deserialization.
+ * A naming strategy is always applied globally in the Json configuration builder
+ * (see [JsonBuilder.namingStrategy]).
+ *
+ * Actual transformation happens in the [serialNameForJson] function.
+ * It is possible to apply additional filtering inside the transformer using the `descriptor` parameter in [serialNameForJson].
+ *
+ * Original serial names are never used after transformation, so they are ignored in a Json input.
+ * If the original serial name is present in the Json input but transformed is not,
+ * [MissingFieldException] still would be thrown. If one wants to preserve the original serial name for deserialization,
+ * one should use the [JsonNames] annotation, as its values are not transformed.
+ *
+ * ### Common pitfalls in conjunction with other Json features
+ *
+ * * Due to the nature of kotlinx.serialization framework, naming strategy transformation is applied to all properties regardless
+ * of whether their serial name was taken from the property name or provided by @[SerialName] annotation.
+ * Effectively, it means one cannot avoid transformation by explicitly specifying the serial name.
+ *
+ * * Collision of the transformed name with any other (transformed) properties serial names or any alternative names
+ * specified with [JsonNames] will lead to a deserialization exception.
+ *
+ * * Naming strategies do not transform serial names of the types used for the polymorphism, as they always should be specified explicitly.
+ * Values from [JsonClassDiscriminator] or global [JsonBuilder.classDiscriminator] also are not altered.
+ *
+ * ### Controversy about using global naming strategies
+ *
+ * Global naming strategies have one key trait that makes them a debatable and controversial topic:
+ * They are very implicit. It means that by looking only at the definition of the class,
+ * it is impossible to say which names it will have in the serialized form.
+ * As a consequence, naming strategies are not friendly to refactorings. Programmer renaming `myId` to `userId` may forget
+ * to rename `my_id`, and vice versa. Generally, any tools one can imagine work poorly with global naming strategies:
+ * Find Usages/Rename in IDE, full-text search by grep, etc. For them, the original name and the transformed are two different things;
+ * changing one without the other may introduce bugs in many unexpected ways.
+ * The lack of a single place of definition, the inability to use automated tools, and more error-prone code lead
+ * to greater maintenance efforts for code with global naming strategies.
+ * However, there are cases where usage of naming strategies is inevitable, such as interop with an existing API or migrating a large codebase.
+ * Therefore, one should carefully weigh the pros and cons before considering adding global naming strategies to an application.
+ *
  * @note annotations
  *   kotlinx.serialization.ExperimentalSerializationApi
 */
 __attribute__((swift_name("Kotlinx_serialization_jsonJsonNamingStrategy")))
 @protocol ClientKotlinx_serialization_jsonJsonNamingStrategy
 @required
+
+/**
+ * Accepts an original [serialName] (defined by property name in the class or [SerialName] annotation) and returns
+ * a transformed serial name which should be used for serialization and deserialization.
+ *
+ * Besides string manipulation operations, it is also possible to implement transformations that depend on the [descriptor]
+ * and its element (defined by [elementIndex]) currently being serialized.
+ * It is guaranteed that `descriptor.getElementName(elementIndex) == serialName`.
+ * For example, one can choose different transformations depending on [SerialInfo]
+ * annotations (see [SerialDescriptor.getElementAnnotations]) or element optionality (see [SerialDescriptor.isElementOptional]).
+ *
+ * Note that invocations of this function are cached for performance reasons.
+ * Caching strategy is an implementation detail and should not be assumed as a part of the public API contract, as it may be changed in future releases.
+ * Therefore, it is essential for this function to be pure: it should not have any side effects, and it should
+ * return the same String for a given [descriptor], [elementIndex], and [serialName], regardless of the number of invocations.
+ */
 - (NSString *)serialNameForJsonDescriptor:(id<ClientKotlinx_serialization_coreSerialDescriptor>)descriptor elementIndex:(int32_t)elementIndex serialName:(NSString *)serialName __attribute__((swift_name("serialNameForJson(descriptor:elementIndex:serialName:)")));
 @end
 
