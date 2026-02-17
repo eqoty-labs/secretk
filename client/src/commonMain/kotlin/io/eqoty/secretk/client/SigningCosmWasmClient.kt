@@ -333,8 +333,7 @@ class SigningCosmWasmClient(
         signers: List<Signer>, amount: List<Coin>, gasLimit: Int, signMode: SignMode, granter: String? = null
     ): ByteArray {
         val authInfo = AuthInfoProto(
-            signerInfos = makeSignerInfos(signers, signMode),
-            fee = FeeProto(
+            signerInfos = makeSignerInfos(signers, signMode), fee = FeeProto(
                 amount = amount.map { it.toProto() },
                 gasLimit = gasLimit,
                 granter = if (granter.isNullOrEmpty()) null else granter

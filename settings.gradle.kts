@@ -7,8 +7,6 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
         google()
-        maven("https://s01.oss.sonatype.org/content/repositories/releases/")
-        maven("https://central.sonatype.com/repository/maven-snapshots/")
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
     plugins {
@@ -19,9 +17,6 @@ pluginManagement {
 
 dependencyResolutionManagement {
     repositories {
-        maven("https://oss.sonatype.org/content/repositories/snapshots")
-        maven("https://s01.oss.sonatype.org/content/repositories/snapshots/")
-        maven("https://s01.oss.sonatype.org/content/repositories/releases/")
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
         mavenCentral()
         google()
