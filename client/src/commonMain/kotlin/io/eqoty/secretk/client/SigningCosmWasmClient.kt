@@ -227,7 +227,7 @@ class SigningCosmWasmClient(
 
 
         val authInfoBytes = makeAuthInfoBytes(
-            listOf(Signer(pubkey, signerData.sequence)), fee.amount, gasLimit, SignMode.SIGN_MODE_DIRECT
+            listOf(Signer(pubkey, signerData.sequence)), fee.amount, gasLimit, SignMode.SIGN_MODE_DIRECT, fee.granter
         )
 
         val signDoc = SignDocProto(
@@ -290,8 +290,9 @@ class SigningCosmWasmClient(
         val signedGasLimit = signResponse.signed.fee.gas.toInt()
         val signedSequence = signResponse.signed.sequence.toBigInteger(10)
         val pubkey = encodePubkey(encodeSecp256k1Pubkey(account.pubkey))
+        val signedFeeGranter = signResponse.signed.fee.granter
         val signedAuthInfoBytes = makeAuthInfoBytes(
-            listOf(Signer(pubkey, signedSequence)), signedFeeAmount, signedGasLimit, signMode
+            listOf(Signer(pubkey, signedSequence)), signedFeeAmount, signedGasLimit, signMode, signedFeeGranter
         )
         val signature = signResponse.signature
         return TxRawProto(
@@ -329,11 +330,14 @@ class SigningCosmWasmClient(
      * This implementation does not support different signing modes for the different signers.
      */
     private fun makeAuthInfoBytes(
-        signers: List<Signer>, amount: List<Coin>, gasLimit: Int, signMode: SignMode
+        signers: List<Signer>, amount: List<Coin>, gasLimit: Int, signMode: SignMode, granter: String? = null
     ): ByteArray {
         val authInfo = AuthInfoProto(
-            signerInfos = makeSignerInfos(signers, signMode), fee = FeeProto(
-                amount = amount.map { it.toProto() }, gasLimit = gasLimit
+            signerInfos = makeSignerInfos(signers, signMode),
+            fee = FeeProto(
+                amount = amount.map { it.toProto() },
+                gasLimit = gasLimit,
+                granter = if (granter.isNullOrEmpty()) null else granter
             )
         )
         return ProtoBuf.encodeToByteArray(authInfo)
