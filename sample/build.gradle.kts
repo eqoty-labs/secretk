@@ -1,4 +1,8 @@
+import org.gradle.kotlin.dsl.assign
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     alias(libs.plugins.org.jetbrains.kotlin.multiplatform)
@@ -153,4 +157,8 @@ android {
         }
     }
     namespace = "io.eqoty.secretk.sample"
+}
+
+tasks.withType<KotlinCompile> {
+    compilerOptions.jvmTarget = JvmTarget.JVM_11
 }
