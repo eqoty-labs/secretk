@@ -5391,7 +5391,10 @@ __attribute__((swift_name("Kotlinx_serialization_coreEncoder")))
  * `SerialDescriptor` interface should not be implemented in 3rd party libraries, as new methods
  * might be added to this interface when kotlinx.serialization adds support for new Kotlin features.
  * This interface is safe to use and construct via [buildClassSerialDescriptor], [PrimitiveSerialDescriptor], and `SerialDescriptor` factory function.
- */
+ *
+ * @note annotations
+ *   kotlin.SubclassOptInRequired(markerClass=[NormalClass(value=kotlinx/serialization/SealedSerializationApi)])
+*/
 __attribute__((swift_name("Kotlinx_serialization_coreSerialDescriptor")))
 @protocol ClientKotlinx_serialization_coreSerialDescriptor
 @required
@@ -7302,7 +7305,7 @@ __attribute__((swift_name("Kotlinx_serialization_coreSerializersModuleCollector"
 /**
  * Accept a provider, associated with generic [kClass] for contextual serialization.
  */
-- (void)contextualKClass:(id<ClientKotlinKClass>)kClass provider:(id<ClientKotlinx_serialization_coreKSerializer> (^)(NSArray<id<ClientKotlinx_serialization_coreKSerializer>> *typeArgumentsSerializers))provider __attribute__((swift_name("contextual(kClass:provider:)")));
+- (void)contextualKClass:(id<ClientKotlinKClass>)kClass provider:(id<ClientKotlinx_serialization_coreKSerializer> (^)(NSArray<id<ClientKotlinx_serialization_coreKSerializer>> *))provider __attribute__((swift_name("contextual(kClass:provider:)")));
 
 /**
  * Accept a serializer, associated with [kClass] for contextual serialization.
@@ -7329,7 +7332,7 @@ __attribute__((swift_name("Kotlinx_serialization_coreSerializersModuleCollector"
  * @see SerializersModuleCollector.polymorphicDefaultDeserializer
  * @see SerializersModuleCollector.polymorphicDefaultSerializer
  */
-- (void)polymorphicDefaultBaseClass:(id<ClientKotlinKClass>)baseClass defaultDeserializerProvider:(id<ClientKotlinx_serialization_coreDeserializationStrategy> _Nullable (^)(NSString * _Nullable className))defaultDeserializerProvider __attribute__((swift_name("polymorphicDefault(baseClass:defaultDeserializerProvider:)"))) __attribute__((deprecated("Deprecated in favor of function with more precise name: polymorphicDefaultDeserializer")));
+- (void)polymorphicDefaultBaseClass:(id<ClientKotlinKClass>)baseClass defaultDeserializerProvider:(id<ClientKotlinx_serialization_coreDeserializationStrategy> _Nullable (^)(NSString * _Nullable))defaultDeserializerProvider __attribute__((swift_name("polymorphicDefault(baseClass:defaultDeserializerProvider:)"))) __attribute__((deprecated("Deprecated in favor of function with more precise name: polymorphicDefaultDeserializer")));
 
 /**
  * Accept a default deserializer provider, associated with the [baseClass] for polymorphic deserialization.
@@ -7342,7 +7345,7 @@ __attribute__((swift_name("Kotlinx_serialization_coreSerializersModuleCollector"
  *
  * [defaultDeserializerProvider] can be stateful and lookup a serializer for the missing type dynamically.
  */
-- (void)polymorphicDefaultDeserializerBaseClass:(id<ClientKotlinKClass>)baseClass defaultDeserializerProvider:(id<ClientKotlinx_serialization_coreDeserializationStrategy> _Nullable (^)(NSString * _Nullable className))defaultDeserializerProvider __attribute__((swift_name("polymorphicDefaultDeserializer(baseClass:defaultDeserializerProvider:)")));
+- (void)polymorphicDefaultDeserializerBaseClass:(id<ClientKotlinKClass>)baseClass defaultDeserializerProvider:(id<ClientKotlinx_serialization_coreDeserializationStrategy> _Nullable (^)(NSString * _Nullable))defaultDeserializerProvider __attribute__((swift_name("polymorphicDefaultDeserializer(baseClass:defaultDeserializerProvider:)")));
 
 /**
  * Accept a default serializer provider, associated with the [baseClass] for polymorphic serialization.
@@ -7353,7 +7356,7 @@ __attribute__((swift_name("Kotlinx_serialization_coreSerializersModuleCollector"
  *
  * [defaultSerializerProvider] can be stateful and lookup a serializer for the missing type dynamically.
  */
-- (void)polymorphicDefaultSerializerBaseClass:(id<ClientKotlinKClass>)baseClass defaultSerializerProvider:(id<ClientKotlinx_serialization_coreSerializationStrategy> _Nullable (^)(id value))defaultSerializerProvider __attribute__((swift_name("polymorphicDefaultSerializer(baseClass:defaultSerializerProvider:)")));
+- (void)polymorphicDefaultSerializerBaseClass:(id<ClientKotlinKClass>)baseClass defaultSerializerProvider:(id<ClientKotlinx_serialization_coreSerializationStrategy> _Nullable (^)(id))defaultSerializerProvider __attribute__((swift_name("polymorphicDefaultSerializer(baseClass:defaultSerializerProvider:)")));
 @end
 
 

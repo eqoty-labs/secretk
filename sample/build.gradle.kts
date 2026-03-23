@@ -21,16 +21,6 @@ kotlin {
         browser()
         binaries.executable()
     }
-    macosX64 {
-        binaries {
-            executable {
-                entryPoint = "main"
-                freeCompilerArgs += listOf(
-                    "-linker-option", "-framework", "-linker-option", "Metal"
-                )
-            }
-        }
-    }
     macosArm64 {
         binaries {
             executable {

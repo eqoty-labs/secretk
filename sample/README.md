@@ -12,7 +12,7 @@
 
 ## Run native on MacOS
 
-`./gradlew runDebugExecutableMacosX64` (Works on Intel processors)
+`./gradlew runDebugExecutableMacosArm64`
 
 ## Run web assembly in browser
 

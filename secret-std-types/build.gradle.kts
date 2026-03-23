@@ -21,9 +21,9 @@ kotlin {
         nodejs()
     }
     iosArm64(); iosX64(); iosSimulatorArm64()
-    tvosArm64(); tvosX64(); tvosSimulatorArm64()
+    tvosArm64(); tvosSimulatorArm64()
     watchosArm32(); watchosArm64(); watchosSimulatorArm64()
-    macosX64(); macosArm64()
+    macosArm64()
     linuxX64()
     mingwX64()
 

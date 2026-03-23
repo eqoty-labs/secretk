@@ -12,25 +12,25 @@ com-vanniktech-maven-publish = { id = "com.vanniktech.maven.publish", version.re
 
 [versions]
 
-kotlin = "2.3.10"
+kotlin = "2.3.20"
 agp = "8.13.2"
 
 vanniktech-publish = "0.36.0"
 swift-package = "2.3.0"
-okio = "3.16.4"
-ktor = "3.4.0"
+okio = "3.17.0"
+ktor = "3.4.1"
 kotlinx-datetime = "0.7.1-0.6.x-compat"
 kotlinx-serialization = "1.10.0"
 kotlinx-coroutines = "1.10.2"
 
-androidx-activity = "1.12.4"
+androidx-activity = "1.13.0"
 androidx-appcompat = "1.7.1"
 
-kermit = "2.0.8"
+kermit = "2.1.0"
 
 getenv = "0.4.0"
 
-compose-jb = "1.10.1"
+compose-jb = "1.10.3"
 
 bignum = "0.3.10"
 bip39 = "1.0.8-mpp"
