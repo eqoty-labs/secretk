@@ -128,7 +128,7 @@ open class CosmWasmClient protected constructor(
                 if (response.code == 5 && Clock.System.now() < deadline) {
                     // try again in 0.5 sec
                     delay(500.milliseconds)
-                    return getTx(hash, deadline - Clock.System.now())
+                    getTx(hash, deadline - Clock.System.now())
                 } else {
                     throw Error("Request Error code:${response.code}, message: ${response.message} }")
                 }
