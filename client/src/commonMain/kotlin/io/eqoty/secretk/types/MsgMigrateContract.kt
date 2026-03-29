@@ -4,9 +4,9 @@ import io.eqoty.secretk.types.proto.MsgMigrateContractProto
 import io.eqoty.secretk.types.proto.ProtoMsg
 import io.eqoty.secretk.utils.EncryptionUtils
 import io.eqoty.secretk.utils.logger
-import io.ktor.util.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
+import kotlin.io.encoding.Base64
 
 class MsgMigrateContract(
     override val sender: String,
@@ -77,7 +77,7 @@ class MsgMigrateContract(
             MsgMigrateContractAminoData(
                 sender = sender,
                 contract = contractAddress,
-                msg = msgEncrypted!!.asByteArray().encodeBase64(),
+                msg = Base64.encode(msgEncrypted!!.asByteArray()),
                 codeId = codeId,
             )
         )

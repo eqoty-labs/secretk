@@ -7,9 +7,9 @@ import io.eqoty.secretk.types.proto.ProtoMsg
 import io.eqoty.secretk.types.proto.toProto
 import io.eqoty.secretk.utils.EncryptionUtils
 import io.eqoty.secretk.utils.logger
-import io.ktor.util.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
+import kotlin.io.encoding.Base64
 
 class MsgExecuteContract(
     override val sender: String,
@@ -95,7 +95,7 @@ class MsgExecuteContract(
             MsgExecuteContractAminoData(
                 sender = sender,
                 contract = contractAddress,
-                msg = msgEncrypted!!.asByteArray().encodeBase64(),
+                msg = Base64.encode(msgEncrypted!!.asByteArray()),
                 sentFunds = sentFunds,
             )
         )

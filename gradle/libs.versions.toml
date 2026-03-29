@@ -19,7 +19,7 @@ vanniktech-publish = "0.36.0"
 swift-package = "2.3.0"
 okio = "3.17.0"
 ktor = "3.4.1"
-kotlinx-datetime = "0.7.1-0.6.x-compat"
+kotlinx-datetime = "0.7.1"
 kotlinx-serialization = "1.10.0"
 kotlinx-coroutines = "1.10.2"
 

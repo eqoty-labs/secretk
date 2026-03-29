@@ -3,7 +3,7 @@ package io.eqoty.secretk.types
 import io.eqoty.kryptools.bech32.addressToBytes
 import io.eqoty.secretk.types.proto.MsgStoreCodeProto
 import io.eqoty.secretk.types.proto.ProtoMsg
-import io.ktor.util.*
+import kotlin.io.encoding.Base64
 
 class MsgStoreCode(
     override val sender: String,
@@ -36,7 +36,7 @@ class MsgStoreCode(
         return MsgStoreCodeAmino(
             MsgStoreCodeAminoData(
                 sender = sender,
-                wasmByteCode = wasmByteCode.asByteArray().encodeBase64(),
+                wasmByteCode = Base64.encode(wasmByteCode.asByteArray()),
                 source = source,
                 builder = builder
             )

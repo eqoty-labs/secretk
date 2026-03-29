@@ -11,10 +11,10 @@ import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
-import io.ktor.util.*
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
+import kotlin.io.encoding.Base64
 
 
 @Serializable
@@ -113,7 +113,7 @@ class EnigmaUtils(val apiUrl: String, val seed: UByteArray = GenerateNewSeed()) 
         }
 
         val txKeyResponse: TxKeyResponse = client.get(this.apiUrl + "/registration/v1beta1/tx-key").body()
-        val txKey = txKeyResponse.key.decodeBase64Bytes()
+        val txKey = Base64.decode(txKeyResponse.key)
         this.consensusIoPubKey = txKey.toUByteArray()
         return this.consensusIoPubKey!!
     }
