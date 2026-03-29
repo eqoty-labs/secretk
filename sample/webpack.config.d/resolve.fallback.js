@@ -10,4 +10,5 @@ config.resolve.fallback = {
     vm: require.resolve("vm-browserify"),
     os: require.resolve("os-browserify/browser"),
     url: require.resolve("url/"),
+    "process/browser": require.resolve("process/browser")
 };

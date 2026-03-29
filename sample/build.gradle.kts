@@ -1,6 +1,7 @@
 import org.gradle.kotlin.dsl.assign
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -18,7 +19,20 @@ kotlin {
     androidTarget()
     jvm("desktop")
     js(IR) {
-        browser()
+        browser {
+            commonWebpackConfig {
+                configDirectory = file("webpack.config.d")
+            }
+        }
+        binaries.executable()
+    }
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        browser {
+            commonWebpackConfig {
+                configDirectory = file("webpack.config.d.wasmJs")
+            }
+        }
         binaries.executable()
     }
     macosArm64 {
@@ -27,18 +41,6 @@ kotlin {
                 entryPoint = "main"
                 freeCompilerArgs += listOf(
                     "-linker-option", "-framework", "-linker-option", "Metal"
-                )
-            }
-        }
-    }
-    iosX64("uikitX64") {
-        binaries {
-            executable {
-                entryPoint = "main"
-                freeCompilerArgs += listOf(
-                    "-linker-option", "-framework", "-linker-option", "Metal",
-                    "-linker-option", "-framework", "-linker-option", "CoreText",
-                    "-linker-option", "-framework", "-linker-option", "CoreGraphics"
                 )
             }
         }

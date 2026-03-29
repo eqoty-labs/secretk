@@ -15,10 +15,10 @@ import io.eqoty.secretk.types.TxOptions
 import io.eqoty.secretk.utils.EnigmaUtils
 import io.eqoty.secretk.wallet.DirectSigningWallet
 import kotlinx.coroutines.launch
-import kotlinx.datetime.Clock
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
+import kotlin.time.Clock
 
 // a `secret-4` nft contract`
 //val contractAddress = "secret1d96jn9azwqw40paqyd5g02kz0ye0udhhqlue7j"
