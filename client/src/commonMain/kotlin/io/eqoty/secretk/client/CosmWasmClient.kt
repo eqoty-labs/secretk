@@ -9,6 +9,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 import kotlin.time.Clock
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 
@@ -100,7 +101,10 @@ open class CosmWasmClient protected constructor(
         }
     }
 
-    suspend fun getTx(hash: String, timeoutAfter: Duration = 10.toDuration(DurationUnit.SECONDS)): TxResponseData {
+    suspend fun getTx(
+        hash: String,
+        timeoutAfter: Duration = 10.toDuration(DurationUnit.SECONDS)
+    ): TxResponseData {
         val currentInstant = Clock.System.now()
         val deadline = currentInstant + timeoutAfter
 
@@ -123,7 +127,7 @@ open class CosmWasmClient protected constructor(
             is TxResponseError -> {
                 if (response.code == 5 && Clock.System.now() < deadline) {
                     // try again in 0.5 sec
-                    delay(500)
+                    delay(500.milliseconds)
                     return getTx(hash, deadline - Clock.System.now())
                 } else {
                     throw Error("Request Error code:${response.code}, message: ${response.message} }")
